@@ -2,7 +2,9 @@
 #include <gb/gb.h>
 
 #pragma bank 1
+#ifndef __INTELLISENSE__
 BANKREF(bank_level)
+#endif
 
 uint8_t level_array[ROWS][COLS] = {
 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},

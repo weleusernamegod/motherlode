@@ -74,9 +74,9 @@
                                      74 	.area _CODE_1
                            000000    75 	G$__func_bank_player$0$0	= .
                                      76 	.globl	G$__func_bank_player$0$0
-                           000000    77 	C$player.c$20$0_0$209	= .
-                                     78 	.globl	C$player.c$20$0_0$209
-                                     79 ;src/player.c:20: BANKREF(bank_player)
+                           000000    77 	C$player.c$21$0_0$209	= .
+                                     78 	.globl	C$player.c$21$0_0$209
+                                     79 ;src/player.c:21: BANKREF(bank_player)
                                      80 ;	---------------------------------
                                      81 ; Function __func_bank_player
                                      82 ; ---------------------------------
@@ -87,26 +87,26 @@
                                      87 	.globl ___bank_bank_player 
                            000000    88 	G$init_character$0$0	= .
                                      89 	.globl	G$init_character$0$0
-                           000000    90 	C$player.c$44$1_0$211	= .
-                                     91 	.globl	C$player.c$44$1_0$211
-                                     92 ;src/player.c:44: void init_character(void){
+                           000000    90 	C$player.c$46$1_0$211	= .
+                                     91 	.globl	C$player.c$46$1_0$211
+                                     92 ;src/player.c:46: void init_character(void){
                                      93 ;	---------------------------------
                                      94 ; Function init_character
                                      95 ; ---------------------------------
       000000                         96 _init_character::
-                           000000    97 	C$player.c$45$1_0$211	= .
-                                     98 	.globl	C$player.c$45$1_0$211
-                                     99 ;src/player.c:45: direction_prev = RIGHT;    // start with the rover facing right
+                           000000    97 	C$player.c$47$1_0$211	= .
+                                     98 	.globl	C$player.c$47$1_0$211
+                                     99 ;src/player.c:47: direction_prev = RIGHT;    // start with the rover facing right
       000000 21r00r00         [12]  100 	ld	hl, #_direction_prev
       000003 36 02            [12]  101 	ld	(hl), #0x02
-                           000005   102 	C$player.c$46$1_0$211	= .
-                                    103 	.globl	C$player.c$46$1_0$211
-                                    104 ;src/player.c:46: prev_depth = depth;
+                           000005   102 	C$player.c$48$1_0$211	= .
+                                    103 	.globl	C$player.c$48$1_0$211
+                                    104 ;src/player.c:48: prev_depth = depth;
       000005 FAr00r00         [16]  105 	ld	a, (#_depth)
       000008 EAr00r00         [16]  106 	ld	(#_prev_depth),a
-                           00000B   107 	C$player.c$47$1_0$211	= .
-                                    108 	.globl	C$player.c$47$1_0$211
-                                    109 ;src/player.c:47: width_pixel.h = 16 + ((width - width_offset) * 16);
+                           00000B   107 	C$player.c$49$1_0$211	= .
+                                    108 	.globl	C$player.c$49$1_0$211
+                                    109 ;src/player.c:49: width_pixel.h = 16 + ((width - width_offset) * 16);
       00000B 01r01r00         [12]  110 	ld	bc, #_width_pixel+1
       00000E FAr00r00         [16]  111 	ld	a, (#_width)
       000011 21r00r00         [12]  112 	ld	hl, #_width_offset
@@ -115,9 +115,9 @@
       000017 E6 F0            [ 8]  115 	and	a, #0xf0
       000019 C6 10            [ 8]  116 	add	a, #0x10
       00001B 02               [ 8]  117 	ld	(bc), a
-                           00001C   118 	C$player.c$48$1_0$211	= .
-                                    119 	.globl	C$player.c$48$1_0$211
-                                    120 ;src/player.c:48: depth_pixel.h = 16 + 8 + (depth - depth_offset) * 16;
+                           00001C   118 	C$player.c$50$1_0$211	= .
+                                    119 	.globl	C$player.c$50$1_0$211
+                                    120 ;src/player.c:50: depth_pixel.h = 16 + 8 + (depth - depth_offset) * 16;
       00001C 01r01r00         [12]  121 	ld	bc, #_depth_pixel+1
       00001F FAr00r00         [16]  122 	ld	a, (#_depth)
       000022 21r00r00         [12]  123 	ld	hl, #_depth_offset
@@ -126,27 +126,27 @@
       000028 E6 F0            [ 8]  126 	and	a, #0xf0
       00002A C6 18            [ 8]  127 	add	a, #0x18
       00002C 02               [ 8]  128 	ld	(bc), a
-                           00002D   129 	C$player.c$49$1_0$211	= .
-                                    130 	.globl	C$player.c$49$1_0$211
-                                    131 ;src/player.c:49: scroll_x.h = width_offset * 16;
+                           00002D   129 	C$player.c$51$1_0$211	= .
+                                    130 	.globl	C$player.c$51$1_0$211
+                                    131 ;src/player.c:51: scroll_x.h = width_offset * 16;
       00002D 01r01r00         [12]  132 	ld	bc, #_scroll_x+1
       000030 FAr00r00         [16]  133 	ld	a, (#_width_offset)
       000033 CB 37            [ 8]  134 	swap	a
       000035 E6 F0            [ 8]  135 	and	a, #0xf0
       000037 02               [ 8]  136 	ld	(bc), a
-                           000038   137 	C$player.c$50$1_0$211	= .
-                                    138 	.globl	C$player.c$50$1_0$211
-                                    139 ;src/player.c:50: scroll_y.h = depth_offset * 16;
+                           000038   137 	C$player.c$52$1_0$211	= .
+                                    138 	.globl	C$player.c$52$1_0$211
+                                    139 ;src/player.c:52: scroll_y.h = depth_offset * 16;
       000038 01r01r00         [12]  140 	ld	bc, #_scroll_y+1
       00003B FAr00r00         [16]  141 	ld	a, (#_depth_offset)
       00003E CB 37            [ 8]  142 	swap	a
       000040 E6 F0            [ 8]  143 	and	a, #0xf0
       000042 02               [ 8]  144 	ld	(bc), a
-                           000043   145 	C$player.c$51$1_0$211	= .
-                                    146 	.globl	C$player.c$51$1_0$211
-                                    147 ;src/player.c:51: }
-                           000043   148 	C$player.c$51$1_0$211	= .
-                                    149 	.globl	C$player.c$51$1_0$211
+                           000043   145 	C$player.c$53$1_0$211	= .
+                                    146 	.globl	C$player.c$53$1_0$211
+                                    147 ;src/player.c:53: }
+                           000043   148 	C$player.c$53$1_0$211	= .
+                                    149 	.globl	C$player.c$53$1_0$211
                            000043   150 	XG$init_character$0$0	= .
                                     151 	.globl	XG$init_character$0$0
       000043 C9               [16]  152 	ret
@@ -202,75 +202,75 @@
       00006F 00                     202 	.db #0x00	; 0
                            000070   203 	G$init_speed$0$0	= .
                                     204 	.globl	G$init_speed$0$0
-                           000070   205 	C$player.c$54$1_0$213	= .
-                                    206 	.globl	C$player.c$54$1_0$213
-                                    207 ;src/player.c:54: void init_speed(void){
+                           000070   205 	C$player.c$56$1_0$213	= .
+                                    206 	.globl	C$player.c$56$1_0$213
+                                    207 ;src/player.c:56: void init_speed(void){
                                     208 ;	---------------------------------
                                     209 ; Function init_speed
                                     210 ; ---------------------------------
       000070                        211 _init_speed::
-                           000070   212 	C$player.c$55$1_0$213	= .
-                                    213 	.globl	C$player.c$55$1_0$213
-                                    214 ;src/player.c:55: move_x_per_frame.w = 0;
+                           000070   212 	C$player.c$57$1_0$213	= .
+                                    213 	.globl	C$player.c$57$1_0$213
+                                    214 ;src/player.c:57: move_x_per_frame.w = 0;
       000070 21r00r00         [12]  215 	ld	hl, #_move_x_per_frame
       000073 AF               [ 4]  216 	xor	a, a
       000074 22               [ 8]  217 	ld	(hl+), a
       000075 77               [ 8]  218 	ld	(hl), a
-                           000076   219 	C$player.c$56$1_0$213	= .
-                                    220 	.globl	C$player.c$56$1_0$213
-                                    221 ;src/player.c:56: move_y_per_frame.w = 0;
+                           000076   219 	C$player.c$58$1_0$213	= .
+                                    220 	.globl	C$player.c$58$1_0$213
+                                    221 ;src/player.c:58: move_y_per_frame.w = 0;
       000076 21r00r00         [12]  222 	ld	hl, #_move_y_per_frame
       000079 AF               [ 4]  223 	xor	a, a
       00007A 22               [ 8]  224 	ld	(hl+), a
       00007B 77               [ 8]  225 	ld	(hl), a
-                           00007C   226 	C$player.c$57$1_0$213	= .
-                                    227 	.globl	C$player.c$57$1_0$213
-                                    228 ;src/player.c:57: scroll_x_per_frame.w = 0;
+                           00007C   226 	C$player.c$59$1_0$213	= .
+                                    227 	.globl	C$player.c$59$1_0$213
+                                    228 ;src/player.c:59: scroll_x_per_frame.w = 0;
       00007C 21r00r00         [12]  229 	ld	hl, #_scroll_x_per_frame
       00007F AF               [ 4]  230 	xor	a, a
       000080 22               [ 8]  231 	ld	(hl+), a
       000081 77               [ 8]  232 	ld	(hl), a
-                           000082   233 	C$player.c$58$1_0$213	= .
-                                    234 	.globl	C$player.c$58$1_0$213
-                                    235 ;src/player.c:58: scroll_y_per_frame.w = 0;
+                           000082   233 	C$player.c$60$1_0$213	= .
+                                    234 	.globl	C$player.c$60$1_0$213
+                                    235 ;src/player.c:60: scroll_y_per_frame.w = 0;
       000082 21r00r00         [12]  236 	ld	hl, #_scroll_y_per_frame
       000085 AF               [ 4]  237 	xor	a, a
       000086 22               [ 8]  238 	ld	(hl+), a
       000087 77               [ 8]  239 	ld	(hl), a
-                           000088   240 	C$player.c$59$1_0$213	= .
-                                    241 	.globl	C$player.c$59$1_0$213
-                                    242 ;src/player.c:59: scroll_x.w = 0;
+                           000088   240 	C$player.c$61$1_0$213	= .
+                                    241 	.globl	C$player.c$61$1_0$213
+                                    242 ;src/player.c:61: scroll_x.w = 0;
       000088 21r00r00         [12]  243 	ld	hl, #_scroll_x
       00008B AF               [ 4]  244 	xor	a, a
       00008C 22               [ 8]  245 	ld	(hl+), a
       00008D 77               [ 8]  246 	ld	(hl), a
-                           00008E   247 	C$player.c$60$1_0$213	= .
-                                    248 	.globl	C$player.c$60$1_0$213
-                                    249 ;src/player.c:60: scroll_y.w = 0;
+                           00008E   247 	C$player.c$62$1_0$213	= .
+                                    248 	.globl	C$player.c$62$1_0$213
+                                    249 ;src/player.c:62: scroll_y.w = 0;
       00008E 21r00r00         [12]  250 	ld	hl, #_scroll_y
       000091 AF               [ 4]  251 	xor	a, a
       000092 22               [ 8]  252 	ld	(hl+), a
       000093 77               [ 8]  253 	ld	(hl), a
-                           000094   254 	C$player.c$61$1_0$213	= .
-                                    255 	.globl	C$player.c$61$1_0$213
-                                    256 ;src/player.c:61: }
-                           000094   257 	C$player.c$61$1_0$213	= .
-                                    258 	.globl	C$player.c$61$1_0$213
+                           000094   254 	C$player.c$63$1_0$213	= .
+                                    255 	.globl	C$player.c$63$1_0$213
+                                    256 ;src/player.c:63: }
+                           000094   257 	C$player.c$63$1_0$213	= .
+                                    258 	.globl	C$player.c$63$1_0$213
                            000094   259 	XG$init_speed$0$0	= .
                                     260 	.globl	XG$init_speed$0$0
       000094 C9               [16]  261 	ret
                            000095   262 	G$check_surroundings$0$0	= .
                                     263 	.globl	G$check_surroundings$0$0
-                           000095   264 	C$player.c$64$1_0$215	= .
-                                    265 	.globl	C$player.c$64$1_0$215
-                                    266 ;src/player.c:64: void check_surroundings(void){
+                           000095   264 	C$player.c$66$1_0$215	= .
+                                    265 	.globl	C$player.c$66$1_0$215
+                                    266 ;src/player.c:66: void check_surroundings(void){
                                     267 ;	---------------------------------
                                     268 ; Function check_surroundings
                                     269 ; ---------------------------------
       000095                        270 _check_surroundings::
-                           000095   271 	C$player.c$65$1_0$215	= .
-                                    272 	.globl	C$player.c$65$1_0$215
-                                    273 ;src/player.c:65: next_tile_down = level_array[depth + 1][width];
+                           000095   271 	C$player.c$67$1_0$215	= .
+                                    272 	.globl	C$player.c$67$1_0$215
+                                    273 ;src/player.c:67: next_tile_down = level_array[depth + 1][width];
       000095 21r00r00         [12]  274 	ld	hl, #_depth
       000098 4E               [ 8]  275 	ld	c, (hl)
       000099 06 00            [ 8]  276 	ld	b, #0x00
@@ -295,9 +295,9 @@
       0000AE 19               [ 8]  295 	add	hl, de
       0000AF 7E               [ 8]  296 	ld	a, (hl)
       0000B0 EAr00r00         [16]  297 	ld	(#_next_tile_down),a
-                           0000B3   298 	C$player.c$66$1_0$215	= .
-                                    299 	.globl	C$player.c$66$1_0$215
-                                    300 ;src/player.c:66: next_tile_up = level_array[depth - 1][width];
+                           0000B3   298 	C$player.c$68$1_0$215	= .
+                                    299 	.globl	C$player.c$68$1_0$215
+                                    300 ;src/player.c:68: next_tile_up = level_array[depth - 1][width];
       0000B3 69               [ 4]  301 	ld	l, c
       0000B4 60               [ 4]  302 	ld	h, b
       0000B5 2B               [ 8]  303 	dec	hl
@@ -313,9 +313,9 @@
       0000C2 19               [ 8]  313 	add	hl, de
       0000C3 7E               [ 8]  314 	ld	a, (hl)
       0000C4 EAr00r00         [16]  315 	ld	(#_next_tile_up),a
-                           0000C7   316 	C$player.c$67$1_0$215	= .
-                                    317 	.globl	C$player.c$67$1_0$215
-                                    318 ;src/player.c:67: next_tile_right = level_array[depth][width + 1];
+                           0000C7   316 	C$player.c$69$1_0$215	= .
+                                    317 	.globl	C$player.c$69$1_0$215
+                                    318 ;src/player.c:69: next_tile_right = level_array[depth][width + 1];
       0000C7 69               [ 4]  319 	ld	l, c
       0000C8 60               [ 4]  320 	ld	h, b
       0000C9 29               [ 8]  321 	add	hl, hl
@@ -338,34 +338,34 @@
       0000DD 09               [ 8]  338 	add	hl, bc
       0000DE 7E               [ 8]  339 	ld	a, (hl)
       0000DF EAr00r00         [16]  340 	ld	(#_next_tile_right),a
-                           0000E2   341 	C$player.c$68$1_0$215	= .
-                                    342 	.globl	C$player.c$68$1_0$215
-                                    343 ;src/player.c:68: next_tile_left = level_array[depth][width - 1];
+                           0000E2   341 	C$player.c$70$1_0$215	= .
+                                    342 	.globl	C$player.c$70$1_0$215
+                                    343 ;src/player.c:70: next_tile_left = level_array[depth][width - 1];
       0000E2 1D               [ 4]  344 	dec	e
       0000E3 6B               [ 4]  345 	ld	l, e
       0000E4 26 00            [ 8]  346 	ld	h, #0x00
       0000E6 09               [ 8]  347 	add	hl, bc
       0000E7 7E               [ 8]  348 	ld	a, (hl)
       0000E8 EAr00r00         [16]  349 	ld	(#_next_tile_left),a
-                           0000EB   350 	C$player.c$69$1_0$215	= .
-                                    351 	.globl	C$player.c$69$1_0$215
-                                    352 ;src/player.c:69: }
-                           0000EB   353 	C$player.c$69$1_0$215	= .
-                                    354 	.globl	C$player.c$69$1_0$215
+                           0000EB   350 	C$player.c$71$1_0$215	= .
+                                    351 	.globl	C$player.c$71$1_0$215
+                                    352 ;src/player.c:71: }
+                           0000EB   353 	C$player.c$71$1_0$215	= .
+                                    354 	.globl	C$player.c$71$1_0$215
                            0000EB   355 	XG$check_surroundings$0$0	= .
                                     356 	.globl	XG$check_surroundings$0$0
       0000EB C9               [16]  357 	ret
                            0000EC   358 	G$metasprite_drill_horizontal$0$0	= .
                                     359 	.globl	G$metasprite_drill_horizontal$0$0
-                           0000EC   360 	C$player.c$71$1_0$217	= .
-                                    361 	.globl	C$player.c$71$1_0$217
-                                    362 ;src/player.c:71: void metasprite_drill_horizontal(char direction){
+                           0000EC   360 	C$player.c$73$1_0$217	= .
+                                    361 	.globl	C$player.c$73$1_0$217
+                                    362 ;src/player.c:73: void metasprite_drill_horizontal(char direction){
                                     363 ;	---------------------------------
                                     364 ; Function metasprite_drill_horizontal
                                     365 ; ---------------------------------
       0000EC                        366 _metasprite_drill_horizontal::
       0000EC 4F               [ 4]  367 	ld	c, a
-                                    368 ;src/player.c:72: hide_metasprite(drill_vertical_metasprite, 15);
+                                    368 ;src/player.c:74: hide_metasprite(drill_vertical_metasprite, 15);
                                     369 ;/usr/local/opt/gbdk/include/gb/metasprites.h:297: __current_metasprite = metasprite;
       0000ED 21r00r00         [12]  370 	ld	hl, #___current_metasprite
       0000F0 36r64            [12]  371 	ld	(hl), #<(_drill_vertical_metasprite)
@@ -376,9 +376,9 @@
       0000F6 3E 0F            [ 8]  376 	ld	a, #0x0f
       0000F8 CDr00r00         [24]  377 	call	___hide_metasprite
       0000FB C1               [12]  378 	pop	bc
-                           0000FC   379 	C$player.c$73$1_0$217	= .
-                                    380 	.globl	C$player.c$73$1_0$217
-                                    381 ;src/player.c:73: if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
+                           0000FC   379 	C$player.c$75$1_0$217	= .
+                                    380 	.globl	C$player.c$75$1_0$217
+                                    381 ;src/player.c:75: if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
       0000FC 79               [ 4]  382 	ld	a, c
       0000FD 3D               [ 4]  383 	dec	a
       0000FE 20 27            [12]  384 	jr	NZ, 00102$
@@ -412,13 +412,13 @@
       000121 3E 0B            [ 8]  412 	ld	a, #0x0b
       000123 CDr00r00         [24]  413 	call	___move_metasprite
       000126 C1               [12]  414 	pop	bc
-                           000127   415 	C$player.c$73$1_0$217	= .
-                                    416 	.globl	C$player.c$73$1_0$217
-                                    417 ;src/player.c:73: if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
+                           000127   415 	C$player.c$75$1_0$217	= .
+                                    416 	.globl	C$player.c$75$1_0$217
+                                    417 ;src/player.c:75: if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
       000127                        418 00102$:
-                           000127   419 	C$player.c$74$1_0$217	= .
-                                    420 	.globl	C$player.c$74$1_0$217
-                                    421 ;src/player.c:74: if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
+                           000127   419 	C$player.c$76$1_0$217	= .
+                                    420 	.globl	C$player.c$76$1_0$217
+                                    421 ;src/player.c:76: if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
       000127 79               [ 4]  422 	ld	a, c
       000128 D6 02            [ 8]  423 	sub	a, #0x02
       00012A C0               [20]  424 	ret	NZ
@@ -446,28 +446,28 @@
       00014D B3               [ 4]  446 	or	a, e
       00014E 5F               [ 4]  447 	ld	e, a
       00014F 3E 0B            [ 8]  448 	ld	a, #0x0b
-                           000151   449 	C$player.c$74$1_0$217	= .
-                                    450 	.globl	C$player.c$74$1_0$217
-                                    451 ;src/player.c:74: if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
-                           000151   452 	C$player.c$75$1_0$217	= .
-                                    453 	.globl	C$player.c$75$1_0$217
-                                    454 ;src/player.c:75: }
-                           000151   455 	C$player.c$75$1_0$217	= .
-                                    456 	.globl	C$player.c$75$1_0$217
+                           000151   449 	C$player.c$76$1_0$217	= .
+                                    450 	.globl	C$player.c$76$1_0$217
+                                    451 ;src/player.c:76: if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
+                           000151   452 	C$player.c$77$1_0$217	= .
+                                    453 	.globl	C$player.c$77$1_0$217
+                                    454 ;src/player.c:77: }
+                           000151   455 	C$player.c$77$1_0$217	= .
+                                    456 	.globl	C$player.c$77$1_0$217
                            000151   457 	XG$metasprite_drill_horizontal$0$0	= .
                                     458 	.globl	XG$metasprite_drill_horizontal$0$0
       000151 C3r00r00         [16]  459 	jp	___move_metasprite_flipx
                            000154   460 	G$metasprite_drill_vertical$0$0	= .
                                     461 	.globl	G$metasprite_drill_vertical$0$0
-                           000154   462 	C$player.c$76$1_0$228	= .
-                                    463 	.globl	C$player.c$76$1_0$228
-                                    464 ;src/player.c:76: void metasprite_drill_vertical(char direction){
+                           000154   462 	C$player.c$78$1_0$228	= .
+                                    463 	.globl	C$player.c$78$1_0$228
+                                    464 ;src/player.c:78: void metasprite_drill_vertical(char direction){
                                     465 ;	---------------------------------
                                     466 ; Function metasprite_drill_vertical
                                     467 ; ---------------------------------
       000154                        468 _metasprite_drill_vertical::
       000154 4F               [ 4]  469 	ld	c, a
-                                    470 ;src/player.c:77: hide_metasprite(drill_horizontal_metasprite, 11);
+                                    470 ;src/player.c:79: hide_metasprite(drill_horizontal_metasprite, 11);
                                     471 ;/usr/local/opt/gbdk/include/gb/metasprites.h:297: __current_metasprite = metasprite;
       000155 21r00r00         [12]  472 	ld	hl, #___current_metasprite
       000158 36r58            [12]  473 	ld	(hl), #<(_drill_horizontal_metasprite)
@@ -478,9 +478,9 @@
       00015E 3E 0B            [ 8]  478 	ld	a, #0x0b
       000160 CDr00r00         [24]  479 	call	___hide_metasprite
       000163 C1               [12]  480 	pop	bc
-                           000164   481 	C$player.c$78$1_0$228	= .
-                                    482 	.globl	C$player.c$78$1_0$228
-                                    483 ;src/player.c:78: if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,0,15,width_pixel.h,depth_pixel.h);
+                           000164   481 	C$player.c$80$1_0$228	= .
+                                    482 	.globl	C$player.c$80$1_0$228
+                                    483 ;src/player.c:80: if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,0,15,width_pixel.h,depth_pixel.h);
       000164 79               [ 4]  484 	ld	a, c
       000165 D6 04            [ 8]  485 	sub	a, #0x04
       000167 C0               [20]  486 	ret	NZ
@@ -507,22 +507,22 @@
       000186 5F               [ 4]  507 	ld	e, a
       000187 51               [ 4]  508 	ld	d, c
       000188 3E 0F            [ 8]  509 	ld	a, #0x0f
-                           00018A   510 	C$player.c$78$1_0$228	= .
-                                    511 	.globl	C$player.c$78$1_0$228
-                                    512 ;src/player.c:78: if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,0,15,width_pixel.h,depth_pixel.h);
-                           00018A   513 	C$player.c$79$1_0$228	= .
-                                    514 	.globl	C$player.c$79$1_0$228
-                                    515 ;src/player.c:79: }
-                           00018A   516 	C$player.c$79$1_0$228	= .
-                                    517 	.globl	C$player.c$79$1_0$228
+                           00018A   510 	C$player.c$80$1_0$228	= .
+                                    511 	.globl	C$player.c$80$1_0$228
+                                    512 ;src/player.c:80: if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,0,15,width_pixel.h,depth_pixel.h);
+                           00018A   513 	C$player.c$81$1_0$228	= .
+                                    514 	.globl	C$player.c$81$1_0$228
+                                    515 ;src/player.c:81: }
+                           00018A   516 	C$player.c$81$1_0$228	= .
+                                    517 	.globl	C$player.c$81$1_0$228
                            00018A   518 	XG$metasprite_drill_vertical$0$0	= .
                                     519 	.globl	XG$metasprite_drill_vertical$0$0
       00018A C3r00r00         [16]  520 	jp	___move_metasprite
                            00018D   521 	G$metasprite_rover$0$0	= .
                                     522 	.globl	G$metasprite_rover$0$0
-                           00018D   523 	C$player.c$80$1_0$236	= .
-                                    524 	.globl	C$player.c$80$1_0$236
-                                    525 ;src/player.c:80: void metasprite_rover(char direction){
+                           00018D   523 	C$player.c$82$1_0$236	= .
+                                    524 	.globl	C$player.c$82$1_0$236
+                                    525 ;src/player.c:82: void metasprite_rover(char direction){
                                     526 ;	---------------------------------
                                     527 ; Function metasprite_rover
                                     528 ; ---------------------------------
@@ -530,7 +530,7 @@
       00018D 3B               [ 8]  530 	dec	sp
       00018E F8 00            [12]  531 	ldhl	sp,	#0
       000190 77               [ 8]  532 	ld	(hl), a
-                                    533 ;src/player.c:81: hide_metasprite(drill_horizontal_metasprite, 15);
+                                    533 ;src/player.c:83: hide_metasprite(drill_horizontal_metasprite, 15);
                                     534 ;/usr/local/opt/gbdk/include/gb/metasprites.h:297: __current_metasprite = metasprite;
       000191 21r00r00         [12]  535 	ld	hl, #___current_metasprite
       000194 36r58            [12]  536 	ld	(hl), #<(_drill_horizontal_metasprite)
@@ -539,7 +539,7 @@
                                     539 ;/usr/local/opt/gbdk/include/gb/metasprites.h:298: __hide_metasprite(base_sprite);
       000199 3E 0F            [ 8]  540 	ld	a, #0x0f
       00019B CDr00r00         [24]  541 	call	___hide_metasprite
-                                    542 ;src/player.c:82: hide_metasprite(drill_horizontal_metasprite, 11);
+                                    542 ;src/player.c:84: hide_metasprite(drill_horizontal_metasprite, 11);
                                     543 ;/usr/local/opt/gbdk/include/gb/metasprites.h:297: __current_metasprite = metasprite;
       00019E 21r00r00         [12]  544 	ld	hl, #___current_metasprite
       0001A1 36r58            [12]  545 	ld	(hl), #<(_drill_horizontal_metasprite)
@@ -548,9 +548,9 @@
                                     548 ;/usr/local/opt/gbdk/include/gb/metasprites.h:298: __hide_metasprite(base_sprite);
       0001A6 3E 0B            [ 8]  549 	ld	a, #0x0b
       0001A8 CDr00r00         [24]  550 	call	___hide_metasprite
-                           0001AB   551 	C$player.c$83$1_0$236	= .
-                                    552 	.globl	C$player.c$83$1_0$236
-                                    553 ;src/player.c:83: if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
+                           0001AB   551 	C$player.c$85$1_0$236	= .
+                                    552 	.globl	C$player.c$85$1_0$236
+                                    553 ;src/player.c:85: if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
       0001AB F8 00            [12]  554 	ldhl	sp,	#0
       0001AD 7E               [ 8]  555 	ld	a, (hl)
       0001AE 3D               [ 4]  556 	dec	a
@@ -578,13 +578,13 @@
       0001CE 51               [ 4]  578 	ld	d, c
       0001CF AF               [ 4]  579 	xor	a, a
       0001D0 CDr00r00         [24]  580 	call	___move_metasprite
-                           0001D3   581 	C$player.c$83$1_0$236	= .
-                                    582 	.globl	C$player.c$83$1_0$236
-                                    583 ;src/player.c:83: if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
+                           0001D3   581 	C$player.c$85$1_0$236	= .
+                                    582 	.globl	C$player.c$85$1_0$236
+                                    583 ;src/player.c:85: if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
       0001D3                        584 00102$:
-                           0001D3   585 	C$player.c$84$1_0$236	= .
-                                    586 	.globl	C$player.c$84$1_0$236
-                                    587 ;src/player.c:84: if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
+                           0001D3   585 	C$player.c$86$1_0$236	= .
+                                    586 	.globl	C$player.c$86$1_0$236
+                                    587 ;src/player.c:86: if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
       0001D3 F8 00            [12]  588 	ldhl	sp,	#0
       0001D5 7E               [ 8]  589 	ld	a, (hl)
       0001D6 D6 02            [ 8]  590 	sub	a, #0x02
@@ -615,31 +615,31 @@
       0001FE AF               [ 4]  615 	xor	a, a
       0001FF 33               [ 8]  616 	inc	sp
       000200 C3r00r00         [16]  617 	jp	___move_metasprite_flipx
-                           000203   618 	C$player.c$84$1_0$236	= .
-                                    619 	.globl	C$player.c$84$1_0$236
-                                    620 ;src/player.c:84: if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
+                           000203   618 	C$player.c$86$1_0$236	= .
+                                    619 	.globl	C$player.c$86$1_0$236
+                                    620 ;src/player.c:86: if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
       000203                        621 00109$:
-                           000203   622 	C$player.c$85$1_0$236	= .
-                                    623 	.globl	C$player.c$85$1_0$236
-                                    624 ;src/player.c:85: }
+                           000203   622 	C$player.c$87$1_0$236	= .
+                                    623 	.globl	C$player.c$87$1_0$236
+                                    624 ;src/player.c:87: }
       000203 33               [ 8]  625 	inc	sp
-                           000204   626 	C$player.c$85$1_0$236	= .
-                                    627 	.globl	C$player.c$85$1_0$236
+                           000204   626 	C$player.c$87$1_0$236	= .
+                                    627 	.globl	C$player.c$87$1_0$236
                            000204   628 	XG$metasprite_rover$0$0	= .
                                     629 	.globl	XG$metasprite_rover$0$0
       000204 C9               [16]  630 	ret
                            000205   631 	G$draw_metasprite$0$0	= .
                                     632 	.globl	G$draw_metasprite$0$0
-                           000205   633 	C$player.c$87$1_0$250	= .
-                                    634 	.globl	C$player.c$87$1_0$250
-                                    635 ;src/player.c:87: void draw_metasprite(char direction){
+                           000205   633 	C$player.c$89$1_0$250	= .
+                                    634 	.globl	C$player.c$89$1_0$250
+                                    635 ;src/player.c:89: void draw_metasprite(char direction){
                                     636 ;	---------------------------------
                                     637 ; Function draw_metasprite
                                     638 ; ---------------------------------
       000205                        639 _draw_metasprite::
-                           000205   640 	C$player.c$88$1_0$250	= .
-                                    641 	.globl	C$player.c$88$1_0$250
-                                    642 ;src/player.c:88: if (direction == LEFT || direction == RIGHT){
+                           000205   640 	C$player.c$90$1_0$250	= .
+                                    641 	.globl	C$player.c$90$1_0$250
+                                    642 ;src/player.c:90: if (direction == LEFT || direction == RIGHT){
       000205 4F               [ 4]  643 	ld	c, a
       000206 3D               [ 4]  644 	dec	a
       000207 28 05            [12]  645 	jr	Z, 00108$
@@ -647,16 +647,16 @@
       00020A D6 02            [ 8]  647 	sub	a, #0x02
       00020C 20 10            [12]  648 	jr	NZ, 00109$
       00020E                        649 00108$:
-                           00020E   650 	C$player.c$89$2_0$251	= .
-                                    651 	.globl	C$player.c$89$2_0$251
-                                    652 ;src/player.c:89: metasprite_rover(direction);
+                           00020E   650 	C$player.c$91$2_0$251	= .
+                                    651 	.globl	C$player.c$91$2_0$251
+                                    652 ;src/player.c:91: metasprite_rover(direction);
       00020E C5               [16]  653 	push	bc
       00020F 79               [ 4]  654 	ld	a, c
       000210 CDr8Dr01         [24]  655 	call	_metasprite_rover
       000213 C1               [12]  656 	pop	bc
-                           000214   657 	C$player.c$90$2_0$251	= .
-                                    658 	.globl	C$player.c$90$2_0$251
-                                    659 ;src/player.c:90: if (is_drilling == TRUE) metasprite_drill_horizontal(direction);
+                           000214   657 	C$player.c$92$2_0$251	= .
+                                    658 	.globl	C$player.c$92$2_0$251
+                                    659 ;src/player.c:92: if (is_drilling == TRUE) metasprite_drill_horizontal(direction);
       000214 21r00r00         [12]  660 	ld	hl, #_is_drilling
       000217 7E               [ 8]  661 	ld	a, (hl)
       000218 3D               [ 4]  662 	dec	a
@@ -664,56 +664,56 @@
       00021A 79               [ 4]  664 	ld	a, c
       00021B C3rECr00         [16]  665 	jp	_metasprite_drill_horizontal
       00021E                        666 00109$:
-                           00021E   667 	C$player.c$91$1_0$250	= .
-                                    668 	.globl	C$player.c$91$1_0$250
-                                    669 ;src/player.c:91: } else if (direction == UP || direction == DOWN) {
+                           00021E   667 	C$player.c$93$1_0$250	= .
+                                    668 	.globl	C$player.c$93$1_0$250
+                                    669 ;src/player.c:93: } else if (direction == UP || direction == DOWN) {
       00021E 79               [ 4]  670 	ld	a,c
       00021F FE 03            [ 8]  671 	cp	a,#0x03
       000221 28 03            [12]  672 	jr	Z, 00105$
       000223 D6 04            [ 8]  673 	sub	a, #0x04
       000225 C0               [20]  674 	ret	NZ
       000226                        675 00105$:
-                           000226   676 	C$player.c$92$2_0$252	= .
-                                    677 	.globl	C$player.c$92$2_0$252
-                                    678 ;src/player.c:92: metasprite_rover(direction_prev);
+                           000226   676 	C$player.c$94$2_0$252	= .
+                                    677 	.globl	C$player.c$94$2_0$252
+                                    678 ;src/player.c:94: metasprite_rover(direction_prev);
       000226 C5               [16]  679 	push	bc
       000227 FAr00r00         [16]  680 	ld	a, (#_direction_prev)
       00022A CDr8Dr01         [24]  681 	call	_metasprite_rover
       00022D C1               [12]  682 	pop	bc
-                           00022E   683 	C$player.c$93$2_0$252	= .
-                                    684 	.globl	C$player.c$93$2_0$252
-                                    685 ;src/player.c:93: if (is_drilling == TRUE) metasprite_drill_vertical(direction);
+                           00022E   683 	C$player.c$95$2_0$252	= .
+                                    684 	.globl	C$player.c$95$2_0$252
+                                    685 ;src/player.c:95: if (is_drilling == TRUE) metasprite_drill_vertical(direction);
       00022E 21r00r00         [12]  686 	ld	hl, #_is_drilling
       000231 7E               [ 8]  687 	ld	a, (hl)
       000232 3D               [ 4]  688 	dec	a
       000233 C0               [20]  689 	ret	NZ
       000234 79               [ 4]  690 	ld	a, c
-                           000235   691 	C$player.c$95$1_0$250	= .
-                                    692 	.globl	C$player.c$95$1_0$250
-                                    693 ;src/player.c:95: }
-                           000235   694 	C$player.c$95$1_0$250	= .
-                                    695 	.globl	C$player.c$95$1_0$250
+                           000235   691 	C$player.c$97$1_0$250	= .
+                                    692 	.globl	C$player.c$97$1_0$250
+                                    693 ;src/player.c:97: }
+                           000235   694 	C$player.c$97$1_0$250	= .
+                                    695 	.globl	C$player.c$97$1_0$250
                            000235   696 	XG$draw_metasprite$0$0	= .
                                     697 	.globl	XG$draw_metasprite$0$0
       000235 C3r54r01         [16]  698 	jp	_metasprite_drill_vertical
                            000238   699 	G$update_movement$0$0	= .
                                     700 	.globl	G$update_movement$0$0
-                           000238   701 	C$player.c$97$1_0$254	= .
-                                    702 	.globl	C$player.c$97$1_0$254
-                                    703 ;src/player.c:97: void update_movement(void) {
+                           000238   701 	C$player.c$99$1_0$254	= .
+                                    702 	.globl	C$player.c$99$1_0$254
+                                    703 ;src/player.c:99: void update_movement(void) {
                                     704 ;	---------------------------------
                                     705 ; Function update_movement
                                     706 ; ---------------------------------
       000238                        707 _update_movement::
-                           000238   708 	C$player.c$98$1_0$254	= .
-                                    709 	.globl	C$player.c$98$1_0$254
-                                    710 ;src/player.c:98: if (animation_frames_left > 0) {
+                           000238   708 	C$player.c$100$1_0$254	= .
+                                    709 	.globl	C$player.c$100$1_0$254
+                                    710 ;src/player.c:100: if (animation_frames_left > 0) {
       000238 FAr00r00         [16]  711 	ld	a, (#_animation_frames_left)
       00023B B7               [ 4]  712 	or	a, a
       00023C C8               [20]  713 	ret	Z
-                           00023D   714 	C$player.c$100$2_0$255	= .
-                                    715 	.globl	C$player.c$100$2_0$255
-                                    716 ;src/player.c:100: scroll_x.w += scroll_x_per_frame.w;
+                           00023D   714 	C$player.c$102$2_0$255	= .
+                                    715 	.globl	C$player.c$102$2_0$255
+                                    716 ;src/player.c:102: scroll_x.w += scroll_x_per_frame.w;
       00023D 21r00r00         [12]  717 	ld	hl, #_scroll_x
       000240 2A               [ 8]  718 	ld	a, (hl+)
       000241 4F               [ 4]  719 	ld	c, a
@@ -732,9 +732,9 @@
       00024F 79               [ 4]  732 	ld	a, c
       000250 22               [ 8]  733 	ld	(hl+), a
       000251 70               [ 8]  734 	ld	(hl), b
-                           000252   735 	C$player.c$101$2_0$255	= .
-                                    736 	.globl	C$player.c$101$2_0$255
-                                    737 ;src/player.c:101: scroll_y.w += scroll_y_per_frame.w;
+                           000252   735 	C$player.c$103$2_0$255	= .
+                                    736 	.globl	C$player.c$103$2_0$255
+                                    737 ;src/player.c:103: scroll_y.w += scroll_y_per_frame.w;
       000252 21r00r00         [12]  738 	ld	hl, #_scroll_y
       000255 2A               [ 8]  739 	ld	a, (hl+)
       000256 4F               [ 4]  740 	ld	c, a
@@ -753,9 +753,9 @@
       000264 79               [ 4]  753 	ld	a, c
       000265 22               [ 8]  754 	ld	(hl+), a
       000266 70               [ 8]  755 	ld	(hl), b
-                           000267   756 	C$player.c$102$2_0$255	= .
-                                    757 	.globl	C$player.c$102$2_0$255
-                                    758 ;src/player.c:102: width_pixel.w += move_x_per_frame.w;
+                           000267   756 	C$player.c$104$2_0$255	= .
+                                    757 	.globl	C$player.c$104$2_0$255
+                                    758 ;src/player.c:104: width_pixel.w += move_x_per_frame.w;
       000267 21r00r00         [12]  759 	ld	hl, #_width_pixel
       00026A 2A               [ 8]  760 	ld	a, (hl+)
       00026B 4F               [ 4]  761 	ld	c, a
@@ -774,9 +774,9 @@
       000279 79               [ 4]  774 	ld	a, c
       00027A 22               [ 8]  775 	ld	(hl+), a
       00027B 70               [ 8]  776 	ld	(hl), b
-                           00027C   777 	C$player.c$103$2_0$255	= .
-                                    778 	.globl	C$player.c$103$2_0$255
-                                    779 ;src/player.c:103: depth_pixel.w += move_y_per_frame.w;
+                           00027C   777 	C$player.c$105$2_0$255	= .
+                                    778 	.globl	C$player.c$105$2_0$255
+                                    779 ;src/player.c:105: depth_pixel.w += move_y_per_frame.w;
       00027C 21r00r00         [12]  780 	ld	hl, #_depth_pixel
       00027F 2A               [ 8]  781 	ld	a, (hl+)
       000280 4F               [ 4]  782 	ld	c, a
@@ -795,12 +795,12 @@
       00028E 79               [ 4]  795 	ld	a, c
       00028F 22               [ 8]  796 	ld	(hl+), a
       000290 70               [ 8]  797 	ld	(hl), b
-                           000291   798 	C$player.c$106$2_0$255	= .
-                                    799 	.globl	C$player.c$106$2_0$255
-                                    800 ;src/player.c:106: draw_metasprite(direction_now);
+                           000291   798 	C$player.c$108$2_0$255	= .
+                                    799 	.globl	C$player.c$108$2_0$255
+                                    800 ;src/player.c:108: draw_metasprite(direction_now);
       000291 FAr00r00         [16]  801 	ld	a, (#_direction_now)
       000294 CDr05r02         [24]  802 	call	_draw_metasprite
-                                    803 ;src/player.c:109: move_bkg(scroll_x.h, scroll_y.h);
+                                    803 ;src/player.c:111: move_bkg(scroll_x.h, scroll_y.h);
       000297 21r01r00         [12]  804 	ld	hl, #(_scroll_y + 1)
       00029A 4E               [ 8]  805 	ld	c, (hl)
       00029B FAr01r00         [16]  806 	ld	a, (#(_scroll_x + 1) + 0)
@@ -808,14 +808,14 @@
                                     808 ;/usr/local/opt/gbdk/include/gb/gb.h:1378: SCX_REG=x, SCY_REG=y;
       0002A0 79               [ 4]  809 	ld	a, c
       0002A1 E0r00            [12]  810 	ldh	(_SCY_REG + 0), a
-                           0002A3   811 	C$player.c$112$2_0$255	= .
-                                    812 	.globl	C$player.c$112$2_0$255
-                                    813 ;src/player.c:112: animation_frames_left--;
+                           0002A3   811 	C$player.c$114$2_0$255	= .
+                                    812 	.globl	C$player.c$114$2_0$255
+                                    813 ;src/player.c:114: animation_frames_left--;
       0002A3 21r00r00         [12]  814 	ld	hl, #_animation_frames_left
       0002A6 35               [12]  815 	dec	(hl)
-                           0002A7   816 	C$player.c$115$2_0$255	= .
-                                    817 	.globl	C$player.c$115$2_0$255
-                                    818 ;src/player.c:115: if (animation_frames_left % 15 == 0) {  // Every 15 frames
+                           0002A7   816 	C$player.c$117$2_0$255	= .
+                                    817 	.globl	C$player.c$117$2_0$255
+                                    818 ;src/player.c:117: if (animation_frames_left % 15 == 0) {  // Every 15 frames
       0002A7 5E               [ 8]  819 	ld	e, (hl)
       0002A8 16 00            [ 8]  820 	ld	d, #0x00
       0002AA 01 0F 00         [12]  821 	ld	bc, #0x000f
@@ -823,9 +823,9 @@
       0002B0 78               [ 4]  823 	ld	a, b
       0002B1 B1               [ 4]  824 	or	a, c
       0002B2 20 0D            [12]  825 	jr	NZ, 00102$
-                           0002B4   826 	C$player.c$116$3_0$256	= .
-                                    827 	.globl	C$player.c$116$3_0$256
-                                    828 ;src/player.c:116: player.fuel.current_value -= 1;
+                           0002B4   826 	C$player.c$118$3_0$256	= .
+                                    827 	.globl	C$player.c$118$3_0$256
+                                    828 ;src/player.c:118: player.fuel.current_value -= 1;
       0002B4 21r10r00         [12]  829 	ld	hl, #(_player + 16)
       0002B7 2A               [ 8]  830 	ld	a, (hl+)
       0002B8 4F               [ 4]  831 	ld	c, a
@@ -836,43 +836,43 @@
       0002BF 22               [ 8]  836 	ld	(hl+), a
       0002C0 70               [ 8]  837 	ld	(hl), b
       0002C1                        838 00102$:
-                           0002C1   839 	C$player.c$120$2_0$255	= .
-                                    840 	.globl	C$player.c$120$2_0$255
-                                    841 ;src/player.c:120: if (animation_frames_left == 0) {
+                           0002C1   839 	C$player.c$122$2_0$255	= .
+                                    840 	.globl	C$player.c$122$2_0$255
+                                    841 ;src/player.c:122: if (animation_frames_left == 0) {
       0002C1 FAr00r00         [16]  842 	ld	a, (#_animation_frames_left)
       0002C4 B7               [ 4]  843 	or	a, a
       0002C5 C0               [20]  844 	ret	NZ
-                           0002C6   845 	C$player.c$121$3_0$257	= .
-                                    846 	.globl	C$player.c$121$3_0$257
-                                    847 ;src/player.c:121: move_x_per_frame.w = 0;
+                           0002C6   845 	C$player.c$123$3_0$257	= .
+                                    846 	.globl	C$player.c$123$3_0$257
+                                    847 ;src/player.c:123: move_x_per_frame.w = 0;
       0002C6 21r00r00         [12]  848 	ld	hl, #_move_x_per_frame
       0002C9 AF               [ 4]  849 	xor	a, a
       0002CA 22               [ 8]  850 	ld	(hl+), a
       0002CB 77               [ 8]  851 	ld	(hl), a
-                           0002CC   852 	C$player.c$122$3_0$257	= .
-                                    853 	.globl	C$player.c$122$3_0$257
-                                    854 ;src/player.c:122: move_y_per_frame.w = 0;
+                           0002CC   852 	C$player.c$124$3_0$257	= .
+                                    853 	.globl	C$player.c$124$3_0$257
+                                    854 ;src/player.c:124: move_y_per_frame.w = 0;
       0002CC 21r00r00         [12]  855 	ld	hl, #_move_y_per_frame
       0002CF AF               [ 4]  856 	xor	a, a
       0002D0 22               [ 8]  857 	ld	(hl+), a
       0002D1 77               [ 8]  858 	ld	(hl), a
-                           0002D2   859 	C$player.c$123$3_0$257	= .
-                                    860 	.globl	C$player.c$123$3_0$257
-                                    861 ;src/player.c:123: scroll_x_per_frame.w = 0;
+                           0002D2   859 	C$player.c$125$3_0$257	= .
+                                    860 	.globl	C$player.c$125$3_0$257
+                                    861 ;src/player.c:125: scroll_x_per_frame.w = 0;
       0002D2 21r00r00         [12]  862 	ld	hl, #_scroll_x_per_frame
       0002D5 AF               [ 4]  863 	xor	a, a
       0002D6 22               [ 8]  864 	ld	(hl+), a
       0002D7 77               [ 8]  865 	ld	(hl), a
-                           0002D8   866 	C$player.c$124$3_0$257	= .
-                                    867 	.globl	C$player.c$124$3_0$257
-                                    868 ;src/player.c:124: scroll_y_per_frame.w = 0;
+                           0002D8   866 	C$player.c$126$3_0$257	= .
+                                    867 	.globl	C$player.c$126$3_0$257
+                                    868 ;src/player.c:126: scroll_y_per_frame.w = 0;
       0002D8 21r00r00         [12]  869 	ld	hl, #_scroll_y_per_frame
       0002DB AF               [ 4]  870 	xor	a, a
       0002DC 22               [ 8]  871 	ld	(hl+), a
       0002DD 77               [ 8]  872 	ld	(hl), a
-                           0002DE   873 	C$player.c$127$3_0$257	= .
-                                    874 	.globl	C$player.c$127$3_0$257
-                                    875 ;src/player.c:127: width_pixel.h = 16 + (width - width_offset) * 16, width_pixel.l = 0;
+                           0002DE   873 	C$player.c$129$3_0$257	= .
+                                    874 	.globl	C$player.c$129$3_0$257
+                                    875 ;src/player.c:129: width_pixel.h = 16 + (width - width_offset) * 16, width_pixel.l = 0;
       0002DE FAr00r00         [16]  876 	ld	a, (#_width)
       0002E1 21r00r00         [12]  877 	ld	hl, #_width_offset
       0002E4 96               [ 8]  878 	sub	a, (hl)
@@ -882,9 +882,9 @@
       0002EB EAr01r00         [16]  882 	ld	(#(_width_pixel + 1)),a
       0002EE 21r00r00         [12]  883 	ld	hl, #_width_pixel
       0002F1 36 00            [12]  884 	ld	(hl), #0x00
-                           0002F3   885 	C$player.c$128$3_0$257	= .
-                                    886 	.globl	C$player.c$128$3_0$257
-                                    887 ;src/player.c:128: depth_pixel.h = 24 + (depth - depth_offset) * 16, depth_pixel.l = 0;
+                           0002F3   885 	C$player.c$130$3_0$257	= .
+                                    886 	.globl	C$player.c$130$3_0$257
+                                    887 ;src/player.c:130: depth_pixel.h = 24 + (depth - depth_offset) * 16, depth_pixel.l = 0;
       0002F3 01r01r00         [12]  888 	ld	bc, #_depth_pixel + 1
       0002F6 FAr00r00         [16]  889 	ld	a, (#_depth)
       0002F9 21r00r00         [12]  890 	ld	hl, #_depth_offset
@@ -895,32 +895,32 @@
       000303 02               [ 8]  895 	ld	(bc), a
       000304 21r00r00         [12]  896 	ld	hl, #_depth_pixel
       000307 36 00            [12]  897 	ld	(hl), #0x00
-                           000309   898 	C$player.c$129$3_0$257	= .
-                                    899 	.globl	C$player.c$129$3_0$257
-                                    900 ;src/player.c:129: scroll_x.h = width_offset * 16, scroll_x.l = 0;
+                           000309   898 	C$player.c$131$3_0$257	= .
+                                    899 	.globl	C$player.c$131$3_0$257
+                                    900 ;src/player.c:131: scroll_x.h = width_offset * 16, scroll_x.l = 0;
       000309 FAr00r00         [16]  901 	ld	a, (#_width_offset)
       00030C CB 37            [ 8]  902 	swap	a
       00030E E6 F0            [ 8]  903 	and	a, #0xf0
       000310 EAr01r00         [16]  904 	ld	(#(_scroll_x + 1)),a
       000313 21r00r00         [12]  905 	ld	hl, #_scroll_x
       000316 36 00            [12]  906 	ld	(hl), #0x00
-                           000318   907 	C$player.c$130$3_0$257	= .
-                                    908 	.globl	C$player.c$130$3_0$257
-                                    909 ;src/player.c:130: scroll_y.h = depth_offset * 16, scroll_y.l = 0;  
+                           000318   907 	C$player.c$132$3_0$257	= .
+                                    908 	.globl	C$player.c$132$3_0$257
+                                    909 ;src/player.c:132: scroll_y.h = depth_offset * 16, scroll_y.l = 0;  
       000318 FAr00r00         [16]  910 	ld	a, (#_depth_offset)
       00031B CB 37            [ 8]  911 	swap	a
       00031D E6 F0            [ 8]  912 	and	a, #0xf0
       00031F EAr01r00         [16]  913 	ld	(#(_scroll_y + 1)),a
       000322 21r00r00         [12]  914 	ld	hl, #_scroll_y
       000325 36 00            [12]  915 	ld	(hl), #0x00
-                           000327   916 	C$player.c$132$3_0$257	= .
-                                    917 	.globl	C$player.c$132$3_0$257
-                                    918 ;src/player.c:132: prev_depth = depth;
+                           000327   916 	C$player.c$134$3_0$257	= .
+                                    917 	.globl	C$player.c$134$3_0$257
+                                    918 ;src/player.c:134: prev_depth = depth;
       000327 FAr00r00         [16]  919 	ld	a, (#_depth)
       00032A EAr00r00         [16]  920 	ld	(#_prev_depth),a
-                           00032D   921 	C$player.c$133$3_0$257	= .
-                                    922 	.globl	C$player.c$133$3_0$257
-                                    923 ;src/player.c:133: width_pixel.h = 16 + ((width - width_offset) * 16);
+                           00032D   921 	C$player.c$135$3_0$257	= .
+                                    922 	.globl	C$player.c$135$3_0$257
+                                    923 ;src/player.c:135: width_pixel.h = 16 + ((width - width_offset) * 16);
       00032D FAr00r00         [16]  924 	ld	a, (#_width)
       000330 21r00r00         [12]  925 	ld	hl, #_width_offset
       000333 96               [ 8]  926 	sub	a, (hl)
@@ -928,9 +928,9 @@
       000336 E6 F0            [ 8]  928 	and	a, #0xf0
       000338 C6 10            [ 8]  929 	add	a, #0x10
       00033A EAr01r00         [16]  930 	ld	(#(_width_pixel + 1)),a
-                           00033D   931 	C$player.c$134$3_0$257	= .
-                                    932 	.globl	C$player.c$134$3_0$257
-                                    933 ;src/player.c:134: depth_pixel.h = 16 + 8 + (depth - depth_offset) * 16;
+                           00033D   931 	C$player.c$136$3_0$257	= .
+                                    932 	.globl	C$player.c$136$3_0$257
+                                    933 ;src/player.c:136: depth_pixel.h = 16 + 8 + (depth - depth_offset) * 16;
       00033D FAr00r00         [16]  934 	ld	a, (#_depth)
       000340 21r00r00         [12]  935 	ld	hl, #_depth_offset
       000343 96               [ 8]  936 	sub	a, (hl)
@@ -938,28 +938,28 @@
       000346 E6 F0            [ 8]  938 	and	a, #0xf0
       000348 C6 18            [ 8]  939 	add	a, #0x18
       00034A 02               [ 8]  940 	ld	(bc), a
-                           00034B   941 	C$player.c$135$3_0$257	= .
-                                    942 	.globl	C$player.c$135$3_0$257
-                                    943 ;src/player.c:135: scroll_x.h = width_offset * 16;
+                           00034B   941 	C$player.c$137$3_0$257	= .
+                                    942 	.globl	C$player.c$137$3_0$257
+                                    943 ;src/player.c:137: scroll_x.h = width_offset * 16;
       00034B FAr00r00         [16]  944 	ld	a, (#_width_offset)
       00034E CB 37            [ 8]  945 	swap	a
       000350 E6 F0            [ 8]  946 	and	a, #0xf0
       000352 EAr01r00         [16]  947 	ld	(#(_scroll_x + 1)),a
-                           000355   948 	C$player.c$136$3_0$257	= .
-                                    949 	.globl	C$player.c$136$3_0$257
-                                    950 ;src/player.c:136: scroll_y.h = depth_offset * 16;
+                           000355   948 	C$player.c$138$3_0$257	= .
+                                    949 	.globl	C$player.c$138$3_0$257
+                                    950 ;src/player.c:138: scroll_y.h = depth_offset * 16;
       000355 FAr00r00         [16]  951 	ld	a, (#_depth_offset)
       000358 CB 37            [ 8]  952 	swap	a
       00035A E6 F0            [ 8]  953 	and	a, #0xf0
       00035C EAr01r00         [16]  954 	ld	(#(_scroll_y + 1)),a
-                           00035F   955 	C$player.c$139$3_0$257	= .
-                                    956 	.globl	C$player.c$139$3_0$257
-                                    957 ;src/player.c:139: is_drilling = FALSE;
+                           00035F   955 	C$player.c$141$3_0$257	= .
+                                    956 	.globl	C$player.c$141$3_0$257
+                                    957 ;src/player.c:141: is_drilling = FALSE;
       00035F 21r00r00         [12]  958 	ld	hl, #_is_drilling
       000362 36 00            [12]  959 	ld	(hl), #0x00
-                           000364   960 	C$player.c$141$3_0$257	= .
-                                    961 	.globl	C$player.c$141$3_0$257
-                                    962 ;src/player.c:141: if (level_array[depth][width] != 0){
+                           000364   960 	C$player.c$143$3_0$257	= .
+                                    961 	.globl	C$player.c$143$3_0$257
+                                    962 ;src/player.c:143: if (level_array[depth][width] != 0){
       000364 01r00r00         [12]  963 	ld	bc, #_level_array+0
       000367 21r00r00         [12]  964 	ld	hl, #_depth
       00036A 6E               [ 8]  965 	ld	l, (hl)
@@ -984,18 +984,18 @@
       00037B 7E               [ 8]  984 	ld	a, (hl)
       00037C B7               [ 4]  985 	or	a, a
       00037D 28 05            [12]  986 	jr	Z, 00104$
-                           00037F   987 	C$player.c$142$4_0$258	= .
-                                    988 	.globl	C$player.c$142$4_0$258
-                                    989 ;src/player.c:142: tile_mined = TRUE;
+                           00037F   987 	C$player.c$144$4_0$258	= .
+                                    988 	.globl	C$player.c$144$4_0$258
+                                    989 ;src/player.c:144: tile_mined = TRUE;
       00037F 21r00r00         [12]  990 	ld	hl, #_tile_mined
       000382 36 01            [12]  991 	ld	(hl), #0x01
       000384                        992 00104$:
-                           000384   993 	C$player.c$145$3_0$257	= .
-                                    994 	.globl	C$player.c$145$3_0$257
-                                    995 ;src/player.c:145: draw_metasprite(direction_now);
+                           000384   993 	C$player.c$147$3_0$257	= .
+                                    994 	.globl	C$player.c$147$3_0$257
+                                    995 ;src/player.c:147: draw_metasprite(direction_now);
       000384 FAr00r00         [16]  996 	ld	a, (#_direction_now)
       000387 CDr05r02         [24]  997 	call	_draw_metasprite
-                                    998 ;src/player.c:147: move_bkg(scroll_x.h, scroll_y.h);
+                                    998 ;src/player.c:149: move_bkg(scroll_x.h, scroll_y.h);
       00038A FAr01r00         [16]  999 	ld	a, (#(_scroll_y + 1) + 0)
       00038D 21r01r00         [12] 1000 	ld	hl, #(_scroll_x + 1)
       000390 F5               [16] 1001 	push	af
@@ -1004,29 +1004,29 @@
       000394 F1               [12] 1004 	pop	af
                                    1005 ;/usr/local/opt/gbdk/include/gb/gb.h:1378: SCX_REG=x, SCY_REG=y;
       000395 E0r00            [12] 1006 	ldh	(_SCY_REG + 0), a
-                           000397  1007 	C$player.c$147$1_0$254	= .
-                                   1008 	.globl	C$player.c$147$1_0$254
-                                   1009 ;src/player.c:147: move_bkg(scroll_x.h, scroll_y.h);
-                           000397  1010 	C$player.c$151$1_0$254	= .
-                                   1011 	.globl	C$player.c$151$1_0$254
-                                   1012 ;src/player.c:151: }
-                           000397  1013 	C$player.c$151$1_0$254	= .
-                                   1014 	.globl	C$player.c$151$1_0$254
+                           000397  1007 	C$player.c$149$1_0$254	= .
+                                   1008 	.globl	C$player.c$149$1_0$254
+                                   1009 ;src/player.c:149: move_bkg(scroll_x.h, scroll_y.h);
+                           000397  1010 	C$player.c$153$1_0$254	= .
+                                   1011 	.globl	C$player.c$153$1_0$254
+                                   1012 ;src/player.c:153: }
+                           000397  1013 	C$player.c$153$1_0$254	= .
+                                   1014 	.globl	C$player.c$153$1_0$254
                            000397  1015 	XG$update_movement$0$0	= .
                                    1016 	.globl	XG$update_movement$0$0
       000397 C9               [16] 1017 	ret
                            000398  1018 	G$calculate_frames$0$0	= .
                                    1019 	.globl	G$calculate_frames$0$0
-                           000398  1020 	C$player.c$153$1_0$266	= .
-                                   1021 	.globl	C$player.c$153$1_0$266
-                                   1022 ;src/player.c:153: uint8_t calculate_frames(void){
+                           000398  1020 	C$player.c$155$1_0$266	= .
+                                   1021 	.globl	C$player.c$155$1_0$266
+                                   1022 ;src/player.c:155: uint8_t calculate_frames(void){
                                    1023 ;	---------------------------------
                                    1024 ; Function calculate_frames
                                    1025 ; ---------------------------------
       000398                       1026 _calculate_frames::
-                           000398  1027 	C$player.c$155$1_0$266	= .
-                                   1028 	.globl	C$player.c$155$1_0$266
-                                   1029 ;src/player.c:155: frames = base_drilltime + (materials[next_tile].ore_resistance / player.drill.max_value);
+                           000398  1027 	C$player.c$157$1_0$266	= .
+                                   1028 	.globl	C$player.c$157$1_0$266
+                                   1029 ;src/player.c:157: frames = base_drilltime + (materials[next_tile].ore_resistance / player.drill.max_value);
       000398 21r00r00         [12] 1030 	ld	hl, #_next_tile
       00039B 6E               [ 8] 1031 	ld	l, (hl)
                                    1032 ;	spillPairReg hl
@@ -1055,22 +1055,22 @@
       0003B3 CDr00r00         [24] 1055 	call	__divsint
       0003B6 FAr00r00         [16] 1056 	ld	a, (#_base_drilltime)
       0003B9 81               [ 4] 1057 	add	a, c
-                           0003BA  1058 	C$player.c$156$1_0$266	= .
-                                   1059 	.globl	C$player.c$156$1_0$266
-                                   1060 ;src/player.c:156: return frames;
-                           0003BA  1061 	C$player.c$157$1_0$266	= .
-                                   1062 	.globl	C$player.c$157$1_0$266
-                                   1063 ;src/player.c:157: }
-                           0003BA  1064 	C$player.c$157$1_0$266	= .
-                                   1065 	.globl	C$player.c$157$1_0$266
+                           0003BA  1058 	C$player.c$158$1_0$266	= .
+                                   1059 	.globl	C$player.c$158$1_0$266
+                                   1060 ;src/player.c:158: return frames;
+                           0003BA  1061 	C$player.c$159$1_0$266	= .
+                                   1062 	.globl	C$player.c$159$1_0$266
+                                   1063 ;src/player.c:159: }
+                           0003BA  1064 	C$player.c$159$1_0$266	= .
+                                   1065 	.globl	C$player.c$159$1_0$266
                            0003BA  1066 	XG$calculate_frames$0$0	= .
                                    1067 	.globl	XG$calculate_frames$0$0
       0003BA C9               [16] 1068 	ret
                            0003BB  1069 	G$calculate_speed$0$0	= .
                                    1070 	.globl	G$calculate_speed$0$0
-                           0003BB  1071 	C$player.c$159$1_0$268	= .
-                                   1072 	.globl	C$player.c$159$1_0$268
-                                   1073 ;src/player.c:159: fixed calculate_speed(uint8_t frames){
+                           0003BB  1071 	C$player.c$161$1_0$268	= .
+                                   1072 	.globl	C$player.c$161$1_0$268
+                                   1073 ;src/player.c:161: fixed calculate_speed(uint8_t frames){
                                    1074 ;	---------------------------------
                                    1075 ; Function calculate_speed
                                    1076 ; ---------------------------------
@@ -1078,17 +1078,17 @@
       0003BB 3B               [ 8] 1078 	dec	sp
       0003BC 3B               [ 8] 1079 	dec	sp
       0003BD 4F               [ 4] 1080 	ld	c, a
-                           0003BE  1081 	C$player.c$161$1_0$268	= .
-                                   1082 	.globl	C$player.c$161$1_0$268
-                                   1083 ;src/player.c:161: speed.w = 4096 / frames;
+                           0003BE  1081 	C$player.c$163$1_0$268	= .
+                                   1082 	.globl	C$player.c$163$1_0$268
+                                   1083 ;src/player.c:163: speed.w = 4096 / frames;
       0003BE 06 00            [ 8] 1084 	ld	b, #0x00
       0003C0 11 00 10         [12] 1085 	ld	de, #0x1000
       0003C3 CDr00r00         [24] 1086 	call	__divsint
       0003C6 E1               [12] 1087 	pop	hl
       0003C7 C5               [16] 1088 	push	bc
-                           0003C8  1089 	C$player.c$162$1_0$268	= .
-                                   1090 	.globl	C$player.c$162$1_0$268
-                                   1091 ;src/player.c:162: return speed;
+                           0003C8  1089 	C$player.c$164$1_0$268	= .
+                                   1090 	.globl	C$player.c$164$1_0$268
+                                   1091 ;src/player.c:164: return speed;
       0003C8 F8 04            [12] 1092 	ldhl	sp,	#4
       0003CA 2A               [ 8] 1093 	ld	a, (hl+)
       0003CB 4F               [ 4] 1094 	ld	c, a
@@ -1099,9 +1099,9 @@
       0003D1 03               [ 8] 1099 	inc	bc
       0003D2 7E               [ 8] 1100 	ld	a, (hl)
       0003D3 02               [ 8] 1101 	ld	(bc), a
-                           0003D4  1102 	C$player.c$163$1_0$268	= .
-                                   1103 	.globl	C$player.c$163$1_0$268
-                                   1104 ;src/player.c:163: }
+                           0003D4  1102 	C$player.c$165$1_0$268	= .
+                                   1103 	.globl	C$player.c$165$1_0$268
+                                   1104 ;src/player.c:165: }
       0003D4 33               [ 8] 1105 	inc	sp
       0003D5 33               [ 8] 1106 	inc	sp
       0003D6 E1               [12] 1107 	pop	hl
@@ -1109,9 +1109,9 @@
       0003D8 E9               [ 4] 1109 	jp	(hl)
                            0003D9  1110 	G$move_left$0$0	= .
                                    1111 	.globl	G$move_left$0$0
-                           0003D9  1112 	C$player.c$165$1_0$270	= .
-                                   1113 	.globl	C$player.c$165$1_0$270
-                                   1114 ;src/player.c:165: void move_left(uint8_t frames){
+                           0003D9  1112 	C$player.c$167$1_0$270	= .
+                                   1113 	.globl	C$player.c$167$1_0$270
+                                   1114 ;src/player.c:167: void move_left(uint8_t frames){
                                    1115 ;	---------------------------------
                                    1116 ; Function move_left
                                    1117 ; ---------------------------------
@@ -1119,9 +1119,9 @@
       0003D9 E8 FD            [16] 1119 	add	sp, #-3
       0003DB F8 02            [12] 1120 	ldhl	sp,	#2
       0003DD 77               [ 8] 1121 	ld	(hl), a
-                           0003DE  1122 	C$player.c$166$1_0$270	= .
-                                   1123 	.globl	C$player.c$166$1_0$270
-                                   1124 ;src/player.c:166: player.speed = calculate_speed(frames);
+                           0003DE  1122 	C$player.c$168$1_0$270	= .
+                                   1123 	.globl	C$player.c$168$1_0$270
+                                   1124 ;src/player.c:168: player.speed = calculate_speed(frames);
       0003DE 7E               [ 8] 1125 	ld	a, (hl)
       0003DF F8 00            [12] 1126 	ldhl	sp,	#0
       0003E1 E5               [16] 1127 	push	hl
@@ -1133,9 +1133,9 @@
       0003EC D5               [16] 1133 	push	de
       0003ED 11r58r01         [12] 1134 	ld	de, #(_player + 344)
       0003F0 CDr00r00         [24] 1135 	call	___memcpy
-                           0003F3  1136 	C$player.c$167$1_0$270	= .
-                                   1137 	.globl	C$player.c$167$1_0$270
-                                   1138 ;src/player.c:167: if (width - width_offset == THRESHOLD && width > THRESHOLD) {
+                           0003F3  1136 	C$player.c$169$1_0$270	= .
+                                   1137 	.globl	C$player.c$169$1_0$270
+                                   1138 ;src/player.c:169: if (width - width_offset == THRESHOLD && width > THRESHOLD) {
       0003F3 FAr00r00         [16] 1139 	ld	a, (#_width)
       0003F6 0E 00            [ 8] 1140 	ld	c, #0x00
       0003F8 21r00r00         [12] 1141 	ld	hl, #_width_offset
@@ -1146,15 +1146,15 @@
       000400 79               [ 4] 1146 	ld	a, c
       000401 9A               [ 4] 1147 	sbc	a, d
       000402 47               [ 4] 1148 	ld	b, a
-                           000403  1149 	C$player.c$169$1_0$270	= .
-                                   1150 	.globl	C$player.c$169$1_0$270
-                                   1151 ;src/player.c:169: width--;
+                           000403  1149 	C$player.c$171$1_0$270	= .
+                                   1150 	.globl	C$player.c$171$1_0$270
+                                   1151 ;src/player.c:171: width--;
       000403 21r00r00         [12] 1152 	ld	hl, #_width
       000406 4E               [ 8] 1153 	ld	c, (hl)
       000407 0D               [ 4] 1154 	dec	c
-                           000408  1155 	C$player.c$167$1_0$270	= .
-                                   1156 	.globl	C$player.c$167$1_0$270
-                                   1157 ;src/player.c:167: if (width - width_offset == THRESHOLD && width > THRESHOLD) {
+                           000408  1155 	C$player.c$169$1_0$270	= .
+                                   1156 	.globl	C$player.c$169$1_0$270
+                                   1157 ;src/player.c:169: if (width - width_offset == THRESHOLD && width > THRESHOLD) {
       000408 7B               [ 4] 1158 	ld	a, e
       000409 D6 02            [ 8] 1159 	sub	a, #0x02
       00040B B0               [ 4] 1160 	or	a, b
@@ -1162,19 +1162,19 @@
       00040E 3E 02            [ 8] 1162 	ld	a, #0x02
       000410 96               [ 8] 1163 	sub	a, (hl)
       000411 30 1C            [12] 1164 	jr	NC, 00105$
-                           000413  1165 	C$player.c$168$2_0$271	= .
-                                   1166 	.globl	C$player.c$168$2_0$271
-                                   1167 ;src/player.c:168: width_offset--;
+                           000413  1165 	C$player.c$170$2_0$271	= .
+                                   1166 	.globl	C$player.c$170$2_0$271
+                                   1167 ;src/player.c:170: width_offset--;
       000413 21r00r00         [12] 1168 	ld	hl, #_width_offset
       000416 35               [12] 1169 	dec	(hl)
-                           000417  1170 	C$player.c$169$2_0$271	= .
-                                   1171 	.globl	C$player.c$169$2_0$271
-                                   1172 ;src/player.c:169: width--;
+                           000417  1170 	C$player.c$171$2_0$271	= .
+                                   1171 	.globl	C$player.c$171$2_0$271
+                                   1172 ;src/player.c:171: width--;
       000417 21r00r00         [12] 1173 	ld	hl, #_width
       00041A 71               [ 8] 1174 	ld	(hl), c
-                           00041B  1175 	C$player.c$170$2_0$271	= .
-                                   1176 	.globl	C$player.c$170$2_0$271
-                                   1177 ;src/player.c:170: scroll_x_per_frame.w = - player.speed.w;
+                           00041B  1175 	C$player.c$172$2_0$271	= .
+                                   1176 	.globl	C$player.c$172$2_0$271
+                                   1177 ;src/player.c:172: scroll_x_per_frame.w = - player.speed.w;
       00041B 21r58r01         [12] 1178 	ld	hl, #(_player + 344)
       00041E 2A               [ 8] 1179 	ld	a, (hl+)
       00041F 4F               [ 4] 1180 	ld	c, a
@@ -1191,20 +1191,20 @@
       00042C 70               [ 8] 1191 	ld	(hl), b
       00042D 18 1C            [12] 1192 	jr	00106$
       00042F                       1193 00105$:
-                           00042F  1194 	C$player.c$171$1_0$270	= .
-                                   1195 	.globl	C$player.c$171$1_0$270
-                                   1196 ;src/player.c:171: } else if (width > 0) {
+                           00042F  1194 	C$player.c$173$1_0$270	= .
+                                   1195 	.globl	C$player.c$173$1_0$270
+                                   1196 ;src/player.c:173: } else if (width > 0) {
       00042F 21r00r00         [12] 1197 	ld	hl, #_width
       000432 7E               [ 8] 1198 	ld	a, (hl)
       000433 B7               [ 4] 1199 	or	a, a
       000434 28 1B            [12] 1200 	jr	Z, 00108$
-                           000436  1201 	C$player.c$172$2_0$272	= .
-                                   1202 	.globl	C$player.c$172$2_0$272
-                                   1203 ;src/player.c:172: width--;
+                           000436  1201 	C$player.c$174$2_0$272	= .
+                                   1202 	.globl	C$player.c$174$2_0$272
+                                   1203 ;src/player.c:174: width--;
       000436 71               [ 8] 1204 	ld	(hl), c
-                           000437  1205 	C$player.c$173$2_0$272	= .
-                                   1206 	.globl	C$player.c$173$2_0$272
-                                   1207 ;src/player.c:173: move_x_per_frame.w = - player.speed.w;
+                           000437  1205 	C$player.c$175$2_0$272	= .
+                                   1206 	.globl	C$player.c$175$2_0$272
+                                   1207 ;src/player.c:175: move_x_per_frame.w = - player.speed.w;
       000437 21r58r01         [12] 1208 	ld	hl, #(_player + 344)
       00043A 2A               [ 8] 1209 	ld	a, (hl+)
       00043B 4F               [ 4] 1210 	ld	c, a
@@ -1219,32 +1219,32 @@
       000446 79               [ 4] 1219 	ld	a, c
       000447 22               [ 8] 1220 	ld	(hl+), a
       000448 70               [ 8] 1221 	ld	(hl), b
-                           000449  1222 	C$player.c$174$1_0$270	= .
-                                   1223 	.globl	C$player.c$174$1_0$270
-                                   1224 ;src/player.c:174: } else return;
+                           000449  1222 	C$player.c$176$1_0$270	= .
+                                   1223 	.globl	C$player.c$176$1_0$270
+                                   1224 ;src/player.c:176: } else return;
       000449 18 00            [12] 1225 	jr	00106$
       00044B                       1226 00106$:
-                           00044B  1227 	C$player.c$175$1_0$270	= .
-                                   1228 	.globl	C$player.c$175$1_0$270
-                                   1229 ;src/player.c:175: animation_frames_left = frames;
+                           00044B  1227 	C$player.c$177$1_0$270	= .
+                                   1228 	.globl	C$player.c$177$1_0$270
+                                   1229 ;src/player.c:177: animation_frames_left = frames;
       00044B F8 02            [12] 1230 	ldhl	sp,	#2
       00044D 7E               [ 8] 1231 	ld	a, (hl)
       00044E EAr00r00         [16] 1232 	ld	(#_animation_frames_left),a
       000451                       1233 00108$:
-                           000451  1234 	C$player.c$176$1_0$270	= .
-                                   1235 	.globl	C$player.c$176$1_0$270
-                                   1236 ;src/player.c:176: }
+                           000451  1234 	C$player.c$178$1_0$270	= .
+                                   1235 	.globl	C$player.c$178$1_0$270
+                                   1236 ;src/player.c:178: }
       000451 E8 03            [16] 1237 	add	sp, #3
-                           000453  1238 	C$player.c$176$1_0$270	= .
-                                   1239 	.globl	C$player.c$176$1_0$270
+                           000453  1238 	C$player.c$178$1_0$270	= .
+                                   1239 	.globl	C$player.c$178$1_0$270
                            000453  1240 	XG$move_left$0$0	= .
                                    1241 	.globl	XG$move_left$0$0
       000453 C9               [16] 1242 	ret
                            000454  1243 	G$move_right$0$0	= .
                                    1244 	.globl	G$move_right$0$0
-                           000454  1245 	C$player.c$178$1_0$274	= .
-                                   1246 	.globl	C$player.c$178$1_0$274
-                                   1247 ;src/player.c:178: void move_right(uint8_t frames){
+                           000454  1245 	C$player.c$180$1_0$274	= .
+                                   1246 	.globl	C$player.c$180$1_0$274
+                                   1247 ;src/player.c:180: void move_right(uint8_t frames){
                                    1248 ;	---------------------------------
                                    1249 ; Function move_right
                                    1250 ; ---------------------------------
@@ -1252,9 +1252,9 @@
       000454 E8 FD            [16] 1252 	add	sp, #-3
       000456 F8 02            [12] 1253 	ldhl	sp,	#2
       000458 77               [ 8] 1254 	ld	(hl), a
-                           000459  1255 	C$player.c$179$1_0$274	= .
-                                   1256 	.globl	C$player.c$179$1_0$274
-                                   1257 ;src/player.c:179: player.speed = calculate_speed(frames);
+                           000459  1255 	C$player.c$181$1_0$274	= .
+                                   1256 	.globl	C$player.c$181$1_0$274
+                                   1257 ;src/player.c:181: player.speed = calculate_speed(frames);
       000459 7E               [ 8] 1258 	ld	a, (hl)
       00045A F8 00            [12] 1259 	ldhl	sp,	#0
       00045C E5               [16] 1260 	push	hl
@@ -1266,9 +1266,9 @@
       000467 D5               [16] 1266 	push	de
       000468 11r58r01         [12] 1267 	ld	de, #(_player + 344)
       00046B CDr00r00         [24] 1268 	call	___memcpy
-                           00046E  1269 	C$player.c$180$1_0$274	= .
-                                   1270 	.globl	C$player.c$180$1_0$274
-                                   1271 ;src/player.c:180: if (width - width_offset == (8 - THRESHOLD) + 1 && width < (8 - THRESHOLD) + 7) {
+                           00046E  1269 	C$player.c$182$1_0$274	= .
+                                   1270 	.globl	C$player.c$182$1_0$274
+                                   1271 ;src/player.c:182: if (width - width_offset == (8 - THRESHOLD) + 1 && width < (8 - THRESHOLD) + 7) {
       00046E FAr00r00         [16] 1272 	ld	a, (#_width)
       000471 0E 00            [ 8] 1273 	ld	c, #0x00
       000473 21r00r00         [12] 1274 	ld	hl, #_width_offset
@@ -1279,15 +1279,15 @@
       00047B 79               [ 4] 1279 	ld	a, c
       00047C 9A               [ 4] 1280 	sbc	a, d
       00047D 47               [ 4] 1281 	ld	b, a
-                           00047E  1282 	C$player.c$182$1_0$274	= .
-                                   1283 	.globl	C$player.c$182$1_0$274
-                                   1284 ;src/player.c:182: width++;
+                           00047E  1282 	C$player.c$184$1_0$274	= .
+                                   1283 	.globl	C$player.c$184$1_0$274
+                                   1284 ;src/player.c:184: width++;
       00047E 21r00r00         [12] 1285 	ld	hl, #_width
       000481 4E               [ 8] 1286 	ld	c, (hl)
       000482 0C               [ 4] 1287 	inc	c
-                           000483  1288 	C$player.c$180$1_0$274	= .
-                                   1289 	.globl	C$player.c$180$1_0$274
-                                   1290 ;src/player.c:180: if (width - width_offset == (8 - THRESHOLD) + 1 && width < (8 - THRESHOLD) + 7) {
+                           000483  1288 	C$player.c$182$1_0$274	= .
+                                   1289 	.globl	C$player.c$182$1_0$274
+                                   1290 ;src/player.c:182: if (width - width_offset == (8 - THRESHOLD) + 1 && width < (8 - THRESHOLD) + 7) {
       000483 7B               [ 4] 1291 	ld	a, e
       000484 D6 07            [ 8] 1292 	sub	a, #0x07
       000486 B0               [ 4] 1293 	or	a, b
@@ -1295,19 +1295,19 @@
       000489 7E               [ 8] 1295 	ld	a, (hl)
       00048A D6 0D            [ 8] 1296 	sub	a, #0x0d
       00048C 30 16            [12] 1297 	jr	NC, 00105$
-                           00048E  1298 	C$player.c$181$2_0$275	= .
-                                   1299 	.globl	C$player.c$181$2_0$275
-                                   1300 ;src/player.c:181: width_offset++;
+                           00048E  1298 	C$player.c$183$2_0$275	= .
+                                   1299 	.globl	C$player.c$183$2_0$275
+                                   1300 ;src/player.c:183: width_offset++;
       00048E 21r00r00         [12] 1301 	ld	hl, #_width_offset
       000491 34               [12] 1302 	inc	(hl)
-                           000492  1303 	C$player.c$182$2_0$275	= .
-                                   1304 	.globl	C$player.c$182$2_0$275
-                                   1305 ;src/player.c:182: width++;
+                           000492  1303 	C$player.c$184$2_0$275	= .
+                                   1304 	.globl	C$player.c$184$2_0$275
+                                   1305 ;src/player.c:184: width++;
       000492 21r00r00         [12] 1306 	ld	hl, #_width
       000495 71               [ 8] 1307 	ld	(hl), c
-                           000496  1308 	C$player.c$183$2_0$275	= .
-                                   1309 	.globl	C$player.c$183$2_0$275
-                                   1310 ;src/player.c:183: scroll_x_per_frame.w = player.speed.w;
+                           000496  1308 	C$player.c$185$2_0$275	= .
+                                   1309 	.globl	C$player.c$185$2_0$275
+                                   1310 ;src/player.c:185: scroll_x_per_frame.w = player.speed.w;
       000496 21r58r01         [12] 1311 	ld	hl, #(_player + 344)
       000499 2A               [ 8] 1312 	ld	a, (hl+)
       00049A 4F               [ 4] 1313 	ld	c, a
@@ -1318,20 +1318,20 @@
       0004A1 70               [ 8] 1318 	ld	(hl), b
       0004A2 18 17            [12] 1319 	jr	00106$
       0004A4                       1320 00105$:
-                           0004A4  1321 	C$player.c$184$1_0$274	= .
-                                   1322 	.globl	C$player.c$184$1_0$274
-                                   1323 ;src/player.c:184: } else if (width < 15) {
+                           0004A4  1321 	C$player.c$186$1_0$274	= .
+                                   1322 	.globl	C$player.c$186$1_0$274
+                                   1323 ;src/player.c:186: } else if (width < 15) {
       0004A4 21r00r00         [12] 1324 	ld	hl, #_width
       0004A7 7E               [ 8] 1325 	ld	a, (hl)
       0004A8 D6 0F            [ 8] 1326 	sub	a, #0x0f
       0004AA 30 15            [12] 1327 	jr	NC, 00108$
-                           0004AC  1328 	C$player.c$185$2_0$276	= .
-                                   1329 	.globl	C$player.c$185$2_0$276
-                                   1330 ;src/player.c:185: width++;
+                           0004AC  1328 	C$player.c$187$2_0$276	= .
+                                   1329 	.globl	C$player.c$187$2_0$276
+                                   1330 ;src/player.c:187: width++;
       0004AC 71               [ 8] 1331 	ld	(hl), c
-                           0004AD  1332 	C$player.c$186$2_0$276	= .
-                                   1333 	.globl	C$player.c$186$2_0$276
-                                   1334 ;src/player.c:186: move_x_per_frame.w = player.speed.w;
+                           0004AD  1332 	C$player.c$188$2_0$276	= .
+                                   1333 	.globl	C$player.c$188$2_0$276
+                                   1334 ;src/player.c:188: move_x_per_frame.w = player.speed.w;
       0004AD 21r58r01         [12] 1335 	ld	hl, #(_player + 344)
       0004B0 2A               [ 8] 1336 	ld	a, (hl+)
       0004B1 4F               [ 4] 1337 	ld	c, a
@@ -1340,32 +1340,32 @@
       0004B6 79               [ 4] 1340 	ld	a, c
       0004B7 22               [ 8] 1341 	ld	(hl+), a
       0004B8 70               [ 8] 1342 	ld	(hl), b
-                           0004B9  1343 	C$player.c$187$1_0$274	= .
-                                   1344 	.globl	C$player.c$187$1_0$274
-                                   1345 ;src/player.c:187: } else return;
+                           0004B9  1343 	C$player.c$189$1_0$274	= .
+                                   1344 	.globl	C$player.c$189$1_0$274
+                                   1345 ;src/player.c:189: } else return;
       0004B9 18 00            [12] 1346 	jr	00106$
       0004BB                       1347 00106$:
-                           0004BB  1348 	C$player.c$188$1_0$274	= .
-                                   1349 	.globl	C$player.c$188$1_0$274
-                                   1350 ;src/player.c:188: animation_frames_left = frames;
+                           0004BB  1348 	C$player.c$190$1_0$274	= .
+                                   1349 	.globl	C$player.c$190$1_0$274
+                                   1350 ;src/player.c:190: animation_frames_left = frames;
       0004BB F8 02            [12] 1351 	ldhl	sp,	#2
       0004BD 7E               [ 8] 1352 	ld	a, (hl)
       0004BE EAr00r00         [16] 1353 	ld	(#_animation_frames_left),a
       0004C1                       1354 00108$:
-                           0004C1  1355 	C$player.c$189$1_0$274	= .
-                                   1356 	.globl	C$player.c$189$1_0$274
-                                   1357 ;src/player.c:189: }
+                           0004C1  1355 	C$player.c$191$1_0$274	= .
+                                   1356 	.globl	C$player.c$191$1_0$274
+                                   1357 ;src/player.c:191: }
       0004C1 E8 03            [16] 1358 	add	sp, #3
-                           0004C3  1359 	C$player.c$189$1_0$274	= .
-                                   1360 	.globl	C$player.c$189$1_0$274
+                           0004C3  1359 	C$player.c$191$1_0$274	= .
+                                   1360 	.globl	C$player.c$191$1_0$274
                            0004C3  1361 	XG$move_right$0$0	= .
                                    1362 	.globl	XG$move_right$0$0
       0004C3 C9               [16] 1363 	ret
                            0004C4  1364 	G$move_up$0$0	= .
                                    1365 	.globl	G$move_up$0$0
-                           0004C4  1366 	C$player.c$191$1_0$278	= .
-                                   1367 	.globl	C$player.c$191$1_0$278
-                                   1368 ;src/player.c:191: void move_up(uint8_t frames){
+                           0004C4  1366 	C$player.c$193$1_0$278	= .
+                                   1367 	.globl	C$player.c$193$1_0$278
+                                   1368 ;src/player.c:193: void move_up(uint8_t frames){
                                    1369 ;	---------------------------------
                                    1370 ; Function move_up
                                    1371 ; ---------------------------------
@@ -1373,9 +1373,9 @@
       0004C4 E8 FD            [16] 1373 	add	sp, #-3
       0004C6 F8 02            [12] 1374 	ldhl	sp,	#2
       0004C8 77               [ 8] 1375 	ld	(hl), a
-                           0004C9  1376 	C$player.c$192$1_0$278	= .
-                                   1377 	.globl	C$player.c$192$1_0$278
-                                   1378 ;src/player.c:192: player.speed = calculate_speed(frames);
+                           0004C9  1376 	C$player.c$194$1_0$278	= .
+                                   1377 	.globl	C$player.c$194$1_0$278
+                                   1378 ;src/player.c:194: player.speed = calculate_speed(frames);
       0004C9 7E               [ 8] 1379 	ld	a, (hl)
       0004CA F8 00            [12] 1380 	ldhl	sp,	#0
       0004CC E5               [16] 1381 	push	hl
@@ -1387,9 +1387,9 @@
       0004D7 D5               [16] 1387 	push	de
       0004D8 11r58r01         [12] 1388 	ld	de, #(_player + 344)
       0004DB CDr00r00         [24] 1389 	call	___memcpy
-                           0004DE  1390 	C$player.c$193$1_0$278	= .
-                                   1391 	.globl	C$player.c$193$1_0$278
-                                   1392 ;src/player.c:193: if (depth - depth_offset == THRESHOLD && depth > THRESHOLD) {
+                           0004DE  1390 	C$player.c$195$1_0$278	= .
+                                   1391 	.globl	C$player.c$195$1_0$278
+                                   1392 ;src/player.c:195: if (depth - depth_offset == THRESHOLD && depth > THRESHOLD) {
       0004DE FAr00r00         [16] 1393 	ld	a, (#_depth)
       0004E1 0E 00            [ 8] 1394 	ld	c, #0x00
       0004E3 21r00r00         [12] 1395 	ld	hl, #_depth_offset
@@ -1400,15 +1400,15 @@
       0004EB 79               [ 4] 1400 	ld	a, c
       0004EC 9A               [ 4] 1401 	sbc	a, d
       0004ED 47               [ 4] 1402 	ld	b, a
-                           0004EE  1403 	C$player.c$195$1_0$278	= .
-                                   1404 	.globl	C$player.c$195$1_0$278
-                                   1405 ;src/player.c:195: depth--;
+                           0004EE  1403 	C$player.c$197$1_0$278	= .
+                                   1404 	.globl	C$player.c$197$1_0$278
+                                   1405 ;src/player.c:197: depth--;
       0004EE 21r00r00         [12] 1406 	ld	hl, #_depth
       0004F1 4E               [ 8] 1407 	ld	c, (hl)
       0004F2 0D               [ 4] 1408 	dec	c
-                           0004F3  1409 	C$player.c$193$1_0$278	= .
-                                   1410 	.globl	C$player.c$193$1_0$278
-                                   1411 ;src/player.c:193: if (depth - depth_offset == THRESHOLD && depth > THRESHOLD) {
+                           0004F3  1409 	C$player.c$195$1_0$278	= .
+                                   1410 	.globl	C$player.c$195$1_0$278
+                                   1411 ;src/player.c:195: if (depth - depth_offset == THRESHOLD && depth > THRESHOLD) {
       0004F3 7B               [ 4] 1412 	ld	a, e
       0004F4 D6 02            [ 8] 1413 	sub	a, #0x02
       0004F6 B0               [ 4] 1414 	or	a, b
@@ -1416,19 +1416,19 @@
       0004F9 3E 02            [ 8] 1416 	ld	a, #0x02
       0004FB 96               [ 8] 1417 	sub	a, (hl)
       0004FC 30 1C            [12] 1418 	jr	NC, 00105$
-                           0004FE  1419 	C$player.c$194$2_0$279	= .
-                                   1420 	.globl	C$player.c$194$2_0$279
-                                   1421 ;src/player.c:194: depth_offset--;
+                           0004FE  1419 	C$player.c$196$2_0$279	= .
+                                   1420 	.globl	C$player.c$196$2_0$279
+                                   1421 ;src/player.c:196: depth_offset--;
       0004FE 21r00r00         [12] 1422 	ld	hl, #_depth_offset
       000501 35               [12] 1423 	dec	(hl)
-                           000502  1424 	C$player.c$195$2_0$279	= .
-                                   1425 	.globl	C$player.c$195$2_0$279
-                                   1426 ;src/player.c:195: depth--;
+                           000502  1424 	C$player.c$197$2_0$279	= .
+                                   1425 	.globl	C$player.c$197$2_0$279
+                                   1426 ;src/player.c:197: depth--;
       000502 21r00r00         [12] 1427 	ld	hl, #_depth
       000505 71               [ 8] 1428 	ld	(hl), c
-                           000506  1429 	C$player.c$196$2_0$279	= .
-                                   1430 	.globl	C$player.c$196$2_0$279
-                                   1431 ;src/player.c:196: scroll_y_per_frame.w = - player.speed.w;
+                           000506  1429 	C$player.c$198$2_0$279	= .
+                                   1430 	.globl	C$player.c$198$2_0$279
+                                   1431 ;src/player.c:198: scroll_y_per_frame.w = - player.speed.w;
       000506 21r58r01         [12] 1432 	ld	hl, #(_player + 344)
       000509 2A               [ 8] 1433 	ld	a, (hl+)
       00050A 4F               [ 4] 1434 	ld	c, a
@@ -1445,20 +1445,20 @@
       000517 70               [ 8] 1445 	ld	(hl), b
       000518 18 1D            [12] 1446 	jr	00106$
       00051A                       1447 00105$:
-                           00051A  1448 	C$player.c$197$1_0$278	= .
-                                   1449 	.globl	C$player.c$197$1_0$278
-                                   1450 ;src/player.c:197: } else if (depth > 1) {
+                           00051A  1448 	C$player.c$199$1_0$278	= .
+                                   1449 	.globl	C$player.c$199$1_0$278
+                                   1450 ;src/player.c:199: } else if (depth > 1) {
       00051A 3E 01            [ 8] 1451 	ld	a, #0x01
       00051C 21r00r00         [12] 1452 	ld	hl, #_depth
       00051F 96               [ 8] 1453 	sub	a, (hl)
       000520 30 1B            [12] 1454 	jr	NC, 00108$
-                           000522  1455 	C$player.c$198$2_0$280	= .
-                                   1456 	.globl	C$player.c$198$2_0$280
-                                   1457 ;src/player.c:198: depth--;
+                           000522  1455 	C$player.c$200$2_0$280	= .
+                                   1456 	.globl	C$player.c$200$2_0$280
+                                   1457 ;src/player.c:200: depth--;
       000522 71               [ 8] 1458 	ld	(hl), c
-                           000523  1459 	C$player.c$199$2_0$280	= .
-                                   1460 	.globl	C$player.c$199$2_0$280
-                                   1461 ;src/player.c:199: move_y_per_frame.w = - player.speed.w;
+                           000523  1459 	C$player.c$201$2_0$280	= .
+                                   1460 	.globl	C$player.c$201$2_0$280
+                                   1461 ;src/player.c:201: move_y_per_frame.w = - player.speed.w;
       000523 21r58r01         [12] 1462 	ld	hl, #(_player + 344)
       000526 2A               [ 8] 1463 	ld	a, (hl+)
       000527 4F               [ 4] 1464 	ld	c, a
@@ -1473,32 +1473,32 @@
       000532 79               [ 4] 1473 	ld	a, c
       000533 22               [ 8] 1474 	ld	(hl+), a
       000534 70               [ 8] 1475 	ld	(hl), b
-                           000535  1476 	C$player.c$200$1_0$278	= .
-                                   1477 	.globl	C$player.c$200$1_0$278
-                                   1478 ;src/player.c:200: } else return;
+                           000535  1476 	C$player.c$202$1_0$278	= .
+                                   1477 	.globl	C$player.c$202$1_0$278
+                                   1478 ;src/player.c:202: } else return;
       000535 18 00            [12] 1479 	jr	00106$
       000537                       1480 00106$:
-                           000537  1481 	C$player.c$201$1_0$278	= .
-                                   1482 	.globl	C$player.c$201$1_0$278
-                                   1483 ;src/player.c:201: animation_frames_left = frames;
+                           000537  1481 	C$player.c$203$1_0$278	= .
+                                   1482 	.globl	C$player.c$203$1_0$278
+                                   1483 ;src/player.c:203: animation_frames_left = frames;
       000537 F8 02            [12] 1484 	ldhl	sp,	#2
       000539 7E               [ 8] 1485 	ld	a, (hl)
       00053A EAr00r00         [16] 1486 	ld	(#_animation_frames_left),a
       00053D                       1487 00108$:
-                           00053D  1488 	C$player.c$202$1_0$278	= .
-                                   1489 	.globl	C$player.c$202$1_0$278
-                                   1490 ;src/player.c:202: }
+                           00053D  1488 	C$player.c$204$1_0$278	= .
+                                   1489 	.globl	C$player.c$204$1_0$278
+                                   1490 ;src/player.c:204: }
       00053D E8 03            [16] 1491 	add	sp, #3
-                           00053F  1492 	C$player.c$202$1_0$278	= .
-                                   1493 	.globl	C$player.c$202$1_0$278
+                           00053F  1492 	C$player.c$204$1_0$278	= .
+                                   1493 	.globl	C$player.c$204$1_0$278
                            00053F  1494 	XG$move_up$0$0	= .
                                    1495 	.globl	XG$move_up$0$0
       00053F C9               [16] 1496 	ret
                            000540  1497 	G$move_down$0$0	= .
                                    1498 	.globl	G$move_down$0$0
-                           000540  1499 	C$player.c$204$1_0$282	= .
-                                   1500 	.globl	C$player.c$204$1_0$282
-                                   1501 ;src/player.c:204: void move_down(uint8_t frames){
+                           000540  1499 	C$player.c$206$1_0$282	= .
+                                   1500 	.globl	C$player.c$206$1_0$282
+                                   1501 ;src/player.c:206: void move_down(uint8_t frames){
                                    1502 ;	---------------------------------
                                    1503 ; Function move_down
                                    1504 ; ---------------------------------
@@ -1506,9 +1506,9 @@
       000540 E8 FD            [16] 1506 	add	sp, #-3
       000542 F8 02            [12] 1507 	ldhl	sp,	#2
       000544 77               [ 8] 1508 	ld	(hl), a
-                           000545  1509 	C$player.c$205$1_0$282	= .
-                                   1510 	.globl	C$player.c$205$1_0$282
-                                   1511 ;src/player.c:205: player.speed = calculate_speed(frames);
+                           000545  1509 	C$player.c$207$1_0$282	= .
+                                   1510 	.globl	C$player.c$207$1_0$282
+                                   1511 ;src/player.c:207: player.speed = calculate_speed(frames);
       000545 7E               [ 8] 1512 	ld	a, (hl)
       000546 F8 00            [12] 1513 	ldhl	sp,	#0
       000548 E5               [16] 1514 	push	hl
@@ -1520,9 +1520,9 @@
       000553 D5               [16] 1520 	push	de
       000554 11r58r01         [12] 1521 	ld	de, #(_player + 344)
       000557 CDr00r00         [24] 1522 	call	___memcpy
-                           00055A  1523 	C$player.c$206$1_0$282	= .
-                                   1524 	.globl	C$player.c$206$1_0$282
-                                   1525 ;src/player.c:206: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
+                           00055A  1523 	C$player.c$208$1_0$282	= .
+                                   1524 	.globl	C$player.c$208$1_0$282
+                                   1525 ;src/player.c:208: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
       00055A FAr00r00         [16] 1526 	ld	a, (#_depth)
       00055D 0E 00            [ 8] 1527 	ld	c, #0x00
       00055F 21r00r00         [12] 1528 	ld	hl, #_depth_offset
@@ -1533,15 +1533,15 @@
       000567 79               [ 4] 1533 	ld	a, c
       000568 9A               [ 4] 1534 	sbc	a, d
       000569 47               [ 4] 1535 	ld	b, a
-                           00056A  1536 	C$player.c$208$1_0$282	= .
-                                   1537 	.globl	C$player.c$208$1_0$282
-                                   1538 ;src/player.c:208: depth++;
+                           00056A  1536 	C$player.c$210$1_0$282	= .
+                                   1537 	.globl	C$player.c$210$1_0$282
+                                   1538 ;src/player.c:210: depth++;
       00056A 21r00r00         [12] 1539 	ld	hl, #_depth
       00056D 4E               [ 8] 1540 	ld	c, (hl)
       00056E 0C               [ 4] 1541 	inc	c
-                           00056F  1542 	C$player.c$206$1_0$282	= .
-                                   1543 	.globl	C$player.c$206$1_0$282
-                                   1544 ;src/player.c:206: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
+                           00056F  1542 	C$player.c$208$1_0$282	= .
+                                   1543 	.globl	C$player.c$208$1_0$282
+                                   1544 ;src/player.c:208: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
       00056F 7B               [ 4] 1545 	ld	a, e
       000570 D6 06            [ 8] 1546 	sub	a, #0x06
       000572 B0               [ 4] 1547 	or	a, b
@@ -1549,19 +1549,19 @@
       000575 7E               [ 8] 1549 	ld	a, (hl)
       000576 D6 5D            [ 8] 1550 	sub	a, #0x5d
       000578 30 16            [12] 1551 	jr	NC, 00105$
-                           00057A  1552 	C$player.c$207$2_0$283	= .
-                                   1553 	.globl	C$player.c$207$2_0$283
-                                   1554 ;src/player.c:207: depth_offset++;
+                           00057A  1552 	C$player.c$209$2_0$283	= .
+                                   1553 	.globl	C$player.c$209$2_0$283
+                                   1554 ;src/player.c:209: depth_offset++;
       00057A 21r00r00         [12] 1555 	ld	hl, #_depth_offset
       00057D 34               [12] 1556 	inc	(hl)
-                           00057E  1557 	C$player.c$208$2_0$283	= .
-                                   1558 	.globl	C$player.c$208$2_0$283
-                                   1559 ;src/player.c:208: depth++;
+                           00057E  1557 	C$player.c$210$2_0$283	= .
+                                   1558 	.globl	C$player.c$210$2_0$283
+                                   1559 ;src/player.c:210: depth++;
       00057E 21r00r00         [12] 1560 	ld	hl, #_depth
       000581 71               [ 8] 1561 	ld	(hl), c
-                           000582  1562 	C$player.c$209$2_0$283	= .
-                                   1563 	.globl	C$player.c$209$2_0$283
-                                   1564 ;src/player.c:209: scroll_y_per_frame.w = player.speed.w;
+                           000582  1562 	C$player.c$211$2_0$283	= .
+                                   1563 	.globl	C$player.c$211$2_0$283
+                                   1564 ;src/player.c:211: scroll_y_per_frame.w = player.speed.w;
       000582 21r58r01         [12] 1565 	ld	hl, #(_player + 344)
       000585 2A               [ 8] 1566 	ld	a, (hl+)
       000586 4F               [ 4] 1567 	ld	c, a
@@ -1572,20 +1572,20 @@
       00058D 70               [ 8] 1572 	ld	(hl), b
       00058E 18 17            [12] 1573 	jr	00106$
       000590                       1574 00105$:
-                           000590  1575 	C$player.c$210$1_0$282	= .
-                                   1576 	.globl	C$player.c$210$1_0$282
-                                   1577 ;src/player.c:210: } else if (depth < ROWS - 1) {
+                           000590  1575 	C$player.c$212$1_0$282	= .
+                                   1576 	.globl	C$player.c$212$1_0$282
+                                   1577 ;src/player.c:212: } else if (depth < ROWS - 1) {
       000590 21r00r00         [12] 1578 	ld	hl, #_depth
       000593 7E               [ 8] 1579 	ld	a, (hl)
       000594 D6 5F            [ 8] 1580 	sub	a, #0x5f
       000596 30 15            [12] 1581 	jr	NC, 00108$
-                           000598  1582 	C$player.c$211$2_0$284	= .
-                                   1583 	.globl	C$player.c$211$2_0$284
-                                   1584 ;src/player.c:211: depth++;
+                           000598  1582 	C$player.c$213$2_0$284	= .
+                                   1583 	.globl	C$player.c$213$2_0$284
+                                   1584 ;src/player.c:213: depth++;
       000598 71               [ 8] 1585 	ld	(hl), c
-                           000599  1586 	C$player.c$212$2_0$284	= .
-                                   1587 	.globl	C$player.c$212$2_0$284
-                                   1588 ;src/player.c:212: move_y_per_frame.w = player.speed.w;
+                           000599  1586 	C$player.c$214$2_0$284	= .
+                                   1587 	.globl	C$player.c$214$2_0$284
+                                   1588 ;src/player.c:214: move_y_per_frame.w = player.speed.w;
       000599 21r58r01         [12] 1589 	ld	hl, #(_player + 344)
       00059C 2A               [ 8] 1590 	ld	a, (hl+)
       00059D 4F               [ 4] 1591 	ld	c, a
@@ -1594,32 +1594,32 @@
       0005A2 79               [ 4] 1594 	ld	a, c
       0005A3 22               [ 8] 1595 	ld	(hl+), a
       0005A4 70               [ 8] 1596 	ld	(hl), b
-                           0005A5  1597 	C$player.c$213$1_0$282	= .
-                                   1598 	.globl	C$player.c$213$1_0$282
-                                   1599 ;src/player.c:213: } else return;
+                           0005A5  1597 	C$player.c$215$1_0$282	= .
+                                   1598 	.globl	C$player.c$215$1_0$282
+                                   1599 ;src/player.c:215: } else return;
       0005A5 18 00            [12] 1600 	jr	00106$
       0005A7                       1601 00106$:
-                           0005A7  1602 	C$player.c$214$1_0$282	= .
-                                   1603 	.globl	C$player.c$214$1_0$282
-                                   1604 ;src/player.c:214: animation_frames_left = frames;
+                           0005A7  1602 	C$player.c$216$1_0$282	= .
+                                   1603 	.globl	C$player.c$216$1_0$282
+                                   1604 ;src/player.c:216: animation_frames_left = frames;
       0005A7 F8 02            [12] 1605 	ldhl	sp,	#2
       0005A9 7E               [ 8] 1606 	ld	a, (hl)
       0005AA EAr00r00         [16] 1607 	ld	(#_animation_frames_left),a
       0005AD                       1608 00108$:
-                           0005AD  1609 	C$player.c$215$1_0$282	= .
-                                   1610 	.globl	C$player.c$215$1_0$282
-                                   1611 ;src/player.c:215: }
+                           0005AD  1609 	C$player.c$217$1_0$282	= .
+                                   1610 	.globl	C$player.c$217$1_0$282
+                                   1611 ;src/player.c:217: }
       0005AD E8 03            [16] 1612 	add	sp, #3
-                           0005AF  1613 	C$player.c$215$1_0$282	= .
-                                   1614 	.globl	C$player.c$215$1_0$282
+                           0005AF  1613 	C$player.c$217$1_0$282	= .
+                                   1614 	.globl	C$player.c$217$1_0$282
                            0005AF  1615 	XG$move_down$0$0	= .
                                    1616 	.globl	XG$move_down$0$0
       0005AF C9               [16] 1617 	ret
                            0005B0  1618 	G$move$0$0	= .
                                    1619 	.globl	G$move$0$0
-                           0005B0  1620 	C$player.c$217$1_0$286	= .
-                                   1621 	.globl	C$player.c$217$1_0$286
-                                   1622 ;src/player.c:217: void move(char direction, char mode){
+                           0005B0  1620 	C$player.c$219$1_0$286	= .
+                                   1621 	.globl	C$player.c$219$1_0$286
+                                   1622 ;src/player.c:219: void move(char direction, char mode){
                                    1623 ;	---------------------------------
                                    1624 ; Function move
                                    1625 ; ---------------------------------
@@ -1628,13 +1628,13 @@
       0005B2 4F               [ 4] 1628 	ld	c, a
       0005B3 F8 04            [12] 1629 	ldhl	sp,	#4
       0005B5 73               [ 8] 1630 	ld	(hl), e
-                           0005B6  1631 	C$player.c$218$1_0$286	= .
-                                   1632 	.globl	C$player.c$218$1_0$286
-                                   1633 ;src/player.c:218: direction_now = direction;
+                           0005B6  1631 	C$player.c$220$1_0$286	= .
+                                   1632 	.globl	C$player.c$220$1_0$286
+                                   1633 ;src/player.c:220: direction_now = direction;
       0005B6 21r00r00         [12] 1634 	ld	hl, #_direction_now
-                           0005B9  1635 	C$player.c$219$1_0$286	= .
-                                   1636 	.globl	C$player.c$219$1_0$286
-                                   1637 ;src/player.c:219: if (direction == LEFT || direction == RIGHT) direction_prev = direction;
+                           0005B9  1635 	C$player.c$221$1_0$286	= .
+                                   1636 	.globl	C$player.c$221$1_0$286
+                                   1637 ;src/player.c:221: if (direction == LEFT || direction == RIGHT) direction_prev = direction;
       0005B9 79               [ 4] 1638 	ld	a,c
       0005BA 77               [ 8] 1639 	ld	(hl),a
       0005BB 3D               [ 4] 1640 	dec	a
@@ -1663,20 +1663,20 @@
       0005D8 21r00r00         [12] 1663 	ld	hl, #_direction_prev
       0005DB 71               [ 8] 1664 	ld	(hl), c
       0005DC                       1665 00102$:
-                           0005DC  1666 	C$player.c$221$2_0$287	= .
-                                   1667 	.globl	C$player.c$221$2_0$287
-                                   1668 ;src/player.c:221: uint8_t frames = 0;
+                           0005DC  1666 	C$player.c$223$2_0$287	= .
+                                   1667 	.globl	C$player.c$223$2_0$287
+                                   1668 ;src/player.c:223: uint8_t frames = 0;
       0005DC F8 02            [12] 1669 	ldhl	sp,	#2
       0005DE 36 00            [12] 1670 	ld	(hl), #0x00
-                           0005E0  1671 	C$player.c$222$1_1$287	= .
-                                   1672 	.globl	C$player.c$222$1_1$287
-                                   1673 ;src/player.c:222: if (animation_frames_left == 0){
+                           0005E0  1671 	C$player.c$224$1_1$287	= .
+                                   1672 	.globl	C$player.c$224$1_1$287
+                                   1673 ;src/player.c:224: if (animation_frames_left == 0){
       0005E0 FAr00r00         [16] 1674 	ld	a, (#_animation_frames_left)
       0005E3 B7               [ 4] 1675 	or	a, a
       0005E4 C2r1Fr07         [16] 1676 	jp	NZ, 00147$
-                           0005E7  1677 	C$player.c$228$1_1$286	= .
-                                   1678 	.globl	C$player.c$228$1_1$286
-                                   1679 ;src/player.c:228: if (direction == UP) next_tile = next_tile_up;
+                           0005E7  1677 	C$player.c$230$1_1$286	= .
+                                   1678 	.globl	C$player.c$230$1_1$286
+                                   1679 ;src/player.c:230: if (direction == UP) next_tile = next_tile_up;
       0005E7 79               [ 4] 1680 	ld	a, c
       0005E8 D6 03            [ 8] 1681 	sub	a, #0x03
       0005EA 3E 01            [ 8] 1682 	ld	a, #0x01
@@ -1684,9 +1684,9 @@
       0005EE AF               [ 4] 1684 	xor	a, a
       0005EF                       1685 00294$:
       0005EF 5F               [ 4] 1686 	ld	e, a
-                           0005F0  1687 	C$player.c$229$1_1$286	= .
-                                   1688 	.globl	C$player.c$229$1_1$286
-                                   1689 ;src/player.c:229: if (direction == DOWN) next_tile = next_tile_down;
+                           0005F0  1687 	C$player.c$231$1_1$286	= .
+                                   1688 	.globl	C$player.c$231$1_1$286
+                                   1689 ;src/player.c:231: if (direction == DOWN) next_tile = next_tile_down;
       0005F0 79               [ 4] 1690 	ld	a, c
       0005F1 D6 04            [ 8] 1691 	sub	a, #0x04
       0005F3 3E 01            [ 8] 1692 	ld	a, #0x01
@@ -1694,26 +1694,26 @@
       0005F7 AF               [ 4] 1694 	xor	a, a
       0005F8                       1695 00296$:
       0005F8 F8 03            [12] 1696 	ldhl	sp,	#3
-                           0005FA  1697 	C$player.c$223$2_1$288	= .
-                                   1698 	.globl	C$player.c$223$2_1$288
-                                   1699 ;src/player.c:223: if (mode == DRILL) {
+                           0005FA  1697 	C$player.c$225$2_1$288	= .
+                                   1698 	.globl	C$player.c$225$2_1$288
+                                   1699 ;src/player.c:225: if (mode == DRILL) {
       0005FA 22               [ 8] 1700 	ld	(hl+), a
       0005FB 7E               [ 8] 1701 	ld	a, (hl)
       0005FC 3D               [ 4] 1702 	dec	a
       0005FD 20 43            [12] 1703 	jr	NZ, 00135$
-                           0005FF  1704 	C$player.c$224$3_1$289	= .
-                                   1705 	.globl	C$player.c$224$3_1$289
-                                   1706 ;src/player.c:224: is_drilling = TRUE;
+                           0005FF  1704 	C$player.c$226$3_1$289	= .
+                                   1705 	.globl	C$player.c$226$3_1$289
+                                   1706 ;src/player.c:226: is_drilling = TRUE;
       0005FF 21r00r00         [12] 1707 	ld	hl, #_is_drilling
       000602 36 01            [12] 1708 	ld	(hl), #0x01
-                           000604  1709 	C$player.c$225$3_1$289	= .
-                                   1710 	.globl	C$player.c$225$3_1$289
-                                   1711 ;src/player.c:225: velocity = 0;
+                           000604  1709 	C$player.c$227$3_1$289	= .
+                                   1710 	.globl	C$player.c$227$3_1$289
+                                   1711 ;src/player.c:227: velocity = 0;
       000604 21r00r00         [12] 1712 	ld	hl, #_velocity
       000607 36 00            [12] 1713 	ld	(hl), #0x00
-                           000609  1714 	C$player.c$226$3_1$289	= .
-                                   1715 	.globl	C$player.c$226$3_1$289
-                                   1716 ;src/player.c:226: if (direction == LEFT) next_tile = next_tile_left;
+                           000609  1714 	C$player.c$228$3_1$289	= .
+                                   1715 	.globl	C$player.c$228$3_1$289
+                                   1716 ;src/player.c:228: if (direction == LEFT) next_tile = next_tile_left;
       000609 F8 00            [12] 1717 	ldhl	sp,	#0
       00060B 7E               [ 8] 1718 	ld	a, (hl)
       00060C B7               [ 4] 1719 	or	a, a
@@ -1721,9 +1721,9 @@
       00060F FAr00r00         [16] 1721 	ld	a, (#_next_tile_left)
       000612 EAr00r00         [16] 1722 	ld	(#_next_tile),a
       000615                       1723 00105$:
-                           000615  1724 	C$player.c$227$3_1$289	= .
-                                   1725 	.globl	C$player.c$227$3_1$289
-                                   1726 ;src/player.c:227: if (direction == RIGHT) next_tile = next_tile_right;
+                           000615  1724 	C$player.c$229$3_1$289	= .
+                                   1725 	.globl	C$player.c$229$3_1$289
+                                   1726 ;src/player.c:229: if (direction == RIGHT) next_tile = next_tile_right;
       000615 F8 01            [12] 1727 	ldhl	sp,	#1
       000617 7E               [ 8] 1728 	ld	a, (hl)
       000618 B7               [ 4] 1729 	or	a, a
@@ -1731,18 +1731,18 @@
       00061B FAr00r00         [16] 1731 	ld	a, (#_next_tile_right)
       00061E EAr00r00         [16] 1732 	ld	(#_next_tile),a
       000621                       1733 00107$:
-                           000621  1734 	C$player.c$228$3_1$289	= .
-                                   1735 	.globl	C$player.c$228$3_1$289
-                                   1736 ;src/player.c:228: if (direction == UP) next_tile = next_tile_up;
+                           000621  1734 	C$player.c$230$3_1$289	= .
+                                   1735 	.globl	C$player.c$230$3_1$289
+                                   1736 ;src/player.c:230: if (direction == UP) next_tile = next_tile_up;
       000621 7B               [ 4] 1737 	ld	a, e
       000622 B7               [ 4] 1738 	or	a, a
       000623 28 06            [12] 1739 	jr	Z, 00109$
       000625 FAr00r00         [16] 1740 	ld	a, (#_next_tile_up)
       000628 EAr00r00         [16] 1741 	ld	(#_next_tile),a
       00062B                       1742 00109$:
-                           00062B  1743 	C$player.c$229$3_1$289	= .
-                                   1744 	.globl	C$player.c$229$3_1$289
-                                   1745 ;src/player.c:229: if (direction == DOWN) next_tile = next_tile_down;
+                           00062B  1743 	C$player.c$231$3_1$289	= .
+                                   1744 	.globl	C$player.c$231$3_1$289
+                                   1745 ;src/player.c:231: if (direction == DOWN) next_tile = next_tile_down;
       00062B F8 03            [12] 1746 	ldhl	sp,	#3
       00062D 7E               [ 8] 1747 	ld	a, (hl)
       00062E B7               [ 4] 1748 	or	a, a
@@ -1750,9 +1750,9 @@
       000631 FAr00r00         [16] 1750 	ld	a, (#_next_tile_down)
       000634 EAr00r00         [16] 1751 	ld	(#_next_tile),a
       000637                       1752 00111$:
-                           000637  1753 	C$player.c$230$3_1$289	= .
-                                   1754 	.globl	C$player.c$230$3_1$289
-                                   1755 ;src/player.c:230: frames = calculate_frames();
+                           000637  1753 	C$player.c$232$3_1$289	= .
+                                   1754 	.globl	C$player.c$232$3_1$289
+                                   1755 ;src/player.c:232: frames = calculate_frames();
       000637 C5               [16] 1756 	push	bc
       000638 CDr98r03         [24] 1757 	call	_calculate_frames
       00063B F8 04            [12] 1758 	ldhl	sp,	#4
@@ -1760,95 +1760,95 @@
       00063E C1               [12] 1760 	pop	bc
       00063F C3rEEr06         [16] 1761 	jp	00136$
       000642                       1762 00135$:
-                           000642  1763 	C$player.c$231$2_1$288	= .
-                                   1764 	.globl	C$player.c$231$2_1$288
-                                   1765 ;src/player.c:231: } else if (mode == DRIVE) {
+                           000642  1763 	C$player.c$233$2_1$288	= .
+                                   1764 	.globl	C$player.c$233$2_1$288
+                                   1765 ;src/player.c:233: } else if (mode == DRIVE) {
       000642 F8 04            [12] 1766 	ldhl	sp,	#4
       000644 7E               [ 8] 1767 	ld	a, (hl)
       000645 D6 02            [ 8] 1768 	sub	a, #0x02
       000647 20 0C            [12] 1769 	jr	NZ, 00132$
-                           000649  1770 	C$player.c$232$3_1$290	= .
-                                   1771 	.globl	C$player.c$232$3_1$290
-                                   1772 ;src/player.c:232: velocity = 0;
+                           000649  1770 	C$player.c$234$3_1$290	= .
+                                   1771 	.globl	C$player.c$234$3_1$290
+                                   1772 ;src/player.c:234: velocity = 0;
       000649 21r00r00         [12] 1773 	ld	hl, #_velocity
       00064C 36 00            [12] 1774 	ld	(hl), #0x00
-                           00064E  1775 	C$player.c$233$3_1$290	= .
-                                   1776 	.globl	C$player.c$233$3_1$290
-                                   1777 ;src/player.c:233: frames = 16;
+                           00064E  1775 	C$player.c$235$3_1$290	= .
+                                   1776 	.globl	C$player.c$235$3_1$290
+                                   1777 ;src/player.c:235: frames = 16;
       00064E F8 02            [12] 1778 	ldhl	sp,	#2
       000650 36 10            [12] 1779 	ld	(hl), #0x10
       000652 C3rEEr06         [16] 1780 	jp	00136$
       000655                       1781 00132$:
-                           000655  1782 	C$player.c$234$2_1$288	= .
-                                   1783 	.globl	C$player.c$234$2_1$288
-                                   1784 ;src/player.c:234: } else if (mode == ACCELERATE) {
+                           000655  1782 	C$player.c$236$2_1$288	= .
+                                   1783 	.globl	C$player.c$236$2_1$288
+                                   1784 ;src/player.c:236: } else if (mode == ACCELERATE) {
       000655 F8 04            [12] 1785 	ldhl	sp,	#4
       000657 7E               [ 8] 1786 	ld	a, (hl)
       000658 D6 03            [ 8] 1787 	sub	a, #0x03
       00065A C2rEEr06         [16] 1788 	jp	NZ,00136$
-                           00065D  1789 	C$player.c$235$3_1$291	= .
-                                   1790 	.globl	C$player.c$235$3_1$291
-                                   1791 ;src/player.c:235: if (next_tile_up != EMPTY) velocity = 0;
+                           00065D  1789 	C$player.c$237$3_1$291	= .
+                                   1790 	.globl	C$player.c$237$3_1$291
+                                   1791 ;src/player.c:237: if (next_tile_up != EMPTY) velocity = 0;
       00065D FAr00r00         [16] 1792 	ld	a, (#_next_tile_up)
       000660 B7               [ 4] 1793 	or	a, a
       000661 28 05            [12] 1794 	jr	Z, 00113$
       000663 21r00r00         [12] 1795 	ld	hl, #_velocity
       000666 36 00            [12] 1796 	ld	(hl), #0x00
       000668                       1797 00113$:
-                           000668  1798 	C$player.c$236$3_1$291	= .
-                                   1799 	.globl	C$player.c$236$3_1$291
-                                   1800 ;src/player.c:236: if (direction == DOWN) {
+                           000668  1798 	C$player.c$238$3_1$291	= .
+                                   1799 	.globl	C$player.c$238$3_1$291
+                                   1800 ;src/player.c:238: if (direction == DOWN) {
       000668 F8 03            [12] 1801 	ldhl	sp,	#3
       00066A 7E               [ 8] 1802 	ld	a, (hl)
       00066B B7               [ 4] 1803 	or	a, a
       00066C 28 15            [12] 1804 	jr	Z, 00123$
-                           00066E  1805 	C$player.c$239$1_1$286	= .
-                                   1806 	.globl	C$player.c$239$1_1$286
-                                   1807 ;src/player.c:239: velocity++;
+                           00066E  1805 	C$player.c$241$1_1$286	= .
+                                   1806 	.globl	C$player.c$241$1_1$286
+                                   1807 ;src/player.c:241: velocity++;
       00066E 21r00r00         [12] 1808 	ld	hl, #_velocity
       000671 46               [ 8] 1809 	ld	b, (hl)
       000672 04               [ 4] 1810 	inc	b
-                           000673  1811 	C$player.c$237$4_1$292	= .
-                                   1812 	.globl	C$player.c$237$4_1$292
-                                   1813 ;src/player.c:237: if (velocity < 0) {
+                           000673  1811 	C$player.c$239$4_1$292	= .
+                                   1812 	.globl	C$player.c$239$4_1$292
+                                   1813 ;src/player.c:239: if (velocity < 0) {
       000673 CB 7E            [12] 1814 	bit	7, (hl)
       000675 28 06            [12] 1815 	jr	Z, 00115$
-                           000677  1816 	C$player.c$238$5_1$293	= .
-                                   1817 	.globl	C$player.c$238$5_1$293
-                                   1818 ;src/player.c:238: direction = UP;
+                           000677  1816 	C$player.c$240$5_1$293	= .
+                                   1817 	.globl	C$player.c$240$5_1$293
+                                   1818 ;src/player.c:240: direction = UP;
       000677 0E 03            [ 8] 1819 	ld	c, #0x03
-                           000679  1820 	C$player.c$239$5_1$293	= .
-                                   1821 	.globl	C$player.c$239$5_1$293
-                                   1822 ;src/player.c:239: velocity++;
+                           000679  1820 	C$player.c$241$5_1$293	= .
+                                   1821 	.globl	C$player.c$241$5_1$293
+                                   1822 ;src/player.c:241: velocity++;
       000679 70               [ 8] 1823 	ld	(hl), b
-                           00067A  1824 	C$player.c$240$5_1$293	= .
-                                   1825 	.globl	C$player.c$240$5_1$293
-                                   1826 ;src/player.c:240: velocity++;
+                           00067A  1824 	C$player.c$242$5_1$293	= .
+                                   1825 	.globl	C$player.c$242$5_1$293
+                                   1826 ;src/player.c:242: velocity++;
       00067A 34               [12] 1827 	inc	(hl)
       00067B 18 32            [12] 1828 	jr	00124$
       00067D                       1829 00115$:
-                           00067D  1830 	C$player.c$242$5_1$294	= .
-                                   1831 	.globl	C$player.c$242$5_1$294
-                                   1832 ;src/player.c:242: velocity++;
+                           00067D  1830 	C$player.c$244$5_1$294	= .
+                                   1831 	.globl	C$player.c$244$5_1$294
+                                   1832 ;src/player.c:244: velocity++;
       00067D 21r00r00         [12] 1833 	ld	hl, #_velocity
       000680 70               [ 8] 1834 	ld	(hl), b
       000681 18 2C            [12] 1835 	jr	00124$
       000683                       1836 00123$:
-                           000683  1837 	C$player.c$244$3_1$291	= .
-                                   1838 	.globl	C$player.c$244$3_1$291
-                                   1839 ;src/player.c:244: } else if (direction == UP) {
+                           000683  1837 	C$player.c$246$3_1$291	= .
+                                   1838 	.globl	C$player.c$246$3_1$291
+                                   1839 ;src/player.c:246: } else if (direction == UP) {
       000683 7B               [ 4] 1840 	ld	a, e
       000684 B7               [ 4] 1841 	or	a, a
       000685 28 28            [12] 1842 	jr	Z, 00124$
-                           000687  1843 	C$player.c$247$1_1$286	= .
-                                   1844 	.globl	C$player.c$247$1_1$286
-                                   1845 ;src/player.c:247: velocity--;
+                           000687  1843 	C$player.c$249$1_1$286	= .
+                                   1844 	.globl	C$player.c$249$1_1$286
+                                   1845 ;src/player.c:249: velocity--;
       000687 21r00r00         [12] 1846 	ld	hl, #_velocity
       00068A 46               [ 8] 1847 	ld	b, (hl)
       00068B 05               [ 4] 1848 	dec	b
-                           00068C  1849 	C$player.c$245$4_1$295	= .
-                                   1850 	.globl	C$player.c$245$4_1$295
-                                   1851 ;src/player.c:245: if (velocity > 0) {
+                           00068C  1849 	C$player.c$247$4_1$295	= .
+                                   1850 	.globl	C$player.c$247$4_1$295
+                                   1851 ;src/player.c:247: if (velocity > 0) {
       00068C 5E               [ 8] 1852 	ld	e, (hl)
       00068D AF               [ 4] 1853 	xor	a, a
       00068E 57               [ 4] 1854 	ld	d, a
@@ -1865,30 +1865,30 @@
       00069F 37               [ 4] 1865 	scf
       0006A0                       1866 00304$:
       0006A0 30 09            [12] 1867 	jr	NC, 00118$
-                           0006A2  1868 	C$player.c$246$5_1$296	= .
-                                   1869 	.globl	C$player.c$246$5_1$296
-                                   1870 ;src/player.c:246: direction = DOWN;
+                           0006A2  1868 	C$player.c$248$5_1$296	= .
+                                   1869 	.globl	C$player.c$248$5_1$296
+                                   1870 ;src/player.c:248: direction = DOWN;
       0006A2 0E 04            [ 8] 1871 	ld	c, #0x04
-                           0006A4  1872 	C$player.c$247$5_1$296	= .
-                                   1873 	.globl	C$player.c$247$5_1$296
-                                   1874 ;src/player.c:247: velocity--;
+                           0006A4  1872 	C$player.c$249$5_1$296	= .
+                                   1873 	.globl	C$player.c$249$5_1$296
+                                   1874 ;src/player.c:249: velocity--;
       0006A4 21r00r00         [12] 1875 	ld	hl, #_velocity
       0006A7 70               [ 8] 1876 	ld	(hl), b
-                           0006A8  1877 	C$player.c$248$5_1$296	= .
-                                   1878 	.globl	C$player.c$248$5_1$296
-                                   1879 ;src/player.c:248: velocity--;
+                           0006A8  1877 	C$player.c$250$5_1$296	= .
+                                   1878 	.globl	C$player.c$250$5_1$296
+                                   1879 ;src/player.c:250: velocity--;
       0006A8 35               [12] 1880 	dec	(hl)
       0006A9 18 04            [12] 1881 	jr	00124$
       0006AB                       1882 00118$:
-                           0006AB  1883 	C$player.c$250$5_1$297	= .
-                                   1884 	.globl	C$player.c$250$5_1$297
-                                   1885 ;src/player.c:250: velocity--;
+                           0006AB  1883 	C$player.c$252$5_1$297	= .
+                                   1884 	.globl	C$player.c$252$5_1$297
+                                   1885 ;src/player.c:252: velocity--;
       0006AB 21r00r00         [12] 1886 	ld	hl, #_velocity
       0006AE 70               [ 8] 1887 	ld	(hl), b
       0006AF                       1888 00124$:
-                           0006AF  1889 	C$player.c$253$3_1$291	= .
-                                   1890 	.globl	C$player.c$253$3_1$291
-                                   1891 ;src/player.c:253: if (velocity >= 12) velocity = 12;
+                           0006AF  1889 	C$player.c$255$3_1$291	= .
+                                   1890 	.globl	C$player.c$255$3_1$291
+                                   1891 ;src/player.c:255: if (velocity >= 12) velocity = 12;
       0006AF 21r00r00         [12] 1892 	ld	hl, #_velocity
       0006B2 7E               [ 8] 1893 	ld	a, (hl)
       0006B3 EE 80            [ 8] 1894 	xor	a, #0x80
@@ -1896,9 +1896,9 @@
       0006B7 38 02            [12] 1896 	jr	C, 00126$
       0006B9 36 0C            [12] 1897 	ld	(hl), #0x0c
       0006BB                       1898 00126$:
-                           0006BB  1899 	C$player.c$254$3_1$291	= .
-                                   1900 	.globl	C$player.c$254$3_1$291
-                                   1901 ;src/player.c:254: if (velocity <= -6) velocity = -6;
+                           0006BB  1899 	C$player.c$256$3_1$291	= .
+                                   1900 	.globl	C$player.c$256$3_1$291
+                                   1901 ;src/player.c:256: if (velocity <= -6) velocity = -6;
       0006BB 21r00r00         [12] 1902 	ld	hl, #_velocity
       0006BE 5E               [ 8] 1903 	ld	e, (hl)
       0006BF 3E FA            [ 8] 1904 	ld	a,#0xfa
@@ -1919,9 +1919,9 @@
       0006D5 21r00r00         [12] 1919 	ld	hl, #_velocity
       0006D8 36 FA            [12] 1920 	ld	(hl), #0xfa
       0006DA                       1921 00128$:
-                           0006DA  1922 	C$player.c$255$3_1$291	= .
-                                   1923 	.globl	C$player.c$255$3_1$291
-                                   1924 ;src/player.c:255: frames = 16 - abs(velocity);
+                           0006DA  1922 	C$player.c$257$3_1$291	= .
+                                   1923 	.globl	C$player.c$257$3_1$291
+                                   1924 ;src/player.c:257: frames = 16 - abs(velocity);
       0006DA FAr00r00         [16] 1925 	ld	a, (#_velocity)
       0006DD 5F               [ 4] 1926 	ld	e, a
       0006DE 07               [ 4] 1927 	rlca
@@ -1937,9 +1937,9 @@
       0006EB F8 02            [12] 1937 	ldhl	sp,	#2
       0006ED 77               [ 8] 1938 	ld	(hl), a
       0006EE                       1939 00136$:
-                           0006EE  1940 	C$player.c$258$2_1$288	= .
-                                   1941 	.globl	C$player.c$258$2_1$288
-                                   1942 ;src/player.c:258: if (direction == LEFT) move_left(frames);
+                           0006EE  1940 	C$player.c$260$2_1$288	= .
+                                   1941 	.globl	C$player.c$260$2_1$288
+                                   1942 ;src/player.c:260: if (direction == LEFT) move_left(frames);
       0006EE 79               [ 4] 1943 	ld	a, c
       0006EF 3D               [ 4] 1944 	dec	a
       0006F0 20 08            [12] 1945 	jr	NZ, 00138$
@@ -1949,9 +1949,9 @@
       0006F6 CDrD9r03         [24] 1949 	call	_move_left
       0006F9 C1               [12] 1950 	pop	bc
       0006FA                       1951 00138$:
-                           0006FA  1952 	C$player.c$259$2_1$288	= .
-                                   1953 	.globl	C$player.c$259$2_1$288
-                                   1954 ;src/player.c:259: if (direction == RIGHT) move_right(frames);
+                           0006FA  1952 	C$player.c$261$2_1$288	= .
+                                   1953 	.globl	C$player.c$261$2_1$288
+                                   1954 ;src/player.c:261: if (direction == RIGHT) move_right(frames);
       0006FA 79               [ 4] 1955 	ld	a, c
       0006FB D6 02            [ 8] 1956 	sub	a, #0x02
       0006FD 20 08            [12] 1957 	jr	NZ, 00140$
@@ -1961,9 +1961,9 @@
       000703 CDr54r04         [24] 1961 	call	_move_right
       000706 C1               [12] 1962 	pop	bc
       000707                       1963 00140$:
-                           000707  1964 	C$player.c$260$2_1$288	= .
-                                   1965 	.globl	C$player.c$260$2_1$288
-                                   1966 ;src/player.c:260: if (direction == UP) move_up(frames);
+                           000707  1964 	C$player.c$262$2_1$288	= .
+                                   1965 	.globl	C$player.c$262$2_1$288
+                                   1966 ;src/player.c:262: if (direction == UP) move_up(frames);
       000707 79               [ 4] 1967 	ld	a, c
       000708 D6 03            [ 8] 1968 	sub	a, #0x03
       00070A 20 08            [12] 1969 	jr	NZ, 00142$
@@ -1973,9 +1973,9 @@
       000710 CDrC4r04         [24] 1973 	call	_move_up
       000713 C1               [12] 1974 	pop	bc
       000714                       1975 00142$:
-                           000714  1976 	C$player.c$261$2_1$288	= .
-                                   1977 	.globl	C$player.c$261$2_1$288
-                                   1978 ;src/player.c:261: if (direction == DOWN) move_down(frames);
+                           000714  1976 	C$player.c$263$2_1$288	= .
+                                   1977 	.globl	C$player.c$263$2_1$288
+                                   1978 ;src/player.c:263: if (direction == DOWN) move_down(frames);
       000714 79               [ 4] 1979 	ld	a, c
       000715 D6 04            [ 8] 1980 	sub	a, #0x04
       000717 20 06            [12] 1981 	jr	NZ, 00147$
@@ -1983,33 +1983,33 @@
       00071B 7E               [ 8] 1983 	ld	a, (hl)
       00071C CDr40r05         [24] 1984 	call	_move_down
       00071F                       1985 00147$:
-                           00071F  1986 	C$player.c$263$1_1$286	= .
-                                   1987 	.globl	C$player.c$263$1_1$286
-                                   1988 ;src/player.c:263: }
+                           00071F  1986 	C$player.c$265$1_1$286	= .
+                                   1987 	.globl	C$player.c$265$1_1$286
+                                   1988 ;src/player.c:265: }
       00071F E8 05            [16] 1989 	add	sp, #5
-                           000721  1990 	C$player.c$263$1_1$286	= .
-                                   1991 	.globl	C$player.c$263$1_1$286
+                           000721  1990 	C$player.c$265$1_1$286	= .
+                                   1991 	.globl	C$player.c$265$1_1$286
                            000721  1992 	XG$move$0$0	= .
                                    1993 	.globl	XG$move$0$0
       000721 C9               [16] 1994 	ret
                            000722  1995 	G$initiate_movement$0$0	= .
                                    1996 	.globl	G$initiate_movement$0$0
-                           000722  1997 	C$player.c$265$1_1$299	= .
-                                   1998 	.globl	C$player.c$265$1_1$299
-                                   1999 ;src/player.c:265: void initiate_movement(void) {
+                           000722  1997 	C$player.c$267$1_1$299	= .
+                                   1998 	.globl	C$player.c$267$1_1$299
+                                   1999 ;src/player.c:267: void initiate_movement(void) {
                                    2000 ;	---------------------------------
                                    2001 ; Function initiate_movement
                                    2002 ; ---------------------------------
       000722                       2003 _initiate_movement::
-                           000722  2004 	C$player.c$266$1_0$299	= .
-                                   2005 	.globl	C$player.c$266$1_0$299
-                                   2006 ;src/player.c:266: if (buttons & J_LEFT) {
+                           000722  2004 	C$player.c$268$1_0$299	= .
+                                   2005 	.globl	C$player.c$268$1_0$299
+                                   2006 ;src/player.c:268: if (buttons & J_LEFT) {
       000722 FAr00r00         [16] 2007 	ld	a, (#_buttons)
       000725 CB 4F            [ 8] 2008 	bit	1, a
       000727 28 2E            [12] 2009 	jr	Z, 00110$
-                           000729  2010 	C$player.c$267$2_0$300	= .
-                                   2011 	.globl	C$player.c$267$2_0$300
-                                   2012 ;src/player.c:267: if (next_tile_left != EMPTY && next_tile_left != STONE && next_tile_down != EMPTY) {
+                           000729  2010 	C$player.c$269$2_0$300	= .
+                                   2011 	.globl	C$player.c$269$2_0$300
+                                   2012 ;src/player.c:269: if (next_tile_left != EMPTY && next_tile_left != STONE && next_tile_down != EMPTY) {
       000729 21r00r00         [12] 2013 	ld	hl, #_next_tile_left
       00072C 7E               [ 8] 2014 	ld	a, (hl)
       00072D B7               [ 4] 2015 	or	a, a
@@ -2020,43 +2020,43 @@
       000735 FAr00r00         [16] 2020 	ld	a, (#_next_tile_down)
       000738 B7               [ 4] 2021 	or	a, a
       000739 28 08            [12] 2022 	jr	Z, 00105$
-                           00073B  2023 	C$player.c$268$3_0$301	= .
-                                   2024 	.globl	C$player.c$268$3_0$301
-                                   2025 ;src/player.c:268: move(LEFT, DRILL);
+                           00073B  2023 	C$player.c$270$3_0$301	= .
+                                   2024 	.globl	C$player.c$270$3_0$301
+                                   2025 ;src/player.c:270: move(LEFT, DRILL);
       00073B 3E 01            [ 8] 2026 	ld	a,#0x01
       00073D 5F               [ 4] 2027 	ld	e,a
       00073E CDrB0r05         [24] 2028 	call	_move
       000741 18 14            [12] 2029 	jr	00110$
       000743                       2030 00105$:
-                           000743  2031 	C$player.c$269$2_0$300	= .
-                                   2032 	.globl	C$player.c$269$2_0$300
-                                   2033 ;src/player.c:269: } else if (next_tile_left == EMPTY) {
+                           000743  2031 	C$player.c$271$2_0$300	= .
+                                   2032 	.globl	C$player.c$271$2_0$300
+                                   2033 ;src/player.c:271: } else if (next_tile_left == EMPTY) {
       000743 FAr00r00         [16] 2034 	ld	a, (#_next_tile_left)
       000746 B7               [ 4] 2035 	or	a, a
       000747 20 09            [12] 2036 	jr	NZ, 00102$
-                           000749  2037 	C$player.c$270$3_0$302	= .
-                                   2038 	.globl	C$player.c$270$3_0$302
-                                   2039 ;src/player.c:270: move(LEFT, DRIVE);
+                           000749  2037 	C$player.c$272$3_0$302	= .
+                                   2038 	.globl	C$player.c$272$3_0$302
+                                   2039 ;src/player.c:272: move(LEFT, DRIVE);
       000749 1E 02            [ 8] 2040 	ld	e, #0x02
       00074B 3E 01            [ 8] 2041 	ld	a, #0x01
       00074D CDrB0r05         [24] 2042 	call	_move
       000750 18 05            [12] 2043 	jr	00110$
       000752                       2044 00102$:
-                           000752  2045 	C$player.c$271$2_0$300	= .
-                                   2046 	.globl	C$player.c$271$2_0$300
-                                   2047 ;src/player.c:271: } else direction_prev = LEFT;
+                           000752  2045 	C$player.c$273$2_0$300	= .
+                                   2046 	.globl	C$player.c$273$2_0$300
+                                   2047 ;src/player.c:273: } else direction_prev = LEFT;
       000752 21r00r00         [12] 2048 	ld	hl, #_direction_prev
       000755 36 01            [12] 2049 	ld	(hl), #0x01
       000757                       2050 00110$:
-                           000757  2051 	C$player.c$273$1_0$299	= .
-                                   2052 	.globl	C$player.c$273$1_0$299
-                                   2053 ;src/player.c:273: if (buttons & J_RIGHT) { 
+                           000757  2051 	C$player.c$275$1_0$299	= .
+                                   2052 	.globl	C$player.c$275$1_0$299
+                                   2053 ;src/player.c:275: if (buttons & J_RIGHT) { 
       000757 FAr00r00         [16] 2054 	ld	a, (#_buttons)
       00075A 0F               [ 4] 2055 	rrca
       00075B 30 2E            [12] 2056 	jr	NC, 00120$
-                           00075D  2057 	C$player.c$274$2_0$303	= .
-                                   2058 	.globl	C$player.c$274$2_0$303
-                                   2059 ;src/player.c:274: if (next_tile_right != EMPTY && next_tile_right != STONE && next_tile_down != EMPTY) {
+                           00075D  2057 	C$player.c$276$2_0$303	= .
+                                   2058 	.globl	C$player.c$276$2_0$303
+                                   2059 ;src/player.c:276: if (next_tile_right != EMPTY && next_tile_right != STONE && next_tile_down != EMPTY) {
       00075D 21r00r00         [12] 2060 	ld	hl, #_next_tile_right
       000760 7E               [ 8] 2061 	ld	a, (hl)
       000761 B7               [ 4] 2062 	or	a, a
@@ -2067,43 +2067,43 @@
       000769 FAr00r00         [16] 2067 	ld	a, (#_next_tile_down)
       00076C B7               [ 4] 2068 	or	a, a
       00076D 28 09            [12] 2069 	jr	Z, 00115$
-                           00076F  2070 	C$player.c$275$3_0$304	= .
-                                   2071 	.globl	C$player.c$275$3_0$304
-                                   2072 ;src/player.c:275: move(RIGHT, DRILL);
+                           00076F  2070 	C$player.c$277$3_0$304	= .
+                                   2071 	.globl	C$player.c$277$3_0$304
+                                   2072 ;src/player.c:277: move(RIGHT, DRILL);
       00076F 1E 01            [ 8] 2073 	ld	e, #0x01
       000771 3E 02            [ 8] 2074 	ld	a, #0x02
       000773 CDrB0r05         [24] 2075 	call	_move
       000776 18 13            [12] 2076 	jr	00120$
       000778                       2077 00115$:
-                           000778  2078 	C$player.c$276$2_0$303	= .
-                                   2079 	.globl	C$player.c$276$2_0$303
-                                   2080 ;src/player.c:276: } else if (next_tile_right == EMPTY) {
+                           000778  2078 	C$player.c$278$2_0$303	= .
+                                   2079 	.globl	C$player.c$278$2_0$303
+                                   2080 ;src/player.c:278: } else if (next_tile_right == EMPTY) {
       000778 FAr00r00         [16] 2081 	ld	a, (#_next_tile_right)
       00077B B7               [ 4] 2082 	or	a, a
       00077C 20 08            [12] 2083 	jr	NZ, 00112$
-                           00077E  2084 	C$player.c$277$3_0$305	= .
-                                   2085 	.globl	C$player.c$277$3_0$305
-                                   2086 ;src/player.c:277: move(RIGHT, DRIVE);
+                           00077E  2084 	C$player.c$279$3_0$305	= .
+                                   2085 	.globl	C$player.c$279$3_0$305
+                                   2086 ;src/player.c:279: move(RIGHT, DRIVE);
       00077E 3E 02            [ 8] 2087 	ld	a,#0x02
       000780 5F               [ 4] 2088 	ld	e,a
       000781 CDrB0r05         [24] 2089 	call	_move
       000784 18 05            [12] 2090 	jr	00120$
       000786                       2091 00112$:
-                           000786  2092 	C$player.c$278$2_0$303	= .
-                                   2093 	.globl	C$player.c$278$2_0$303
-                                   2094 ;src/player.c:278: } else direction_prev = RIGHT;
+                           000786  2092 	C$player.c$280$2_0$303	= .
+                                   2093 	.globl	C$player.c$280$2_0$303
+                                   2094 ;src/player.c:280: } else direction_prev = RIGHT;
       000786 21r00r00         [12] 2095 	ld	hl, #_direction_prev
       000789 36 02            [12] 2096 	ld	(hl), #0x02
       00078B                       2097 00120$:
-                           00078B  2098 	C$player.c$280$1_0$299	= .
-                                   2099 	.globl	C$player.c$280$1_0$299
-                                   2100 ;src/player.c:280: if (buttons & J_DOWN) { 
+                           00078B  2098 	C$player.c$282$1_0$299	= .
+                                   2099 	.globl	C$player.c$282$1_0$299
+                                   2100 ;src/player.c:282: if (buttons & J_DOWN) { 
       00078B FAr00r00         [16] 2101 	ld	a, (#_buttons)
       00078E CB 5F            [ 8] 2102 	bit	3, a
       000790 28 13            [12] 2103 	jr	Z, 00125$
-                           000792  2104 	C$player.c$281$2_0$306	= .
-                                   2105 	.globl	C$player.c$281$2_0$306
-                                   2106 ;src/player.c:281: if (next_tile_down != EMPTY && next_tile_down != STONE){
+                           000792  2104 	C$player.c$283$2_0$306	= .
+                                   2105 	.globl	C$player.c$283$2_0$306
+                                   2106 ;src/player.c:283: if (next_tile_down != EMPTY && next_tile_down != STONE){
       000792 21r00r00         [12] 2107 	ld	hl, #_next_tile_down
       000795 7E               [ 8] 2108 	ld	a, (hl)
       000796 B7               [ 4] 2109 	or	a, a
@@ -2111,32 +2111,32 @@
       000799 7E               [ 8] 2111 	ld	a, (hl)
       00079A D6 03            [ 8] 2112 	sub	a, #0x03
       00079C 28 07            [12] 2113 	jr	Z, 00125$
-                           00079E  2114 	C$player.c$282$3_0$307	= .
-                                   2115 	.globl	C$player.c$282$3_0$307
-                                   2116 ;src/player.c:282: move(DOWN, DRILL);
+                           00079E  2114 	C$player.c$284$3_0$307	= .
+                                   2115 	.globl	C$player.c$284$3_0$307
+                                   2116 ;src/player.c:284: move(DOWN, DRILL);
       00079E 1E 01            [ 8] 2117 	ld	e, #0x01
       0007A0 3E 04            [ 8] 2118 	ld	a, #0x04
       0007A2 CDrB0r05         [24] 2119 	call	_move
       0007A5                       2120 00125$:
-                           0007A5  2121 	C$player.c$285$1_0$299	= .
-                                   2122 	.globl	C$player.c$285$1_0$299
-                                   2123 ;src/player.c:285: if (next_tile_up == EMPTY && (buttons & J_UP )) {
+                           0007A5  2121 	C$player.c$287$1_0$299	= .
+                                   2122 	.globl	C$player.c$287$1_0$299
+                                   2123 ;src/player.c:287: if (next_tile_up == EMPTY && (buttons & J_UP )) {
       0007A5 FAr00r00         [16] 2124 	ld	a, (#_next_tile_up)
       0007A8 B7               [ 4] 2125 	or	a, a
       0007A9 20 0D            [12] 2126 	jr	NZ, 00127$
       0007AB FAr00r00         [16] 2127 	ld	a, (#_buttons)
       0007AE CB 57            [ 8] 2128 	bit	2, a
       0007B0 28 06            [12] 2129 	jr	Z, 00127$
-                           0007B2  2130 	C$player.c$286$2_0$308	= .
-                                   2131 	.globl	C$player.c$286$2_0$308
-                                   2132 ;src/player.c:286: move(UP, ACCELERATE);
+                           0007B2  2130 	C$player.c$288$2_0$308	= .
+                                   2131 	.globl	C$player.c$288$2_0$308
+                                   2132 ;src/player.c:288: move(UP, ACCELERATE);
       0007B2 3E 03            [ 8] 2133 	ld	a,#0x03
       0007B4 5F               [ 4] 2134 	ld	e,a
       0007B5 CDrB0r05         [24] 2135 	call	_move
       0007B8                       2136 00127$:
-                           0007B8  2137 	C$player.c$288$1_0$299	= .
-                                   2138 	.globl	C$player.c$288$1_0$299
-                                   2139 ;src/player.c:288: if (next_tile_down == EMPTY && !(buttons & J_UP)) {
+                           0007B8  2137 	C$player.c$290$1_0$299	= .
+                                   2138 	.globl	C$player.c$290$1_0$299
+                                   2139 ;src/player.c:290: if (next_tile_down == EMPTY && !(buttons & J_UP)) {
       0007B8 FAr00r00         [16] 2140 	ld	a, (#_next_tile_down)
       0007BB B7               [ 4] 2141 	or	a, a
       0007BC C0               [20] 2142 	ret	NZ
@@ -2144,31 +2144,31 @@
       0007C0 7E               [ 8] 2144 	ld	a, (hl)
       0007C1 CB 57            [ 8] 2145 	bit	2, a
       0007C3 C0               [20] 2146 	ret	NZ
-                           0007C4  2147 	C$player.c$289$2_0$309	= .
-                                   2148 	.globl	C$player.c$289$2_0$309
-                                   2149 ;src/player.c:289: move(DOWN, ACCELERATE);
+                           0007C4  2147 	C$player.c$291$2_0$309	= .
+                                   2148 	.globl	C$player.c$291$2_0$309
+                                   2149 ;src/player.c:291: move(DOWN, ACCELERATE);
       0007C4 1E 03            [ 8] 2150 	ld	e, #0x03
       0007C6 3E 04            [ 8] 2151 	ld	a, #0x04
-                           0007C8  2152 	C$player.c$291$1_0$299	= .
-                                   2153 	.globl	C$player.c$291$1_0$299
-                                   2154 ;src/player.c:291: }
-                           0007C8  2155 	C$player.c$291$1_0$299	= .
-                                   2156 	.globl	C$player.c$291$1_0$299
+                           0007C8  2152 	C$player.c$293$1_0$299	= .
+                                   2153 	.globl	C$player.c$293$1_0$299
+                                   2154 ;src/player.c:293: }
+                           0007C8  2155 	C$player.c$293$1_0$299	= .
+                                   2156 	.globl	C$player.c$293$1_0$299
                            0007C8  2157 	XG$initiate_movement$0$0	= .
                                    2158 	.globl	XG$initiate_movement$0$0
       0007C8 C3rB0r05         [16] 2159 	jp	_move
                            0007CB  2160 	G$calculate_falldamage$0$0	= .
                                    2161 	.globl	G$calculate_falldamage$0$0
-                           0007CB  2162 	C$player.c$293$1_0$311	= .
-                                   2163 	.globl	C$player.c$293$1_0$311
-                                   2164 ;src/player.c:293: void calculate_falldamage(void){
+                           0007CB  2162 	C$player.c$295$1_0$311	= .
+                                   2163 	.globl	C$player.c$295$1_0$311
+                                   2164 ;src/player.c:295: void calculate_falldamage(void){
                                    2165 ;	---------------------------------
                                    2166 ; Function calculate_falldamage
                                    2167 ; ---------------------------------
       0007CB                       2168 _calculate_falldamage::
-                           0007CB  2169 	C$player.c$294$1_0$311	= .
-                                   2170 	.globl	C$player.c$294$1_0$311
-                                   2171 ;src/player.c:294: if (next_tile_down != EMPTY && velocity > 4) {
+                           0007CB  2169 	C$player.c$296$1_0$311	= .
+                                   2170 	.globl	C$player.c$296$1_0$311
+                                   2171 ;src/player.c:296: if (next_tile_down != EMPTY && velocity > 4) {
       0007CB 21r00r00         [12] 2172 	ld	hl, #_velocity
       0007CE 5E               [ 8] 2173 	ld	e, (hl)
       0007CF 3E 04            [ 8] 2174 	ld	a,#0x04
@@ -2194,9 +2194,9 @@
       0007ED 79               [ 4] 2194 	ld	a, c
       0007EE B7               [ 4] 2195 	or	a, a
       0007EF 28 1F            [12] 2196 	jr	Z, 00106$
-                           0007F1  2197 	C$player.c$295$2_0$312	= .
-                                   2198 	.globl	C$player.c$295$2_0$312
-                                   2199 ;src/player.c:295: player.hull.current_value -= velocity;
+                           0007F1  2197 	C$player.c$297$2_0$312	= .
+                                   2198 	.globl	C$player.c$297$2_0$312
+                                   2199 ;src/player.c:297: player.hull.current_value -= velocity;
       0007F1 21r49r00         [12] 2200 	ld	hl, #(_player + 73)
       0007F4 2A               [ 8] 2201 	ld	a, (hl+)
       0007F5 4F               [ 4] 2202 	ld	c, a
@@ -2216,16 +2216,16 @@
       000807 79               [ 4] 2216 	ld	a, c
       000808 22               [ 8] 2217 	ld	(hl+), a
       000809 70               [ 8] 2218 	ld	(hl), b
-                           00080A  2219 	C$player.c$296$2_0$312	= .
-                                   2220 	.globl	C$player.c$296$2_0$312
-                                   2221 ;src/player.c:296: velocity = 0;
+                           00080A  2219 	C$player.c$298$2_0$312	= .
+                                   2220 	.globl	C$player.c$298$2_0$312
+                                   2221 ;src/player.c:298: velocity = 0;
       00080A 21r00r00         [12] 2222 	ld	hl, #_velocity
       00080D 36 00            [12] 2223 	ld	(hl), #0x00
       00080F C9               [16] 2224 	ret
       000810                       2225 00106$:
-                           000810  2226 	C$player.c$297$1_0$311	= .
-                                   2227 	.globl	C$player.c$297$1_0$311
-                                   2228 ;src/player.c:297: } else if (next_tile_down != EMPTY && velocity <= 4 && velocity > 0){
+                           000810  2226 	C$player.c$299$1_0$311	= .
+                                   2227 	.globl	C$player.c$299$1_0$311
+                                   2228 ;src/player.c:299: } else if (next_tile_down != EMPTY && velocity <= 4 && velocity > 0){
       000810 FAr00r00         [16] 2229 	ld	a, (#_next_tile_down)
       000813 B7               [ 4] 2230 	or	a, a
       000814 C8               [20] 2231 	ret	Z
@@ -2248,31 +2248,31 @@
       00082E 37               [ 4] 2248 	scf
       00082F                       2249 00149$:
       00082F D0               [20] 2250 	ret	NC
-                           000830  2251 	C$player.c$298$2_0$313	= .
-                                   2252 	.globl	C$player.c$298$2_0$313
-                                   2253 ;src/player.c:298: velocity = 0;
+                           000830  2251 	C$player.c$300$2_0$313	= .
+                                   2252 	.globl	C$player.c$300$2_0$313
+                                   2253 ;src/player.c:300: velocity = 0;
       000830 21r00r00         [12] 2254 	ld	hl, #_velocity
       000833 36 00            [12] 2255 	ld	(hl), #0x00
-                           000835  2256 	C$player.c$300$1_0$311	= .
-                                   2257 	.globl	C$player.c$300$1_0$311
-                                   2258 ;src/player.c:300: }
-                           000835  2259 	C$player.c$300$1_0$311	= .
-                                   2260 	.globl	C$player.c$300$1_0$311
+                           000835  2256 	C$player.c$302$1_0$311	= .
+                                   2257 	.globl	C$player.c$302$1_0$311
+                                   2258 ;src/player.c:302: }
+                           000835  2259 	C$player.c$302$1_0$311	= .
+                                   2260 	.globl	C$player.c$302$1_0$311
                            000835  2261 	XG$calculate_falldamage$0$0	= .
                                    2262 	.globl	XG$calculate_falldamage$0$0
       000835 C9               [16] 2263 	ret
                            000836  2264 	G$check_hull$0$0	= .
                                    2265 	.globl	G$check_hull$0$0
-                           000836  2266 	C$player.c$302$1_0$315	= .
-                                   2267 	.globl	C$player.c$302$1_0$315
-                                   2268 ;src/player.c:302: void check_hull(void){
+                           000836  2266 	C$player.c$304$1_0$315	= .
+                                   2267 	.globl	C$player.c$304$1_0$315
+                                   2268 ;src/player.c:304: void check_hull(void){
                                    2269 ;	---------------------------------
                                    2270 ; Function check_hull
                                    2271 ; ---------------------------------
       000836                       2272 _check_hull::
-                           000836  2273 	C$player.c$303$1_0$315	= .
-                                   2274 	.globl	C$player.c$303$1_0$315
-                                   2275 ;src/player.c:303: if (player.hull.current_value <= 0 && animation_frames_left == 0) {
+                           000836  2273 	C$player.c$305$1_0$315	= .
+                                   2274 	.globl	C$player.c$305$1_0$315
+                                   2275 ;src/player.c:305: if (player.hull.current_value <= 0 && animation_frames_left == 0) {
       000836 21r49r00         [12] 2276 	ld	hl, #(_player + 73)
       000839 2A               [ 8] 2277 	ld	a, (hl+)
       00083A 4F               [ 4] 2278 	ld	c, a
@@ -2297,38 +2297,38 @@
       000852 FAr00r00         [16] 2297 	ld	a, (#_animation_frames_left)
       000855 B7               [ 4] 2298 	or	a, a
       000856 C0               [20] 2299 	ret	NZ
-                           000857  2300 	C$player.c$304$2_0$316	= .
-                                   2301 	.globl	C$player.c$304$2_0$316
-                                   2302 ;src/player.c:304: player_alive = FALSE;
+                           000857  2300 	C$player.c$306$2_0$316	= .
+                                   2301 	.globl	C$player.c$306$2_0$316
+                                   2302 ;src/player.c:306: player_alive = FALSE;
       000857 21r00r00         [12] 2303 	ld	hl, #_player_alive
       00085A 36 00            [12] 2304 	ld	(hl), #0x00
-                           00085C  2305 	C$player.c$305$2_0$316	= .
-                                   2306 	.globl	C$player.c$305$2_0$316
-                                   2307 ;src/player.c:305: player.hull.current_value = 0;
+                           00085C  2305 	C$player.c$307$2_0$316	= .
+                                   2306 	.globl	C$player.c$307$2_0$316
+                                   2307 ;src/player.c:307: player.hull.current_value = 0;
       00085C 21r49r00         [12] 2308 	ld	hl, #(_player + 73)
       00085F AF               [ 4] 2309 	xor	a, a
       000860 22               [ 8] 2310 	ld	(hl+), a
       000861 77               [ 8] 2311 	ld	(hl), a
-                           000862  2312 	C$player.c$307$1_0$315	= .
-                                   2313 	.globl	C$player.c$307$1_0$315
-                                   2314 ;src/player.c:307: }
-                           000862  2315 	C$player.c$307$1_0$315	= .
-                                   2316 	.globl	C$player.c$307$1_0$315
+                           000862  2312 	C$player.c$309$1_0$315	= .
+                                   2313 	.globl	C$player.c$309$1_0$315
+                                   2314 ;src/player.c:309: }
+                           000862  2315 	C$player.c$309$1_0$315	= .
+                                   2316 	.globl	C$player.c$309$1_0$315
                            000862  2317 	XG$check_hull$0$0	= .
                                    2318 	.globl	XG$check_hull$0$0
       000862 C9               [16] 2319 	ret
                            000863  2320 	G$check_fuel$0$0	= .
                                    2321 	.globl	G$check_fuel$0$0
-                           000863  2322 	C$player.c$309$1_0$318	= .
-                                   2323 	.globl	C$player.c$309$1_0$318
-                                   2324 ;src/player.c:309: void check_fuel(void){
+                           000863  2322 	C$player.c$311$1_0$318	= .
+                                   2323 	.globl	C$player.c$311$1_0$318
+                                   2324 ;src/player.c:311: void check_fuel(void){
                                    2325 ;	---------------------------------
                                    2326 ; Function check_fuel
                                    2327 ; ---------------------------------
       000863                       2328 _check_fuel::
-                           000863  2329 	C$player.c$310$1_0$318	= .
-                                   2330 	.globl	C$player.c$310$1_0$318
-                                   2331 ;src/player.c:310: if (player.fuel.current_value <= 0 && animation_frames_left == 0) {
+                           000863  2329 	C$player.c$312$1_0$318	= .
+                                   2330 	.globl	C$player.c$312$1_0$318
+                                   2331 ;src/player.c:312: if (player.fuel.current_value <= 0 && animation_frames_left == 0) {
       000863 21r10r00         [12] 2332 	ld	hl, #(_player + 16)
       000866 2A               [ 8] 2333 	ld	a, (hl+)
       000867 4F               [ 4] 2334 	ld	c, a
@@ -2353,44 +2353,44 @@
       00087F FAr00r00         [16] 2353 	ld	a, (#_animation_frames_left)
       000882 B7               [ 4] 2354 	or	a, a
       000883 C0               [20] 2355 	ret	NZ
-                           000884  2356 	C$player.c$311$2_0$319	= .
-                                   2357 	.globl	C$player.c$311$2_0$319
-                                   2358 ;src/player.c:311: player_alive = FALSE;
+                           000884  2356 	C$player.c$313$2_0$319	= .
+                                   2357 	.globl	C$player.c$313$2_0$319
+                                   2358 ;src/player.c:313: player_alive = FALSE;
       000884 21r00r00         [12] 2359 	ld	hl, #_player_alive
       000887 36 00            [12] 2360 	ld	(hl), #0x00
-                           000889  2361 	C$player.c$312$2_0$319	= .
-                                   2362 	.globl	C$player.c$312$2_0$319
-                                   2363 ;src/player.c:312: player.fuel.current_value = 0;
+                           000889  2361 	C$player.c$314$2_0$319	= .
+                                   2362 	.globl	C$player.c$314$2_0$319
+                                   2363 ;src/player.c:314: player.fuel.current_value = 0;
       000889 21r10r00         [12] 2364 	ld	hl, #(_player + 16)
       00088C AF               [ 4] 2365 	xor	a, a
       00088D 22               [ 8] 2366 	ld	(hl+), a
       00088E 77               [ 8] 2367 	ld	(hl), a
-                           00088F  2368 	C$player.c$314$1_0$318	= .
-                                   2369 	.globl	C$player.c$314$1_0$318
-                                   2370 ;src/player.c:314: }
-                           00088F  2371 	C$player.c$314$1_0$318	= .
-                                   2372 	.globl	C$player.c$314$1_0$318
+                           00088F  2368 	C$player.c$316$1_0$318	= .
+                                   2369 	.globl	C$player.c$316$1_0$318
+                                   2370 ;src/player.c:316: }
+                           00088F  2371 	C$player.c$316$1_0$318	= .
+                                   2372 	.globl	C$player.c$316$1_0$318
                            00088F  2373 	XG$check_fuel$0$0	= .
                                    2374 	.globl	XG$check_fuel$0$0
       00088F C9               [16] 2375 	ret
                            000890  2376 	G$update_fuel$0$0	= .
                                    2377 	.globl	G$update_fuel$0$0
-                           000890  2378 	C$player.c$315$1_0$321	= .
-                                   2379 	.globl	C$player.c$315$1_0$321
-                                   2380 ;src/player.c:315: void update_fuel(void){
+                           000890  2378 	C$player.c$317$1_0$321	= .
+                                   2379 	.globl	C$player.c$317$1_0$321
+                                   2380 ;src/player.c:317: void update_fuel(void){
                                    2381 ;	---------------------------------
                                    2382 ; Function update_fuel
                                    2383 ; ---------------------------------
       000890                       2384 _update_fuel::
-                           000890  2385 	C$player.c$316$1_0$321	= .
-                                   2386 	.globl	C$player.c$316$1_0$321
-                                   2387 ;src/player.c:316: if (frame_counter == 0) {
+                           000890  2385 	C$player.c$318$1_0$321	= .
+                                   2386 	.globl	C$player.c$318$1_0$321
+                                   2387 ;src/player.c:318: if (frame_counter == 0) {
       000890 FAr00r00         [16] 2388 	ld	a, (#_frame_counter)
       000893 B7               [ 4] 2389 	or	a, a
       000894 20 0D            [12] 2390 	jr	NZ, 00102$
-                           000896  2391 	C$player.c$317$2_0$322	= .
-                                   2392 	.globl	C$player.c$317$2_0$322
-                                   2393 ;src/player.c:317: player.fuel.current_value --;   // only once every 60 frames
+                           000896  2391 	C$player.c$319$2_0$322	= .
+                                   2392 	.globl	C$player.c$319$2_0$322
+                                   2393 ;src/player.c:319: player.fuel.current_value --;   // only once every 60 frames
       000896 21r10r00         [12] 2394 	ld	hl, #(_player + 16)
       000899 2A               [ 8] 2395 	ld	a, (hl+)
       00089A 4F               [ 4] 2396 	ld	c, a
@@ -2401,9 +2401,9 @@
       0008A1 22               [ 8] 2401 	ld	(hl+), a
       0008A2 70               [ 8] 2402 	ld	(hl), b
       0008A3                       2403 00102$:
-                           0008A3  2404 	C$player.c$319$1_0$321	= .
-                                   2405 	.globl	C$player.c$319$1_0$321
-                                   2406 ;src/player.c:319: if (depth <= 5) player.fuel.current_value = player.fuel.max_value;
+                           0008A3  2404 	C$player.c$321$1_0$321	= .
+                                   2405 	.globl	C$player.c$321$1_0$321
+                                   2406 ;src/player.c:321: if (depth <= 5) player.fuel.current_value = player.fuel.max_value;
       0008A3 3E 05            [ 8] 2407 	ld	a, #0x05
       0008A5 21r00r00         [12] 2408 	ld	hl, #_depth
       0008A8 96               [ 8] 2409 	sub	a, (hl)
@@ -2416,26 +2416,26 @@
       0008B3 79               [ 4] 2416 	ld	a, c
       0008B4 22               [ 8] 2417 	ld	(hl+), a
       0008B5 70               [ 8] 2418 	ld	(hl), b
-                           0008B6  2419 	C$player.c$320$1_0$321	= .
-                                   2420 	.globl	C$player.c$320$1_0$321
-                                   2421 ;src/player.c:320: }
-                           0008B6  2422 	C$player.c$320$1_0$321	= .
-                                   2423 	.globl	C$player.c$320$1_0$321
+                           0008B6  2419 	C$player.c$322$1_0$321	= .
+                                   2420 	.globl	C$player.c$322$1_0$321
+                                   2421 ;src/player.c:322: }
+                           0008B6  2422 	C$player.c$322$1_0$321	= .
+                                   2423 	.globl	C$player.c$322$1_0$321
                            0008B6  2424 	XG$update_fuel$0$0	= .
                                    2425 	.globl	XG$update_fuel$0$0
       0008B6 C9               [16] 2426 	ret
                            0008B7  2427 	G$check_enter_buildings$0$0	= .
                                    2428 	.globl	G$check_enter_buildings$0$0
-                           0008B7  2429 	C$player.c$322$1_0$324	= .
-                                   2430 	.globl	C$player.c$322$1_0$324
-                                   2431 ;src/player.c:322: void check_enter_buildings(void){
+                           0008B7  2429 	C$player.c$324$1_0$324	= .
+                                   2430 	.globl	C$player.c$324$1_0$324
+                                   2431 ;src/player.c:324: void check_enter_buildings(void){
                                    2432 ;	---------------------------------
                                    2433 ; Function check_enter_buildings
                                    2434 ; ---------------------------------
       0008B7                       2435 _check_enter_buildings::
-                           0008B7  2436 	C$player.c$324$1_0$324	= .
-                                   2437 	.globl	C$player.c$324$1_0$324
-                                   2438 ;src/player.c:324: if (depth == STATION_SHOP_Y && width == STATION_SHOP_X && animation_frames_left == 0 && left_shop_area) {
+                           0008B7  2436 	C$player.c$326$1_0$324	= .
+                                   2437 	.globl	C$player.c$326$1_0$324
+                                   2438 ;src/player.c:326: if (depth == STATION_SHOP_Y && width == STATION_SHOP_X && animation_frames_left == 0 && left_shop_area) {
       0008B7 FAr00r00         [16] 2439 	ld	a, (#_depth)
       0008BA D6 05            [ 8] 2440 	sub	a, #0x05
       0008BC 3E 01            [ 8] 2441 	ld	a, #0x01
@@ -2462,41 +2462,41 @@
       0008DB FAr00r00         [16] 2462 	ld	a, (#_left_shop_area)
       0008DE B7               [ 4] 2463 	or	a, a
       0008DF 28 11            [12] 2464 	jr	Z, 00105$
-                           0008E1  2465 	C$player.c$325$2_0$325	= .
-                                   2466 	.globl	C$player.c$325$2_0$325
-                                   2467 ;src/player.c:325: currentGameState = GAME_STATE_SHOP_MENU;
+                           0008E1  2465 	C$player.c$327$2_0$325	= .
+                                   2466 	.globl	C$player.c$327$2_0$325
+                                   2467 ;src/player.c:327: currentGameState = GAME_STATE_SHOP_MENU;
       0008E1 21r00r00         [12] 2468 	ld	hl, #_currentGameState
       0008E4 36 01            [12] 2469 	ld	(hl), #0x01
-                           0008E6  2470 	C$player.c$326$2_0$325	= .
-                                   2471 	.globl	C$player.c$326$2_0$325
-                                   2472 ;src/player.c:326: velocity = 0;
+                           0008E6  2470 	C$player.c$328$2_0$325	= .
+                                   2471 	.globl	C$player.c$328$2_0$325
+                                   2472 ;src/player.c:328: velocity = 0;
       0008E6 21r00r00         [12] 2473 	ld	hl, #_velocity
       0008E9 36 00            [12] 2474 	ld	(hl), #0x00
-                           0008EB  2475 	C$player.c$327$2_0$325	= .
-                                   2476 	.globl	C$player.c$327$2_0$325
-                                   2477 ;src/player.c:327: left_shop_area = FALSE;  // Player enters the shop, set flag to false
+                           0008EB  2475 	C$player.c$329$2_0$325	= .
+                                   2476 	.globl	C$player.c$329$2_0$325
+                                   2477 ;src/player.c:329: left_shop_area = FALSE;  // Player enters the shop, set flag to false
       0008EB 21r00r00         [12] 2478 	ld	hl, #_left_shop_area
       0008EE 36 00            [12] 2479 	ld	(hl), #0x00
       0008F0 18 0E            [12] 2480 	jr	00106$
       0008F2                       2481 00105$:
-                           0008F2  2482 	C$player.c$328$1_0$324	= .
-                                   2483 	.globl	C$player.c$328$1_0$324
-                                   2484 ;src/player.c:328: } else if (depth != STATION_SHOP_Y || width != STATION_SHOP_X) {
+                           0008F2  2482 	C$player.c$330$1_0$324	= .
+                                   2483 	.globl	C$player.c$330$1_0$324
+                                   2484 ;src/player.c:330: } else if (depth != STATION_SHOP_Y || width != STATION_SHOP_X) {
       0008F2 59               [ 4] 2485 	ld	e, c
       0008F3 CB 43            [ 8] 2486 	bit	0, e
       0008F5 28 04            [12] 2487 	jr	Z, 00101$
       0008F7 CB 40            [ 8] 2488 	bit	0, b
       0008F9 20 05            [12] 2489 	jr	NZ, 00106$
       0008FB                       2490 00101$:
-                           0008FB  2491 	C$player.c$329$2_0$326	= .
-                                   2492 	.globl	C$player.c$329$2_0$326
-                                   2493 ;src/player.c:329: left_shop_area = TRUE;  // Player moves away from the shop trigger location
+                           0008FB  2491 	C$player.c$331$2_0$326	= .
+                                   2492 	.globl	C$player.c$331$2_0$326
+                                   2493 ;src/player.c:331: left_shop_area = TRUE;  // Player moves away from the shop trigger location
       0008FB 21r00r00         [12] 2494 	ld	hl, #_left_shop_area
       0008FE 36 01            [12] 2495 	ld	(hl), #0x01
       000900                       2496 00106$:
-                           000900  2497 	C$player.c$333$1_0$324	= .
-                                   2498 	.globl	C$player.c$333$1_0$324
-                                   2499 ;src/player.c:333: if (depth == STATION_SELL_Y && width == STATION_SELL_X && animation_frames_left == 0 && left_sell_area) {
+                           000900  2497 	C$player.c$335$1_0$324	= .
+                                   2498 	.globl	C$player.c$335$1_0$324
+                                   2499 ;src/player.c:335: if (depth == STATION_SELL_Y && width == STATION_SELL_X && animation_frames_left == 0 && left_sell_area) {
       000900 FAr00r00         [16] 2500 	ld	a, (#_width)
       000903 D6 0A            [ 8] 2501 	sub	a, #0x0a
       000905 3E 01            [ 8] 2502 	ld	a, #0x01
@@ -2516,89 +2516,89 @@
       000919 FAr00r00         [16] 2516 	ld	a, (#_left_sell_area)
       00091C B7               [ 4] 2517 	or	a, a
       00091D 28 10            [12] 2518 	jr	Z, 00114$
-                           00091F  2519 	C$player.c$334$2_0$327	= .
-                                   2520 	.globl	C$player.c$334$2_0$327
-                                   2521 ;src/player.c:334: currentGameState = GAME_STATE_SELL_MENU;
+                           00091F  2519 	C$player.c$336$2_0$327	= .
+                                   2520 	.globl	C$player.c$336$2_0$327
+                                   2521 ;src/player.c:336: currentGameState = GAME_STATE_SELL_MENU;
       00091F 21r00r00         [12] 2522 	ld	hl, #_currentGameState
       000922 36 02            [12] 2523 	ld	(hl), #0x02
-                           000924  2524 	C$player.c$335$2_0$327	= .
-                                   2525 	.globl	C$player.c$335$2_0$327
-                                   2526 ;src/player.c:335: velocity = 0;
+                           000924  2524 	C$player.c$337$2_0$327	= .
+                                   2525 	.globl	C$player.c$337$2_0$327
+                                   2526 ;src/player.c:337: velocity = 0;
       000924 21r00r00         [12] 2527 	ld	hl, #_velocity
       000927 36 00            [12] 2528 	ld	(hl), #0x00
-                           000929  2529 	C$player.c$336$2_0$327	= .
-                                   2530 	.globl	C$player.c$336$2_0$327
-                                   2531 ;src/player.c:336: left_sell_area = FALSE;  // Player enters the sell station, set flag to false
+                           000929  2529 	C$player.c$338$2_0$327	= .
+                                   2530 	.globl	C$player.c$338$2_0$327
+                                   2531 ;src/player.c:338: left_sell_area = FALSE;  // Player enters the sell station, set flag to false
       000929 21r00r00         [12] 2532 	ld	hl, #_left_sell_area
       00092C 36 00            [12] 2533 	ld	(hl), #0x00
       00092E C9               [16] 2534 	ret
       00092F                       2535 00114$:
-                           00092F  2536 	C$player.c$337$1_0$324	= .
-                                   2537 	.globl	C$player.c$337$1_0$324
-                                   2538 ;src/player.c:337: } else if (depth != STATION_SELL_Y || width != STATION_SELL_X) {
+                           00092F  2536 	C$player.c$339$1_0$324	= .
+                                   2537 	.globl	C$player.c$339$1_0$324
+                                   2538 ;src/player.c:339: } else if (depth != STATION_SELL_Y || width != STATION_SELL_X) {
       00092F CB 41            [ 8] 2539 	bit	0, c
       000931 28 03            [12] 2540 	jr	Z, 00110$
       000933 CB 40            [ 8] 2541 	bit	0, b
       000935 C0               [20] 2542 	ret	NZ
       000936                       2543 00110$:
-                           000936  2544 	C$player.c$338$2_0$328	= .
-                                   2545 	.globl	C$player.c$338$2_0$328
-                                   2546 ;src/player.c:338: left_sell_area = TRUE;  // Player moves away from the sell station trigger location
+                           000936  2544 	C$player.c$340$2_0$328	= .
+                                   2545 	.globl	C$player.c$340$2_0$328
+                                   2546 ;src/player.c:340: left_sell_area = TRUE;  // Player moves away from the sell station trigger location
       000936 21r00r00         [12] 2547 	ld	hl, #_left_sell_area
       000939 36 01            [12] 2548 	ld	(hl), #0x01
-                           00093B  2549 	C$player.c$340$1_0$324	= .
-                                   2550 	.globl	C$player.c$340$1_0$324
-                                   2551 ;src/player.c:340: }
-                           00093B  2552 	C$player.c$340$1_0$324	= .
-                                   2553 	.globl	C$player.c$340$1_0$324
+                           00093B  2549 	C$player.c$342$1_0$324	= .
+                                   2550 	.globl	C$player.c$342$1_0$324
+                                   2551 ;src/player.c:342: }
+                           00093B  2552 	C$player.c$342$1_0$324	= .
+                                   2553 	.globl	C$player.c$342$1_0$324
                            00093B  2554 	XG$check_enter_buildings$0$0	= .
                                    2555 	.globl	XG$check_enter_buildings$0$0
       00093B C9               [16] 2556 	ret
                            00093C  2557 	G$check_game_over$0$0	= .
                                    2558 	.globl	G$check_game_over$0$0
-                           00093C  2559 	C$player.c$342$1_0$330	= .
-                                   2560 	.globl	C$player.c$342$1_0$330
-                                   2561 ;src/player.c:342: void check_game_over(void){
+                           00093C  2559 	C$player.c$344$1_0$330	= .
+                                   2560 	.globl	C$player.c$344$1_0$330
+                                   2561 ;src/player.c:344: void check_game_over(void){
                                    2562 ;	---------------------------------
                                    2563 ; Function check_game_over
                                    2564 ; ---------------------------------
       00093C                       2565 _check_game_over::
-                           00093C  2566 	C$player.c$343$1_0$330	= .
-                                   2567 	.globl	C$player.c$343$1_0$330
-                                   2568 ;src/player.c:343: if (player_alive == FALSE) {
+                           00093C  2566 	C$player.c$345$1_0$330	= .
+                                   2567 	.globl	C$player.c$345$1_0$330
+                                   2568 ;src/player.c:345: if (player_alive == FALSE) {
       00093C FAr00r00         [16] 2569 	ld	a, (#_player_alive)
       00093F B7               [ 4] 2570 	or	a, a
       000940 C0               [20] 2571 	ret	NZ
-                           000941  2572 	C$player.c$344$2_0$331	= .
-                                   2573 	.globl	C$player.c$344$2_0$331
-                                   2574 ;src/player.c:344: currentGameState = GAME_STATE_GAME_OVER;
+                           000941  2572 	C$player.c$346$2_0$331	= .
+                                   2573 	.globl	C$player.c$346$2_0$331
+                                   2574 ;src/player.c:346: currentGameState = GAME_STATE_GAME_OVER;
       000941 21r00r00         [12] 2575 	ld	hl, #_currentGameState
       000944 36 04            [12] 2576 	ld	(hl), #0x04
-                           000946  2577 	C$player.c$346$1_0$330	= .
-                                   2578 	.globl	C$player.c$346$1_0$330
-                                   2579 ;src/player.c:346: }
-                           000946  2580 	C$player.c$346$1_0$330	= .
-                                   2581 	.globl	C$player.c$346$1_0$330
+                           000946  2577 	C$player.c$348$1_0$330	= .
+                                   2578 	.globl	C$player.c$348$1_0$330
+                                   2579 ;src/player.c:348: }
+                           000946  2580 	C$player.c$348$1_0$330	= .
+                                   2581 	.globl	C$player.c$348$1_0$330
                            000946  2582 	XG$check_game_over$0$0	= .
                                    2583 	.globl	XG$check_game_over$0$0
       000946 C9               [16] 2584 	ret
                            000947  2585 	G$reset_player$0$0	= .
                                    2586 	.globl	G$reset_player$0$0
-                           000947  2587 	C$player.c$348$1_0$333	= .
-                                   2588 	.globl	C$player.c$348$1_0$333
-                                   2589 ;src/player.c:348: void reset_player(void){
+                           000947  2587 	C$player.c$350$1_0$333	= .
+                                   2588 	.globl	C$player.c$350$1_0$333
+                                   2589 ;src/player.c:350: void reset_player(void){
                                    2590 ;	---------------------------------
                                    2591 ; Function reset_player
                                    2592 ; ---------------------------------
       000947                       2593 _reset_player::
-                           000947  2594 	C$player.c$349$1_0$333	= .
-                                   2595 	.globl	C$player.c$349$1_0$333
-                                   2596 ;src/player.c:349: player_alive = TRUE; // Reset player alive status
+                           000947  2594 	C$player.c$351$1_0$333	= .
+                                   2595 	.globl	C$player.c$351$1_0$333
+                                   2596 ;src/player.c:351: player_alive = TRUE; // Reset player alive status
       000947 21r00r00         [12] 2597 	ld	hl, #_player_alive
       00094A 36 01            [12] 2598 	ld	(hl), #0x01
-                           00094C  2599 	C$player.c$350$1_0$333	= .
-                                   2600 	.globl	C$player.c$350$1_0$333
-                                   2601 ;src/player.c:350: player.hull.current_value = player.hull.max_value;
+                           00094C  2599 	C$player.c$352$1_0$333	= .
+                                   2600 	.globl	C$player.c$352$1_0$333
+                                   2601 ;src/player.c:352: player.hull.current_value = player.hull.max_value;
       00094C 21r4Br00         [12] 2602 	ld	hl, #_player + 75
       00094F 2A               [ 8] 2603 	ld	a, (hl+)
       000950 4F               [ 4] 2604 	ld	c, a
@@ -2607,9 +2607,9 @@
       000955 79               [ 4] 2607 	ld	a, c
       000956 22               [ 8] 2608 	ld	(hl+), a
       000957 70               [ 8] 2609 	ld	(hl), b
-                           000958  2610 	C$player.c$351$1_0$333	= .
-                                   2611 	.globl	C$player.c$351$1_0$333
-                                   2612 ;src/player.c:351: player.fuel.current_value = player.fuel.max_value;
+                           000958  2610 	C$player.c$353$1_0$333	= .
+                                   2611 	.globl	C$player.c$353$1_0$333
+                                   2612 ;src/player.c:353: player.fuel.current_value = player.fuel.max_value;
       000958 21r12r00         [12] 2613 	ld	hl, #_player + 18
       00095B 2A               [ 8] 2614 	ld	a, (hl+)
       00095C 4F               [ 4] 2615 	ld	c, a
@@ -2618,11 +2618,11 @@
       000961 79               [ 4] 2618 	ld	a, c
       000962 22               [ 8] 2619 	ld	(hl+), a
       000963 70               [ 8] 2620 	ld	(hl), b
-                           000964  2621 	C$player.c$352$1_0$333	= .
-                                   2622 	.globl	C$player.c$352$1_0$333
-                                   2623 ;src/player.c:352: }
-                           000964  2624 	C$player.c$352$1_0$333	= .
-                                   2625 	.globl	C$player.c$352$1_0$333
+                           000964  2621 	C$player.c$354$1_0$333	= .
+                                   2622 	.globl	C$player.c$354$1_0$333
+                                   2623 ;src/player.c:354: }
+                           000964  2624 	C$player.c$354$1_0$333	= .
+                                   2625 	.globl	C$player.c$354$1_0$333
                            000964  2626 	XG$reset_player$0$0	= .
                                    2627 	.globl	XG$reset_player$0$0
       000964 C9               [16] 2628 	ret

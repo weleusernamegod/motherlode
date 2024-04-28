@@ -5,6 +5,10 @@
         "globals.h": "c",
         "attributes.h": "c",
         "shop.h": "c",
-        "constants.h": "c"
+        "constants.h": "c",
+        "gb.h": "c",
+        "progressbar.h": "c",
+        "nav.h": "c"
     },
+    "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

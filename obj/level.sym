@@ -7,7 +7,7 @@ Symbol Table
     .__.ABS.                                                    =  000000 G
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000000 L
-  7 C$level.c$5$0_0$130                                         =  000000 GR
+  7 C$level.c$6$0_0$130                                         =  000000 GR
   8 Flevel$__xinit_level_array$0_0$0                            =  000000 GR
   7 G$__func_bank_level$0$0                                     =  000000 GR
   2 G$level_array$0_0$0                                         =  000000 GR

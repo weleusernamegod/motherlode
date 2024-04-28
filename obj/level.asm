@@ -47,9 +47,9 @@ _level_array::
 	.area _CODE_1
 	G$__func_bank_level$0$0	= .
 	.globl	G$__func_bank_level$0$0
-	C$level.c$5$0_0$130	= .
-	.globl	C$level.c$5$0_0$130
-;src/level.c:5: BANKREF(bank_level)
+	C$level.c$6$0_0$130	= .
+	.globl	C$level.c$6$0_0$130
+;src/level.c:6: BANKREF(bank_level)
 ;	---------------------------------
 ; Function __func_bank_level
 ; ---------------------------------

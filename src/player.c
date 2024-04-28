@@ -17,7 +17,9 @@
 #include "level.h"
 
 #pragma bank 1
+#ifndef __INTELLISENSE__
 BANKREF(bank_player)
+#endif
 
 const metasprite_t rover_metasprite[] = {
     {.dy=-8, .dx=-8, .dtile=1, .props=0},

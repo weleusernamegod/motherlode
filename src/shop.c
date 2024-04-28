@@ -24,7 +24,10 @@
 #include "shop.h"
 
 #pragma bank 2
+#ifndef __INTELLISENSE__
 BANKREF(bank_shop)
+#endif
+
 
 const metasprite_t metasprite_buttonframe[] = {
     {.dy=16, .dx=8, .dtile=1, .props=0},

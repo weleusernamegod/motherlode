@@ -106,9 +106,9 @@ _currentMenu::
 	.area _CODE_2
 	G$__func_bank_shop$0$0	= .
 	.globl	G$__func_bank_shop$0$0
-	C$shop.c$27$0_0$229	= .
-	.globl	C$shop.c$27$0_0$229
-;src/shop.c:27: BANKREF(bank_shop)
+	C$shop.c$28$0_0$229	= .
+	.globl	C$shop.c$28$0_0$229
+;src/shop.c:28: BANKREF(bank_shop)
 ;	---------------------------------
 ; Function __func_bank_shop
 ; ---------------------------------
@@ -119,16 +119,16 @@ ___func_bank_shop::
 	.globl ___bank_bank_shop 
 	G$init_shop$0$0	= .
 	.globl	G$init_shop$0$0
-	C$shop.c$66$1_0$231	= .
-	.globl	C$shop.c$66$1_0$231
-;src/shop.c:66: void init_shop(void) {
+	C$shop.c$69$1_0$231	= .
+	.globl	C$shop.c$69$1_0$231
+;src/shop.c:69: void init_shop(void) {
 ;	---------------------------------
 ; Function init_shop
 ; ---------------------------------
 _init_shop::
-	C$shop.c$67$1_0$231	= .
-	.globl	C$shop.c$67$1_0$231
-;src/shop.c:67: set_sprite_palette(0, 1, palette_default);
+	C$shop.c$70$1_0$231	= .
+	.globl	C$shop.c$70$1_0$231
+;src/shop.c:70: set_sprite_palette(0, 1, palette_default);
 	ld	de, #_palette_default
 	push	de
 	xor	a, a
@@ -136,27 +136,27 @@ _init_shop::
 	push	af
 	call	_set_sprite_palette
 	add	sp, #4
-	C$shop.c$68$1_0$231	= .
-	.globl	C$shop.c$68$1_0$231
-;src/shop.c:68: set_sprite_palette(1, 1, palette_grey);
+	C$shop.c$71$1_0$231	= .
+	.globl	C$shop.c$71$1_0$231
+;src/shop.c:71: set_sprite_palette(1, 1, palette_grey);
 	ld	de, #_palette_grey
 	push	de
 	ld	hl, #0x101
 	push	hl
 	call	_set_sprite_palette
 	add	sp, #4
-	C$shop.c$70$1_0$231	= .
-	.globl	C$shop.c$70$1_0$231
-;src/shop.c:70: set_win_data(SHOP_FRAME_START, shopframe_TILE_COUNT, shopframe_tiles);
+	C$shop.c$73$1_0$231	= .
+	.globl	C$shop.c$73$1_0$231
+;src/shop.c:73: set_win_data(SHOP_FRAME_START, shopframe_TILE_COUNT, shopframe_tiles);
 	ld	de, #_shopframe_tiles
 	push	de
 	ld	hl, #0x997
 	push	hl
 	call	_set_win_data
 	add	sp, #4
-	C$shop.c$71$1_0$231	= .
-	.globl	C$shop.c$71$1_0$231
-;src/shop.c:71: set_win_tiles(0, 0, 20, 18, shopframe_map);
+	C$shop.c$74$1_0$231	= .
+	.globl	C$shop.c$74$1_0$231
+;src/shop.c:74: set_win_tiles(0, 0, 20, 18, shopframe_map);
 	ld	de, #_shopframe_map
 	push	de
 	ld	hl, #0x1214
@@ -166,9 +166,9 @@ _init_shop::
 	push	af
 	call	_set_win_tiles
 	add	sp, #6
-	C$shop.c$73$1_0$231	= .
-	.globl	C$shop.c$73$1_0$231
-;src/shop.c:73: set_bkg_palette(0, 1, palette_default);
+	C$shop.c$76$1_0$231	= .
+	.globl	C$shop.c$76$1_0$231
+;src/shop.c:76: set_bkg_palette(0, 1, palette_default);
 	ld	de, #_palette_default
 	push	de
 	xor	a, a
@@ -176,72 +176,72 @@ _init_shop::
 	push	af
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$74$1_0$231	= .
-	.globl	C$shop.c$74$1_0$231
-;src/shop.c:74: set_bkg_palette(1, 1, palette_grey);
+	C$shop.c$77$1_0$231	= .
+	.globl	C$shop.c$77$1_0$231
+;src/shop.c:77: set_bkg_palette(1, 1, palette_grey);
 	ld	de, #_palette_grey
 	push	de
 	ld	hl, #0x101
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$75$1_0$231	= .
-	.globl	C$shop.c$75$1_0$231
-;src/shop.c:75: set_bkg_palette(2, 1, palette_blue);
+	C$shop.c$78$1_0$231	= .
+	.globl	C$shop.c$78$1_0$231
+;src/shop.c:78: set_bkg_palette(2, 1, palette_blue);
 	ld	de, #_palette_blue
 	push	de
 	ld	hl, #0x102
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$76$1_0$231	= .
-	.globl	C$shop.c$76$1_0$231
-;src/shop.c:76: set_bkg_palette(3, 1, palette_green);
+	C$shop.c$79$1_0$231	= .
+	.globl	C$shop.c$79$1_0$231
+;src/shop.c:79: set_bkg_palette(3, 1, palette_green);
 	ld	de, #_palette_green
 	push	de
 	ld	hl, #0x103
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$77$1_0$231	= .
-	.globl	C$shop.c$77$1_0$231
-;src/shop.c:77: set_bkg_palette(4, 1, palette_orange);
+	C$shop.c$80$1_0$231	= .
+	.globl	C$shop.c$80$1_0$231
+;src/shop.c:80: set_bkg_palette(4, 1, palette_orange);
 	ld	de, #_palette_orange
 	push	de
 	ld	hl, #0x104
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$78$1_0$231	= .
-	.globl	C$shop.c$78$1_0$231
-;src/shop.c:78: set_bkg_palette(5, 1, palette_purple);
+	C$shop.c$81$1_0$231	= .
+	.globl	C$shop.c$81$1_0$231
+;src/shop.c:81: set_bkg_palette(5, 1, palette_purple);
 	ld	de, #_palette_purple
 	push	de
 	ld	hl, #0x105
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$79$1_0$231	= .
-	.globl	C$shop.c$79$1_0$231
-;src/shop.c:79: set_bkg_palette(6, 1, palette_red);
+	C$shop.c$82$1_0$231	= .
+	.globl	C$shop.c$82$1_0$231
+;src/shop.c:82: set_bkg_palette(6, 1, palette_red);
 	ld	de, #_palette_red
 	push	de
 	ld	hl, #0x106
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$80$1_0$231	= .
-	.globl	C$shop.c$80$1_0$231
-;src/shop.c:80: set_bkg_palette(7, 1, palette_yellow);
+	C$shop.c$83$1_0$231	= .
+	.globl	C$shop.c$83$1_0$231
+;src/shop.c:83: set_bkg_palette(7, 1, palette_yellow);
 	ld	de, #_palette_yellow
 	push	de
 	ld	hl, #0x107
 	push	hl
 	call	_set_bkg_palette
 	add	sp, #4
-	C$shop.c$82$1_0$231	= .
-	.globl	C$shop.c$82$1_0$231
-;src/shop.c:82: set_sprite_data(1, buttonframe_TILE_COUNT, buttonframe_tiles); // blank tile in the end
+	C$shop.c$85$1_0$231	= .
+	.globl	C$shop.c$85$1_0$231
+;src/shop.c:85: set_sprite_data(1, buttonframe_TILE_COUNT, buttonframe_tiles); // blank tile in the end
 	ld	de, #_buttonframe_tiles
 	push	de
 	ld	a, #0x04
@@ -255,7 +255,7 @@ _init_shop::
 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 50)
 	ld	(hl), #0x04
-;src/shop.c:84: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, 24, 40);
+;src/shop.c:87: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, 24, 40);
 ;/usr/local/opt/gbdk/include/gb/metasprites.h:151: __current_metasprite = metasprite;
 	ld	hl, #___current_metasprite
 	ld	(hl), #<(_metasprite_buttonframe)
@@ -271,16 +271,16 @@ _init_shop::
 	ld	de, #0x2818
 	xor	a, a
 	call	___move_metasprite
-	C$shop.c$86$1_0$231	= .
-	.globl	C$shop.c$86$1_0$231
-;src/shop.c:86: update_menu = TRUE; // always update the menu the first time the player enters the shop
+	C$shop.c$89$1_0$231	= .
+	.globl	C$shop.c$89$1_0$231
+;src/shop.c:89: update_menu = TRUE; // always update the menu the first time the player enters the shop
 	ld	hl, #_update_menu
 	ld	(hl), #0x01
-	C$shop.c$87$1_0$231	= .
-	.globl	C$shop.c$87$1_0$231
-;src/shop.c:87: }
-	C$shop.c$87$1_0$231	= .
-	.globl	C$shop.c$87$1_0$231
+	C$shop.c$90$1_0$231	= .
+	.globl	C$shop.c$90$1_0$231
+;src/shop.c:90: }
+	C$shop.c$90$1_0$231	= .
+	.globl	C$shop.c$90$1_0$231
 	XG$init_shop$0$0	= .
 	.globl	XG$init_shop$0$0
 	ret
@@ -340,17 +340,17 @@ _metasprite_buttonframe:
 	.db #0x00	; 0
 	G$init_shop_tiles_palettes$0$0	= .
 	.globl	G$init_shop_tiles_palettes$0$0
-	C$shop.c$89$1_0$239	= .
-	.globl	C$shop.c$89$1_0$239
-;src/shop.c:89: void init_shop_tiles_palettes(void) {
+	C$shop.c$92$1_0$239	= .
+	.globl	C$shop.c$92$1_0$239
+;src/shop.c:92: void init_shop_tiles_palettes(void) {
 ;	---------------------------------
 ; Function init_shop_tiles_palettes
 ; ---------------------------------
 _init_shop_tiles_palettes::
 	add	sp, #-28
-	C$shop.c$91$2_0$239	= .
-	.globl	C$shop.c$91$2_0$239
-;src/shop.c:91: uint8_t x_coords[] = {3, 8, 13, 3, 8, 13};
+	C$shop.c$94$2_0$239	= .
+	.globl	C$shop.c$94$2_0$239
+;src/shop.c:94: uint8_t x_coords[] = {3, 8, 13, 3, 8, 13};
 	ldhl	sp,	#0
 	ld	(hl), #0x03
 	inc	hl
@@ -363,9 +363,9 @@ _init_shop_tiles_palettes::
 	ld	(hl), #0x08
 	inc	hl
 	ld	(hl), #0x0d
-	C$shop.c$92$2_0$239	= .
-	.globl	C$shop.c$92$2_0$239
-;src/shop.c:92: uint8_t y_coords[] = {5, 5, 5, 10, 10, 10};
+	C$shop.c$95$2_0$239	= .
+	.globl	C$shop.c$95$2_0$239
+;src/shop.c:95: uint8_t y_coords[] = {5, 5, 5, 10, 10, 10};
 	inc	hl
 	ld	(hl), #0x05
 	inc	hl
@@ -378,30 +378,30 @@ _init_shop_tiles_palettes::
 	ld	(hl), #0x0a
 	inc	hl
 	ld	(hl), #0x0a
-	C$shop.c$94$1_0$239	= .
-	.globl	C$shop.c$94$1_0$239
-;src/shop.c:94: VBK_REG = 1;
+	C$shop.c$97$1_0$239	= .
+	.globl	C$shop.c$97$1_0$239
+;src/shop.c:97: VBK_REG = 1;
 	ld	a, #0x01
 	ldh	(_VBK_REG + 0), a
-	C$shop.c$96$5_0$243	= .
-	.globl	C$shop.c$96$5_0$243
-;src/shop.c:96: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$99$5_0$243	= .
+	.globl	C$shop.c$99$5_0$243
+;src/shop.c:99: for (uint8_t i = 0; i < 6; i++) {
 	ld	c, #0x00
 00107$:
 	ld	a, c
 	sub	a, #0x06
 	jr	NC, 00102$
-	C$shop.c$98$1_0$239	= .
-	.globl	C$shop.c$98$1_0$239
-;src/shop.c:98: for (uint8_t j = 0; j < 16; j++) {
+	C$shop.c$101$1_0$239	= .
+	.globl	C$shop.c$101$1_0$239
+;src/shop.c:101: for (uint8_t j = 0; j < 16; j++) {
 	ld	b, #0x00
 00104$:
 	ld	a, b
 	sub	a, #0x10
 	jr	NC, 00101$
-	C$shop.c$99$5_0$243	= .
-	.globl	C$shop.c$99$5_0$243
-;src/shop.c:99: tileData[j]=i+2;    // first palette = 2, then inc up to 7
+	C$shop.c$102$5_0$243	= .
+	.globl	C$shop.c$102$5_0$243
+;src/shop.c:102: tileData[j]=i+2;    // first palette = 2, then inc up to 7
 	ld	e, b
 	ld	d, #0x00
 	ld	hl, #12
@@ -410,15 +410,15 @@ _init_shop_tiles_palettes::
 	ld	a, c
 	add	a, #0x02
 	ld	(hl), a
-	C$shop.c$98$4_0$242	= .
-	.globl	C$shop.c$98$4_0$242
-;src/shop.c:98: for (uint8_t j = 0; j < 16; j++) {
+	C$shop.c$101$4_0$242	= .
+	.globl	C$shop.c$101$4_0$242
+;src/shop.c:101: for (uint8_t j = 0; j < 16; j++) {
 	inc	b
 	jr	00104$
 00101$:
-	C$shop.c$101$3_0$241	= .
-	.globl	C$shop.c$101$3_0$241
-;src/shop.c:101: set_win_tiles(x_coords[i], y_coords[i], 4, 4, tileData);
+	C$shop.c$104$3_0$241	= .
+	.globl	C$shop.c$104$3_0$241
+;src/shop.c:104: set_win_tiles(x_coords[i], y_coords[i], 4, 4, tileData);
 	ld	e, c
 	ld	d, #0x00
 	ld	hl, #6
@@ -443,39 +443,39 @@ _init_shop_tiles_palettes::
 	inc	sp
 	call	_set_win_tiles
 	add	sp, #6
-	C$shop.c$96$2_0$240	= .
-	.globl	C$shop.c$96$2_0$240
-;src/shop.c:96: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$99$2_0$240	= .
+	.globl	C$shop.c$99$2_0$240
+;src/shop.c:99: for (uint8_t i = 0; i < 6; i++) {
 	inc	c
 	jr	00107$
 00102$:
-	C$shop.c$103$1_0$239	= .
-	.globl	C$shop.c$103$1_0$239
-;src/shop.c:103: VBK_REG = 0;
+	C$shop.c$106$1_0$239	= .
+	.globl	C$shop.c$106$1_0$239
+;src/shop.c:106: VBK_REG = 0;
 	xor	a, a
 	ldh	(_VBK_REG + 0), a
-	C$shop.c$104$1_0$239	= .
-	.globl	C$shop.c$104$1_0$239
-;src/shop.c:104: }
+	C$shop.c$107$1_0$239	= .
+	.globl	C$shop.c$107$1_0$239
+;src/shop.c:107: }
 	add	sp, #28
-	C$shop.c$104$1_0$239	= .
-	.globl	C$shop.c$104$1_0$239
+	C$shop.c$107$1_0$239	= .
+	.globl	C$shop.c$107$1_0$239
 	XG$init_shop_tiles_palettes$0$0	= .
 	.globl	XG$init_shop_tiles_palettes$0$0
 	ret
 	G$updateMetaSpritePosition$0$0	= .
 	.globl	G$updateMetaSpritePosition$0$0
-	C$shop.c$106$1_0$245	= .
-	.globl	C$shop.c$106$1_0$245
-;src/shop.c:106: void updateMetaSpritePosition(uint8_t currentSelection) {
+	C$shop.c$109$1_0$245	= .
+	.globl	C$shop.c$109$1_0$245
+;src/shop.c:109: void updateMetaSpritePosition(uint8_t currentSelection) {
 ;	---------------------------------
 ; Function updateMetaSpritePosition
 ; ---------------------------------
 _updateMetaSpritePosition::
 	add	sp, #-3
-	C$shop.c$108$1_0$245	= .
-	.globl	C$shop.c$108$1_0$245
-;src/shop.c:108: x = 24 + (40 * (currentSelection % 3));
+	C$shop.c$111$1_0$245	= .
+	.globl	C$shop.c$111$1_0$245
+;src/shop.c:111: x = 24 + (40 * (currentSelection % 3));
 	ldhl	sp,	#0
 	ld	(hl+), a
 	ld	bc, #0x0003
@@ -493,9 +493,9 @@ _updateMetaSpritePosition::
 	add	a, #0x18
 	ldhl	sp,	#2
 	ld	(hl), a
-	C$shop.c$109$3_0$245	= .
-	.globl	C$shop.c$109$3_0$245
-;src/shop.c:109: y = 40 + (40 * (currentSelection / 3));
+	C$shop.c$112$3_0$245	= .
+	.globl	C$shop.c$112$3_0$245
+;src/shop.c:112: y = 40 + (40 * (currentSelection / 3));
 	ld	bc, #0x0003
 	pop	de
 	push	de
@@ -509,7 +509,7 @@ _updateMetaSpritePosition::
 	add	a, a
 	add	a, #0x28
 	ld	d, a
-;src/shop.c:110: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
+;src/shop.c:113: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
 ;/usr/local/opt/gbdk/include/gb/metasprites.h:151: __current_metasprite = metasprite;
 	ld	hl, #___current_metasprite
 	ld	(hl), #<(_metasprite_buttonframe)
@@ -529,37 +529,37 @@ _updateMetaSpritePosition::
 	ld	e, a
 	xor	a, a
 	call	___move_metasprite
-	C$shop.c$110$3_0$245	= .
-	.globl	C$shop.c$110$3_0$245
-;src/shop.c:110: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
-	C$shop.c$111$3_0$245	= .
-	.globl	C$shop.c$111$3_0$245
-;src/shop.c:111: }
+	C$shop.c$113$3_0$245	= .
+	.globl	C$shop.c$113$3_0$245
+;src/shop.c:113: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
+	C$shop.c$114$3_0$245	= .
+	.globl	C$shop.c$114$3_0$245
+;src/shop.c:114: }
 	add	sp, #3
-	C$shop.c$111$3_0$245	= .
-	.globl	C$shop.c$111$3_0$245
+	C$shop.c$114$3_0$245	= .
+	.globl	C$shop.c$114$3_0$245
 	XG$updateMetaSpritePosition$0$0	= .
 	.globl	XG$updateMetaSpritePosition$0$0
 	ret
 	G$update_upgrade_tick$0$0	= .
 	.globl	G$update_upgrade_tick$0$0
-	C$shop.c$113$3_0$250	= .
-	.globl	C$shop.c$113$3_0$250
-;src/shop.c:113: void update_upgrade_tick(MenuState state) {
+	C$shop.c$116$3_0$250	= .
+	.globl	C$shop.c$116$3_0$250
+;src/shop.c:116: void update_upgrade_tick(MenuState state) {
 ;	---------------------------------
 ; Function update_upgrade_tick
 ; ---------------------------------
 _update_upgrade_tick::
 	add	sp, #-3
-	C$shop.c$116$1_0$250	= .
-	.globl	C$shop.c$116$1_0$250
-;src/shop.c:116: if (state != MAIN_MENU) {
+	C$shop.c$119$1_0$250	= .
+	.globl	C$shop.c$119$1_0$250
+;src/shop.c:119: if (state != MAIN_MENU) {
 	ld	c, a
 	sub	a, #0x06
 	jr	Z, 00102$
-	C$shop.c$117$2_0$251	= .
-	.globl	C$shop.c$117$2_0$251
-;src/shop.c:117: player_attributes *currentAttributes = attributes_numbers[state];
+	C$shop.c$120$2_0$251	= .
+	.globl	C$shop.c$120$2_0$251
+;src/shop.c:120: player_attributes *currentAttributes = attributes_numbers[state];
 	ld	de, #_attributes_numbers+0
 	ld	l, c
 ;	spillPairReg hl
@@ -572,9 +572,9 @@ _update_upgrade_tick::
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	C$shop.c$118$2_0$251	= .
-	.globl	C$shop.c$118$2_0$251
-;src/shop.c:118: uint8_t x = 8 + 24 + 24 - 2 + (40 * (currentAttributes->upgrade_level % 3));
+	C$shop.c$121$2_0$251	= .
+	.globl	C$shop.c$121$2_0$251
+;src/shop.c:121: uint8_t x = 8 + 24 + 24 - 2 + (40 * (currentAttributes->upgrade_level % 3));
 	ld	hl, #0x0014
 	add	hl, bc
 	ld	a, (hl)
@@ -595,9 +595,9 @@ _update_upgrade_tick::
 	add	a, #0x36
 	ldhl	sp,	#2
 	ld	(hl), a
-	C$shop.c$119$1_0$250	= .
-	.globl	C$shop.c$119$1_0$250
-;src/shop.c:119: uint8_t y = 16 + 24 + 40 - 2 + (40 * (currentAttributes->upgrade_level / 3));
+	C$shop.c$122$1_0$250	= .
+	.globl	C$shop.c$122$1_0$250
+;src/shop.c:122: uint8_t y = 16 + 24 + 40 - 2 + (40 * (currentAttributes->upgrade_level / 3));
 	ld	bc, #0x0003
 	pop	de
 	push	de
@@ -619,54 +619,54 @@ _update_upgrade_tick::
 	ldhl	sp,	#2
 	ld	a, (hl)
 	ld	(bc), a
-	C$shop.c$120$1_0$250	= .
-	.globl	C$shop.c$120$1_0$250
-;src/shop.c:120: move_sprite(UPGRADE_TICK_TILE, x, y);
+	C$shop.c$123$1_0$250	= .
+	.globl	C$shop.c$123$1_0$250
+;src/shop.c:123: move_sprite(UPGRADE_TICK_TILE, x, y);
 	jr	00106$
 00102$:
 ;/usr/local/opt/gbdk/include/gb/gb.h:1905: shadow_OAM[nb].y = 0;
 	ld	hl, #(_shadow_OAM + 48)
 	ld	(hl), #0x00
-	C$shop.c$122$1_0$250	= .
-	.globl	C$shop.c$122$1_0$250
-;src/shop.c:122: hide_sprite(UPGRADE_TICK_TILE);  // Hide the sprite if not in a specific upgrade menu
+	C$shop.c$125$1_0$250	= .
+	.globl	C$shop.c$125$1_0$250
+;src/shop.c:125: hide_sprite(UPGRADE_TICK_TILE);  // Hide the sprite if not in a specific upgrade menu
 00106$:
-	C$shop.c$124$1_0$250	= .
-	.globl	C$shop.c$124$1_0$250
-;src/shop.c:124: }
+	C$shop.c$127$1_0$250	= .
+	.globl	C$shop.c$127$1_0$250
+;src/shop.c:127: }
 	add	sp, #3
-	C$shop.c$124$1_0$250	= .
-	.globl	C$shop.c$124$1_0$250
+	C$shop.c$127$1_0$250	= .
+	.globl	C$shop.c$127$1_0$250
 	XG$update_upgrade_tick$0$0	= .
 	.globl	XG$update_upgrade_tick$0$0
 	ret
 	G$displayMenu$0$0	= .
 	.globl	G$displayMenu$0$0
-	C$shop.c$127$1_0$260	= .
-	.globl	C$shop.c$127$1_0$260
-;src/shop.c:127: void displayMenu(Menu *menu) {
+	C$shop.c$130$1_0$260	= .
+	.globl	C$shop.c$130$1_0$260
+;src/shop.c:130: void displayMenu(Menu *menu) {
 ;	---------------------------------
 ; Function displayMenu
 ; ---------------------------------
 _displayMenu::
-	C$shop.c$128$1_0$260	= .
-	.globl	C$shop.c$128$1_0$260
-;src/shop.c:128: updateMetaSpritePosition(menu->currentSelection);
+	C$shop.c$131$1_0$260	= .
+	.globl	C$shop.c$131$1_0$260
+;src/shop.c:131: updateMetaSpritePosition(menu->currentSelection);
 	ld	a, (de)
 	ld	c, a
-	C$shop.c$129$1_0$260	= .
-	.globl	C$shop.c$129$1_0$260
-;src/shop.c:129: }
-	C$shop.c$129$1_0$260	= .
-	.globl	C$shop.c$129$1_0$260
+	C$shop.c$132$1_0$260	= .
+	.globl	C$shop.c$132$1_0$260
+;src/shop.c:132: }
+	C$shop.c$132$1_0$260	= .
+	.globl	C$shop.c$132$1_0$260
 	XG$displayMenu$0$0	= .
 	.globl	XG$displayMenu$0$0
 	jp	_updateMetaSpritePosition
 	G$load_shop_single_tile$0$0	= .
 	.globl	G$load_shop_single_tile$0$0
-	C$shop.c$131$1_0$262	= .
-	.globl	C$shop.c$131$1_0$262
-;src/shop.c:131: void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
+	C$shop.c$134$1_0$262	= .
+	.globl	C$shop.c$134$1_0$262
+;src/shop.c:134: void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
 ;	---------------------------------
 ; Function load_shop_single_tile
 ; ---------------------------------
@@ -679,32 +679,32 @@ _load_shop_single_tile::
 	dec	hl
 	dec	hl
 	ld	(hl), a
-	C$shop.c$133$3_0$264	= .
-	.globl	C$shop.c$133$3_0$264
-;src/shop.c:133: for (uint8_t i = 0; i < 16; i++){
+	C$shop.c$136$3_0$264	= .
+	.globl	C$shop.c$136$3_0$264
+;src/shop.c:136: for (uint8_t i = 0; i < 16; i++){
 	ldhl	sp,	#0
 	ld	c, l
 	ld	b, h
 	ldhl	sp,	#20
 	ld	(hl), #0x00
 00120$:
-	C$shop.c$134$1_0$262	= .
-	.globl	C$shop.c$134$1_0$262
-;src/shop.c:134: array[i] = tilestart+i;
+	C$shop.c$137$1_0$262	= .
+	.globl	C$shop.c$137$1_0$262
+;src/shop.c:137: array[i] = tilestart+i;
 	ldhl	sp,	#22
 	ld	a, (hl)
 	ldhl	sp,	#16
 	ld	(hl), a
-	C$shop.c$133$2_0$263	= .
-	.globl	C$shop.c$133$2_0$263
-;src/shop.c:133: for (uint8_t i = 0; i < 16; i++){
+	C$shop.c$136$2_0$263	= .
+	.globl	C$shop.c$136$2_0$263
+;src/shop.c:136: for (uint8_t i = 0; i < 16; i++){
 	ldhl	sp,	#20
 	ld	a, (hl)
 	sub	a, #0x10
 	jr	NC, 00101$
-	C$shop.c$134$3_0$264	= .
-	.globl	C$shop.c$134$3_0$264
-;src/shop.c:134: array[i] = tilestart+i;
+	C$shop.c$137$3_0$264	= .
+	.globl	C$shop.c$137$3_0$264
+;src/shop.c:137: array[i] = tilestart+i;
 	ld	l, (hl)
 	ld	h, #0x00
 	add	hl, bc
@@ -715,15 +715,15 @@ _load_shop_single_tile::
 	ldhl	sp,	#20
 	add	a, (hl)
 	ld	(de), a
-	C$shop.c$133$2_0$263	= .
-	.globl	C$shop.c$133$2_0$263
-;src/shop.c:133: for (uint8_t i = 0; i < 16; i++){
+	C$shop.c$136$2_0$263	= .
+	.globl	C$shop.c$136$2_0$263
+;src/shop.c:136: for (uint8_t i = 0; i < 16; i++){
 	inc	(hl)
 	jr	00120$
 00101$:
-	C$shop.c$136$1_0$262	= .
-	.globl	C$shop.c$136$1_0$262
-;src/shop.c:136: set_win_data(tilestart, 16, &shoptiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
+	C$shop.c$139$1_0$262	= .
+	.globl	C$shop.c$139$1_0$262
+;src/shop.c:139: set_win_data(tilestart, 16, &shoptiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
 	ldhl	sp,	#21
 	ld	a, (hl)
 	ldhl	sp,	#18
@@ -781,9 +781,9 @@ _load_shop_single_tile::
 	inc	sp
 	call	_set_win_data
 	add	sp, #4
-	C$shop.c$137$1_0$262	= .
-	.globl	C$shop.c$137$1_0$262
-;src/shop.c:137: if (position == 0) set_win_tiles(3, 5, 4, 4, array);
+	C$shop.c$140$1_0$262	= .
+	.globl	C$shop.c$140$1_0$262
+;src/shop.c:140: if (position == 0) set_win_tiles(3, 5, 4, 4, array);
 	ldhl	sp,	#26
 	ld	a, (hl)
 	or	a, a
@@ -797,9 +797,9 @@ _load_shop_single_tile::
 	add	sp, #6
 	jr	00122$
 00117$:
-	C$shop.c$138$1_0$262	= .
-	.globl	C$shop.c$138$1_0$262
-;src/shop.c:138: else if (position == 1) set_win_tiles(8, 5, 4, 4, array);
+	C$shop.c$141$1_0$262	= .
+	.globl	C$shop.c$141$1_0$262
+;src/shop.c:141: else if (position == 1) set_win_tiles(8, 5, 4, 4, array);
 	ldhl	sp,	#26
 	ld	a, (hl)
 	dec	a
@@ -813,9 +813,9 @@ _load_shop_single_tile::
 	add	sp, #6
 	jr	00122$
 00114$:
-	C$shop.c$139$1_0$262	= .
-	.globl	C$shop.c$139$1_0$262
-;src/shop.c:139: else if (position == 2) set_win_tiles(13, 5, 4, 4, array);
+	C$shop.c$142$1_0$262	= .
+	.globl	C$shop.c$142$1_0$262
+;src/shop.c:142: else if (position == 2) set_win_tiles(13, 5, 4, 4, array);
 	ldhl	sp,	#26
 	ld	a, (hl)
 	sub	a, #0x02
@@ -829,9 +829,9 @@ _load_shop_single_tile::
 	add	sp, #6
 	jr	00122$
 00111$:
-	C$shop.c$140$1_0$262	= .
-	.globl	C$shop.c$140$1_0$262
-;src/shop.c:140: else if (position == 3) set_win_tiles(3, 10, 4, 4, array);
+	C$shop.c$143$1_0$262	= .
+	.globl	C$shop.c$143$1_0$262
+;src/shop.c:143: else if (position == 3) set_win_tiles(3, 10, 4, 4, array);
 	ldhl	sp,	#26
 	ld	a, (hl)
 	sub	a, #0x03
@@ -845,9 +845,9 @@ _load_shop_single_tile::
 	add	sp, #6
 	jr	00122$
 00108$:
-	C$shop.c$141$1_0$262	= .
-	.globl	C$shop.c$141$1_0$262
-;src/shop.c:141: else if (position == 4) set_win_tiles(8, 10, 4, 4, array);
+	C$shop.c$144$1_0$262	= .
+	.globl	C$shop.c$144$1_0$262
+;src/shop.c:144: else if (position == 4) set_win_tiles(8, 10, 4, 4, array);
 	ldhl	sp,	#26
 	ld	a, (hl)
 	sub	a, #0x04
@@ -861,9 +861,9 @@ _load_shop_single_tile::
 	add	sp, #6
 	jr	00122$
 00105$:
-	C$shop.c$142$1_0$262	= .
-	.globl	C$shop.c$142$1_0$262
-;src/shop.c:142: else if (position == 5) set_win_tiles(13, 10, 4, 4, array);
+	C$shop.c$145$1_0$262	= .
+	.globl	C$shop.c$145$1_0$262
+;src/shop.c:145: else if (position == 5) set_win_tiles(13, 10, 4, 4, array);
 	ldhl	sp,	#26
 	ld	a, (hl)
 	sub	a, #0x05
@@ -876,33 +876,33 @@ _load_shop_single_tile::
 	call	_set_win_tiles
 	add	sp, #6
 00122$:
-	C$shop.c$143$1_0$262	= .
-	.globl	C$shop.c$143$1_0$262
-;src/shop.c:143: }
+	C$shop.c$146$1_0$262	= .
+	.globl	C$shop.c$146$1_0$262
+;src/shop.c:146: }
 	add	sp, #24
 	pop	hl
 	pop	af
 	jp	(hl)
 	G$load_sub_shop_tiles$0$0	= .
 	.globl	G$load_sub_shop_tiles$0$0
-	C$shop.c$145$1_0$267	= .
-	.globl	C$shop.c$145$1_0$267
-;src/shop.c:145: void load_sub_shop_tiles(void) {
+	C$shop.c$148$1_0$267	= .
+	.globl	C$shop.c$148$1_0$267
+;src/shop.c:148: void load_sub_shop_tiles(void) {
 ;	---------------------------------
 ; Function load_sub_shop_tiles
 ; ---------------------------------
 _load_sub_shop_tiles::
-	C$shop.c$146$2_0$267	= .
-	.globl	C$shop.c$146$2_0$267
-;src/shop.c:146: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$149$2_0$267	= .
+	.globl	C$shop.c$149$2_0$267
+;src/shop.c:149: for (uint8_t i = 0; i < 6; i++) {
 	ld	b, #0x00
 00103$:
 	ld	a, b
 	sub	a, #0x06
 	ret	NC
-	C$shop.c$147$3_0$268	= .
-	.globl	C$shop.c$147$3_0$268
-;src/shop.c:147: load_shop_single_tile(SHOP_TILES_START + 16 * i, i, i, currentState);
+	C$shop.c$150$3_0$268	= .
+	.globl	C$shop.c$150$3_0$268
+;src/shop.c:150: load_shop_single_tile(SHOP_TILES_START + 16 * i, i, i, currentState);
 	ld	l, b
 ;	spillPairReg hl
 ;	spillPairReg hl
@@ -926,31 +926,31 @@ _load_sub_shop_tiles::
 	ld	a, b
 	call	_load_shop_single_tile
 	pop	bc
-	C$shop.c$146$2_0$267	= .
-	.globl	C$shop.c$146$2_0$267
-;src/shop.c:146: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$149$2_0$267	= .
+	.globl	C$shop.c$149$2_0$267
+;src/shop.c:149: for (uint8_t i = 0; i < 6; i++) {
 	inc	b
-	C$shop.c$149$2_0$267	= .
-	.globl	C$shop.c$149$2_0$267
-;src/shop.c:149: }
-	C$shop.c$149$2_0$267	= .
-	.globl	C$shop.c$149$2_0$267
+	C$shop.c$152$2_0$267	= .
+	.globl	C$shop.c$152$2_0$267
+;src/shop.c:152: }
+	C$shop.c$152$2_0$267	= .
+	.globl	C$shop.c$152$2_0$267
 	XG$load_sub_shop_tiles$0$0	= .
 	.globl	XG$load_sub_shop_tiles$0$0
 	jr	00103$
 	G$load_main_shop_tiles$0$0	= .
 	.globl	G$load_main_shop_tiles$0$0
-	C$shop.c$150$2_0$271	= .
-	.globl	C$shop.c$150$2_0$271
-;src/shop.c:150: void load_main_shop_tiles(void) {
+	C$shop.c$153$2_0$271	= .
+	.globl	C$shop.c$153$2_0$271
+;src/shop.c:153: void load_main_shop_tiles(void) {
 ;	---------------------------------
 ; Function load_main_shop_tiles
 ; ---------------------------------
 _load_main_shop_tiles::
 	dec	sp
-	C$shop.c$151$3_0$272	= .
-	.globl	C$shop.c$151$3_0$272
-;src/shop.c:151: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$154$3_0$272	= .
+	.globl	C$shop.c$154$3_0$272
+;src/shop.c:154: for (uint8_t i = 0; i < 6; i++) {
 	ldhl	sp,	#0
 	ld	(hl), #0x00
 00103$:
@@ -958,9 +958,9 @@ _load_main_shop_tiles::
 	ld	a, (hl)
 	sub	a, #0x06
 	jr	NC, 00105$
-	C$shop.c$152$3_0$272	= .
-	.globl	C$shop.c$152$3_0$272
-;src/shop.c:152: load_shop_single_tile(SHOP_TILES_START + i * 16, attributes_numbers[i]->upgrade_level, i, i);
+	C$shop.c$155$3_0$272	= .
+	.globl	C$shop.c$155$3_0$272
+;src/shop.c:155: load_shop_single_tile(SHOP_TILES_START + i * 16, attributes_numbers[i]->upgrade_level, i, i);
 	ld	c, (hl)
 	ld	b, #0x00
 	ld	l, c
@@ -998,35 +998,35 @@ _load_main_shop_tiles::
 	ld	e, c
 	ld	d, b
 	call	_load_shop_single_tile
-	C$shop.c$151$2_0$271	= .
-	.globl	C$shop.c$151$2_0$271
-;src/shop.c:151: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$154$2_0$271	= .
+	.globl	C$shop.c$154$2_0$271
+;src/shop.c:154: for (uint8_t i = 0; i < 6; i++) {
 	ldhl	sp,	#0
 	inc	(hl)
 	jr	00103$
 00105$:
-	C$shop.c$154$2_0$271	= .
-	.globl	C$shop.c$154$2_0$271
-;src/shop.c:154: }
+	C$shop.c$157$2_0$271	= .
+	.globl	C$shop.c$157$2_0$271
+;src/shop.c:157: }
 	inc	sp
-	C$shop.c$154$2_0$271	= .
-	.globl	C$shop.c$154$2_0$271
+	C$shop.c$157$2_0$271	= .
+	.globl	C$shop.c$157$2_0$271
 	XG$load_main_shop_tiles$0$0	= .
 	.globl	XG$load_main_shop_tiles$0$0
 	ret
 	G$write_main_shop_text$0$0	= .
 	.globl	G$write_main_shop_text$0$0
-	C$shop.c$156$2_0$274	= .
-	.globl	C$shop.c$156$2_0$274
-;src/shop.c:156: void write_main_shop_text(void) {
+	C$shop.c$159$2_0$274	= .
+	.globl	C$shop.c$159$2_0$274
+;src/shop.c:159: void write_main_shop_text(void) {
 ;	---------------------------------
 ; Function write_main_shop_text
 ; ---------------------------------
 _write_main_shop_text::
 	add	sp, #-10
-	C$shop.c$159$1_0$274	= .
-	.globl	C$shop.c$159$1_0$274
-;src/shop.c:159: itoa(player.money, money_string, 10);
+	C$shop.c$162$1_0$274	= .
+	.globl	C$shop.c$162$1_0$274
+;src/shop.c:162: itoa(player.money, money_string, 10);
 	ld	hl, #(_player + 342)
 	ld	a, (hl+)
 	ld	c, a
@@ -1040,9 +1040,9 @@ _write_main_shop_text::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$shop.c$161$1_0$274	= .
-	.globl	C$shop.c$161$1_0$274
-;src/shop.c:161: draw_text(3, 2, "Upgrade Store", 14, TRUE, 0);
+	C$shop.c$164$1_0$274	= .
+	.globl	C$shop.c$164$1_0$274
+;src/shop.c:164: draw_text(3, 2, "Upgrade Store", 14, TRUE, 0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1055,9 +1055,9 @@ _write_main_shop_text::
 	ld	e, #0x02
 	ld	a, #0x03
 	call	_draw_text
-	C$shop.c$163$1_0$274	= .
-	.globl	C$shop.c$163$1_0$274
-;src/shop.c:163: draw_text(3, 3, attributes_numbers[currentMenu->currentSelection]->attribute_name, 14, TRUE, 0);
+	C$shop.c$166$1_0$274	= .
+	.globl	C$shop.c$166$1_0$274
+;src/shop.c:166: draw_text(3, 3, attributes_numbers[currentMenu->currentSelection]->attribute_name, 14, TRUE, 0);
 	ld	bc, #_attributes_numbers+0
 	ld	hl, #_currentMenu
 	ld	l, (hl)
@@ -1093,9 +1093,9 @@ _write_main_shop_text::
 	ld	a,#0x03
 	ld	e,a
 	call	_draw_text
-	C$shop.c$166$1_0$274	= .
-	.globl	C$shop.c$166$1_0$274
-;src/shop.c:166: draw_text(3, 15, "Money", 5, TRUE, 0);
+	C$shop.c$169$1_0$274	= .
+	.globl	C$shop.c$169$1_0$274
+;src/shop.c:169: draw_text(3, 15, "Money", 5, TRUE, 0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1108,9 +1108,9 @@ _write_main_shop_text::
 	ld	e, #0x0f
 	ld	a, #0x03
 	call	_draw_text
-	C$shop.c$167$1_0$274	= .
-	.globl	C$shop.c$167$1_0$274
-;src/shop.c:167: draw_text(11, 15, money_string, 5, FALSE, 0);
+	C$shop.c$170$1_0$274	= .
+	.globl	C$shop.c$170$1_0$274
+;src/shop.c:170: draw_text(11, 15, money_string, 5, FALSE, 0);
 	ld	hl, #0
 	add	hl, sp
 	xor	a, a
@@ -1124,9 +1124,9 @@ _write_main_shop_text::
 	ld	e, #0x0f
 	ld	a, #0x0b
 	call	_draw_text
-	C$shop.c$168$1_0$274	= .
-	.globl	C$shop.c$168$1_0$274
-;src/shop.c:168: draw_text(16, 15, "$", 1, TRUE, 0);
+	C$shop.c$171$1_0$274	= .
+	.globl	C$shop.c$171$1_0$274
+;src/shop.c:171: draw_text(16, 15, "$", 1, TRUE, 0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1139,12 +1139,12 @@ _write_main_shop_text::
 	ld	e, #0x0f
 	ld	a, #0x10
 	call	_draw_text
-	C$shop.c$169$1_0$274	= .
-	.globl	C$shop.c$169$1_0$274
-;src/shop.c:169: }
+	C$shop.c$172$1_0$274	= .
+	.globl	C$shop.c$172$1_0$274
+;src/shop.c:172: }
 	add	sp, #10
-	C$shop.c$169$1_0$274	= .
-	.globl	C$shop.c$169$1_0$274
+	C$shop.c$172$1_0$274	= .
+	.globl	C$shop.c$172$1_0$274
 	XG$write_main_shop_text$0$0	= .
 	.globl	XG$write_main_shop_text$0$0
 	ret
@@ -1162,17 +1162,17 @@ ___str_2:
 	.db 0x00
 	G$write_sub_shop_text$0$0	= .
 	.globl	G$write_sub_shop_text$0$0
-	C$shop.c$171$1_0$276	= .
-	.globl	C$shop.c$171$1_0$276
-;src/shop.c:171: void write_sub_shop_text(void) {
+	C$shop.c$174$1_0$276	= .
+	.globl	C$shop.c$174$1_0$276
+;src/shop.c:174: void write_sub_shop_text(void) {
 ;	---------------------------------
 ; Function write_sub_shop_text
 ; ---------------------------------
 _write_sub_shop_text::
 	add	sp, #-28
-	C$shop.c$176$1_0$276	= .
-	.globl	C$shop.c$176$1_0$276
-;src/shop.c:176: itoa(attributes_numbers[currentState]->upgrade_value[currentMenu->currentSelection], upgrade_string, 10);
+	C$shop.c$179$1_0$276	= .
+	.globl	C$shop.c$179$1_0$276
+;src/shop.c:179: itoa(attributes_numbers[currentState]->upgrade_value[currentMenu->currentSelection], upgrade_string, 10);
 	ld	hl, #_currentState
 	ld	l, (hl)
 ;	spillPairReg hl
@@ -1211,9 +1211,9 @@ _write_sub_shop_text::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$shop.c$177$1_0$276	= .
-	.globl	C$shop.c$177$1_0$276
-;src/shop.c:177: itoa(attributes_numbers[currentState]->upgrade_cost[currentMenu->currentSelection], cost_string, 10);
+	C$shop.c$180$1_0$276	= .
+	.globl	C$shop.c$180$1_0$276
+;src/shop.c:180: itoa(attributes_numbers[currentState]->upgrade_cost[currentMenu->currentSelection], cost_string, 10);
 	ld	hl, #_currentState
 	ld	l, (hl)
 ;	spillPairReg hl
@@ -1252,9 +1252,9 @@ _write_sub_shop_text::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$shop.c$178$1_0$276	= .
-	.globl	C$shop.c$178$1_0$276
-;src/shop.c:178: itoa(player.money, money_string, 10);
+	C$shop.c$181$1_0$276	= .
+	.globl	C$shop.c$181$1_0$276
+;src/shop.c:181: itoa(player.money, money_string, 10);
 	ld	hl, #(_player + 342)
 	ld	a, (hl+)
 	ld	c, a
@@ -1268,9 +1268,9 @@ _write_sub_shop_text::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$shop.c$179$1_0$276	= .
-	.globl	C$shop.c$179$1_0$276
-;src/shop.c:179: strcat(upgrade_string, attributes_numbers[currentState]->attribute_unit);
+	C$shop.c$182$1_0$276	= .
+	.globl	C$shop.c$182$1_0$276
+;src/shop.c:182: strcat(upgrade_string, attributes_numbers[currentState]->attribute_unit);
 	ld	hl, #_currentState
 	ld	l, (hl)
 ;	spillPairReg hl
@@ -1294,9 +1294,9 @@ _write_sub_shop_text::
 	ld	e, l
 	ld	d, h
 	call	_strcat
-	C$shop.c$182$1_0$276	= .
-	.globl	C$shop.c$182$1_0$276
-;src/shop.c:182: draw_text(3, 2, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
+	C$shop.c$185$1_0$276	= .
+	.globl	C$shop.c$185$1_0$276
+;src/shop.c:185: draw_text(3, 2, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
 	ld	hl, #_currentState
 	ld	l, (hl)
 ;	spillPairReg hl
@@ -1333,9 +1333,9 @@ _write_sub_shop_text::
 	ld	e, #0x02
 	ld	a, #0x03
 	call	_draw_text
-	C$shop.c$184$1_0$276	= .
-	.globl	C$shop.c$184$1_0$276
-;src/shop.c:184: draw_text(3, 3, upgrade_string, 8, TRUE, 0);
+	C$shop.c$187$1_0$276	= .
+	.globl	C$shop.c$187$1_0$276
+;src/shop.c:187: draw_text(3, 3, upgrade_string, 8, TRUE, 0);
 	ld	hl, #0
 	add	hl, sp
 	xor	a, a
@@ -1349,9 +1349,9 @@ _write_sub_shop_text::
 	ld	a,#0x03
 	ld	e,a
 	call	_draw_text
-	C$shop.c$185$1_0$276	= .
-	.globl	C$shop.c$185$1_0$276
-;src/shop.c:185: draw_text(11, 3, cost_string, 5, FALSE, 0);
+	C$shop.c$188$1_0$276	= .
+	.globl	C$shop.c$188$1_0$276
+;src/shop.c:188: draw_text(11, 3, cost_string, 5, FALSE, 0);
 	ld	hl, #8
 	add	hl, sp
 	xor	a, a
@@ -1365,9 +1365,9 @@ _write_sub_shop_text::
 	ld	e, #0x03
 	ld	a, #0x0b
 	call	_draw_text
-	C$shop.c$186$1_0$276	= .
-	.globl	C$shop.c$186$1_0$276
-;src/shop.c:186: draw_text(16, 3, "$", 1, TRUE, 0);
+	C$shop.c$189$1_0$276	= .
+	.globl	C$shop.c$189$1_0$276
+;src/shop.c:189: draw_text(16, 3, "$", 1, TRUE, 0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1380,9 +1380,9 @@ _write_sub_shop_text::
 	ld	e, #0x03
 	ld	a, #0x10
 	call	_draw_text
-	C$shop.c$188$1_0$276	= .
-	.globl	C$shop.c$188$1_0$276
-;src/shop.c:188: draw_text(3, 15, "Money", 5, TRUE, 0);
+	C$shop.c$191$1_0$276	= .
+	.globl	C$shop.c$191$1_0$276
+;src/shop.c:191: draw_text(3, 15, "Money", 5, TRUE, 0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1395,9 +1395,9 @@ _write_sub_shop_text::
 	ld	e, #0x0f
 	ld	a, #0x03
 	call	_draw_text
-	C$shop.c$189$1_0$276	= .
-	.globl	C$shop.c$189$1_0$276
-;src/shop.c:189: draw_text(11, 15, money_string, 5, FALSE, 0);
+	C$shop.c$192$1_0$276	= .
+	.globl	C$shop.c$192$1_0$276
+;src/shop.c:192: draw_text(11, 15, money_string, 5, FALSE, 0);
 	ld	hl, #18
 	add	hl, sp
 	xor	a, a
@@ -1411,9 +1411,9 @@ _write_sub_shop_text::
 	ld	e, #0x0f
 	ld	a, #0x0b
 	call	_draw_text
-	C$shop.c$190$1_0$276	= .
-	.globl	C$shop.c$190$1_0$276
-;src/shop.c:190: draw_text(16, 15, "$", 1, TRUE, 0);
+	C$shop.c$193$1_0$276	= .
+	.globl	C$shop.c$193$1_0$276
+;src/shop.c:193: draw_text(16, 15, "$", 1, TRUE, 0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1426,12 +1426,12 @@ _write_sub_shop_text::
 	ld	e, #0x0f
 	ld	a, #0x10
 	call	_draw_text
-	C$shop.c$191$1_0$276	= .
-	.globl	C$shop.c$191$1_0$276
-;src/shop.c:191: }
+	C$shop.c$194$1_0$276	= .
+	.globl	C$shop.c$194$1_0$276
+;src/shop.c:194: }
 	add	sp, #28
-	C$shop.c$191$1_0$276	= .
-	.globl	C$shop.c$191$1_0$276
+	C$shop.c$194$1_0$276	= .
+	.globl	C$shop.c$194$1_0$276
 	XG$write_sub_shop_text$0$0	= .
 	.globl	XG$write_sub_shop_text$0$0
 	ret
@@ -1445,25 +1445,25 @@ ___str_4:
 	.db 0x00
 	G$change_sub_shop_tile_palettes$0$0	= .
 	.globl	G$change_sub_shop_tile_palettes$0$0
-	C$shop.c$194$1_0$279	= .
-	.globl	C$shop.c$194$1_0$279
-;src/shop.c:194: void change_sub_shop_tile_palettes (void) {
+	C$shop.c$197$1_0$279	= .
+	.globl	C$shop.c$197$1_0$279
+;src/shop.c:197: void change_sub_shop_tile_palettes (void) {
 ;	---------------------------------
 ; Function change_sub_shop_tile_palettes
 ; ---------------------------------
 _change_sub_shop_tile_palettes::
 	add	sp, #-7
-	C$shop.c$195$3_0$280	= .
-	.globl	C$shop.c$195$3_0$280
-;src/shop.c:195: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$198$3_0$280	= .
+	.globl	C$shop.c$198$3_0$280
+;src/shop.c:198: for (uint8_t i = 0; i < 6; i++) {
 	ld	c, #0x00
 00107$:
 	ld	a, c
 	sub	a, #0x06
 	jp	NC, 00109$
-	C$shop.c$196$2_0$279	= .
-	.globl	C$shop.c$196$2_0$279
-;src/shop.c:196: if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
+	C$shop.c$199$2_0$279	= .
+	.globl	C$shop.c$199$2_0$279
+;src/shop.c:199: if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
 	ld	hl, #_currentState
 	ld	l, (hl)
 ;	spillPairReg hl
@@ -1493,16 +1493,16 @@ _change_sub_shop_tile_palettes::
 	ld	a, c
 	add	a, a
 	ld	b, a
-	C$shop.c$197$2_0$279	= .
-	.globl	C$shop.c$197$2_0$279
-;src/shop.c:197: set_bkg_palette(2 + i, 1, palette_light_grey);
+	C$shop.c$200$2_0$279	= .
+	.globl	C$shop.c$200$2_0$279
+;src/shop.c:200: set_bkg_palette(2 + i, 1, palette_light_grey);
 	ld	a, c
 	add	a, #0x02
 	ldhl	sp,	#2
 	ld	(hl), a
-	C$shop.c$196$3_0$280	= .
-	.globl	C$shop.c$196$3_0$280
-;src/shop.c:196: if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
+	C$shop.c$199$3_0$280	= .
+	.globl	C$shop.c$199$3_0$280
+;src/shop.c:199: if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
 	ld	a, e
 	sub	a, c
 	jr	NC, 00102$
@@ -1554,9 +1554,9 @@ _change_sub_shop_tile_palettes::
 	scf
 00141$:
 	jr	NC, 00102$
-	C$shop.c$197$4_0$281	= .
-	.globl	C$shop.c$197$4_0$281
-;src/shop.c:197: set_bkg_palette(2 + i, 1, palette_light_grey);
+	C$shop.c$200$4_0$281	= .
+	.globl	C$shop.c$200$4_0$281
+;src/shop.c:200: set_bkg_palette(2 + i, 1, palette_light_grey);
 	push	bc
 	ld	de, #_palette_light_grey
 	push	de
@@ -1572,9 +1572,9 @@ _change_sub_shop_tile_palettes::
 	pop	bc
 	jr	00108$
 00102$:
-	C$shop.c$199$4_0$282	= .
-	.globl	C$shop.c$199$4_0$282
-;src/shop.c:199: set_bkg_palette(2 + i, 1, attributes_numbers[currentState]->color_palette[i]);
+	C$shop.c$202$4_0$282	= .
+	.globl	C$shop.c$202$4_0$282
+;src/shop.c:202: set_bkg_palette(2 + i, 1, attributes_numbers[currentState]->color_palette[i]);
 	pop	de
 	push	de
 	ld	hl, #0x002d
@@ -1603,41 +1603,41 @@ _change_sub_shop_tile_palettes::
 	add	sp, #4
 	pop	bc
 00108$:
-	C$shop.c$195$2_0$279	= .
-	.globl	C$shop.c$195$2_0$279
-;src/shop.c:195: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$198$2_0$279	= .
+	.globl	C$shop.c$198$2_0$279
+;src/shop.c:198: for (uint8_t i = 0; i < 6; i++) {
 	inc	c
 	jp	00107$
 00109$:
-	C$shop.c$202$2_0$279	= .
-	.globl	C$shop.c$202$2_0$279
-;src/shop.c:202: }
+	C$shop.c$205$2_0$279	= .
+	.globl	C$shop.c$205$2_0$279
+;src/shop.c:205: }
 	add	sp, #7
-	C$shop.c$202$2_0$279	= .
-	.globl	C$shop.c$202$2_0$279
+	C$shop.c$205$2_0$279	= .
+	.globl	C$shop.c$205$2_0$279
 	XG$change_sub_shop_tile_palettes$0$0	= .
 	.globl	XG$change_sub_shop_tile_palettes$0$0
 	ret
 	G$change_main_shop_tile_palettes$0$0	= .
 	.globl	G$change_main_shop_tile_palettes$0$0
-	C$shop.c$204$2_0$285	= .
-	.globl	C$shop.c$204$2_0$285
-;src/shop.c:204: void change_main_shop_tile_palettes (void) {
+	C$shop.c$207$2_0$285	= .
+	.globl	C$shop.c$207$2_0$285
+;src/shop.c:207: void change_main_shop_tile_palettes (void) {
 ;	---------------------------------
 ; Function change_main_shop_tile_palettes
 ; ---------------------------------
 _change_main_shop_tile_palettes::
-	C$shop.c$205$3_0$286	= .
-	.globl	C$shop.c$205$3_0$286
-;src/shop.c:205: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$208$3_0$286	= .
+	.globl	C$shop.c$208$3_0$286
+;src/shop.c:208: for (uint8_t i = 0; i < 6; i++) {
 	ld	c, #0x00
 00103$:
 	ld	a, c
 	sub	a, #0x06
 	ret	NC
-	C$shop.c$206$3_0$286	= .
-	.globl	C$shop.c$206$3_0$286
-;src/shop.c:206: set_bkg_palette(2 + i, 1, attributes_numbers[i]->color_palette[attributes_numbers[i]->upgrade_level]);
+	C$shop.c$209$3_0$286	= .
+	.globl	C$shop.c$209$3_0$286
+;src/shop.c:209: set_bkg_palette(2 + i, 1, attributes_numbers[i]->color_palette[attributes_numbers[i]->upgrade_level]);
 	ld	l, c
 ;	spillPairReg hl
 ;	spillPairReg hl
@@ -1689,23 +1689,23 @@ _change_main_shop_tile_palettes::
 	call	_set_bkg_palette
 	add	sp, #4
 	pop	bc
-	C$shop.c$205$2_0$285	= .
-	.globl	C$shop.c$205$2_0$285
-;src/shop.c:205: for (uint8_t i = 0; i < 6; i++) {
+	C$shop.c$208$2_0$285	= .
+	.globl	C$shop.c$208$2_0$285
+;src/shop.c:208: for (uint8_t i = 0; i < 6; i++) {
 	inc	c
-	C$shop.c$208$2_0$285	= .
-	.globl	C$shop.c$208$2_0$285
-;src/shop.c:208: }
-	C$shop.c$208$2_0$285	= .
-	.globl	C$shop.c$208$2_0$285
+	C$shop.c$211$2_0$285	= .
+	.globl	C$shop.c$211$2_0$285
+;src/shop.c:211: }
+	C$shop.c$211$2_0$285	= .
+	.globl	C$shop.c$211$2_0$285
 	XG$change_main_shop_tile_palettes$0$0	= .
 	.globl	XG$change_main_shop_tile_palettes$0$0
 	jr	00103$
 	G$attempt_purchase$0$0	= .
 	.globl	G$attempt_purchase$0$0
-	C$shop.c$211$2_0$288	= .
-	.globl	C$shop.c$211$2_0$288
-;src/shop.c:211: void attempt_purchase(MenuState currentState, Menu *currentMenu) {
+	C$shop.c$214$2_0$288	= .
+	.globl	C$shop.c$214$2_0$288
+;src/shop.c:214: void attempt_purchase(MenuState currentState, Menu *currentMenu) {
 ;	---------------------------------
 ; Function attempt_purchase
 ; ---------------------------------
@@ -1715,9 +1715,9 @@ _attempt_purchase::
 	ld	(hl), a
 	ld	c, e
 	ld	b, d
-	C$shop.c$213$1_0$288	= .
-	.globl	C$shop.c$213$1_0$288
-;src/shop.c:213: player_attributes *currentAttributes = attributes_numbers[currentState];
+	C$shop.c$216$1_0$288	= .
+	.globl	C$shop.c$216$1_0$288
+;src/shop.c:216: player_attributes *currentAttributes = attributes_numbers[currentState];
 	ld	l, (hl)
 	ld	h, #0x00
 	add	hl, hl
@@ -1731,9 +1731,9 @@ _attempt_purchase::
 	inc	de
 	ld	a, (de)
 	ld	(hl), a
-	C$shop.c$214$1_0$288	= .
-	.globl	C$shop.c$214$1_0$288
-;src/shop.c:214: uint16_t cost = currentAttributes->upgrade_cost[currentMenu->currentSelection];
+	C$shop.c$217$1_0$288	= .
+	.globl	C$shop.c$217$1_0$288
+;src/shop.c:217: uint16_t cost = currentAttributes->upgrade_cost[currentMenu->currentSelection];
 	pop	de
 	push	de
 	ld	hl, #0x0021
@@ -1754,14 +1754,14 @@ _attempt_purchase::
 	inc	de
 	ld	a, (de)
 	ld	(hl), a
-	C$shop.c$215$1_0$288	= .
-	.globl	C$shop.c$215$1_0$288
-;src/shop.c:215: uint8_t upgrade_to = currentMenu->currentSelection;
-	ldhl	sp,	#4
-	ld	(hl), c
 	C$shop.c$218$1_0$288	= .
 	.globl	C$shop.c$218$1_0$288
-;src/shop.c:218: if (currentAttributes->upgrade_level >= upgrade_to) {
+;src/shop.c:218: uint8_t upgrade_to = currentMenu->currentSelection;
+	ldhl	sp,	#4
+	ld	(hl), c
+	C$shop.c$221$1_0$288	= .
+	.globl	C$shop.c$221$1_0$288
+;src/shop.c:221: if (currentAttributes->upgrade_level >= upgrade_to) {
 	pop	de
 	push	de
 	ld	hl, #0x0014
@@ -1771,13 +1771,13 @@ _attempt_purchase::
 	ld	a, (bc)
 	ldhl	sp,	#4
 	sub	a, (hl)
-	C$shop.c$219$2_0$289	= .
-	.globl	C$shop.c$219$2_0$289
-;src/shop.c:219: return;
+	C$shop.c$222$2_0$289	= .
+	.globl	C$shop.c$222$2_0$289
+;src/shop.c:222: return;
 	jp	NC,00105$
-	C$shop.c$223$1_0$288	= .
-	.globl	C$shop.c$223$1_0$288
-;src/shop.c:223: if (player.money >= cost) {
+	C$shop.c$226$1_0$288	= .
+	.globl	C$shop.c$226$1_0$288
+;src/shop.c:226: if (player.money >= cost) {
 	ld	de, #(_player + 342)
 	ld	a, (de)
 	ldhl	sp,	#7
@@ -1803,9 +1803,9 @@ _attempt_purchase::
 	ld	a, (de)
 	sbc	a, (hl)
 	jr	C, 00105$
-	C$shop.c$225$2_0$290	= .
-	.globl	C$shop.c$225$2_0$290
-;src/shop.c:225: player.money -= cost;
+	C$shop.c$228$2_0$290	= .
+	.globl	C$shop.c$228$2_0$290
+;src/shop.c:228: player.money -= cost;
 	ldhl	sp,#5
 	ld	a, (hl+)
 	ld	e, a
@@ -1828,15 +1828,15 @@ _attempt_purchase::
 	inc	de
 	ld	a, (hl)
 	ld	(de), a
-	C$shop.c$226$2_0$290	= .
-	.globl	C$shop.c$226$2_0$290
-;src/shop.c:226: currentAttributes->upgrade_level = upgrade_to;
+	C$shop.c$229$2_0$290	= .
+	.globl	C$shop.c$229$2_0$290
+;src/shop.c:229: currentAttributes->upgrade_level = upgrade_to;
 	ldhl	sp,	#4
 	ld	a, (hl)
 	ld	(bc), a
-	C$shop.c$227$2_0$290	= .
-	.globl	C$shop.c$227$2_0$290
-;src/shop.c:227: currentAttributes->max_value = currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
+	C$shop.c$230$2_0$290	= .
+	.globl	C$shop.c$230$2_0$290
+;src/shop.c:230: currentAttributes->max_value = currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
 	pop	de
 	push	de
 	ld	hl, #0x0012
@@ -1891,20 +1891,20 @@ _attempt_purchase::
 	ld	(hl+), a
 	ld	(hl), b
 00105$:
-	C$shop.c$232$1_0$288	= .
-	.globl	C$shop.c$232$1_0$288
-;src/shop.c:232: }
+	C$shop.c$235$1_0$288	= .
+	.globl	C$shop.c$235$1_0$288
+;src/shop.c:235: }
 	add	sp, #10
-	C$shop.c$232$1_0$288	= .
-	.globl	C$shop.c$232$1_0$288
+	C$shop.c$235$1_0$288	= .
+	.globl	C$shop.c$235$1_0$288
 	XG$attempt_purchase$0$0	= .
 	.globl	XG$attempt_purchase$0$0
 	ret
 	G$handleInput$0$0	= .
 	.globl	G$handleInput$0$0
-	C$shop.c$235$1_0$293	= .
-	.globl	C$shop.c$235$1_0$293
-;src/shop.c:235: void handleInput(MenuState *currentState, Menu *currentMenu) {
+	C$shop.c$238$1_0$293	= .
+	.globl	C$shop.c$238$1_0$293
+;src/shop.c:238: void handleInput(MenuState *currentState, Menu *currentMenu) {
 ;	---------------------------------
 ; Function handleInput
 ; ---------------------------------
@@ -1918,16 +1918,16 @@ _handleInput::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-	C$shop.c$236$1_0$293	= .
-	.globl	C$shop.c$236$1_0$293
-;src/shop.c:236: if (prev_buttons != buttons) {
+	C$shop.c$239$1_0$293	= .
+	.globl	C$shop.c$239$1_0$293
+;src/shop.c:239: if (prev_buttons != buttons) {
 	ld	a, (#_prev_buttons)
 	ld	hl, #_buttons
 	sub	a, (hl)
 	jp	Z,00160$
-	C$shop.c$237$1_0$293	= .
-	.globl	C$shop.c$237$1_0$293
-;src/shop.c:237: if (buttons & J_UP) {
+	C$shop.c$240$1_0$293	= .
+	.globl	C$shop.c$240$1_0$293
+;src/shop.c:240: if (buttons & J_UP) {
 	ld	a, (#_buttons)
 	ldhl	sp,	#2
 	ld	(hl), a
@@ -1935,9 +1935,9 @@ _handleInput::
 	bit	2, (hl)
 	pop	hl
 	jr	Z, 00118$
-	C$shop.c$238$3_0$295	= .
-	.globl	C$shop.c$238$3_0$295
-;src/shop.c:238: if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
+	C$shop.c$241$3_0$295	= .
+	.globl	C$shop.c$241$3_0$295
+;src/shop.c:241: if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
 	ldhl	sp,#3
 	ld	a, (hl+)
 	ld	e, a
@@ -1958,17 +1958,17 @@ _handleInput::
 	ld	(hl), c
 	jr	00119$
 00118$:
-	C$shop.c$239$2_0$294	= .
-	.globl	C$shop.c$239$2_0$294
-;src/shop.c:239: } else if (buttons & J_DOWN) {
+	C$shop.c$242$2_0$294	= .
+	.globl	C$shop.c$242$2_0$294
+;src/shop.c:242: } else if (buttons & J_DOWN) {
 	push	hl
 	ldhl	sp,	#4
 	bit	3, (hl)
 	pop	hl
 	jr	Z, 00115$
-	C$shop.c$240$3_0$296	= .
-	.globl	C$shop.c$240$3_0$296
-;src/shop.c:240: if (currentMenu->currentSelection < 3) currentMenu->currentSelection += 3;
+	C$shop.c$243$3_0$296	= .
+	.globl	C$shop.c$243$3_0$296
+;src/shop.c:243: if (currentMenu->currentSelection < 3) currentMenu->currentSelection += 3;
 	ldhl	sp,#3
 	ld	a, (hl+)
 	ld	e, a
@@ -1990,17 +1990,17 @@ _handleInput::
 	ld	(hl), c
 	jr	00119$
 00115$:
-	C$shop.c$241$2_0$294	= .
-	.globl	C$shop.c$241$2_0$294
-;src/shop.c:241: } else if (buttons & J_LEFT) {
+	C$shop.c$244$2_0$294	= .
+	.globl	C$shop.c$244$2_0$294
+;src/shop.c:244: } else if (buttons & J_LEFT) {
 	push	hl
 	ldhl	sp,	#4
 	bit	1, (hl)
 	pop	hl
 	jr	Z, 00112$
-	C$shop.c$242$3_0$297	= .
-	.globl	C$shop.c$242$3_0$297
-;src/shop.c:242: if (currentMenu->currentSelection % 3 != 0) currentMenu->currentSelection--;
+	C$shop.c$245$3_0$297	= .
+	.globl	C$shop.c$245$3_0$297
+;src/shop.c:245: if (currentMenu->currentSelection % 3 != 0) currentMenu->currentSelection--;
 	ldhl	sp,#3
 	ld	a, (hl+)
 	ld	e, a
@@ -2029,17 +2029,17 @@ _handleInput::
 	ld	(hl), c
 	jr	00119$
 00112$:
-	C$shop.c$243$2_0$294	= .
-	.globl	C$shop.c$243$2_0$294
-;src/shop.c:243: } else if (buttons & J_RIGHT) {
+	C$shop.c$246$2_0$294	= .
+	.globl	C$shop.c$246$2_0$294
+;src/shop.c:246: } else if (buttons & J_RIGHT) {
 	push	hl
 	ldhl	sp,	#4
 	bit	0, (hl)
 	pop	hl
 	jr	Z, 00119$
-	C$shop.c$244$3_0$298	= .
-	.globl	C$shop.c$244$3_0$298
-;src/shop.c:244: if ((currentMenu->currentSelection % 3) != 2) currentMenu->currentSelection++;
+	C$shop.c$247$3_0$298	= .
+	.globl	C$shop.c$247$3_0$298
+;src/shop.c:247: if ((currentMenu->currentSelection % 3) != 2) currentMenu->currentSelection++;
 	ldhl	sp,#3
 	ld	a, (hl+)
 	ld	e, a
@@ -2066,15 +2066,15 @@ _handleInput::
 	ld	l, a
 	ld	(hl), c
 00119$:
-	C$shop.c$248$2_0$294	= .
-	.globl	C$shop.c$248$2_0$294
-;src/shop.c:248: if (buttons & J_A) {
+	C$shop.c$251$2_0$294	= .
+	.globl	C$shop.c$251$2_0$294
+;src/shop.c:251: if (buttons & J_A) {
 	ld	a, (#_buttons)
 	bit	4, a
 	jp	Z,00147$
-	C$shop.c$249$3_0$299	= .
-	.globl	C$shop.c$249$3_0$299
-;src/shop.c:249: switch (*currentState) {
+	C$shop.c$252$3_0$299	= .
+	.globl	C$shop.c$252$3_0$299
+;src/shop.c:252: switch (*currentState) {
 	ldhl	sp,#5
 	ld	a, (hl+)
 	ld	e, a
@@ -2089,9 +2089,9 @@ _handleInput::
 	ld	hl, #00302$
 	add	hl, de
 	add	hl, de
-	C$shop.c$250$4_0$300	= .
-	.globl	C$shop.c$250$4_0$300
-;src/shop.c:250: case MAIN_MENU:
+	C$shop.c$253$4_0$300	= .
+	.globl	C$shop.c$253$4_0$300
+;src/shop.c:253: case MAIN_MENU:
 	jp	(hl)
 00302$:
 	jr	00143$
@@ -2102,17 +2102,17 @@ _handleInput::
 	jr	00143$
 	jr	00120$
 00120$:
-	C$shop.c$238$1_0$293	= .
-	.globl	C$shop.c$238$1_0$293
-;src/shop.c:238: if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
+	C$shop.c$241$1_0$293	= .
+	.globl	C$shop.c$241$1_0$293
+;src/shop.c:241: if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
 	ldhl	sp,#3
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	C$shop.c$252$4_0$300	= .
-	.globl	C$shop.c$252$4_0$300
-;src/shop.c:252: if (currentMenu->currentSelection == 0) *currentState = DRILL_MENU;
+	C$shop.c$255$4_0$300	= .
+	.globl	C$shop.c$255$4_0$300
+;src/shop.c:255: if (currentMenu->currentSelection == 0) *currentState = DRILL_MENU;
 	or	a, a
 	jr	NZ, 00136$
 	inc	hl
@@ -2122,9 +2122,9 @@ _handleInput::
 	ld	(hl), #0x00
 	jr	00147$
 00136$:
-	C$shop.c$253$4_0$300	= .
-	.globl	C$shop.c$253$4_0$300
-;src/shop.c:253: else if (currentMenu->currentSelection == 1) *currentState = HULL_MENU;
+	C$shop.c$256$4_0$300	= .
+	.globl	C$shop.c$256$4_0$300
+;src/shop.c:256: else if (currentMenu->currentSelection == 1) *currentState = HULL_MENU;
 	cp	a, #0x01
 	jr	NZ, 00133$
 	ldhl	sp,	#5
@@ -2134,9 +2134,9 @@ _handleInput::
 	ld	(hl), #0x01
 	jr	00147$
 00133$:
-	C$shop.c$254$4_0$300	= .
-	.globl	C$shop.c$254$4_0$300
-;src/shop.c:254: else if (currentMenu->currentSelection == 2) *currentState = ENGINE_MENU;
+	C$shop.c$257$4_0$300	= .
+	.globl	C$shop.c$257$4_0$300
+;src/shop.c:257: else if (currentMenu->currentSelection == 2) *currentState = ENGINE_MENU;
 	cp	a, #0x02
 	jr	NZ, 00130$
 	ldhl	sp,	#5
@@ -2146,9 +2146,9 @@ _handleInput::
 	ld	(hl), #0x02
 	jr	00147$
 00130$:
-	C$shop.c$255$4_0$300	= .
-	.globl	C$shop.c$255$4_0$300
-;src/shop.c:255: else if (currentMenu->currentSelection == 3) *currentState = FUEL_MENU;
+	C$shop.c$258$4_0$300	= .
+	.globl	C$shop.c$258$4_0$300
+;src/shop.c:258: else if (currentMenu->currentSelection == 3) *currentState = FUEL_MENU;
 	cp	a, #0x03
 	jr	NZ, 00127$
 	ldhl	sp,	#5
@@ -2158,9 +2158,9 @@ _handleInput::
 	ld	(hl), #0x03
 	jr	00147$
 00127$:
-	C$shop.c$256$4_0$300	= .
-	.globl	C$shop.c$256$4_0$300
-;src/shop.c:256: else if (currentMenu->currentSelection == 4) *currentState = RADIATOR_MENU;
+	C$shop.c$259$4_0$300	= .
+	.globl	C$shop.c$259$4_0$300
+;src/shop.c:259: else if (currentMenu->currentSelection == 4) *currentState = RADIATOR_MENU;
 	cp	a, #0x04
 	jr	NZ, 00124$
 	ldhl	sp,	#5
@@ -2170,9 +2170,9 @@ _handleInput::
 	ld	(hl), #0x04
 	jr	00147$
 00124$:
-	C$shop.c$257$4_0$300	= .
-	.globl	C$shop.c$257$4_0$300
-;src/shop.c:257: else if (currentMenu->currentSelection == 5) *currentState = CARGO_MENU;
+	C$shop.c$260$4_0$300	= .
+	.globl	C$shop.c$260$4_0$300
+;src/shop.c:260: else if (currentMenu->currentSelection == 5) *currentState = CARGO_MENU;
 	sub	a, #0x05
 	jr	NZ, 00147$
 	ldhl	sp,	#5
@@ -2180,36 +2180,36 @@ _handleInput::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x05
-	C$shop.c$258$4_0$300	= .
-	.globl	C$shop.c$258$4_0$300
-;src/shop.c:258: break;
+	C$shop.c$261$4_0$300	= .
+	.globl	C$shop.c$261$4_0$300
+;src/shop.c:261: break;
 	jr	00147$
-	C$shop.c$264$4_0$300	= .
-	.globl	C$shop.c$264$4_0$300
-;src/shop.c:264: case CARGO_MENU:
+	C$shop.c$267$4_0$300	= .
+	.globl	C$shop.c$267$4_0$300
+;src/shop.c:267: case CARGO_MENU:
 00143$:
-	C$shop.c$265$4_0$300	= .
-	.globl	C$shop.c$265$4_0$300
-;src/shop.c:265: attempt_purchase(*currentState, currentMenu);
+	C$shop.c$268$4_0$300	= .
+	.globl	C$shop.c$268$4_0$300
+;src/shop.c:268: attempt_purchase(*currentState, currentMenu);
 	ldhl	sp,	#3
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, c
 	call	_attempt_purchase
-	C$shop.c$269$2_0$294	= .
-	.globl	C$shop.c$269$2_0$294
-;src/shop.c:269: }
+	C$shop.c$272$2_0$294	= .
+	.globl	C$shop.c$272$2_0$294
+;src/shop.c:272: }
 00147$:
-	C$shop.c$273$2_0$294	= .
-	.globl	C$shop.c$273$2_0$294
-;src/shop.c:273: if (buttons & J_B) {
+	C$shop.c$276$2_0$294	= .
+	.globl	C$shop.c$276$2_0$294
+;src/shop.c:276: if (buttons & J_B) {
 	ld	a, (#_buttons)
 	bit	5, a
 	jr	Z, 00160$
-	C$shop.c$274$3_0$301	= .
-	.globl	C$shop.c$274$3_0$301
-;src/shop.c:274: switch (*currentState) {
+	C$shop.c$277$3_0$301	= .
+	.globl	C$shop.c$277$3_0$301
+;src/shop.c:277: switch (*currentState) {
 	ldhl	sp,#5
 	ld	a, (hl+)
 	ld	e, a
@@ -2233,76 +2233,76 @@ _handleInput::
 	jp	00154$
 	jp	00154$
 	jp	00148$
-	C$shop.c$275$4_0$302	= .
-	.globl	C$shop.c$275$4_0$302
-;src/shop.c:275: case MAIN_MENU:
-00148$:
-	C$shop.c$276$4_0$302	= .
-	.globl	C$shop.c$276$4_0$302
-;src/shop.c:276: currentGameState = GAME_STATE_PLAY;
-	ld	hl, #_currentGameState
-	ld	(hl), #0x03
-	C$shop.c$277$4_0$302	= .
-	.globl	C$shop.c$277$4_0$302
-;src/shop.c:277: main_menu.currentSelection = 0;
-	ld	hl, #_main_menu
-	ld	(hl), #0x00
 	C$shop.c$278$4_0$302	= .
 	.globl	C$shop.c$278$4_0$302
-;src/shop.c:278: drill_menu.currentSelection = 0;
-	ld	hl, #_drill_menu
-	ld	(hl), #0x00
+;src/shop.c:278: case MAIN_MENU:
+00148$:
 	C$shop.c$279$4_0$302	= .
 	.globl	C$shop.c$279$4_0$302
-;src/shop.c:279: hull_menu.currentSelection = 0;
-	ld	hl, #_hull_menu
-	ld	(hl), #0x00
+;src/shop.c:279: currentGameState = GAME_STATE_PLAY;
+	ld	hl, #_currentGameState
+	ld	(hl), #0x03
 	C$shop.c$280$4_0$302	= .
 	.globl	C$shop.c$280$4_0$302
-;src/shop.c:280: engine_menu.currentSelection = 0;
-	ld	hl, #_engine_menu
+;src/shop.c:280: main_menu.currentSelection = 0;
+	ld	hl, #_main_menu
 	ld	(hl), #0x00
 	C$shop.c$281$4_0$302	= .
 	.globl	C$shop.c$281$4_0$302
-;src/shop.c:281: fuel_menu.currentSelection = 0;
-	ld	hl, #_fuel_menu
+;src/shop.c:281: drill_menu.currentSelection = 0;
+	ld	hl, #_drill_menu
 	ld	(hl), #0x00
 	C$shop.c$282$4_0$302	= .
 	.globl	C$shop.c$282$4_0$302
-;src/shop.c:282: radiator_menu.currentSelection = 0;
-	ld	hl, #_radiator_menu
+;src/shop.c:282: hull_menu.currentSelection = 0;
+	ld	hl, #_hull_menu
 	ld	(hl), #0x00
 	C$shop.c$283$4_0$302	= .
 	.globl	C$shop.c$283$4_0$302
-;src/shop.c:283: cargo_menu.currentSelection = 0;
-	ld	hl, #_cargo_menu
+;src/shop.c:283: engine_menu.currentSelection = 0;
+	ld	hl, #_engine_menu
 	ld	(hl), #0x00
 	C$shop.c$284$4_0$302	= .
 	.globl	C$shop.c$284$4_0$302
-;src/shop.c:284: break;
+;src/shop.c:284: fuel_menu.currentSelection = 0;
+	ld	hl, #_fuel_menu
+	ld	(hl), #0x00
+	C$shop.c$285$4_0$302	= .
+	.globl	C$shop.c$285$4_0$302
+;src/shop.c:285: radiator_menu.currentSelection = 0;
+	ld	hl, #_radiator_menu
+	ld	(hl), #0x00
+	C$shop.c$286$4_0$302	= .
+	.globl	C$shop.c$286$4_0$302
+;src/shop.c:286: cargo_menu.currentSelection = 0;
+	ld	hl, #_cargo_menu
+	ld	(hl), #0x00
+	C$shop.c$287$4_0$302	= .
+	.globl	C$shop.c$287$4_0$302
+;src/shop.c:287: break;
 	jr	00160$
-	C$shop.c$290$4_0$302	= .
-	.globl	C$shop.c$290$4_0$302
-;src/shop.c:290: case CARGO_MENU:
+	C$shop.c$293$4_0$302	= .
+	.globl	C$shop.c$293$4_0$302
+;src/shop.c:293: case CARGO_MENU:
 00154$:
-	C$shop.c$291$4_0$302	= .
-	.globl	C$shop.c$291$4_0$302
-;src/shop.c:291: *currentState = MAIN_MENU; // Go back to the main menu
+	C$shop.c$294$4_0$302	= .
+	.globl	C$shop.c$294$4_0$302
+;src/shop.c:294: *currentState = MAIN_MENU; // Go back to the main menu
 	ldhl	sp,	#5
 	ld	a,	(hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x06
-	C$shop.c$293$1_0$293	= .
-	.globl	C$shop.c$293$1_0$293
-;src/shop.c:293: }
-00160$:
 	C$shop.c$296$1_0$293	= .
 	.globl	C$shop.c$296$1_0$293
 ;src/shop.c:296: }
+00160$:
+	C$shop.c$299$1_0$293	= .
+	.globl	C$shop.c$299$1_0$293
+;src/shop.c:299: }
 	add	sp, #7
-	C$shop.c$296$1_0$293	= .
-	.globl	C$shop.c$296$1_0$293
+	C$shop.c$299$1_0$293	= .
+	.globl	C$shop.c$299$1_0$293
 	XG$handleInput$0$0	= .
 	.globl	XG$handleInput$0$0
 	ret

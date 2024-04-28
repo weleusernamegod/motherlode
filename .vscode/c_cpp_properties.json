@@ -3,16 +3,17 @@
         {
             "name": "gameboy",
             "includePath": [
-                "/usr/local/opt/gbdk/include/**",
-                "/usr/local/opt/gbdk/include"
+                "${workspaceFolder}/src/**",
+                "${workspaceFolder}/assets/**",
+                "/usr/local/opt/gbdk/include/**"
             ],
-            "defines": ["__PORT_sm83", "__TARGET_gb"],
-            "macFrameworkPath": [
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            "defines": [
+                "PORT=sm83", 
+                "PLAT=gb",
+                "EXT=gbc"
             ],
-            "compilerPath": "/usr/bin/clang",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
+            "compilerPath": "",
+            "cStandard": "c11",
             "intelliSenseMode": "${default}",
             "compilerArgs": [],
             "browse": {

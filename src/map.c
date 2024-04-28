@@ -25,7 +25,9 @@
 #include "../assets/progressbar.h"
 
 #pragma bank 1
+#ifndef __INTELLISENSE__
 BANKREF(bank_map)
+#endif
 
 void shuffle(uint8_t array[4]) {
     uint16_t seed = LY_REG;
