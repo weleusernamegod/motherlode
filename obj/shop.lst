@@ -1,0 +1,2348 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.2 #14228 (Mac OS X x86_64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module shop
+                                      6 	.optsdcc -msm83
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl b___func_bank_shop
+                                     12 	.globl ___func_bank_shop
+                                     13 	.globl _draw_text
+                                     14 	.globl _itoa
+                                     15 	.globl _strcat
+                                     16 	.globl _set_sprite_palette
+                                     17 	.globl _set_bkg_palette
+                                     18 	.globl _set_sprite_data
+                                     19 	.globl _set_win_tiles
+                                     20 	.globl _set_win_data
+                                     21 	.globl _currentMenu
+                                     22 	.globl _currentState
+                                     23 	.globl _main_menu
+                                     24 	.globl _cargo_menu
+                                     25 	.globl _radiator_menu
+                                     26 	.globl _fuel_menu
+                                     27 	.globl _engine_menu
+                                     28 	.globl _hull_menu
+                                     29 	.globl _drill_menu
+                                     30 	.globl _menu_numbers
+                                     31 	.globl _metasprite_buttonframe
+                                     32 	.globl _init_shop
+                                     33 	.globl _init_shop_tiles_palettes
+                                     34 	.globl _updateMetaSpritePosition
+                                     35 	.globl _update_upgrade_tick
+                                     36 	.globl _displayMenu
+                                     37 	.globl _load_shop_single_tile
+                                     38 	.globl _load_sub_shop_tiles
+                                     39 	.globl _load_main_shop_tiles
+                                     40 	.globl _write_main_shop_text
+                                     41 	.globl _write_sub_shop_text
+                                     42 	.globl _change_sub_shop_tile_palettes
+                                     43 	.globl _change_main_shop_tile_palettes
+                                     44 	.globl _attempt_purchase
+                                     45 	.globl _handleInput
+                                     46 ;--------------------------------------------------------
+                                     47 ; special function registers
+                                     48 ;--------------------------------------------------------
+                                     49 ;--------------------------------------------------------
+                                     50 ; ram data
+                                     51 ;--------------------------------------------------------
+                                     52 	.area _DATA
+                                     53 ;--------------------------------------------------------
+                                     54 ; ram data
+                                     55 ;--------------------------------------------------------
+                                     56 	.area _INITIALIZED
+                           000000    57 G$menu_numbers$0_0$0==.
+      000000                         58 _menu_numbers::
+      000000                         59 	.ds 14
+                           00000E    60 G$drill_menu$0_0$0==.
+      00000E                         61 _drill_menu::
+      00000E                         62 	.ds 1
+                           00000F    63 G$hull_menu$0_0$0==.
+      00000F                         64 _hull_menu::
+      00000F                         65 	.ds 1
+                           000010    66 G$engine_menu$0_0$0==.
+      000010                         67 _engine_menu::
+      000010                         68 	.ds 1
+                           000011    69 G$fuel_menu$0_0$0==.
+      000011                         70 _fuel_menu::
+      000011                         71 	.ds 1
+                           000012    72 G$radiator_menu$0_0$0==.
+      000012                         73 _radiator_menu::
+      000012                         74 	.ds 1
+                           000013    75 G$cargo_menu$0_0$0==.
+      000013                         76 _cargo_menu::
+      000013                         77 	.ds 1
+                           000014    78 G$main_menu$0_0$0==.
+      000014                         79 _main_menu::
+      000014                         80 	.ds 1
+                           000015    81 G$currentState$0_0$0==.
+      000015                         82 _currentState::
+      000015                         83 	.ds 1
+                           000016    84 G$currentMenu$0_0$0==.
+      000016                         85 _currentMenu::
+      000016                         86 	.ds 2
+                                     87 ;--------------------------------------------------------
+                                     88 ; absolute external ram data
+                                     89 ;--------------------------------------------------------
+                                     90 	.area _DABS (ABS)
+                                     91 ;--------------------------------------------------------
+                                     92 ; global & static initialisations
+                                     93 ;--------------------------------------------------------
+                                     94 	.area _HOME
+                                     95 	.area _GSINIT
+                                     96 	.area _GSFINAL
+                                     97 	.area _GSINIT
+                                     98 ;--------------------------------------------------------
+                                     99 ; Home
+                                    100 ;--------------------------------------------------------
+                                    101 	.area _HOME
+                                    102 	.area _HOME
+                                    103 ;--------------------------------------------------------
+                                    104 ; code
+                                    105 ;--------------------------------------------------------
+                                    106 	.area _CODE_2
+                           000000   107 	G$__func_bank_shop$0$0	= .
+                                    108 	.globl	G$__func_bank_shop$0$0
+                           000000   109 	C$shop.c$27$0_0$229	= .
+                                    110 	.globl	C$shop.c$27$0_0$229
+                                    111 ;src/shop.c:27: BANKREF(bank_shop)
+                                    112 ;	---------------------------------
+                                    113 ; Function __func_bank_shop
+                                    114 ; ---------------------------------
+                           000002   115 	b___func_bank_shop	= 2
+      000000                        116 ___func_bank_shop::
+                                    117 	.local b___func_bank_shop 
+                           000002   118 	___bank_bank_shop = b___func_bank_shop 
+                                    119 	.globl ___bank_bank_shop 
+                           000000   120 	G$init_shop$0$0	= .
+                                    121 	.globl	G$init_shop$0$0
+                           000000   122 	C$shop.c$66$1_0$231	= .
+                                    123 	.globl	C$shop.c$66$1_0$231
+                                    124 ;src/shop.c:66: void init_shop(void) {
+                                    125 ;	---------------------------------
+                                    126 ; Function init_shop
+                                    127 ; ---------------------------------
+      000000                        128 _init_shop::
+                           000000   129 	C$shop.c$67$1_0$231	= .
+                                    130 	.globl	C$shop.c$67$1_0$231
+                                    131 ;src/shop.c:67: set_sprite_palette(0, 1, palette_default);
+      000000 11r00r00         [12]  132 	ld	de, #_palette_default
+      000003 D5               [16]  133 	push	de
+      000004 AF               [ 4]  134 	xor	a, a
+      000005 3C               [ 4]  135 	inc	a
+      000006 F5               [16]  136 	push	af
+      000007 CDr00r00         [24]  137 	call	_set_sprite_palette
+      00000A E8 04            [16]  138 	add	sp, #4
+                           00000C   139 	C$shop.c$68$1_0$231	= .
+                                    140 	.globl	C$shop.c$68$1_0$231
+                                    141 ;src/shop.c:68: set_sprite_palette(1, 1, palette_grey);
+      00000C 11r00r00         [12]  142 	ld	de, #_palette_grey
+      00000F D5               [16]  143 	push	de
+      000010 21 01 01         [12]  144 	ld	hl, #0x101
+      000013 E5               [16]  145 	push	hl
+      000014 CDr00r00         [24]  146 	call	_set_sprite_palette
+      000017 E8 04            [16]  147 	add	sp, #4
+                           000019   148 	C$shop.c$70$1_0$231	= .
+                                    149 	.globl	C$shop.c$70$1_0$231
+                                    150 ;src/shop.c:70: set_win_data(SHOP_FRAME_START, shopframe_TILE_COUNT, shopframe_tiles);
+      000019 11r00r00         [12]  151 	ld	de, #_shopframe_tiles
+      00001C D5               [16]  152 	push	de
+      00001D 21 97 09         [12]  153 	ld	hl, #0x997
+      000020 E5               [16]  154 	push	hl
+      000021 CDr00r00         [24]  155 	call	_set_win_data
+      000024 E8 04            [16]  156 	add	sp, #4
+                           000026   157 	C$shop.c$71$1_0$231	= .
+                                    158 	.globl	C$shop.c$71$1_0$231
+                                    159 ;src/shop.c:71: set_win_tiles(0, 0, 20, 18, shopframe_map);
+      000026 11r00r00         [12]  160 	ld	de, #_shopframe_map
+      000029 D5               [16]  161 	push	de
+      00002A 21 14 12         [12]  162 	ld	hl, #0x1214
+      00002D E5               [16]  163 	push	hl
+      00002E AF               [ 4]  164 	xor	a, a
+      00002F 0F               [ 4]  165 	rrca
+      000030 F5               [16]  166 	push	af
+      000031 CDr00r00         [24]  167 	call	_set_win_tiles
+      000034 E8 06            [16]  168 	add	sp, #6
+                           000036   169 	C$shop.c$73$1_0$231	= .
+                                    170 	.globl	C$shop.c$73$1_0$231
+                                    171 ;src/shop.c:73: set_bkg_palette(0, 1, palette_default);
+      000036 11r00r00         [12]  172 	ld	de, #_palette_default
+      000039 D5               [16]  173 	push	de
+      00003A AF               [ 4]  174 	xor	a, a
+      00003B 3C               [ 4]  175 	inc	a
+      00003C F5               [16]  176 	push	af
+      00003D CDr00r00         [24]  177 	call	_set_bkg_palette
+      000040 E8 04            [16]  178 	add	sp, #4
+                           000042   179 	C$shop.c$74$1_0$231	= .
+                                    180 	.globl	C$shop.c$74$1_0$231
+                                    181 ;src/shop.c:74: set_bkg_palette(1, 1, palette_grey);
+      000042 11r00r00         [12]  182 	ld	de, #_palette_grey
+      000045 D5               [16]  183 	push	de
+      000046 21 01 01         [12]  184 	ld	hl, #0x101
+      000049 E5               [16]  185 	push	hl
+      00004A CDr00r00         [24]  186 	call	_set_bkg_palette
+      00004D E8 04            [16]  187 	add	sp, #4
+                           00004F   188 	C$shop.c$75$1_0$231	= .
+                                    189 	.globl	C$shop.c$75$1_0$231
+                                    190 ;src/shop.c:75: set_bkg_palette(2, 1, palette_blue);
+      00004F 11r00r00         [12]  191 	ld	de, #_palette_blue
+      000052 D5               [16]  192 	push	de
+      000053 21 02 01         [12]  193 	ld	hl, #0x102
+      000056 E5               [16]  194 	push	hl
+      000057 CDr00r00         [24]  195 	call	_set_bkg_palette
+      00005A E8 04            [16]  196 	add	sp, #4
+                           00005C   197 	C$shop.c$76$1_0$231	= .
+                                    198 	.globl	C$shop.c$76$1_0$231
+                                    199 ;src/shop.c:76: set_bkg_palette(3, 1, palette_green);
+      00005C 11r00r00         [12]  200 	ld	de, #_palette_green
+      00005F D5               [16]  201 	push	de
+      000060 21 03 01         [12]  202 	ld	hl, #0x103
+      000063 E5               [16]  203 	push	hl
+      000064 CDr00r00         [24]  204 	call	_set_bkg_palette
+      000067 E8 04            [16]  205 	add	sp, #4
+                           000069   206 	C$shop.c$77$1_0$231	= .
+                                    207 	.globl	C$shop.c$77$1_0$231
+                                    208 ;src/shop.c:77: set_bkg_palette(4, 1, palette_orange);
+      000069 11r00r00         [12]  209 	ld	de, #_palette_orange
+      00006C D5               [16]  210 	push	de
+      00006D 21 04 01         [12]  211 	ld	hl, #0x104
+      000070 E5               [16]  212 	push	hl
+      000071 CDr00r00         [24]  213 	call	_set_bkg_palette
+      000074 E8 04            [16]  214 	add	sp, #4
+                           000076   215 	C$shop.c$78$1_0$231	= .
+                                    216 	.globl	C$shop.c$78$1_0$231
+                                    217 ;src/shop.c:78: set_bkg_palette(5, 1, palette_purple);
+      000076 11r00r00         [12]  218 	ld	de, #_palette_purple
+      000079 D5               [16]  219 	push	de
+      00007A 21 05 01         [12]  220 	ld	hl, #0x105
+      00007D E5               [16]  221 	push	hl
+      00007E CDr00r00         [24]  222 	call	_set_bkg_palette
+      000081 E8 04            [16]  223 	add	sp, #4
+                           000083   224 	C$shop.c$79$1_0$231	= .
+                                    225 	.globl	C$shop.c$79$1_0$231
+                                    226 ;src/shop.c:79: set_bkg_palette(6, 1, palette_red);
+      000083 11r00r00         [12]  227 	ld	de, #_palette_red
+      000086 D5               [16]  228 	push	de
+      000087 21 06 01         [12]  229 	ld	hl, #0x106
+      00008A E5               [16]  230 	push	hl
+      00008B CDr00r00         [24]  231 	call	_set_bkg_palette
+      00008E E8 04            [16]  232 	add	sp, #4
+                           000090   233 	C$shop.c$80$1_0$231	= .
+                                    234 	.globl	C$shop.c$80$1_0$231
+                                    235 ;src/shop.c:80: set_bkg_palette(7, 1, palette_yellow);
+      000090 11r00r00         [12]  236 	ld	de, #_palette_yellow
+      000093 D5               [16]  237 	push	de
+      000094 21 07 01         [12]  238 	ld	hl, #0x107
+      000097 E5               [16]  239 	push	hl
+      000098 CDr00r00         [24]  240 	call	_set_bkg_palette
+      00009B E8 04            [16]  241 	add	sp, #4
+                           00009D   242 	C$shop.c$82$1_0$231	= .
+                                    243 	.globl	C$shop.c$82$1_0$231
+                                    244 ;src/shop.c:82: set_sprite_data(1, buttonframe_TILE_COUNT, buttonframe_tiles); // blank tile in the end
+      00009D 11r00r00         [12]  245 	ld	de, #_buttonframe_tiles
+      0000A0 D5               [16]  246 	push	de
+      0000A1 3E 04            [ 8]  247 	ld	a, #0x04
+      0000A3 F5               [16]  248 	push	af
+      0000A4 33               [ 8]  249 	inc	sp
+      0000A5 3E 01            [ 8]  250 	ld	a, #0x01
+      0000A7 F5               [16]  251 	push	af
+      0000A8 33               [ 8]  252 	inc	sp
+      0000A9 CDr00r00         [24]  253 	call	_set_sprite_data
+      0000AC E8 04            [16]  254 	add	sp, #4
+                                    255 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
+      0000AE 21r32r00         [12]  256 	ld	hl, #(_shadow_OAM + 50)
+      0000B1 36 04            [12]  257 	ld	(hl), #0x04
+                                    258 ;src/shop.c:84: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, 24, 40);
+                                    259 ;/usr/local/opt/gbdk/include/gb/metasprites.h:151: __current_metasprite = metasprite;
+      0000B3 21r00r00         [12]  260 	ld	hl, #___current_metasprite
+      0000B6 36rD2            [12]  261 	ld	(hl), #<(_metasprite_buttonframe)
+      0000B8 23               [ 8]  262 	inc	hl
+      0000B9 36s00            [12]  263 	ld	(hl), #>(_metasprite_buttonframe)
+                                    264 ;/usr/local/opt/gbdk/include/gb/metasprites.h:152: __current_base_tile = base_tile;
+      0000BB 21r00r00         [12]  265 	ld	hl, #___current_base_tile
+      0000BE 36 00            [12]  266 	ld	(hl), #0x00
+                                    267 ;/usr/local/opt/gbdk/include/gb/metasprites.h:153: __current_base_prop = base_prop;
+      0000C0 21r00r00         [12]  268 	ld	hl, #___current_base_prop
+      0000C3 36 00            [12]  269 	ld	(hl), #0x00
+                                    270 ;/usr/local/opt/gbdk/include/gb/metasprites.h:154: return __move_metasprite(base_sprite, (y << 8) | (uint8_t)x);
+      0000C5 11 18 28         [12]  271 	ld	de, #0x2818
+      0000C8 AF               [ 4]  272 	xor	a, a
+      0000C9 CDr00r00         [24]  273 	call	___move_metasprite
+                           0000CC   274 	C$shop.c$86$1_0$231	= .
+                                    275 	.globl	C$shop.c$86$1_0$231
+                                    276 ;src/shop.c:86: update_menu = TRUE; // always update the menu the first time the player enters the shop
+      0000CC 21r00r00         [12]  277 	ld	hl, #_update_menu
+      0000CF 36 01            [12]  278 	ld	(hl), #0x01
+                           0000D1   279 	C$shop.c$87$1_0$231	= .
+                                    280 	.globl	C$shop.c$87$1_0$231
+                                    281 ;src/shop.c:87: }
+                           0000D1   282 	C$shop.c$87$1_0$231	= .
+                                    283 	.globl	C$shop.c$87$1_0$231
+                           0000D1   284 	XG$init_shop$0$0	= .
+                                    285 	.globl	XG$init_shop$0$0
+      0000D1 C9               [16]  286 	ret
+                           0000D2   287 G$metasprite_buttonframe$0_0$0 == .
+      0000D2                        288 _metasprite_buttonframe:
+      0000D2 10                     289 	.db #0x10	;  16
+      0000D3 08                     290 	.db #0x08	;  8
+      0000D4 01                     291 	.db #0x01	; 1
+      0000D5 00                     292 	.db #0x00	; 0
+      0000D6 00                     293 	.db #0x00	;  0
+      0000D7 08                     294 	.db #0x08	;  8
+      0000D8 02                     295 	.db #0x02	; 2
+      0000D9 00                     296 	.db #0x00	; 0
+      0000DA 00                     297 	.db #0x00	;  0
+      0000DB 08                     298 	.db #0x08	;  8
+      0000DC 02                     299 	.db #0x02	; 2
+      0000DD 00                     300 	.db #0x00	; 0
+      0000DE 00                     301 	.db #0x00	;  0
+      0000DF 08                     302 	.db #0x08	;  8
+      0000E0 01                     303 	.db #0x01	; 1
+      0000E1 20                     304 	.db #0x20	; 32
+      0000E2 08                     305 	.db #0x08	;  8
+      0000E3 00                     306 	.db #0x00	;  0
+      0000E4 03                     307 	.db #0x03	; 3
+      0000E5 00                     308 	.db #0x00	; 0
+      0000E6 08                     309 	.db #0x08	;  8
+      0000E7 00                     310 	.db #0x00	;  0
+      0000E8 03                     311 	.db #0x03	; 3
+      0000E9 00                     312 	.db #0x00	; 0
+      0000EA 08                     313 	.db #0x08	;  8
+      0000EB 00                     314 	.db #0x00	;  0
+      0000EC 01                     315 	.db #0x01	; 1
+      0000ED 60                     316 	.db #0x60	; 96
+      0000EE 00                     317 	.db #0x00	;  0
+      0000EF F8                     318 	.db #0xf8	; -8
+      0000F0 02                     319 	.db #0x02	; 2
+      0000F1 40                     320 	.db #0x40	; 64
+      0000F2 00                     321 	.db #0x00	;  0
+      0000F3 F8                     322 	.db #0xf8	; -8
+      0000F4 02                     323 	.db #0x02	; 2
+      0000F5 40                     324 	.db #0x40	; 64
+      0000F6 00                     325 	.db #0x00	;  0
+      0000F7 F8                     326 	.db #0xf8	; -8
+      0000F8 01                     327 	.db #0x01	; 1
+      0000F9 40                     328 	.db #0x40	; 64
+      0000FA F8                     329 	.db #0xf8	; -8
+      0000FB 00                     330 	.db #0x00	;  0
+      0000FC 03                     331 	.db #0x03	; 3
+      0000FD 20                     332 	.db #0x20	; 32
+      0000FE F8                     333 	.db #0xf8	; -8
+      0000FF 00                     334 	.db #0x00	;  0
+      000100 03                     335 	.db #0x03	; 3
+      000101 20                     336 	.db #0x20	; 32
+      000102 80                     337 	.db #0x80	; -128
+      000103 00                     338 	.db #0x00	;  0
+      000104 00                     339 	.db #0x00	; 0
+      000105 00                     340 	.db #0x00	; 0
+                           000106   341 	G$init_shop_tiles_palettes$0$0	= .
+                                    342 	.globl	G$init_shop_tiles_palettes$0$0
+                           000106   343 	C$shop.c$89$1_0$239	= .
+                                    344 	.globl	C$shop.c$89$1_0$239
+                                    345 ;src/shop.c:89: void init_shop_tiles_palettes(void) {
+                                    346 ;	---------------------------------
+                                    347 ; Function init_shop_tiles_palettes
+                                    348 ; ---------------------------------
+      000106                        349 _init_shop_tiles_palettes::
+      000106 E8 E4            [16]  350 	add	sp, #-28
+                           000108   351 	C$shop.c$91$2_0$239	= .
+                                    352 	.globl	C$shop.c$91$2_0$239
+                                    353 ;src/shop.c:91: uint8_t x_coords[] = {3, 8, 13, 3, 8, 13};
+      000108 F8 00            [12]  354 	ldhl	sp,	#0
+      00010A 36 03            [12]  355 	ld	(hl), #0x03
+      00010C 23               [ 8]  356 	inc	hl
+      00010D 36 08            [12]  357 	ld	(hl), #0x08
+      00010F 23               [ 8]  358 	inc	hl
+      000110 36 0D            [12]  359 	ld	(hl), #0x0d
+      000112 23               [ 8]  360 	inc	hl
+      000113 36 03            [12]  361 	ld	(hl), #0x03
+      000115 23               [ 8]  362 	inc	hl
+      000116 36 08            [12]  363 	ld	(hl), #0x08
+      000118 23               [ 8]  364 	inc	hl
+      000119 36 0D            [12]  365 	ld	(hl), #0x0d
+                           00011B   366 	C$shop.c$92$2_0$239	= .
+                                    367 	.globl	C$shop.c$92$2_0$239
+                                    368 ;src/shop.c:92: uint8_t y_coords[] = {5, 5, 5, 10, 10, 10};
+      00011B 23               [ 8]  369 	inc	hl
+      00011C 36 05            [12]  370 	ld	(hl), #0x05
+      00011E 23               [ 8]  371 	inc	hl
+      00011F 36 05            [12]  372 	ld	(hl), #0x05
+      000121 23               [ 8]  373 	inc	hl
+      000122 36 05            [12]  374 	ld	(hl), #0x05
+      000124 23               [ 8]  375 	inc	hl
+      000125 36 0A            [12]  376 	ld	(hl), #0x0a
+      000127 23               [ 8]  377 	inc	hl
+      000128 36 0A            [12]  378 	ld	(hl), #0x0a
+      00012A 23               [ 8]  379 	inc	hl
+      00012B 36 0A            [12]  380 	ld	(hl), #0x0a
+                           00012D   381 	C$shop.c$94$1_0$239	= .
+                                    382 	.globl	C$shop.c$94$1_0$239
+                                    383 ;src/shop.c:94: VBK_REG = 1;
+      00012D 3E 01            [ 8]  384 	ld	a, #0x01
+      00012F E0r00            [12]  385 	ldh	(_VBK_REG + 0), a
+                           000131   386 	C$shop.c$96$5_0$243	= .
+                                    387 	.globl	C$shop.c$96$5_0$243
+                                    388 ;src/shop.c:96: for (uint8_t i = 0; i < 6; i++) {
+      000131 0E 00            [ 8]  389 	ld	c, #0x00
+      000133                        390 00107$:
+      000133 79               [ 4]  391 	ld	a, c
+      000134 D6 06            [ 8]  392 	sub	a, #0x06
+      000136 30 3E            [12]  393 	jr	NC, 00102$
+                           000138   394 	C$shop.c$98$1_0$239	= .
+                                    395 	.globl	C$shop.c$98$1_0$239
+                                    396 ;src/shop.c:98: for (uint8_t j = 0; j < 16; j++) {
+      000138 06 00            [ 8]  397 	ld	b, #0x00
+      00013A                        398 00104$:
+      00013A 78               [ 4]  399 	ld	a, b
+      00013B D6 10            [ 8]  400 	sub	a, #0x10
+      00013D 30 0F            [12]  401 	jr	NC, 00101$
+                           00013F   402 	C$shop.c$99$5_0$243	= .
+                                    403 	.globl	C$shop.c$99$5_0$243
+                                    404 ;src/shop.c:99: tileData[j]=i+2;    // first palette = 2, then inc up to 7
+      00013F 58               [ 4]  405 	ld	e, b
+      000140 16 00            [ 8]  406 	ld	d, #0x00
+      000142 21 0C 00         [12]  407 	ld	hl, #12
+      000145 39               [ 8]  408 	add	hl, sp
+      000146 19               [ 8]  409 	add	hl, de
+      000147 79               [ 4]  410 	ld	a, c
+      000148 C6 02            [ 8]  411 	add	a, #0x02
+      00014A 77               [ 8]  412 	ld	(hl), a
+                           00014B   413 	C$shop.c$98$4_0$242	= .
+                                    414 	.globl	C$shop.c$98$4_0$242
+                                    415 ;src/shop.c:98: for (uint8_t j = 0; j < 16; j++) {
+      00014B 04               [ 4]  416 	inc	b
+      00014C 18 EC            [12]  417 	jr	00104$
+      00014E                        418 00101$:
+                           00014E   419 	C$shop.c$101$3_0$241	= .
+                                    420 	.globl	C$shop.c$101$3_0$241
+                                    421 ;src/shop.c:101: set_win_tiles(x_coords[i], y_coords[i], 4, 4, tileData);
+      00014E 59               [ 4]  422 	ld	e, c
+      00014F 16 00            [ 8]  423 	ld	d, #0x00
+      000151 21 06 00         [12]  424 	ld	hl, #6
+      000154 39               [ 8]  425 	add	hl, sp
+      000155 19               [ 8]  426 	add	hl, de
+      000156 46               [ 8]  427 	ld	b, (hl)
+      000157 59               [ 4]  428 	ld	e, c
+      000158 16 00            [ 8]  429 	ld	d, #0x00
+      00015A 21 00 00         [12]  430 	ld	hl, #0
+      00015D 39               [ 8]  431 	add	hl, sp
+      00015E 19               [ 8]  432 	add	hl, de
+      00015F 5E               [ 8]  433 	ld	e, (hl)
+      000160 21 0C 00         [12]  434 	ld	hl, #12
+      000163 39               [ 8]  435 	add	hl, sp
+      000164 E5               [16]  436 	push	hl
+      000165 21 04 04         [12]  437 	ld	hl, #0x404
+      000168 E5               [16]  438 	push	hl
+      000169 C5               [16]  439 	push	bc
+      00016A 33               [ 8]  440 	inc	sp
+      00016B 7B               [ 4]  441 	ld	a, e
+      00016C F5               [16]  442 	push	af
+      00016D 33               [ 8]  443 	inc	sp
+      00016E CDr00r00         [24]  444 	call	_set_win_tiles
+      000171 E8 06            [16]  445 	add	sp, #6
+                           000173   446 	C$shop.c$96$2_0$240	= .
+                                    447 	.globl	C$shop.c$96$2_0$240
+                                    448 ;src/shop.c:96: for (uint8_t i = 0; i < 6; i++) {
+      000173 0C               [ 4]  449 	inc	c
+      000174 18 BD            [12]  450 	jr	00107$
+      000176                        451 00102$:
+                           000176   452 	C$shop.c$103$1_0$239	= .
+                                    453 	.globl	C$shop.c$103$1_0$239
+                                    454 ;src/shop.c:103: VBK_REG = 0;
+      000176 AF               [ 4]  455 	xor	a, a
+      000177 E0r00            [12]  456 	ldh	(_VBK_REG + 0), a
+                           000179   457 	C$shop.c$104$1_0$239	= .
+                                    458 	.globl	C$shop.c$104$1_0$239
+                                    459 ;src/shop.c:104: }
+      000179 E8 1C            [16]  460 	add	sp, #28
+                           00017B   461 	C$shop.c$104$1_0$239	= .
+                                    462 	.globl	C$shop.c$104$1_0$239
+                           00017B   463 	XG$init_shop_tiles_palettes$0$0	= .
+                                    464 	.globl	XG$init_shop_tiles_palettes$0$0
+      00017B C9               [16]  465 	ret
+                           00017C   466 	G$updateMetaSpritePosition$0$0	= .
+                                    467 	.globl	G$updateMetaSpritePosition$0$0
+                           00017C   468 	C$shop.c$106$1_0$245	= .
+                                    469 	.globl	C$shop.c$106$1_0$245
+                                    470 ;src/shop.c:106: void updateMetaSpritePosition(uint8_t currentSelection) {
+                                    471 ;	---------------------------------
+                                    472 ; Function updateMetaSpritePosition
+                                    473 ; ---------------------------------
+      00017C                        474 _updateMetaSpritePosition::
+      00017C E8 FD            [16]  475 	add	sp, #-3
+                           00017E   476 	C$shop.c$108$1_0$245	= .
+                                    477 	.globl	C$shop.c$108$1_0$245
+                                    478 ;src/shop.c:108: x = 24 + (40 * (currentSelection % 3));
+      00017E F8 00            [12]  479 	ldhl	sp,	#0
+      000180 22               [ 8]  480 	ld	(hl+), a
+      000181 01 03 00         [12]  481 	ld	bc, #0x0003
+      000184 70               [ 8]  482 	ld	(hl), b
+      000185 D1               [12]  483 	pop	de
+      000186 D5               [16]  484 	push	de
+      000187 CDr00r00         [24]  485 	call	__modsint
+      00018A 79               [ 4]  486 	ld	a, c
+      00018B 87               [ 4]  487 	add	a, a
+      00018C 87               [ 4]  488 	add	a, a
+      00018D 81               [ 4]  489 	add	a, c
+      00018E 87               [ 4]  490 	add	a, a
+      00018F 87               [ 4]  491 	add	a, a
+      000190 87               [ 4]  492 	add	a, a
+      000191 C6 18            [ 8]  493 	add	a, #0x18
+      000193 F8 02            [12]  494 	ldhl	sp,	#2
+      000195 77               [ 8]  495 	ld	(hl), a
+                           000196   496 	C$shop.c$109$3_0$245	= .
+                                    497 	.globl	C$shop.c$109$3_0$245
+                                    498 ;src/shop.c:109: y = 40 + (40 * (currentSelection / 3));
+      000196 01 03 00         [12]  499 	ld	bc, #0x0003
+      000199 D1               [12]  500 	pop	de
+      00019A D5               [16]  501 	push	de
+      00019B CDr00r00         [24]  502 	call	__divsint
+      00019E 79               [ 4]  503 	ld	a, c
+      00019F 87               [ 4]  504 	add	a, a
+      0001A0 87               [ 4]  505 	add	a, a
+      0001A1 81               [ 4]  506 	add	a, c
+      0001A2 87               [ 4]  507 	add	a, a
+      0001A3 87               [ 4]  508 	add	a, a
+      0001A4 87               [ 4]  509 	add	a, a
+      0001A5 C6 28            [ 8]  510 	add	a, #0x28
+      0001A7 57               [ 4]  511 	ld	d, a
+                                    512 ;src/shop.c:110: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
+                                    513 ;/usr/local/opt/gbdk/include/gb/metasprites.h:151: __current_metasprite = metasprite;
+      0001A8 21r00r00         [12]  514 	ld	hl, #___current_metasprite
+      0001AB 36rD2            [12]  515 	ld	(hl), #<(_metasprite_buttonframe)
+      0001AD 23               [ 8]  516 	inc	hl
+      0001AE 36s00            [12]  517 	ld	(hl), #>(_metasprite_buttonframe)
+                                    518 ;/usr/local/opt/gbdk/include/gb/metasprites.h:152: __current_base_tile = base_tile;
+      0001B0 21r00r00         [12]  519 	ld	hl, #___current_base_tile
+      0001B3 36 00            [12]  520 	ld	(hl), #0x00
+                                    521 ;/usr/local/opt/gbdk/include/gb/metasprites.h:153: __current_base_prop = base_prop;
+      0001B5 21r00r00         [12]  522 	ld	hl, #___current_base_prop
+                                    523 ;/usr/local/opt/gbdk/include/gb/metasprites.h:154: return __move_metasprite(base_sprite, (y << 8) | (uint8_t)x);
+      0001B8 36 00            [12]  524 	ld	(hl), #0x00
+      0001BA 5E               [ 8]  525 	ld	e, (hl)
+      0001BB F8 02            [12]  526 	ldhl	sp,	#2
+      0001BD 7E               [ 8]  527 	ld	a, (hl)
+      0001BE B3               [ 4]  528 	or	a, e
+      0001BF 5F               [ 4]  529 	ld	e, a
+      0001C0 AF               [ 4]  530 	xor	a, a
+      0001C1 CDr00r00         [24]  531 	call	___move_metasprite
+                           0001C4   532 	C$shop.c$110$3_0$245	= .
+                                    533 	.globl	C$shop.c$110$3_0$245
+                                    534 ;src/shop.c:110: move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
+                           0001C4   535 	C$shop.c$111$3_0$245	= .
+                                    536 	.globl	C$shop.c$111$3_0$245
+                                    537 ;src/shop.c:111: }
+      0001C4 E8 03            [16]  538 	add	sp, #3
+                           0001C6   539 	C$shop.c$111$3_0$245	= .
+                                    540 	.globl	C$shop.c$111$3_0$245
+                           0001C6   541 	XG$updateMetaSpritePosition$0$0	= .
+                                    542 	.globl	XG$updateMetaSpritePosition$0$0
+      0001C6 C9               [16]  543 	ret
+                           0001C7   544 	G$update_upgrade_tick$0$0	= .
+                                    545 	.globl	G$update_upgrade_tick$0$0
+                           0001C7   546 	C$shop.c$113$3_0$250	= .
+                                    547 	.globl	C$shop.c$113$3_0$250
+                                    548 ;src/shop.c:113: void update_upgrade_tick(MenuState state) {
+                                    549 ;	---------------------------------
+                                    550 ; Function update_upgrade_tick
+                                    551 ; ---------------------------------
+      0001C7                        552 _update_upgrade_tick::
+      0001C7 E8 FD            [16]  553 	add	sp, #-3
+                           0001C9   554 	C$shop.c$116$1_0$250	= .
+                                    555 	.globl	C$shop.c$116$1_0$250
+                                    556 ;src/shop.c:116: if (state != MAIN_MENU) {
+      0001C9 4F               [ 4]  557 	ld	c, a
+      0001CA D6 06            [ 8]  558 	sub	a, #0x06
+      0001CC 28 45            [12]  559 	jr	Z, 00102$
+                           0001CE   560 	C$shop.c$117$2_0$251	= .
+                                    561 	.globl	C$shop.c$117$2_0$251
+                                    562 ;src/shop.c:117: player_attributes *currentAttributes = attributes_numbers[state];
+      0001CE 11r00r00         [12]  563 	ld	de, #_attributes_numbers+0
+      0001D1 69               [ 4]  564 	ld	l, c
+                                    565 ;	spillPairReg hl
+                                    566 ;	spillPairReg hl
+      0001D2 26 00            [ 8]  567 	ld	h, #0x00
+                                    568 ;	spillPairReg hl
+                                    569 ;	spillPairReg hl
+      0001D4 29               [ 8]  570 	add	hl, hl
+      0001D5 19               [ 8]  571 	add	hl, de
+      0001D6 2A               [ 8]  572 	ld	a, (hl+)
+      0001D7 4F               [ 4]  573 	ld	c, a
+      0001D8 46               [ 8]  574 	ld	b, (hl)
+                           0001D9   575 	C$shop.c$118$2_0$251	= .
+                                    576 	.globl	C$shop.c$118$2_0$251
+                                    577 ;src/shop.c:118: uint8_t x = 8 + 24 + 24 - 2 + (40 * (currentAttributes->upgrade_level % 3));
+      0001D9 21 14 00         [12]  578 	ld	hl, #0x0014
+      0001DC 09               [ 8]  579 	add	hl, bc
+      0001DD 7E               [ 8]  580 	ld	a, (hl)
+      0001DE F8 00            [12]  581 	ldhl	sp,	#0
+      0001E0 22               [ 8]  582 	ld	(hl+), a
+      0001E1 01 03 00         [12]  583 	ld	bc, #0x0003
+      0001E4 70               [ 8]  584 	ld	(hl), b
+      0001E5 D1               [12]  585 	pop	de
+      0001E6 D5               [16]  586 	push	de
+      0001E7 CDr00r00         [24]  587 	call	__modsint
+      0001EA 79               [ 4]  588 	ld	a, c
+      0001EB 87               [ 4]  589 	add	a, a
+      0001EC 87               [ 4]  590 	add	a, a
+      0001ED 81               [ 4]  591 	add	a, c
+      0001EE 87               [ 4]  592 	add	a, a
+      0001EF 87               [ 4]  593 	add	a, a
+      0001F0 87               [ 4]  594 	add	a, a
+      0001F1 C6 36            [ 8]  595 	add	a, #0x36
+      0001F3 F8 02            [12]  596 	ldhl	sp,	#2
+      0001F5 77               [ 8]  597 	ld	(hl), a
+                           0001F6   598 	C$shop.c$119$1_0$250	= .
+                                    599 	.globl	C$shop.c$119$1_0$250
+                                    600 ;src/shop.c:119: uint8_t y = 16 + 24 + 40 - 2 + (40 * (currentAttributes->upgrade_level / 3));
+      0001F6 01 03 00         [12]  601 	ld	bc, #0x0003
+      0001F9 D1               [12]  602 	pop	de
+      0001FA D5               [16]  603 	push	de
+      0001FB CDr00r00         [24]  604 	call	__divsint
+      0001FE 79               [ 4]  605 	ld	a, c
+      0001FF 87               [ 4]  606 	add	a, a
+      000200 87               [ 4]  607 	add	a, a
+      000201 81               [ 4]  608 	add	a, c
+      000202 87               [ 4]  609 	add	a, a
+      000203 87               [ 4]  610 	add	a, a
+      000204 87               [ 4]  611 	add	a, a
+      000205 C6 4E            [ 8]  612 	add	a, #0x4e
+                                    613 ;/usr/local/opt/gbdk/include/gb/gb.h:1877: OAM_item_t * itm = &shadow_OAM[nb];
+                                    614 ;/usr/local/opt/gbdk/include/gb/gb.h:1878: itm->y=y, itm->x=x;
+      000207 5F               [ 4]  615 	ld	e, a
+      000208 01r30r00         [12]  616 	ld	bc, #_shadow_OAM+48
+      00020B 02               [ 8]  617 	ld	(bc), a
+      00020C 03               [ 8]  618 	inc	bc
+      00020D F8 02            [12]  619 	ldhl	sp,	#2
+      00020F 7E               [ 8]  620 	ld	a, (hl)
+      000210 02               [ 8]  621 	ld	(bc), a
+                           000211   622 	C$shop.c$120$1_0$250	= .
+                                    623 	.globl	C$shop.c$120$1_0$250
+                                    624 ;src/shop.c:120: move_sprite(UPGRADE_TICK_TILE, x, y);
+      000211 18 05            [12]  625 	jr	00106$
+      000213                        626 00102$:
+                                    627 ;/usr/local/opt/gbdk/include/gb/gb.h:1905: shadow_OAM[nb].y = 0;
+      000213 21r30r00         [12]  628 	ld	hl, #(_shadow_OAM + 48)
+      000216 36 00            [12]  629 	ld	(hl), #0x00
+                           000218   630 	C$shop.c$122$1_0$250	= .
+                                    631 	.globl	C$shop.c$122$1_0$250
+                                    632 ;src/shop.c:122: hide_sprite(UPGRADE_TICK_TILE);  // Hide the sprite if not in a specific upgrade menu
+      000218                        633 00106$:
+                           000218   634 	C$shop.c$124$1_0$250	= .
+                                    635 	.globl	C$shop.c$124$1_0$250
+                                    636 ;src/shop.c:124: }
+      000218 E8 03            [16]  637 	add	sp, #3
+                           00021A   638 	C$shop.c$124$1_0$250	= .
+                                    639 	.globl	C$shop.c$124$1_0$250
+                           00021A   640 	XG$update_upgrade_tick$0$0	= .
+                                    641 	.globl	XG$update_upgrade_tick$0$0
+      00021A C9               [16]  642 	ret
+                           00021B   643 	G$displayMenu$0$0	= .
+                                    644 	.globl	G$displayMenu$0$0
+                           00021B   645 	C$shop.c$127$1_0$260	= .
+                                    646 	.globl	C$shop.c$127$1_0$260
+                                    647 ;src/shop.c:127: void displayMenu(Menu *menu) {
+                                    648 ;	---------------------------------
+                                    649 ; Function displayMenu
+                                    650 ; ---------------------------------
+      00021B                        651 _displayMenu::
+                           00021B   652 	C$shop.c$128$1_0$260	= .
+                                    653 	.globl	C$shop.c$128$1_0$260
+                                    654 ;src/shop.c:128: updateMetaSpritePosition(menu->currentSelection);
+      00021B 1A               [ 8]  655 	ld	a, (de)
+      00021C 4F               [ 4]  656 	ld	c, a
+                           00021D   657 	C$shop.c$129$1_0$260	= .
+                                    658 	.globl	C$shop.c$129$1_0$260
+                                    659 ;src/shop.c:129: }
+                           00021D   660 	C$shop.c$129$1_0$260	= .
+                                    661 	.globl	C$shop.c$129$1_0$260
+                           00021D   662 	XG$displayMenu$0$0	= .
+                                    663 	.globl	XG$displayMenu$0$0
+      00021D C3r7Cr01         [16]  664 	jp	_updateMetaSpritePosition
+                           000220   665 	G$load_shop_single_tile$0$0	= .
+                                    666 	.globl	G$load_shop_single_tile$0$0
+                           000220   667 	C$shop.c$131$1_0$262	= .
+                                    668 	.globl	C$shop.c$131$1_0$262
+                                    669 ;src/shop.c:131: void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
+                                    670 ;	---------------------------------
+                                    671 ; Function load_shop_single_tile
+                                    672 ; ---------------------------------
+      000220                        673 _load_shop_single_tile::
+      000220 E8 E8            [16]  674 	add	sp, #-24
+      000222 F8 16            [12]  675 	ldhl	sp,	#22
+      000224 73               [ 8]  676 	ld	(hl), e
+      000225 23               [ 8]  677 	inc	hl
+      000226 72               [ 8]  678 	ld	(hl), d
+      000227 2B               [ 8]  679 	dec	hl
+      000228 2B               [ 8]  680 	dec	hl
+      000229 77               [ 8]  681 	ld	(hl), a
+                           00022A   682 	C$shop.c$133$3_0$264	= .
+                                    683 	.globl	C$shop.c$133$3_0$264
+                                    684 ;src/shop.c:133: for (uint8_t i = 0; i < 16; i++){
+      00022A F8 00            [12]  685 	ldhl	sp,	#0
+      00022C 4D               [ 4]  686 	ld	c, l
+      00022D 44               [ 4]  687 	ld	b, h
+      00022E F8 14            [12]  688 	ldhl	sp,	#20
+      000230 36 00            [12]  689 	ld	(hl), #0x00
+      000232                        690 00120$:
+                           000232   691 	C$shop.c$134$1_0$262	= .
+                                    692 	.globl	C$shop.c$134$1_0$262
+                                    693 ;src/shop.c:134: array[i] = tilestart+i;
+      000232 F8 16            [12]  694 	ldhl	sp,	#22
+      000234 7E               [ 8]  695 	ld	a, (hl)
+      000235 F8 10            [12]  696 	ldhl	sp,	#16
+      000237 77               [ 8]  697 	ld	(hl), a
+                           000238   698 	C$shop.c$133$2_0$263	= .
+                                    699 	.globl	C$shop.c$133$2_0$263
+                                    700 ;src/shop.c:133: for (uint8_t i = 0; i < 16; i++){
+      000238 F8 14            [12]  701 	ldhl	sp,	#20
+      00023A 7E               [ 8]  702 	ld	a, (hl)
+      00023B D6 10            [ 8]  703 	sub	a, #0x10
+      00023D 30 10            [12]  704 	jr	NC, 00101$
+                           00023F   705 	C$shop.c$134$3_0$264	= .
+                                    706 	.globl	C$shop.c$134$3_0$264
+                                    707 ;src/shop.c:134: array[i] = tilestart+i;
+      00023F 6E               [ 8]  708 	ld	l, (hl)
+      000240 26 00            [ 8]  709 	ld	h, #0x00
+      000242 09               [ 8]  710 	add	hl, bc
+      000243 5D               [ 4]  711 	ld	e, l
+      000244 54               [ 4]  712 	ld	d, h
+      000245 F8 10            [12]  713 	ldhl	sp,	#16
+      000247 7E               [ 8]  714 	ld	a, (hl)
+      000248 F8 14            [12]  715 	ldhl	sp,	#20
+      00024A 86               [ 8]  716 	add	a, (hl)
+      00024B 12               [ 8]  717 	ld	(de), a
+                           00024C   718 	C$shop.c$133$2_0$263	= .
+                                    719 	.globl	C$shop.c$133$2_0$263
+                                    720 ;src/shop.c:133: for (uint8_t i = 0; i < 16; i++){
+      00024C 34               [12]  721 	inc	(hl)
+      00024D 18 E3            [12]  722 	jr	00120$
+      00024F                        723 00101$:
+                           00024F   724 	C$shop.c$136$1_0$262	= .
+                                    725 	.globl	C$shop.c$136$1_0$262
+                                    726 ;src/shop.c:136: set_win_data(tilestart, 16, &shoptiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
+      00024F F8 15            [12]  727 	ldhl	sp,	#21
+      000251 7E               [ 8]  728 	ld	a, (hl)
+      000252 F8 12            [12]  729 	ldhl	sp,	#18
+      000254 32               [ 8]  730 	ld	(hl-), a
+      000255 36 00            [12]  731 	ld	(hl), #0x00
+      000257 F8 1B            [12]  732 	ldhl	sp,	#27
+      000259 7E               [ 8]  733 	ld	a, (hl)
+      00025A F8 13            [12]  734 	ldhl	sp,	#19
+      00025C 22               [ 8]  735 	ld	(hl+), a
+      00025D AF               [ 4]  736 	xor	a, a
+      00025E 32               [ 8]  737 	ld	(hl-), a
+      00025F 2A               [ 8]  738 	ld	a, (hl+)
+      000260 5F               [ 4]  739 	ld	e, a
+      000261 56               [ 8]  740 	ld	d, (hl)
+      000262 6B               [ 4]  741 	ld	l, e
+      000263 62               [ 4]  742 	ld	h, d
+      000264 29               [ 8]  743 	add	hl, hl
+      000265 19               [ 8]  744 	add	hl, de
+      000266 29               [ 8]  745 	add	hl, hl
+      000267 29               [ 8]  746 	add	hl, hl
+      000268 29               [ 8]  747 	add	hl, hl
+      000269 29               [ 8]  748 	add	hl, hl
+      00026A 29               [ 8]  749 	add	hl, hl
+      00026B 29               [ 8]  750 	add	hl, hl
+      00026C 29               [ 8]  751 	add	hl, hl
+      00026D 29               [ 8]  752 	add	hl, hl
+      00026E 29               [ 8]  753 	add	hl, hl
+      00026F E5               [16]  754 	push	hl
+      000270 7D               [ 4]  755 	ld	a, l
+      000271 F8 15            [12]  756 	ldhl	sp,	#21
+      000273 77               [ 8]  757 	ld	(hl), a
+      000274 E1               [12]  758 	pop	hl
+      000275 7C               [ 4]  759 	ld	a, h
+      000276 F8 14            [12]  760 	ldhl	sp,	#20
+      000278 32               [ 8]  761 	ld	(hl-), a
+      000279 2A               [ 8]  762 	ld	a, (hl+)
+      00027A 5F               [ 4]  763 	ld	e, a
+      00027B 56               [ 8]  764 	ld	d, (hl)
+      00027C F8 11            [12]  765 	ldhl	sp,	#17
+      00027E 2A               [ 8]  766 	ld	a,	(hl+)
+      00027F 66               [ 8]  767 	ld	h, (hl)
+      000280 6F               [ 4]  768 	ld	l, a
+      000281 19               [ 8]  769 	add	hl, de
+      000282 5D               [ 4]  770 	ld	e, l
+      000283 54               [ 4]  771 	ld	d, h
+      000284 21r00r00         [12]  772 	ld	hl, #_shoptiles_tiles
+      000287 19               [ 8]  773 	add	hl, de
+      000288 E5               [16]  774 	push	hl
+      000289 3E 10            [ 8]  775 	ld	a, #0x10
+      00028B F5               [16]  776 	push	af
+      00028C 33               [ 8]  777 	inc	sp
+      00028D F8 13            [12]  778 	ldhl	sp,	#19
+      00028F 7E               [ 8]  779 	ld	a, (hl)
+      000290 F5               [16]  780 	push	af
+      000291 33               [ 8]  781 	inc	sp
+      000292 CDr00r00         [24]  782 	call	_set_win_data
+      000295 E8 04            [16]  783 	add	sp, #4
+                           000297   784 	C$shop.c$137$1_0$262	= .
+                                    785 	.globl	C$shop.c$137$1_0$262
+                                    786 ;src/shop.c:137: if (position == 0) set_win_tiles(3, 5, 4, 4, array);
+      000297 F8 1A            [12]  787 	ldhl	sp,	#26
+      000299 7E               [ 8]  788 	ld	a, (hl)
+      00029A B7               [ 4]  789 	or	a, a
+      00029B 20 10            [12]  790 	jr	NZ, 00117$
+      00029D C5               [16]  791 	push	bc
+      00029E 21 04 04         [12]  792 	ld	hl, #0x404
+      0002A1 E5               [16]  793 	push	hl
+      0002A2 21 03 05         [12]  794 	ld	hl, #0x503
+      0002A5 E5               [16]  795 	push	hl
+      0002A6 CDr00r00         [24]  796 	call	_set_win_tiles
+      0002A9 E8 06            [16]  797 	add	sp, #6
+      0002AB 18 70            [12]  798 	jr	00122$
+      0002AD                        799 00117$:
+                           0002AD   800 	C$shop.c$138$1_0$262	= .
+                                    801 	.globl	C$shop.c$138$1_0$262
+                                    802 ;src/shop.c:138: else if (position == 1) set_win_tiles(8, 5, 4, 4, array);
+      0002AD F8 1A            [12]  803 	ldhl	sp,	#26
+      0002AF 7E               [ 8]  804 	ld	a, (hl)
+      0002B0 3D               [ 4]  805 	dec	a
+      0002B1 20 10            [12]  806 	jr	NZ, 00114$
+      0002B3 C5               [16]  807 	push	bc
+      0002B4 21 04 04         [12]  808 	ld	hl, #0x404
+      0002B7 E5               [16]  809 	push	hl
+      0002B8 21 08 05         [12]  810 	ld	hl, #0x508
+      0002BB E5               [16]  811 	push	hl
+      0002BC CDr00r00         [24]  812 	call	_set_win_tiles
+      0002BF E8 06            [16]  813 	add	sp, #6
+      0002C1 18 5A            [12]  814 	jr	00122$
+      0002C3                        815 00114$:
+                           0002C3   816 	C$shop.c$139$1_0$262	= .
+                                    817 	.globl	C$shop.c$139$1_0$262
+                                    818 ;src/shop.c:139: else if (position == 2) set_win_tiles(13, 5, 4, 4, array);
+      0002C3 F8 1A            [12]  819 	ldhl	sp,	#26
+      0002C5 7E               [ 8]  820 	ld	a, (hl)
+      0002C6 D6 02            [ 8]  821 	sub	a, #0x02
+      0002C8 20 10            [12]  822 	jr	NZ, 00111$
+      0002CA C5               [16]  823 	push	bc
+      0002CB 21 04 04         [12]  824 	ld	hl, #0x404
+      0002CE E5               [16]  825 	push	hl
+      0002CF 21 0D 05         [12]  826 	ld	hl, #0x50d
+      0002D2 E5               [16]  827 	push	hl
+      0002D3 CDr00r00         [24]  828 	call	_set_win_tiles
+      0002D6 E8 06            [16]  829 	add	sp, #6
+      0002D8 18 43            [12]  830 	jr	00122$
+      0002DA                        831 00111$:
+                           0002DA   832 	C$shop.c$140$1_0$262	= .
+                                    833 	.globl	C$shop.c$140$1_0$262
+                                    834 ;src/shop.c:140: else if (position == 3) set_win_tiles(3, 10, 4, 4, array);
+      0002DA F8 1A            [12]  835 	ldhl	sp,	#26
+      0002DC 7E               [ 8]  836 	ld	a, (hl)
+      0002DD D6 03            [ 8]  837 	sub	a, #0x03
+      0002DF 20 10            [12]  838 	jr	NZ, 00108$
+      0002E1 C5               [16]  839 	push	bc
+      0002E2 21 04 04         [12]  840 	ld	hl, #0x404
+      0002E5 E5               [16]  841 	push	hl
+      0002E6 21 03 0A         [12]  842 	ld	hl, #0xa03
+      0002E9 E5               [16]  843 	push	hl
+      0002EA CDr00r00         [24]  844 	call	_set_win_tiles
+      0002ED E8 06            [16]  845 	add	sp, #6
+      0002EF 18 2C            [12]  846 	jr	00122$
+      0002F1                        847 00108$:
+                           0002F1   848 	C$shop.c$141$1_0$262	= .
+                                    849 	.globl	C$shop.c$141$1_0$262
+                                    850 ;src/shop.c:141: else if (position == 4) set_win_tiles(8, 10, 4, 4, array);
+      0002F1 F8 1A            [12]  851 	ldhl	sp,	#26
+      0002F3 7E               [ 8]  852 	ld	a, (hl)
+      0002F4 D6 04            [ 8]  853 	sub	a, #0x04
+      0002F6 20 10            [12]  854 	jr	NZ, 00105$
+      0002F8 C5               [16]  855 	push	bc
+      0002F9 21 04 04         [12]  856 	ld	hl, #0x404
+      0002FC E5               [16]  857 	push	hl
+      0002FD 21 08 0A         [12]  858 	ld	hl, #0xa08
+      000300 E5               [16]  859 	push	hl
+      000301 CDr00r00         [24]  860 	call	_set_win_tiles
+      000304 E8 06            [16]  861 	add	sp, #6
+      000306 18 15            [12]  862 	jr	00122$
+      000308                        863 00105$:
+                           000308   864 	C$shop.c$142$1_0$262	= .
+                                    865 	.globl	C$shop.c$142$1_0$262
+                                    866 ;src/shop.c:142: else if (position == 5) set_win_tiles(13, 10, 4, 4, array);
+      000308 F8 1A            [12]  867 	ldhl	sp,	#26
+      00030A 7E               [ 8]  868 	ld	a, (hl)
+      00030B D6 05            [ 8]  869 	sub	a, #0x05
+      00030D 20 0E            [12]  870 	jr	NZ, 00122$
+      00030F C5               [16]  871 	push	bc
+      000310 21 04 04         [12]  872 	ld	hl, #0x404
+      000313 E5               [16]  873 	push	hl
+      000314 21 0D 0A         [12]  874 	ld	hl, #0xa0d
+      000317 E5               [16]  875 	push	hl
+      000318 CDr00r00         [24]  876 	call	_set_win_tiles
+      00031B E8 06            [16]  877 	add	sp, #6
+      00031D                        878 00122$:
+                           00031D   879 	C$shop.c$143$1_0$262	= .
+                                    880 	.globl	C$shop.c$143$1_0$262
+                                    881 ;src/shop.c:143: }
+      00031D E8 18            [16]  882 	add	sp, #24
+      00031F E1               [12]  883 	pop	hl
+      000320 F1               [12]  884 	pop	af
+      000321 E9               [ 4]  885 	jp	(hl)
+                           000322   886 	G$load_sub_shop_tiles$0$0	= .
+                                    887 	.globl	G$load_sub_shop_tiles$0$0
+                           000322   888 	C$shop.c$145$1_0$267	= .
+                                    889 	.globl	C$shop.c$145$1_0$267
+                                    890 ;src/shop.c:145: void load_sub_shop_tiles(void) {
+                                    891 ;	---------------------------------
+                                    892 ; Function load_sub_shop_tiles
+                                    893 ; ---------------------------------
+      000322                        894 _load_sub_shop_tiles::
+                           000322   895 	C$shop.c$146$2_0$267	= .
+                                    896 	.globl	C$shop.c$146$2_0$267
+                                    897 ;src/shop.c:146: for (uint8_t i = 0; i < 6; i++) {
+      000322 06 00            [ 8]  898 	ld	b, #0x00
+      000324                        899 00103$:
+      000324 78               [ 4]  900 	ld	a, b
+      000325 D6 06            [ 8]  901 	sub	a, #0x06
+      000327 D0               [20]  902 	ret	NC
+                           000328   903 	C$shop.c$147$3_0$268	= .
+                                    904 	.globl	C$shop.c$147$3_0$268
+                                    905 ;src/shop.c:147: load_shop_single_tile(SHOP_TILES_START + 16 * i, i, i, currentState);
+      000328 68               [ 4]  906 	ld	l, b
+                                    907 ;	spillPairReg hl
+                                    908 ;	spillPairReg hl
+      000329 26 00            [ 8]  909 	ld	h, #0x00
+                                    910 ;	spillPairReg hl
+                                    911 ;	spillPairReg hl
+      00032B 29               [ 8]  912 	add	hl, hl
+      00032C 29               [ 8]  913 	add	hl, hl
+      00032D 29               [ 8]  914 	add	hl, hl
+      00032E 29               [ 8]  915 	add	hl, hl
+      00032F 11 A0 00         [12]  916 	ld	de, #0x00a0
+      000332 19               [ 8]  917 	add	hl, de
+      000333 5D               [ 4]  918 	ld	e, l
+      000334 54               [ 4]  919 	ld	d, h
+      000335 C5               [16]  920 	push	bc
+      000336 FAr15r00         [16]  921 	ld	a, (#_currentState)
+      000339 F5               [16]  922 	push	af
+      00033A 33               [ 8]  923 	inc	sp
+      00033B C5               [16]  924 	push	bc
+      00033C 33               [ 8]  925 	inc	sp
+      00033D 78               [ 4]  926 	ld	a, b
+      00033E CDr20r02         [24]  927 	call	_load_shop_single_tile
+      000341 C1               [12]  928 	pop	bc
+                           000342   929 	C$shop.c$146$2_0$267	= .
+                                    930 	.globl	C$shop.c$146$2_0$267
+                                    931 ;src/shop.c:146: for (uint8_t i = 0; i < 6; i++) {
+      000342 04               [ 4]  932 	inc	b
+                           000343   933 	C$shop.c$149$2_0$267	= .
+                                    934 	.globl	C$shop.c$149$2_0$267
+                                    935 ;src/shop.c:149: }
+                           000343   936 	C$shop.c$149$2_0$267	= .
+                                    937 	.globl	C$shop.c$149$2_0$267
+                           000343   938 	XG$load_sub_shop_tiles$0$0	= .
+                                    939 	.globl	XG$load_sub_shop_tiles$0$0
+      000343 18 DF            [12]  940 	jr	00103$
+                           000345   941 	G$load_main_shop_tiles$0$0	= .
+                                    942 	.globl	G$load_main_shop_tiles$0$0
+                           000345   943 	C$shop.c$150$2_0$271	= .
+                                    944 	.globl	C$shop.c$150$2_0$271
+                                    945 ;src/shop.c:150: void load_main_shop_tiles(void) {
+                                    946 ;	---------------------------------
+                                    947 ; Function load_main_shop_tiles
+                                    948 ; ---------------------------------
+      000345                        949 _load_main_shop_tiles::
+      000345 3B               [ 8]  950 	dec	sp
+                           000346   951 	C$shop.c$151$3_0$272	= .
+                                    952 	.globl	C$shop.c$151$3_0$272
+                                    953 ;src/shop.c:151: for (uint8_t i = 0; i < 6; i++) {
+      000346 F8 00            [12]  954 	ldhl	sp,	#0
+      000348 36 00            [12]  955 	ld	(hl), #0x00
+      00034A                        956 00103$:
+      00034A F8 00            [12]  957 	ldhl	sp,	#0
+      00034C 7E               [ 8]  958 	ld	a, (hl)
+      00034D D6 06            [ 8]  959 	sub	a, #0x06
+      00034F 30 3B            [12]  960 	jr	NC, 00105$
+                           000351   961 	C$shop.c$152$3_0$272	= .
+                                    962 	.globl	C$shop.c$152$3_0$272
+                                    963 ;src/shop.c:152: load_shop_single_tile(SHOP_TILES_START + i * 16, attributes_numbers[i]->upgrade_level, i, i);
+      000351 4E               [ 8]  964 	ld	c, (hl)
+      000352 06 00            [ 8]  965 	ld	b, #0x00
+      000354 69               [ 4]  966 	ld	l, c
+      000355 60               [ 4]  967 	ld	h, b
+      000356 29               [ 8]  968 	add	hl, hl
+      000357 11r00r00         [12]  969 	ld	de, #_attributes_numbers
+      00035A 19               [ 8]  970 	add	hl, de
+      00035B 2A               [ 8]  971 	ld	a, (hl+)
+      00035C 66               [ 8]  972 	ld	h, (hl)
+                                    973 ;	spillPairReg hl
+      00035D 6F               [ 4]  974 	ld	l, a
+      00035E 11 14 00         [12]  975 	ld	de, #0x0014
+      000361 19               [ 8]  976 	add	hl, de
+      000362 5E               [ 8]  977 	ld	e, (hl)
+      000363 CB 21            [ 8]  978 	sla	c
+      000365 CB 10            [ 8]  979 	rl	b
+      000367 CB 21            [ 8]  980 	sla	c
+      000369 CB 10            [ 8]  981 	rl	b
+      00036B CB 21            [ 8]  982 	sla	c
+      00036D CB 10            [ 8]  983 	rl	b
+      00036F CB 21            [ 8]  984 	sla	c
+      000371 CB 10            [ 8]  985 	rl	b
+      000373 21 A0 00         [12]  986 	ld	hl, #0x00a0
+      000376 09               [ 8]  987 	add	hl, bc
+      000377 4D               [ 4]  988 	ld	c, l
+      000378 44               [ 4]  989 	ld	b, h
+      000379 F8 00            [12]  990 	ldhl	sp,	#0
+      00037B 7E               [ 8]  991 	ld	a, (hl)
+      00037C F5               [16]  992 	push	af
+      00037D 33               [ 8]  993 	inc	sp
+      00037E 7E               [ 8]  994 	ld	a, (hl)
+      00037F F5               [16]  995 	push	af
+      000380 33               [ 8]  996 	inc	sp
+      000381 7B               [ 4]  997 	ld	a, e
+      000382 59               [ 4]  998 	ld	e, c
+      000383 50               [ 4]  999 	ld	d, b
+      000384 CDr20r02         [24] 1000 	call	_load_shop_single_tile
+                           000387  1001 	C$shop.c$151$2_0$271	= .
+                                   1002 	.globl	C$shop.c$151$2_0$271
+                                   1003 ;src/shop.c:151: for (uint8_t i = 0; i < 6; i++) {
+      000387 F8 00            [12] 1004 	ldhl	sp,	#0
+      000389 34               [12] 1005 	inc	(hl)
+      00038A 18 BE            [12] 1006 	jr	00103$
+      00038C                       1007 00105$:
+                           00038C  1008 	C$shop.c$154$2_0$271	= .
+                                   1009 	.globl	C$shop.c$154$2_0$271
+                                   1010 ;src/shop.c:154: }
+      00038C 33               [ 8] 1011 	inc	sp
+                           00038D  1012 	C$shop.c$154$2_0$271	= .
+                                   1013 	.globl	C$shop.c$154$2_0$271
+                           00038D  1014 	XG$load_main_shop_tiles$0$0	= .
+                                   1015 	.globl	XG$load_main_shop_tiles$0$0
+      00038D C9               [16] 1016 	ret
+                           00038E  1017 	G$write_main_shop_text$0$0	= .
+                                   1018 	.globl	G$write_main_shop_text$0$0
+                           00038E  1019 	C$shop.c$156$2_0$274	= .
+                                   1020 	.globl	C$shop.c$156$2_0$274
+                                   1021 ;src/shop.c:156: void write_main_shop_text(void) {
+                                   1022 ;	---------------------------------
+                                   1023 ; Function write_main_shop_text
+                                   1024 ; ---------------------------------
+      00038E                       1025 _write_main_shop_text::
+      00038E E8 F6            [16] 1026 	add	sp, #-10
+                           000390  1027 	C$shop.c$159$1_0$274	= .
+                                   1028 	.globl	C$shop.c$159$1_0$274
+                                   1029 ;src/shop.c:159: itoa(player.money, money_string, 10);
+      000390 21r56r01         [12] 1030 	ld	hl, #(_player + 342)
+      000393 2A               [ 8] 1031 	ld	a, (hl+)
+      000394 4F               [ 4] 1032 	ld	c, a
+      000395 46               [ 8] 1033 	ld	b, (hl)
+      000396 3E 0A            [ 8] 1034 	ld	a, #0x0a
+      000398 F5               [16] 1035 	push	af
+      000399 33               [ 8] 1036 	inc	sp
+      00039A 21 01 00         [12] 1037 	ld	hl, #1
+      00039D 39               [ 8] 1038 	add	hl, sp
+      00039E E5               [16] 1039 	push	hl
+      00039F C5               [16] 1040 	push	bc
+      0003A0 CDr00r00         [24] 1041 	call	_itoa
+      0003A3 E8 05            [16] 1042 	add	sp, #5
+                           0003A5  1043 	C$shop.c$161$1_0$274	= .
+                                   1044 	.globl	C$shop.c$161$1_0$274
+                                   1045 ;src/shop.c:161: draw_text(3, 2, "Upgrade Store", 14, TRUE, 0);
+      0003A5 AF               [ 4] 1046 	xor	a, a
+      0003A6 67               [ 4] 1047 	ld	h, a
+      0003A7 2E 01            [ 8] 1048 	ld	l, #0x01
+      0003A9 E5               [16] 1049 	push	hl
+      0003AA 3E 0E            [ 8] 1050 	ld	a, #0x0e
+      0003AC F5               [16] 1051 	push	af
+      0003AD 33               [ 8] 1052 	inc	sp
+      0003AE 11r22r04         [12] 1053 	ld	de, #___str_0
+      0003B1 D5               [16] 1054 	push	de
+      0003B2 1E 02            [ 8] 1055 	ld	e, #0x02
+      0003B4 3E 03            [ 8] 1056 	ld	a, #0x03
+      0003B6 CDr00r00         [24] 1057 	call	_draw_text
+                           0003B9  1058 	C$shop.c$163$1_0$274	= .
+                                   1059 	.globl	C$shop.c$163$1_0$274
+                                   1060 ;src/shop.c:163: draw_text(3, 3, attributes_numbers[currentMenu->currentSelection]->attribute_name, 14, TRUE, 0);
+      0003B9 01r00r00         [12] 1061 	ld	bc, #_attributes_numbers+0
+      0003BC 21r16r00         [12] 1062 	ld	hl, #_currentMenu
+      0003BF 6E               [ 8] 1063 	ld	l, (hl)
+                                   1064 ;	spillPairReg hl
+                                   1065 ;	spillPairReg hl
+      0003C0 FAr17r00         [16] 1066 	ld	a, (_currentMenu + 1)
+      0003C3 67               [ 4] 1067 	ld	h, a
+                                   1068 ;	spillPairReg hl
+                                   1069 ;	spillPairReg hl
+      0003C4 6E               [ 8] 1070 	ld	l, (hl)
+                                   1071 ;	spillPairReg hl
+      0003C5 26 00            [ 8] 1072 	ld	h, #0x00
+                                   1073 ;	spillPairReg hl
+                                   1074 ;	spillPairReg hl
+      0003C7 29               [ 8] 1075 	add	hl, hl
+      0003C8 09               [ 8] 1076 	add	hl, bc
+      0003C9 2A               [ 8] 1077 	ld	a, (hl+)
+      0003CA 4F               [ 4] 1078 	ld	c, a
+      0003CB 46               [ 8] 1079 	ld	b, (hl)
+      0003CC 21 0C 00         [12] 1080 	ld	hl, #0x000c
+      0003CF 09               [ 8] 1081 	add	hl, bc
+      0003D0 2A               [ 8] 1082 	ld	a, (hl+)
+      0003D1 4F               [ 4] 1083 	ld	c, a
+      0003D2 46               [ 8] 1084 	ld	b, (hl)
+      0003D3 AF               [ 4] 1085 	xor	a, a
+      0003D4 67               [ 4] 1086 	ld	h, a
+      0003D5 2E 01            [ 8] 1087 	ld	l, #0x01
+      0003D7 E5               [16] 1088 	push	hl
+      0003D8 3E 0E            [ 8] 1089 	ld	a, #0x0e
+      0003DA F5               [16] 1090 	push	af
+      0003DB 33               [ 8] 1091 	inc	sp
+      0003DC C5               [16] 1092 	push	bc
+      0003DD 3E 03            [ 8] 1093 	ld	a,#0x03
+      0003DF 5F               [ 4] 1094 	ld	e,a
+      0003E0 CDr00r00         [24] 1095 	call	_draw_text
+                           0003E3  1096 	C$shop.c$166$1_0$274	= .
+                                   1097 	.globl	C$shop.c$166$1_0$274
+                                   1098 ;src/shop.c:166: draw_text(3, 15, "Money", 5, TRUE, 0);
+      0003E3 AF               [ 4] 1099 	xor	a, a
+      0003E4 67               [ 4] 1100 	ld	h, a
+      0003E5 2E 01            [ 8] 1101 	ld	l, #0x01
+      0003E7 E5               [16] 1102 	push	hl
+      0003E8 3E 05            [ 8] 1103 	ld	a, #0x05
+      0003EA F5               [16] 1104 	push	af
+      0003EB 33               [ 8] 1105 	inc	sp
+      0003EC 11r30r04         [12] 1106 	ld	de, #___str_1
+      0003EF D5               [16] 1107 	push	de
+      0003F0 1E 0F            [ 8] 1108 	ld	e, #0x0f
+      0003F2 3E 03            [ 8] 1109 	ld	a, #0x03
+      0003F4 CDr00r00         [24] 1110 	call	_draw_text
+                           0003F7  1111 	C$shop.c$167$1_0$274	= .
+                                   1112 	.globl	C$shop.c$167$1_0$274
+                                   1113 ;src/shop.c:167: draw_text(11, 15, money_string, 5, FALSE, 0);
+      0003F7 21 00 00         [12] 1114 	ld	hl, #0
+      0003FA 39               [ 8] 1115 	add	hl, sp
+      0003FB AF               [ 4] 1116 	xor	a, a
+      0003FC 0F               [ 4] 1117 	rrca
+      0003FD F5               [16] 1118 	push	af
+      0003FE AF               [ 4] 1119 	xor	a, a
+      0003FF 3E 05            [ 8] 1120 	ld	a, #0x05
+      000401 F5               [16] 1121 	push	af
+      000402 33               [ 8] 1122 	inc	sp
+      000403 E5               [16] 1123 	push	hl
+      000404 1E 0F            [ 8] 1124 	ld	e, #0x0f
+      000406 3E 0B            [ 8] 1125 	ld	a, #0x0b
+      000408 CDr00r00         [24] 1126 	call	_draw_text
+                           00040B  1127 	C$shop.c$168$1_0$274	= .
+                                   1128 	.globl	C$shop.c$168$1_0$274
+                                   1129 ;src/shop.c:168: draw_text(16, 15, "$", 1, TRUE, 0);
+      00040B AF               [ 4] 1130 	xor	a, a
+      00040C 67               [ 4] 1131 	ld	h, a
+      00040D 2E 01            [ 8] 1132 	ld	l, #0x01
+      00040F E5               [16] 1133 	push	hl
+      000410 3E 01            [ 8] 1134 	ld	a, #0x01
+      000412 F5               [16] 1135 	push	af
+      000413 33               [ 8] 1136 	inc	sp
+      000414 11r36r04         [12] 1137 	ld	de, #___str_2
+      000417 D5               [16] 1138 	push	de
+      000418 1E 0F            [ 8] 1139 	ld	e, #0x0f
+      00041A 3E 10            [ 8] 1140 	ld	a, #0x10
+      00041C CDr00r00         [24] 1141 	call	_draw_text
+                           00041F  1142 	C$shop.c$169$1_0$274	= .
+                                   1143 	.globl	C$shop.c$169$1_0$274
+                                   1144 ;src/shop.c:169: }
+      00041F E8 0A            [16] 1145 	add	sp, #10
+                           000421  1146 	C$shop.c$169$1_0$274	= .
+                                   1147 	.globl	C$shop.c$169$1_0$274
+                           000421  1148 	XG$write_main_shop_text$0$0	= .
+                                   1149 	.globl	XG$write_main_shop_text$0$0
+      000421 C9               [16] 1150 	ret
+                           000422  1151 Fshop$__str_0$0_0$0 == .
+      000422                       1152 ___str_0:
+      000422 55 70 67 72 61 64 65  1153 	.ascii "Upgrade Store"
+             20 53 74 6F 72 65
+      00042F 00                    1154 	.db 0x00
+                           000430  1155 Fshop$__str_1$0_0$0 == .
+      000430                       1156 ___str_1:
+      000430 4D 6F 6E 65 79        1157 	.ascii "Money"
+      000435 00                    1158 	.db 0x00
+                           000436  1159 Fshop$__str_2$0_0$0 == .
+      000436                       1160 ___str_2:
+      000436 24                    1161 	.ascii "$"
+      000437 00                    1162 	.db 0x00
+                           000438  1163 	G$write_sub_shop_text$0$0	= .
+                                   1164 	.globl	G$write_sub_shop_text$0$0
+                           000438  1165 	C$shop.c$171$1_0$276	= .
+                                   1166 	.globl	C$shop.c$171$1_0$276
+                                   1167 ;src/shop.c:171: void write_sub_shop_text(void) {
+                                   1168 ;	---------------------------------
+                                   1169 ; Function write_sub_shop_text
+                                   1170 ; ---------------------------------
+      000438                       1171 _write_sub_shop_text::
+      000438 E8 E4            [16] 1172 	add	sp, #-28
+                           00043A  1173 	C$shop.c$176$1_0$276	= .
+                                   1174 	.globl	C$shop.c$176$1_0$276
+                                   1175 ;src/shop.c:176: itoa(attributes_numbers[currentState]->upgrade_value[currentMenu->currentSelection], upgrade_string, 10);
+      00043A 21r15r00         [12] 1176 	ld	hl, #_currentState
+      00043D 6E               [ 8] 1177 	ld	l, (hl)
+                                   1178 ;	spillPairReg hl
+                                   1179 ;	spillPairReg hl
+      00043E 26 00            [ 8] 1180 	ld	h, #0x00
+                                   1181 ;	spillPairReg hl
+                                   1182 ;	spillPairReg hl
+      000440 29               [ 8] 1183 	add	hl, hl
+      000441 11r00r00         [12] 1184 	ld	de, #_attributes_numbers
+      000444 19               [ 8] 1185 	add	hl, de
+      000445 2A               [ 8] 1186 	ld	a, (hl+)
+      000446 46               [ 8] 1187 	ld	b, (hl)
+      000447 C6 15            [ 8] 1188 	add	a, #0x15
+      000449 4F               [ 4] 1189 	ld	c, a
+      00044A 30 01            [12] 1190 	jr	NC, 00103$
+      00044C 04               [ 4] 1191 	inc	b
+      00044D                       1192 00103$:
+      00044D 21r16r00         [12] 1193 	ld	hl, #_currentMenu
+      000450 2A               [ 8] 1194 	ld	a, (hl+)
+      000451 5F               [ 4] 1195 	ld	e, a
+      000452 56               [ 8] 1196 	ld	d, (hl)
+      000453 1A               [ 8] 1197 	ld	a, (de)
+      000454 87               [ 4] 1198 	add	a, a
+      000455 6F               [ 4] 1199 	ld	l, a
+      000456 26 00            [ 8] 1200 	ld	h, #0x00
+      000458 09               [ 8] 1201 	add	hl, bc
+      000459 2A               [ 8] 1202 	ld	a, (hl+)
+      00045A 4F               [ 4] 1203 	ld	c, a
+      00045B 46               [ 8] 1204 	ld	b, (hl)
+      00045C 3E 0A            [ 8] 1205 	ld	a, #0x0a
+      00045E F5               [16] 1206 	push	af
+      00045F 33               [ 8] 1207 	inc	sp
+      000460 21 01 00         [12] 1208 	ld	hl, #1
+      000463 39               [ 8] 1209 	add	hl, sp
+      000464 E5               [16] 1210 	push	hl
+      000465 C5               [16] 1211 	push	bc
+      000466 CDr00r00         [24] 1212 	call	_itoa
+      000469 E8 05            [16] 1213 	add	sp, #5
+                           00046B  1214 	C$shop.c$177$1_0$276	= .
+                                   1215 	.globl	C$shop.c$177$1_0$276
+                                   1216 ;src/shop.c:177: itoa(attributes_numbers[currentState]->upgrade_cost[currentMenu->currentSelection], cost_string, 10);
+      00046B 21r15r00         [12] 1217 	ld	hl, #_currentState
+      00046E 6E               [ 8] 1218 	ld	l, (hl)
+                                   1219 ;	spillPairReg hl
+                                   1220 ;	spillPairReg hl
+      00046F 26 00            [ 8] 1221 	ld	h, #0x00
+                                   1222 ;	spillPairReg hl
+                                   1223 ;	spillPairReg hl
+      000471 29               [ 8] 1224 	add	hl, hl
+      000472 11r00r00         [12] 1225 	ld	de, #_attributes_numbers
+      000475 19               [ 8] 1226 	add	hl, de
+      000476 2A               [ 8] 1227 	ld	a, (hl+)
+      000477 46               [ 8] 1228 	ld	b, (hl)
+      000478 C6 21            [ 8] 1229 	add	a, #0x21
+      00047A 4F               [ 4] 1230 	ld	c, a
+      00047B 30 01            [12] 1231 	jr	NC, 00104$
+      00047D 04               [ 4] 1232 	inc	b
+      00047E                       1233 00104$:
+      00047E 21r16r00         [12] 1234 	ld	hl, #_currentMenu
+      000481 2A               [ 8] 1235 	ld	a, (hl+)
+      000482 5F               [ 4] 1236 	ld	e, a
+      000483 56               [ 8] 1237 	ld	d, (hl)
+      000484 1A               [ 8] 1238 	ld	a, (de)
+      000485 87               [ 4] 1239 	add	a, a
+      000486 6F               [ 4] 1240 	ld	l, a
+      000487 26 00            [ 8] 1241 	ld	h, #0x00
+      000489 09               [ 8] 1242 	add	hl, bc
+      00048A 2A               [ 8] 1243 	ld	a, (hl+)
+      00048B 4F               [ 4] 1244 	ld	c, a
+      00048C 46               [ 8] 1245 	ld	b, (hl)
+      00048D 3E 0A            [ 8] 1246 	ld	a, #0x0a
+      00048F F5               [16] 1247 	push	af
+      000490 33               [ 8] 1248 	inc	sp
+      000491 21 09 00         [12] 1249 	ld	hl, #9
+      000494 39               [ 8] 1250 	add	hl, sp
+      000495 E5               [16] 1251 	push	hl
+      000496 C5               [16] 1252 	push	bc
+      000497 CDr00r00         [24] 1253 	call	_itoa
+      00049A E8 05            [16] 1254 	add	sp, #5
+                           00049C  1255 	C$shop.c$178$1_0$276	= .
+                                   1256 	.globl	C$shop.c$178$1_0$276
+                                   1257 ;src/shop.c:178: itoa(player.money, money_string, 10);
+      00049C 21r56r01         [12] 1258 	ld	hl, #(_player + 342)
+      00049F 2A               [ 8] 1259 	ld	a, (hl+)
+      0004A0 4F               [ 4] 1260 	ld	c, a
+      0004A1 46               [ 8] 1261 	ld	b, (hl)
+      0004A2 3E 0A            [ 8] 1262 	ld	a, #0x0a
+      0004A4 F5               [16] 1263 	push	af
+      0004A5 33               [ 8] 1264 	inc	sp
+      0004A6 21 13 00         [12] 1265 	ld	hl, #19
+      0004A9 39               [ 8] 1266 	add	hl, sp
+      0004AA E5               [16] 1267 	push	hl
+      0004AB C5               [16] 1268 	push	bc
+      0004AC CDr00r00         [24] 1269 	call	_itoa
+      0004AF E8 05            [16] 1270 	add	sp, #5
+                           0004B1  1271 	C$shop.c$179$1_0$276	= .
+                                   1272 	.globl	C$shop.c$179$1_0$276
+                                   1273 ;src/shop.c:179: strcat(upgrade_string, attributes_numbers[currentState]->attribute_unit);
+      0004B1 21r15r00         [12] 1274 	ld	hl, #_currentState
+      0004B4 6E               [ 8] 1275 	ld	l, (hl)
+                                   1276 ;	spillPairReg hl
+                                   1277 ;	spillPairReg hl
+      0004B5 26 00            [ 8] 1278 	ld	h, #0x00
+                                   1279 ;	spillPairReg hl
+                                   1280 ;	spillPairReg hl
+      0004B7 29               [ 8] 1281 	add	hl, hl
+      0004B8 11r00r00         [12] 1282 	ld	de, #_attributes_numbers
+      0004BB 19               [ 8] 1283 	add	hl, de
+      0004BC 2A               [ 8] 1284 	ld	a, (hl+)
+      0004BD 4F               [ 4] 1285 	ld	c, a
+      0004BE 46               [ 8] 1286 	ld	b, (hl)
+      0004BF 21 0E 00         [12] 1287 	ld	hl, #0x000e
+      0004C2 09               [ 8] 1288 	add	hl, bc
+      0004C3 2A               [ 8] 1289 	ld	a, (hl+)
+      0004C4 4F               [ 4] 1290 	ld	c, a
+      0004C5 46               [ 8] 1291 	ld	b, (hl)
+      0004C6 21 00 00         [12] 1292 	ld	hl, #0
+      0004C9 39               [ 8] 1293 	add	hl, sp
+      0004CA 5D               [ 4] 1294 	ld	e, l
+      0004CB 54               [ 4] 1295 	ld	d, h
+      0004CC CDr00r00         [24] 1296 	call	_strcat
+                           0004CF  1297 	C$shop.c$182$1_0$276	= .
+                                   1298 	.globl	C$shop.c$182$1_0$276
+                                   1299 ;src/shop.c:182: draw_text(3, 2, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
+      0004CF 21r15r00         [12] 1300 	ld	hl, #_currentState
+      0004D2 6E               [ 8] 1301 	ld	l, (hl)
+                                   1302 ;	spillPairReg hl
+                                   1303 ;	spillPairReg hl
+      0004D3 26 00            [ 8] 1304 	ld	h, #0x00
+                                   1305 ;	spillPairReg hl
+                                   1306 ;	spillPairReg hl
+      0004D5 29               [ 8] 1307 	add	hl, hl
+      0004D6 11r00r00         [12] 1308 	ld	de, #_attributes_numbers
+      0004D9 19               [ 8] 1309 	add	hl, de
+      0004DA 2A               [ 8] 1310 	ld	a, (hl+)
+      0004DB 4F               [ 4] 1311 	ld	c, a
+      0004DC 46               [ 8] 1312 	ld	b, (hl)
+      0004DD 21r16r00         [12] 1313 	ld	hl, #_currentMenu
+      0004E0 2A               [ 8] 1314 	ld	a, (hl+)
+      0004E1 5F               [ 4] 1315 	ld	e, a
+      0004E2 56               [ 8] 1316 	ld	d, (hl)
+      0004E3 1A               [ 8] 1317 	ld	a, (de)
+      0004E4 87               [ 4] 1318 	add	a, a
+      0004E5 6F               [ 4] 1319 	ld	l, a
+      0004E6 26 00            [ 8] 1320 	ld	h, #0x00
+      0004E8 09               [ 8] 1321 	add	hl, bc
+      0004E9 2A               [ 8] 1322 	ld	a, (hl+)
+      0004EA 4F               [ 4] 1323 	ld	c, a
+      0004EB 46               [ 8] 1324 	ld	b, (hl)
+      0004EC AF               [ 4] 1325 	xor	a, a
+      0004ED 67               [ 4] 1326 	ld	h, a
+      0004EE 2E 01            [ 8] 1327 	ld	l, #0x01
+      0004F0 E5               [16] 1328 	push	hl
+      0004F1 3E 0E            [ 8] 1329 	ld	a, #0x0e
+      0004F3 F5               [16] 1330 	push	af
+      0004F4 33               [ 8] 1331 	inc	sp
+      0004F5 C5               [16] 1332 	push	bc
+      0004F6 1E 02            [ 8] 1333 	ld	e, #0x02
+      0004F8 3E 03            [ 8] 1334 	ld	a, #0x03
+      0004FA CDr00r00         [24] 1335 	call	_draw_text
+                           0004FD  1336 	C$shop.c$184$1_0$276	= .
+                                   1337 	.globl	C$shop.c$184$1_0$276
+                                   1338 ;src/shop.c:184: draw_text(3, 3, upgrade_string, 8, TRUE, 0);
+      0004FD 21 00 00         [12] 1339 	ld	hl, #0
+      000500 39               [ 8] 1340 	add	hl, sp
+      000501 AF               [ 4] 1341 	xor	a, a
+      000502 57               [ 4] 1342 	ld	d, a
+      000503 1E 01            [ 8] 1343 	ld	e, #0x01
+      000505 D5               [16] 1344 	push	de
+      000506 3E 08            [ 8] 1345 	ld	a, #0x08
+      000508 F5               [16] 1346 	push	af
+      000509 33               [ 8] 1347 	inc	sp
+      00050A E5               [16] 1348 	push	hl
+      00050B 3E 03            [ 8] 1349 	ld	a,#0x03
+      00050D 5F               [ 4] 1350 	ld	e,a
+      00050E CDr00r00         [24] 1351 	call	_draw_text
+                           000511  1352 	C$shop.c$185$1_0$276	= .
+                                   1353 	.globl	C$shop.c$185$1_0$276
+                                   1354 ;src/shop.c:185: draw_text(11, 3, cost_string, 5, FALSE, 0);
+      000511 21 08 00         [12] 1355 	ld	hl, #8
+      000514 39               [ 8] 1356 	add	hl, sp
+      000515 AF               [ 4] 1357 	xor	a, a
+      000516 0F               [ 4] 1358 	rrca
+      000517 F5               [16] 1359 	push	af
+      000518 AF               [ 4] 1360 	xor	a, a
+      000519 3E 05            [ 8] 1361 	ld	a, #0x05
+      00051B F5               [16] 1362 	push	af
+      00051C 33               [ 8] 1363 	inc	sp
+      00051D E5               [16] 1364 	push	hl
+      00051E 1E 03            [ 8] 1365 	ld	e, #0x03
+      000520 3E 0B            [ 8] 1366 	ld	a, #0x0b
+      000522 CDr00r00         [24] 1367 	call	_draw_text
+                           000525  1368 	C$shop.c$186$1_0$276	= .
+                                   1369 	.globl	C$shop.c$186$1_0$276
+                                   1370 ;src/shop.c:186: draw_text(16, 3, "$", 1, TRUE, 0);
+      000525 AF               [ 4] 1371 	xor	a, a
+      000526 67               [ 4] 1372 	ld	h, a
+      000527 2E 01            [ 8] 1373 	ld	l, #0x01
+      000529 E5               [16] 1374 	push	hl
+      00052A 3E 01            [ 8] 1375 	ld	a, #0x01
+      00052C F5               [16] 1376 	push	af
+      00052D 33               [ 8] 1377 	inc	sp
+      00052E 11r78r05         [12] 1378 	ld	de, #___str_3
+      000531 D5               [16] 1379 	push	de
+      000532 1E 03            [ 8] 1380 	ld	e, #0x03
+      000534 3E 10            [ 8] 1381 	ld	a, #0x10
+      000536 CDr00r00         [24] 1382 	call	_draw_text
+                           000539  1383 	C$shop.c$188$1_0$276	= .
+                                   1384 	.globl	C$shop.c$188$1_0$276
+                                   1385 ;src/shop.c:188: draw_text(3, 15, "Money", 5, TRUE, 0);
+      000539 AF               [ 4] 1386 	xor	a, a
+      00053A 67               [ 4] 1387 	ld	h, a
+      00053B 2E 01            [ 8] 1388 	ld	l, #0x01
+      00053D E5               [16] 1389 	push	hl
+      00053E 3E 05            [ 8] 1390 	ld	a, #0x05
+      000540 F5               [16] 1391 	push	af
+      000541 33               [ 8] 1392 	inc	sp
+      000542 11r7Ar05         [12] 1393 	ld	de, #___str_4
+      000545 D5               [16] 1394 	push	de
+      000546 1E 0F            [ 8] 1395 	ld	e, #0x0f
+      000548 3E 03            [ 8] 1396 	ld	a, #0x03
+      00054A CDr00r00         [24] 1397 	call	_draw_text
+                           00054D  1398 	C$shop.c$189$1_0$276	= .
+                                   1399 	.globl	C$shop.c$189$1_0$276
+                                   1400 ;src/shop.c:189: draw_text(11, 15, money_string, 5, FALSE, 0);
+      00054D 21 12 00         [12] 1401 	ld	hl, #18
+      000550 39               [ 8] 1402 	add	hl, sp
+      000551 AF               [ 4] 1403 	xor	a, a
+      000552 0F               [ 4] 1404 	rrca
+      000553 F5               [16] 1405 	push	af
+      000554 AF               [ 4] 1406 	xor	a, a
+      000555 3E 05            [ 8] 1407 	ld	a, #0x05
+      000557 F5               [16] 1408 	push	af
+      000558 33               [ 8] 1409 	inc	sp
+      000559 E5               [16] 1410 	push	hl
+      00055A 1E 0F            [ 8] 1411 	ld	e, #0x0f
+      00055C 3E 0B            [ 8] 1412 	ld	a, #0x0b
+      00055E CDr00r00         [24] 1413 	call	_draw_text
+                           000561  1414 	C$shop.c$190$1_0$276	= .
+                                   1415 	.globl	C$shop.c$190$1_0$276
+                                   1416 ;src/shop.c:190: draw_text(16, 15, "$", 1, TRUE, 0);
+      000561 AF               [ 4] 1417 	xor	a, a
+      000562 67               [ 4] 1418 	ld	h, a
+      000563 2E 01            [ 8] 1419 	ld	l, #0x01
+      000565 E5               [16] 1420 	push	hl
+      000566 3E 01            [ 8] 1421 	ld	a, #0x01
+      000568 F5               [16] 1422 	push	af
+      000569 33               [ 8] 1423 	inc	sp
+      00056A 11r78r05         [12] 1424 	ld	de, #___str_3
+      00056D D5               [16] 1425 	push	de
+      00056E 1E 0F            [ 8] 1426 	ld	e, #0x0f
+      000570 3E 10            [ 8] 1427 	ld	a, #0x10
+      000572 CDr00r00         [24] 1428 	call	_draw_text
+                           000575  1429 	C$shop.c$191$1_0$276	= .
+                                   1430 	.globl	C$shop.c$191$1_0$276
+                                   1431 ;src/shop.c:191: }
+      000575 E8 1C            [16] 1432 	add	sp, #28
+                           000577  1433 	C$shop.c$191$1_0$276	= .
+                                   1434 	.globl	C$shop.c$191$1_0$276
+                           000577  1435 	XG$write_sub_shop_text$0$0	= .
+                                   1436 	.globl	XG$write_sub_shop_text$0$0
+      000577 C9               [16] 1437 	ret
+                           000578  1438 Fshop$__str_3$0_0$0 == .
+      000578                       1439 ___str_3:
+      000578 24                    1440 	.ascii "$"
+      000579 00                    1441 	.db 0x00
+                           00057A  1442 Fshop$__str_4$0_0$0 == .
+      00057A                       1443 ___str_4:
+      00057A 4D 6F 6E 65 79        1444 	.ascii "Money"
+      00057F 00                    1445 	.db 0x00
+                           000580  1446 	G$change_sub_shop_tile_palettes$0$0	= .
+                                   1447 	.globl	G$change_sub_shop_tile_palettes$0$0
+                           000580  1448 	C$shop.c$194$1_0$279	= .
+                                   1449 	.globl	C$shop.c$194$1_0$279
+                                   1450 ;src/shop.c:194: void change_sub_shop_tile_palettes (void) {
+                                   1451 ;	---------------------------------
+                                   1452 ; Function change_sub_shop_tile_palettes
+                                   1453 ; ---------------------------------
+      000580                       1454 _change_sub_shop_tile_palettes::
+      000580 E8 F9            [16] 1455 	add	sp, #-7
+                           000582  1456 	C$shop.c$195$3_0$280	= .
+                                   1457 	.globl	C$shop.c$195$3_0$280
+                                   1458 ;src/shop.c:195: for (uint8_t i = 0; i < 6; i++) {
+      000582 0E 00            [ 8] 1459 	ld	c, #0x00
+      000584                       1460 00107$:
+      000584 79               [ 4] 1461 	ld	a, c
+      000585 D6 06            [ 8] 1462 	sub	a, #0x06
+      000587 D2r2Dr06         [16] 1463 	jp	NC, 00109$
+                           00058A  1464 	C$shop.c$196$2_0$279	= .
+                                   1465 	.globl	C$shop.c$196$2_0$279
+                                   1466 ;src/shop.c:196: if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
+      00058A 21r15r00         [12] 1467 	ld	hl, #_currentState
+      00058D 6E               [ 8] 1468 	ld	l, (hl)
+                                   1469 ;	spillPairReg hl
+                                   1470 ;	spillPairReg hl
+      00058E 26 00            [ 8] 1471 	ld	h, #0x00
+                                   1472 ;	spillPairReg hl
+                                   1473 ;	spillPairReg hl
+      000590 29               [ 8] 1474 	add	hl, hl
+      000591 11r00r00         [12] 1475 	ld	de, #_attributes_numbers
+      000594 19               [ 8] 1476 	add	hl, de
+      000595 5D               [ 4] 1477 	ld	e, l
+      000596 54               [ 4] 1478 	ld	d, h
+      000597 1A               [ 8] 1479 	ld	a, (de)
+      000598 F8 00            [12] 1480 	ldhl	sp,	#0
+      00059A 22               [ 8] 1481 	ld	(hl+), a
+      00059B 13               [ 8] 1482 	inc	de
+      00059C 1A               [ 8] 1483 	ld	a, (de)
+      00059D 77               [ 8] 1484 	ld	(hl), a
+      00059E D1               [12] 1485 	pop	de
+      00059F D5               [16] 1486 	push	de
+      0005A0 21 14 00         [12] 1487 	ld	hl, #0x0014
+      0005A3 19               [ 8] 1488 	add	hl, de
+      0005A4 5D               [ 4] 1489 	ld	e, l
+      0005A5 54               [ 4] 1490 	ld	d, h
+      0005A6 1A               [ 8] 1491 	ld	a, (de)
+      0005A7 5F               [ 4] 1492 	ld	e, a
+      0005A8 79               [ 4] 1493 	ld	a, c
+      0005A9 87               [ 4] 1494 	add	a, a
+      0005AA 47               [ 4] 1495 	ld	b, a
+                           0005AB  1496 	C$shop.c$197$2_0$279	= .
+                                   1497 	.globl	C$shop.c$197$2_0$279
+                                   1498 ;src/shop.c:197: set_bkg_palette(2 + i, 1, palette_light_grey);
+      0005AB 79               [ 4] 1499 	ld	a, c
+      0005AC C6 02            [ 8] 1500 	add	a, #0x02
+      0005AE F8 02            [12] 1501 	ldhl	sp,	#2
+      0005B0 77               [ 8] 1502 	ld	(hl), a
+                           0005B1  1503 	C$shop.c$196$3_0$280	= .
+                                   1504 	.globl	C$shop.c$196$3_0$280
+                                   1505 ;src/shop.c:196: if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
+      0005B1 7B               [ 4] 1506 	ld	a, e
+      0005B2 91               [ 4] 1507 	sub	a, c
+      0005B3 30 54            [12] 1508 	jr	NC, 00102$
+      0005B5 23               [ 8] 1509 	inc	hl
+      0005B6 11r56r01         [12] 1510 	ld	de, #(_player + 342)
+      0005B9 1A               [ 8] 1511 	ld	a, (de)
+      0005BA 22               [ 8] 1512 	ld	(hl+), a
+      0005BB 13               [ 8] 1513 	inc	de
+      0005BC 1A               [ 8] 1514 	ld	a, (de)
+      0005BD 77               [ 8] 1515 	ld	(hl), a
+      0005BE D1               [12] 1516 	pop	de
+      0005BF D5               [16] 1517 	push	de
+      0005C0 21 21 00         [12] 1518 	ld	hl, #0x0021
+      0005C3 19               [ 8] 1519 	add	hl, de
+      0005C4 5D               [ 4] 1520 	ld	e, l
+      0005C5 54               [ 4] 1521 	ld	d, h
+      0005C6 68               [ 4] 1522 	ld	l, b
+      0005C7 26 00            [ 8] 1523 	ld	h, #0x00
+      0005C9 19               [ 8] 1524 	add	hl, de
+      0005CA 5D               [ 4] 1525 	ld	e, l
+      0005CB 54               [ 4] 1526 	ld	d, h
+      0005CC 1A               [ 8] 1527 	ld	a, (de)
+      0005CD F8 05            [12] 1528 	ldhl	sp,	#5
+      0005CF 22               [ 8] 1529 	ld	(hl+), a
+      0005D0 13               [ 8] 1530 	inc	de
+      0005D1 1A               [ 8] 1531 	ld	a, (de)
+      0005D2 77               [ 8] 1532 	ld	(hl), a
+      0005D3 F8 03            [12] 1533 	ldhl	sp,	#3
+      0005D5 5D               [ 4] 1534 	ld	e, l
+      0005D6 54               [ 4] 1535 	ld	d, h
+      0005D7 F8 05            [12] 1536 	ldhl	sp,	#5
+      0005D9 1A               [ 8] 1537 	ld	a, (de)
+      0005DA 13               [ 8] 1538 	inc	de
+      0005DB 96               [ 8] 1539 	sub	a, (hl)
+      0005DC 23               [ 8] 1540 	inc	hl
+      0005DD 1A               [ 8] 1541 	ld	a, (de)
+      0005DE 9E               [ 8] 1542 	sbc	a, (hl)
+      0005DF 1A               [ 8] 1543 	ld	a, (de)
+      0005E0 57               [ 4] 1544 	ld	d, a
+      0005E1 CB 7E            [12] 1545 	bit	7, (hl)
+      0005E3 28 07            [12] 1546 	jr	Z, 00140$
+      0005E5 CB 7A            [ 8] 1547 	bit	7, d
+      0005E7 20 08            [12] 1548 	jr	NZ, 00141$
+      0005E9 BF               [ 4] 1549 	cp	a, a
+      0005EA 18 05            [12] 1550 	jr	00141$
+      0005EC                       1551 00140$:
+      0005EC CB 7A            [ 8] 1552 	bit	7, d
+      0005EE 28 01            [12] 1553 	jr	Z, 00141$
+      0005F0 37               [ 4] 1554 	scf
+      0005F1                       1555 00141$:
+      0005F1 30 16            [12] 1556 	jr	NC, 00102$
+                           0005F3  1557 	C$shop.c$197$4_0$281	= .
+                                   1558 	.globl	C$shop.c$197$4_0$281
+                                   1559 ;src/shop.c:197: set_bkg_palette(2 + i, 1, palette_light_grey);
+      0005F3 C5               [16] 1560 	push	bc
+      0005F4 11r00r00         [12] 1561 	ld	de, #_palette_light_grey
+      0005F7 D5               [16] 1562 	push	de
+      0005F8 3E 01            [ 8] 1563 	ld	a, #0x01
+      0005FA F5               [16] 1564 	push	af
+      0005FB 33               [ 8] 1565 	inc	sp
+      0005FC F8 07            [12] 1566 	ldhl	sp,	#7
+      0005FE 7E               [ 8] 1567 	ld	a, (hl)
+      0005FF F5               [16] 1568 	push	af
+      000600 33               [ 8] 1569 	inc	sp
+      000601 CDr00r00         [24] 1570 	call	_set_bkg_palette
+      000604 E8 04            [16] 1571 	add	sp, #4
+      000606 C1               [12] 1572 	pop	bc
+      000607 18 20            [12] 1573 	jr	00108$
+      000609                       1574 00102$:
+                           000609  1575 	C$shop.c$199$4_0$282	= .
+                                   1576 	.globl	C$shop.c$199$4_0$282
+                                   1577 ;src/shop.c:199: set_bkg_palette(2 + i, 1, attributes_numbers[currentState]->color_palette[i]);
+      000609 D1               [12] 1578 	pop	de
+      00060A D5               [16] 1579 	push	de
+      00060B 21 2D 00         [12] 1580 	ld	hl, #0x002d
+      00060E 19               [ 8] 1581 	add	hl, de
+      00060F 5D               [ 4] 1582 	ld	e, l
+      000610 54               [ 4] 1583 	ld	d, h
+      000611 68               [ 4] 1584 	ld	l, b
+      000612 26 00            [ 8] 1585 	ld	h, #0x00
+      000614 19               [ 8] 1586 	add	hl, de
+      000615 2A               [ 8] 1587 	ld	a,	(hl+)
+      000616 66               [ 8] 1588 	ld	h, (hl)
+                                   1589 ;	spillPairReg hl
+      000617 6F               [ 4] 1590 	ld	l, a
+                                   1591 ;	spillPairReg hl
+                                   1592 ;	spillPairReg hl
+      000618 C5               [16] 1593 	push	bc
+      000619 E5               [16] 1594 	push	hl
+      00061A 3E 01            [ 8] 1595 	ld	a, #0x01
+      00061C F5               [16] 1596 	push	af
+      00061D 33               [ 8] 1597 	inc	sp
+      00061E F8 07            [12] 1598 	ldhl	sp,	#7
+      000620 7E               [ 8] 1599 	ld	a, (hl)
+      000621 F5               [16] 1600 	push	af
+      000622 33               [ 8] 1601 	inc	sp
+      000623 CDr00r00         [24] 1602 	call	_set_bkg_palette
+      000626 E8 04            [16] 1603 	add	sp, #4
+      000628 C1               [12] 1604 	pop	bc
+      000629                       1605 00108$:
+                           000629  1606 	C$shop.c$195$2_0$279	= .
+                                   1607 	.globl	C$shop.c$195$2_0$279
+                                   1608 ;src/shop.c:195: for (uint8_t i = 0; i < 6; i++) {
+      000629 0C               [ 4] 1609 	inc	c
+      00062A C3r84r05         [16] 1610 	jp	00107$
+      00062D                       1611 00109$:
+                           00062D  1612 	C$shop.c$202$2_0$279	= .
+                                   1613 	.globl	C$shop.c$202$2_0$279
+                                   1614 ;src/shop.c:202: }
+      00062D E8 07            [16] 1615 	add	sp, #7
+                           00062F  1616 	C$shop.c$202$2_0$279	= .
+                                   1617 	.globl	C$shop.c$202$2_0$279
+                           00062F  1618 	XG$change_sub_shop_tile_palettes$0$0	= .
+                                   1619 	.globl	XG$change_sub_shop_tile_palettes$0$0
+      00062F C9               [16] 1620 	ret
+                           000630  1621 	G$change_main_shop_tile_palettes$0$0	= .
+                                   1622 	.globl	G$change_main_shop_tile_palettes$0$0
+                           000630  1623 	C$shop.c$204$2_0$285	= .
+                                   1624 	.globl	C$shop.c$204$2_0$285
+                                   1625 ;src/shop.c:204: void change_main_shop_tile_palettes (void) {
+                                   1626 ;	---------------------------------
+                                   1627 ; Function change_main_shop_tile_palettes
+                                   1628 ; ---------------------------------
+      000630                       1629 _change_main_shop_tile_palettes::
+                           000630  1630 	C$shop.c$205$3_0$286	= .
+                                   1631 	.globl	C$shop.c$205$3_0$286
+                                   1632 ;src/shop.c:205: for (uint8_t i = 0; i < 6; i++) {
+      000630 0E 00            [ 8] 1633 	ld	c, #0x00
+      000632                       1634 00103$:
+      000632 79               [ 4] 1635 	ld	a, c
+      000633 D6 06            [ 8] 1636 	sub	a, #0x06
+      000635 D0               [20] 1637 	ret	NC
+                           000636  1638 	C$shop.c$206$3_0$286	= .
+                                   1639 	.globl	C$shop.c$206$3_0$286
+                                   1640 ;src/shop.c:206: set_bkg_palette(2 + i, 1, attributes_numbers[i]->color_palette[attributes_numbers[i]->upgrade_level]);
+      000636 69               [ 4] 1641 	ld	l, c
+                                   1642 ;	spillPairReg hl
+                                   1643 ;	spillPairReg hl
+      000637 26 00            [ 8] 1644 	ld	h, #0x00
+                                   1645 ;	spillPairReg hl
+                                   1646 ;	spillPairReg hl
+      000639 29               [ 8] 1647 	add	hl, hl
+      00063A 11r00r00         [12] 1648 	ld	de, #_attributes_numbers
+      00063D 19               [ 8] 1649 	add	hl, de
+      00063E 2A               [ 8] 1650 	ld	a, (hl+)
+                                   1651 ;	spillPairReg hl
+      00063F 47               [ 4] 1652 	ld	b, a
+      000640 66               [ 8] 1653 	ld	h, (hl)
+      000641 C6 2D            [ 8] 1654 	add	a, #0x2d
+      000643 5F               [ 4] 1655 	ld	e, a
+      000644 7C               [ 4] 1656 	ld	a, h
+      000645 CE 00            [ 8] 1657 	adc	a, #0x00
+      000647 57               [ 4] 1658 	ld	d, a
+      000648 78               [ 4] 1659 	ld	a, b
+      000649 C6 14            [ 8] 1660 	add	a, #0x14
+      00064B 6F               [ 4] 1661 	ld	l, a
+                                   1662 ;	spillPairReg hl
+                                   1663 ;	spillPairReg hl
+      00064C 30 01            [12] 1664 	jr	NC, 00122$
+      00064E 24               [ 4] 1665 	inc	h
+      00064F                       1666 00122$:
+      00064F 7E               [ 8] 1667 	ld	a, (hl)
+      000650 87               [ 4] 1668 	add	a, a
+      000651 6F               [ 4] 1669 	ld	l, a
+      000652 26 00            [ 8] 1670 	ld	h, #0x00
+      000654 19               [ 8] 1671 	add	hl, de
+      000655 2A               [ 8] 1672 	ld	a,	(hl+)
+      000656 66               [ 8] 1673 	ld	h, (hl)
+                                   1674 ;	spillPairReg hl
+      000657 6F               [ 4] 1675 	ld	l, a
+                                   1676 ;	spillPairReg hl
+                                   1677 ;	spillPairReg hl
+      000658 79               [ 4] 1678 	ld	a, c
+      000659 C6 02            [ 8] 1679 	add	a, #0x02
+      00065B C5               [16] 1680 	push	bc
+      00065C E5               [16] 1681 	push	hl
+      00065D 26 01            [ 8] 1682 	ld	h, #0x01
+                                   1683 ;	spillPairReg hl
+                                   1684 ;	spillPairReg hl
+      00065F E5               [16] 1685 	push	hl
+      000660 33               [ 8] 1686 	inc	sp
+      000661 F5               [16] 1687 	push	af
+      000662 33               [ 8] 1688 	inc	sp
+      000663 CDr00r00         [24] 1689 	call	_set_bkg_palette
+      000666 E8 04            [16] 1690 	add	sp, #4
+      000668 C1               [12] 1691 	pop	bc
+                           000669  1692 	C$shop.c$205$2_0$285	= .
+                                   1693 	.globl	C$shop.c$205$2_0$285
+                                   1694 ;src/shop.c:205: for (uint8_t i = 0; i < 6; i++) {
+      000669 0C               [ 4] 1695 	inc	c
+                           00066A  1696 	C$shop.c$208$2_0$285	= .
+                                   1697 	.globl	C$shop.c$208$2_0$285
+                                   1698 ;src/shop.c:208: }
+                           00066A  1699 	C$shop.c$208$2_0$285	= .
+                                   1700 	.globl	C$shop.c$208$2_0$285
+                           00066A  1701 	XG$change_main_shop_tile_palettes$0$0	= .
+                                   1702 	.globl	XG$change_main_shop_tile_palettes$0$0
+      00066A 18 C6            [12] 1703 	jr	00103$
+                           00066C  1704 	G$attempt_purchase$0$0	= .
+                                   1705 	.globl	G$attempt_purchase$0$0
+                           00066C  1706 	C$shop.c$211$2_0$288	= .
+                                   1707 	.globl	C$shop.c$211$2_0$288
+                                   1708 ;src/shop.c:211: void attempt_purchase(MenuState currentState, Menu *currentMenu) {
+                                   1709 ;	---------------------------------
+                                   1710 ; Function attempt_purchase
+                                   1711 ; ---------------------------------
+      00066C                       1712 _attempt_purchase::
+      00066C E8 F6            [16] 1713 	add	sp, #-10
+      00066E F8 09            [12] 1714 	ldhl	sp,	#9
+      000670 77               [ 8] 1715 	ld	(hl), a
+      000671 4B               [ 4] 1716 	ld	c, e
+      000672 42               [ 4] 1717 	ld	b, d
+                           000673  1718 	C$shop.c$213$1_0$288	= .
+                                   1719 	.globl	C$shop.c$213$1_0$288
+                                   1720 ;src/shop.c:213: player_attributes *currentAttributes = attributes_numbers[currentState];
+      000673 6E               [ 8] 1721 	ld	l, (hl)
+      000674 26 00            [ 8] 1722 	ld	h, #0x00
+      000676 29               [ 8] 1723 	add	hl, hl
+      000677 11r00r00         [12] 1724 	ld	de, #_attributes_numbers
+      00067A 19               [ 8] 1725 	add	hl, de
+      00067B 5D               [ 4] 1726 	ld	e, l
+      00067C 54               [ 4] 1727 	ld	d, h
+      00067D 1A               [ 8] 1728 	ld	a, (de)
+      00067E F8 00            [12] 1729 	ldhl	sp,	#0
+      000680 22               [ 8] 1730 	ld	(hl+), a
+      000681 13               [ 8] 1731 	inc	de
+      000682 1A               [ 8] 1732 	ld	a, (de)
+      000683 77               [ 8] 1733 	ld	(hl), a
+                           000684  1734 	C$shop.c$214$1_0$288	= .
+                                   1735 	.globl	C$shop.c$214$1_0$288
+                                   1736 ;src/shop.c:214: uint16_t cost = currentAttributes->upgrade_cost[currentMenu->currentSelection];
+      000684 D1               [12] 1737 	pop	de
+      000685 D5               [16] 1738 	push	de
+      000686 21 21 00         [12] 1739 	ld	hl, #0x0021
+      000689 19               [ 8] 1740 	add	hl, de
+      00068A 5D               [ 4] 1741 	ld	e, l
+      00068B 54               [ 4] 1742 	ld	d, h
+      00068C 0A               [ 8] 1743 	ld	a, (bc)
+      00068D 4F               [ 4] 1744 	ld	c, a
+      00068E 87               [ 4] 1745 	add	a, a
+      00068F 6F               [ 4] 1746 	ld	l, a
+      000690 26 00            [ 8] 1747 	ld	h, #0x00
+      000692 19               [ 8] 1748 	add	hl, de
+      000693 5D               [ 4] 1749 	ld	e, l
+      000694 54               [ 4] 1750 	ld	d, h
+      000695 1A               [ 8] 1751 	ld	a, (de)
+      000696 F8 02            [12] 1752 	ldhl	sp,	#2
+      000698 22               [ 8] 1753 	ld	(hl+), a
+      000699 13               [ 8] 1754 	inc	de
+      00069A 1A               [ 8] 1755 	ld	a, (de)
+      00069B 77               [ 8] 1756 	ld	(hl), a
+                           00069C  1757 	C$shop.c$215$1_0$288	= .
+                                   1758 	.globl	C$shop.c$215$1_0$288
+                                   1759 ;src/shop.c:215: uint8_t upgrade_to = currentMenu->currentSelection;
+      00069C F8 04            [12] 1760 	ldhl	sp,	#4
+      00069E 71               [ 8] 1761 	ld	(hl), c
+                           00069F  1762 	C$shop.c$218$1_0$288	= .
+                                   1763 	.globl	C$shop.c$218$1_0$288
+                                   1764 ;src/shop.c:218: if (currentAttributes->upgrade_level >= upgrade_to) {
+      00069F D1               [12] 1765 	pop	de
+      0006A0 D5               [16] 1766 	push	de
+      0006A1 21 14 00         [12] 1767 	ld	hl, #0x0014
+      0006A4 19               [ 8] 1768 	add	hl, de
+      0006A5 4D               [ 4] 1769 	ld	c, l
+      0006A6 44               [ 4] 1770 	ld	b, h
+      0006A7 0A               [ 8] 1771 	ld	a, (bc)
+      0006A8 F8 04            [12] 1772 	ldhl	sp,	#4
+      0006AA 96               [ 8] 1773 	sub	a, (hl)
+                           0006AB  1774 	C$shop.c$219$2_0$289	= .
+                                   1775 	.globl	C$shop.c$219$2_0$289
+                                   1776 ;src/shop.c:219: return;
+      0006AB D2r30r07         [16] 1777 	jp	NC,00105$
+                           0006AE  1778 	C$shop.c$223$1_0$288	= .
+                                   1779 	.globl	C$shop.c$223$1_0$288
+                                   1780 ;src/shop.c:223: if (player.money >= cost) {
+      0006AE 11r56r01         [12] 1781 	ld	de, #(_player + 342)
+      0006B1 1A               [ 8] 1782 	ld	a, (de)
+      0006B2 F8 07            [12] 1783 	ldhl	sp,	#7
+      0006B4 22               [ 8] 1784 	ld	(hl+), a
+      0006B5 13               [ 8] 1785 	inc	de
+      0006B6 1A               [ 8] 1786 	ld	a, (de)
+      0006B7 32               [ 8] 1787 	ld	(hl-), a
+      0006B8 3A               [ 8] 1788 	ld	a, (hl-)
+      0006B9 2B               [ 8] 1789 	dec	hl
+      0006BA 77               [ 8] 1790 	ld	(hl), a
+      0006BB F8 08            [12] 1791 	ldhl	sp,	#8
+      0006BD 3A               [ 8] 1792 	ld	a, (hl-)
+      0006BE 2B               [ 8] 1793 	dec	hl
+      0006BF 77               [ 8] 1794 	ld	(hl), a
+      0006C0 F8 05            [12] 1795 	ldhl	sp,	#5
+      0006C2 5D               [ 4] 1796 	ld	e, l
+      0006C3 54               [ 4] 1797 	ld	d, h
+      0006C4 F8 02            [12] 1798 	ldhl	sp,	#2
+      0006C6 1A               [ 8] 1799 	ld	a, (de)
+      0006C7 13               [ 8] 1800 	inc	de
+      0006C8 96               [ 8] 1801 	sub	a, (hl)
+      0006C9 23               [ 8] 1802 	inc	hl
+      0006CA 1A               [ 8] 1803 	ld	a, (de)
+      0006CB 9E               [ 8] 1804 	sbc	a, (hl)
+      0006CC 38 62            [12] 1805 	jr	C, 00105$
+                           0006CE  1806 	C$shop.c$225$2_0$290	= .
+                                   1807 	.globl	C$shop.c$225$2_0$290
+                                   1808 ;src/shop.c:225: player.money -= cost;
+      0006CE F8 05            [12] 1809 	ldhl	sp,#5
+      0006D0 2A               [ 8] 1810 	ld	a, (hl+)
+      0006D1 5F               [ 4] 1811 	ld	e, a
+      0006D2 56               [ 8] 1812 	ld	d, (hl)
+      0006D3 F8 02            [12] 1813 	ldhl	sp,	#2
+      0006D5 2A               [ 8] 1814 	ld	a,	(hl+)
+      0006D6 66               [ 8] 1815 	ld	h, (hl)
+      0006D7 6F               [ 4] 1816 	ld	l, a
+      0006D8 7B               [ 4] 1817 	ld	a, e
+      0006D9 95               [ 4] 1818 	sub	a, l
+      0006DA 5F               [ 4] 1819 	ld	e, a
+      0006DB 7A               [ 4] 1820 	ld	a, d
+      0006DC 9C               [ 4] 1821 	sbc	a, h
+      0006DD F8 08            [12] 1822 	ldhl	sp,	#8
+      0006DF 32               [ 8] 1823 	ld	(hl-), a
+      0006E0 73               [ 8] 1824 	ld	(hl), e
+      0006E1 11r56r01         [12] 1825 	ld	de, #(_player + 342)
+      0006E4 2A               [ 8] 1826 	ld	a, (hl+)
+      0006E5 12               [ 8] 1827 	ld	(de), a
+      0006E6 13               [ 8] 1828 	inc	de
+      0006E7 7E               [ 8] 1829 	ld	a, (hl)
+      0006E8 12               [ 8] 1830 	ld	(de), a
+                           0006E9  1831 	C$shop.c$226$2_0$290	= .
+                                   1832 	.globl	C$shop.c$226$2_0$290
+                                   1833 ;src/shop.c:226: currentAttributes->upgrade_level = upgrade_to;
+      0006E9 F8 04            [12] 1834 	ldhl	sp,	#4
+      0006EB 7E               [ 8] 1835 	ld	a, (hl)
+      0006EC 02               [ 8] 1836 	ld	(bc), a
+                           0006ED  1837 	C$shop.c$227$2_0$290	= .
+                                   1838 	.globl	C$shop.c$227$2_0$290
+                                   1839 ;src/shop.c:227: currentAttributes->max_value = currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
+      0006ED D1               [12] 1840 	pop	de
+      0006EE D5               [16] 1841 	push	de
+      0006EF 21 12 00         [12] 1842 	ld	hl, #0x0012
+      0006F2 19               [ 8] 1843 	add	hl, de
+      0006F3 E5               [16] 1844 	push	hl
+      0006F4 7D               [ 4] 1845 	ld	a, l
+      0006F5 F8 07            [12] 1846 	ldhl	sp,	#7
+      0006F7 77               [ 8] 1847 	ld	(hl), a
+      0006F8 E1               [12] 1848 	pop	hl
+      0006F9 7C               [ 4] 1849 	ld	a, h
+      0006FA F8 06            [12] 1850 	ldhl	sp,	#6
+      0006FC 77               [ 8] 1851 	ld	(hl), a
+      0006FD D1               [12] 1852 	pop	de
+      0006FE D5               [16] 1853 	push	de
+      0006FF 21 10 00         [12] 1854 	ld	hl, #0x0010
+      000702 19               [ 8] 1855 	add	hl, de
+      000703 E5               [16] 1856 	push	hl
+      000704 7D               [ 4] 1857 	ld	a, l
+      000705 F8 09            [12] 1858 	ldhl	sp,	#9
+      000707 77               [ 8] 1859 	ld	(hl), a
+      000708 E1               [12] 1860 	pop	hl
+      000709 7C               [ 4] 1861 	ld	a, h
+      00070A F8 08            [12] 1862 	ldhl	sp,	#8
+      00070C 77               [ 8] 1863 	ld	(hl), a
+      00070D D1               [12] 1864 	pop	de
+      00070E D5               [16] 1865 	push	de
+      00070F 21 15 00         [12] 1866 	ld	hl, #0x0015
+      000712 19               [ 8] 1867 	add	hl, de
+      000713 4D               [ 4] 1868 	ld	c, l
+      000714 44               [ 4] 1869 	ld	b, h
+      000715 F8 04            [12] 1870 	ldhl	sp,	#4
+      000717 7E               [ 8] 1871 	ld	a, (hl)
+      000718 87               [ 4] 1872 	add	a, a
+      000719 6F               [ 4] 1873 	ld	l, a
+      00071A 26 00            [ 8] 1874 	ld	h, #0x00
+      00071C 09               [ 8] 1875 	add	hl, bc
+      00071D 2A               [ 8] 1876 	ld	a, (hl+)
+      00071E 4F               [ 4] 1877 	ld	c, a
+      00071F 46               [ 8] 1878 	ld	b, (hl)
+      000720 F8 07            [12] 1879 	ldhl	sp,	#7
+      000722 2A               [ 8] 1880 	ld	a,	(hl+)
+      000723 66               [ 8] 1881 	ld	h, (hl)
+      000724 6F               [ 4] 1882 	ld	l, a
+      000725 79               [ 4] 1883 	ld	a, c
+      000726 22               [ 8] 1884 	ld	(hl+), a
+      000727 70               [ 8] 1885 	ld	(hl), b
+      000728 F8 05            [12] 1886 	ldhl	sp,	#5
+      00072A 2A               [ 8] 1887 	ld	a,	(hl+)
+      00072B 66               [ 8] 1888 	ld	h, (hl)
+      00072C 6F               [ 4] 1889 	ld	l, a
+      00072D 79               [ 4] 1890 	ld	a, c
+      00072E 22               [ 8] 1891 	ld	(hl+), a
+      00072F 70               [ 8] 1892 	ld	(hl), b
+      000730                       1893 00105$:
+                           000730  1894 	C$shop.c$232$1_0$288	= .
+                                   1895 	.globl	C$shop.c$232$1_0$288
+                                   1896 ;src/shop.c:232: }
+      000730 E8 0A            [16] 1897 	add	sp, #10
+                           000732  1898 	C$shop.c$232$1_0$288	= .
+                                   1899 	.globl	C$shop.c$232$1_0$288
+                           000732  1900 	XG$attempt_purchase$0$0	= .
+                                   1901 	.globl	XG$attempt_purchase$0$0
+      000732 C9               [16] 1902 	ret
+                           000733  1903 	G$handleInput$0$0	= .
+                                   1904 	.globl	G$handleInput$0$0
+                           000733  1905 	C$shop.c$235$1_0$293	= .
+                                   1906 	.globl	C$shop.c$235$1_0$293
+                                   1907 ;src/shop.c:235: void handleInput(MenuState *currentState, Menu *currentMenu) {
+                                   1908 ;	---------------------------------
+                                   1909 ; Function handleInput
+                                   1910 ; ---------------------------------
+      000733                       1911 _handleInput::
+      000733 E8 F9            [16] 1912 	add	sp, #-7
+      000735 F8 05            [12] 1913 	ldhl	sp,	#5
+      000737 7B               [ 4] 1914 	ld	a, e
+      000738 22               [ 8] 1915 	ld	(hl+), a
+      000739 72               [ 8] 1916 	ld	(hl), d
+      00073A F8 03            [12] 1917 	ldhl	sp,	#3
+      00073C 79               [ 4] 1918 	ld	a, c
+      00073D 22               [ 8] 1919 	ld	(hl+), a
+      00073E 70               [ 8] 1920 	ld	(hl), b
+                           00073F  1921 	C$shop.c$236$1_0$293	= .
+                                   1922 	.globl	C$shop.c$236$1_0$293
+                                   1923 ;src/shop.c:236: if (prev_buttons != buttons) {
+      00073F FAr00r00         [16] 1924 	ld	a, (#_prev_buttons)
+      000742 21r00r00         [12] 1925 	ld	hl, #_buttons
+      000745 96               [ 8] 1926 	sub	a, (hl)
+      000746 CArCCr08         [16] 1927 	jp	Z,00160$
+                           000749  1928 	C$shop.c$237$1_0$293	= .
+                                   1929 	.globl	C$shop.c$237$1_0$293
+                                   1930 ;src/shop.c:237: if (buttons & J_UP) {
+      000749 FAr00r00         [16] 1931 	ld	a, (#_buttons)
+      00074C F8 02            [12] 1932 	ldhl	sp,	#2
+      00074E 77               [ 8] 1933 	ld	(hl), a
+      00074F E5               [16] 1934 	push	hl
+      000750 CB 56            [12] 1935 	bit	2, (hl)
+      000752 E1               [12] 1936 	pop	hl
+      000753 28 19            [12] 1937 	jr	Z, 00118$
+                           000755  1938 	C$shop.c$238$3_0$295	= .
+                                   1939 	.globl	C$shop.c$238$3_0$295
+                                   1940 ;src/shop.c:238: if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
+      000755 F8 03            [12] 1941 	ldhl	sp,#3
+      000757 2A               [ 8] 1942 	ld	a, (hl+)
+      000758 5F               [ 4] 1943 	ld	e, a
+      000759 3A               [ 8] 1944 	ld	a, (hl-)
+      00075A 2B               [ 8] 1945 	dec	hl
+      00075B 57               [ 4] 1946 	ld	d, a
+      00075C 1A               [ 8] 1947 	ld	a, (de)
+      00075D 77               [ 8] 1948 	ld	(hl), a
+      00075E 3E 02            [ 8] 1949 	ld	a, #0x02
+      000760 96               [ 8] 1950 	sub	a, (hl)
+      000761 D2rE4r07         [16] 1951 	jp	NC, 00119$
+      000764 2A               [ 8] 1952 	ld	a, (hl+)
+      000765 C6 FD            [ 8] 1953 	add	a, #0xfd
+      000767 4F               [ 4] 1954 	ld	c, a
+      000768 2A               [ 8] 1955 	ld	a,	(hl+)
+      000769 66               [ 8] 1956 	ld	h, (hl)
+      00076A 6F               [ 4] 1957 	ld	l, a
+      00076B 71               [ 8] 1958 	ld	(hl), c
+      00076C 18 76            [12] 1959 	jr	00119$
+      00076E                       1960 00118$:
+                           00076E  1961 	C$shop.c$239$2_0$294	= .
+                                   1962 	.globl	C$shop.c$239$2_0$294
+                                   1963 ;src/shop.c:239: } else if (buttons & J_DOWN) {
+      00076E E5               [16] 1964 	push	hl
+      00076F F8 04            [12] 1965 	ldhl	sp,	#4
+      000771 CB 5E            [12] 1966 	bit	3, (hl)
+      000773 E1               [12] 1967 	pop	hl
+      000774 28 18            [12] 1968 	jr	Z, 00115$
+                           000776  1969 	C$shop.c$240$3_0$296	= .
+                                   1970 	.globl	C$shop.c$240$3_0$296
+                                   1971 ;src/shop.c:240: if (currentMenu->currentSelection < 3) currentMenu->currentSelection += 3;
+      000776 F8 03            [12] 1972 	ldhl	sp,#3
+      000778 2A               [ 8] 1973 	ld	a, (hl+)
+      000779 5F               [ 4] 1974 	ld	e, a
+      00077A 3A               [ 8] 1975 	ld	a, (hl-)
+      00077B 2B               [ 8] 1976 	dec	hl
+      00077C 57               [ 4] 1977 	ld	d, a
+      00077D 1A               [ 8] 1978 	ld	a, (de)
+      00077E 77               [ 8] 1979 	ld	(hl), a
+      00077F D6 03            [ 8] 1980 	sub	a, #0x03
+      000781 30 61            [12] 1981 	jr	NC, 00119$
+      000783 2A               [ 8] 1982 	ld	a, (hl+)
+      000784 4F               [ 4] 1983 	ld	c, a
+      000785 0C               [ 4] 1984 	inc	c
+      000786 0C               [ 4] 1985 	inc	c
+      000787 0C               [ 4] 1986 	inc	c
+      000788 2A               [ 8] 1987 	ld	a,	(hl+)
+      000789 66               [ 8] 1988 	ld	h, (hl)
+      00078A 6F               [ 4] 1989 	ld	l, a
+      00078B 71               [ 8] 1990 	ld	(hl), c
+      00078C 18 56            [12] 1991 	jr	00119$
+      00078E                       1992 00115$:
+                           00078E  1993 	C$shop.c$241$2_0$294	= .
+                                   1994 	.globl	C$shop.c$241$2_0$294
+                                   1995 ;src/shop.c:241: } else if (buttons & J_LEFT) {
+      00078E E5               [16] 1996 	push	hl
+      00078F F8 04            [12] 1997 	ldhl	sp,	#4
+      000791 CB 4E            [12] 1998 	bit	1, (hl)
+      000793 E1               [12] 1999 	pop	hl
+      000794 28 26            [12] 2000 	jr	Z, 00112$
+                           000796  2001 	C$shop.c$242$3_0$297	= .
+                                   2002 	.globl	C$shop.c$242$3_0$297
+                                   2003 ;src/shop.c:242: if (currentMenu->currentSelection % 3 != 0) currentMenu->currentSelection--;
+      000796 F8 03            [12] 2004 	ldhl	sp,#3
+      000798 2A               [ 8] 2005 	ld	a, (hl+)
+      000799 5F               [ 4] 2006 	ld	e, a
+      00079A 56               [ 8] 2007 	ld	d, (hl)
+      00079B 1A               [ 8] 2008 	ld	a, (de)
+      00079C F8 00            [12] 2009 	ldhl	sp,	#0
+      00079E 77               [ 8] 2010 	ld	(hl), a
+      00079F 2A               [ 8] 2011 	ld	a, (hl+)
+      0007A0 22               [ 8] 2012 	ld	(hl+), a
+      0007A1 AF               [ 4] 2013 	xor	a, a
+      0007A2 32               [ 8] 2014 	ld	(hl-), a
+      0007A3 01 03 00         [12] 2015 	ld	bc, #0x0003
+      0007A6 5E               [ 8] 2016 	ld	e, (hl)
+      0007A7 16 00            [ 8] 2017 	ld	d, #0x00
+      0007A9 CDr00r00         [24] 2018 	call	__modsint
+      0007AC 78               [ 4] 2019 	ld	a, b
+      0007AD B1               [ 4] 2020 	or	a, c
+      0007AE 28 34            [12] 2021 	jr	Z, 00119$
+      0007B0 F8 00            [12] 2022 	ldhl	sp,	#0
+      0007B2 4E               [ 8] 2023 	ld	c, (hl)
+      0007B3 0D               [ 4] 2024 	dec	c
+      0007B4 F8 03            [12] 2025 	ldhl	sp,	#3
+      0007B6 2A               [ 8] 2026 	ld	a,	(hl+)
+      0007B7 66               [ 8] 2027 	ld	h, (hl)
+      0007B8 6F               [ 4] 2028 	ld	l, a
+      0007B9 71               [ 8] 2029 	ld	(hl), c
+      0007BA 18 28            [12] 2030 	jr	00119$
+      0007BC                       2031 00112$:
+                           0007BC  2032 	C$shop.c$243$2_0$294	= .
+                                   2033 	.globl	C$shop.c$243$2_0$294
+                                   2034 ;src/shop.c:243: } else if (buttons & J_RIGHT) {
+      0007BC E5               [16] 2035 	push	hl
+      0007BD F8 04            [12] 2036 	ldhl	sp,	#4
+      0007BF CB 46            [12] 2037 	bit	0, (hl)
+      0007C1 E1               [12] 2038 	pop	hl
+      0007C2 28 20            [12] 2039 	jr	Z, 00119$
+                           0007C4  2040 	C$shop.c$244$3_0$298	= .
+                                   2041 	.globl	C$shop.c$244$3_0$298
+                                   2042 ;src/shop.c:244: if ((currentMenu->currentSelection % 3) != 2) currentMenu->currentSelection++;
+      0007C4 F8 03            [12] 2043 	ldhl	sp,#3
+      0007C6 2A               [ 8] 2044 	ld	a, (hl+)
+      0007C7 5F               [ 4] 2045 	ld	e, a
+      0007C8 56               [ 8] 2046 	ld	d, (hl)
+      0007C9 1A               [ 8] 2047 	ld	a, (de)
+      0007CA 6F               [ 4] 2048 	ld	l, a
+                                   2049 ;	spillPairReg hl
+                                   2050 ;	spillPairReg hl
+      0007CB 5D               [ 4] 2051 	ld	e, l
+      0007CC 16 00            [ 8] 2052 	ld	d, #0x00
+      0007CE E5               [16] 2053 	push	hl
+      0007CF 01 03 00         [12] 2054 	ld	bc, #0x0003
+      0007D2 CDr00r00         [24] 2055 	call	__modsint
+      0007D5 E1               [12] 2056 	pop	hl
+      0007D6 79               [ 4] 2057 	ld	a, c
+      0007D7 D6 02            [ 8] 2058 	sub	a, #0x02
+      0007D9 B0               [ 4] 2059 	or	a, b
+      0007DA 28 08            [12] 2060 	jr	Z, 00119$
+      0007DC 4D               [ 4] 2061 	ld	c, l
+      0007DD 0C               [ 4] 2062 	inc	c
+      0007DE F8 03            [12] 2063 	ldhl	sp,	#3
+      0007E0 2A               [ 8] 2064 	ld	a,	(hl+)
+      0007E1 66               [ 8] 2065 	ld	h, (hl)
+      0007E2 6F               [ 4] 2066 	ld	l, a
+      0007E3 71               [ 8] 2067 	ld	(hl), c
+      0007E4                       2068 00119$:
+                           0007E4  2069 	C$shop.c$248$2_0$294	= .
+                                   2070 	.globl	C$shop.c$248$2_0$294
+                                   2071 ;src/shop.c:248: if (buttons & J_A) {
+      0007E4 FAr00r00         [16] 2072 	ld	a, (#_buttons)
+      0007E7 CB 67            [ 8] 2073 	bit	4, a
+      0007E9 CAr6Ar08         [16] 2074 	jp	Z,00147$
+                           0007EC  2075 	C$shop.c$249$3_0$299	= .
+                                   2076 	.globl	C$shop.c$249$3_0$299
+                                   2077 ;src/shop.c:249: switch (*currentState) {
+      0007EC F8 05            [12] 2078 	ldhl	sp,#5
+      0007EE 2A               [ 8] 2079 	ld	a, (hl+)
+      0007EF 5F               [ 4] 2080 	ld	e, a
+      0007F0 56               [ 8] 2081 	ld	d, (hl)
+      0007F1 1A               [ 8] 2082 	ld	a, (de)
+      0007F2 4F               [ 4] 2083 	ld	c, a
+      0007F3 3E 06            [ 8] 2084 	ld	a, #0x06
+      0007F5 91               [ 4] 2085 	sub	a, c
+      0007F6 38 72            [12] 2086 	jr	C, 00147$
+      0007F8 59               [ 4] 2087 	ld	e, c
+      0007F9 16 00            [ 8] 2088 	ld	d, #0x00
+      0007FB 21r01r08         [12] 2089 	ld	hl, #00302$
+      0007FE 19               [ 8] 2090 	add	hl, de
+      0007FF 19               [ 8] 2091 	add	hl, de
+                           000800  2092 	C$shop.c$250$4_0$300	= .
+                                   2093 	.globl	C$shop.c$250$4_0$300
+                                   2094 ;src/shop.c:250: case MAIN_MENU:
+      000800 E9               [ 4] 2095 	jp	(hl)
+      000801                       2096 00302$:
+      000801 18 5E            [12] 2097 	jr	00143$
+      000803 18 5C            [12] 2098 	jr	00143$
+      000805 18 5A            [12] 2099 	jr	00143$
+      000807 18 58            [12] 2100 	jr	00143$
+      000809 18 56            [12] 2101 	jr	00143$
+      00080B 18 54            [12] 2102 	jr	00143$
+      00080D 18 00            [12] 2103 	jr	00120$
+      00080F                       2104 00120$:
+                           00080F  2105 	C$shop.c$238$1_0$293	= .
+                                   2106 	.globl	C$shop.c$238$1_0$293
+                                   2107 ;src/shop.c:238: if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
+      00080F F8 03            [12] 2108 	ldhl	sp,#3
+      000811 2A               [ 8] 2109 	ld	a, (hl+)
+      000812 5F               [ 4] 2110 	ld	e, a
+      000813 56               [ 8] 2111 	ld	d, (hl)
+      000814 1A               [ 8] 2112 	ld	a, (de)
+                           000815  2113 	C$shop.c$252$4_0$300	= .
+                                   2114 	.globl	C$shop.c$252$4_0$300
+                                   2115 ;src/shop.c:252: if (currentMenu->currentSelection == 0) *currentState = DRILL_MENU;
+      000815 B7               [ 4] 2116 	or	a, a
+      000816 20 08            [12] 2117 	jr	NZ, 00136$
+      000818 23               [ 8] 2118 	inc	hl
+      000819 2A               [ 8] 2119 	ld	a,	(hl+)
+      00081A 66               [ 8] 2120 	ld	h, (hl)
+      00081B 6F               [ 4] 2121 	ld	l, a
+      00081C 36 00            [12] 2122 	ld	(hl), #0x00
+      00081E 18 4A            [12] 2123 	jr	00147$
+      000820                       2124 00136$:
+                           000820  2125 	C$shop.c$253$4_0$300	= .
+                                   2126 	.globl	C$shop.c$253$4_0$300
+                                   2127 ;src/shop.c:253: else if (currentMenu->currentSelection == 1) *currentState = HULL_MENU;
+      000820 FE 01            [ 8] 2128 	cp	a, #0x01
+      000822 20 09            [12] 2129 	jr	NZ, 00133$
+      000824 F8 05            [12] 2130 	ldhl	sp,	#5
+      000826 2A               [ 8] 2131 	ld	a,	(hl+)
+      000827 66               [ 8] 2132 	ld	h, (hl)
+      000828 6F               [ 4] 2133 	ld	l, a
+      000829 36 01            [12] 2134 	ld	(hl), #0x01
+      00082B 18 3D            [12] 2135 	jr	00147$
+      00082D                       2136 00133$:
+                           00082D  2137 	C$shop.c$254$4_0$300	= .
+                                   2138 	.globl	C$shop.c$254$4_0$300
+                                   2139 ;src/shop.c:254: else if (currentMenu->currentSelection == 2) *currentState = ENGINE_MENU;
+      00082D FE 02            [ 8] 2140 	cp	a, #0x02
+      00082F 20 09            [12] 2141 	jr	NZ, 00130$
+      000831 F8 05            [12] 2142 	ldhl	sp,	#5
+      000833 2A               [ 8] 2143 	ld	a,	(hl+)
+      000834 66               [ 8] 2144 	ld	h, (hl)
+      000835 6F               [ 4] 2145 	ld	l, a
+      000836 36 02            [12] 2146 	ld	(hl), #0x02
+      000838 18 30            [12] 2147 	jr	00147$
+      00083A                       2148 00130$:
+                           00083A  2149 	C$shop.c$255$4_0$300	= .
+                                   2150 	.globl	C$shop.c$255$4_0$300
+                                   2151 ;src/shop.c:255: else if (currentMenu->currentSelection == 3) *currentState = FUEL_MENU;
+      00083A FE 03            [ 8] 2152 	cp	a, #0x03
+      00083C 20 09            [12] 2153 	jr	NZ, 00127$
+      00083E F8 05            [12] 2154 	ldhl	sp,	#5
+      000840 2A               [ 8] 2155 	ld	a,	(hl+)
+      000841 66               [ 8] 2156 	ld	h, (hl)
+      000842 6F               [ 4] 2157 	ld	l, a
+      000843 36 03            [12] 2158 	ld	(hl), #0x03
+      000845 18 23            [12] 2159 	jr	00147$
+      000847                       2160 00127$:
+                           000847  2161 	C$shop.c$256$4_0$300	= .
+                                   2162 	.globl	C$shop.c$256$4_0$300
+                                   2163 ;src/shop.c:256: else if (currentMenu->currentSelection == 4) *currentState = RADIATOR_MENU;
+      000847 FE 04            [ 8] 2164 	cp	a, #0x04
+      000849 20 09            [12] 2165 	jr	NZ, 00124$
+      00084B F8 05            [12] 2166 	ldhl	sp,	#5
+      00084D 2A               [ 8] 2167 	ld	a,	(hl+)
+      00084E 66               [ 8] 2168 	ld	h, (hl)
+      00084F 6F               [ 4] 2169 	ld	l, a
+      000850 36 04            [12] 2170 	ld	(hl), #0x04
+      000852 18 16            [12] 2171 	jr	00147$
+      000854                       2172 00124$:
+                           000854  2173 	C$shop.c$257$4_0$300	= .
+                                   2174 	.globl	C$shop.c$257$4_0$300
+                                   2175 ;src/shop.c:257: else if (currentMenu->currentSelection == 5) *currentState = CARGO_MENU;
+      000854 D6 05            [ 8] 2176 	sub	a, #0x05
+      000856 20 12            [12] 2177 	jr	NZ, 00147$
+      000858 F8 05            [12] 2178 	ldhl	sp,	#5
+      00085A 2A               [ 8] 2179 	ld	a,	(hl+)
+      00085B 66               [ 8] 2180 	ld	h, (hl)
+      00085C 6F               [ 4] 2181 	ld	l, a
+      00085D 36 05            [12] 2182 	ld	(hl), #0x05
+                           00085F  2183 	C$shop.c$258$4_0$300	= .
+                                   2184 	.globl	C$shop.c$258$4_0$300
+                                   2185 ;src/shop.c:258: break;
+      00085F 18 09            [12] 2186 	jr	00147$
+                           000861  2187 	C$shop.c$264$4_0$300	= .
+                                   2188 	.globl	C$shop.c$264$4_0$300
+                                   2189 ;src/shop.c:264: case CARGO_MENU:
+      000861                       2190 00143$:
+                           000861  2191 	C$shop.c$265$4_0$300	= .
+                                   2192 	.globl	C$shop.c$265$4_0$300
+                                   2193 ;src/shop.c:265: attempt_purchase(*currentState, currentMenu);
+      000861 F8 03            [12] 2194 	ldhl	sp,	#3
+      000863 2A               [ 8] 2195 	ld	a, (hl+)
+      000864 5F               [ 4] 2196 	ld	e, a
+      000865 56               [ 8] 2197 	ld	d, (hl)
+      000866 79               [ 4] 2198 	ld	a, c
+      000867 CDr6Cr06         [24] 2199 	call	_attempt_purchase
+                           00086A  2200 	C$shop.c$269$2_0$294	= .
+                                   2201 	.globl	C$shop.c$269$2_0$294
+                                   2202 ;src/shop.c:269: }
+      00086A                       2203 00147$:
+                           00086A  2204 	C$shop.c$273$2_0$294	= .
+                                   2205 	.globl	C$shop.c$273$2_0$294
+                                   2206 ;src/shop.c:273: if (buttons & J_B) {
+      00086A FAr00r00         [16] 2207 	ld	a, (#_buttons)
+      00086D CB 6F            [ 8] 2208 	bit	5, a
+      00086F 28 5B            [12] 2209 	jr	Z, 00160$
+                           000871  2210 	C$shop.c$274$3_0$301	= .
+                                   2211 	.globl	C$shop.c$274$3_0$301
+                                   2212 ;src/shop.c:274: switch (*currentState) {
+      000871 F8 05            [12] 2213 	ldhl	sp,#5
+      000873 2A               [ 8] 2214 	ld	a, (hl+)
+      000874 5F               [ 4] 2215 	ld	e, a
+      000875 56               [ 8] 2216 	ld	d, (hl)
+      000876 1A               [ 8] 2217 	ld	a, (de)
+      000877 4F               [ 4] 2218 	ld	c, a
+      000878 3E 06            [ 8] 2219 	ld	a, #0x06
+      00087A 91               [ 4] 2220 	sub	a, c
+      00087B 38 4F            [12] 2221 	jr	C, 00160$
+      00087D 06 00            [ 8] 2222 	ld	b, #0x00
+      00087F 21r86r08         [12] 2223 	ld	hl, #00314$
+      000882 09               [ 8] 2224 	add	hl, bc
+      000883 09               [ 8] 2225 	add	hl, bc
+      000884 09               [ 8] 2226 	add	hl, bc
+      000885 E9               [ 4] 2227 	jp	(hl)
+      000886                       2228 00314$:
+      000886 C3rC5r08         [16] 2229 	jp	00154$
+      000889 C3rC5r08         [16] 2230 	jp	00154$
+      00088C C3rC5r08         [16] 2231 	jp	00154$
+      00088F C3rC5r08         [16] 2232 	jp	00154$
+      000892 C3rC5r08         [16] 2233 	jp	00154$
+      000895 C3rC5r08         [16] 2234 	jp	00154$
+      000898 C3r9Br08         [16] 2235 	jp	00148$
+                           00089B  2236 	C$shop.c$275$4_0$302	= .
+                                   2237 	.globl	C$shop.c$275$4_0$302
+                                   2238 ;src/shop.c:275: case MAIN_MENU:
+      00089B                       2239 00148$:
+                           00089B  2240 	C$shop.c$276$4_0$302	= .
+                                   2241 	.globl	C$shop.c$276$4_0$302
+                                   2242 ;src/shop.c:276: currentGameState = GAME_STATE_PLAY;
+      00089B 21r00r00         [12] 2243 	ld	hl, #_currentGameState
+      00089E 36 03            [12] 2244 	ld	(hl), #0x03
+                           0008A0  2245 	C$shop.c$277$4_0$302	= .
+                                   2246 	.globl	C$shop.c$277$4_0$302
+                                   2247 ;src/shop.c:277: main_menu.currentSelection = 0;
+      0008A0 21r14r00         [12] 2248 	ld	hl, #_main_menu
+      0008A3 36 00            [12] 2249 	ld	(hl), #0x00
+                           0008A5  2250 	C$shop.c$278$4_0$302	= .
+                                   2251 	.globl	C$shop.c$278$4_0$302
+                                   2252 ;src/shop.c:278: drill_menu.currentSelection = 0;
+      0008A5 21r0Er00         [12] 2253 	ld	hl, #_drill_menu
+      0008A8 36 00            [12] 2254 	ld	(hl), #0x00
+                           0008AA  2255 	C$shop.c$279$4_0$302	= .
+                                   2256 	.globl	C$shop.c$279$4_0$302
+                                   2257 ;src/shop.c:279: hull_menu.currentSelection = 0;
+      0008AA 21r0Fr00         [12] 2258 	ld	hl, #_hull_menu
+      0008AD 36 00            [12] 2259 	ld	(hl), #0x00
+                           0008AF  2260 	C$shop.c$280$4_0$302	= .
+                                   2261 	.globl	C$shop.c$280$4_0$302
+                                   2262 ;src/shop.c:280: engine_menu.currentSelection = 0;
+      0008AF 21r10r00         [12] 2263 	ld	hl, #_engine_menu
+      0008B2 36 00            [12] 2264 	ld	(hl), #0x00
+                           0008B4  2265 	C$shop.c$281$4_0$302	= .
+                                   2266 	.globl	C$shop.c$281$4_0$302
+                                   2267 ;src/shop.c:281: fuel_menu.currentSelection = 0;
+      0008B4 21r11r00         [12] 2268 	ld	hl, #_fuel_menu
+      0008B7 36 00            [12] 2269 	ld	(hl), #0x00
+                           0008B9  2270 	C$shop.c$282$4_0$302	= .
+                                   2271 	.globl	C$shop.c$282$4_0$302
+                                   2272 ;src/shop.c:282: radiator_menu.currentSelection = 0;
+      0008B9 21r12r00         [12] 2273 	ld	hl, #_radiator_menu
+      0008BC 36 00            [12] 2274 	ld	(hl), #0x00
+                           0008BE  2275 	C$shop.c$283$4_0$302	= .
+                                   2276 	.globl	C$shop.c$283$4_0$302
+                                   2277 ;src/shop.c:283: cargo_menu.currentSelection = 0;
+      0008BE 21r13r00         [12] 2278 	ld	hl, #_cargo_menu
+      0008C1 36 00            [12] 2279 	ld	(hl), #0x00
+                           0008C3  2280 	C$shop.c$284$4_0$302	= .
+                                   2281 	.globl	C$shop.c$284$4_0$302
+                                   2282 ;src/shop.c:284: break;
+      0008C3 18 07            [12] 2283 	jr	00160$
+                           0008C5  2284 	C$shop.c$290$4_0$302	= .
+                                   2285 	.globl	C$shop.c$290$4_0$302
+                                   2286 ;src/shop.c:290: case CARGO_MENU:
+      0008C5                       2287 00154$:
+                           0008C5  2288 	C$shop.c$291$4_0$302	= .
+                                   2289 	.globl	C$shop.c$291$4_0$302
+                                   2290 ;src/shop.c:291: *currentState = MAIN_MENU; // Go back to the main menu
+      0008C5 F8 05            [12] 2291 	ldhl	sp,	#5
+      0008C7 2A               [ 8] 2292 	ld	a,	(hl+)
+      0008C8 66               [ 8] 2293 	ld	h, (hl)
+      0008C9 6F               [ 4] 2294 	ld	l, a
+      0008CA 36 06            [12] 2295 	ld	(hl), #0x06
+                           0008CC  2296 	C$shop.c$293$1_0$293	= .
+                                   2297 	.globl	C$shop.c$293$1_0$293
+                                   2298 ;src/shop.c:293: }
+      0008CC                       2299 00160$:
+                           0008CC  2300 	C$shop.c$296$1_0$293	= .
+                                   2301 	.globl	C$shop.c$296$1_0$293
+                                   2302 ;src/shop.c:296: }
+      0008CC E8 07            [16] 2303 	add	sp, #7
+                           0008CE  2304 	C$shop.c$296$1_0$293	= .
+                                   2305 	.globl	C$shop.c$296$1_0$293
+                           0008CE  2306 	XG$handleInput$0$0	= .
+                                   2307 	.globl	XG$handleInput$0$0
+      0008CE C9               [16] 2308 	ret
+                                   2309 	.area _CODE_2
+                                   2310 	.area _INITIALIZER
+                           000000  2311 Fshop$__xinit_menu_numbers$0_0$0 == .
+      000000                       2312 __xinit__menu_numbers:
+      000000r0Er00                 2313 	.dw _drill_menu
+      000002r0Fr00                 2314 	.dw _hull_menu
+      000004r10r00                 2315 	.dw _engine_menu
+      000006r11r00                 2316 	.dw _fuel_menu
+      000008r12r00                 2317 	.dw _radiator_menu
+      00000Ar13r00                 2318 	.dw _cargo_menu
+      00000Cr14r00                 2319 	.dw _main_menu
+                           00000E  2320 Fshop$__xinit_drill_menu$0_0$0 == .
+      00000E                       2321 __xinit__drill_menu:
+      00000E 00                    2322 	.db #0x00	; 0
+                           00000F  2323 Fshop$__xinit_hull_menu$0_0$0 == .
+      00000F                       2324 __xinit__hull_menu:
+      00000F 00                    2325 	.db #0x00	; 0
+                           000010  2326 Fshop$__xinit_engine_menu$0_0$0 == .
+      000010                       2327 __xinit__engine_menu:
+      000010 00                    2328 	.db #0x00	; 0
+                           000011  2329 Fshop$__xinit_fuel_menu$0_0$0 == .
+      000011                       2330 __xinit__fuel_menu:
+      000011 00                    2331 	.db #0x00	; 0
+                           000012  2332 Fshop$__xinit_radiator_menu$0_0$0 == .
+      000012                       2333 __xinit__radiator_menu:
+      000012 00                    2334 	.db #0x00	; 0
+                           000013  2335 Fshop$__xinit_cargo_menu$0_0$0 == .
+      000013                       2336 __xinit__cargo_menu:
+      000013 00                    2337 	.db #0x00	; 0
+                           000014  2338 Fshop$__xinit_main_menu$0_0$0 == .
+      000014                       2339 __xinit__main_menu:
+      000014 00                    2340 	.db #0x00	; 0
+                           000015  2341 Fshop$__xinit_currentState$0_0$0 == .
+      000015                       2342 __xinit__currentState:
+      000015 06                    2343 	.db #0x06	; 6
+                           000016  2344 Fshop$__xinit_currentMenu$0_0$0 == .
+      000016                       2345 __xinit__currentMenu:
+      000016r14r00                 2346 	.dw _main_menu
+                                   2347 	.area _CABS (ABS)

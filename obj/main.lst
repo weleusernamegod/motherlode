@@ -1,0 +1,292 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.2 #14228 (Mac OS X x86_64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -msm83
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _init_attributes
+                                     13 	.globl _sell_all_ores
+                                     14 	.globl _calculate_cargo
+                                     15 	.globl _game_loop
+                                     16 	.globl _init_disable_lcd_interrupt
+                                     17 	.globl _init_enable_lcd_interrupt
+                                     18 	.globl _init_framecounter
+                                     19 	.globl _init_clear_screen
+                                     20 	.globl _init_screen
+                                     21 	.globl _init_font
+                                     22 	.globl _reset_player
+                                     23 	.globl _init_speed
+                                     24 	.globl _init_character
+                                     25 	.globl _init_progressbar
+                                     26 	.globl _init_tiles
+                                     27 	.globl _init_nav
+                                     28 	.globl _draw_character
+                                     29 	.globl _draw_hull
+                                     30 	.globl _draw_fuel
+                                     31 	.globl _draw_cargo
+                                     32 	.globl _draw_depth
+                                     33 	.globl _initrand
+                                     34 	.globl _waitpad
+                                     35 ;--------------------------------------------------------
+                                     36 ; special function registers
+                                     37 ;--------------------------------------------------------
+                                     38 ;--------------------------------------------------------
+                                     39 ; ram data
+                                     40 ;--------------------------------------------------------
+                                     41 	.area _DATA
+                                     42 ;--------------------------------------------------------
+                                     43 ; ram data
+                                     44 ;--------------------------------------------------------
+                                     45 	.area _INITIALIZED
+                                     46 ;--------------------------------------------------------
+                                     47 ; absolute external ram data
+                                     48 ;--------------------------------------------------------
+                                     49 	.area _DABS (ABS)
+                                     50 ;--------------------------------------------------------
+                                     51 ; global & static initialisations
+                                     52 ;--------------------------------------------------------
+                                     53 	.area _HOME
+                                     54 	.area _GSINIT
+                                     55 	.area _GSFINAL
+                                     56 	.area _GSINIT
+                                     57 ;--------------------------------------------------------
+                                     58 ; Home
+                                     59 ;--------------------------------------------------------
+                                     60 	.area _HOME
+                                     61 	.area _HOME
+                                     62 ;--------------------------------------------------------
+                                     63 ; code
+                                     64 ;--------------------------------------------------------
+                                     65 	.area _CODE
+                           000000    66 	G$main$0$0	= .
+                                     67 	.globl	G$main$0$0
+                           000000    68 	C$main.c$29$0_0$227	= .
+                                     69 	.globl	C$main.c$29$0_0$227
+                                     70 ;src/main.c:29: void main(void) {
+                                     71 ;	---------------------------------
+                                     72 ; Function main
+                                     73 ; ---------------------------------
+      000000                         74 _main::
+                           000000    75 	C$main.c$30$1_0$227	= .
+                                     76 	.globl	C$main.c$30$1_0$227
+                                     77 ;src/main.c:30: init_framecounter();
+      000000 CDr00r00         [24]   78 	call	_init_framecounter
+                           000003    79 	C$main.c$31$1_0$227	= .
+                                     80 	.globl	C$main.c$31$1_0$227
+                                     81 ;src/main.c:31: initrand(DIV_REG);
+      000003 F0r00            [12]   82 	ldh	a, (_DIV_REG + 0)
+      000005 06 00            [ 8]   83 	ld	b, #0x00
+      000007 4F               [ 4]   84 	ld	c, a
+      000008 C5               [16]   85 	push	bc
+      000009 CDr00r00         [24]   86 	call	_initrand
+      00000C E1               [12]   87 	pop	hl
+                           00000D    88 	C$main.c$32$1_0$227	= .
+                                     89 	.globl	C$main.c$32$1_0$227
+                                     90 ;src/main.c:32: init_attributes();
+      00000D CDr00r00         [24]   91 	call	_init_attributes
+                           000010    92 	C$main.c$33$1_0$227	= .
+                                     93 	.globl	C$main.c$33$1_0$227
+                                     94 ;src/main.c:33: init_font();
+      000010 CDr00r00         [24]   95 	call	_init_font
+                           000013    96 	C$main.c$34$1_0$227	= .
+                                     97 	.globl	C$main.c$34$1_0$227
+                                     98 ;src/main.c:34: init_speed();
+      000013 CDr00r00         [24]   99 	call	_init_speed
+                           000016   100 	C$main.c$35$1_0$227	= .
+                                    101 	.globl	C$main.c$35$1_0$227
+                                    102 ;src/main.c:35: init_character();
+      000016 CDr00r00         [24]  103 	call	_init_character
+                           000019   104 	C$main.c$36$1_0$227	= .
+                                    105 	.globl	C$main.c$36$1_0$227
+                                    106 ;src/main.c:36: init_screen();
+      000019 CDr00r00         [24]  107 	call	_init_screen
+                           00001C   108 	C$main.c$39$1_1$228	= .
+                                    109 	.globl	C$main.c$39$1_1$228
+                                    110 ;src/main.c:39: saved_bank = CURRENT_BANK;
+      00001C F0r00            [12]  111 	ldh	a, (__current_bank + 0)
+                           00001E   112 	C$main.c$41$1_1$228	= .
+                                    113 	.globl	C$main.c$41$1_1$228
+                                    114 ;src/main.c:41: while (1) {
+      00001E                        115 00114$:
+                           00001E   116 	C$main.c$42$2_1$229	= .
+                                    117 	.globl	C$main.c$42$2_1$229
+                                    118 ;src/main.c:42: switch (currentGameState) {
+      00001E FAr00r00         [16]  119 	ld	a, (#_currentGameState)
+      000021 3D               [ 4]  120 	dec	a
+      000022 28 53            [12]  121 	jr	Z, 00106$
+      000024 FAr00r00         [16]  122 	ld	a, (#_currentGameState)
+      000027 D6 02            [ 8]  123 	sub	a, #0x02
+      000029 28 6C            [12]  124 	jr	Z, 00110$
+      00002B FAr00r00         [16]  125 	ld	a, (#_currentGameState)
+      00002E D6 03            [ 8]  126 	sub	a, #0x03
+      000030 28 09            [12]  127 	jr	Z, 00101$
+      000032 FAr00r00         [16]  128 	ld	a, (#_currentGameState)
+      000035 D6 04            [ 8]  129 	sub	a, #0x04
+      000037 28 67            [12]  130 	jr	Z, 00111$
+      000039 18 E3            [12]  131 	jr	00114$
+                           00003B   132 	C$main.c$43$3_1$230	= .
+                                    133 	.globl	C$main.c$43$3_1$230
+                                    134 ;src/main.c:43: case GAME_STATE_PLAY:
+      00003B                        135 00101$:
+                           00003B   136 	C$main.c$45$3_1$230	= .
+                                    137 	.globl	C$main.c$45$3_1$230
+                                    138 ;src/main.c:45: SWITCH_ROM(1);
+      00003B 3E 01            [ 8]  139 	ld	a, #0x01
+      00003D E0r00            [12]  140 	ldh	(__current_bank + 0), a
+      00003F 21r00r00         [12]  141 	ld	hl, #_rROMB0
+      000042 36 01            [12]  142 	ld	(hl), #0x01
+                           000044   143 	C$main.c$46$3_1$230	= .
+                                    144 	.globl	C$main.c$46$3_1$230
+                                    145 ;src/main.c:46: init_enable_lcd_interrupt();
+      000044 CDr00r00         [24]  146 	call	_init_enable_lcd_interrupt
+                           000047   147 	C$main.c$47$3_1$230	= .
+                                    148 	.globl	C$main.c$47$3_1$230
+                                    149 ;src/main.c:47: init_clear_screen();
+      000047 CDr00r00         [24]  150 	call	_init_clear_screen
+                           00004A   151 	C$main.c$48$3_1$230	= .
+                                    152 	.globl	C$main.c$48$3_1$230
+                                    153 ;src/main.c:48: init_tiles();
+      00004A CDr00r00         [24]  154 	call	_init_tiles
+                           00004D   155 	C$main.c$49$3_1$230	= .
+                                    156 	.globl	C$main.c$49$3_1$230
+                                    157 ;src/main.c:49: init_progressbar();
+      00004D CDr00r00         [24]  158 	call	_init_progressbar
+                           000050   159 	C$main.c$50$3_1$230	= .
+                                    160 	.globl	C$main.c$50$3_1$230
+                                    161 ;src/main.c:50: init_nav();
+      000050 CDr00r00         [24]  162 	call	_init_nav
+                           000053   163 	C$main.c$52$3_1$230	= .
+                                    164 	.globl	C$main.c$52$3_1$230
+                                    165 ;src/main.c:52: draw_character();
+      000053 CDr00r00         [24]  166 	call	_draw_character
+                           000056   167 	C$main.c$53$3_1$230	= .
+                                    168 	.globl	C$main.c$53$3_1$230
+                                    169 ;src/main.c:53: draw_fuel();
+      000056 CDr00r00         [24]  170 	call	_draw_fuel
+                           000059   171 	C$main.c$54$3_1$230	= .
+                                    172 	.globl	C$main.c$54$3_1$230
+                                    173 ;src/main.c:54: draw_hull();
+      000059 CDr00r00         [24]  174 	call	_draw_hull
+                           00005C   175 	C$main.c$55$3_1$230	= .
+                                    176 	.globl	C$main.c$55$3_1$230
+                                    177 ;src/main.c:55: calculate_cargo();
+      00005C CDr00r00         [24]  178 	call	_calculate_cargo
+                           00005F   179 	C$main.c$56$3_1$230	= .
+                                    180 	.globl	C$main.c$56$3_1$230
+                                    181 ;src/main.c:56: draw_cargo();
+      00005F CDr00r00         [24]  182 	call	_draw_cargo
+                           000062   183 	C$main.c$57$3_1$230	= .
+                                    184 	.globl	C$main.c$57$3_1$230
+                                    185 ;src/main.c:57: draw_depth();
+      000062 CDr00r00         [24]  186 	call	_draw_depth
+                           000065   187 	C$main.c$59$3_1$230	= .
+                                    188 	.globl	C$main.c$59$3_1$230
+                                    189 ;src/main.c:59: while (player_alive == TRUE && currentGameState == GAME_STATE_PLAY) {
+      000065                        190 00103$:
+      000065 FAr00r00         [16]  191 	ld	a, (#_player_alive)
+      000068 3D               [ 4]  192 	dec	a
+      000069 20 B3            [12]  193 	jr	NZ, 00114$
+      00006B FAr00r00         [16]  194 	ld	a, (#_currentGameState)
+      00006E D6 03            [ 8]  195 	sub	a, #0x03
+      000070 20 AC            [12]  196 	jr	NZ, 00114$
+                           000072   197 	C$main.c$60$4_1$231	= .
+                                    198 	.globl	C$main.c$60$4_1$231
+                                    199 ;src/main.c:60: game_loop();
+      000072 CDr00r00         [24]  200 	call	_game_loop
+      000075 18 EE            [12]  201 	jr	00103$
+                           000077   202 	C$main.c$64$3_1$230	= .
+                                    203 	.globl	C$main.c$64$3_1$230
+                                    204 ;src/main.c:64: case GAME_STATE_SHOP_MENU:
+      000077                        205 00106$:
+                           000077   206 	C$main.c$65$3_1$230	= .
+                                    207 	.globl	C$main.c$65$3_1$230
+                                    208 ;src/main.c:65: SWITCH_ROM(2);
+      000077 3E 02            [ 8]  209 	ld	a, #0x02
+      000079 E0r00            [12]  210 	ldh	(__current_bank + 0), a
+      00007B 21r00r00         [12]  211 	ld	hl, #_rROMB0
+      00007E 36 02            [12]  212 	ld	(hl), #0x02
+                           000080   213 	C$main.c$67$3_1$230	= .
+                                    214 	.globl	C$main.c$67$3_1$230
+                                    215 ;src/main.c:67: init_disable_lcd_interrupt();
+      000080 CDr00r00         [24]  216 	call	_init_disable_lcd_interrupt
+                           000083   217 	C$main.c$68$3_1$230	= .
+                                    218 	.globl	C$main.c$68$3_1$230
+                                    219 ;src/main.c:68: init_clear_screen();
+      000083 CDr00r00         [24]  220 	call	_init_clear_screen
+                           000086   221 	C$main.c$69$3_1$230	= .
+                                    222 	.globl	C$main.c$69$3_1$230
+                                    223 ;src/main.c:69: init_shop();
+      000086 CDr00r00         [24]  224 	call	_init_shop
+                           000089   225 	C$main.c$70$3_1$230	= .
+                                    226 	.globl	C$main.c$70$3_1$230
+                                    227 ;src/main.c:70: init_shop_tiles_palettes();
+      000089 CDr00r00         [24]  228 	call	_init_shop_tiles_palettes
+                           00008C   229 	C$main.c$71$3_1$230	= .
+                                    230 	.globl	C$main.c$71$3_1$230
+                                    231 ;src/main.c:71: while (currentGameState == GAME_STATE_SHOP_MENU){
+      00008C                        232 00107$:
+      00008C FAr00r00         [16]  233 	ld	a, (#_currentGameState)
+      00008F 3D               [ 4]  234 	dec	a
+      000090 20 8C            [12]  235 	jr	NZ, 00114$
+                           000092   236 	C$main.c$72$4_1$232	= .
+                                    237 	.globl	C$main.c$72$4_1$232
+                                    238 ;src/main.c:72: shop_menu_loop();
+      000092 CDr00r00         [24]  239 	call	_shop_menu_loop
+      000095 18 F5            [12]  240 	jr	00107$
+                           000097   241 	C$main.c$75$3_1$230	= .
+                                    242 	.globl	C$main.c$75$3_1$230
+                                    243 ;src/main.c:75: case GAME_STATE_SELL_MENU:
+      000097                        244 00110$:
+                           000097   245 	C$main.c$76$3_1$230	= .
+                                    246 	.globl	C$main.c$76$3_1$230
+                                    247 ;src/main.c:76: init_disable_lcd_interrupt();
+      000097 CDr00r00         [24]  248 	call	_init_disable_lcd_interrupt
+                           00009A   249 	C$main.c$77$3_1$230	= .
+                                    250 	.globl	C$main.c$77$3_1$230
+                                    251 ;src/main.c:77: sell_all_ores();
+      00009A CDr00r00         [24]  252 	call	_sell_all_ores
+                           00009D   253 	C$main.c$78$3_1$230	= .
+                                    254 	.globl	C$main.c$78$3_1$230
+                                    255 ;src/main.c:78: break;
+      00009D C3r1Er00         [16]  256 	jp	00114$
+                           0000A0   257 	C$main.c$80$3_1$230	= .
+                                    258 	.globl	C$main.c$80$3_1$230
+                                    259 ;src/main.c:80: case GAME_STATE_GAME_OVER:
+      0000A0                        260 00111$:
+                           0000A0   261 	C$main.c$81$3_1$230	= .
+                                    262 	.globl	C$main.c$81$3_1$230
+                                    263 ;src/main.c:81: init_disable_lcd_interrupt();
+      0000A0 CDr00r00         [24]  264 	call	_init_disable_lcd_interrupt
+                           0000A3   265 	C$main.c$82$3_1$230	= .
+                                    266 	.globl	C$main.c$82$3_1$230
+                                    267 ;src/main.c:82: waitpad(J_START);
+      0000A3 3E 80            [ 8]  268 	ld	a, #0x80
+      0000A5 CDr00r00         [24]  269 	call	_waitpad
+                           0000A8   270 	C$main.c$83$3_1$230	= .
+                                    271 	.globl	C$main.c$83$3_1$230
+                                    272 ;src/main.c:83: reset_player();
+      0000A8 CDr00r00         [24]  273 	call	_reset_player
+                           0000AB   274 	C$main.c$84$3_1$230	= .
+                                    275 	.globl	C$main.c$84$3_1$230
+                                    276 ;src/main.c:84: currentGameState = GAME_STATE_PLAY;
+      0000AB 21r00r00         [12]  277 	ld	hl, #_currentGameState
+      0000AE 36 03            [12]  278 	ld	(hl), #0x03
+                           0000B0   279 	C$main.c$87$1_1$228	= .
+                                    280 	.globl	C$main.c$87$1_1$228
+                                    281 ;src/main.c:87: }
+                           0000B0   282 	C$main.c$89$1_1$227	= .
+                                    283 	.globl	C$main.c$89$1_1$227
+                                    284 ;src/main.c:89: }
+                           0000B0   285 	C$main.c$89$1_1$227	= .
+                                    286 	.globl	C$main.c$89$1_1$227
+                           0000B0   287 	XG$main$0$0	= .
+                                    288 	.globl	XG$main$0$0
+      0000B0 C3r1Er00         [16]  289 	jp	00114$
+                                    290 	.area _CODE
+                                    291 	.area _INITIALIZER
+                                    292 	.area _CABS (ABS)

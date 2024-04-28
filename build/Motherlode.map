@@ -1,0 +1,2314 @@
+ASxxxx Linker V03.00/V05.40 + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+.  .ABS.               00000000    00000000 =           0. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000000  .__.ABS.  |    00000000  _rRAMG    |    00000000  l__BASE  
+     00000000  l__BSS    |    00000000  l__CABS   |    00000000  l__CODE_0
+     00000000  l__DABS   |    00000000  l__FONT_H |    00000000  l__HEADER
+     00000000  l__HEADER |    00000000  l__HEAP   |    00000000  l__HEAP_E
+     00000000  l__HRAM   |    00000000  l__LIT    |    00000000  s__CABS  
+     00000000  s__DABS   |    00000000  s__FONT_H |    00000000  s__FONT_H
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HEADER |    00000000  s__HEADER |    00000000  s__HEADER
+     00000000  s__HRAM   |    00000000  s__HRAM12 |    00000001  ___bank_b
+     00000001  ___bank_b |    00000001  ___bank_b |    00000001  ___bank_n
+     00000001  ___bank_p |    00000001  ___bank_r |    00000001  ___bank_t
+     00000001  l__GSFINA |    00000001  l__HEADER |    00000001  l__HEADER
+     00000001  l__HEADER |    00000001  l__HEADER |    00000001  l__HEADER
+     00000001  l__HEADER |    00000001  l__HEADER |    00000002  ___bank_b
+     00000002  ___bank_b |    00000002  ___bank_m |    00000002  ___bank_s
+     00000002  ___bank_s |    00000002  l__HEADER |    00000002  l__HEADER
+     00000002  l__HEADER |    00000003  l__FONT_H |    00000003  l__HEADER
+     00000003  l__HEADER |    00000003  l__HRAM12 |    00000005  l__HEADER
+     00000006  l__HEADER |    00000007  l__HEADER |    00000008  l__HEADER
+     0000000C  l__GSINIT |    00000030  l__HEADER |    0000005C  l__HEADER
+     000000AF  l__HEADER |    000001AF  l__DATA   |    00000200  s__CODE  
+     0000079A  l__INITIA |    0000079A  l__INITIA |    00000901  l__HOME  
+     00001362  l__CODE_1 |    0000173A  l__CODE   |    0000193A  s__HOME  
+     00002000  _rROMB0   |    0000223B  s__BASE   |    0000223B  s__CODE_0
+     0000223B  s__INITIA |    0000223B  s__LIT    |    000029D5  s__GSINIT
+     000029E1  s__GSFINA |    00003000  _rROMB1   |    000030C1  l__CODE_2
+     00004000  _rRAMB    |    00008000  __VRAM    |    00008000  __VRAM800
+     00008800  __VRAM880 |    00009000  __VRAM900 |    00009800  __SCRN0  
+     00009C00  __SCRN1   |    0000A000  __SRAM    |    0000C000  __RAM    
+     0000C000  _shadow_O |    0000C0A0  s__DATA   |    0000C24F  s__BSS   
+     0000C24F  s__INITIA |    0000C9E9  s__HEAP   |    0000C9E9  s__HEAP_E
+     0000D000  __RAMBANK |    0000E000  .STACK    |    0000FE00  __OAMRAM 
+     0000FF00  _P1_REG   |    0000FF00  __IO      |    0000FF01  _SB_REG  
+     0000FF02  _SC_REG   |    0000FF04  _DIV_REG  |    0000FF05  _TIMA_REG
+     0000FF06  _TMA_REG  |    0000FF07  _TAC_REG  |    0000FF0F  _IF_REG  
+     0000FF10  _NR10_REG |    0000FF11  _NR11_REG |    0000FF12  _NR12_REG
+     0000FF13  _NR13_REG |    0000FF14  _NR14_REG |    0000FF16  _NR21_REG
+     0000FF17  _NR22_REG |    0000FF18  _NR23_REG |    0000FF19  _NR24_REG
+     0000FF1A  _NR30_REG |    0000FF1B  _NR31_REG |    0000FF1C  _NR32_REG
+     0000FF1D  _NR33_REG |    0000FF1E  _NR34_REG |    0000FF20  _NR41_REG
+     0000FF21  _NR42_REG |    0000FF22  _NR43_REG |    0000FF23  _NR44_REG
+     0000FF24  _NR50_REG |    0000FF25  _NR51_REG |    0000FF26  _NR52_REG
+     0000FF30  _AUD3WAVE |    0000FF30  _PCM_SAMP |    0000FF30  __AUD3WAV
+     0000FF40  _LCDC_REG |    0000FF41  _STAT_REG |    0000FF42  _SCY_REG 
+     0000FF43  _SCX_REG  |    0000FF44  _LY_REG   |    0000FF45  _LYC_REG 
+ASxxxx Linker V03.00/V05.40 + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+.  .ABS.               00000000    00000000 =           0. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000FF46  _DMA_REG  |    0000FF47  _BGP_REG  |    0000FF48  _OBP0_REG
+     0000FF49  _OBP1_REG |    0000FF4A  _WY_REG   |    0000FF4B  _WX_REG  
+     0000FF4D  _KEY1_REG |    0000FF4F  _VBK_REG  |    0000FF51  _HDMA1_RE
+     0000FF52  _HDMA2_RE |    0000FF53  _HDMA3_RE |    0000FF54  _HDMA4_RE
+     0000FF55  _HDMA5_RE |    0000FF56  _RP_REG   |    0000FF68  _BCPS_REG
+     0000FF69  _BCPD_REG |    0000FF6A  _OCPS_REG |    0000FF6B  _OCPD_REG
+     0000FF70  _SVBK_REG |    0000FF76  _PCM12_RE |    0000FF77  _PCM34_RE
+     0000FF80  .refresh_ |    0000FF80  __HRAM    |    0000FFFF  _IE_REG  
+     00014000  s__CODE_1 |    00024000  s__CODE_2
+ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000200    0000173A =        5946. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000200  _init_att |    0000096E  _game_loo |    000009DF  _init_fon
+     000009F0  _init_scr |    00000A09  _init_cle |    00000A94  _read_but
+     00000A9B  _convert_ |    00000B4B  _draw_tex |    00000CFF  _draw_num
+     00000E45  _interrup |    00000E4D  _interrup |    00000E55  _interrup
+     00000E61  _init_fra |    00000E69  _init_ena |    00000E84  _init_dis
+     00000E9B  _update_i |    00000F13  _calculat |    00000F6C  _sell_all
+     000010C3  A$main$78 |    000010C3  C$main.c$ |    000010C3  C$main.c$
+     000010C3  G$main$0$ |    000010C3  _main     |    000010C6  A$main$82
+     000010C6  C$main.c$ |    000010C8  A$main$83 |    000010CA  A$main$84
+     000010CB  A$main$85 |    000010CC  A$main$86 |    000010CF  A$main$87
+     000010D0  A$main$91 |    000010D0  C$main.c$ |    000010D3  A$main$95
+     000010D3  C$main.c$ |    000010D6  A$main$99 |    000010D6  C$main.c$
+     000010D9  A$main$10 |    000010D9  C$main.c$ |    000010DC  A$main$10
+     000010DC  C$main.c$ |    000010DF  A$main$11 |    000010DF  C$main.c$
+     000010E1  A$main$11 |    000010E1  C$main.c$ |    000010E1  C$main.c$
+     000010E4  A$main$12 |    000010E5  A$main$12 |    000010E7  A$main$12
+     000010EA  A$main$12 |    000010EC  A$main$12 |    000010EE  A$main$12
+     000010F1  A$main$12 |    000010F3  A$main$12 |    000010F5  A$main$12
+     000010F8  A$main$12 |    000010FA  A$main$13 |    000010FC  A$main$13
+     000010FE  A$main$13 |    000010FE  C$main.c$ |    000010FE  C$main.c$
+     00001100  A$main$14 |    00001102  A$main$14 |    00001105  A$main$14
+     00001107  A$main$14 |    00001107  C$main.c$ |    0000110A  A$main$15
+     0000110A  C$main.c$ |    0000110D  A$main$15 |    0000110D  C$main.c$
+     00001110  A$main$15 |    00001110  C$main.c$ |    00001113  A$main$16
+     00001113  C$main.c$ |    00001116  A$main$16 |    00001116  C$main.c$
+     00001119  A$main$17 |    00001119  C$main.c$ |    0000111C  A$main$17
+     0000111C  C$main.c$ |    0000111F  A$main$17 |    0000111F  C$main.c$
+     00001122  A$main$18 |    00001122  C$main.c$ |    00001125  A$main$18
+     00001125  C$main.c$ |    00001128  A$main$19 |    00001128  C$main.c$
+     0000112B  A$main$19 |    0000112C  A$main$19 |    0000112E  A$main$19
+     00001131  A$main$19 |    00001133  A$main$19 |    00001135  A$main$20
+     00001135  C$main.c$ |    00001138  A$main$20 |    0000113A  A$main$20
+     0000113A  C$main.c$ |    0000113A  C$main.c$ |    0000113C  A$main$21
+     0000113E  A$main$21 |    00001141  A$main$21 |    00001143  A$main$21
+     00001143  C$main.c$ |    00001146  A$main$22 |    00001146  C$main.c$
+     00001149  A$main$22 |    00001149  C$main.c$ |    0000114C  A$main$22
+     0000114C  C$main.c$ |    0000114F  A$main$23 |    0000114F  C$main.c$
+     00001152  A$main$23 |    00001153  A$main$23 |    00001155  A$main$23
+     00001155  C$main.c$ |    00001158  A$main$24 |    0000115A  A$main$24
+     0000115A  C$main.c$ |    0000115A  C$main.c$ |    0000115D  A$main$25
+     0000115D  C$main.c$ |    00001160  A$main$25 |    00001160  C$main.c$
+     00001163  A$main$26 |    00001163  C$main.c$ |    00001163  C$main.c$
+     00001166  A$main$26 |    00001166  C$main.c$ |    00001168  A$main$26
+     0000116B  A$main$27 |    0000116B  C$main.c$ |    0000116E  A$main$27
+     0000116E  C$main.c$ |    00001171  A$main$27 |    00001173  A$main$28
+     00001173  C$main.c$ |    00001173  C$main.c$ |    00001173  XG$main$0
+     00001176  A$menuloo |    00001176  C$menuloo |    00001176  C$menuloo
+     00001176  G$shop_me |    00001176  _shop_men |    00001179  A$menuloo
+     00001179  C$menuloo |    0000117C  A$menuloo |    0000117F  A$menuloo
+     00001180  A$menuloo |    00001182  A$menuloo |    00001182  C$menuloo
+ASxxxx Linker V03.00/V05.40 + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000200    0000173A =        5946. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001185  A$menuloo |    00001186  A$menuloo |    00001187  A$menuloo
+     00001188  A$menuloo |    0000118B  A$menuloo |    0000118E  A$menuloo
+     0000118E  C$menuloo |    00001191  A$menuloo |    00001193  A$menuloo
+     00001193  C$menuloo |    00001196  A$menuloo |    00001197  A$menuloo
+     00001199  A$menuloo |    00001199  C$menuloo |    0000119C  A$menuloo
+     0000119D  A$menuloo |    0000119E  A$menuloo |    0000119F  A$menuloo
+     000011A2  A$menuloo |    000011A2  C$menuloo |    000011A5  A$menuloo
+     000011A8  A$menuloo |    000011A8  C$menuloo |    000011AB  A$menuloo
+     000011AD  A$menuloo |    000011AF  A$menuloo |    000011AF  C$menuloo
+     000011B2  A$menuloo |    000011B4  A$menuloo |    000011B5  A$menuloo
+     000011B7  A$menuloo |    000011B7  C$menuloo |    000011BA  A$menuloo
+     000011BA  C$menuloo |    000011BD  A$menuloo |    000011BD  C$menuloo
+     000011C0  A$menuloo |    000011C2  A$menuloo |    000011C2  C$menuloo
+     000011C5  A$menuloo |    000011C8  A$menuloo |    000011C9  A$menuloo
+     000011CB  A$menuloo |    000011CC  A$menuloo |    000011CD  A$menuloo
+     000011CE  A$menuloo |    000011CF  A$menuloo |    000011D0  A$menuloo
+     000011D3  A$menuloo |    000011D4  A$menuloo |    000011D5  A$menuloo
+     000011D6  A$menuloo |    000011D7  A$menuloo |    000011D7  C$menuloo
+     000011DA  A$menuloo |    000011DA  C$menuloo |    000011DD  A$menuloo
+     000011DD  C$menuloo |    000011E0  A$menuloo |    000011E0  C$menuloo
+     000011E3  A$menuloo |    000011E5  A$menuloo |    000011E5  C$menuloo
+     000011E8  A$menuloo |    000011EB  A$menuloo |    000011EC  A$menuloo
+     000011EC  C$menuloo |    000011EC  C$menuloo |    000011EC  XG$shop_m
+     000011EF  _palette_ |    000011F7  _palette_ |    000011FF  _palette_
+     00001207  _palette_ |    0000120F  _palette_ |    00001217  _palette_
+     0000121F  _palette_ |    00001227  _palette_ |    0000122F  _palette_
+     00001237  _palette_ |    0000123F  _palette_ |    00001247  _palette_
+     0000124F  _set_spri |    00001254  _set_bkg_ |    00001257  .set_pale
+     00001276  _set_spri |    0000127B  _set_bkg_ |    0000127E  .set_pale
+     0000129A  __mulsuch |    0000129D  __mulusch |    000012A6  __mulscha
+     000012AE  __mulint  |    000012CD  __mulucha |    000012DF  _set_vram
+     000012E8  _set_win_ |    000012F0  _set_bkg_ |    0000131A  ___hide_m
+     0000133E  _get_win_ |    00001346  _get_bkg_ |    0000139C  ___printf
+     000016EB  _sprintf  |    0000170C  ___move_m |    00001749  ___memcpy
+     00001749  _memcpy   |    0000177B  _strcat   |    0000178D  ___move_m
+     0000178D  ___move_m |    000017CE  ___move_m |    000017CE  ___move_m
+     0000180F  ___move_m |    0000180F  ___move_m |    00001852  __divsuch
+     00001858  __modsuch |    00001861  __divusch |    0000186A  __modusch
+     00001877  __divscha |    0000187C  __modscha |    00001883  __divsint
+     0000188C  __modsint |    00001898  __divucha |    0000189D  __moducha
+     000018A4  __divuint |    000018AD  __moduint |    000018B9  .div8    
+     000018B9  .mod8     |    000018C1  .div16    |    000018C1  .mod16   
+     000018F7  .divu8    |    000018F7  .modu8    |    000018FA  .divu16  
+     000018FA  .modu16  
+ASxxxx Linker V03.00/V05.40 + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER0               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000020  .call_hl 
+ASxxxx Linker V03.00/V05.40 + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER1               00000000    00000005 =           5. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000028  .MemsetSm
+ASxxxx Linker V03.00/V05.40 + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER2               00000000    00000007 =           7. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000030  .MemcpySm
+ASxxxx Linker V03.00/V05.40 + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER3               00000000    00000008 =           8. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER4               00000000    0000005C =          92. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000080  .int      |    0000008F  _wait_int |    0000009C  __standar
+     000000AB  _refresh_ |    000000CC  .wait_vbl |    000000CC  _vsync   
+     000000CC  _wait_vbl
+ASxxxx Linker V03.00/V05.40 + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER5               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER6               00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER7               00000000    00000030 =          48. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER8               00000000    00000006 =           6. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER9               00000000    00000003 =           3. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADERa               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADERb               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADERc               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADERd               00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADERe               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADERf               00000000    00000001 =           1. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER10              00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER11              00000000    000000AF =         175. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000150  .reset    |    00000150  _reset    |    00000157  .code_sta
+     000001B9  _exit     |    000001BD  _set_inte |    000001D1  .remove_V
+     000001D1  _remove_V |    000001D4  .remove_i |    000001F1  .add_VBL 
+     000001F1  _add_VBL  |    000001F4  .add_int 
+ASxxxx Linker V03.00/V05.40 + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HOME                  0000193A    00000901 =        2305. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000193A  .memset_s |    00001943  .memcpy_s |    00001960  .display_
+     00001960  _display_ |    00001978  _font_loa |    0000197F  font_load
+     000019C7  font_copy |    000019FD  font_set  |    00001A0A  .put_char
+     00001A22  .out_char |    00001A28  .del_char |    00001A7E  _putchar 
+     00001A87  _setchar  |    00001A90  _font_loa |    00001A9E  _font_set
+     00001AAD  _font_ini |    00001ACC  .cls      |    00001ACC  _cls     
+     00001AEE  _gotoxy   |    00001AF9  _posx     |    00001B0A  _posy    
+     00001B32  .cr_curs  |    00001B47  .adv_curs |    00001BA3  .tmode   
+     00001BC0  .tmode_ou |    00001BC9  _rand     |    00001BC9  _randw   
+     00001BF4  _initrand |    00001BF6  .initrand |    00001BFF  _set_bkg_
+     00001BFF  _set_win_ |    00001C07  _set_spri |    00001C5F  .padup   
+     00001C5F  _waitpadu |    00001C6F  .jpad     |    00001C6F  _joypad  
+     00001C97  _waitpad  |    00001C98  .wait_pad |    00001C9F  _uitoa   
+     00001CAE  _itoa     |    00001CBD  .itoa     |    00001CD1  .utoa    
+     00001D45  _set_tile |    00001D4A  _set_bkg_ |    00001D4A  _set_win_
+     00001D52  _set_spri |    00001D82  _abs      |    00001D91  _set_win_
+     00001DD4  .add_LCD  |    00001DD4  _add_LCD  |    00001DDA  .remove_L
+     00001DDA  _remove_L |    00001DE0  ___sdcc_c |    00001DE1  _color   
+     00001DE1  _set_1bpp |    00001DF0  .drawing_ |    00001E0D  _font_ibm
+     000021BF  _strlen   |    000021C4  .strlen   |    000021CD  _set_bkg_
+     000021E1  .set_xy_w |    000021EA  .set_xy_b |    000021F9  .set_xy_t
+ASxxxx Linker V03.00/V05.40 + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_INITIALIZER           0000223B    0000079A =        1946. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000023B6  Flevel$__ |    000029B6  Fshop$__x |    000029C4  Fshop$__x
+     000029C5  Fshop$__x |    000029C6  Fshop$__x |    000029C7  Fshop$__x
+     000029C8  Fshop$__x |    000029C9  Fshop$__x |    000029CA  Fshop$__x
+     000029CB  Fshop$__x |    000029CC  Fshop$__x
+ASxxxx Linker V03.00/V05.40 + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_GSINIT                000029D5    0000000C =          12. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000029D5  gsinit   
+ASxxxx Linker V03.00/V05.40 + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_GSFINAL               000029E1    00000001 =           1. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 27.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_DATA                  0000C0A0    000001AF =         431. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000C0A0  __cpu     |    0000C0A1  __is_GBA  |    0000C0A2  .mode    
+     0000C0A3  .sys_time |    0000C0A3  _sys_time |    0000C0A5  .int_0x40
+     0000C0B1  _saved_ba |    0000C0B2  _prev_dep |    0000C0B3  _prev_wid
+     0000C0B4  _depth_pi |    0000C0B6  _width_pi |    0000C0B8  _scroll_x
+     0000C0BA  _scroll_y |    0000C0BC  _ore_resi |    0000C0BE  _move_x_p
+     0000C0C0  _move_y_p |    0000C0C2  _scroll_x |    0000C0C4  _scroll_y
+     0000C0C6  _directio |    0000C0C7  _directio |    0000C0C8  _is_drill
+     0000C0C9  _buttons  |    0000C0CA  _next_til |    0000C0CB  _next_til
+     0000C0CC  _next_til |    0000C0CD  _next_til |    0000C0CE  _next_til
+     0000C0CF  G$player$ |    0000C0CF  _player   |    0000C22B  font_curr
+     0000C22E  font_firs |    0000C22F  font_tabl |    0000C241  ___rand_s
+     0000C243  .int_0x48 |    0000C24B  ___curren |    0000C24D  ___curren
+     0000C24E  ___curren
+ASxxxx Linker V03.00/V05.40 + sdld,  page 28.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_INITIALIZED           0000C24F    0000079A =        1946. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000C24F  _attribut |    0000C25B  _font     |    0000C2FB  _frame_co
+     0000C2FC  _update_m |    0000C2FD  _left_sho |    0000C2FE  _left_sel
+     0000C2FF  _player_a |    0000C300  _currentG |    0000C301  _depth   
+     0000C302  _width    |    0000C303  _depth_of |    0000C304  _width_of
+     0000C305  _animatio |    0000C306  _velocity |    0000C307  _base_dri
+     0000C308  _tile_min |    0000C309  _prev_but |    0000C30A  _material
+     0000C3CA  G$level_a |    0000C3CA  _level_ar |    0000C9CA  G$menu_nu
+     0000C9CA  _menu_num |    0000C9D8  G$drill_m |    0000C9D8  _drill_me
+     0000C9D9  G$hull_me |    0000C9D9  _hull_men |    0000C9DA  G$engine_
+     0000C9DA  _engine_m |    0000C9DB  G$fuel_me |    0000C9DB  _fuel_men
+     0000C9DC  G$radiato |    0000C9DC  _radiator |    0000C9DD  G$cargo_m
+     0000C9DD  _cargo_me |    0000C9DE  G$main_me |    0000C9DE  _main_men
+     0000C9DF  G$current |    0000C9DF  _currentS |    0000C9E0  G$current
+     0000C9E0  _currentM |    0000C9E2  .curx     |    0000C9E3  .cury    
+     0000C9E4  ___render |    0000C9E5  .fg_colou |    0000C9E5  __current
+     0000C9E6  .bg_colou |    0000C9E7  .draw_mod |    0000C9E8  __map_til
+ASxxxx Linker V03.00/V05.40 + sdld,  page 29.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HRAM12                00000000    00000003 =           3. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000FF90  __current |    0000FF92  __shadow_
+ASxxxx Linker V03.00/V05.40 + sdld,  page 30.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014000  A$map$90  |    00014000  C$level.c |    00014000  C$map.c$2
+     00014000  C$map.c$3 |    00014000  G$__func_ |    00014000  G$__func_
+     00014000  G$shuffle |    00014000  ___func_b |    00014000  ___func_b
+     00014000  _shuffle  |    00014001  A$map$94  |    00014001  C$map.c$3
+     00014003  A$map$95  |    00014004  A$map$103 |    00014004  C$map.c$3
+     00014006  A$map$104 |    00014007  A$map$105 |    00014008  A$map$106
+     00014009  A$map$110 |    00014009  C$map.c$3 |    0001400A  A$map$111
+     0001400B  A$map$112 |    0001400C  A$map$113 |    0001400D  A$map$114
+     00014010  A$map$115 |    00014011  A$map$116 |    00014014  A$map$117
+     00014015  A$map$118 |    00014016  A$map$119 |    00014018  A$map$120
+     00014019  A$map$130 |    00014019  C$map.c$3 |    00014019  C$map.c$3
+     0001401A  A$map$131 |    0001401B  A$map$132 |    0001401E  A$map$133
+     0001401F  A$map$134 |    00014020  A$map$135 |    00014021  A$map$136
+     00014023  A$map$137 |    00014024  A$map$141 |    00014024  C$map.c$3
+     00014025  A$map$142 |    00014026  A$map$143 |    00014028  A$map$147
+     00014028  C$map.c$4 |    0001402A  A$map$148 |    0001402B  A$map$149
+     0001402C  A$map$150 |    0001402D  A$map$151 |    0001402F  A$map$152
+     00014030  A$map$153 |    00014031  A$map$157 |    00014031  C$map.c$4
+     00014032  A$map$158 |    00014033  A$map$159 |    00014034  A$map$160
+     00014035  A$map$161 |    00014037  A$map$162 |    00014038  A$map$163
+     00014039  A$map$164 |    0001403A  A$map$168 |    0001403A  C$map.c$4
+     0001403C  A$map$169 |    0001403D  A$map$170 |    0001403E  A$map$174
+     0001403E  C$map.c$4 |    0001403F  A$map$175 |    00014042  A$map$176
+     00014043  A$map$177 |    00014044  A$map$178 |    00014046  A$map$179
+     00014047  A$map$189 |    00014047  C$map.c$4 |    00014047  C$map.c$4
+     00014048  A$map$190 |    00014049  A$map$191 |    0001404C  A$map$192
+     0001404D  A$map$193 |    0001404E  A$map$194 |    0001404F  A$map$195
+     00014051  A$map$196 |    00014052  A$map$200 |    00014052  C$map.c$5
+     00014053  A$map$201 |    00014054  A$map$202 |    00014056  A$map$206
+     00014056  C$map.c$5 |    00014058  A$map$207 |    00014059  A$map$208
+     0001405A  A$map$212 |    0001405A  C$map.c$5 |    0001405B  A$map$213
+     0001405C  A$map$214 |    0001405D  A$map$215 |    0001405F  A$map$216
+     00014060  A$map$218 |    00014061  A$map$219 |    00014062  A$map$223
+     00014062  C$map.c$5 |    00014063  A$map$224 |    00014064  A$map$228
+     00014065  A$map$233 |    00014065  C$map.c$5 |    00014065  XG$shuffl
+     00014066  A$map$243 |    00014066  C$map.c$6 |    00014066  G$set_4bk
+     00014066  _set_4bkg |    00014068  A$map$244 |    0001406A  A$map$245
+     0001406B  A$map$246 |    0001406C  A$map$247 |    0001406D  A$map$248
+     0001406E  A$map$249 |    0001406F  A$map$250 |    00014070  A$map$254
+     00014070  C$map.c$6 |    00014072  A$map$255 |    00014073  A$map$256
+     00014075  A$map$257 |    00014076  A$map$259 |    00014078  A$map$260
+     00014079  A$map$261 |    0001407A  A$map$262 |    0001407C  A$map$263
+     0001407D  A$map$264 |    0001407F  A$map$265 |    00014080  A$map$266
+     00014081  A$map$267 |    00014082  A$map$268 |    00014083  A$map$269
+     00014084  A$map$270 |    00014085  A$map$271 |    00014087  A$map$272
+     00014088  A$map$273 |    0001408A  A$map$274 |    0001408B  A$map$275
+     0001408C  A$map$276 |    0001408D  A$map$277 |    0001408E  A$map$278
+     0001408F  A$map$279 |    00014090  A$map$280 |    00014091  A$map$281
+     00014092  A$map$282 |    00014093  A$map$283 |    00014094  A$map$284
+     00014096  A$map$285 |    00014098  A$map$286 |    0001409A  A$map$287
+ASxxxx Linker V03.00/V05.40 + sdld,  page 31.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0001409C  A$map$288 |    0001409D  A$map$289 |    0001409F  A$map$291
+     000140A1  A$map$292 |    000140A3  A$map$293 |    000140A4  A$map$295
+     000140A7  A$map$299 |    000140A7  C$map.c$6 |    000140A9  A$map$300
+     000140AA  A$map$301 |    000140AB  A$map$302 |    000140AD  A$map$303
+     000140AE  A$map$304 |    000140B0  A$map$305 |    000140B1  A$map$306
+     000140B3  A$map$307 |    000140B4  A$map$309 |    000140B6  A$map$310
+     000140B7  A$map$311 |    000140B9  A$map$312 |    000140BA  A$map$313
+     000140BC  A$map$314 |    000140BE  A$map$315 |    000140BF  A$map$316
+     000140C1  A$map$317 |    000140C2  A$map$318 |    000140C3  A$map$319
+     000140C4  A$map$320 |    000140C5  A$map$321 |    000140C6  A$map$322
+     000140C7  A$map$323 |    000140C9  A$map$324 |    000140CA  A$map$325
+     000140CB  A$map$326 |    000140CC  A$map$327 |    000140CD  A$map$328
+     000140CE  A$map$329 |    000140CF  A$map$330 |    000140D1  A$map$331
+     000140D2  A$map$332 |    000140D3  A$map$333 |    000140D4  A$map$334
+     000140D6  A$map$335 |    000140D7  A$map$336 |    000140D9  A$map$337
+     000140DA  A$map$338 |    000140DC  A$map$339 |    000140DD  A$map$340
+     000140DF  A$map$341 |    000140E1  A$map$342 |    000140E2  A$map$343
+     000140E3  A$map$344 |    000140E5  A$map$345 |    000140E6  A$map$346
+     000140E7  A$map$347 |    000140E8  A$map$348 |    000140E9  A$map$349
+     000140EA  A$map$350 |    000140EB  A$map$351 |    000140EC  A$map$352
+     000140ED  A$map$353 |    000140EF  A$map$354 |    000140F1  A$map$355
+     000140F3  A$map$356 |    000140F5  A$map$357 |    000140F6  A$map$358
+     000140F8  A$map$360 |    000140FA  A$map$361 |    000140FC  A$map$362
+     000140FD  A$map$364 |    00014100  A$map$368 |    00014100  C$map.c$6
+     00014102  A$map$369 |    00014103  A$map$370 |    00014105  A$map$371
+     00014106  A$map$372 |    00014108  A$map$373 |    0001410A  A$map$375
+     0001410C  A$map$376 |    0001410E  A$map$377 |    0001410F  A$map$378
+     00014111  A$map$379 |    00014112  A$map$380 |    00014114  A$map$381
+     00014115  A$map$382 |    00014116  A$map$383 |    00014117  A$map$384
+     00014118  A$map$385 |    0001411A  A$map$386 |    0001411B  A$map$387
+     0001411C  A$map$388 |    0001411D  A$map$389 |    0001411E  A$map$390
+     0001411F  A$map$391 |    00014120  A$map$392 |    00014122  A$map$393
+     00014123  A$map$394 |    00014124  A$map$395 |    00014125  A$map$396
+     00014127  A$map$397 |    00014128  A$map$398 |    00014129  A$map$399
+     0001412A  A$map$400 |    0001412B  A$map$401 |    0001412D  A$map$402
+     0001412E  A$map$403 |    00014130  A$map$404 |    00014131  A$map$405
+     00014132  A$map$406 |    00014133  A$map$407 |    00014135  A$map$408
+     00014136  A$map$409 |    00014137  A$map$410 |    00014138  A$map$411
+     0001413A  A$map$412 |    0001413B  A$map$413 |    0001413C  A$map$414
+     0001413D  A$map$415 |    0001413E  A$map$416 |    0001413F  A$map$417
+     00014140  A$map$418 |    00014141  A$map$419 |    00014143  A$map$420
+     00014144  A$map$421 |    00014146  A$map$422 |    00014148  A$map$426
+     00014148  C$map.c$7 |    00014149  A$map$427 |    0001414B  A$map$428
+     0001414C  A$map$429 |    0001414E  A$map$430 |    0001414F  A$map$431
+     00014150  A$map$432 |    00014151  A$map$433 |    00014152  A$map$434
+     00014154  A$map$435 |    00014155  A$map$436 |    00014157  A$map$437
+     00014158  A$map$438 |    00014159  A$map$439 |    0001415B  A$map$440
+     0001415C  A$map$441 |    0001415E  A$map$442 |    0001415F  A$map$443
+     00014161  A$map$444 |    00014162  A$map$445 |    00014164  A$map$446
+     00014166  A$map$447 |    00014167  A$map$448 |    00014169  A$map$449
+     0001416A  A$map$453 |    0001416A  C$map.c$7 |    0001416C  A$map$454
+ASxxxx Linker V03.00/V05.40 + sdld,  page 32.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0001416D  A$map$455 |    0001416E  A$map$456 |    0001416F  A$map$457
+     00014170  A$map$458 |    00014171  A$map$459 |    00014173  A$map$463
+     00014173  C$map.c$7 |    00014175  A$map$467 |    00014175  C$map.c$7
+     00014176  A$map$468 |    00014177  A$map$472 |    00014177  C$map.c$7
+     00014178  A$map$473 |    00014179  A$map$477 |    00014179  C$map.c$7
+     0001417A  A$map$478 |    0001417B  A$map$479 |    0001417C  A$map$480
+     0001417E  A$map$485 |    0001417E  C$map.c$7 |    00014180  A$map$486
+     00014182  A$map$490 |    00014182  C$map.c$7 |    00014185  A$map$491
+     00014186  A$map$492 |    00014188  A$map$493 |    0001418A  A$map$494
+     0001418B  A$map$495 |    0001418D  A$map$496 |    0001418E  A$map$500
+     0001418E  C$map.c$7 |    00014191  A$map$501 |    00014192  A$map$502
+     00014194  A$map$503 |    00014196  A$map$504 |    00014197  A$map$505
+     00014199  A$map$506 |    0001419A  A$map$510 |    0001419A  C$map.c$8
+     0001419C  A$map$511 |    0001419D  A$map$512 |    0001419E  A$map$513
+     000141A0  A$map$514 |    000141A1  A$map$518 |    000141A1  C$map.c$8
+     000141A3  A$map$519 |    000141A4  A$map$520 |    000141A5  A$map$521
+     000141A6  A$map$522 |    000141A8  A$map$523 |    000141A9  A$map$524
+     000141AB  A$map$529 |    000141AB  C$map.c$8 |    000141AC  A$map$530
+     000141AE  A$map$534 |    000141AE  C$map.c$8 |    000141B0  A$map$535
+     000141B1  A$map$536 |    000141B3  A$map$537 |    000141B4  A$map$541
+     000141B4  C$map.c$8 |    000141B6  A$map$542 |    000141B7  A$map$543
+     000141B9  A$map$544 |    000141BA  A$map$548 |    000141BA  C$map.c$8
+     000141BC  A$map$549 |    000141BD  A$map$550 |    000141BF  A$map$551
+     000141C0  A$map$555 |    000141C0  C$map.c$8 |    000141C2  A$map$556
+     000141C3  A$map$557 |    000141C5  A$map$558 |    000141C6  A$map$562
+     000141C6  C$map.c$8 |    000141C9  A$map$563 |    000141CA  A$map$564
+     000141CB  A$map$565 |    000141CC  A$map$566 |    000141CF  A$map$571
+     000141CF  C$map.c$9 |    000141D1  A$map$572 |    000141D2  A$map$573
+     000141D3  A$map$574 |    000141D5  A$map$575 |    000141D6  A$map$576
+     000141D9  A$map$577 |    000141DA  A$map$578 |    000141DB  A$map$579
+     000141DE  A$map$580 |    000141DF  A$map$581 |    000141E1  A$map$582
+     000141E2  A$map$583 |    000141E3  A$map$584 |    000141E4  A$map$585
+     000141E6  A$map$586 |    000141E7  A$map$587 |    000141E8  A$map$588
+     000141E9  A$map$589 |    000141EC  A$map$590 |    000141EE  A$map$594
+     000141EE  C$map.c$9 |    000141F0  A$map$595 |    000141F1  A$map$596
+     000141F3  A$map$597 |    000141F4  A$map$598 |    000141F6  A$map$599
+     000141F7  A$map$600 |    000141FA  A$map$601 |    000141FB  A$map$602
+     000141FC  A$map$603 |    000141FF  A$map$604 |    00014200  A$map$605
+     00014202  A$map$606 |    00014203  A$map$607 |    00014204  A$map$608
+     00014205  A$map$609 |    00014206  A$map$610 |    00014209  A$map$611
+     0001420B  A$map$615 |    0001420B  C$map.c$6 |    0001420D  A$map$616
+     0001420E  A$map$617 |    00014211  A$map$622 |    00014211  C$map.c$6
+     00014213  A$map$623 |    00014214  A$map$624 |    00014217  A$map$629
+     00014217  C$map.c$9 |    00014219  A$map$630 |    0001421A  A$map$631
+     0001421C  A$map$632 |    0001421D  A$map$645 |    0001421D  C$map.c$9
+     0001421D  C$map.c$9 |    0001421D  G$spawn_b |    0001421D  _spawn_bk
+     0001421F  A$map$646 |    00014222  A$map$647 |    00014223  A$map$648
+     00014224  A$map$652 |    00014224  C$map.c$9 |    00014225  A$map$653
+     00014227  A$map$654 |    0001422A  A$map$655 |    0001422B  A$map$656
+     0001422D  A$map$657 |    0001422E  A$map$658 |    0001422F  A$map$659
+     00014230  A$map$660 |    00014231  A$map$661 |    00014232  A$map$662
+ASxxxx Linker V03.00/V05.40 + sdld,  page 33.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014235  A$map$663 |    00014236  A$map$664 |    00014237  A$map$665
+     00014239  A$map$666 |    0001423A  A$map$667 |    0001423C  A$map$668
+     0001423D  A$map$669 |    0001423E  A$map$670 |    0001423F  A$map$671
+     00014240  A$map$672 |    00014243  A$map$673 |    00014244  A$map$674
+     00014245  A$map$675 |    00014246  A$map$676 |    00014247  A$map$677
+     00014248  A$map$678 |    0001424B  A$map$679 |    0001424E  A$map$680
+     0001424F  A$map$685 |    0001424F  C$map.c$1 |    00014250  A$map$686
+     00014252  A$map$687 |    00014253  A$map$688 |    00014254  A$map$689
+     00014255  A$map$690 |    00014257  A$map$691 |    00014258  A$map$692
+     0001425B  A$map$693 |    0001425C  A$map$694 |    0001425D  A$map$695
+     0001425E  A$map$696 |    0001425F  A$map$697 |    00014262  A$map$698
+     00014265  A$map$706 |    00014265  C$map.c$1 |    00014265  XG$spawn_
+     00014266  A$map$716 |    00014266  C$map.c$1 |    00014266  G$clear_4
+     00014266  _clear_4b |    00014267  A$map$720 |    00014267  C$map.c$1
+     00014269  A$map$721 |    0001426A  A$map$722 |    0001426C  A$map$723
+     0001426D  A$map$724 |    0001426E  A$map$725 |    0001426F  A$map$726
+     00014270  A$map$727 |    00014271  A$map$728 |    00014272  A$map$729
+     00014274  A$map$730 |    00014275  A$map$731 |    00014277  A$map$735
+     00014277  C$map.c$1 |    0001427A  A$map$736 |    0001427B  A$map$737
+     0001427D  A$map$738 |    0001427E  A$map$739 |    0001427F  A$map$740
+     00014280  A$map$741 |    00014281  A$map$742 |    00014284  A$map$743
+     00014287  A$map$747 |    00014287  C$map.c$1 |    00014288  A$map$748
+     00014289  A$map$749 |    0001428A  A$map$759 |    0001428A  C$map.c$1
+     0001428A  G$add_blo |    0001428A  _add_bloc |    0001428B  A$map$763
+     0001428B  C$map.c$1 |    0001428D  A$map$764 |    0001428E  A$map$765
+     00014290  A$map$766 |    00014291  A$map$767 |    00014292  A$map$768
+     00014293  A$map$769 |    00014294  A$map$770 |    00014295  A$map$771
+     00014296  A$map$772 |    00014297  A$map$773 |    00014298  A$map$774
+     00014299  A$map$775 |    0001429B  A$map$776 |    0001429C  A$map$778
+     0001429E  A$map$782 |    0001429E  C$map.c$1 |    0001429F  A$map$783
+     000142A0  A$map$784 |    000142A3  A$map$785 |    000142A4  A$map$786
+     000142A5  A$map$787 |    000142A6  A$map$788 |    000142A7  A$map$789
+     000142A8  A$map$790 |    000142AB  A$map$791 |    000142AE  A$map$795
+     000142AE  C$map.c$1 |    000142AF  A$map$796 |    000142B0  A$map$797
+     000142B1  A$map$807 |    000142B1  C$map.c$1 |    000142B1  G$progres
+     000142B1  _progress |    000142B3  A$map$808 |    000142B5  A$map$809
+     000142B6  A$map$810 |    000142B7  A$map$811 |    000142B8  A$map$815
+     000142B8  C$map.c$1 |    000142BA  A$map$816 |    000142BB  A$map$817
+     000142BD  A$map$818 |    000142BE  A$map$819 |    000142BF  A$map$820
+     000142C0  A$map$821 |    000142C1  A$map$822 |    000142C2  A$map$826
+     000142C2  C$map.c$1 |    000142C3  A$map$827 |    000142C5  A$map$828
+     000142C8  A$map$829 |    000142C9  A$map$830 |    000142CA  A$map$831
+     000142CC  A$map$832 |    000142CD  A$map$833 |    000142CE  A$map$834
+     000142CF  A$map$835 |    000142D2  A$map$839 |    000142D2  C$map.c$1
+     000142D4  A$map$840 |    000142D5  A$map$841 |    000142D6  A$map$842
+     000142D8  A$map$843 |    000142DA  A$map$844 |    000142DB  A$map$846
+     000142DD  A$map$847 |    000142DE  A$map$848 |    000142E0  A$map$849
+     000142E1  A$map$850 |    000142E3  A$map$851 |    000142E4  A$map$852
+     000142E6  A$map$853 |    000142E8  A$map$855 |    000142EA  A$map$856
+     000142EB  A$map$857 |    000142ED  A$map$858 |    000142EE  A$map$859
+     000142F1  A$map$863 |    000142F1  C$map.c$1 |    000142F3  A$map$867
+ASxxxx Linker V03.00/V05.40 + sdld,  page 34.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000142F3  C$map.c$1 |    000142F5  A$map$868 |    000142F6  A$map$869
+     000142F8  A$map$870 |    000142F9  A$map$871 |    000142FB  A$map$872
+     000142FD  A$map$873 |    000142FF  A$map$875 |    00014300  A$map$880
+     00014300  C$map.c$1 |    00014301  A$map$883 |    00014303  A$map$886
+     00014304  A$map$887 |    00014305  A$map$888 |    00014306  A$map$889
+     00014307  A$map$890 |    00014308  A$map$891 |    00014309  A$map$895
+     00014309  C$map.c$1 |    0001430B  A$map$896 |    0001430C  A$map$897
+     0001430F  A$map$898 |    00014310  A$map$899 |    00014312  A$map$900
+     00014315  A$map$901 |    00014316  A$map$902 |    00014317  A$map$903
+     00014318  A$map$904 |    00014319  A$map$906 |    0001431C  A$map$907
+     0001431F  A$map$908 |    00014322  A$map$909 |    00014325  A$map$910
+     00014328  A$map$911 |    0001432B  A$map$912 |    0001432E  A$map$913
+     00014331  A$map$914 |    00014334  A$map$919 |    00014334  C$map.c$1
+     00014336  A$map$920 |    00014338  A$map$925 |    00014338  C$map.c$1
+     0001433A  A$map$926 |    0001433C  A$map$931 |    0001433C  C$map.c$1
+     0001433E  A$map$932 |    00014340  A$map$937 |    00014340  C$map.c$1
+     00014342  A$map$938 |    00014344  A$map$943 |    00014344  C$map.c$1
+     00014346  A$map$944 |    00014348  A$map$949 |    00014348  C$map.c$1
+     0001434A  A$map$950 |    0001434C  A$map$955 |    0001434C  C$map.c$1
+     0001434E  A$map$956 |    00014350  A$map$961 |    00014350  C$map.c$1
+     00014352  A$map$962 |    00014354  A$map$970 |    00014354  C$map.c$1
+     00014354  C$map.c$1 |    00014356  A$map$971 |    00014357  A$map$972
+     00014358  A$map$973 |    0001435A  A$map$977 |    0001435A  C$map.c$1
+     0001435C  A$map$978 |    0001435E  A$map$979 |    00014360  A$map$980
+     00014361  A$map$981 |    00014362  A$map$982 |    00014364  A$map$984
+     00014367  A$map$985 |    00014369  A$map$987 |    0001436C  A$map$988
+     0001436E  A$map$993 |    0001436E  C$map.c$1 |    00014370  A$map$994
+     00014371  A$map$995 |    00014373  A$map$996 |    00014374  A$map$997
+     00014376  A$map$998 |    00014377  A$map$999 |    00014379  A$map$100
+     0001437A  A$map$100 |    0001437B  A$map$100 |    0001437C  A$map$100
+     0001437D  A$map$100 |    0001437E  A$map$100 |    00014380  A$map$100
+     00014381  A$map$100 |    00014382  A$map$100 |    00014383  A$map$100
+     00014385  A$map$101 |    00014386  A$map$101 |    00014387  A$map$101
+     00014389  A$map$101 |    00014389  C$map.c$1 |    0001438B  A$map$101
+     0001438D  A$map$102 |    0001438D  C$map.c$1 |    0001438F  A$map$103
+     0001438F  C$map.c$1 |    00014391  A$map$103 |    00014392  A$map$103
+     00014394  A$map$103 |    00014395  A$map$103 |    00014397  A$map$103
+     00014398  A$map$103 |    00014399  A$map$103 |    0001439B  A$map$104
+     0001439C  A$map$104 |    0001439D  A$map$104 |    0001439E  A$map$104
+     0001439F  A$map$104 |    000143A2  A$map$104 |    000143A3  A$map$104
+     000143A4  A$map$104 |    000143A5  A$map$104 |    000143A6  A$map$105
+     000143A7  A$map$105 |    000143A9  A$map$105 |    000143AA  A$map$105
+     000143AB  A$map$105 |    000143AC  A$map$105 |    000143AD  A$map$105
+     000143AF  A$map$105 |    000143B0  A$map$105 |    000143B1  A$map$106
+     000143B3  A$map$106 |    000143B4  A$map$106 |    000143B5  A$map$106
+     000143B7  A$map$106 |    000143B8  A$map$106 |    000143B9  A$map$106
+     000143BC  A$map$106 |    000143BD  A$map$106 |    000143BE  A$map$107
+     000143BF  A$map$107 |    000143C1  A$map$107 |    000143C2  A$map$107
+     000143C3  A$map$107 |    000143C4  A$map$107 |    000143C5  A$map$107
+     000143C6  A$map$107 |    000143C7  A$map$108 |    000143C7  C$map.c$1
+     000143C9  A$map$108 |    000143CA  A$map$108 |    000143CD  A$map$108
+ASxxxx Linker V03.00/V05.40 + sdld,  page 35.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000143CD  C$map.c$1 |    000143CF  A$map$109 |    000143D0  A$map$109
+     000143D2  A$map$109 |    000143D3  A$map$110 |    000143D3  C$map.c$1
+     000143D3  G$draw_de |    000143D3  _draw_dep |    000143D5  A$map$110
+     000143D5  C$map.c$1 |    000143D8  A$map$110 |    000143D9  A$map$110
+     000143DA  A$map$110 |    000143DB  A$map$111 |    000143DD  A$map$111
+     000143E0  A$map$111 |    000143E1  A$map$111 |    000143E3  A$map$111
+     000143E6  A$map$111 |    000143E8  A$map$111 |    000143EB  A$map$111
+     000143ED  A$map$111 |    000143EF  A$map$112 |    000143F0  A$map$112
+     000143F1  A$map$112 |    000143F3  A$map$112 |    000143F4  A$map$112
+     000143F6  A$map$112 |    000143F7  A$map$112 |    000143F8  A$map$112
+     000143F9  A$map$112 |    000143FA  A$map$113 |    000143FD  A$map$113
+     000143FF  A$map$113 |    000143FF  C$map.c$1 |    00014402  A$map$113
+     00014405  A$map$113 |    00014406  A$map$113 |    00014407  A$map$113
+     00014408  A$map$114 |    0001440B  A$map$114 |    0001440B  C$map.c$1
+     0001440C  A$map$114 |    0001440D  A$map$114 |    0001440F  A$map$114
+     00014410  A$map$114 |    00014412  A$map$114 |    00014413  A$map$115
+     00014414  A$map$115 |    00014417  A$map$115 |    00014418  A$map$115
+     0001441A  A$map$115 |    0001441C  A$map$115 |    0001441F  A$map$115
+     0001441F  C$map.c$1 |    00014422  A$map$116 |    00014423  A$map$116
+     00014424  A$map$116 |    00014425  A$map$116 |    00014426  A$map$116
+     00014427  A$map$116 |    00014429  A$map$116 |    0001442A  A$map$116
+     0001442B  A$map$116 |    0001442C  A$map$116 |    0001442E  A$map$117
+     00014430  A$map$117 |    00014433  A$map$117 |    00014435  A$map$118
+     00014435  C$map.c$1 |    00014435  XG$draw_d |    00014436  Fmap$__st
+     00014438  Fmap$__st |    0001443E  A$map$119 |    0001443E  C$map.c$1
+     0001443E  G$draw_ca |    0001443E  _draw_car |    00014440  A$map$120
+     00014440  C$map.c$1 |    00014443  A$map$120 |    00014444  A$map$120
+     00014445  A$map$120 |    00014446  A$map$120 |    00014448  A$map$120
+     00014449  A$map$120 |    0001444A  A$map$120 |    0001444D  A$map$121
+     0001444E  A$map$121 |    0001444F  A$map$121 |    00014450  A$map$121
+     00014453  A$map$121 |    00014455  A$map$121 |    00014455  C$map.c$1
+     00014458  A$map$121 |    00014459  A$map$122 |    0001445A  A$map$122
+     0001445B  A$map$122 |    0001445D  A$map$122 |    0001445E  A$map$122
+     0001445F  A$map$122 |    00014462  A$map$122 |    00014463  A$map$122
+     00014464  A$map$122 |    00014465  A$map$122 |    00014468  A$map$123
+     0001446A  A$map$123 |    0001446A  C$map.c$1 |    0001446D  A$map$123
+     00014470  A$map$123 |    00014471  A$map$123 |    00014472  A$map$123
+     00014473  A$map$123 |    00014476  A$map$124 |    00014476  C$map.c$1
+     00014479  A$map$124 |    0001447A  A$map$124 |    0001447B  A$map$124
+     0001447C  A$map$124 |    0001447F  A$map$124 |    00014480  A$map$124
+     00014481  A$map$125 |    00014482  A$map$125 |    00014485  A$map$125
+     00014485  C$map.c$1 |    00014486  A$map$125 |    00014487  A$map$125
+     00014489  A$map$125 |    0001448A  A$map$125 |    0001448C  A$map$126
+     0001448D  A$map$126 |    0001448E  A$map$126 |    00014491  A$map$126
+     00014492  A$map$126 |    00014494  A$map$126 |    00014496  A$map$126
+     00014499  A$map$127 |    00014499  C$map.c$1 |    0001449C  A$map$127
+     0001449D  A$map$127 |    0001449E  A$map$127 |    0001449F  A$map$127
+     000144A1  A$map$127 |    000144A2  A$map$127 |    000144A4  A$map$127
+     000144A5  A$map$127 |    000144A6  A$map$127 |    000144A7  A$map$128
+     000144A9  A$map$128 |    000144AB  A$map$128 |    000144AE  A$map$128
+     000144B0  A$map$129 |    000144B0  C$map.c$1 |    000144B0  XG$draw_c
+ASxxxx Linker V03.00/V05.40 + sdld,  page 36.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000144B1  Fmap$__st |    000144B3  Fmap$__st |    000144B9  A$map$131
+     000144B9  C$map.c$2 |    000144B9  C$map.c$2 |    000144B9  G$draw_fu
+     000144B9  _draw_fue |    000144BC  A$map$131 |    000144BD  A$map$131
+     000144BE  A$map$131 |    000144BF  A$map$131 |    000144C2  A$map$131
+     000144C3  A$map$131 |    000144C4  A$map$132 |    000144C5  A$map$132
+     000144C8  A$map$132 |    000144C9  A$map$132 |    000144CC  A$map$132
+     000144CD  A$map$132 |    000144CE  A$map$132 |    000144CF  A$map$132
+     000144D2  A$map$133 |    000144D2  C$map.c$2 |    000144D2  XG$draw_f
+     000144D3  A$map$135 |    000144D3  C$map.c$2 |    000144D3  C$map.c$2
+     000144D3  G$draw_hu |    000144D3  _draw_hul |    000144D6  A$map$135
+     000144D7  A$map$135 |    000144D8  A$map$135 |    000144D9  A$map$135
+     000144DC  A$map$135 |    000144DD  A$map$135 |    000144DE  A$map$135
+     000144DF  A$map$136 |    000144E2  A$map$136 |    000144E3  A$map$136
+     000144E6  A$map$136 |    000144E7  A$map$136 |    000144E8  A$map$136
+     000144E9  A$map$136 |    000144EC  A$map$137 |    000144EC  C$map.c$2
+     000144EC  XG$draw_h |    000144ED  A$map$138 |    000144ED  C$map.c$2
+     000144ED  C$map.c$2 |    000144ED  G$draw_ch |    000144ED  _draw_cha
+     000144F0  A$map$138 |    000144F1  A$map$139 |    000144F4  A$map$139
+     000144F5  A$map$139 |    000144F8  A$map$139 |    000144FA  A$map$139
+     000144FA  C$map.c$2 |    000144FD  A$map$139 |    000144FE  A$map$140
+     000144FE  C$map.c$2 |    000144FE  XG$draw_c |    00014501  A$map$141
+     00014501  C$map.c$2 |    00014501  C$map.c$2 |    00014501  G$init_na
+     00014501  _init_nav |    00014504  A$map$142 |    00014505  A$map$142
+     00014508  A$map$142 |    00014509  A$map$142 |    0001450A  A$map$142
+     0001450B  A$map$142 |    0001450C  A$map$142 |    0001450F  A$map$142
+     00014511  A$map$142 |    00014513  A$map$143 |    00014515  A$map$143
+     00014516  A$map$143 |    00014518  A$map$144 |    00014518  C$map.c$2
+     00014518  C$map.c$2 |    00014518  XG$init_n |    00014519  A$map$145
+     00014519  C$map.c$2 |    00014519  C$map.c$2 |    00014519  G$init_ti
+     00014519  _init_til |    0001451C  A$map$145 |    0001451D  A$map$145
+     00014520  A$map$145 |    00014521  A$map$146 |    00014524  A$map$146
+     00014526  A$map$146 |    00014526  C$map.c$2 |    00014529  A$map$146
+     0001452A  A$map$146 |    0001452D  A$map$146 |    0001452E  A$map$146
+     00014531  A$map$147 |    00014533  A$map$147 |    00014533  C$map.c$2
+     00014536  A$map$147 |    00014537  A$map$147 |    00014538  A$map$147
+     00014539  A$map$147 |    0001453A  A$map$147 |    0001453B  A$map$148
+     0001453E  A$map$148 |    00014541  A$map$148 |    00014541  C$map.c$2
+     00014541  XG$init_t |    00014542  A$map$150 |    00014542  C$map.c$2
+     00014542  C$map.c$2 |    00014542  G$init_pr |    00014542  _init_pro
+     00014545  A$map$150 |    00014546  A$map$150 |    00014549  A$map$150
+     0001454A  A$map$150 |    0001454D  A$map$150 |    0001454F  A$map$151
+     0001454F  C$map.c$2 |    00014552  A$map$151 |    00014553  A$map$151
+     00014554  A$map$151 |    00014555  A$map$151 |    00014558  A$map$151
+     00014559  A$map$151 |    0001455A  A$map$151 |    0001455B  A$map$152
+     0001455E  A$map$152 |    0001455F  A$map$152 |    00014562  A$map$152
+     00014563  A$map$152 |    00014564  A$map$152 |    00014565  A$map$152
+     00014568  A$map$153 |    00014568  C$map.c$2 |    00014568  XG$init_p
+     00014569  A$player$ |    00014569  C$player. |    00014569  C$player.
+     00014569  C$player. |    00014569  G$__func_ |    00014569  G$init_ch
+     00014569  ___func_b |    00014569  _init_cha |    0001456C  A$player$
+     0001456E  A$player$ |    0001456E  C$player. |    00014571  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 37.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014574  A$player$ |    00014574  C$player. |    00014577  A$player$
+     0001457A  A$player$ |    0001457D  A$player$ |    0001457E  A$player$
+     00014580  A$player$ |    00014582  A$player$ |    00014584  A$player$
+     00014585  A$player$ |    00014585  C$player. |    00014588  A$player$
+     0001458B  A$player$ |    0001458E  A$player$ |    0001458F  A$player$
+     00014591  A$player$ |    00014593  A$player$ |    00014595  A$player$
+     00014596  A$player$ |    00014596  C$player. |    00014599  A$player$
+     0001459C  A$player$ |    0001459E  A$player$ |    000145A0  A$player$
+     000145A1  A$player$ |    000145A1  C$player. |    000145A4  A$player$
+     000145A7  A$player$ |    000145A9  A$player$ |    000145AB  A$player$
+     000145AC  A$player$ |    000145AC  C$player. |    000145AC  XG$init_c
+     000145AD  G$rover_m |    000145AD  _rover_me |    000145C1  G$drill_h
+     000145C1  _drill_ho |    000145CD  G$drill_v |    000145CD  _drill_ve
+     000145D9  A$player$ |    000145D9  C$player. |    000145D9  C$player.
+     000145D9  G$init_sp |    000145D9  _init_spe |    000145DC  A$player$
+     000145DD  A$player$ |    000145DE  A$player$ |    000145DF  A$player$
+     000145DF  C$player. |    000145E2  A$player$ |    000145E3  A$player$
+     000145E4  A$player$ |    000145E5  A$player$ |    000145E5  C$player.
+     000145E8  A$player$ |    000145E9  A$player$ |    000145EA  A$player$
+     000145EB  A$player$ |    000145EB  C$player. |    000145EE  A$player$
+     000145EF  A$player$ |    000145F0  A$player$ |    000145F1  A$player$
+     000145F1  C$player. |    000145F4  A$player$ |    000145F5  A$player$
+     000145F6  A$player$ |    000145F7  A$player$ |    000145F7  C$player.
+     000145FA  A$player$ |    000145FB  A$player$ |    000145FC  A$player$
+     000145FD  A$player$ |    000145FD  C$player. |    000145FD  XG$init_s
+     000145FE  A$player$ |    000145FE  C$player. |    000145FE  C$player.
+     000145FE  G$check_s |    000145FE  _check_su |    00014601  A$player$
+     00014602  A$player$ |    00014604  A$player$ |    00014605  A$player$
+     00014606  A$player$ |    00014607  A$player$ |    00014608  A$player$
+     00014609  A$player$ |    0001460A  A$player$ |    0001460B  A$player$
+     0001460E  A$player$ |    0001460F  A$player$ |    00014610  A$player$
+     00014613  A$player$ |    00014614  A$player$ |    00014615  A$player$
+     00014617  A$player$ |    00014618  A$player$ |    00014619  A$player$
+     0001461C  A$player$ |    0001461C  C$player. |    0001461D  A$player$
+     0001461E  A$player$ |    0001461F  A$player$ |    00014620  A$player$
+     00014621  A$player$ |    00014622  A$player$ |    00014623  A$player$
+     00014624  A$player$ |    00014627  A$player$ |    00014628  A$player$
+     00014629  A$player$ |    0001462B  A$player$ |    0001462C  A$player$
+     0001462D  A$player$ |    00014630  A$player$ |    00014630  C$player.
+     00014631  A$player$ |    00014632  A$player$ |    00014633  A$player$
+     00014634  A$player$ |    00014635  A$player$ |    00014636  A$player$
+     00014637  A$player$ |    00014639  A$player$ |    0001463A  A$player$
+     0001463B  A$player$ |    0001463D  A$player$ |    0001463E  A$player$
+     00014641  A$player$ |    00014642  A$player$ |    00014643  A$player$
+     00014644  A$player$ |    00014646  A$player$ |    00014647  A$player$
+     00014648  A$player$ |    0001464B  A$player$ |    0001464B  C$player.
+     0001464C  A$player$ |    0001464D  A$player$ |    0001464F  A$player$
+     00014650  A$player$ |    00014651  A$player$ |    00014654  A$player$
+     00014654  C$player. |    00014654  XG$check_ |    00014655  A$player$
+     00014655  C$player. |    00014655  G$metaspr |    00014655  _metaspri
+     00014656  A$player$ |    00014659  A$player$ |    0001465B  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 38.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0001465C  A$player$ |    0001465E  A$player$ |    0001465F  A$player$
+     00014661  A$player$ |    00014664  A$player$ |    00014665  A$player$
+     00014666  A$player$ |    00014667  A$player$ |    00014669  A$player$
+     0001466C  A$player$ |    0001466D  A$player$ |    00014670  A$player$
+     00014671  A$player$ |    00014672  A$player$ |    00014675  A$player$
+     00014677  A$player$ |    00014678  A$player$ |    0001467A  A$player$
+     0001467D  A$player$ |    0001467F  A$player$ |    00014682  A$player$
+     00014684  A$player$ |    00014685  A$player$ |    00014686  A$player$
+     00014687  A$player$ |    00014688  A$player$ |    00014689  A$player$
+     0001468A  A$player$ |    0001468C  A$player$ |    0001468F  A$player$
+     00014690  A$player$ |    00014690  C$player. |    00014691  A$player$
+     00014693  A$player$ |    00014694  A$player$ |    00014697  A$player$
+     00014698  A$player$ |    0001469B  A$player$ |    0001469C  A$player$
+     0001469F  A$player$ |    000146A1  A$player$ |    000146A2  A$player$
+     000146A4  A$player$ |    000146A7  A$player$ |    000146A9  A$player$
+     000146AC  A$player$ |    000146AE  A$player$ |    000146AF  A$player$
+     000146B1  A$player$ |    000146B2  A$player$ |    000146B4  A$player$
+     000146B6  A$player$ |    000146B7  A$player$ |    000146B8  A$player$
+     000146BA  A$player$ |    000146BA  C$player. |    000146BA  C$player.
+     000146BA  XG$metasp |    000146BD  A$player$ |    000146BD  C$player.
+     000146BD  G$metaspr |    000146BD  _metaspri |    000146BE  A$player$
+     000146C1  A$player$ |    000146C3  A$player$ |    000146C4  A$player$
+     000146C6  A$player$ |    000146C7  A$player$ |    000146C9  A$player$
+     000146CC  A$player$ |    000146CD  A$player$ |    000146CE  A$player$
+     000146D0  A$player$ |    000146D1  A$player$ |    000146D4  A$player$
+     000146D5  A$player$ |    000146D8  A$player$ |    000146D9  A$player$
+     000146DA  A$player$ |    000146DD  A$player$ |    000146DF  A$player$
+     000146E0  A$player$ |    000146E2  A$player$ |    000146E5  A$player$
+     000146E7  A$player$ |    000146EA  A$player$ |    000146EC  A$player$
+     000146ED  A$player$ |    000146EE  A$player$ |    000146EF  A$player$
+     000146F0  A$player$ |    000146F1  A$player$ |    000146F3  A$player$
+     000146F3  C$player. |    000146F3  C$player. |    000146F3  XG$metasp
+     000146F6  A$player$ |    000146F6  C$player. |    000146F6  G$metaspr
+     000146F6  _metaspri |    000146F7  A$player$ |    000146F9  A$player$
+     000146FA  A$player$ |    000146FD  A$player$ |    000146FF  A$player$
+     00014700  A$player$ |    00014702  A$player$ |    00014704  A$player$
+     00014707  A$player$ |    0001470A  A$player$ |    0001470C  A$player$
+     0001470D  A$player$ |    0001470F  A$player$ |    00014711  A$player$
+     00014714  A$player$ |    00014716  A$player$ |    00014717  A$player$
+     00014718  A$player$ |    0001471A  A$player$ |    0001471D  A$player$
+     0001471E  A$player$ |    00014721  A$player$ |    00014722  A$player$
+     00014723  A$player$ |    00014726  A$player$ |    00014728  A$player$
+     00014729  A$player$ |    0001472B  A$player$ |    0001472E  A$player$
+     00014730  A$player$ |    00014733  A$player$ |    00014734  A$player$
+     00014735  A$player$ |    00014736  A$player$ |    00014737  A$player$
+     00014738  A$player$ |    00014739  A$player$ |    0001473C  A$player$
+     0001473C  C$player. |    0001473E  A$player$ |    0001473F  A$player$
+     00014741  A$player$ |    00014743  A$player$ |    00014746  A$player$
+     00014747  A$player$ |    0001474A  A$player$ |    0001474B  A$player$
+     0001474E  A$player$ |    00014750  A$player$ |    00014751  A$player$
+     00014753  A$player$ |    00014756  A$player$ |    00014758  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 39.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0001475B  A$player$ |    0001475D  A$player$ |    0001475E  A$player$
+     00014760  A$player$ |    00014761  A$player$ |    00014763  A$player$
+     00014765  A$player$ |    00014766  A$player$ |    00014767  A$player$
+     00014768  A$player$ |    00014769  A$player$ |    0001476C  A$player$
+     0001476C  C$player. |    0001476D  A$player$ |    0001476D  C$player.
+     0001476D  XG$metasp |    0001476E  A$player$ |    0001476E  C$player.
+     0001476E  C$player. |    0001476E  G$draw_me |    0001476E  _draw_met
+     0001476F  A$player$ |    00014770  A$player$ |    00014772  A$player$
+     00014773  A$player$ |    00014775  A$player$ |    00014777  A$player$
+     00014777  C$player. |    00014778  A$player$ |    00014779  A$player$
+     0001477C  A$player$ |    0001477D  A$player$ |    0001477D  C$player.
+     00014780  A$player$ |    00014781  A$player$ |    00014782  A$player$
+     00014783  A$player$ |    00014784  A$player$ |    00014787  A$player$
+     00014787  C$player. |    00014788  A$player$ |    0001478A  A$player$
+     0001478C  A$player$ |    0001478E  A$player$ |    0001478F  A$player$
+     0001478F  C$player. |    00014790  A$player$ |    00014793  A$player$
+     00014796  A$player$ |    00014797  A$player$ |    00014797  C$player.
+     0001479A  A$player$ |    0001479B  A$player$ |    0001479C  A$player$
+     0001479D  A$player$ |    0001479E  A$player$ |    0001479E  C$player.
+     0001479E  XG$draw_m |    000147A1  A$player$ |    000147A1  C$player.
+     000147A1  C$player. |    000147A1  G$update_ |    000147A1  _update_m
+     000147A4  A$player$ |    000147A5  A$player$ |    000147A6  A$player$
+     000147A6  C$player. |    000147A9  A$player$ |    000147AA  A$player$
+     000147AB  A$player$ |    000147AC  A$player$ |    000147AF  A$player$
+     000147B0  A$player$ |    000147B1  A$player$ |    000147B2  A$player$
+     000147B3  A$player$ |    000147B4  A$player$ |    000147B5  A$player$
+     000147B8  A$player$ |    000147B9  A$player$ |    000147BA  A$player$
+     000147BB  A$player$ |    000147BB  C$player. |    000147BE  A$player$
+     000147BF  A$player$ |    000147C0  A$player$ |    000147C1  A$player$
+     000147C4  A$player$ |    000147C5  A$player$ |    000147C6  A$player$
+     000147C7  A$player$ |    000147C8  A$player$ |    000147C9  A$player$
+     000147CA  A$player$ |    000147CD  A$player$ |    000147CE  A$player$
+     000147CF  A$player$ |    000147D0  A$player$ |    000147D0  C$player.
+     000147D3  A$player$ |    000147D4  A$player$ |    000147D5  A$player$
+     000147D6  A$player$ |    000147D9  A$player$ |    000147DA  A$player$
+     000147DB  A$player$ |    000147DC  A$player$ |    000147DD  A$player$
+     000147DE  A$player$ |    000147DF  A$player$ |    000147E2  A$player$
+     000147E3  A$player$ |    000147E4  A$player$ |    000147E5  A$player$
+     000147E5  C$player. |    000147E8  A$player$ |    000147E9  A$player$
+     000147EA  A$player$ |    000147EB  A$player$ |    000147EE  A$player$
+     000147EF  A$player$ |    000147F0  A$player$ |    000147F1  A$player$
+     000147F2  A$player$ |    000147F3  A$player$ |    000147F4  A$player$
+     000147F7  A$player$ |    000147F8  A$player$ |    000147F9  A$player$
+     000147FA  A$player$ |    000147FA  C$player. |    000147FD  A$player$
+     00014800  A$player$ |    00014803  A$player$ |    00014804  A$player$
+     00014807  A$player$ |    00014809  A$player$ |    0001480A  A$player$
+     0001480C  A$player$ |    0001480C  C$player. |    0001480F  A$player$
+     00014810  A$player$ |    00014810  C$player. |    00014811  A$player$
+     00014813  A$player$ |    00014816  A$player$ |    00014819  A$player$
+     0001481A  A$player$ |    0001481B  A$player$ |    0001481D  A$player$
+     0001481D  C$player. |    00014820  A$player$ |    00014821  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 40.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014822  A$player$ |    00014823  A$player$ |    00014824  A$player$
+     00014827  A$player$ |    00014828  A$player$ |    00014829  A$player$
+     0001482A  A$player$ |    0001482A  C$player. |    0001482D  A$player$
+     0001482E  A$player$ |    0001482F  A$player$ |    0001482F  C$player.
+     00014832  A$player$ |    00014833  A$player$ |    00014834  A$player$
+     00014835  A$player$ |    00014835  C$player. |    00014838  A$player$
+     00014839  A$player$ |    0001483A  A$player$ |    0001483B  A$player$
+     0001483B  C$player. |    0001483E  A$player$ |    0001483F  A$player$
+     00014840  A$player$ |    00014841  A$player$ |    00014841  C$player.
+     00014844  A$player$ |    00014845  A$player$ |    00014846  A$player$
+     00014847  A$player$ |    00014847  C$player. |    0001484A  A$player$
+     0001484D  A$player$ |    0001484E  A$player$ |    00014850  A$player$
+     00014852  A$player$ |    00014854  A$player$ |    00014857  A$player$
+     0001485A  A$player$ |    0001485C  A$player$ |    0001485C  C$player.
+     0001485F  A$player$ |    00014862  A$player$ |    00014865  A$player$
+     00014866  A$player$ |    00014868  A$player$ |    0001486A  A$player$
+     0001486C  A$player$ |    0001486D  A$player$ |    00014870  A$player$
+     00014872  A$player$ |    00014872  C$player. |    00014875  A$player$
+     00014877  A$player$ |    00014879  A$player$ |    0001487C  A$player$
+     0001487F  A$player$ |    00014881  A$player$ |    00014881  C$player.
+     00014884  A$player$ |    00014886  A$player$ |    00014888  A$player$
+     0001488B  A$player$ |    0001488E  A$player$ |    00014890  A$player$
+     00014890  C$player. |    00014893  A$player$ |    00014896  A$player$
+     00014896  C$player. |    00014899  A$player$ |    0001489C  A$player$
+     0001489D  A$player$ |    0001489F  A$player$ |    000148A1  A$player$
+     000148A3  A$player$ |    000148A6  A$player$ |    000148A6  C$player.
+     000148A9  A$player$ |    000148AC  A$player$ |    000148AD  A$player$
+     000148AF  A$player$ |    000148B1  A$player$ |    000148B3  A$player$
+     000148B4  A$player$ |    000148B4  C$player. |    000148B7  A$player$
+     000148B9  A$player$ |    000148BB  A$player$ |    000148BE  A$player$
+     000148BE  C$player. |    000148C1  A$player$ |    000148C3  A$player$
+     000148C5  A$player$ |    000148C8  A$player$ |    000148C8  C$player.
+     000148CB  A$player$ |    000148CD  A$player$ |    000148CD  C$player.
+     000148D0  A$player$ |    000148D3  A$player$ |    000148D4  A$player$
+     000148D6  A$player$ |    000148D7  A$player$ |    000148D8  A$player$
+     000148D9  A$player$ |    000148DA  A$player$ |    000148DB  A$player$
+     000148DC  A$player$ |    000148DD  A$player$ |    000148E0  A$player$
+     000148E1  A$player$ |    000148E3  A$player$ |    000148E4  A$player$
+     000148E5  A$player$ |    000148E6  A$player$ |    000148E8  A$player$
+     000148E8  C$player. |    000148EB  A$player$ |    000148ED  A$player$
+     000148ED  C$player. |    000148F0  A$player$ |    000148F3  A$player$
+     000148F6  A$player$ |    000148F9  A$player$ |    000148FA  A$player$
+     000148FB  A$player$ |    000148FD  A$player$ |    000148FE  A$player$
+     00014900  A$player$ |    00014900  C$player. |    00014900  C$player.
+     00014900  XG$update |    00014901  A$player$ |    00014901  C$player.
+     00014901  C$player. |    00014901  G$calcula |    00014901  _calculat
+     00014904  A$player$ |    00014905  A$player$ |    00014907  A$player$
+     00014908  A$player$ |    00014909  A$player$ |    0001490A  A$player$
+     0001490D  A$player$ |    0001490E  A$player$ |    0001490F  A$player$
+     00014910  A$player$ |    00014911  A$player$ |    00014912  A$player$
+     00014915  A$player$ |    00014916  A$player$ |    00014917  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 41.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014918  A$player$ |    00014919  A$player$ |    0001491B  A$player$
+     0001491C  A$player$ |    0001491F  A$player$ |    00014922  A$player$
+     00014923  A$player$ |    00014923  C$player. |    00014923  C$player.
+     00014923  XG$calcul |    00014924  A$player$ |    00014924  C$player.
+     00014924  G$calcula |    00014924  _calculat |    00014925  A$player$
+     00014926  A$player$ |    00014927  A$player$ |    00014927  C$player.
+     00014929  A$player$ |    0001492C  A$player$ |    0001492F  A$player$
+     00014930  A$player$ |    00014931  A$player$ |    00014931  C$player.
+     00014933  A$player$ |    00014934  A$player$ |    00014935  A$player$
+     00014936  A$player$ |    00014938  A$player$ |    00014939  A$player$
+     0001493A  A$player$ |    0001493B  A$player$ |    0001493C  A$player$
+     0001493D  A$player$ |    0001493D  C$player. |    0001493E  A$player$
+     0001493F  A$player$ |    00014940  A$player$ |    00014941  A$player$
+     00014942  A$player$ |    00014942  C$player. |    00014942  G$move_le
+     00014942  _move_lef |    00014944  A$player$ |    00014946  A$player$
+     00014947  A$player$ |    00014947  C$player. |    00014948  A$player$
+     0001494A  A$player$ |    0001494B  A$player$ |    0001494E  A$player$
+     00014950  A$player$ |    00014951  A$player$ |    00014952  A$player$
+     00014955  A$player$ |    00014956  A$player$ |    00014959  A$player$
+     0001495C  A$player$ |    0001495F  A$player$ |    00014961  A$player$
+     00014964  A$player$ |    00014965  A$player$ |    00014967  A$player$
+     00014968  A$player$ |    00014969  A$player$ |    0001496A  A$player$
+     0001496B  A$player$ |    0001496C  A$player$ |    0001496C  C$player.
+     0001496F  A$player$ |    00014970  A$player$ |    00014971  A$player$
+     00014971  C$player. |    00014972  A$player$ |    00014974  A$player$
+     00014975  A$player$ |    00014977  A$player$ |    00014979  A$player$
+     0001497A  A$player$ |    0001497C  A$player$ |    0001497C  C$player.
+     0001497F  A$player$ |    00014980  A$player$ |    00014980  C$player.
+     00014983  A$player$ |    00014984  A$player$ |    00014984  C$player.
+     00014987  A$player$ |    00014988  A$player$ |    00014989  A$player$
+     0001498A  A$player$ |    0001498B  A$player$ |    0001498C  A$player$
+     0001498D  A$player$ |    0001498E  A$player$ |    0001498F  A$player$
+     00014990  A$player$ |    00014993  A$player$ |    00014994  A$player$
+     00014995  A$player$ |    00014996  A$player$ |    00014998  A$player$
+     00014998  C$player. |    0001499B  A$player$ |    0001499C  A$player$
+     0001499D  A$player$ |    0001499F  A$player$ |    0001499F  C$player.
+     000149A0  A$player$ |    000149A0  C$player. |    000149A3  A$player$
+     000149A4  A$player$ |    000149A5  A$player$ |    000149A6  A$player$
+     000149A7  A$player$ |    000149A8  A$player$ |    000149A9  A$player$
+     000149AA  A$player$ |    000149AB  A$player$ |    000149AC  A$player$
+     000149AF  A$player$ |    000149B0  A$player$ |    000149B1  A$player$
+     000149B2  A$player$ |    000149B2  C$player. |    000149B4  A$player$
+     000149B4  C$player. |    000149B6  A$player$ |    000149B7  A$player$
+     000149BA  A$player$ |    000149BC  A$player$ |    000149BC  C$player.
+     000149BC  XG$move_l |    000149BD  A$player$ |    000149BD  C$player.
+     000149BD  G$move_ri |    000149BD  _move_rig |    000149BF  A$player$
+     000149C1  A$player$ |    000149C2  A$player$ |    000149C2  C$player.
+     000149C3  A$player$ |    000149C5  A$player$ |    000149C6  A$player$
+     000149C9  A$player$ |    000149CB  A$player$ |    000149CC  A$player$
+     000149CD  A$player$ |    000149D0  A$player$ |    000149D1  A$player$
+     000149D4  A$player$ |    000149D7  A$player$ |    000149DA  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 42.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000149DC  A$player$ |    000149DF  A$player$ |    000149E0  A$player$
+     000149E2  A$player$ |    000149E3  A$player$ |    000149E4  A$player$
+     000149E5  A$player$ |    000149E6  A$player$ |    000149E7  A$player$
+     000149E7  C$player. |    000149EA  A$player$ |    000149EB  A$player$
+     000149EC  A$player$ |    000149EC  C$player. |    000149ED  A$player$
+     000149EF  A$player$ |    000149F0  A$player$ |    000149F2  A$player$
+     000149F3  A$player$ |    000149F5  A$player$ |    000149F7  A$player$
+     000149F7  C$player. |    000149FA  A$player$ |    000149FB  A$player$
+     000149FB  C$player. |    000149FE  A$player$ |    000149FF  A$player$
+     000149FF  C$player. |    00014A02  A$player$ |    00014A03  A$player$
+     00014A04  A$player$ |    00014A05  A$player$ |    00014A08  A$player$
+     00014A09  A$player$ |    00014A0A  A$player$ |    00014A0B  A$player$
+     00014A0D  A$player$ |    00014A0D  C$player. |    00014A10  A$player$
+     00014A11  A$player$ |    00014A13  A$player$ |    00014A15  A$player$
+     00014A15  C$player. |    00014A16  A$player$ |    00014A16  C$player.
+     00014A19  A$player$ |    00014A1A  A$player$ |    00014A1B  A$player$
+     00014A1C  A$player$ |    00014A1F  A$player$ |    00014A20  A$player$
+     00014A21  A$player$ |    00014A22  A$player$ |    00014A22  C$player.
+     00014A24  A$player$ |    00014A24  C$player. |    00014A26  A$player$
+     00014A27  A$player$ |    00014A2A  A$player$ |    00014A2C  A$player$
+     00014A2C  C$player. |    00014A2C  XG$move_r |    00014A2D  A$player$
+     00014A2D  C$player. |    00014A2D  G$move_up |    00014A2D  _move_up 
+     00014A2F  A$player$ |    00014A31  A$player$ |    00014A32  A$player$
+     00014A32  C$player. |    00014A33  A$player$ |    00014A35  A$player$
+     00014A36  A$player$ |    00014A39  A$player$ |    00014A3B  A$player$
+     00014A3C  A$player$ |    00014A3D  A$player$ |    00014A40  A$player$
+     00014A41  A$player$ |    00014A44  A$player$ |    00014A47  A$player$
+     00014A4A  A$player$ |    00014A4C  A$player$ |    00014A4F  A$player$
+     00014A50  A$player$ |    00014A52  A$player$ |    00014A53  A$player$
+     00014A54  A$player$ |    00014A55  A$player$ |    00014A56  A$player$
+     00014A57  A$player$ |    00014A57  C$player. |    00014A5A  A$player$
+     00014A5B  A$player$ |    00014A5C  A$player$ |    00014A5C  C$player.
+     00014A5D  A$player$ |    00014A5F  A$player$ |    00014A60  A$player$
+     00014A62  A$player$ |    00014A64  A$player$ |    00014A65  A$player$
+     00014A67  A$player$ |    00014A67  C$player. |    00014A6A  A$player$
+     00014A6B  A$player$ |    00014A6B  C$player. |    00014A6E  A$player$
+     00014A6F  A$player$ |    00014A6F  C$player. |    00014A72  A$player$
+     00014A73  A$player$ |    00014A74  A$player$ |    00014A75  A$player$
+     00014A76  A$player$ |    00014A77  A$player$ |    00014A78  A$player$
+     00014A79  A$player$ |    00014A7A  A$player$ |    00014A7B  A$player$
+     00014A7E  A$player$ |    00014A7F  A$player$ |    00014A80  A$player$
+     00014A81  A$player$ |    00014A83  A$player$ |    00014A83  C$player.
+     00014A85  A$player$ |    00014A88  A$player$ |    00014A89  A$player$
+     00014A8B  A$player$ |    00014A8B  C$player. |    00014A8C  A$player$
+     00014A8C  C$player. |    00014A8F  A$player$ |    00014A90  A$player$
+     00014A91  A$player$ |    00014A92  A$player$ |    00014A93  A$player$
+     00014A94  A$player$ |    00014A95  A$player$ |    00014A96  A$player$
+     00014A97  A$player$ |    00014A98  A$player$ |    00014A9B  A$player$
+     00014A9C  A$player$ |    00014A9D  A$player$ |    00014A9E  A$player$
+     00014A9E  C$player. |    00014AA0  A$player$ |    00014AA0  C$player.
+     00014AA2  A$player$ |    00014AA3  A$player$ |    00014AA6  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 43.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014AA8  A$player$ |    00014AA8  C$player. |    00014AA8  XG$move_u
+     00014AA9  A$player$ |    00014AA9  C$player. |    00014AA9  G$move_do
+     00014AA9  _move_dow |    00014AAB  A$player$ |    00014AAD  A$player$
+     00014AAE  A$player$ |    00014AAE  C$player. |    00014AAF  A$player$
+     00014AB1  A$player$ |    00014AB2  A$player$ |    00014AB5  A$player$
+     00014AB7  A$player$ |    00014AB8  A$player$ |    00014AB9  A$player$
+     00014ABC  A$player$ |    00014ABD  A$player$ |    00014AC0  A$player$
+     00014AC3  A$player$ |    00014AC6  A$player$ |    00014AC8  A$player$
+     00014ACB  A$player$ |    00014ACC  A$player$ |    00014ACE  A$player$
+     00014ACF  A$player$ |    00014AD0  A$player$ |    00014AD1  A$player$
+     00014AD2  A$player$ |    00014AD3  A$player$ |    00014AD3  C$player.
+     00014AD6  A$player$ |    00014AD7  A$player$ |    00014AD8  A$player$
+     00014AD8  C$player. |    00014AD9  A$player$ |    00014ADB  A$player$
+     00014ADC  A$player$ |    00014ADE  A$player$ |    00014ADF  A$player$
+     00014AE1  A$player$ |    00014AE3  A$player$ |    00014AE3  C$player.
+     00014AE6  A$player$ |    00014AE7  A$player$ |    00014AE7  C$player.
+     00014AEA  A$player$ |    00014AEB  A$player$ |    00014AEB  C$player.
+     00014AEE  A$player$ |    00014AEF  A$player$ |    00014AF0  A$player$
+     00014AF1  A$player$ |    00014AF4  A$player$ |    00014AF5  A$player$
+     00014AF6  A$player$ |    00014AF7  A$player$ |    00014AF9  A$player$
+     00014AF9  C$player. |    00014AFC  A$player$ |    00014AFD  A$player$
+     00014AFF  A$player$ |    00014B01  A$player$ |    00014B01  C$player.
+     00014B02  A$player$ |    00014B02  C$player. |    00014B05  A$player$
+     00014B06  A$player$ |    00014B07  A$player$ |    00014B08  A$player$
+     00014B0B  A$player$ |    00014B0C  A$player$ |    00014B0D  A$player$
+     00014B0E  A$player$ |    00014B0E  C$player. |    00014B10  A$player$
+     00014B10  C$player. |    00014B12  A$player$ |    00014B13  A$player$
+     00014B16  A$player$ |    00014B18  A$player$ |    00014B18  C$player.
+     00014B18  XG$move_d |    00014B19  A$player$ |    00014B19  C$player.
+     00014B19  G$move$0$ |    00014B19  _move     |    00014B1B  A$player$
+     00014B1C  A$player$ |    00014B1E  A$player$ |    00014B1F  A$player$
+     00014B1F  C$player. |    00014B22  A$player$ |    00014B22  C$player.
+     00014B23  A$player$ |    00014B24  A$player$ |    00014B25  A$player$
+     00014B27  A$player$ |    00014B29  A$player$ |    00014B2A  A$player$
+     00014B2C  A$player$ |    00014B2D  A$player$ |    00014B2E  A$player$
+     00014B30  A$player$ |    00014B32  A$player$ |    00014B34  A$player$
+     00014B35  A$player$ |    00014B37  A$player$ |    00014B38  A$player$
+     00014B39  A$player$ |    00014B3A  A$player$ |    00014B3C  A$player$
+     00014B3D  A$player$ |    00014B3E  A$player$ |    00014B3F  A$player$
+     00014B41  A$player$ |    00014B44  A$player$ |    00014B45  A$player$
+     00014B45  C$player. |    00014B47  A$player$ |    00014B49  A$player$
+     00014B49  C$player. |    00014B4C  A$player$ |    00014B4D  A$player$
+     00014B50  A$player$ |    00014B50  C$player. |    00014B51  A$player$
+     00014B53  A$player$ |    00014B55  A$player$ |    00014B57  A$player$
+     00014B58  A$player$ |    00014B59  A$player$ |    00014B59  C$player.
+     00014B5A  A$player$ |    00014B5C  A$player$ |    00014B5E  A$player$
+     00014B60  A$player$ |    00014B61  A$player$ |    00014B63  A$player$
+     00014B63  C$player. |    00014B64  A$player$ |    00014B65  A$player$
+     00014B66  A$player$ |    00014B68  A$player$ |    00014B68  C$player.
+     00014B6B  A$player$ |    00014B6D  A$player$ |    00014B6D  C$player.
+     00014B70  A$player$ |    00014B72  A$player$ |    00014B72  C$player.
+ASxxxx Linker V03.00/V05.40 + sdld,  page 44.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014B74  A$player$ |    00014B75  A$player$ |    00014B76  A$player$
+     00014B78  A$player$ |    00014B7B  A$player$ |    00014B7E  A$player$
+     00014B7E  C$player. |    00014B80  A$player$ |    00014B81  A$player$
+     00014B82  A$player$ |    00014B84  A$player$ |    00014B87  A$player$
+     00014B8A  A$player$ |    00014B8A  C$player. |    00014B8B  A$player$
+     00014B8C  A$player$ |    00014B8E  A$player$ |    00014B91  A$player$
+     00014B94  A$player$ |    00014B94  C$player. |    00014B96  A$player$
+     00014B97  A$player$ |    00014B98  A$player$ |    00014B9A  A$player$
+     00014B9D  A$player$ |    00014BA0  A$player$ |    00014BA0  C$player.
+     00014BA1  A$player$ |    00014BA4  A$player$ |    00014BA6  A$player$
+     00014BA7  A$player$ |    00014BA8  A$player$ |    00014BAB  A$player$
+     00014BAB  C$player. |    00014BAD  A$player$ |    00014BAE  A$player$
+     00014BB0  A$player$ |    00014BB2  A$player$ |    00014BB2  C$player.
+     00014BB5  A$player$ |    00014BB7  A$player$ |    00014BB7  C$player.
+     00014BB9  A$player$ |    00014BBB  A$player$ |    00014BBE  A$player$
+     00014BBE  C$player. |    00014BC0  A$player$ |    00014BC1  A$player$
+     00014BC3  A$player$ |    00014BC6  A$player$ |    00014BC6  C$player.
+     00014BC9  A$player$ |    00014BCA  A$player$ |    00014BCC  A$player$
+     00014BCF  A$player$ |    00014BD1  A$player$ |    00014BD1  C$player.
+     00014BD3  A$player$ |    00014BD4  A$player$ |    00014BD5  A$player$
+     00014BD7  A$player$ |    00014BD7  C$player. |    00014BDA  A$player$
+     00014BDB  A$player$ |    00014BDC  A$player$ |    00014BDC  C$player.
+     00014BDE  A$player$ |    00014BE0  A$player$ |    00014BE0  C$player.
+     00014BE2  A$player$ |    00014BE2  C$player. |    00014BE3  A$player$
+     00014BE3  C$player. |    00014BE4  A$player$ |    00014BE6  A$player$
+     00014BE6  C$player. |    00014BE9  A$player$ |    00014BEA  A$player$
+     00014BEC  A$player$ |    00014BEC  C$player. |    00014BED  A$player$
+     00014BEE  A$player$ |    00014BF0  A$player$ |    00014BF0  C$player.
+     00014BF3  A$player$ |    00014BF4  A$player$ |    00014BF5  A$player$
+     00014BF5  C$player. |    00014BF6  A$player$ |    00014BF7  A$player$
+     00014BF8  A$player$ |    00014BF9  A$player$ |    00014BFB  A$player$
+     00014BFD  A$player$ |    00014BFF  A$player$ |    00014C01  A$player$
+     00014C02  A$player$ |    00014C04  A$player$ |    00014C06  A$player$
+     00014C08  A$player$ |    00014C09  A$player$ |    00014C0B  A$player$
+     00014C0B  C$player. |    00014C0D  A$player$ |    00014C0D  C$player.
+     00014C10  A$player$ |    00014C11  A$player$ |    00014C11  C$player.
+     00014C12  A$player$ |    00014C14  A$player$ |    00014C14  C$player.
+     00014C17  A$player$ |    00014C18  A$player$ |    00014C18  C$player.
+     00014C1B  A$player$ |    00014C1C  A$player$ |    00014C1E  A$player$
+     00014C20  A$player$ |    00014C22  A$player$ |    00014C24  A$player$
+     00014C24  C$player. |    00014C27  A$player$ |    00014C28  A$player$
+     00014C2A  A$player$ |    00014C2B  A$player$ |    00014C2C  A$player$
+     00014C2E  A$player$ |    00014C30  A$player$ |    00014C32  A$player$
+     00014C34  A$player$ |    00014C35  A$player$ |    00014C37  A$player$
+     00014C39  A$player$ |    00014C3B  A$player$ |    00014C3C  A$player$
+     00014C3E  A$player$ |    00014C41  A$player$ |    00014C43  A$player$
+     00014C43  C$player. |    00014C46  A$player$ |    00014C47  A$player$
+     00014C48  A$player$ |    00014C49  A$player$ |    00014C4A  A$player$
+     00014C4B  A$player$ |    00014C4C  A$player$ |    00014C4F  A$player$
+     00014C50  A$player$ |    00014C51  A$player$ |    00014C53  A$player$
+     00014C54  A$player$ |    00014C56  A$player$ |    00014C57  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 45.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014C57  C$player. |    00014C58  A$player$ |    00014C59  A$player$
+     00014C5B  A$player$ |    00014C5C  A$player$ |    00014C5E  A$player$
+     00014C5F  A$player$ |    00014C62  A$player$ |    00014C63  A$player$
+     00014C63  C$player. |    00014C64  A$player$ |    00014C66  A$player$
+     00014C68  A$player$ |    00014C69  A$player$ |    00014C6B  A$player$
+     00014C6C  A$player$ |    00014C6F  A$player$ |    00014C70  A$player$
+     00014C70  C$player. |    00014C71  A$player$ |    00014C73  A$player$
+     00014C75  A$player$ |    00014C76  A$player$ |    00014C78  A$player$
+     00014C79  A$player$ |    00014C7C  A$player$ |    00014C7D  A$player$
+     00014C7D  C$player. |    00014C7E  A$player$ |    00014C80  A$player$
+     00014C82  A$player$ |    00014C84  A$player$ |    00014C85  A$player$
+     00014C88  A$player$ |    00014C8A  A$player$ |    00014C8A  C$player.
+     00014C8A  XG$move$0 |    00014C8B  A$player$ |    00014C8B  C$player.
+     00014C8B  C$player. |    00014C8B  G$initiat |    00014C8B  _initiate
+     00014C8E  A$player$ |    00014C90  A$player$ |    00014C92  A$player$
+     00014C92  C$player. |    00014C95  A$player$ |    00014C96  A$player$
+     00014C97  A$player$ |    00014C99  A$player$ |    00014C9A  A$player$
+     00014C9C  A$player$ |    00014C9E  A$player$ |    00014CA1  A$player$
+     00014CA2  A$player$ |    00014CA4  A$player$ |    00014CA4  C$player.
+     00014CA6  A$player$ |    00014CA7  A$player$ |    00014CAA  A$player$
+     00014CAC  A$player$ |    00014CAC  C$player. |    00014CAF  A$player$
+     00014CB0  A$player$ |    00014CB2  A$player$ |    00014CB2  C$player.
+     00014CB4  A$player$ |    00014CB6  A$player$ |    00014CB9  A$player$
+     00014CBB  A$player$ |    00014CBB  C$player. |    00014CBE  A$player$
+     00014CC0  A$player$ |    00014CC0  C$player. |    00014CC3  A$player$
+     00014CC4  A$player$ |    00014CC6  A$player$ |    00014CC6  C$player.
+     00014CC9  A$player$ |    00014CCA  A$player$ |    00014CCB  A$player$
+     00014CCD  A$player$ |    00014CCE  A$player$ |    00014CD0  A$player$
+     00014CD2  A$player$ |    00014CD5  A$player$ |    00014CD6  A$player$
+     00014CD8  A$player$ |    00014CD8  C$player. |    00014CDA  A$player$
+     00014CDC  A$player$ |    00014CDF  A$player$ |    00014CE1  A$player$
+     00014CE1  C$player. |    00014CE4  A$player$ |    00014CE5  A$player$
+     00014CE7  A$player$ |    00014CE7  C$player. |    00014CE9  A$player$
+     00014CEA  A$player$ |    00014CED  A$player$ |    00014CEF  A$player$
+     00014CEF  C$player. |    00014CF2  A$player$ |    00014CF4  A$player$
+     00014CF4  C$player. |    00014CF7  A$player$ |    00014CF9  A$player$
+     00014CFB  A$player$ |    00014CFB  C$player. |    00014CFE  A$player$
+     00014CFF  A$player$ |    00014D00  A$player$ |    00014D02  A$player$
+     00014D03  A$player$ |    00014D05  A$player$ |    00014D07  A$player$
+     00014D07  C$player. |    00014D09  A$player$ |    00014D0B  A$player$
+     00014D0E  A$player$ |    00014D0E  C$player. |    00014D11  A$player$
+     00014D12  A$player$ |    00014D14  A$player$ |    00014D17  A$player$
+     00014D19  A$player$ |    00014D1B  A$player$ |    00014D1B  C$player.
+     00014D1D  A$player$ |    00014D1E  A$player$ |    00014D21  A$player$
+     00014D21  C$player. |    00014D24  A$player$ |    00014D25  A$player$
+     00014D26  A$player$ |    00014D29  A$player$ |    00014D2A  A$player$
+     00014D2C  A$player$ |    00014D2D  A$player$ |    00014D2D  C$player.
+     00014D2F  A$player$ |    00014D31  A$player$ |    00014D31  C$player.
+     00014D31  XG$initia |    00014D34  A$player$ |    00014D34  C$player.
+     00014D34  C$player. |    00014D34  G$calcula |    00014D34  _calculat
+     00014D37  A$player$ |    00014D38  A$player$ |    00014D3A  A$player$
+ASxxxx Linker V03.00/V05.40 + sdld,  page 46.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014D3B  A$player$ |    00014D3C  A$player$ |    00014D3E  A$player$
+     00014D40  A$player$ |    00014D42  A$player$ |    00014D44  A$player$
+     00014D45  A$player$ |    00014D47  A$player$ |    00014D49  A$player$
+     00014D4B  A$player$ |    00014D4C  A$player$ |    00014D4E  A$player$
+     00014D4F  A$player$ |    00014D50  A$player$ |    00014D53  A$player$
+     00014D54  A$player$ |    00014D56  A$player$ |    00014D57  A$player$
+     00014D58  A$player$ |    00014D5A  A$player$ |    00014D5A  C$player.
+     00014D5D  A$player$ |    00014D5E  A$player$ |    00014D5F  A$player$
+     00014D60  A$player$ |    00014D63  A$player$ |    00014D64  A$player$
+     00014D65  A$player$ |    00014D66  A$player$ |    00014D67  A$player$
+     00014D68  A$player$ |    00014D69  A$player$ |    00014D6A  A$player$
+     00014D6B  A$player$ |    00014D6C  A$player$ |    00014D6D  A$player$
+     00014D70  A$player$ |    00014D71  A$player$ |    00014D72  A$player$
+     00014D73  A$player$ |    00014D73  C$player. |    00014D76  A$player$
+     00014D78  A$player$ |    00014D79  A$player$ |    00014D79  C$player.
+     00014D7C  A$player$ |    00014D7D  A$player$ |    00014D7E  A$player$
+     00014D80  A$player$ |    00014D81  A$player$ |    00014D84  A$player$
+     00014D85  A$player$ |    00014D86  A$player$ |    00014D87  A$player$
+     00014D88  A$player$ |    00014D8A  A$player$ |    00014D8C  A$player$
+     00014D8E  A$player$ |    00014D90  A$player$ |    00014D91  A$player$
+     00014D93  A$player$ |    00014D95  A$player$ |    00014D97  A$player$
+     00014D98  A$player$ |    00014D99  A$player$ |    00014D99  C$player.
+     00014D9C  A$player$ |    00014D9E  A$player$ |    00014D9E  C$player.
+     00014D9E  XG$calcul |    00014D9F  A$player$ |    00014D9F  C$player.
+     00014D9F  C$player. |    00014D9F  G$check_h |    00014D9F  _check_hu
+     00014DA2  A$player$ |    00014DA3  A$player$ |    00014DA4  A$player$
+     00014DA5  A$player$ |    00014DA6  A$player$ |    00014DA7  A$player$
+     00014DA8  A$player$ |    00014DA9  A$player$ |    00014DAA  A$player$
+     00014DAC  A$player$ |    00014DAE  A$player$ |    00014DB0  A$player$
+     00014DB2  A$player$ |    00014DB3  A$player$ |    00014DB5  A$player$
+     00014DB7  A$player$ |    00014DB9  A$player$ |    00014DBA  A$player$
+     00014DBB  A$player$ |    00014DBE  A$player$ |    00014DBF  A$player$
+     00014DC0  A$player$ |    00014DC0  C$player. |    00014DC3  A$player$
+     00014DC5  A$player$ |    00014DC5  C$player. |    00014DC8  A$player$
+     00014DC9  A$player$ |    00014DCA  A$player$ |    00014DCB  A$player$
+     00014DCB  C$player. |    00014DCB  XG$check_ |    00014DCC  A$player$
+     00014DCC  C$player. |    00014DCC  C$player. |    00014DCC  G$check_f
+     00014DCC  _check_fu |    00014DCF  A$player$ |    00014DD0  A$player$
+     00014DD1  A$player$ |    00014DD2  A$player$ |    00014DD3  A$player$
+     00014DD4  A$player$ |    00014DD5  A$player$ |    00014DD6  A$player$
+     00014DD7  A$player$ |    00014DD9  A$player$ |    00014DDB  A$player$
+     00014DDD  A$player$ |    00014DDF  A$player$ |    00014DE0  A$player$
+     00014DE2  A$player$ |    00014DE4  A$player$ |    00014DE6  A$player$
+     00014DE7  A$player$ |    00014DE8  A$player$ |    00014DEB  A$player$
+     00014DEC  A$player$ |    00014DED  A$player$ |    00014DED  C$player.
+     00014DF0  A$player$ |    00014DF2  A$player$ |    00014DF2  C$player.
+     00014DF5  A$player$ |    00014DF6  A$player$ |    00014DF7  A$player$
+     00014DF8  A$player$ |    00014DF8  C$player. |    00014DF8  XG$check_
+     00014DF9  A$player$ |    00014DF9  C$player. |    00014DF9  C$player.
+     00014DF9  G$update_ |    00014DF9  _update_f |    00014DFC  A$player$
+     00014DFD  A$player$ |    00014DFF  A$player$ |    00014DFF  C$player.
+ASxxxx Linker V03.00/V05.40 + sdld,  page 47.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014E02  A$player$ |    00014E03  A$player$ |    00014E04  A$player$
+     00014E05  A$player$ |    00014E06  A$player$ |    00014E09  A$player$
+     00014E0A  A$player$ |    00014E0B  A$player$ |    00014E0C  A$player$
+     00014E0C  C$player. |    00014E0E  A$player$ |    00014E11  A$player$
+     00014E12  A$player$ |    00014E13  A$player$ |    00014E16  A$player$
+     00014E17  A$player$ |    00014E18  A$player$ |    00014E19  A$player$
+     00014E1C  A$player$ |    00014E1D  A$player$ |    00014E1E  A$player$
+     00014E1F  A$player$ |    00014E1F  C$player. |    00014E1F  XG$update
+     00014E20  A$player$ |    00014E20  C$player. |    00014E20  C$player.
+     00014E20  G$check_e |    00014E20  _check_en |    00014E23  A$player$
+     00014E25  A$player$ |    00014E27  A$player$ |    00014E29  A$player$
+     00014E2A  A$player$ |    00014E2B  A$player$ |    00014E2E  A$player$
+     00014E30  A$player$ |    00014E32  A$player$ |    00014E34  A$player$
+     00014E35  A$player$ |    00014E36  A$player$ |    00014E37  A$player$
+     00014E38  A$player$ |    00014E3A  A$player$ |    00014E3B  A$player$
+     00014E3C  A$player$ |    00014E3E  A$player$ |    00014E41  A$player$
+     00014E42  A$player$ |    00014E44  A$player$ |    00014E47  A$player$
+     00014E48  A$player$ |    00014E4A  A$player$ |    00014E4A  C$player.
+     00014E4D  A$player$ |    00014E4F  A$player$ |    00014E4F  C$player.
+     00014E52  A$player$ |    00014E54  A$player$ |    00014E54  C$player.
+     00014E57  A$player$ |    00014E59  A$player$ |    00014E5B  A$player$
+     00014E5B  C$player. |    00014E5C  A$player$ |    00014E5E  A$player$
+     00014E60  A$player$ |    00014E62  A$player$ |    00014E64  A$player$
+     00014E64  C$player. |    00014E67  A$player$ |    00014E69  A$player$
+     00014E69  C$player. |    00014E6C  A$player$ |    00014E6E  A$player$
+     00014E70  A$player$ |    00014E72  A$player$ |    00014E73  A$player$
+     00014E74  A$player$ |    00014E75  A$player$ |    00014E76  A$player$
+     00014E78  A$player$ |    00014E79  A$player$ |    00014E7A  A$player$
+     00014E7C  A$player$ |    00014E7F  A$player$ |    00014E80  A$player$
+     00014E82  A$player$ |    00014E85  A$player$ |    00014E86  A$player$
+     00014E88  A$player$ |    00014E88  C$player. |    00014E8B  A$player$
+     00014E8D  A$player$ |    00014E8D  C$player. |    00014E90  A$player$
+     00014E92  A$player$ |    00014E92  C$player. |    00014E95  A$player$
+     00014E97  A$player$ |    00014E98  A$player$ |    00014E98  C$player.
+     00014E9A  A$player$ |    00014E9C  A$player$ |    00014E9E  A$player$
+     00014E9F  A$player$ |    00014E9F  C$player. |    00014EA2  A$player$
+     00014EA4  A$player$ |    00014EA4  C$player. |    00014EA4  XG$check_
+     00014EA5  A$player$ |    00014EA5  C$player. |    00014EA5  C$player.
+     00014EA5  G$check_g |    00014EA5  _check_ga |    00014EA8  A$player$
+     00014EA9  A$player$ |    00014EAA  A$player$ |    00014EAA  C$player.
+     00014EAD  A$player$ |    00014EAF  A$player$ |    00014EAF  C$player.
+     00014EAF  XG$check_ |    00014EB0  A$player$ |    00014EB0  C$player.
+     00014EB0  C$player. |    00014EB0  G$reset_p |    00014EB0  _reset_pl
+     00014EB3  A$player$ |    00014EB5  A$player$ |    00014EB5  C$player.
+     00014EB8  A$player$ |    00014EB9  A$player$ |    00014EBA  A$player$
+     00014EBB  A$player$ |    00014EBE  A$player$ |    00014EBF  A$player$
+     00014EC0  A$player$ |    00014EC1  A$player$ |    00014EC1  C$player.
+     00014EC4  A$player$ |    00014EC5  A$player$ |    00014EC6  A$player$
+     00014EC7  A$player$ |    00014ECA  A$player$ |    00014ECB  A$player$
+     00014ECC  A$player$ |    00014ECD  A$player$ |    00014ECD  C$player.
+     00014ECD  XG$reset_ |    00014ECE  C$nav.c$9 |    00014ECE  G$__func_
+ASxxxx Linker V03.00/V05.40 + sdld,  page 48.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_1                00014000    00001362 =        4962. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00014ECE  G$nav_pal |    00014ECE  ___func_n |    00014ECE  _nav_pale
+     00014ED6  G$nav_til |    00014ED6  _nav_tile |    00014F96  G$nav_map
+     00014F96  _nav_map  |    00014FD2  C$progres |    00014FD2  G$__func_
+     00014FD2  G$progres |    00014FD2  ___func_p |    00014FD2  _progress
+     00015062  C$rover.c |    00015062  G$__func_ |    00015062  G$rover_t
+     00015062  ___func_r |    00015062  _rover_ti |    00015162  C$tile.c$
+     00015162  G$__func_ |    00015162  G$tile_ti |    00015162  ___func_t
+     00015162  _tile_til
+ASxxxx Linker V03.00/V05.40 + sdld,  page 49.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00024000  A$shop$13 |    00024000  C$shop.c$ |    00024000  C$shop.c$
+     00024000  C$shop.c$ |    00024000  G$__func_ |    00024000  G$init_sh
+     00024000  ___func_b |    00024000  _init_sho |    00024003  A$shop$13
+     00024004  A$shop$13 |    00024005  A$shop$13 |    00024006  A$shop$13
+     00024007  A$shop$13 |    0002400A  A$shop$13 |    0002400C  A$shop$14
+     0002400C  C$shop.c$ |    0002400F  A$shop$14 |    00024010  A$shop$14
+     00024013  A$shop$14 |    00024014  A$shop$14 |    00024017  A$shop$14
+     00024019  A$shop$15 |    00024019  C$shop.c$ |    0002401C  A$shop$15
+     0002401D  A$shop$15 |    00024020  A$shop$15 |    00024021  A$shop$15
+     00024024  A$shop$15 |    00024026  A$shop$16 |    00024026  C$shop.c$
+     00024029  A$shop$16 |    0002402A  A$shop$16 |    0002402D  A$shop$16
+     0002402E  A$shop$16 |    0002402F  A$shop$16 |    00024030  A$shop$16
+     00024031  A$shop$16 |    00024034  A$shop$16 |    00024036  A$shop$17
+     00024036  C$shop.c$ |    00024039  A$shop$17 |    0002403A  A$shop$17
+     0002403B  A$shop$17 |    0002403C  A$shop$17 |    0002403D  A$shop$17
+     00024040  A$shop$17 |    00024042  A$shop$18 |    00024042  C$shop.c$
+     00024045  A$shop$18 |    00024046  A$shop$18 |    00024049  A$shop$18
+     0002404A  A$shop$18 |    0002404D  A$shop$18 |    0002404F  A$shop$19
+     0002404F  C$shop.c$ |    00024052  A$shop$19 |    00024053  A$shop$19
+     00024056  A$shop$19 |    00024057  A$shop$19 |    0002405A  A$shop$19
+     0002405C  A$shop$20 |    0002405C  C$shop.c$ |    0002405F  A$shop$20
+     00024060  A$shop$20 |    00024063  A$shop$20 |    00024064  A$shop$20
+     00024067  A$shop$20 |    00024069  A$shop$20 |    00024069  C$shop.c$
+     0002406C  A$shop$21 |    0002406D  A$shop$21 |    00024070  A$shop$21
+     00024071  A$shop$21 |    00024074  A$shop$21 |    00024076  A$shop$21
+     00024076  C$shop.c$ |    00024079  A$shop$21 |    0002407A  A$shop$22
+     0002407D  A$shop$22 |    0002407E  A$shop$22 |    00024081  A$shop$22
+     00024083  A$shop$22 |    00024083  C$shop.c$ |    00024086  A$shop$22
+     00024087  A$shop$22 |    0002408A  A$shop$23 |    0002408B  A$shop$23
+     0002408E  A$shop$23 |    00024090  A$shop$23 |    00024090  C$shop.c$
+     00024093  A$shop$23 |    00024094  A$shop$23 |    00024097  A$shop$23
+     00024098  A$shop$24 |    0002409B  A$shop$24 |    0002409D  A$shop$24
+     0002409D  C$shop.c$ |    000240A0  A$shop$24 |    000240A1  A$shop$24
+     000240A3  A$shop$24 |    000240A4  A$shop$24 |    000240A5  A$shop$25
+     000240A7  A$shop$25 |    000240A8  A$shop$25 |    000240A9  A$shop$25
+     000240AC  A$shop$25 |    000240AE  A$shop$25 |    000240B1  A$shop$25
+     000240B3  A$shop$26 |    000240B6  A$shop$26 |    000240B8  A$shop$26
+     000240B9  A$shop$26 |    000240BB  A$shop$26 |    000240BE  A$shop$26
+     000240C0  A$shop$26 |    000240C3  A$shop$26 |    000240C5  A$shop$27
+     000240C8  A$shop$27 |    000240C9  A$shop$27 |    000240CC  A$shop$27
+     000240CC  C$shop.c$ |    000240CF  A$shop$27 |    000240D1  A$shop$28
+     000240D1  C$shop.c$ |    000240D1  XG$init_s |    000240D2  G$metaspr
+     000240D2  _metaspri |    00024106  A$shop$35 |    00024106  C$shop.c$
+     00024106  G$init_sh |    00024106  _init_sho |    00024108  A$shop$35
+     00024108  C$shop.c$ |    0002410A  A$shop$35 |    0002410C  A$shop$35
+     0002410D  A$shop$35 |    0002410F  A$shop$35 |    00024110  A$shop$35
+     00024112  A$shop$36 |    00024113  A$shop$36 |    00024115  A$shop$36
+     00024116  A$shop$36 |    00024118  A$shop$36 |    00024119  A$shop$36
+     0002411B  A$shop$36 |    0002411B  C$shop.c$ |    0002411C  A$shop$37
+     0002411E  A$shop$37 |    0002411F  A$shop$37 |    00024121  A$shop$37
+ASxxxx Linker V03.00/V05.40 + sdld,  page 50.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00024122  A$shop$37 |    00024124  A$shop$37 |    00024125  A$shop$37
+     00024127  A$shop$37 |    00024128  A$shop$37 |    0002412A  A$shop$37
+     0002412B  A$shop$38 |    0002412D  A$shop$38 |    0002412D  C$shop.c$
+     0002412F  A$shop$38 |    00024131  A$shop$38 |    00024131  C$shop.c$
+     00024133  A$shop$39 |    00024134  A$shop$39 |    00024136  A$shop$39
+     00024138  A$shop$39 |    00024138  C$shop.c$ |    0002413A  A$shop$39
+     0002413B  A$shop$40 |    0002413D  A$shop$40 |    0002413F  A$shop$40
+     0002413F  C$shop.c$ |    00024140  A$shop$40 |    00024142  A$shop$40
+     00024145  A$shop$40 |    00024146  A$shop$40 |    00024147  A$shop$41
+     00024148  A$shop$41 |    0002414A  A$shop$41 |    0002414B  A$shop$41
+     0002414B  C$shop.c$ |    0002414C  A$shop$41 |    0002414E  A$shop$42
+     0002414E  C$shop.c$ |    0002414F  A$shop$42 |    00024151  A$shop$42
+     00024154  A$shop$42 |    00024155  A$shop$42 |    00024156  A$shop$42
+     00024157  A$shop$42 |    00024158  A$shop$42 |    0002415A  A$shop$43
+     0002415D  A$shop$43 |    0002415E  A$shop$43 |    0002415F  A$shop$43
+     00024160  A$shop$43 |    00024163  A$shop$43 |    00024164  A$shop$43
+     00024165  A$shop$43 |    00024168  A$shop$43 |    00024169  A$shop$43
+     0002416A  A$shop$44 |    0002416B  A$shop$44 |    0002416C  A$shop$44
+     0002416D  A$shop$44 |    0002416E  A$shop$44 |    00024171  A$shop$44
+     00024173  A$shop$44 |    00024173  C$shop.c$ |    00024174  A$shop$45
+     00024176  A$shop$45 |    00024176  C$shop.c$ |    00024177  A$shop$45
+     00024179  A$shop$46 |    0002417B  A$shop$46 |    0002417B  C$shop.c$
+     0002417B  XG$init_s |    0002417C  A$shop$47 |    0002417C  C$shop.c$
+     0002417C  G$updateM |    0002417C  _updateMe |    0002417E  A$shop$47
+     0002417E  C$shop.c$ |    00024180  A$shop$48 |    00024181  A$shop$48
+     00024184  A$shop$48 |    00024185  A$shop$48 |    00024186  A$shop$48
+     00024187  A$shop$48 |    0002418A  A$shop$48 |    0002418B  A$shop$48
+     0002418C  A$shop$48 |    0002418D  A$shop$48 |    0002418E  A$shop$49
+     0002418F  A$shop$49 |    00024190  A$shop$49 |    00024191  A$shop$49
+     00024193  A$shop$49 |    00024195  A$shop$49 |    00024196  A$shop$49
+     00024196  C$shop.c$ |    00024199  A$shop$50 |    0002419A  A$shop$50
+     0002419B  A$shop$50 |    0002419E  A$shop$50 |    0002419F  A$shop$50
+     000241A0  A$shop$50 |    000241A1  A$shop$50 |    000241A2  A$shop$50
+     000241A3  A$shop$50 |    000241A4  A$shop$50 |    000241A5  A$shop$51
+     000241A7  A$shop$51 |    000241A8  A$shop$51 |    000241AB  A$shop$51
+     000241AD  A$shop$51 |    000241AE  A$shop$51 |    000241B0  A$shop$51
+     000241B3  A$shop$52 |    000241B5  A$shop$52 |    000241B8  A$shop$52
+     000241BA  A$shop$52 |    000241BB  A$shop$52 |    000241BD  A$shop$52
+     000241BE  A$shop$52 |    000241BF  A$shop$52 |    000241C0  A$shop$53
+     000241C1  A$shop$53 |    000241C4  A$shop$53 |    000241C4  C$shop.c$
+     000241C6  A$shop$54 |    000241C6  C$shop.c$ |    000241C6  XG$update
+     000241C7  A$shop$55 |    000241C7  C$shop.c$ |    000241C7  G$update_
+     000241C7  _update_u |    000241C9  A$shop$55 |    000241C9  C$shop.c$
+     000241CA  A$shop$55 |    000241CC  A$shop$55 |    000241CE  A$shop$56
+     000241CE  C$shop.c$ |    000241D1  A$shop$56 |    000241D2  A$shop$56
+     000241D4  A$shop$57 |    000241D5  A$shop$57 |    000241D6  A$shop$57
+     000241D7  A$shop$57 |    000241D8  A$shop$57 |    000241D9  A$shop$57
+     000241D9  C$shop.c$ |    000241DC  A$shop$57 |    000241DD  A$shop$58
+     000241DE  A$shop$58 |    000241E0  A$shop$58 |    000241E1  A$shop$58
+     000241E4  A$shop$58 |    000241E5  A$shop$58 |    000241E6  A$shop$58
+     000241E7  A$shop$58 |    000241EA  A$shop$58 |    000241EB  A$shop$58
+ASxxxx Linker V03.00/V05.40 + sdld,  page 51.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000241EC  A$shop$59 |    000241ED  A$shop$59 |    000241EE  A$shop$59
+     000241EF  A$shop$59 |    000241F0  A$shop$59 |    000241F1  A$shop$59
+     000241F3  A$shop$59 |    000241F5  A$shop$59 |    000241F6  A$shop$60
+     000241F6  C$shop.c$ |    000241F9  A$shop$60 |    000241FA  A$shop$60
+     000241FB  A$shop$60 |    000241FE  A$shop$60 |    000241FF  A$shop$60
+     00024200  A$shop$60 |    00024201  A$shop$60 |    00024202  A$shop$60
+     00024203  A$shop$61 |    00024204  A$shop$61 |    00024205  A$shop$61
+     00024207  A$shop$61 |    00024208  A$shop$61 |    0002420B  A$shop$61
+     0002420C  A$shop$61 |    0002420D  A$shop$61 |    0002420F  A$shop$62
+     00024210  A$shop$62 |    00024211  A$shop$62 |    00024211  C$shop.c$
+     00024213  A$shop$62 |    00024216  A$shop$62 |    00024218  A$shop$63
+     00024218  C$shop.c$ |    0002421A  A$shop$64 |    0002421A  C$shop.c$
+     0002421A  XG$update |    0002421B  A$shop$65 |    0002421B  C$shop.c$
+     0002421B  C$shop.c$ |    0002421B  G$display |    0002421B  _displayM
+     0002421C  A$shop$65 |    0002421D  A$shop$66 |    0002421D  C$shop.c$
+     0002421D  XG$displa |    00024220  A$shop$67 |    00024220  C$shop.c$
+     00024220  G$load_sh |    00024220  _load_sho |    00024222  A$shop$67
+     00024224  A$shop$67 |    00024225  A$shop$67 |    00024226  A$shop$67
+     00024227  A$shop$67 |    00024228  A$shop$68 |    00024229  A$shop$68
+     0002422A  A$shop$68 |    0002422A  C$shop.c$ |    0002422C  A$shop$68
+     0002422D  A$shop$68 |    0002422E  A$shop$68 |    00024230  A$shop$68
+     00024232  A$shop$69 |    00024232  C$shop.c$ |    00024234  A$shop$69
+     00024235  A$shop$69 |    00024237  A$shop$69 |    00024238  A$shop$70
+     0002423A  A$shop$70 |    0002423B  A$shop$70 |    0002423D  A$shop$70
+     0002423F  A$shop$70 |    0002423F  C$shop.c$ |    00024240  A$shop$70
+     00024242  A$shop$71 |    00024243  A$shop$71 |    00024244  A$shop$71
+     00024245  A$shop$71 |    00024247  A$shop$71 |    00024248  A$shop$71
+     0002424A  A$shop$71 |    0002424B  A$shop$71 |    0002424C  A$shop$72
+     0002424C  C$shop.c$ |    0002424D  A$shop$72 |    0002424F  A$shop$72
+     0002424F  C$shop.c$ |    00024251  A$shop$72 |    00024252  A$shop$72
+     00024254  A$shop$73 |    00024255  A$shop$73 |    00024257  A$shop$73
+     00024259  A$shop$73 |    0002425A  A$shop$73 |    0002425C  A$shop$73
+     0002425D  A$shop$73 |    0002425E  A$shop$73 |    0002425F  A$shop$73
+     00024260  A$shop$73 |    00024261  A$shop$74 |    00024262  A$shop$74
+     00024263  A$shop$74 |    00024264  A$shop$74 |    00024265  A$shop$74
+     00024266  A$shop$74 |    00024267  A$shop$74 |    00024268  A$shop$74
+     00024269  A$shop$74 |    0002426A  A$shop$74 |    0002426B  A$shop$75
+     0002426C  A$shop$75 |    0002426D  A$shop$75 |    0002426E  A$shop$75
+     0002426F  A$shop$75 |    00024270  A$shop$75 |    00024271  A$shop$75
+     00024273  A$shop$75 |    00024274  A$shop$75 |    00024275  A$shop$75
+     00024276  A$shop$76 |    00024278  A$shop$76 |    00024279  A$shop$76
+     0002427A  A$shop$76 |    0002427B  A$shop$76 |    0002427C  A$shop$76
+     0002427E  A$shop$76 |    0002427F  A$shop$76 |    00024280  A$shop$76
+     00024281  A$shop$76 |    00024282  A$shop$77 |    00024283  A$shop$77
+     00024284  A$shop$77 |    00024287  A$shop$77 |    00024288  A$shop$77
+     00024289  A$shop$77 |    0002428B  A$shop$77 |    0002428C  A$shop$77
+     0002428D  A$shop$77 |    0002428F  A$shop$77 |    00024290  A$shop$78
+     00024291  A$shop$78 |    00024292  A$shop$78 |    00024295  A$shop$78
+     00024297  A$shop$78 |    00024297  C$shop.c$ |    00024299  A$shop$78
+     0002429A  A$shop$78 |    0002429B  A$shop$79 |    0002429D  A$shop$79
+     0002429E  A$shop$79 |    000242A1  A$shop$79 |    000242A2  A$shop$79
+ASxxxx Linker V03.00/V05.40 + sdld,  page 52.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000242A5  A$shop$79 |    000242A6  A$shop$79 |    000242A9  A$shop$79
+     000242AB  A$shop$79 |    000242AD  A$shop$80 |    000242AD  C$shop.c$
+     000242AF  A$shop$80 |    000242B0  A$shop$80 |    000242B1  A$shop$80
+     000242B3  A$shop$80 |    000242B4  A$shop$80 |    000242B7  A$shop$80
+     000242B8  A$shop$81 |    000242BB  A$shop$81 |    000242BC  A$shop$81
+     000242BF  A$shop$81 |    000242C1  A$shop$81 |    000242C3  A$shop$81
+     000242C3  C$shop.c$ |    000242C5  A$shop$82 |    000242C6  A$shop$82
+     000242C8  A$shop$82 |    000242CA  A$shop$82 |    000242CB  A$shop$82
+     000242CE  A$shop$82 |    000242CF  A$shop$82 |    000242D2  A$shop$82
+     000242D3  A$shop$82 |    000242D6  A$shop$82 |    000242D8  A$shop$83
+     000242DA  A$shop$83 |    000242DA  C$shop.c$ |    000242DC  A$shop$83
+     000242DD  A$shop$83 |    000242DF  A$shop$83 |    000242E1  A$shop$83
+     000242E2  A$shop$84 |    000242E5  A$shop$84 |    000242E6  A$shop$84
+     000242E9  A$shop$84 |    000242EA  A$shop$84 |    000242ED  A$shop$84
+     000242EF  A$shop$84 |    000242F1  A$shop$85 |    000242F1  C$shop.c$
+     000242F3  A$shop$85 |    000242F4  A$shop$85 |    000242F6  A$shop$85
+     000242F8  A$shop$85 |    000242F9  A$shop$85 |    000242FC  A$shop$85
+     000242FD  A$shop$85 |    00024300  A$shop$85 |    00024301  A$shop$86
+     00024304  A$shop$86 |    00024306  A$shop$86 |    00024308  A$shop$86
+     00024308  C$shop.c$ |    0002430A  A$shop$86 |    0002430B  A$shop$86
+     0002430D  A$shop$87 |    0002430F  A$shop$87 |    00024310  A$shop$87
+     00024313  A$shop$87 |    00024314  A$shop$87 |    00024317  A$shop$87
+     00024318  A$shop$87 |    0002431B  A$shop$87 |    0002431D  A$shop$88
+     0002431D  C$shop.c$ |    0002431F  A$shop$88 |    00024320  A$shop$88
+     00024321  A$shop$88 |    00024322  A$shop$89 |    00024322  C$shop.c$
+     00024322  G$load_su |    00024322  _load_sub |    00024324  A$shop$90
+     00024325  A$shop$90 |    00024327  A$shop$90 |    00024328  A$shop$90
+     00024328  C$shop.c$ |    00024329  A$shop$90 |    0002432B  A$shop$91
+     0002432C  A$shop$91 |    0002432D  A$shop$91 |    0002432E  A$shop$91
+     0002432F  A$shop$91 |    00024332  A$shop$91 |    00024333  A$shop$91
+     00024334  A$shop$91 |    00024335  A$shop$92 |    00024336  A$shop$92
+     00024339  A$shop$92 |    0002433A  A$shop$92 |    0002433B  A$shop$92
+     0002433C  A$shop$92 |    0002433D  A$shop$92 |    0002433E  A$shop$92
+     00024341  A$shop$92 |    00024342  A$shop$93 |    00024342  C$shop.c$
+     00024343  A$shop$94 |    00024343  C$shop.c$ |    00024343  XG$load_s
+     00024345  A$shop$95 |    00024345  C$shop.c$ |    00024345  G$load_ma
+     00024345  _load_mai |    00024346  A$shop$95 |    00024346  C$shop.c$
+     00024348  A$shop$95 |    0002434A  A$shop$95 |    0002434C  A$shop$95
+     0002434D  A$shop$95 |    0002434F  A$shop$96 |    00024351  A$shop$96
+     00024351  C$shop.c$ |    00024352  A$shop$96 |    00024354  A$shop$96
+     00024355  A$shop$96 |    00024356  A$shop$96 |    00024357  A$shop$96
+     0002435A  A$shop$97 |    0002435B  A$shop$97 |    0002435C  A$shop$97
+     0002435D  A$shop$97 |    0002435E  A$shop$97 |    00024361  A$shop$97
+     00024362  A$shop$97 |    00024363  A$shop$97 |    00024365  A$shop$97
+     00024367  A$shop$98 |    00024369  A$shop$98 |    0002436B  A$shop$98
+     0002436D  A$shop$98 |    0002436F  A$shop$98 |    00024371  A$shop$98
+     00024373  A$shop$98 |    00024376  A$shop$98 |    00024377  A$shop$98
+     00024378  A$shop$98 |    00024379  A$shop$99 |    0002437B  A$shop$99
+     0002437C  A$shop$99 |    0002437D  A$shop$99 |    0002437E  A$shop$99
+     0002437F  A$shop$99 |    00024380  A$shop$99 |    00024381  A$shop$99
+     00024382  A$shop$99 |    00024383  A$shop$99 |    00024384  A$shop$10
+ASxxxx Linker V03.00/V05.40 + sdld,  page 53.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00024387  A$shop$10 |    00024387  C$shop.c$ |    00024389  A$shop$10
+     0002438A  A$shop$10 |    0002438C  A$shop$10 |    0002438D  A$shop$10
+     0002438D  C$shop.c$ |    0002438D  XG$load_m |    0002438E  A$shop$10
+     0002438E  C$shop.c$ |    0002438E  G$write_m |    0002438E  _write_ma
+     00024390  A$shop$10 |    00024390  C$shop.c$ |    00024393  A$shop$10
+     00024394  A$shop$10 |    00024395  A$shop$10 |    00024396  A$shop$10
+     00024398  A$shop$10 |    00024399  A$shop$10 |    0002439A  A$shop$10
+     0002439D  A$shop$10 |    0002439E  A$shop$10 |    0002439F  A$shop$10
+     000243A0  A$shop$10 |    000243A3  A$shop$10 |    000243A5  A$shop$10
+     000243A5  C$shop.c$ |    000243A6  A$shop$10 |    000243A7  A$shop$10
+     000243A9  A$shop$10 |    000243AA  A$shop$10 |    000243AC  A$shop$10
+     000243AD  A$shop$10 |    000243AE  A$shop$10 |    000243B1  A$shop$10
+     000243B2  A$shop$10 |    000243B4  A$shop$10 |    000243B6  A$shop$10
+     000243B9  A$shop$10 |    000243B9  C$shop.c$ |    000243BC  A$shop$10
+     000243BF  A$shop$10 |    000243C0  A$shop$10 |    000243C3  A$shop$10
+     000243C4  A$shop$10 |    000243C5  A$shop$10 |    000243C7  A$shop$10
+     000243C8  A$shop$10 |    000243C9  A$shop$10 |    000243CA  A$shop$10
+     000243CB  A$shop$10 |    000243CC  A$shop$10 |    000243CF  A$shop$10
+     000243D0  A$shop$10 |    000243D1  A$shop$10 |    000243D2  A$shop$10
+     000243D3  A$shop$10 |    000243D4  A$shop$10 |    000243D5  A$shop$10
+     000243D7  A$shop$10 |    000243D8  A$shop$10 |    000243DA  A$shop$10
+     000243DB  A$shop$10 |    000243DC  A$shop$10 |    000243DD  A$shop$10
+     000243DF  A$shop$10 |    000243E0  A$shop$10 |    000243E3  A$shop$10
+     000243E3  C$shop.c$ |    000243E4  A$shop$11 |    000243E5  A$shop$11
+     000243E7  A$shop$11 |    000243E8  A$shop$11 |    000243EA  A$shop$11
+     000243EB  A$shop$11 |    000243EC  A$shop$11 |    000243EF  A$shop$11
+     000243F0  A$shop$11 |    000243F2  A$shop$11 |    000243F4  A$shop$11
+     000243F7  A$shop$11 |    000243F7  C$shop.c$ |    000243FA  A$shop$11
+     000243FB  A$shop$11 |    000243FC  A$shop$11 |    000243FD  A$shop$11
+     000243FE  A$shop$11 |    000243FF  A$shop$11 |    00024401  A$shop$11
+     00024402  A$shop$11 |    00024403  A$shop$11 |    00024404  A$shop$11
+     00024406  A$shop$11 |    00024408  A$shop$11 |    0002440B  A$shop$11
+     0002440B  C$shop.c$ |    0002440C  A$shop$11 |    0002440D  A$shop$11
+     0002440F  A$shop$11 |    00024410  A$shop$11 |    00024412  A$shop$11
+     00024413  A$shop$11 |    00024414  A$shop$11 |    00024417  A$shop$11
+     00024418  A$shop$11 |    0002441A  A$shop$11 |    0002441C  A$shop$11
+     0002441F  A$shop$11 |    00024421  A$shop$11 |    00024421  C$shop.c$
+     00024421  XG$write_ |    00024422  Fshop$__s |    00024430  Fshop$__s
+     00024436  Fshop$__s |    00024438  A$shop$11 |    00024438  C$shop.c$
+     00024438  G$write_s |    00024438  _write_su |    0002443A  A$shop$11
+     0002443A  C$shop.c$ |    0002443D  A$shop$11 |    0002443E  A$shop$11
+     00024440  A$shop$11 |    00024441  A$shop$11 |    00024444  A$shop$11
+     00024445  A$shop$11 |    00024446  A$shop$11 |    00024447  A$shop$11
+     00024449  A$shop$11 |    0002444A  A$shop$11 |    0002444C  A$shop$11
+     0002444D  A$shop$11 |    00024450  A$shop$11 |    00024451  A$shop$11
+     00024452  A$shop$11 |    00024453  A$shop$11 |    00024454  A$shop$11
+     00024455  A$shop$11 |    00024456  A$shop$12 |    00024458  A$shop$12
+     00024459  A$shop$12 |    0002445A  A$shop$12 |    0002445B  A$shop$12
+     0002445C  A$shop$12 |    0002445E  A$shop$12 |    0002445F  A$shop$12
+     00024460  A$shop$12 |    00024463  A$shop$12 |    00024464  A$shop$12
+     00024465  A$shop$12 |    00024466  A$shop$12 |    00024469  A$shop$12
+ASxxxx Linker V03.00/V05.40 + sdld,  page 54.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0002446B  A$shop$12 |    0002446B  C$shop.c$ |    0002446E  A$shop$12
+     0002446F  A$shop$12 |    00024471  A$shop$12 |    00024472  A$shop$12
+     00024475  A$shop$12 |    00024476  A$shop$12 |    00024477  A$shop$12
+     00024478  A$shop$12 |    0002447A  A$shop$12 |    0002447B  A$shop$12
+     0002447D  A$shop$12 |    0002447E  A$shop$12 |    00024481  A$shop$12
+     00024482  A$shop$12 |    00024483  A$shop$12 |    00024484  A$shop$12
+     00024485  A$shop$12 |    00024486  A$shop$12 |    00024487  A$shop$12
+     00024489  A$shop$12 |    0002448A  A$shop$12 |    0002448B  A$shop$12
+     0002448C  A$shop$12 |    0002448D  A$shop$12 |    0002448F  A$shop$12
+     00024490  A$shop$12 |    00024491  A$shop$12 |    00024494  A$shop$12
+     00024495  A$shop$12 |    00024496  A$shop$12 |    00024497  A$shop$12
+     0002449A  A$shop$12 |    0002449C  A$shop$12 |    0002449C  C$shop.c$
+     0002449F  A$shop$12 |    000244A0  A$shop$12 |    000244A1  A$shop$12
+     000244A2  A$shop$12 |    000244A4  A$shop$12 |    000244A5  A$shop$12
+     000244A6  A$shop$12 |    000244A9  A$shop$12 |    000244AA  A$shop$12
+     000244AB  A$shop$12 |    000244AC  A$shop$12 |    000244AF  A$shop$12
+     000244B1  A$shop$12 |    000244B1  C$shop.c$ |    000244B4  A$shop$12
+     000244B5  A$shop$12 |    000244B7  A$shop$12 |    000244B8  A$shop$12
+     000244BB  A$shop$12 |    000244BC  A$shop$12 |    000244BD  A$shop$12
+     000244BE  A$shop$12 |    000244BF  A$shop$12 |    000244C2  A$shop$12
+     000244C3  A$shop$12 |    000244C4  A$shop$12 |    000244C5  A$shop$12
+     000244C6  A$shop$12 |    000244C9  A$shop$12 |    000244CA  A$shop$12
+     000244CB  A$shop$12 |    000244CC  A$shop$12 |    000244CF  A$shop$13
+     000244CF  C$shop.c$ |    000244D2  A$shop$13 |    000244D3  A$shop$13
+     000244D5  A$shop$13 |    000244D6  A$shop$13 |    000244D9  A$shop$13
+     000244DA  A$shop$13 |    000244DB  A$shop$13 |    000244DC  A$shop$13
+     000244DD  A$shop$13 |    000244E0  A$shop$13 |    000244E1  A$shop$13
+     000244E2  A$shop$13 |    000244E3  A$shop$13 |    000244E4  A$shop$13
+     000244E5  A$shop$13 |    000244E6  A$shop$13 |    000244E8  A$shop$13
+     000244E9  A$shop$13 |    000244EA  A$shop$13 |    000244EB  A$shop$13
+     000244EC  A$shop$13 |    000244ED  A$shop$13 |    000244EE  A$shop$13
+     000244F0  A$shop$13 |    000244F1  A$shop$13 |    000244F3  A$shop$13
+     000244F4  A$shop$13 |    000244F5  A$shop$13 |    000244F6  A$shop$13
+     000244F8  A$shop$13 |    000244FA  A$shop$13 |    000244FD  A$shop$13
+     000244FD  C$shop.c$ |    00024500  A$shop$13 |    00024501  A$shop$13
+     00024502  A$shop$13 |    00024503  A$shop$13 |    00024505  A$shop$13
+     00024506  A$shop$13 |    00024508  A$shop$13 |    00024509  A$shop$13
+     0002450A  A$shop$13 |    0002450B  A$shop$13 |    0002450D  A$shop$13
+     0002450E  A$shop$13 |    00024511  A$shop$13 |    00024511  C$shop.c$
+     00024514  A$shop$13 |    00024515  A$shop$13 |    00024516  A$shop$13
+     00024517  A$shop$13 |    00024518  A$shop$13 |    00024519  A$shop$13
+     0002451B  A$shop$13 |    0002451C  A$shop$13 |    0002451D  A$shop$13
+     0002451E  A$shop$13 |    00024520  A$shop$13 |    00024522  A$shop$13
+     00024525  A$shop$13 |    00024525  C$shop.c$ |    00024526  A$shop$13
+     00024527  A$shop$13 |    00024529  A$shop$13 |    0002452A  A$shop$13
+     0002452C  A$shop$13 |    0002452D  A$shop$13 |    0002452E  A$shop$13
+     00024531  A$shop$13 |    00024532  A$shop$13 |    00024534  A$shop$13
+     00024536  A$shop$13 |    00024539  A$shop$13 |    00024539  C$shop.c$
+     0002453A  A$shop$13 |    0002453B  A$shop$13 |    0002453D  A$shop$13
+     0002453E  A$shop$13 |    00024540  A$shop$13 |    00024541  A$shop$13
+     00024542  A$shop$13 |    00024545  A$shop$13 |    00024546  A$shop$13
+ASxxxx Linker V03.00/V05.40 + sdld,  page 55.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00024548  A$shop$13 |    0002454A  A$shop$13 |    0002454D  A$shop$14
+     0002454D  C$shop.c$ |    00024550  A$shop$14 |    00024551  A$shop$14
+     00024552  A$shop$14 |    00024553  A$shop$14 |    00024554  A$shop$14
+     00024555  A$shop$14 |    00024557  A$shop$14 |    00024558  A$shop$14
+     00024559  A$shop$14 |    0002455A  A$shop$14 |    0002455C  A$shop$14
+     0002455E  A$shop$14 |    00024561  A$shop$14 |    00024561  C$shop.c$
+     00024562  A$shop$14 |    00024563  A$shop$14 |    00024565  A$shop$14
+     00024566  A$shop$14 |    00024568  A$shop$14 |    00024569  A$shop$14
+     0002456A  A$shop$14 |    0002456D  A$shop$14 |    0002456E  A$shop$14
+     00024570  A$shop$14 |    00024572  A$shop$14 |    00024575  A$shop$14
+     00024577  A$shop$14 |    00024577  C$shop.c$ |    00024577  XG$write_
+     00024578  Fshop$__s |    0002457A  Fshop$__s |    00024580  A$shop$14
+     00024580  C$shop.c$ |    00024580  G$change_ |    00024580  _change_s
+     00024582  A$shop$14 |    00024582  C$shop.c$ |    00024584  A$shop$14
+     00024585  A$shop$14 |    00024587  A$shop$14 |    0002458A  A$shop$14
+     0002458A  C$shop.c$ |    0002458D  A$shop$14 |    0002458E  A$shop$14
+     00024590  A$shop$14 |    00024591  A$shop$14 |    00024594  A$shop$14
+     00024595  A$shop$14 |    00024596  A$shop$14 |    00024597  A$shop$14
+     00024598  A$shop$14 |    0002459A  A$shop$14 |    0002459B  A$shop$14
+     0002459C  A$shop$14 |    0002459D  A$shop$14 |    0002459E  A$shop$14
+     0002459F  A$shop$14 |    000245A0  A$shop$14 |    000245A3  A$shop$14
+     000245A4  A$shop$14 |    000245A5  A$shop$14 |    000245A6  A$shop$14
+     000245A7  A$shop$14 |    000245A8  A$shop$14 |    000245A9  A$shop$14
+     000245AA  A$shop$14 |    000245AB  A$shop$14 |    000245AB  C$shop.c$
+     000245AC  A$shop$15 |    000245AE  A$shop$15 |    000245B0  A$shop$15
+     000245B1  A$shop$15 |    000245B1  C$shop.c$ |    000245B2  A$shop$15
+     000245B3  A$shop$15 |    000245B5  A$shop$15 |    000245B6  A$shop$15
+     000245B9  A$shop$15 |    000245BA  A$shop$15 |    000245BB  A$shop$15
+     000245BC  A$shop$15 |    000245BD  A$shop$15 |    000245BE  A$shop$15
+     000245BF  A$shop$15 |    000245C0  A$shop$15 |    000245C3  A$shop$15
+     000245C4  A$shop$15 |    000245C5  A$shop$15 |    000245C6  A$shop$15
+     000245C7  A$shop$15 |    000245C9  A$shop$15 |    000245CA  A$shop$15
+     000245CB  A$shop$15 |    000245CC  A$shop$15 |    000245CD  A$shop$15
+     000245CF  A$shop$15 |    000245D0  A$shop$15 |    000245D1  A$shop$15
+     000245D2  A$shop$15 |    000245D3  A$shop$15 |    000245D5  A$shop$15
+     000245D6  A$shop$15 |    000245D7  A$shop$15 |    000245D9  A$shop$15
+     000245DA  A$shop$15 |    000245DB  A$shop$15 |    000245DC  A$shop$15
+     000245DD  A$shop$15 |    000245DE  A$shop$15 |    000245DF  A$shop$15
+     000245E0  A$shop$15 |    000245E1  A$shop$15 |    000245E3  A$shop$15
+     000245E5  A$shop$15 |    000245E7  A$shop$15 |    000245E9  A$shop$15
+     000245EA  A$shop$15 |    000245EC  A$shop$15 |    000245EE  A$shop$15
+     000245F0  A$shop$15 |    000245F1  A$shop$15 |    000245F3  A$shop$15
+     000245F3  C$shop.c$ |    000245F4  A$shop$15 |    000245F7  A$shop$15
+     000245F8  A$shop$15 |    000245FA  A$shop$15 |    000245FB  A$shop$15
+     000245FC  A$shop$15 |    000245FE  A$shop$15 |    000245FF  A$shop$15
+     00024600  A$shop$15 |    00024601  A$shop$15 |    00024604  A$shop$15
+     00024606  A$shop$15 |    00024607  A$shop$15 |    00024609  A$shop$15
+     00024609  C$shop.c$ |    0002460A  A$shop$15 |    0002460B  A$shop$15
+     0002460E  A$shop$15 |    0002460F  A$shop$15 |    00024610  A$shop$15
+     00024611  A$shop$15 |    00024612  A$shop$15 |    00024614  A$shop$15
+     00024615  A$shop$15 |    00024616  A$shop$15 |    00024617  A$shop$15
+ASxxxx Linker V03.00/V05.40 + sdld,  page 56.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00024618  A$shop$15 |    00024619  A$shop$15 |    0002461A  A$shop$15
+     0002461C  A$shop$15 |    0002461D  A$shop$15 |    0002461E  A$shop$15
+     00024620  A$shop$15 |    00024621  A$shop$16 |    00024622  A$shop$16
+     00024623  A$shop$16 |    00024626  A$shop$16 |    00024628  A$shop$16
+     00024629  A$shop$16 |    00024629  C$shop.c$ |    0002462A  A$shop$16
+     0002462D  A$shop$16 |    0002462F  A$shop$16 |    0002462F  C$shop.c$
+     0002462F  XG$change |    00024630  A$shop$16 |    00024630  C$shop.c$
+     00024630  C$shop.c$ |    00024630  G$change_ |    00024630  _change_m
+     00024632  A$shop$16 |    00024633  A$shop$16 |    00024635  A$shop$16
+     00024636  A$shop$16 |    00024636  C$shop.c$ |    00024637  A$shop$16
+     00024639  A$shop$16 |    0002463A  A$shop$16 |    0002463D  A$shop$16
+     0002463E  A$shop$16 |    0002463F  A$shop$16 |    00024640  A$shop$16
+     00024641  A$shop$16 |    00024643  A$shop$16 |    00024644  A$shop$16
+     00024645  A$shop$16 |    00024647  A$shop$16 |    00024648  A$shop$16
+     00024649  A$shop$16 |    0002464B  A$shop$16 |    0002464C  A$shop$16
+     0002464E  A$shop$16 |    0002464F  A$shop$16 |    00024650  A$shop$16
+     00024651  A$shop$16 |    00024652  A$shop$16 |    00024654  A$shop$16
+     00024655  A$shop$16 |    00024656  A$shop$16 |    00024657  A$shop$16
+     00024658  A$shop$16 |    00024659  A$shop$16 |    0002465B  A$shop$16
+     0002465C  A$shop$16 |    0002465D  A$shop$16 |    0002465F  A$shop$16
+     00024660  A$shop$16 |    00024661  A$shop$16 |    00024662  A$shop$16
+     00024663  A$shop$16 |    00024666  A$shop$16 |    00024668  A$shop$16
+     00024669  A$shop$16 |    00024669  C$shop.c$ |    0002466A  A$shop$17
+     0002466A  C$shop.c$ |    0002466A  XG$change |    0002466C  A$shop$17
+     0002466C  C$shop.c$ |    0002466C  G$attempt |    0002466C  _attempt_
+     0002466E  A$shop$17 |    00024670  A$shop$17 |    00024671  A$shop$17
+     00024672  A$shop$17 |    00024673  A$shop$17 |    00024673  C$shop.c$
+     00024674  A$shop$17 |    00024676  A$shop$17 |    00024677  A$shop$17
+     0002467A  A$shop$17 |    0002467B  A$shop$17 |    0002467C  A$shop$17
+     0002467D  A$shop$17 |    0002467E  A$shop$17 |    00024680  A$shop$17
+     00024681  A$shop$17 |    00024682  A$shop$17 |    00024683  A$shop$17
+     00024684  A$shop$17 |    00024684  C$shop.c$ |    00024685  A$shop$17
+     00024686  A$shop$17 |    00024689  A$shop$17 |    0002468A  A$shop$17
+     0002468B  A$shop$17 |    0002468C  A$shop$17 |    0002468D  A$shop$17
+     0002468E  A$shop$17 |    0002468F  A$shop$17 |    00024690  A$shop$17
+     00024692  A$shop$17 |    00024693  A$shop$17 |    00024694  A$shop$17
+     00024695  A$shop$17 |    00024696  A$shop$17 |    00024698  A$shop$17
+     00024699  A$shop$17 |    0002469A  A$shop$17 |    0002469B  A$shop$17
+     0002469C  A$shop$17 |    0002469C  C$shop.c$ |    0002469E  A$shop$17
+     0002469F  A$shop$17 |    0002469F  C$shop.c$ |    000246A0  A$shop$17
+     000246A1  A$shop$17 |    000246A4  A$shop$17 |    000246A5  A$shop$17
+     000246A6  A$shop$17 |    000246A7  A$shop$17 |    000246A8  A$shop$17
+     000246AA  A$shop$17 |    000246AB  A$shop$17 |    000246AB  C$shop.c$
+     000246AE  A$shop$17 |    000246AE  C$shop.c$ |    000246B1  A$shop$17
+     000246B2  A$shop$17 |    000246B4  A$shop$17 |    000246B5  A$shop$17
+     000246B6  A$shop$17 |    000246B7  A$shop$17 |    000246B8  A$shop$17
+     000246B9  A$shop$17 |    000246BA  A$shop$17 |    000246BB  A$shop$17
+     000246BD  A$shop$17 |    000246BE  A$shop$17 |    000246BF  A$shop$17
+     000246C0  A$shop$17 |    000246C2  A$shop$17 |    000246C3  A$shop$17
+     000246C4  A$shop$17 |    000246C6  A$shop$17 |    000246C7  A$shop$18
+     000246C8  A$shop$18 |    000246C9  A$shop$18 |    000246CA  A$shop$18
+ASxxxx Linker V03.00/V05.40 + sdld,  page 57.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000246CB  A$shop$18 |    000246CC  A$shop$18 |    000246CE  A$shop$18
+     000246CE  C$shop.c$ |    000246D0  A$shop$18 |    000246D1  A$shop$18
+     000246D2  A$shop$18 |    000246D3  A$shop$18 |    000246D5  A$shop$18
+     000246D6  A$shop$18 |    000246D7  A$shop$18 |    000246D8  A$shop$18
+     000246D9  A$shop$18 |    000246DA  A$shop$18 |    000246DB  A$shop$18
+     000246DC  A$shop$18 |    000246DD  A$shop$18 |    000246DF  A$shop$18
+     000246E0  A$shop$18 |    000246E1  A$shop$18 |    000246E4  A$shop$18
+     000246E5  A$shop$18 |    000246E6  A$shop$18 |    000246E7  A$shop$18
+     000246E8  A$shop$18 |    000246E9  A$shop$18 |    000246E9  C$shop.c$
+     000246EB  A$shop$18 |    000246EC  A$shop$18 |    000246ED  A$shop$18
+     000246ED  C$shop.c$ |    000246EE  A$shop$18 |    000246EF  A$shop$18
+     000246F2  A$shop$18 |    000246F3  A$shop$18 |    000246F4  A$shop$18
+     000246F5  A$shop$18 |    000246F7  A$shop$18 |    000246F8  A$shop$18
+     000246F9  A$shop$18 |    000246FA  A$shop$18 |    000246FC  A$shop$18
+     000246FD  A$shop$18 |    000246FE  A$shop$18 |    000246FF  A$shop$18
+     00024702  A$shop$18 |    00024703  A$shop$18 |    00024704  A$shop$18
+     00024705  A$shop$18 |    00024707  A$shop$18 |    00024708  A$shop$18
+     00024709  A$shop$18 |    0002470A  A$shop$18 |    0002470C  A$shop$18
+     0002470D  A$shop$18 |    0002470E  A$shop$18 |    0002470F  A$shop$18
+     00024712  A$shop$18 |    00024713  A$shop$18 |    00024714  A$shop$18
+     00024715  A$shop$18 |    00024717  A$shop$18 |    00024718  A$shop$18
+     00024719  A$shop$18 |    0002471A  A$shop$18 |    0002471C  A$shop$18
+     0002471D  A$shop$18 |    0002471E  A$shop$18 |    0002471F  A$shop$18
+     00024720  A$shop$18 |    00024722  A$shop$18 |    00024723  A$shop$18
+     00024724  A$shop$18 |    00024725  A$shop$18 |    00024726  A$shop$18
+     00024727  A$shop$18 |    00024728  A$shop$18 |    0002472A  A$shop$18
+     0002472B  A$shop$18 |    0002472C  A$shop$18 |    0002472D  A$shop$18
+     0002472E  A$shop$18 |    0002472F  A$shop$18 |    00024730  A$shop$18
+     00024732  A$shop$19 |    00024732  C$shop.c$ |    00024732  XG$attemp
+     00024733  A$shop$19 |    00024733  C$shop.c$ |    00024733  G$handleI
+     00024733  _handleIn |    00024735  A$shop$19 |    00024737  A$shop$19
+     00024738  A$shop$19 |    00024739  A$shop$19 |    0002473A  A$shop$19
+     0002473C  A$shop$19 |    0002473D  A$shop$19 |    0002473E  A$shop$19
+     0002473F  A$shop$19 |    0002473F  C$shop.c$ |    00024742  A$shop$19
+     00024745  A$shop$19 |    00024746  A$shop$19 |    00024749  A$shop$19
+     00024749  C$shop.c$ |    0002474C  A$shop$19 |    0002474E  A$shop$19
+     0002474F  A$shop$19 |    00024750  A$shop$19 |    00024752  A$shop$19
+     00024753  A$shop$19 |    00024755  A$shop$19 |    00024755  C$shop.c$
+     00024757  A$shop$19 |    00024758  A$shop$19 |    00024759  A$shop$19
+     0002475A  A$shop$19 |    0002475B  A$shop$19 |    0002475C  A$shop$19
+     0002475D  A$shop$19 |    0002475E  A$shop$19 |    00024760  A$shop$19
+     00024761  A$shop$19 |    00024764  A$shop$19 |    00024765  A$shop$19
+     00024767  A$shop$19 |    00024768  A$shop$19 |    00024769  A$shop$19
+     0002476A  A$shop$19 |    0002476B  A$shop$19 |    0002476C  A$shop$19
+     0002476E  A$shop$19 |    0002476E  C$shop.c$ |    0002476F  A$shop$19
+     00024771  A$shop$19 |    00024773  A$shop$19 |    00024774  A$shop$19
+     00024776  A$shop$19 |    00024776  C$shop.c$ |    00024778  A$shop$19
+     00024779  A$shop$19 |    0002477A  A$shop$19 |    0002477B  A$shop$19
+     0002477C  A$shop$19 |    0002477D  A$shop$19 |    0002477E  A$shop$19
+     0002477F  A$shop$19 |    00024781  A$shop$19 |    00024783  A$shop$19
+     00024784  A$shop$19 |    00024785  A$shop$19 |    00024786  A$shop$19
+ASxxxx Linker V03.00/V05.40 + sdld,  page 58.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00024787  A$shop$19 |    00024788  A$shop$19 |    00024789  A$shop$19
+     0002478A  A$shop$19 |    0002478B  A$shop$19 |    0002478C  A$shop$19
+     0002478E  A$shop$19 |    0002478E  C$shop.c$ |    0002478F  A$shop$19
+     00024791  A$shop$19 |    00024793  A$shop$19 |    00024794  A$shop$20
+     00024796  A$shop$20 |    00024796  C$shop.c$ |    00024798  A$shop$20
+     00024799  A$shop$20 |    0002479A  A$shop$20 |    0002479B  A$shop$20
+     0002479C  A$shop$20 |    0002479E  A$shop$20 |    0002479F  A$shop$20
+     000247A0  A$shop$20 |    000247A1  A$shop$20 |    000247A2  A$shop$20
+     000247A3  A$shop$20 |    000247A6  A$shop$20 |    000247A7  A$shop$20
+     000247A9  A$shop$20 |    000247AC  A$shop$20 |    000247AD  A$shop$20
+     000247AE  A$shop$20 |    000247B0  A$shop$20 |    000247B2  A$shop$20
+     000247B3  A$shop$20 |    000247B4  A$shop$20 |    000247B6  A$shop$20
+     000247B7  A$shop$20 |    000247B8  A$shop$20 |    000247B9  A$shop$20
+     000247BA  A$shop$20 |    000247BC  A$shop$20 |    000247BC  C$shop.c$
+     000247BD  A$shop$20 |    000247BF  A$shop$20 |    000247C1  A$shop$20
+     000247C2  A$shop$20 |    000247C4  A$shop$20 |    000247C4  C$shop.c$
+     000247C6  A$shop$20 |    000247C7  A$shop$20 |    000247C8  A$shop$20
+     000247C9  A$shop$20 |    000247CA  A$shop$20 |    000247CB  A$shop$20
+     000247CC  A$shop$20 |    000247CE  A$shop$20 |    000247CF  A$shop$20
+     000247D2  A$shop$20 |    000247D5  A$shop$20 |    000247D6  A$shop$20
+     000247D7  A$shop$20 |    000247D9  A$shop$20 |    000247DA  A$shop$20
+     000247DC  A$shop$20 |    000247DD  A$shop$20 |    000247DE  A$shop$20
+     000247E0  A$shop$20 |    000247E1  A$shop$20 |    000247E2  A$shop$20
+     000247E3  A$shop$20 |    000247E4  A$shop$20 |    000247E4  C$shop.c$
+     000247E7  A$shop$20 |    000247E9  A$shop$20 |    000247EC  A$shop$20
+     000247EC  C$shop.c$ |    000247EE  A$shop$20 |    000247EF  A$shop$20
+     000247F0  A$shop$20 |    000247F1  A$shop$20 |    000247F2  A$shop$20
+     000247F3  A$shop$20 |    000247F5  A$shop$20 |    000247F6  A$shop$20
+     000247F8  A$shop$20 |    000247F9  A$shop$20 |    000247FB  A$shop$20
+     000247FE  A$shop$20 |    000247FF  A$shop$20 |    00024800  A$shop$20
+     00024800  C$shop.c$ |    00024801  A$shop$20 |    00024803  A$shop$20
+     00024805  A$shop$20 |    00024807  A$shop$21 |    00024809  A$shop$21
+     0002480B  A$shop$21 |    0002480D  A$shop$21 |    0002480F  A$shop$21
+     0002480F  C$shop.c$ |    00024811  A$shop$21 |    00024812  A$shop$21
+     00024813  A$shop$21 |    00024814  A$shop$21 |    00024815  A$shop$21
+     00024815  C$shop.c$ |    00024816  A$shop$21 |    00024818  A$shop$21
+     00024819  A$shop$21 |    0002481A  A$shop$21 |    0002481B  A$shop$21
+     0002481C  A$shop$21 |    0002481E  A$shop$21 |    00024820  A$shop$21
+     00024820  C$shop.c$ |    00024822  A$shop$21 |    00024824  A$shop$21
+     00024826  A$shop$21 |    00024827  A$shop$21 |    00024828  A$shop$21
+     00024829  A$shop$21 |    0002482B  A$shop$21 |    0002482D  A$shop$21
+     0002482D  C$shop.c$ |    0002482F  A$shop$21 |    00024831  A$shop$21
+     00024833  A$shop$21 |    00024834  A$shop$21 |    00024835  A$shop$21
+     00024836  A$shop$21 |    00024838  A$shop$21 |    0002483A  A$shop$21
+     0002483A  C$shop.c$ |    0002483C  A$shop$21 |    0002483E  A$shop$21
+     00024840  A$shop$21 |    00024841  A$shop$21 |    00024842  A$shop$21
+     00024843  A$shop$21 |    00024845  A$shop$21 |    00024847  A$shop$21
+     00024847  C$shop.c$ |    00024849  A$shop$21 |    0002484B  A$shop$21
+     0002484D  A$shop$21 |    0002484E  A$shop$21 |    0002484F  A$shop$21
+     00024850  A$shop$21 |    00024852  A$shop$21 |    00024854  A$shop$21
+     00024854  C$shop.c$ |    00024856  A$shop$21 |    00024858  A$shop$21
+ASxxxx Linker V03.00/V05.40 + sdld,  page 59.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE_2                00024000    000030C1 =       12481. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0002485A  A$shop$21 |    0002485B  A$shop$21 |    0002485C  A$shop$21
+     0002485D  A$shop$21 |    0002485F  A$shop$21 |    0002485F  C$shop.c$
+     00024861  A$shop$21 |    00024861  C$shop.c$ |    00024861  C$shop.c$
+     00024863  A$shop$21 |    00024864  A$shop$21 |    00024865  A$shop$21
+     00024866  A$shop$21 |    00024867  A$shop$21 |    0002486A  A$shop$22
+     0002486A  C$shop.c$ |    0002486A  C$shop.c$ |    0002486D  A$shop$22
+     0002486F  A$shop$22 |    00024871  A$shop$22 |    00024871  C$shop.c$
+     00024873  A$shop$22 |    00024874  A$shop$22 |    00024875  A$shop$22
+     00024876  A$shop$22 |    00024877  A$shop$22 |    00024878  A$shop$22
+     0002487A  A$shop$22 |    0002487B  A$shop$22 |    0002487D  A$shop$22
+     0002487F  A$shop$22 |    00024882  A$shop$22 |    00024883  A$shop$22
+     00024884  A$shop$22 |    00024885  A$shop$22 |    00024886  A$shop$22
+     00024889  A$shop$22 |    0002488C  A$shop$22 |    0002488F  A$shop$22
+     00024892  A$shop$22 |    00024895  A$shop$22 |    00024898  A$shop$22
+     0002489B  A$shop$22 |    0002489B  C$shop.c$ |    0002489B  C$shop.c$
+     0002489E  A$shop$22 |    000248A0  A$shop$22 |    000248A0  C$shop.c$
+     000248A3  A$shop$22 |    000248A5  A$shop$22 |    000248A5  C$shop.c$
+     000248A8  A$shop$22 |    000248AA  A$shop$22 |    000248AA  C$shop.c$
+     000248AD  A$shop$22 |    000248AF  A$shop$22 |    000248AF  C$shop.c$
+     000248B2  A$shop$22 |    000248B4  A$shop$22 |    000248B4  C$shop.c$
+     000248B7  A$shop$22 |    000248B9  A$shop$22 |    000248B9  C$shop.c$
+     000248BC  A$shop$22 |    000248BE  A$shop$22 |    000248BE  C$shop.c$
+     000248C1  A$shop$22 |    000248C3  A$shop$22 |    000248C3  C$shop.c$
+     000248C5  A$shop$22 |    000248C5  C$shop.c$ |    000248C5  C$shop.c$
+     000248C7  A$shop$22 |    000248C8  A$shop$22 |    000248C9  A$shop$22
+     000248CA  A$shop$22 |    000248CC  A$shop$23 |    000248CC  C$shop.c$
+     000248CE  A$shop$23 |    000248CE  C$shop.c$ |    000248CE  XG$handle
+     000248CF  C$buttonf |    000248CF  G$__func_ |    000248CF  G$buttonf
+     000248CF  ___func_b |    000248CF  _buttonfr |    0002490F  C$menubut
+     0002490F  G$__func_ |    0002490F  G$menubut |    0002490F  ___func_m
+     0002490F  _menubutt |    00024A5F  G$menubut |    00024A5F  _menubutt
+     00024AB7  G$menubut |    00024AB7  _menubutt |    00024AB9  C$shopfra
+     00024AB9  G$__func_ |    00024AB9  G$shopfra |    00024AB9  ___func_s
+     00024AB9  _shopfram |    00024AC1  G$shopfra |    00024AC1  _shopfram
+     00024B51  G$shopfra |    00024B51  _shopfram |    00024CB9  C$shoptil
+     00024CB9  G$__func_ |    00024CB9  G$shoptil |    00024CB9  ___func_s
+     00024CB9  _shoptile |    00024CC1  G$shoptil |    00024CC1  _shoptile
+ASxxxx Linker V03.00/V05.40 + sdld,  page 60.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_FONT_HEADER0          00000000    00000003 =           3. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 61.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_HEADER_LCD0           00000000    00000003 =           3. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00/V05.40 + sdld,  page 62.
+
+Files Linked                              [ module(s) ]
+
+/usr/local/opt/gbdk/lib/gb/crt0.o         [ Runtime ]
+obj/attributes.rel                        [ attributes ]
+obj/font.rel                              [ font ]
+obj/gameloop.rel                          [ gameloop ]
+obj/general.rel                           [ general ]
+obj/globals.rel                           [ globals ]
+obj/interrupt.rel                         [ interrupt ]
+obj/inventory.rel                         [ inventory ]
+obj/level.rel                             [ level ]
+obj/main.rel                              [ main ]
+obj/map.rel                               [ map ]
+obj/menuloop.rel                          [ menuloop ]
+obj/palettes.rel                          [ palettes ]
+obj/player.rel                            [ player ]
+obj/shop.rel                              [ shop ]
+obj/buttonframe.rel                       [ buttonframe ]
+obj/menubuttons.rel                       [ menubuttons ]
+obj/nav.rel                               [ nav ]
+obj/progressbar.rel                       [ progressbar ]
+obj/rover.rel                             [ rover ]
+obj/shopframe.rel                         [ shopframe ]
+obj/shoptiles.rel                         [ shoptiles ]
+obj/tile.rel                              [ tile ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ sfr.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ font.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ rand.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ set_1bit_data.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ pad.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ itoa.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ cgb_palettes.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ set_data.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ mul.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ set_tile.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ metasprites_hide.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ abs.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ get_addr.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ set_wi_t.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ lcd.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ sprintf.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ metasprites.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ __sdcc_call_hl.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ memcpy.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ color.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ drawing_isr.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ f_ibm_sh.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ strcat.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ metasprites_flip.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ strlen.o ]
+/usr/local/opt/gbdk/lib/sm83/sm83.lib     [ div.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ set_bk_t.o ]
+/usr/local/opt/gbdk/lib/gb/gb.lib         [ set_xy_t.o ]
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 63.
+
+User Base Address Definitions
+
+_DATA=0xC0A0
+_CODE=0x0200
+ASxxxx Linker V03.00/V05.40 + sdld,  page 64.
+
+User Global Definitions
+
+_shadow_OAM=0xC000
+.STACK=0xE000
+.refresh_OAM=0xFF80
+
+

@@ -1,0 +1,62 @@
+XL3
+H 9 areas 11 global symbols
+M interrupt
+O -msm83
+S _LYC_REG Ref000000
+S _frame_counter Ref000000
+S _WX_REG Ref000000
+S _add_VBL Ref000000
+S _WY_REG Ref000000
+S _STAT_REG Ref000000
+S .__.ABS. Def000000
+S _remove_LCD Ref000000
+S _set_interrupts Ref000000
+S _remove_VBL Ref000000
+S _add_LCD Ref000000
+A _CODE size 56 flags 0 addr 0
+S _interrupt_VBL_window Def000008
+S _init_disable_lcd_interrupt Def00003F
+S _init_enable_lcd_interrupt Def000024
+S _interrupt_VBL_framecounter Def000010
+S _init_framecounter Def00001C
+S _interrupt_LCD Def000000
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 00
+T 00 00 00 3E A7 E0 00 00 00 AF E0 00 00 00 C9
+R 00 00 00 00 0B 06 02 00 0B 0B 04 00
+T 08 00 00
+R 00 00 00 00
+T 08 00 00 3E 07 E0 00 00 00 AF E0 00 00 00 C9
+R 00 00 00 00 0B 06 02 00 0B 0B 04 00
+T 10 00 00
+R 00 00 00 00
+T 10 00 00 21 00 00 34 7E 7E D6 3C D8 36 00 C9
+R 00 00 00 00 02 04 01 00
+T 1C 00 00
+R 00 00 00 00
+T 1C 00 00 11 10 00 CD 00 00 FB C9
+R 00 00 00 00 00 04 00 00 02 07 03 00
+T 24 00 00
+R 00 00 00 00
+T 24 00 00 3E 40 E0 00 00 00 3E 10 E0 00 00 00 F3
+R 00 00 00 00 0B 06 05 00 0B 0C 00 00
+T 2D 00 00 11 00 00 CD 00 00 11 08 00 CD
+R 00 00 00 00 00 04 00 00 02 07 0A 00 00 0A 00 00
+T 37 00 00 00 00 FB 3E 03 C3 00 00
+R 00 00 00 00 02 03 03 00 02 09 08 00
+T 3F 00 00
+R 00 00 00 00
+T 3F 00 00 F3 11 00 00 CD 00 00 11 08 00 CD
+R 00 00 00 00 00 05 00 00 02 08 07 00 00 0B 00 00
+T 4A 00 00 00 00 3E 00 E0 00 00 00 FB 3E 03 C3
+R 00 00 00 00 02 03 09 00 0B 08 05 00
+T 54 00 00 00 00
+R 00 00 00 00 02 03 08 00

@@ -1,0 +1,54 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 1
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+    _animation_frames_left                                         ****** GX
+    _buttons                                                       ****** GX
+    _calculate_cargo                                               ****** GX
+    _calculate_falldamage                                          ****** GX
+    _check_enter_buildings                                         ****** GX
+    _check_fuel                                                    ****** GX
+    _check_game_over                                               ****** GX
+    _check_hull                                                    ****** GX
+    _check_surroundings                                            ****** GX
+    _clear_4bkg_tiles                                              ****** GX
+    _depth                                                         ****** GX
+    _draw_cargo                                                    ****** GX
+    _draw_depth                                                    ****** GX
+    _draw_fuel                                                     ****** GX
+    _draw_hull                                                     ****** GX
+  0 _game_loop                                                     000000 GR
+    _initiate_movement                                             ****** GX
+    _level_array                                                   ****** GX
+    _prev_buttons                                                  ****** GX
+    _prev_depth                                                    ****** GX
+    _prev_width                                                    ****** GX
+    _read_buttons                                                  ****** GX
+    _spawn_bkg_row                                                 ****** GX
+    _tile_mined                                                    ****** GX
+    _update_fuel                                                   ****** GX
+    _update_inventory                                              ****** GX
+    _update_movement                                               ****** GX
+    _wait_vbl_done                                                 ****** GX
+    _width                                                         ****** GX
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size     71   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size      0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size      0   flags    0
+   8 _CABS                                      size      0   flags    8
+

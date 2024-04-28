@@ -1,0 +1,1539 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.2 #14228 (Mac OS X x86_64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module map
+                                      6 	.optsdcc -msm83
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _init_progressbar
+                                     12 	.globl _init_tiles
+                                     13 	.globl _init_nav
+                                     14 	.globl _draw_character
+                                     15 	.globl _draw_hull
+                                     16 	.globl _draw_fuel
+                                     17 	.globl _draw_cargo
+                                     18 	.globl _draw_depth
+                                     19 	.globl _progressbar
+                                     20 	.globl _add_block
+                                     21 	.globl _clear_4bkg_tiles
+                                     22 	.globl _spawn_bkg_row
+                                     23 	.globl _set_4bkg_tiles
+                                     24 	.globl _shuffle
+                                     25 	.globl b___func_bank_map
+                                     26 	.globl ___func_bank_map
+                                     27 	.globl _draw_metasprite
+                                     28 	.globl _draw_text
+                                     29 	.globl _rand
+                                     30 	.globl _initrand
+                                     31 	.globl _strcat
+                                     32 	.globl _itoa
+                                     33 	.globl _set_sprite_data
+                                     34 	.globl _set_win_tiles
+                                     35 	.globl _set_bkg_tiles
+                                     36 	.globl _set_bkg_data
+                                     37 ;--------------------------------------------------------
+                                     38 ; special function registers
+                                     39 ;--------------------------------------------------------
+                                     40 ;--------------------------------------------------------
+                                     41 ; ram data
+                                     42 ;--------------------------------------------------------
+                                     43 	.area _DATA
+                                     44 ;--------------------------------------------------------
+                                     45 ; ram data
+                                     46 ;--------------------------------------------------------
+                                     47 	.area _INITIALIZED
+                                     48 ;--------------------------------------------------------
+                                     49 ; absolute external ram data
+                                     50 ;--------------------------------------------------------
+                                     51 	.area _DABS (ABS)
+                                     52 ;--------------------------------------------------------
+                                     53 ; global & static initialisations
+                                     54 ;--------------------------------------------------------
+                                     55 	.area _HOME
+                                     56 	.area _GSINIT
+                                     57 	.area _GSFINAL
+                                     58 	.area _GSINIT
+                                     59 ;--------------------------------------------------------
+                                     60 ; Home
+                                     61 ;--------------------------------------------------------
+                                     62 	.area _HOME
+                                     63 	.area _HOME
+                                     64 ;--------------------------------------------------------
+                                     65 ; code
+                                     66 ;--------------------------------------------------------
+                                     67 	.area _CODE_1
+                           000000    68 	G$__func_bank_map$0$0	= .
+                                     69 	.globl	G$__func_bank_map$0$0
+                           000000    70 	C$map.c$28$0_0$246	= .
+                                     71 	.globl	C$map.c$28$0_0$246
+                                     72 ;src/map.c:28: BANKREF(bank_map)
+                                     73 ;	---------------------------------
+                                     74 ; Function __func_bank_map
+                                     75 ; ---------------------------------
+                           000001    76 	b___func_bank_map	= 1
+      000000                         77 ___func_bank_map::
+                                     78 	.local b___func_bank_map 
+                           000001    79 	___bank_bank_map = b___func_bank_map 
+                                     80 	.globl ___bank_bank_map 
+                           000000    81 	G$shuffle$0$0	= .
+                                     82 	.globl	G$shuffle$0$0
+                           000000    83 	C$map.c$30$1_0$248	= .
+                                     84 	.globl	C$map.c$30$1_0$248
+                                     85 ;src/map.c:30: void shuffle(uint8_t array[4]) {
+                                     86 ;	---------------------------------
+                                     87 ; Function shuffle
+                                     88 ; ---------------------------------
+      000000                         89 _shuffle::
+      000000 3B               [ 8]   90 	dec	sp
+                           000001    91 	C$map.c$31$2_0$248	= .
+                                     92 	.globl	C$map.c$31$2_0$248
+                                     93 ;src/map.c:31: uint16_t seed = LY_REG;
+      000001 F0r00            [12]   94 	ldh	a, (_LY_REG + 0)
+      000003 6F               [ 4]   95 	ld	l, a
+                                     96 ;	spillPairReg hl
+                                     97 ;	spillPairReg hl
+                                     98 ;	spillPairReg hl
+                                     99 ;	spillPairReg hl
+                           000004   100 	C$map.c$32$1_0$248	= .
+                                    101 	.globl	C$map.c$32$1_0$248
+                                    102 ;src/map.c:32: seed |= (uint16_t)DIV_REG << 8;
+      000004 F0r00            [12]  103 	ldh	a, (_DIV_REG + 0)
+      000006 4F               [ 4]  104 	ld	c, a
+      000007 AF               [ 4]  105 	xor	a, a
+      000008 B5               [ 4]  106 	or	a, l
+                           000009   107 	C$map.c$33$1_0$248	= .
+                                    108 	.globl	C$map.c$33$1_0$248
+                                    109 ;src/map.c:33: initrand(seed);
+      000009 D5               [16]  110 	push	de
+      00000A 41               [ 4]  111 	ld	b, c
+      00000B 4F               [ 4]  112 	ld	c, a
+      00000C C5               [16]  113 	push	bc
+      00000D CDr00r00         [24]  114 	call	_initrand
+      000010 E1               [12]  115 	pop	hl
+      000011 CDr00r00         [24]  116 	call	_rand
+      000014 7B               [ 4]  117 	ld	a, e
+      000015 D1               [12]  118 	pop	de
+      000016 E6 03            [ 8]  119 	and	a, #0x03
+      000018 6F               [ 4]  120 	ld	l, a
+                                    121 ;	spillPairReg hl
+                                    122 ;	spillPairReg hl
+                           000019   123 	C$map.c$37$1_1$249	= .
+                                    124 	.globl	C$map.c$37$1_1$249
+                                    125 ;src/map.c:37: do {
+      000019                        126 00101$:
+                           000019   127 	C$map.c$38$2_1$250	= .
+                                    128 	.globl	C$map.c$38$2_1$250
+                                    129 ;src/map.c:38: secondSwapIndex = rand() % 4;
+      000019 E5               [16]  130 	push	hl
+      00001A D5               [16]  131 	push	de
+      00001B CDr00r00         [24]  132 	call	_rand
+      00001E 7B               [ 4]  133 	ld	a, e
+      00001F D1               [12]  134 	pop	de
+      000020 E1               [12]  135 	pop	hl
+      000021 E6 03            [ 8]  136 	and	a, #0x03
+      000023 4F               [ 4]  137 	ld	c, a
+                           000024   138 	C$map.c$39$1_1$249	= .
+                                    139 	.globl	C$map.c$39$1_1$249
+                                    140 ;src/map.c:39: } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
+      000024 7D               [ 4]  141 	ld	a, l
+      000025 91               [ 4]  142 	sub	a, c
+      000026 28 F1            [12]  143 	jr	Z, 00101$
+                           000028   144 	C$map.c$42$1_2$251	= .
+                                    145 	.globl	C$map.c$42$1_2$251
+                                    146 ;src/map.c:42: uint8_t temp = array[firstSwapIndex];
+      000028 26 00            [ 8]  147 	ld	h, #0x00
+      00002A 19               [ 8]  148 	add	hl, de
+      00002B 7E               [ 8]  149 	ld	a, (hl)
+      00002C E5               [16]  150 	push	hl
+      00002D F8 02            [12]  151 	ldhl	sp,	#2
+      00002F 77               [ 8]  152 	ld	(hl), a
+      000030 E1               [12]  153 	pop	hl
+                           000031   154 	C$map.c$43$1_2$251	= .
+                                    155 	.globl	C$map.c$43$1_2$251
+                                    156 ;src/map.c:43: array[firstSwapIndex] = array[secondSwapIndex];
+      000031 7B               [ 4]  157 	ld	a, e
+      000032 81               [ 4]  158 	add	a, c
+      000033 4F               [ 4]  159 	ld	c, a
+      000034 7A               [ 4]  160 	ld	a, d
+      000035 CE 00            [ 8]  161 	adc	a, #0x00
+      000037 47               [ 4]  162 	ld	b, a
+      000038 0A               [ 8]  163 	ld	a, (bc)
+      000039 77               [ 8]  164 	ld	(hl), a
+                           00003A   165 	C$map.c$44$1_2$251	= .
+                                    166 	.globl	C$map.c$44$1_2$251
+                                    167 ;src/map.c:44: array[secondSwapIndex] = temp;
+      00003A F8 00            [12]  168 	ldhl	sp,	#0
+      00003C 7E               [ 8]  169 	ld	a, (hl)
+      00003D 02               [ 8]  170 	ld	(bc), a
+                           00003E   171 	C$map.c$47$1_2$251	= .
+                                    172 	.globl	C$map.c$47$1_2$251
+                                    173 ;src/map.c:47: firstSwapIndex = rand() % 4;
+      00003E D5               [16]  174 	push	de
+      00003F CDr00r00         [24]  175 	call	_rand
+      000042 7B               [ 4]  176 	ld	a, e
+      000043 D1               [12]  177 	pop	de
+      000044 E6 03            [ 8]  178 	and	a, #0x03
+      000046 6F               [ 4]  179 	ld	l, a
+                                    180 ;	spillPairReg hl
+                                    181 ;	spillPairReg hl
+                           000047   182 	C$map.c$48$1_2$251	= .
+                                    183 	.globl	C$map.c$48$1_2$251
+                                    184 ;src/map.c:48: do {
+      000047                        185 00104$:
+                           000047   186 	C$map.c$49$2_2$252	= .
+                                    187 	.globl	C$map.c$49$2_2$252
+                                    188 ;src/map.c:49: secondSwapIndex = rand() % 4;
+      000047 E5               [16]  189 	push	hl
+      000048 D5               [16]  190 	push	de
+      000049 CDr00r00         [24]  191 	call	_rand
+      00004C 7B               [ 4]  192 	ld	a, e
+      00004D D1               [12]  193 	pop	de
+      00004E E1               [12]  194 	pop	hl
+      00004F E6 03            [ 8]  195 	and	a, #0x03
+      000051 47               [ 4]  196 	ld	b, a
+                           000052   197 	C$map.c$50$1_2$251	= .
+                                    198 	.globl	C$map.c$50$1_2$251
+                                    199 ;src/map.c:50: } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
+      000052 7D               [ 4]  200 	ld	a, l
+      000053 90               [ 4]  201 	sub	a, b
+      000054 28 F1            [12]  202 	jr	Z, 00104$
+                           000056   203 	C$map.c$52$1_2$251	= .
+                                    204 	.globl	C$map.c$52$1_2$251
+                                    205 ;src/map.c:52: temp = array[firstSwapIndex];
+      000056 26 00            [ 8]  206 	ld	h, #0x00
+      000058 19               [ 8]  207 	add	hl, de
+      000059 4E               [ 8]  208 	ld	c, (hl)
+                           00005A   209 	C$map.c$53$1_2$251	= .
+                                    210 	.globl	C$map.c$53$1_2$251
+                                    211 ;src/map.c:53: array[firstSwapIndex] = array[secondSwapIndex];
+      00005A 7B               [ 4]  212 	ld	a, e
+      00005B 80               [ 4]  213 	add	a, b
+      00005C 5F               [ 4]  214 	ld	e, a
+      00005D 30 01            [12]  215 	jr	NC, 00139$
+      00005F 14               [ 4]  216 	inc	d
+      000060                        217 00139$:
+      000060 1A               [ 8]  218 	ld	a, (de)
+      000061 77               [ 8]  219 	ld	(hl), a
+                           000062   220 	C$map.c$54$1_2$251	= .
+                                    221 	.globl	C$map.c$54$1_2$251
+                                    222 ;src/map.c:54: array[secondSwapIndex] = temp;
+      000062 79               [ 4]  223 	ld	a, c
+      000063 12               [ 8]  224 	ld	(de), a
+                           000064   225 	C$map.c$55$1_2$248	= .
+                                    226 	.globl	C$map.c$55$1_2$248
+                                    227 ;src/map.c:55: }
+      000064 33               [ 8]  228 	inc	sp
+                           000065   229 	C$map.c$55$1_2$248	= .
+                                    230 	.globl	C$map.c$55$1_2$248
+                           000065   231 	XG$shuffle$0$0	= .
+                                    232 	.globl	XG$shuffle$0$0
+      000065 C9               [16]  233 	ret
+                           000066   234 	G$set_4bkg_tiles$0$0	= .
+                                    235 	.globl	G$set_4bkg_tiles$0$0
+                           000066   236 	C$map.c$66$1_2$255	= .
+                                    237 	.globl	C$map.c$66$1_2$255
+                                    238 ;src/map.c:66: void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c) {
+                                    239 ;	---------------------------------
+                                    240 ; Function set_4bkg_tiles
+                                    241 ; ---------------------------------
+      000066                        242 _set_4bkg_tiles::
+      000066 E8 ED            [16]  243 	add	sp, #-19
+      000068 F8 0F            [12]  244 	ldhl	sp,	#15
+      00006A 73               [ 8]  245 	ld	(hl), e
+      00006B 23               [ 8]  246 	inc	hl
+      00006C 72               [ 8]  247 	ld	(hl), d
+      00006D 2B               [ 8]  248 	dec	hl
+      00006E 2B               [ 8]  249 	dec	hl
+      00006F 77               [ 8]  250 	ld	(hl), a
+                           000070   251 	C$map.c$67$3_0$255	= .
+                                    252 	.globl	C$map.c$67$3_0$255
+                                    253 ;src/map.c:67: for (uint8_t y = y1; y < y1 + r; y++) {
+      000070 F8 15            [12]  254 	ldhl	sp,	#21
+      000072 7E               [ 8]  255 	ld	a, (hl)
+      000073 F8 11            [12]  256 	ldhl	sp,	#17
+      000075 77               [ 8]  257 	ld	(hl), a
+      000076                        258 00115$:
+      000076 F8 15            [12]  259 	ldhl	sp,	#21
+      000078 2A               [ 8]  260 	ld	a, (hl+)
+      000079 4F               [ 4]  261 	ld	c, a
+      00007A 06 00            [ 8]  262 	ld	b, #0x00
+      00007C 5E               [ 8]  263 	ld	e, (hl)
+      00007D 16 00            [ 8]  264 	ld	d, #0x00
+      00007F 7B               [ 4]  265 	ld	a, e
+      000080 81               [ 4]  266 	add	a, c
+      000081 4F               [ 4]  267 	ld	c, a
+      000082 7A               [ 4]  268 	ld	a, d
+      000083 88               [ 4]  269 	adc	a, b
+      000084 47               [ 4]  270 	ld	b, a
+      000085 F8 11            [12]  271 	ldhl	sp,	#17
+      000087 7E               [ 8]  272 	ld	a, (hl)
+      000088 F8 04            [12]  273 	ldhl	sp,	#4
+      00008A 22               [ 8]  274 	ld	(hl+), a
+      00008B AF               [ 4]  275 	xor	a, a
+      00008C 32               [ 8]  276 	ld	(hl-), a
+      00008D 2A               [ 8]  277 	ld	a, (hl+)
+      00008E 91               [ 4]  278 	sub	a, c
+      00008F 7E               [ 8]  279 	ld	a, (hl)
+      000090 98               [ 4]  280 	sbc	a, b
+      000091 56               [ 8]  281 	ld	d, (hl)
+      000092 78               [ 4]  282 	ld	a, b
+      000093 5F               [ 4]  283 	ld	e, a
+      000094 CB 7B            [ 8]  284 	bit	7, e
+      000096 28 07            [12]  285 	jr	Z, 00170$
+      000098 CB 7A            [ 8]  286 	bit	7, d
+      00009A 20 08            [12]  287 	jr	NZ, 00171$
+      00009C BF               [ 4]  288 	cp	a, a
+      00009D 18 05            [12]  289 	jr	00171$
+      00009F                        290 00170$:
+      00009F CB 7A            [ 8]  291 	bit	7, d
+      0000A1 28 01            [12]  292 	jr	Z, 00171$
+      0000A3 37               [ 4]  293 	scf
+      0000A4                        294 00171$:
+      0000A4 D2r17r02         [16]  295 	jp	NC, 00117$
+                           0000A7   296 	C$map.c$68$5_0$258	= .
+                                    297 	.globl	C$map.c$68$5_0$258
+                                    298 ;src/map.c:68: for (uint8_t x = x1; x < x1 + c; x++) {
+      0000A7 F8 11            [12]  299 	ldhl	sp,	#17
+      0000A9 7E               [ 8]  300 	ld	a, (hl)
+      0000AA 87               [ 4]  301 	add	a, a
+      0000AB F8 06            [12]  302 	ldhl	sp,	#6
+      0000AD 77               [ 8]  303 	ld	(hl), a
+      0000AE F8 0E            [12]  304 	ldhl	sp,	#14
+      0000B0 7E               [ 8]  305 	ld	a, (hl)
+      0000B1 F8 12            [12]  306 	ldhl	sp,	#18
+      0000B3 77               [ 8]  307 	ld	(hl), a
+      0000B4                        308 00112$:
+      0000B4 F8 0E            [12]  309 	ldhl	sp,	#14
+      0000B6 7E               [ 8]  310 	ld	a, (hl)
+      0000B7 F8 08            [12]  311 	ldhl	sp,	#8
+      0000B9 22               [ 8]  312 	ld	(hl+), a
+      0000BA 36 00            [12]  313 	ld	(hl), #0x00
+      0000BC F8 17            [12]  314 	ldhl	sp,	#23
+      0000BE 7E               [ 8]  315 	ld	a, (hl)
+      0000BF F8 0A            [12]  316 	ldhl	sp,	#10
+      0000C1 22               [ 8]  317 	ld	(hl+), a
+      0000C2 AF               [ 4]  318 	xor	a, a
+      0000C3 32               [ 8]  319 	ld	(hl-), a
+      0000C4 2A               [ 8]  320 	ld	a, (hl+)
+      0000C5 5F               [ 4]  321 	ld	e, a
+      0000C6 56               [ 8]  322 	ld	d, (hl)
+      0000C7 F8 08            [12]  323 	ldhl	sp,	#8
+      0000C9 2A               [ 8]  324 	ld	a,	(hl+)
+      0000CA 66               [ 8]  325 	ld	h, (hl)
+      0000CB 6F               [ 4]  326 	ld	l, a
+      0000CC 19               [ 8]  327 	add	hl, de
+      0000CD E5               [16]  328 	push	hl
+      0000CE 7D               [ 4]  329 	ld	a, l
+      0000CF F8 0E            [12]  330 	ldhl	sp,	#14
+      0000D1 77               [ 8]  331 	ld	(hl), a
+      0000D2 E1               [12]  332 	pop	hl
+      0000D3 7C               [ 4]  333 	ld	a, h
+      0000D4 F8 0D            [12]  334 	ldhl	sp,	#13
+      0000D6 77               [ 8]  335 	ld	(hl), a
+      0000D7 F8 12            [12]  336 	ldhl	sp,	#18
+      0000D9 7E               [ 8]  337 	ld	a, (hl)
+      0000DA F8 0A            [12]  338 	ldhl	sp,	#10
+      0000DC 22               [ 8]  339 	ld	(hl+), a
+      0000DD 36 00            [12]  340 	ld	(hl), #0x00
+      0000DF F8 0A            [12]  341 	ldhl	sp,	#10
+      0000E1 5D               [ 4]  342 	ld	e, l
+      0000E2 54               [ 4]  343 	ld	d, h
+      0000E3 F8 0C            [12]  344 	ldhl	sp,	#12
+      0000E5 1A               [ 8]  345 	ld	a, (de)
+      0000E6 13               [ 8]  346 	inc	de
+      0000E7 96               [ 8]  347 	sub	a, (hl)
+      0000E8 23               [ 8]  348 	inc	hl
+      0000E9 1A               [ 8]  349 	ld	a, (de)
+      0000EA 9E               [ 8]  350 	sbc	a, (hl)
+      0000EB 1A               [ 8]  351 	ld	a, (de)
+      0000EC 57               [ 4]  352 	ld	d, a
+      0000ED CB 7E            [12]  353 	bit	7, (hl)
+      0000EF 28 07            [12]  354 	jr	Z, 00172$
+      0000F1 CB 7A            [ 8]  355 	bit	7, d
+      0000F3 20 08            [12]  356 	jr	NZ, 00173$
+      0000F5 BF               [ 4]  357 	cp	a, a
+      0000F6 18 05            [12]  358 	jr	00173$
+      0000F8                        359 00172$:
+      0000F8 CB 7A            [ 8]  360 	bit	7, d
+      0000FA 28 01            [12]  361 	jr	Z, 00173$
+      0000FC 37               [ 4]  362 	scf
+      0000FD                        363 00173$:
+      0000FD D2r11r02         [16]  364 	jp	NC, 00116$
+                           000100   365 	C$map.c$69$5_0$258	= .
+                                    366 	.globl	C$map.c$69$5_0$258
+                                    367 ;src/map.c:69: uint8_t temp = (array[y][x] * 4) + TILESTART - 4; // Calculate tile offset
+      000100 F8 04            [12]  368 	ldhl	sp,	#4
+      000102 7E               [ 8]  369 	ld	a, (hl)
+      000103 F8 0A            [12]  370 	ldhl	sp,	#10
+      000105 22               [ 8]  371 	ld	(hl+), a
+      000106 36 00            [12]  372 	ld	(hl), #0x00
+      000108 3E 04            [ 8]  373 	ld	a, #0x04
+      00010A                        374 00174$:
+      00010A F8 0A            [12]  375 	ldhl	sp,	#10
+      00010C CB 26            [16]  376 	sla	(hl)
+      00010E 23               [ 8]  377 	inc	hl
+      00010F CB 16            [16]  378 	rl	(hl)
+      000111 3D               [ 4]  379 	dec	a
+      000112 20 F6            [12]  380 	jr	NZ, 00174$
+      000114 2B               [ 8]  381 	dec	hl
+      000115 2A               [ 8]  382 	ld	a, (hl+)
+      000116 5F               [ 4]  383 	ld	e, a
+      000117 56               [ 8]  384 	ld	d, (hl)
+      000118 F8 0F            [12]  385 	ldhl	sp,	#15
+      00011A 2A               [ 8]  386 	ld	a,	(hl+)
+      00011B 66               [ 8]  387 	ld	h, (hl)
+      00011C 6F               [ 4]  388 	ld	l, a
+      00011D 19               [ 8]  389 	add	hl, de
+      00011E E5               [16]  390 	push	hl
+      00011F 7D               [ 4]  391 	ld	a, l
+      000120 F8 0E            [12]  392 	ldhl	sp,	#14
+      000122 77               [ 8]  393 	ld	(hl), a
+      000123 E1               [12]  394 	pop	hl
+      000124 7C               [ 4]  395 	ld	a, h
+      000125 F8 0D            [12]  396 	ldhl	sp,	#13
+      000127 32               [ 8]  397 	ld	(hl-), a
+      000128 2A               [ 8]  398 	ld	a, (hl+)
+      000129 5F               [ 4]  399 	ld	e, a
+      00012A 56               [ 8]  400 	ld	d, (hl)
+      00012B F8 12            [12]  401 	ldhl	sp,	#18
+      00012D 6E               [ 8]  402 	ld	l, (hl)
+      00012E 26 00            [ 8]  403 	ld	h, #0x00
+      000130 19               [ 8]  404 	add	hl, de
+      000131 E5               [16]  405 	push	hl
+      000132 7D               [ 4]  406 	ld	a, l
+      000133 F8 09            [12]  407 	ldhl	sp,	#9
+      000135 77               [ 8]  408 	ld	(hl), a
+      000136 E1               [12]  409 	pop	hl
+      000137 7C               [ 4]  410 	ld	a, h
+      000138 F8 08            [12]  411 	ldhl	sp,	#8
+      00013A 32               [ 8]  412 	ld	(hl-), a
+      00013B 2A               [ 8]  413 	ld	a, (hl+)
+      00013C 5F               [ 4]  414 	ld	e, a
+      00013D 56               [ 8]  415 	ld	d, (hl)
+      00013E 1A               [ 8]  416 	ld	a, (de)
+      00013F 87               [ 4]  417 	add	a, a
+      000140 87               [ 4]  418 	add	a, a
+      000141 F8 0D            [12]  419 	ldhl	sp,	#13
+      000143 77               [ 8]  420 	ld	(hl), a
+      000144 C6 58            [ 8]  421 	add	a, #0x58
+      000146 F8 09            [12]  422 	ldhl	sp,	#9
+                           000148   423 	C$map.c$70$5_0$258	= .
+                                    424 	.globl	C$map.c$70$5_0$258
+                                    425 ;src/map.c:70: uint8_t temp_array[4] = {temp, temp + 1, temp + 2, temp + 3};
+      000148 77               [ 8]  426 	ld	(hl), a
+      000149 F8 00            [12]  427 	ldhl	sp,	#0
+      00014B 77               [ 8]  428 	ld	(hl), a
+      00014C F8 09            [12]  429 	ldhl	sp,	#9
+      00014E 2A               [ 8]  430 	ld	a, (hl+)
+      00014F 22               [ 8]  431 	ld	(hl+), a
+      000150 3C               [ 4]  432 	inc	a
+      000151 77               [ 8]  433 	ld	(hl), a
+      000152 F8 01            [12]  434 	ldhl	sp,	#1
+      000154 77               [ 8]  435 	ld	(hl), a
+      000155 F8 0A            [12]  436 	ldhl	sp,	#10
+      000157 2A               [ 8]  437 	ld	a, (hl+)
+      000158 23               [ 8]  438 	inc	hl
+      000159 C6 02            [ 8]  439 	add	a, #0x02
+      00015B 77               [ 8]  440 	ld	(hl), a
+      00015C F8 02            [12]  441 	ldhl	sp,	#2
+      00015E 77               [ 8]  442 	ld	(hl), a
+      00015F F8 0A            [12]  443 	ldhl	sp,	#10
+      000161 7E               [ 8]  444 	ld	a, (hl)
+      000162 C6 03            [ 8]  445 	add	a, #0x03
+      000164 F8 0D            [12]  446 	ldhl	sp,	#13
+      000166 77               [ 8]  447 	ld	(hl), a
+      000167 F8 03            [12]  448 	ldhl	sp,	#3
+      000169 77               [ 8]  449 	ld	(hl), a
+                           00016A   450 	C$map.c$72$5_0$258	= .
+                                    451 	.globl	C$map.c$72$5_0$258
+                                    452 ;src/map.c:72: if (array[y][x] == EMPTY) {
+      00016A F8 07            [12]  453 	ldhl	sp,#7
+      00016C 2A               [ 8]  454 	ld	a, (hl+)
+      00016D 5F               [ 4]  455 	ld	e, a
+      00016E 56               [ 8]  456 	ld	d, (hl)
+      00016F 1A               [ 8]  457 	ld	a, (de)
+      000170 B7               [ 4]  458 	or	a, a
+      000171 20 0B            [12]  459 	jr	NZ, 00107$
+                           000173   460 	C$map.c$73$6_0$259	= .
+                                    461 	.globl	C$map.c$73$6_0$259
+                                    462 ;src/map.c:73: temp_array[0] = 0;
+      000173 F8 00            [12]  463 	ldhl	sp,	#0
+                           000175   464 	C$map.c$74$6_0$259	= .
+                                    465 	.globl	C$map.c$74$6_0$259
+                                    466 ;src/map.c:74: temp_array[1] = 0;
+      000175 AF               [ 4]  467 	xor	a, a
+      000176 22               [ 8]  468 	ld	(hl+), a
+                           000177   469 	C$map.c$75$6_0$259	= .
+                                    470 	.globl	C$map.c$75$6_0$259
+                                    471 ;src/map.c:75: temp_array[2] = 0;
+      000177 AF               [ 4]  472 	xor	a, a
+      000178 22               [ 8]  473 	ld	(hl+), a
+                           000179   474 	C$map.c$76$6_0$259	= .
+                                    475 	.globl	C$map.c$76$6_0$259
+                                    476 ;src/map.c:76: temp_array[3] = 0;
+      000179 AF               [ 4]  477 	xor	a, a
+      00017A 22               [ 8]  478 	ld	(hl+), a
+      00017B 77               [ 8]  479 	ld	(hl), a
+      00017C 18 51            [12]  480 	jr	00108$
+      00017E                        481 00107$:
+                           00017E   482 	C$map.c$77$5_0$258	= .
+                                    483 	.globl	C$map.c$77$5_0$258
+                                    484 ;src/map.c:77: } else if (array[y][x] == GRAS) {
+      00017E FE 02            [ 8]  485 	cp	a, #0x02
+      000180 20 29            [12]  486 	jr	NZ, 00104$
+                           000182   487 	C$map.c$78$6_0$260	= .
+                                    488 	.globl	C$map.c$78$6_0$260
+                                    489 ;src/map.c:78: temp_array[0] = temp + (rand() % 4);
+      000182 CDr00r00         [24]  490 	call	_rand
+      000185 7B               [ 4]  491 	ld	a, e
+      000186 E6 03            [ 8]  492 	and	a, #0x03
+      000188 F8 0A            [12]  493 	ldhl	sp,	#10
+      00018A 86               [ 8]  494 	add	a, (hl)
+      00018B F8 00            [12]  495 	ldhl	sp,	#0
+      00018D 77               [ 8]  496 	ld	(hl), a
+                           00018E   497 	C$map.c$79$6_0$260	= .
+                                    498 	.globl	C$map.c$79$6_0$260
+                                    499 ;src/map.c:79: temp_array[1] = temp + (rand() % 4);
+      00018E CDr00r00         [24]  500 	call	_rand
+      000191 7B               [ 4]  501 	ld	a, e
+      000192 E6 03            [ 8]  502 	and	a, #0x03
+      000194 F8 0A            [12]  503 	ldhl	sp,	#10
+      000196 86               [ 8]  504 	add	a, (hl)
+      000197 F8 01            [12]  505 	ldhl	sp,	#1
+      000199 77               [ 8]  506 	ld	(hl), a
+                           00019A   507 	C$map.c$80$6_0$260	= .
+                                    508 	.globl	C$map.c$80$6_0$260
+                                    509 ;src/map.c:80: temp_array[2] = temp - 1;
+      00019A F8 0A            [12]  510 	ldhl	sp,	#10
+      00019C 7E               [ 8]  511 	ld	a, (hl)
+      00019D 3D               [ 4]  512 	dec	a
+      00019E F8 02            [12]  513 	ldhl	sp,	#2
+      0001A0 77               [ 8]  514 	ld	(hl), a
+                           0001A1   515 	C$map.c$81$6_0$260	= .
+                                    516 	.globl	C$map.c$81$6_0$260
+                                    517 ;src/map.c:81: temp_array[3] = temp - 2;
+      0001A1 F8 0A            [12]  518 	ldhl	sp,	#10
+      0001A3 7E               [ 8]  519 	ld	a, (hl)
+      0001A4 3D               [ 4]  520 	dec	a
+      0001A5 3D               [ 4]  521 	dec	a
+      0001A6 F8 03            [12]  522 	ldhl	sp,	#3
+      0001A8 77               [ 8]  523 	ld	(hl), a
+      0001A9 18 24            [12]  524 	jr	00108$
+      0001AB                        525 00104$:
+                           0001AB   526 	C$map.c$83$5_0$258	= .
+                                    527 	.globl	C$map.c$83$5_0$258
+                                    528 ;src/map.c:83: else if (array[y][x] == DIRT) {
+      0001AB 3D               [ 4]  529 	dec	a
+      0001AC 20 21            [12]  530 	jr	NZ, 00108$
+                           0001AE   531 	C$map.c$84$6_0$261	= .
+                                    532 	.globl	C$map.c$84$6_0$261
+                                    533 ;src/map.c:84: temp_array[0] = temp;
+      0001AE F8 09            [12]  534 	ldhl	sp,	#9
+      0001B0 7E               [ 8]  535 	ld	a, (hl)
+      0001B1 F8 00            [12]  536 	ldhl	sp,	#0
+      0001B3 77               [ 8]  537 	ld	(hl), a
+                           0001B4   538 	C$map.c$85$6_0$261	= .
+                                    539 	.globl	C$map.c$85$6_0$261
+                                    540 ;src/map.c:85: temp_array[1] = temp + 1;
+      0001B4 F8 0B            [12]  541 	ldhl	sp,	#11
+      0001B6 7E               [ 8]  542 	ld	a, (hl)
+      0001B7 F8 01            [12]  543 	ldhl	sp,	#1
+      0001B9 77               [ 8]  544 	ld	(hl), a
+                           0001BA   545 	C$map.c$86$6_0$261	= .
+                                    546 	.globl	C$map.c$86$6_0$261
+                                    547 ;src/map.c:86: temp_array[2] = temp + 2;
+      0001BA F8 0C            [12]  548 	ldhl	sp,	#12
+      0001BC 7E               [ 8]  549 	ld	a, (hl)
+      0001BD F8 02            [12]  550 	ldhl	sp,	#2
+      0001BF 77               [ 8]  551 	ld	(hl), a
+                           0001C0   552 	C$map.c$87$6_0$261	= .
+                                    553 	.globl	C$map.c$87$6_0$261
+                                    554 ;src/map.c:87: temp_array[3] = temp + 3;
+      0001C0 F8 0D            [12]  555 	ldhl	sp,	#13
+      0001C2 7E               [ 8]  556 	ld	a, (hl)
+      0001C3 F8 03            [12]  557 	ldhl	sp,	#3
+      0001C5 77               [ 8]  558 	ld	(hl), a
+                           0001C6   559 	C$map.c$88$6_0$261	= .
+                                    560 	.globl	C$map.c$88$6_0$261
+                                    561 ;src/map.c:88: shuffle(temp_array);
+      0001C6 21 00 00         [12]  562 	ld	hl, #0
+      0001C9 39               [ 8]  563 	add	hl, sp
+      0001CA 5D               [ 4]  564 	ld	e, l
+      0001CB 54               [ 4]  565 	ld	d, h
+      0001CC CDr00r00         [24]  566 	call	_shuffle
+      0001CF                        567 00108$:
+                           0001CF   568 	C$map.c$91$5_0$258	= .
+                                    569 	.globl	C$map.c$91$5_0$258
+                                    570 ;src/map.c:91: set_bkg_tiles(2 * x, 2 * y, 2, 1, temp_array);
+      0001CF F8 12            [12]  571 	ldhl	sp,	#18
+      0001D1 7E               [ 8]  572 	ld	a, (hl)
+      0001D2 87               [ 4]  573 	add	a, a
+      0001D3 F8 0C            [12]  574 	ldhl	sp,	#12
+      0001D5 77               [ 8]  575 	ld	(hl), a
+      0001D6 21 00 00         [12]  576 	ld	hl, #0
+      0001D9 39               [ 8]  577 	add	hl, sp
+      0001DA E5               [16]  578 	push	hl
+      0001DB 21 02 01         [12]  579 	ld	hl, #0x102
+      0001DE E5               [16]  580 	push	hl
+      0001DF F8 0A            [12]  581 	ldhl	sp,	#10
+      0001E1 7E               [ 8]  582 	ld	a, (hl)
+      0001E2 F5               [16]  583 	push	af
+      0001E3 33               [ 8]  584 	inc	sp
+      0001E4 F8 11            [12]  585 	ldhl	sp,	#17
+      0001E6 7E               [ 8]  586 	ld	a, (hl)
+      0001E7 F5               [16]  587 	push	af
+      0001E8 33               [ 8]  588 	inc	sp
+      0001E9 CDr00r00         [24]  589 	call	_set_bkg_tiles
+      0001EC E8 06            [16]  590 	add	sp, #6
+                           0001EE   591 	C$map.c$92$5_0$258	= .
+                                    592 	.globl	C$map.c$92$5_0$258
+                                    593 ;src/map.c:92: set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, temp_array + 2);
+      0001EE F8 11            [12]  594 	ldhl	sp,	#17
+      0001F0 7E               [ 8]  595 	ld	a, (hl)
+      0001F1 F8 0D            [12]  596 	ldhl	sp,	#13
+      0001F3 77               [ 8]  597 	ld	(hl), a
+      0001F4 CB 26            [16]  598 	sla	(hl)
+      0001F6 34               [12]  599 	inc	(hl)
+      0001F7 21 02 00         [12]  600 	ld	hl, #2
+      0001FA 39               [ 8]  601 	add	hl, sp
+      0001FB E5               [16]  602 	push	hl
+      0001FC 21 02 01         [12]  603 	ld	hl, #0x102
+      0001FF E5               [16]  604 	push	hl
+      000200 F8 11            [12]  605 	ldhl	sp,	#17
+      000202 3A               [ 8]  606 	ld	a, (hl-)
+      000203 57               [ 4]  607 	ld	d, a
+      000204 5E               [ 8]  608 	ld	e, (hl)
+      000205 D5               [16]  609 	push	de
+      000206 CDr00r00         [24]  610 	call	_set_bkg_tiles
+      000209 E8 06            [16]  611 	add	sp, #6
+                           00020B   612 	C$map.c$68$4_0$257	= .
+                                    613 	.globl	C$map.c$68$4_0$257
+                                    614 ;src/map.c:68: for (uint8_t x = x1; x < x1 + c; x++) {
+      00020B F8 12            [12]  615 	ldhl	sp,	#18
+      00020D 34               [12]  616 	inc	(hl)
+      00020E C3rB4r00         [16]  617 	jp	00112$
+      000211                        618 00116$:
+                           000211   619 	C$map.c$67$2_0$255	= .
+                                    620 	.globl	C$map.c$67$2_0$255
+                                    621 ;src/map.c:67: for (uint8_t y = y1; y < y1 + r; y++) {
+      000211 F8 11            [12]  622 	ldhl	sp,	#17
+      000213 34               [12]  623 	inc	(hl)
+      000214 C3r76r00         [16]  624 	jp	00115$
+      000217                        625 00117$:
+                           000217   626 	C$map.c$95$2_0$255	= .
+                                    627 	.globl	C$map.c$95$2_0$255
+                                    628 ;src/map.c:95: }
+      000217 E8 13            [16]  629 	add	sp, #19
+      000219 E1               [12]  630 	pop	hl
+      00021A E8 03            [16]  631 	add	sp, #3
+      00021C E9               [ 4]  632 	jp	(hl)
+                           00021D   633 	G$spawn_bkg_row$0$0	= .
+                                    634 	.globl	G$spawn_bkg_row$0$0
+                           00021D   635 	C$map.c$97$2_0$263	= .
+                                    636 	.globl	C$map.c$97$2_0$263
+                                    637 ;src/map.c:97: void spawn_bkg_row(void) {
+                                    638 ;	---------------------------------
+                                    639 ; Function spawn_bkg_row
+                                    640 ; ---------------------------------
+      00021D                        641 _spawn_bkg_row::
+                           00021D   642 	C$map.c$98$1_0$263	= .
+                                    643 	.globl	C$map.c$98$1_0$263
+                                    644 ;src/map.c:98: if (depth > 3) {
+      00021D 3E 03            [ 8]  645 	ld	a, #0x03
+      00021F 21r00r00         [12]  646 	ld	hl, #_depth
+      000222 96               [ 8]  647 	sub	a, (hl)
+      000223 D0               [20]  648 	ret	NC
+                           000224   649 	C$map.c$99$2_0$264	= .
+                                    650 	.globl	C$map.c$99$2_0$264
+                                    651 ;src/map.c:99: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) set_4bkg_tiles(level_array, 0, depth + 4, 1, 16);
+      000224 7E               [ 8]  652 	ld	a, (hl)
+      000225 0E 00            [ 8]  653 	ld	c, #0x00
+      000227 21r00r00         [12]  654 	ld	hl, #_depth_offset
+      00022A 5E               [ 8]  655 	ld	e, (hl)
+      00022B 06 00            [ 8]  656 	ld	b, #0x00
+      00022D 93               [ 4]  657 	sub	a, e
+      00022E 5F               [ 4]  658 	ld	e, a
+      00022F 79               [ 4]  659 	ld	a, c
+      000230 98               [ 4]  660 	sbc	a, b
+      000231 57               [ 4]  661 	ld	d, a
+      000232 21r00r00         [12]  662 	ld	hl, #_depth
+      000235 4E               [ 8]  663 	ld	c, (hl)
+      000236 7B               [ 4]  664 	ld	a, e
+      000237 D6 06            [ 8]  665 	sub	a, #0x06
+      000239 B2               [ 4]  666 	or	a, d
+      00023A 20 13            [12]  667 	jr	NZ, 00104$
+      00023C 0C               [ 4]  668 	inc	c
+      00023D 0C               [ 4]  669 	inc	c
+      00023E 0C               [ 4]  670 	inc	c
+      00023F 0C               [ 4]  671 	inc	c
+      000240 21 01 10         [12]  672 	ld	hl, #0x1001
+      000243 E5               [16]  673 	push	hl
+      000244 79               [ 4]  674 	ld	a, c
+      000245 F5               [16]  675 	push	af
+      000246 33               [ 8]  676 	inc	sp
+      000247 AF               [ 4]  677 	xor	a, a
+      000248 11r00r00         [12]  678 	ld	de, #_level_array
+      00024B CDr66r00         [24]  679 	call	_set_4bkg_tiles
+      00024E C9               [16]  680 	ret
+      00024F                        681 00104$:
+                           00024F   682 	C$map.c$100$2_0$264	= .
+                                    683 	.globl	C$map.c$100$2_0$264
+                                    684 ;src/map.c:100: else if (depth - depth_offset == THRESHOLD) set_4bkg_tiles(level_array, 0, depth - 4, 1, 16);
+      00024F 7B               [ 4]  685 	ld	a, e
+      000250 D6 02            [ 8]  686 	sub	a, #0x02
+      000252 B2               [ 4]  687 	or	a, d
+      000253 C0               [20]  688 	ret	NZ
+      000254 79               [ 4]  689 	ld	a, c
+      000255 C6 FC            [ 8]  690 	add	a, #0xfc
+      000257 47               [ 4]  691 	ld	b, a
+      000258 21 01 10         [12]  692 	ld	hl, #0x1001
+      00025B E5               [16]  693 	push	hl
+      00025C C5               [16]  694 	push	bc
+      00025D 33               [ 8]  695 	inc	sp
+      00025E AF               [ 4]  696 	xor	a, a
+      00025F 11r00r00         [12]  697 	ld	de, #_level_array
+      000262 CDr66r00         [24]  698 	call	_set_4bkg_tiles
+                           000265   699 	C$map.c$102$1_0$263	= .
+                                    700 	.globl	C$map.c$102$1_0$263
+                                    701 ;src/map.c:102: }
+                           000265   702 	C$map.c$102$1_0$263	= .
+                                    703 	.globl	C$map.c$102$1_0$263
+                           000265   704 	XG$spawn_bkg_row$0$0	= .
+                                    705 	.globl	XG$spawn_bkg_row$0$0
+      000265 C9               [16]  706 	ret
+                           000266   707 	G$clear_4bkg_tiles$0$0	= .
+                                    708 	.globl	G$clear_4bkg_tiles$0$0
+                           000266   709 	C$map.c$111$1_0$266	= .
+                                    710 	.globl	C$map.c$111$1_0$266
+                                    711 ;src/map.c:111: void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y) {
+                                    712 ;	---------------------------------
+                                    713 ; Function clear_4bkg_tiles
+                                    714 ; ---------------------------------
+      000266                        715 _clear_4bkg_tiles::
+      000266 4F               [ 4]  716 	ld	c, a
+                           000267   717 	C$map.c$112$1_0$266	= .
+                                    718 	.globl	C$map.c$112$1_0$266
+                                    719 ;src/map.c:112: array[y][x] = 0; // Clear the tile in the array
+      000267 F8 02            [12]  720 	ldhl	sp,	#2
+      000269 6E               [ 8]  721 	ld	l, (hl)
+      00026A 26 00            [ 8]  722 	ld	h, #0x00
+      00026C 29               [ 8]  723 	add	hl, hl
+      00026D 29               [ 8]  724 	add	hl, hl
+      00026E 29               [ 8]  725 	add	hl, hl
+      00026F 29               [ 8]  726 	add	hl, hl
+      000270 19               [ 8]  727 	add	hl, de
+      000271 59               [ 4]  728 	ld	e, c
+      000272 16 00            [ 8]  729 	ld	d, #0x00
+      000274 19               [ 8]  730 	add	hl, de
+      000275 36 00            [12]  731 	ld	(hl), #0x00
+                           000277   732 	C$map.c$113$1_0$266	= .
+                                    733 	.globl	C$map.c$113$1_0$266
+                                    734 ;src/map.c:113: set_4bkg_tiles(level_array, x, y, 1, 1); // Update the background
+      000277 21 01 01         [12]  735 	ld	hl, #0x101
+      00027A E5               [16]  736 	push	hl
+      00027B F8 04            [12]  737 	ldhl	sp,	#4
+      00027D 7E               [ 8]  738 	ld	a, (hl)
+      00027E F5               [16]  739 	push	af
+      00027F 33               [ 8]  740 	inc	sp
+      000280 79               [ 4]  741 	ld	a, c
+      000281 11r00r00         [12]  742 	ld	de, #_level_array
+      000284 CDr66r00         [24]  743 	call	_set_4bkg_tiles
+                           000287   744 	C$map.c$114$1_0$266	= .
+                                    745 	.globl	C$map.c$114$1_0$266
+                                    746 ;src/map.c:114: }
+      000287 E1               [12]  747 	pop	hl
+      000288 33               [ 8]  748 	inc	sp
+      000289 E9               [ 4]  749 	jp	(hl)
+                           00028A   750 	G$add_block$0$0	= .
+                                    751 	.globl	G$add_block$0$0
+                           00028A   752 	C$map.c$126$1_0$268	= .
+                                    753 	.globl	C$map.c$126$1_0$268
+                                    754 ;src/map.c:126: void add_block(uint8_t array[][16], uint8_t x, uint8_t y, uint8_t type) {
+                                    755 ;	---------------------------------
+                                    756 ; Function add_block
+                                    757 ; ---------------------------------
+      00028A                        758 _add_block::
+      00028A 4F               [ 4]  759 	ld	c, a
+                           00028B   760 	C$map.c$127$1_0$268	= .
+                                    761 	.globl	C$map.c$127$1_0$268
+                                    762 ;src/map.c:127: array[y][x] = type;
+      00028B F8 02            [12]  763 	ldhl	sp,	#2
+      00028D 6E               [ 8]  764 	ld	l, (hl)
+      00028E 26 00            [ 8]  765 	ld	h, #0x00
+      000290 29               [ 8]  766 	add	hl, hl
+      000291 29               [ 8]  767 	add	hl, hl
+      000292 29               [ 8]  768 	add	hl, hl
+      000293 29               [ 8]  769 	add	hl, hl
+      000294 19               [ 8]  770 	add	hl, de
+      000295 54               [ 4]  771 	ld	d, h
+      000296 7D               [ 4]  772 	ld	a, l
+      000297 81               [ 4]  773 	add	a, c
+      000298 5F               [ 4]  774 	ld	e, a
+      000299 30 01            [12]  775 	jr	NC, 00103$
+      00029B 14               [ 4]  776 	inc	d
+      00029C                        777 00103$:
+      00029C F8 03            [12]  778 	ldhl	sp,	#3
+                           00029E   779 	C$map.c$128$1_0$268	= .
+                                    780 	.globl	C$map.c$128$1_0$268
+                                    781 ;src/map.c:128: set_4bkg_tiles(level_array, x, y, 1, 1);
+      00029E 3A               [ 8]  782 	ld	a, (hl-)
+      00029F 12               [ 8]  783 	ld	(de), a
+      0002A0 11 01 01         [12]  784 	ld	de, #0x101
+      0002A3 D5               [16]  785 	push	de
+      0002A4 7E               [ 8]  786 	ld	a, (hl)
+      0002A5 F5               [16]  787 	push	af
+      0002A6 33               [ 8]  788 	inc	sp
+      0002A7 79               [ 4]  789 	ld	a, c
+      0002A8 11r00r00         [12]  790 	ld	de, #_level_array
+      0002AB CDr66r00         [24]  791 	call	_set_4bkg_tiles
+                           0002AE   792 	C$map.c$129$1_0$268	= .
+                                    793 	.globl	C$map.c$129$1_0$268
+                                    794 ;src/map.c:129: }
+      0002AE E1               [12]  795 	pop	hl
+      0002AF F1               [12]  796 	pop	af
+      0002B0 E9               [ 4]  797 	jp	(hl)
+                           0002B1   798 	G$progressbar$0$0	= .
+                                    799 	.globl	G$progressbar$0$0
+                           0002B1   800 	C$map.c$141$1_0$271	= .
+                                    801 	.globl	C$map.c$141$1_0$271
+                                    802 ;src/map.c:141: void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t x, uint8_t y) {
+                                    803 ;	---------------------------------
+                                    804 ; Function progressbar
+                                    805 ; ---------------------------------
+      0002B1                        806 _progressbar::
+      0002B1 E8 F8            [16]  807 	add	sp, #-8
+      0002B3 F8 05            [12]  808 	ldhl	sp,	#5
+      0002B5 79               [ 4]  809 	ld	a, c
+      0002B6 22               [ 8]  810 	ld	(hl+), a
+      0002B7 70               [ 8]  811 	ld	(hl), b
+                           0002B8   812 	C$map.c$143$1_0$270	= .
+                                    813 	.globl	C$map.c$143$1_0$270
+                                    814 ;src/map.c:143: uint8_t total_pixels = digits * 8;
+      0002B8 F8 0A            [12]  815 	ldhl	sp,	#10
+      0002BA 7E               [ 8]  816 	ld	a, (hl)
+      0002BB F8 00            [12]  817 	ldhl	sp,	#0
+      0002BD 77               [ 8]  818 	ld	(hl), a
+      0002BE 7E               [ 8]  819 	ld	a, (hl)
+      0002BF 87               [ 4]  820 	add	a, a
+      0002C0 87               [ 4]  821 	add	a, a
+      0002C1 87               [ 4]  822 	add	a, a
+                           0002C2   823 	C$map.c$144$1_0$270	= .
+                                    824 	.globl	C$map.c$144$1_0$270
+                                    825 ;src/map.c:144: uint16_t pixels_to_fill = (current_value * total_pixels) / max_value;
+      0002C2 4F               [ 4]  826 	ld	c, a
+      0002C3 06 00            [ 8]  827 	ld	b, #0x00
+      0002C5 CDr00r00         [24]  828 	call	__mulint
+      0002C8 59               [ 4]  829 	ld	e, c
+      0002C9 50               [ 4]  830 	ld	d, b
+      0002CA F8 05            [12]  831 	ldhl	sp,	#5
+      0002CC 2A               [ 8]  832 	ld	a, (hl+)
+      0002CD 4F               [ 4]  833 	ld	c, a
+      0002CE 46               [ 8]  834 	ld	b, (hl)
+      0002CF CDr00r00         [24]  835 	call	__divsint
+                           0002D2   836 	C$map.c$146$5_0$274	= .
+                                    837 	.globl	C$map.c$146$5_0$274
+                                    838 ;src/map.c:146: for (uint8_t i = 0; i < digits; i++) {
+      0002D2 F8 00            [12]  839 	ldhl	sp,	#0
+      0002D4 7E               [ 8]  840 	ld	a, (hl)
+      0002D5 3D               [ 4]  841 	dec	a
+      0002D6 3E 01            [ 8]  842 	ld	a, #0x01
+      0002D8 28 01            [12]  843 	jr	Z, 00185$
+      0002DA AF               [ 4]  844 	xor	a, a
+      0002DB                        845 00185$:
+      0002DB F8 01            [12]  846 	ldhl	sp,	#1
+      0002DD 77               [ 8]  847 	ld	(hl), a
+      0002DE F8 0D            [12]  848 	ldhl	sp,	#13
+      0002E0 7E               [ 8]  849 	ld	a, (hl)
+      0002E1 F8 02            [12]  850 	ldhl	sp,	#2
+      0002E3 77               [ 8]  851 	ld	(hl), a
+      0002E4 F8 07            [12]  852 	ldhl	sp,	#7
+      0002E6 36 00            [12]  853 	ld	(hl), #0x00
+      0002E8                        854 00122$:
+      0002E8 F8 07            [12]  855 	ldhl	sp,	#7
+      0002EA 7E               [ 8]  856 	ld	a, (hl)
+      0002EB F8 00            [12]  857 	ldhl	sp,	#0
+      0002ED 96               [ 8]  858 	sub	a, (hl)
+      0002EE D2rCDr03         [16]  859 	jp	NC, 00124$
+                           0002F1   860 	C$map.c$147$4_0$272	= .
+                                    861 	.globl	C$map.c$147$4_0$272
+                                    862 ;src/map.c:147: uint8_t tile_index = SPRITE_TILE_EMPTY; // Default to empty
+      0002F1 1E 00            [ 8]  863 	ld	e, #0x00
+                           0002F3   864 	C$map.c$149$3_0$272	= .
+                                    865 	.globl	C$map.c$149$3_0$272
+                                    866 ;src/map.c:149: uint8_t effective_pixels = (pixels_to_fill > sprite_pixels) ? sprite_pixels : pixels_to_fill;
+      0002F3 3E 08            [ 8]  867 	ld	a, #0x08
+      0002F5 B9               [ 4]  868 	cp	a, c
+      0002F6 3E 00            [ 8]  869 	ld	a, #0x00
+      0002F8 98               [ 4]  870 	sbc	a, b
+      0002F9 30 04            [12]  871 	jr	NC, 00126$
+      0002FB 16 08            [ 8]  872 	ld	d, #0x08
+      0002FD 18 01            [12]  873 	jr	00127$
+      0002FF                        874 00126$:
+      0002FF 51               [ 4]  875 	ld	d, c
+      000300                        876 00127$:
+                           000300   877 	C$map.c$152$3_0$272	= .
+                                    878 	.globl	C$map.c$152$3_0$272
+                                    879 ;src/map.c:152: pixels_to_fill -= effective_pixels;
+      000300 6A               [ 4]  880 	ld	l, d
+                                    881 ;	spillPairReg hl
+                                    882 ;	spillPairReg hl
+      000301 26 00            [ 8]  883 	ld	h, #0x00
+                                    884 ;	spillPairReg hl
+                                    885 ;	spillPairReg hl
+      000303 79               [ 4]  886 	ld	a, c
+      000304 95               [ 4]  887 	sub	a, l
+      000305 4F               [ 4]  888 	ld	c, a
+      000306 78               [ 4]  889 	ld	a, b
+      000307 9C               [ 4]  890 	sbc	a, h
+      000308 47               [ 4]  891 	ld	b, a
+                           000309   892 	C$map.c$155$3_0$272	= .
+                                    893 	.globl	C$map.c$155$3_0$272
+                                    894 ;src/map.c:155: switch (effective_pixels) {
+      000309 3E 08            [ 8]  895 	ld	a, #0x08
+      00030B 92               [ 4]  896 	sub	a, d
+      00030C DAr8Fr03         [16]  897 	jp	C, 00117$
+      00030F 5A               [ 4]  898 	ld	e, d
+      000310 16 00            [ 8]  899 	ld	d, #0x00
+      000312 21r19r03         [12]  900 	ld	hl, #00186$
+      000315 19               [ 8]  901 	add	hl, de
+      000316 19               [ 8]  902 	add	hl, de
+      000317 19               [ 8]  903 	add	hl, de
+      000318 E9               [ 4]  904 	jp	(hl)
+      000319                        905 00186$:
+      000319 C3r34r03         [16]  906 	jp	00101$
+      00031C C3r38r03         [16]  907 	jp	00102$
+      00031F C3r3Cr03         [16]  908 	jp	00103$
+      000322 C3r40r03         [16]  909 	jp	00104$
+      000325 C3r44r03         [16]  910 	jp	00105$
+      000328 C3r48r03         [16]  911 	jp	00106$
+      00032B C3r4Cr03         [16]  912 	jp	00107$
+      00032E C3r50r03         [16]  913 	jp	00108$
+      000331 C3r54r03         [16]  914 	jp	00109$
+                           000334   915 	C$map.c$156$4_0$273	= .
+                                    916 	.globl	C$map.c$156$4_0$273
+                                    917 ;src/map.c:156: case 0: tile_index = SPRITE_TILE_EMPTY; break;
+      000334                        918 00101$:
+      000334 1E 00            [ 8]  919 	ld	e, #0x00
+      000336 18 57            [12]  920 	jr	00117$
+                           000338   921 	C$map.c$157$4_0$273	= .
+                                    922 	.globl	C$map.c$157$4_0$273
+                                    923 ;src/map.c:157: case 1: tile_index = SPRITE_TILE_1_8; break;
+      000338                        924 00102$:
+      000338 1E 20            [ 8]  925 	ld	e, #0x20
+      00033A 18 53            [12]  926 	jr	00117$
+                           00033C   927 	C$map.c$158$4_0$273	= .
+                                    928 	.globl	C$map.c$158$4_0$273
+                                    929 ;src/map.c:158: case 2: tile_index = SPRITE_TILE_2_8; break;
+      00033C                        930 00103$:
+      00033C 1E 21            [ 8]  931 	ld	e, #0x21
+      00033E 18 4F            [12]  932 	jr	00117$
+                           000340   933 	C$map.c$159$4_0$273	= .
+                                    934 	.globl	C$map.c$159$4_0$273
+                                    935 ;src/map.c:159: case 3: tile_index = SPRITE_TILE_3_8; break;
+      000340                        936 00104$:
+      000340 1E 22            [ 8]  937 	ld	e, #0x22
+      000342 18 4B            [12]  938 	jr	00117$
+                           000344   939 	C$map.c$160$4_0$273	= .
+                                    940 	.globl	C$map.c$160$4_0$273
+                                    941 ;src/map.c:160: case 4: tile_index = SPRITE_TILE_4_8; break;
+      000344                        942 00105$:
+      000344 1E 23            [ 8]  943 	ld	e, #0x23
+      000346 18 47            [12]  944 	jr	00117$
+                           000348   945 	C$map.c$161$4_0$273	= .
+                                    946 	.globl	C$map.c$161$4_0$273
+                                    947 ;src/map.c:161: case 5: tile_index = SPRITE_TILE_5_8; break;
+      000348                        948 00106$:
+      000348 1E 24            [ 8]  949 	ld	e, #0x24
+      00034A 18 43            [12]  950 	jr	00117$
+                           00034C   951 	C$map.c$162$4_0$273	= .
+                                    952 	.globl	C$map.c$162$4_0$273
+                                    953 ;src/map.c:162: case 6: tile_index = SPRITE_TILE_6_8; break;
+      00034C                        954 00107$:
+      00034C 1E 25            [ 8]  955 	ld	e, #0x25
+      00034E 18 3F            [12]  956 	jr	00117$
+                           000350   957 	C$map.c$163$4_0$273	= .
+                                    958 	.globl	C$map.c$163$4_0$273
+                                    959 ;src/map.c:163: case 7: tile_index = SPRITE_TILE_7_8; break;
+      000350                        960 00108$:
+      000350 1E 26            [ 8]  961 	ld	e, #0x26
+      000352 18 3B            [12]  962 	jr	00117$
+                           000354   963 	C$map.c$164$4_0$273	= .
+                                    964 	.globl	C$map.c$164$4_0$273
+                                    965 ;src/map.c:164: case 8: 
+      000354                        966 00109$:
+                           000354   967 	C$map.c$165$4_0$273	= .
+                                    968 	.globl	C$map.c$165$4_0$273
+                                    969 ;src/map.c:165: if (i == 0) { // First sprite
+      000354 F8 07            [12]  970 	ldhl	sp,	#7
+      000356 7E               [ 8]  971 	ld	a, (hl)
+      000357 B7               [ 4]  972 	or	a, a
+      000358 20 14            [12]  973 	jr	NZ, 00115$
+                           00035A   974 	C$map.c$166$5_0$274	= .
+                                    975 	.globl	C$map.c$166$5_0$274
+                                    976 ;src/map.c:166: tile_index = (digits == 1 || pixels_to_fill == 0) ? SPRITE_TILE_END : SPRITE_TILE_MID;
+      00035A F8 01            [12]  977 	ldhl	sp,	#1
+      00035C CB 46            [12]  978 	bit	0, (hl)
+      00035E 20 04            [12]  979 	jr	NZ, 00131$
+      000360 78               [ 4]  980 	ld	a, b
+      000361 B1               [ 4]  981 	or	a, c
+      000362 20 05            [12]  982 	jr	NZ, 00128$
+      000364                        983 00131$:
+      000364 11 27 00         [12]  984 	ld	de, #0x0027
+      000367 18 26            [12]  985 	jr	00117$
+      000369                        986 00128$:
+      000369 11 28 00         [12]  987 	ld	de, #0x0028
+      00036C 18 21            [12]  988 	jr	00117$
+      00036E                        989 00115$:
+                           00036E   990 	C$map.c$167$4_0$273	= .
+                                    991 	.globl	C$map.c$167$4_0$273
+                                    992 ;src/map.c:167: } else if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
+      00036E F8 00            [12]  993 	ldhl	sp,	#0
+      000370 5E               [ 8]  994 	ld	e, (hl)
+      000371 16 00            [ 8]  995 	ld	d, #0x00
+      000373 1B               [ 8]  996 	dec	de
+      000374 F8 07            [12]  997 	ldhl	sp,	#7
+      000376 7E               [ 8]  998 	ld	a, (hl)
+      000377 F8 03            [12]  999 	ldhl	sp,	#3
+      000379 22               [ 8] 1000 	ld	(hl+), a
+      00037A AF               [ 4] 1001 	xor	a, a
+      00037B 32               [ 8] 1002 	ld	(hl-), a
+      00037C 7E               [ 8] 1003 	ld	a, (hl)
+      00037D 93               [ 4] 1004 	sub	a, e
+      00037E 20 05            [12] 1005 	jr	NZ, 00187$
+      000380 23               [ 8] 1006 	inc	hl
+      000381 7E               [ 8] 1007 	ld	a, (hl)
+      000382 92               [ 4] 1008 	sub	a, d
+      000383 28 04            [12] 1009 	jr	Z, 00110$
+      000385                       1010 00187$:
+      000385 78               [ 4] 1011 	ld	a, b
+      000386 B1               [ 4] 1012 	or	a, c
+      000387 20 04            [12] 1013 	jr	NZ, 00111$
+      000389                       1014 00110$:
+                           000389  1015 	C$map.c$168$5_0$275	= .
+                                   1016 	.globl	C$map.c$168$5_0$275
+                                   1017 ;src/map.c:168: tile_index = SPRITE_TILE_END;
+      000389 1E 27            [ 8] 1018 	ld	e, #0x27
+      00038B 18 02            [12] 1019 	jr	00117$
+      00038D                       1020 00111$:
+                           00038D  1021 	C$map.c$170$5_0$276	= .
+                                   1022 	.globl	C$map.c$170$5_0$276
+                                   1023 ;src/map.c:170: tile_index = SPRITE_TILE_MID;
+      00038D 1E 28            [ 8] 1024 	ld	e, #0x28
+                           00038F  1025 	C$map.c$173$3_0$272	= .
+                                   1026 	.globl	C$map.c$173$3_0$272
+                                   1027 ;src/map.c:173: }
+      00038F                       1028 00117$:
+                                   1029 ;src/map.c:176: set_sprite_tile(tilestart + i, tile_index);
+      00038F F8 0B            [12] 1030 	ldhl	sp,	#11
+      000391 7E               [ 8] 1031 	ld	a, (hl)
+      000392 F8 07            [12] 1032 	ldhl	sp,	#7
+      000394 86               [ 8] 1033 	add	a, (hl)
+      000395 F8 03            [12] 1034 	ldhl	sp,	#3
+      000397 77               [ 8] 1035 	ld	(hl), a
+      000398 56               [ 8] 1036 	ld	d, (hl)
+                                   1037 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
+      000399 26 00            [ 8] 1038 	ld	h, #0x00
+                                   1039 ;	spillPairReg hl
+                                   1040 ;	spillPairReg hl
+      00039B 6A               [ 4] 1041 	ld	l, d
+      00039C 29               [ 8] 1042 	add	hl, hl
+      00039D 29               [ 8] 1043 	add	hl, hl
+      00039E D5               [16] 1044 	push	de
+      00039F 11r00r00         [12] 1045 	ld	de, #_shadow_OAM
+      0003A2 19               [ 8] 1046 	add	hl, de
+      0003A3 23               [ 8] 1047 	inc	hl
+      0003A4 23               [ 8] 1048 	inc	hl
+      0003A5 D1               [12] 1049 	pop	de
+      0003A6 73               [ 8] 1050 	ld	(hl), e
+                                   1051 ;src/map.c:177: move_sprite(tilestart + i, x + i * 8, y);
+      0003A7 F8 07            [12] 1052 	ldhl	sp,	#7
+      0003A9 7E               [ 8] 1053 	ld	a, (hl)
+      0003AA 87               [ 4] 1054 	add	a, a
+      0003AB 87               [ 4] 1055 	add	a, a
+      0003AC 87               [ 4] 1056 	add	a, a
+      0003AD F8 0C            [12] 1057 	ldhl	sp,	#12
+      0003AF 5E               [ 8] 1058 	ld	e, (hl)
+      0003B0 83               [ 4] 1059 	add	a, e
+      0003B1 F8 04            [12] 1060 	ldhl	sp,	#4
+                                   1061 ;/usr/local/opt/gbdk/include/gb/gb.h:1877: OAM_item_t * itm = &shadow_OAM[nb];
+      0003B3 32               [ 8] 1062 	ld	(hl-), a
+      0003B4 6E               [ 8] 1063 	ld	l, (hl)
+      0003B5 26 00            [ 8] 1064 	ld	h, #0x00
+      0003B7 29               [ 8] 1065 	add	hl, hl
+      0003B8 29               [ 8] 1066 	add	hl, hl
+      0003B9 11r00r00         [12] 1067 	ld	de, #_shadow_OAM
+      0003BC 19               [ 8] 1068 	add	hl, de
+      0003BD 5D               [ 4] 1069 	ld	e, l
+      0003BE 54               [ 4] 1070 	ld	d, h
+                                   1071 ;/usr/local/opt/gbdk/include/gb/gb.h:1878: itm->y=y, itm->x=x;
+      0003BF F8 02            [12] 1072 	ldhl	sp,	#2
+      0003C1 2A               [ 8] 1073 	ld	a, (hl+)
+      0003C2 23               [ 8] 1074 	inc	hl
+      0003C3 12               [ 8] 1075 	ld	(de), a
+      0003C4 13               [ 8] 1076 	inc	de
+      0003C5 7E               [ 8] 1077 	ld	a, (hl)
+      0003C6 12               [ 8] 1078 	ld	(de), a
+                           0003C7  1079 	C$map.c$146$2_0$271	= .
+                                   1080 	.globl	C$map.c$146$2_0$271
+                                   1081 ;src/map.c:146: for (uint8_t i = 0; i < digits; i++) {
+      0003C7 F8 07            [12] 1082 	ldhl	sp,	#7
+      0003C9 34               [12] 1083 	inc	(hl)
+      0003CA C3rE8r02         [16] 1084 	jp	00122$
+      0003CD                       1085 00124$:
+                           0003CD  1086 	C$map.c$179$2_0$271	= .
+                                   1087 	.globl	C$map.c$179$2_0$271
+                                   1088 ;src/map.c:179: }
+      0003CD E8 08            [16] 1089 	add	sp, #8
+      0003CF E1               [12] 1090 	pop	hl
+      0003D0 E8 04            [16] 1091 	add	sp, #4
+      0003D2 E9               [ 4] 1092 	jp	(hl)
+                           0003D3  1093 	G$draw_depth$0$0	= .
+                                   1094 	.globl	G$draw_depth$0$0
+                           0003D3  1095 	C$map.c$181$2_0$284	= .
+                                   1096 	.globl	C$map.c$181$2_0$284
+                                   1097 ;src/map.c:181: void draw_depth(void){
+                                   1098 ;	---------------------------------
+                                   1099 ; Function draw_depth
+                                   1100 ; ---------------------------------
+      0003D3                       1101 _draw_depth::
+      0003D3 E8 F6            [16] 1102 	add	sp, #-10
+                           0003D5  1103 	C$map.c$183$1_0$284	= .
+                                   1104 	.globl	C$map.c$183$1_0$284
+                                   1105 ;src/map.c:183: itoa((depth <= 5) ? 0 : (depth - 5), string, 10);
+      0003D5 21 00 00         [12] 1106 	ld	hl, #0
+      0003D8 39               [ 8] 1107 	add	hl, sp
+      0003D9 5D               [ 4] 1108 	ld	e, l
+      0003DA 54               [ 4] 1109 	ld	d, h
+      0003DB 3E 05            [ 8] 1110 	ld	a, #0x05
+      0003DD 21r00r00         [12] 1111 	ld	hl, #_depth
+      0003E0 96               [ 8] 1112 	sub	a, (hl)
+      0003E1 38 05            [12] 1113 	jr	C, 00103$
+      0003E3 01 00 00         [12] 1114 	ld	bc, #0x0000
+      0003E6 18 0C            [12] 1115 	jr	00104$
+      0003E8                       1116 00103$:
+      0003E8 FAr00r00         [16] 1117 	ld	a, (#_depth)
+      0003EB 06 00            [ 8] 1118 	ld	b, #0x00
+      0003ED C6 FB            [ 8] 1119 	add	a, #0xfb
+      0003EF 4F               [ 4] 1120 	ld	c, a
+      0003F0 78               [ 4] 1121 	ld	a, b
+      0003F1 CE FF            [ 8] 1122 	adc	a, #0xff
+      0003F3 47               [ 4] 1123 	ld	b, a
+      0003F4                       1124 00104$:
+      0003F4 3E 0A            [ 8] 1125 	ld	a, #0x0a
+      0003F6 F5               [16] 1126 	push	af
+      0003F7 33               [ 8] 1127 	inc	sp
+      0003F8 D5               [16] 1128 	push	de
+      0003F9 C5               [16] 1129 	push	bc
+      0003FA CDr00r00         [24] 1130 	call	_itoa
+      0003FD E8 05            [16] 1131 	add	sp, #5
+                           0003FF  1132 	C$map.c$184$1_0$284	= .
+                                   1133 	.globl	C$map.c$184$1_0$284
+                                   1134 ;src/map.c:184: strcat(string, "m");
+      0003FF 01r36r04         [12] 1135 	ld	bc, #___str_0
+      000402 21 00 00         [12] 1136 	ld	hl, #0
+      000405 39               [ 8] 1137 	add	hl, sp
+      000406 5D               [ 4] 1138 	ld	e, l
+      000407 54               [ 4] 1139 	ld	d, h
+      000408 CDr00r00         [24] 1140 	call	_strcat
+                           00040B  1141 	C$map.c$185$1_0$284	= .
+                                   1142 	.globl	C$map.c$185$1_0$284
+                                   1143 ;src/map.c:185: draw_text(15,0,"Depth",5,TRUE,0);
+      00040B AF               [ 4] 1144 	xor	a, a
+      00040C 67               [ 4] 1145 	ld	h, a
+      00040D 2E 01            [ 8] 1146 	ld	l, #0x01
+      00040F E5               [16] 1147 	push	hl
+      000410 3E 05            [ 8] 1148 	ld	a, #0x05
+      000412 F5               [16] 1149 	push	af
+      000413 33               [ 8] 1150 	inc	sp
+      000414 11r38r04         [12] 1151 	ld	de, #___str_1
+      000417 D5               [16] 1152 	push	de
+      000418 1E 00            [ 8] 1153 	ld	e, #0x00
+      00041A 3E 0F            [ 8] 1154 	ld	a, #0x0f
+      00041C CDr00r00         [24] 1155 	call	_draw_text
+                           00041F  1156 	C$map.c$186$1_0$284	= .
+                                   1157 	.globl	C$map.c$186$1_0$284
+                                   1158 ;src/map.c:186: draw_text(15,1,string,5,FALSE,0);
+      00041F 21 00 00         [12] 1159 	ld	hl, #0
+      000422 39               [ 8] 1160 	add	hl, sp
+      000423 AF               [ 4] 1161 	xor	a, a
+      000424 0F               [ 4] 1162 	rrca
+      000425 F5               [16] 1163 	push	af
+      000426 AF               [ 4] 1164 	xor	a, a
+      000427 3E 05            [ 8] 1165 	ld	a, #0x05
+      000429 F5               [16] 1166 	push	af
+      00042A 33               [ 8] 1167 	inc	sp
+      00042B E5               [16] 1168 	push	hl
+      00042C 1E 01            [ 8] 1169 	ld	e, #0x01
+      00042E 3E 0F            [ 8] 1170 	ld	a, #0x0f
+      000430 CDr00r00         [24] 1171 	call	_draw_text
+                           000433  1172 	C$map.c$187$1_0$284	= .
+                                   1173 	.globl	C$map.c$187$1_0$284
+                                   1174 ;src/map.c:187: }
+      000433 E8 0A            [16] 1175 	add	sp, #10
+                           000435  1176 	C$map.c$187$1_0$284	= .
+                                   1177 	.globl	C$map.c$187$1_0$284
+                           000435  1178 	XG$draw_depth$0$0	= .
+                                   1179 	.globl	XG$draw_depth$0$0
+      000435 C9               [16] 1180 	ret
+                           000436  1181 Fmap$__str_0$0_0$0 == .
+      000436                       1182 ___str_0:
+      000436 6D                    1183 	.ascii "m"
+      000437 00                    1184 	.db 0x00
+                           000438  1185 Fmap$__str_1$0_0$0 == .
+      000438                       1186 ___str_1:
+      000438 44 65 70 74 68        1187 	.ascii "Depth"
+      00043D 00                    1188 	.db 0x00
+                           00043E  1189 	G$draw_cargo$0$0	= .
+                                   1190 	.globl	G$draw_cargo$0$0
+                           00043E  1191 	C$map.c$189$1_0$286	= .
+                                   1192 	.globl	C$map.c$189$1_0$286
+                                   1193 ;src/map.c:189: void draw_cargo(void){
+                                   1194 ;	---------------------------------
+                                   1195 ; Function draw_cargo
+                                   1196 ; ---------------------------------
+      00043E                       1197 _draw_cargo::
+      00043E E8 EC            [16] 1198 	add	sp, #-20
+                           000440  1199 	C$map.c$192$1_0$286	= .
+                                   1200 	.globl	C$map.c$192$1_0$286
+                                   1201 ;src/map.c:192: itoa(player.cargo.current_value, string, 10);
+      000440 21rBBr00         [12] 1202 	ld	hl, #_player + 187
+      000443 2A               [ 8] 1203 	ld	a, (hl+)
+      000444 4F               [ 4] 1204 	ld	c, a
+      000445 46               [ 8] 1205 	ld	b, (hl)
+      000446 3E 0A            [ 8] 1206 	ld	a, #0x0a
+      000448 F5               [16] 1207 	push	af
+      000449 33               [ 8] 1208 	inc	sp
+      00044A 21 01 00         [12] 1209 	ld	hl, #1
+      00044D 39               [ 8] 1210 	add	hl, sp
+      00044E E5               [16] 1211 	push	hl
+      00044F C5               [16] 1212 	push	bc
+      000450 CDr00r00         [24] 1213 	call	_itoa
+      000453 E8 05            [16] 1214 	add	sp, #5
+                           000455  1215 	C$map.c$193$1_0$286	= .
+                                   1216 	.globl	C$map.c$193$1_0$286
+                                   1217 ;src/map.c:193: itoa(player.cargo.max_value, string_max, 10);
+      000455 21rBDr00         [12] 1218 	ld	hl, #_player + 189
+      000458 2A               [ 8] 1219 	ld	a, (hl+)
+      000459 4F               [ 4] 1220 	ld	c, a
+      00045A 46               [ 8] 1221 	ld	b, (hl)
+      00045B 3E 0A            [ 8] 1222 	ld	a, #0x0a
+      00045D F5               [16] 1223 	push	af
+      00045E 33               [ 8] 1224 	inc	sp
+      00045F 21 0B 00         [12] 1225 	ld	hl, #11
+      000462 39               [ 8] 1226 	add	hl, sp
+      000463 E5               [16] 1227 	push	hl
+      000464 C5               [16] 1228 	push	bc
+      000465 CDr00r00         [24] 1229 	call	_itoa
+      000468 E8 05            [16] 1230 	add	sp, #5
+                           00046A  1231 	C$map.c$194$1_0$286	= .
+                                   1232 	.globl	C$map.c$194$1_0$286
+                                   1233 ;src/map.c:194: strcat(string, "/");
+      00046A 01rB1r04         [12] 1234 	ld	bc, #___str_2
+      00046D 21 00 00         [12] 1235 	ld	hl, #0
+      000470 39               [ 8] 1236 	add	hl, sp
+      000471 5D               [ 4] 1237 	ld	e, l
+      000472 54               [ 4] 1238 	ld	d, h
+      000473 CDr00r00         [24] 1239 	call	_strcat
+                           000476  1240 	C$map.c$195$1_0$286	= .
+                                   1241 	.globl	C$map.c$195$1_0$286
+                                   1242 ;src/map.c:195: strcat(string, string_max);
+      000476 21 0A 00         [12] 1243 	ld	hl, #10
+      000479 39               [ 8] 1244 	add	hl, sp
+      00047A 4D               [ 4] 1245 	ld	c, l
+      00047B 44               [ 4] 1246 	ld	b, h
+      00047C 21 00 00         [12] 1247 	ld	hl, #0
+      00047F 39               [ 8] 1248 	add	hl, sp
+      000480 5D               [ 4] 1249 	ld	e, l
+      000481 54               [ 4] 1250 	ld	d, h
+      000482 CDr00r00         [24] 1251 	call	_strcat
+                           000485  1252 	C$map.c$196$1_0$286	= .
+                                   1253 	.globl	C$map.c$196$1_0$286
+                                   1254 ;src/map.c:196: draw_text(9,0,"Cargo",5,TRUE,0);
+      000485 AF               [ 4] 1255 	xor	a, a
+      000486 67               [ 4] 1256 	ld	h, a
+      000487 2E 01            [ 8] 1257 	ld	l, #0x01
+      000489 E5               [16] 1258 	push	hl
+      00048A 3E 05            [ 8] 1259 	ld	a, #0x05
+      00048C F5               [16] 1260 	push	af
+      00048D 33               [ 8] 1261 	inc	sp
+      00048E 11rB3r04         [12] 1262 	ld	de, #___str_3
+      000491 D5               [16] 1263 	push	de
+      000492 1E 00            [ 8] 1264 	ld	e, #0x00
+      000494 3E 09            [ 8] 1265 	ld	a, #0x09
+      000496 CDr00r00         [24] 1266 	call	_draw_text
+                           000499  1267 	C$map.c$197$1_0$286	= .
+                                   1268 	.globl	C$map.c$197$1_0$286
+                                   1269 ;src/map.c:197: draw_text(9,1,string,5,TRUE,0);
+      000499 21 00 00         [12] 1270 	ld	hl, #0
+      00049C 39               [ 8] 1271 	add	hl, sp
+      00049D AF               [ 4] 1272 	xor	a, a
+      00049E 57               [ 4] 1273 	ld	d, a
+      00049F 1E 01            [ 8] 1274 	ld	e, #0x01
+      0004A1 D5               [16] 1275 	push	de
+      0004A2 3E 05            [ 8] 1276 	ld	a, #0x05
+      0004A4 F5               [16] 1277 	push	af
+      0004A5 33               [ 8] 1278 	inc	sp
+      0004A6 E5               [16] 1279 	push	hl
+      0004A7 1E 01            [ 8] 1280 	ld	e, #0x01
+      0004A9 3E 09            [ 8] 1281 	ld	a, #0x09
+      0004AB CDr00r00         [24] 1282 	call	_draw_text
+                           0004AE  1283 	C$map.c$198$1_0$286	= .
+                                   1284 	.globl	C$map.c$198$1_0$286
+                                   1285 ;src/map.c:198: }
+      0004AE E8 14            [16] 1286 	add	sp, #20
+                           0004B0  1287 	C$map.c$198$1_0$286	= .
+                                   1288 	.globl	C$map.c$198$1_0$286
+                           0004B0  1289 	XG$draw_cargo$0$0	= .
+                                   1290 	.globl	XG$draw_cargo$0$0
+      0004B0 C9               [16] 1291 	ret
+                           0004B1  1292 Fmap$__str_2$0_0$0 == .
+      0004B1                       1293 ___str_2:
+      0004B1 2F                    1294 	.ascii "/"
+      0004B2 00                    1295 	.db 0x00
+                           0004B3  1296 Fmap$__str_3$0_0$0 == .
+      0004B3                       1297 ___str_3:
+      0004B3 43 61 72 67 6F        1298 	.ascii "Cargo"
+      0004B8 00                    1299 	.db 0x00
+                           0004B9  1300 	G$draw_fuel$0$0	= .
+                                   1301 	.globl	G$draw_fuel$0$0
+                           0004B9  1302 	C$map.c$200$1_0$288	= .
+                                   1303 	.globl	C$map.c$200$1_0$288
+                                   1304 ;src/map.c:200: void draw_fuel(void){
+                                   1305 ;	---------------------------------
+                                   1306 ; Function draw_fuel
+                                   1307 ; ---------------------------------
+      0004B9                       1308 _draw_fuel::
+                           0004B9  1309 	C$map.c$201$1_0$288	= .
+                                   1310 	.globl	C$map.c$201$1_0$288
+                                   1311 ;src/map.c:201: progressbar(player.fuel.current_value, player.fuel.max_value, 3, 35, 44, 20);
+      0004B9 21r12r00         [12] 1312 	ld	hl, #_player + 18
+      0004BC 2A               [ 8] 1313 	ld	a, (hl+)
+      0004BD 4F               [ 4] 1314 	ld	c, a
+      0004BE 46               [ 8] 1315 	ld	b, (hl)
+      0004BF 21r10r00         [12] 1316 	ld	hl, #_player + 16
+      0004C2 2A               [ 8] 1317 	ld	a,	(hl+)
+      0004C3 66               [ 8] 1318 	ld	h, (hl)
+                                   1319 ;	spillPairReg hl
+      0004C4 6F               [ 4] 1320 	ld	l, a
+                                   1321 ;	spillPairReg hl
+                                   1322 ;	spillPairReg hl
+      0004C5 11 2C 14         [12] 1323 	ld	de, #0x142c
+      0004C8 D5               [16] 1324 	push	de
+      0004C9 11 03 23         [12] 1325 	ld	de, #0x2303
+      0004CC D5               [16] 1326 	push	de
+      0004CD 5D               [ 4] 1327 	ld	e, l
+      0004CE 54               [ 4] 1328 	ld	d, h
+      0004CF CDrB1r02         [24] 1329 	call	_progressbar
+                           0004D2  1330 	C$map.c$202$1_0$288	= .
+                                   1331 	.globl	C$map.c$202$1_0$288
+                                   1332 ;src/map.c:202: }
+                           0004D2  1333 	C$map.c$202$1_0$288	= .
+                                   1334 	.globl	C$map.c$202$1_0$288
+                           0004D2  1335 	XG$draw_fuel$0$0	= .
+                                   1336 	.globl	XG$draw_fuel$0$0
+      0004D2 C9               [16] 1337 	ret
+                           0004D3  1338 	G$draw_hull$0$0	= .
+                                   1339 	.globl	G$draw_hull$0$0
+                           0004D3  1340 	C$map.c$203$1_0$290	= .
+                                   1341 	.globl	C$map.c$203$1_0$290
+                                   1342 ;src/map.c:203: void draw_hull(void){
+                                   1343 ;	---------------------------------
+                                   1344 ; Function draw_hull
+                                   1345 ; ---------------------------------
+      0004D3                       1346 _draw_hull::
+                           0004D3  1347 	C$map.c$204$1_0$290	= .
+                                   1348 	.globl	C$map.c$204$1_0$290
+                                   1349 ;src/map.c:204: progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+      0004D3 21r4Br00         [12] 1350 	ld	hl, #_player + 75
+      0004D6 2A               [ 8] 1351 	ld	a, (hl+)
+      0004D7 4F               [ 4] 1352 	ld	c, a
+      0004D8 46               [ 8] 1353 	ld	b, (hl)
+      0004D9 21r49r00         [12] 1354 	ld	hl, #_player + 73
+      0004DC 2A               [ 8] 1355 	ld	a,	(hl+)
+      0004DD 66               [ 8] 1356 	ld	h, (hl)
+                                   1357 ;	spillPairReg hl
+      0004DE 6F               [ 4] 1358 	ld	l, a
+                                   1359 ;	spillPairReg hl
+                                   1360 ;	spillPairReg hl
+      0004DF 11 0C 14         [12] 1361 	ld	de, #0x140c
+      0004E2 D5               [16] 1362 	push	de
+      0004E3 11 02 20         [12] 1363 	ld	de, #0x2002
+      0004E6 D5               [16] 1364 	push	de
+      0004E7 5D               [ 4] 1365 	ld	e, l
+      0004E8 54               [ 4] 1366 	ld	d, h
+      0004E9 CDrB1r02         [24] 1367 	call	_progressbar
+                           0004EC  1368 	C$map.c$205$1_0$290	= .
+                                   1369 	.globl	C$map.c$205$1_0$290
+                                   1370 ;src/map.c:205: }
+                           0004EC  1371 	C$map.c$205$1_0$290	= .
+                                   1372 	.globl	C$map.c$205$1_0$290
+                           0004EC  1373 	XG$draw_hull$0$0	= .
+                                   1374 	.globl	XG$draw_hull$0$0
+      0004EC C9               [16] 1375 	ret
+                           0004ED  1376 	G$draw_character$0$0	= .
+                                   1377 	.globl	G$draw_character$0$0
+                           0004ED  1378 	C$map.c$208$1_0$292	= .
+                                   1379 	.globl	C$map.c$208$1_0$292
+                                   1380 ;src/map.c:208: void draw_character(void){
+                                   1381 ;	---------------------------------
+                                   1382 ; Function draw_character
+                                   1383 ; ---------------------------------
+      0004ED                       1384 _draw_character::
+                           0004ED  1385 	C$map.c$209$1_0$292	= .
+                                   1386 	.globl	C$map.c$209$1_0$292
+                                   1387 ;src/map.c:209: set_sprite_data(CHARSTART, 16, rover_tiles);
+      0004ED 11r00r00         [12] 1388 	ld	de, #_rover_tiles
+      0004F0 D5               [16] 1389 	push	de
+      0004F1 21 01 10         [12] 1390 	ld	hl, #0x1001
+      0004F4 E5               [16] 1391 	push	hl
+      0004F5 CDr00r00         [24] 1392 	call	_set_sprite_data
+      0004F8 E8 04            [16] 1393 	add	sp, #4
+                           0004FA  1394 	C$map.c$210$1_0$292	= .
+                                   1395 	.globl	C$map.c$210$1_0$292
+                                   1396 ;src/map.c:210: draw_metasprite(direction_prev);
+      0004FA 21r00r00         [12] 1397 	ld	hl, #_direction_prev
+      0004FD 7E               [ 8] 1398 	ld	a, (hl)
+                           0004FE  1399 	C$map.c$211$1_0$292	= .
+                                   1400 	.globl	C$map.c$211$1_0$292
+                                   1401 ;src/map.c:211: }
+                           0004FE  1402 	C$map.c$211$1_0$292	= .
+                                   1403 	.globl	C$map.c$211$1_0$292
+                           0004FE  1404 	XG$draw_character$0$0	= .
+                                   1405 	.globl	XG$draw_character$0$0
+      0004FE C3r00r00         [16] 1406 	jp	_draw_metasprite
+                           000501  1407 	G$init_nav$0$0	= .
+                                   1408 	.globl	G$init_nav$0$0
+                           000501  1409 	C$map.c$213$1_0$294	= .
+                                   1410 	.globl	C$map.c$213$1_0$294
+                                   1411 ;src/map.c:213: void init_nav(void){
+                                   1412 ;	---------------------------------
+                                   1413 ; Function init_nav
+                                   1414 ; ---------------------------------
+      000501                       1415 _init_nav::
+                           000501  1416 	C$map.c$214$1_0$294	= .
+                                   1417 	.globl	C$map.c$214$1_0$294
+                                   1418 ;src/map.c:214: set_win_tiles(0,0,20,3,nav_map);
+      000501 11r00r00         [12] 1419 	ld	de, #_nav_map
+      000504 D5               [16] 1420 	push	de
+      000505 21 14 03         [12] 1421 	ld	hl, #0x314
+      000508 E5               [16] 1422 	push	hl
+      000509 AF               [ 4] 1423 	xor	a, a
+      00050A 0F               [ 4] 1424 	rrca
+      00050B F5               [16] 1425 	push	af
+      00050C CDr00r00         [24] 1426 	call	_set_win_tiles
+      00050F E8 06            [16] 1427 	add	sp, #6
+                                   1428 ;/usr/local/opt/gbdk/include/gb/gb.h:1656: WX_REG=x, WY_REG=y;
+      000511 3E 07            [ 8] 1429 	ld	a, #0x07
+      000513 E0r00            [12] 1430 	ldh	(_WX_REG + 0), a
+      000515 AF               [ 4] 1431 	xor	a, a
+      000516 E0r00            [12] 1432 	ldh	(_WY_REG + 0), a
+                           000518  1433 	C$map.c$215$3_0$294	= .
+                                   1434 	.globl	C$map.c$215$3_0$294
+                                   1435 ;src/map.c:215: move_win(7, 0); //124
+                           000518  1436 	C$map.c$216$3_0$294	= .
+                                   1437 	.globl	C$map.c$216$3_0$294
+                                   1438 ;src/map.c:216: }
+                           000518  1439 	C$map.c$216$3_0$294	= .
+                                   1440 	.globl	C$map.c$216$3_0$294
+                           000518  1441 	XG$init_nav$0$0	= .
+                                   1442 	.globl	XG$init_nav$0$0
+      000518 C9               [16] 1443 	ret
+                           000519  1444 	G$init_tiles$0$0	= .
+                                   1445 	.globl	G$init_tiles$0$0
+                           000519  1446 	C$map.c$218$3_0$299	= .
+                                   1447 	.globl	C$map.c$218$3_0$299
+                                   1448 ;src/map.c:218: void init_tiles(void){
+                                   1449 ;	---------------------------------
+                                   1450 ; Function init_tiles
+                                   1451 ; ---------------------------------
+      000519                       1452 _init_tiles::
+                           000519  1453 	C$map.c$219$1_0$299	= .
+                                   1454 	.globl	C$map.c$219$1_0$299
+                                   1455 ;src/map.c:219: set_bkg_data(TILESTART, 28, tile_tiles);
+      000519 11r00r00         [12] 1456 	ld	de, #_tile_tiles
+      00051C D5               [16] 1457 	push	de
+      00051D 21 5C 1C         [12] 1458 	ld	hl, #0x1c5c
+      000520 E5               [16] 1459 	push	hl
+      000521 CDr00r00         [24] 1460 	call	_set_bkg_data
+      000524 E8 04            [16] 1461 	add	sp, #4
+                           000526  1462 	C$map.c$220$1_0$299	= .
+                                   1463 	.globl	C$map.c$220$1_0$299
+                                   1464 ;src/map.c:220: set_bkg_data(NAVSTART, nav_TILE_COUNT, nav_tiles);
+      000526 11r00r00         [12] 1465 	ld	de, #_nav_tiles
+      000529 D5               [16] 1466 	push	de
+      00052A 21 80 0C         [12] 1467 	ld	hl, #0xc80
+      00052D E5               [16] 1468 	push	hl
+      00052E CDr00r00         [24] 1469 	call	_set_bkg_data
+      000531 E8 04            [16] 1470 	add	sp, #4
+                           000533  1471 	C$map.c$221$1_0$299	= .
+                                   1472 	.globl	C$map.c$221$1_0$299
+                                   1473 ;src/map.c:221: set_4bkg_tiles(level_array, 0, 0, 16, 16);
+      000533 21 10 10         [12] 1474 	ld	hl, #0x1010
+      000536 E5               [16] 1475 	push	hl
+      000537 AF               [ 4] 1476 	xor	a, a
+      000538 F5               [16] 1477 	push	af
+      000539 33               [ 8] 1478 	inc	sp
+      00053A AF               [ 4] 1479 	xor	a, a
+      00053B 11r00r00         [12] 1480 	ld	de, #_level_array
+      00053E CDr66r00         [24] 1481 	call	_set_4bkg_tiles
+                           000541  1482 	C$map.c$222$1_0$299	= .
+                                   1483 	.globl	C$map.c$222$1_0$299
+                                   1484 ;src/map.c:222: }
+                           000541  1485 	C$map.c$222$1_0$299	= .
+                                   1486 	.globl	C$map.c$222$1_0$299
+                           000541  1487 	XG$init_tiles$0$0	= .
+                                   1488 	.globl	XG$init_tiles$0$0
+      000541 C9               [16] 1489 	ret
+                           000542  1490 	G$init_progressbar$0$0	= .
+                                   1491 	.globl	G$init_progressbar$0$0
+                           000542  1492 	C$map.c$224$1_0$301	= .
+                                   1493 	.globl	C$map.c$224$1_0$301
+                                   1494 ;src/map.c:224: void init_progressbar(void){
+                                   1495 ;	---------------------------------
+                                   1496 ; Function init_progressbar
+                                   1497 ; ---------------------------------
+      000542                       1498 _init_progressbar::
+                           000542  1499 	C$map.c$225$1_0$301	= .
+                                   1500 	.globl	C$map.c$225$1_0$301
+                                   1501 ;src/map.c:225: set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
+      000542 11r00r00         [12] 1502 	ld	de, #_progressbar_tiles
+      000545 D5               [16] 1503 	push	de
+      000546 21 20 09         [12] 1504 	ld	hl, #0x920
+      000549 E5               [16] 1505 	push	hl
+      00054A CDr00r00         [24] 1506 	call	_set_sprite_data
+      00054D E8 04            [16] 1507 	add	sp, #4
+                           00054F  1508 	C$map.c$226$1_0$301	= .
+                                   1509 	.globl	C$map.c$226$1_0$301
+                                   1510 ;src/map.c:226: progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+      00054F 21r4Br00         [12] 1511 	ld	hl, #_player + 75
+      000552 2A               [ 8] 1512 	ld	a, (hl+)
+      000553 4F               [ 4] 1513 	ld	c, a
+      000554 46               [ 8] 1514 	ld	b, (hl)
+      000555 21r49r00         [12] 1515 	ld	hl, #_player + 73
+      000558 2A               [ 8] 1516 	ld	a,	(hl+)
+      000559 66               [ 8] 1517 	ld	h, (hl)
+                                   1518 ;	spillPairReg hl
+      00055A 6F               [ 4] 1519 	ld	l, a
+                                   1520 ;	spillPairReg hl
+                                   1521 ;	spillPairReg hl
+      00055B 11 0C 14         [12] 1522 	ld	de, #0x140c
+      00055E D5               [16] 1523 	push	de
+      00055F 11 02 20         [12] 1524 	ld	de, #0x2002
+      000562 D5               [16] 1525 	push	de
+      000563 5D               [ 4] 1526 	ld	e, l
+      000564 54               [ 4] 1527 	ld	d, h
+      000565 CDrB1r02         [24] 1528 	call	_progressbar
+                           000568  1529 	C$map.c$227$1_0$301	= .
+                                   1530 	.globl	C$map.c$227$1_0$301
+                                   1531 ;src/map.c:227: }
+                           000568  1532 	C$map.c$227$1_0$301	= .
+                                   1533 	.globl	C$map.c$227$1_0$301
+                           000568  1534 	XG$init_progressbar$0$0	= .
+                                   1535 	.globl	XG$init_progressbar$0$0
+      000568 C9               [16] 1536 	ret
+                                   1537 	.area _CODE_1
+                                   1538 	.area _INITIALIZER
+                                   1539 	.area _CABS (ABS)

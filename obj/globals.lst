@@ -1,0 +1,182 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.2 #14228 (Mac OS X x86_64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module globals
+                                      6 	.optsdcc -msm83
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _prev_buttons
+                                     12 	.globl _tile_mined
+                                     13 	.globl _base_drilltime
+                                     14 	.globl _velocity
+                                     15 	.globl _animation_frames_left
+                                     16 	.globl _width_offset
+                                     17 	.globl _depth_offset
+                                     18 	.globl _width
+                                     19 	.globl _depth
+                                     20 	.globl _currentGameState
+                                     21 	.globl _player_alive
+                                     22 	.globl _left_sell_area
+                                     23 	.globl _left_shop_area
+                                     24 	.globl _update_menu
+                                     25 	.globl _frame_counter
+                                     26 	.globl _next_tile_right
+                                     27 	.globl _next_tile_left
+                                     28 	.globl _next_tile_down
+                                     29 	.globl _next_tile_up
+                                     30 	.globl _next_tile
+                                     31 	.globl _buttons
+                                     32 	.globl _is_drilling
+                                     33 	.globl _direction_prev
+                                     34 	.globl _direction_now
+                                     35 	.globl _scroll_y_per_frame
+                                     36 	.globl _scroll_x_per_frame
+                                     37 	.globl _move_y_per_frame
+                                     38 	.globl _move_x_per_frame
+                                     39 	.globl _ore_resistance
+                                     40 	.globl _scroll_y
+                                     41 	.globl _scroll_x
+                                     42 	.globl _width_pixel
+                                     43 	.globl _depth_pixel
+                                     44 	.globl _prev_width
+                                     45 	.globl _prev_depth
+                                     46 	.globl _saved_bank
+                                     47 ;--------------------------------------------------------
+                                     48 ; special function registers
+                                     49 ;--------------------------------------------------------
+                                     50 ;--------------------------------------------------------
+                                     51 ; ram data
+                                     52 ;--------------------------------------------------------
+                                     53 	.area _DATA
+      000000                         54 _saved_bank::
+      000000                         55 	.ds 1
+      000001                         56 _prev_depth::
+      000001                         57 	.ds 1
+      000002                         58 _prev_width::
+      000002                         59 	.ds 1
+      000003                         60 _depth_pixel::
+      000003                         61 	.ds 2
+      000005                         62 _width_pixel::
+      000005                         63 	.ds 2
+      000007                         64 _scroll_x::
+      000007                         65 	.ds 2
+      000009                         66 _scroll_y::
+      000009                         67 	.ds 2
+      00000B                         68 _ore_resistance::
+      00000B                         69 	.ds 2
+      00000D                         70 _move_x_per_frame::
+      00000D                         71 	.ds 2
+      00000F                         72 _move_y_per_frame::
+      00000F                         73 	.ds 2
+      000011                         74 _scroll_x_per_frame::
+      000011                         75 	.ds 2
+      000013                         76 _scroll_y_per_frame::
+      000013                         77 	.ds 2
+      000015                         78 _direction_now::
+      000015                         79 	.ds 1
+      000016                         80 _direction_prev::
+      000016                         81 	.ds 1
+      000017                         82 _is_drilling::
+      000017                         83 	.ds 1
+      000018                         84 _buttons::
+      000018                         85 	.ds 1
+      000019                         86 _next_tile::
+      000019                         87 	.ds 1
+      00001A                         88 _next_tile_up::
+      00001A                         89 	.ds 1
+      00001B                         90 _next_tile_down::
+      00001B                         91 	.ds 1
+      00001C                         92 _next_tile_left::
+      00001C                         93 	.ds 1
+      00001D                         94 _next_tile_right::
+      00001D                         95 	.ds 1
+                                     96 ;--------------------------------------------------------
+                                     97 ; ram data
+                                     98 ;--------------------------------------------------------
+                                     99 	.area _INITIALIZED
+      000000                        100 _frame_counter::
+      000000                        101 	.ds 1
+      000001                        102 _update_menu::
+      000001                        103 	.ds 1
+      000002                        104 _left_shop_area::
+      000002                        105 	.ds 1
+      000003                        106 _left_sell_area::
+      000003                        107 	.ds 1
+      000004                        108 _player_alive::
+      000004                        109 	.ds 1
+      000005                        110 _currentGameState::
+      000005                        111 	.ds 1
+      000006                        112 _depth::
+      000006                        113 	.ds 1
+      000007                        114 _width::
+      000007                        115 	.ds 1
+      000008                        116 _depth_offset::
+      000008                        117 	.ds 1
+      000009                        118 _width_offset::
+      000009                        119 	.ds 1
+      00000A                        120 _animation_frames_left::
+      00000A                        121 	.ds 1
+      00000B                        122 _velocity::
+      00000B                        123 	.ds 1
+      00000C                        124 _base_drilltime::
+      00000C                        125 	.ds 1
+      00000D                        126 _tile_mined::
+      00000D                        127 	.ds 1
+      00000E                        128 _prev_buttons::
+      00000E                        129 	.ds 1
+                                    130 ;--------------------------------------------------------
+                                    131 ; absolute external ram data
+                                    132 ;--------------------------------------------------------
+                                    133 	.area _DABS (ABS)
+                                    134 ;--------------------------------------------------------
+                                    135 ; global & static initialisations
+                                    136 ;--------------------------------------------------------
+                                    137 	.area _HOME
+                                    138 	.area _GSINIT
+                                    139 	.area _GSFINAL
+                                    140 	.area _GSINIT
+                                    141 ;--------------------------------------------------------
+                                    142 ; Home
+                                    143 ;--------------------------------------------------------
+                                    144 	.area _HOME
+                                    145 	.area _HOME
+                                    146 ;--------------------------------------------------------
+                                    147 ; code
+                                    148 ;--------------------------------------------------------
+                                    149 	.area _CODE
+                                    150 	.area _CODE
+                                    151 	.area _INITIALIZER
+      000000                        152 __xinit__frame_counter:
+      000000 00                     153 	.db #0x00	; 0
+      000001                        154 __xinit__update_menu:
+      000001 01                     155 	.db #0x01	;  1
+      000002                        156 __xinit__left_shop_area:
+      000002 01                     157 	.db #0x01	;  1
+      000003                        158 __xinit__left_sell_area:
+      000003 01                     159 	.db #0x01	;  1
+      000004                        160 __xinit__player_alive:
+      000004 01                     161 	.db #0x01	;  1
+      000005                        162 __xinit__currentGameState:
+      000005 03                     163 	.db #0x03	; 3
+      000006                        164 __xinit__depth:
+      000006 02                     165 	.db #0x02	; 2
+      000007                        166 __xinit__width:
+      000007 06                     167 	.db #0x06	; 6
+      000008                        168 __xinit__depth_offset:
+      000008 00                     169 	.db #0x00	; 0
+      000009                        170 __xinit__width_offset:
+      000009 00                     171 	.db #0x00	; 0
+      00000A                        172 __xinit__animation_frames_left:
+      00000A 00                     173 	.db #0x00	; 0
+      00000B                        174 __xinit__velocity:
+      00000B 00                     175 	.db #0x00	;  0
+      00000C                        176 __xinit__base_drilltime:
+      00000C 10                     177 	.db #0x10	; 16
+      00000D                        178 __xinit__tile_mined:
+      00000D 00                     179 	.db #0x00	;  0
+      00000E                        180 __xinit__prev_buttons:
+      00000E 00                     181 	.db #0x00	; 0
+                                    182 	.area _CABS (ABS)

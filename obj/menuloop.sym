@@ -1,0 +1,130 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 1
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+  0 A$menuloop$100                                                 000028 GR
+  0 A$menuloop$101                                                 000029 GR
+  0 A$menuloop$105                                                 00002C GR
+  0 A$menuloop$106                                                 00002F GR
+  0 A$menuloop$110                                                 000032 GR
+  0 A$menuloop$111                                                 000035 GR
+  0 A$menuloop$112                                                 000037 GR
+  0 A$menuloop$116                                                 000039 GR
+  0 A$menuloop$117                                                 00003C GR
+  0 A$menuloop$118                                                 00003E GR
+  0 A$menuloop$119                                                 00003F GR
+  0 A$menuloop$123                                                 000041 GR
+  0 A$menuloop$127                                                 000044 GR
+  0 A$menuloop$131                                                 000047 GR
+  0 A$menuloop$132                                                 00004A GR
+  0 A$menuloop$137                                                 00004C GR
+  0 A$menuloop$138                                                 00004F GR
+  0 A$menuloop$139                                                 000052 GR
+  0 A$menuloop$142                                                 000053 GR
+  0 A$menuloop$145                                                 000055 GR
+  0 A$menuloop$146                                                 000056 GR
+  0 A$menuloop$147                                                 000057 GR
+  0 A$menuloop$148                                                 000058 GR
+  0 A$menuloop$149                                                 000059 GR
+  0 A$menuloop$150                                                 00005A GR
+  0 A$menuloop$151                                                 00005D GR
+  0 A$menuloop$152                                                 00005E GR
+  0 A$menuloop$153                                                 00005F GR
+  0 A$menuloop$154                                                 000060 GR
+  0 A$menuloop$158                                                 000061 GR
+  0 A$menuloop$162                                                 000064 GR
+  0 A$menuloop$166                                                 000067 GR
+  0 A$menuloop$171                                                 00006A GR
+  0 A$menuloop$172                                                 00006D GR
+  0 A$menuloop$177                                                 00006F GR
+  0 A$menuloop$178                                                 000072 GR
+  0 A$menuloop$179                                                 000075 GR
+  0 A$menuloop$190                                                 000076 GR
+  0 A$menuloop$65                                                  000000 GR
+  0 A$menuloop$69                                                  000003 GR
+  0 A$menuloop$70                                                  000006 GR
+  0 A$menuloop$71                                                  000009 GR
+  0 A$menuloop$72                                                  00000A GR
+  0 A$menuloop$76                                                  00000C GR
+  0 A$menuloop$77                                                  00000F GR
+  0 A$menuloop$78                                                  000010 GR
+  0 A$menuloop$79                                                  000011 GR
+  0 A$menuloop$80                                                  000012 GR
+  0 A$menuloop$81                                                  000015 GR
+  0 A$menuloop$85                                                  000018 GR
+  0 A$menuloop$86                                                  00001B GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+  0 A$menuloop$91                                                  00001D GR
+  0 A$menuloop$92                                                  000020 GR
+  0 A$menuloop$93                                                  000021 GR
+  0 A$menuloop$97                                                  000023 GR
+  0 A$menuloop$98                                                  000026 GR
+  0 A$menuloop$99                                                  000027 GR
+  0 C$menuloop.c$10$1_0$179                                     =  000000 GR
+  0 C$menuloop.c$13$1_0$179                                     =  000003 GR
+  0 C$menuloop.c$14$2_0$180                                     =  00000C GR
+  0 C$menuloop.c$15$2_0$180                                     =  000018 GR
+  0 C$menuloop.c$18$1_0$179                                     =  00001D GR
+  0 C$menuloop.c$19$2_0$181                                     =  000023 GR
+  0 C$menuloop.c$20$2_0$181                                     =  00002C GR
+  0 C$menuloop.c$23$2_0$181                                     =  000032 GR
+  0 C$menuloop.c$24$3_0$182                                     =  000039 GR
+  0 C$menuloop.c$25$3_0$182                                     =  000041 GR
+  0 C$menuloop.c$26$3_0$182                                     =  000044 GR
+  0 C$menuloop.c$27$3_0$182                                     =  000047 GR
+  0 C$menuloop.c$29$3_0$183                                     =  00004C GR
+  0 C$menuloop.c$30$3_0$183                                     =  000061 GR
+  0 C$menuloop.c$31$3_0$183                                     =  000064 GR
+  0 C$menuloop.c$32$3_0$183                                     =  000067 GR
+  0 C$menuloop.c$35$2_0$181                                     =  00006A GR
+  0 C$menuloop.c$38$1_0$179                                     =  00006F GR
+  0 C$menuloop.c$39$1_0$179                                     =  000076 GR
+  0 C$menuloop.c$41$1_0$179                                     =  000076 GR
+  0 C$menuloop.c$8$0_0$179                                      =  000000 GR
+  0 G$shop_menu_loop$0$0                                        =  000000 GR
+  0 XG$shop_menu_loop$0$0                                       =  000076 GR
+    _buttons                                                       ****** GX
+    _change_main_shop_tile_palettes                                ****** GX
+    _change_sub_shop_tile_palettes                                 ****** GX
+    _currentMenu                                                   ****** GX
+    _currentState                                                  ****** GX
+    _displayMenu                                                   ****** GX
+    _handleInput                                                   ****** GX
+    _load_main_shop_tiles                                          ****** GX
+    _load_sub_shop_tiles                                           ****** GX
+    _main_menu                                                     ****** GX
+    _menu_numbers                                                  ****** GX
+    _prev_buttons                                                  ****** GX
+    _read_buttons                                                  ****** GX
+  0 _shop_menu_loop                                                000000 GR
+    _update_menu                                                   ****** GX
+    _update_upgrade_tick                                           ****** GX
+    _wait_vbl_done                                                 ****** GX
+    _write_main_shop_text                                          ****** GX
+    _write_sub_shop_text                                           ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 3
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size     79   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size      0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size      0   flags    0
+   8 _CABS                                      size      0   flags    8
+

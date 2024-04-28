@@ -1,0 +1,74 @@
+XL3
+H 9 areas D global symbols
+M palettes
+O -msm83
+S .__.ABS. Def000000
+A _CODE size 60 flags 0 addr 0
+S _palette_purple Def000058
+S _palette_yellow Def000050
+S _palette_default Def000000
+S _palette_blue Def000048
+S _palette_light_grey Def000008
+S _palette_button_passive Def000020
+S _palette_grey Def000010
+S _palette_button_active Def000018
+S _palette_red Def000028
+S _palette_dark_red Def000030
+S _palette_orange Def000038
+S _palette_green Def000040
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 00
+T 00 00 00 FF 7F B5 56 4A 29 00 00
+R 00 00 00 00
+T 08 00 00
+R 00 00 00 00
+T 08 00 00 FF 7F 9C 73 9C 73 5A 6B
+R 00 00 00 00
+T 10 00 00
+R 00 00 00 00
+T 10 00 00 FF 7F 94 52 10 42 08 21
+R 00 00 00 00
+T 18 00 00
+R 00 00 00 00
+T 18 00 00 FF 7F DE 2A 7B 16 FF 6F
+R 00 00 00 00
+T 20 00 00
+R 00 00 00 00
+T 20 00 00 FF 7F 73 19 EE 10 00 04
+R 00 00 00 00
+T 28 00 00
+R 00 00 00 00
+T 28 00 00 FF 7F 94 52 1A 00 08 21
+R 00 00 00 00
+T 30 00 00
+R 00 00 00 00
+T 30 00 00 FF 7F 94 52 B4 14 08 21
+R 00 00 00 00
+T 38 00 00
+R 00 00 00 00
+T 38 00 00 FF 7F 94 52 7F 01 08 21
+R 00 00 00 00
+T 40 00 00
+R 00 00 00 00
+T 40 00 00 FF 7F EC 33 06 1B 08 21
+R 00 00 00 00
+T 48 00 00
+R 00 00 00 00
+T 48 00 00 FF 7F 94 52 8C 66 08 21
+R 00 00 00 00
+T 50 00 00
+R 00 00 00 00
+T 50 00 00 FF 63 FF 33 18 1B 10 02
+R 00 00 00 00
+T 58 00 00
+R 00 00 00 00
+T 58 00 00 1F 7F 98 7D D0 60 0C 40
+R 00 00 00 00

@@ -1,0 +1,62 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 1
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+  0 ___str_0                                                       000181 R
+  0 ___str_1                                                       000187 R
+  0 ___str_10                                                      0001B9 R
+  0 ___str_11                                                      0001C1 R
+  0 ___str_12                                                      0001CA R
+  0 ___str_13                                                      0001D3 R
+  0 ___str_14                                                      0001DC R
+  0 ___str_15                                                      0001E7 R
+  0 ___str_16                                                      0001F2 R
+  0 ___str_17                                                      0001FA R
+  0 ___str_18                                                      0001FF R
+  0 ___str_19                                                      000207 R
+  0 ___str_2                                                       00018C R
+  0 ___str_20                                                      00020C R
+  0 ___str_21                                                      000210 R
+  0 ___str_22                                                      000216 R
+  0 ___str_23                                                      00021F R
+  0 ___str_3                                                       000192 R
+  0 ___str_4                                                       000198 R
+  0 ___str_5                                                       00019D R
+  0 ___str_6                                                       0001A2 R
+  0 ___str_7                                                       0001A9 R
+  0 ___str_8                                                       0001AD R
+  0 ___str_9                                                       0001B4 R
+    __mulint                                                       ****** GX
+    __muluchar                                                     ****** GX
+  7 __xinit__materials                                             000000 R
+  0 _calculate_cargo                                               000078 GR
+    _currentGameState                                              ****** GX
+    _depth                                                         ****** GX
+    _level_array                                                   ****** GX
+  2 _materials                                                     000000 GR
+    _player                                                        ****** GX
+  0 _sell_all_ores                                                 0000D1 GR
+  0 _update_inventory                                              000000 GR
+    _width                                                         ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size    228   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size     C0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size     C0   flags    0
+   8 _CABS                                      size      0   flags    8
+

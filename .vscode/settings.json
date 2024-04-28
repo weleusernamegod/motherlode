@@ -1,0 +1,10 @@
+{
+    "emulicious-debugger.emuliciousPath": "/Applications/Emulicious/",
+    "files.associations": {
+        "inventory.h": "c",
+        "globals.h": "c",
+        "attributes.h": "c",
+        "shop.h": "c",
+        "constants.h": "c"
+    },
+}

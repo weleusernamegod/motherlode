@@ -1,0 +1,35 @@
+XL3
+H A areas 7 global symbols
+M buttonframe
+O -msm83
+S .__.ABS. Def000000
+S ___bank_buttonframe Def000002
+A _CODE size 0 flags 0 addr 0
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _CODE_2 size 40 flags 0 addr 0
+S G$__func_buttonframe$0$0 Def000000
+S _buttonframe_tiles Def000000
+S G$buttonframe_tiles$0_0$0 Def000000
+S ___func_buttonframe Def000000
+S C$buttonframe.c$9$0_0$161 Def000000
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 07 00
+T 00 00 00
+R 00 00 07 00
+T 00 00 00 00 FF 00 80 00 80 00 80 00 80 00 80 00
+R 00 00 07 00
+T 0D 00 00 80 00 80 00 FF 00 00 00 00 00 00 00 00
+R 00 00 07 00
+T 1A 00 00 00 00 00 00 00 00 00 01 00 01 00 01 00
+R 00 00 07 00
+T 27 00 00 01 00 01 00 01 00 01 00 01 00 01 00 03
+R 00 00 07 00
+T 34 00 00 01 06 02 8C 04 D8 88 70 50 20 20 00
+R 00 00 07 00

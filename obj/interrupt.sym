@@ -1,0 +1,42 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 1
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+    _LYC_REG                                                       ****** GX
+    _STAT_REG                                                      ****** GX
+    _WX_REG                                                        ****** GX
+    _WY_REG                                                        ****** GX
+    _add_LCD                                                       ****** GX
+    _add_VBL                                                       ****** GX
+    _frame_counter                                                 ****** GX
+  0 _init_disable_lcd_interrupt                                    00003F GR
+  0 _init_enable_lcd_interrupt                                     000024 GR
+  0 _init_framecounter                                             00001C GR
+  0 _interrupt_LCD                                                 000000 GR
+  0 _interrupt_VBL_framecounter                                    000010 GR
+  0 _interrupt_VBL_window                                          000008 GR
+    _remove_LCD                                                    ****** GX
+    _remove_VBL                                                    ****** GX
+    _set_interrupts                                                ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size     56   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size      0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size      0   flags    0
+   8 _CABS                                      size      0   flags    8
+

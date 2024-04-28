@@ -1,0 +1,254 @@
+XL3
+H 9 areas 25 global symbols
+M globals
+O -msm83
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A _DATA size 1E flags 0 addr 0
+S _width_pixel Def000005
+S _next_tile_down Def00001B
+S _scroll_x Def000007
+S _scroll_y Def000009
+S _prev_depth Def000001
+S _direction_now Def000015
+S _scroll_x_per_frame Def000011
+S _scroll_y_per_frame Def000013
+S _prev_width Def000002
+S _next_tile_right Def00001D
+S _next_tile Def000019
+S _saved_bank Def000000
+S _buttons Def000018
+S _is_drilling Def000017
+S _next_tile_up Def00001A
+S _depth_pixel Def000003
+S _ore_resistance Def00000B
+S _next_tile_left Def00001C
+S _direction_prev Def000016
+S _move_x_per_frame Def00000D
+S _move_y_per_frame Def00000F
+A _INITIALIZED size F flags 0 addr 0
+S _animation_frames_left Def00000A
+S _frame_counter Def000000
+S _prev_buttons Def00000E
+S _velocity Def00000B
+S _left_sell_area Def000003
+S _depth_offset Def000008
+S _left_shop_area Def000002
+S _player_alive Def000004
+S _currentGameState Def000005
+S _base_drilltime Def00000C
+S _width_offset Def000009
+S _depth Def000006
+S _update_menu Def000001
+S _tile_mined Def00000D
+S _width Def000007
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size F flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 01 00
+T 00 00 00
+R 00 00 01 00
+T 01 00 00
+R 00 00 01 00
+T 01 00 00
+R 00 00 01 00
+T 02 00 00
+R 00 00 01 00
+T 02 00 00
+R 00 00 01 00
+T 03 00 00
+R 00 00 01 00
+T 03 00 00
+R 00 00 01 00
+T 05 00 00
+R 00 00 01 00
+T 05 00 00
+R 00 00 01 00
+T 07 00 00
+R 00 00 01 00
+T 07 00 00
+R 00 00 01 00
+T 09 00 00
+R 00 00 01 00
+T 09 00 00
+R 00 00 01 00
+T 0B 00 00
+R 00 00 01 00
+T 0B 00 00
+R 00 00 01 00
+T 0D 00 00
+R 00 00 01 00
+T 0D 00 00
+R 00 00 01 00
+T 0F 00 00
+R 00 00 01 00
+T 0F 00 00
+R 00 00 01 00
+T 11 00 00
+R 00 00 01 00
+T 11 00 00
+R 00 00 01 00
+T 13 00 00
+R 00 00 01 00
+T 13 00 00
+R 00 00 01 00
+T 15 00 00
+R 00 00 01 00
+T 15 00 00
+R 00 00 01 00
+T 16 00 00
+R 00 00 01 00
+T 16 00 00
+R 00 00 01 00
+T 17 00 00
+R 00 00 01 00
+T 17 00 00
+R 00 00 01 00
+T 18 00 00
+R 00 00 01 00
+T 18 00 00
+R 00 00 01 00
+T 19 00 00
+R 00 00 01 00
+T 19 00 00
+R 00 00 01 00
+T 1A 00 00
+R 00 00 01 00
+T 1A 00 00
+R 00 00 01 00
+T 1B 00 00
+R 00 00 01 00
+T 1B 00 00
+R 00 00 01 00
+T 1C 00 00
+R 00 00 01 00
+T 1C 00 00
+R 00 00 01 00
+T 1D 00 00
+R 00 00 01 00
+T 1D 00 00
+R 00 00 01 00
+T 00 00 00
+R 00 00 02 00
+T 00 00 00
+R 00 00 02 00
+T 01 00 00
+R 00 00 02 00
+T 01 00 00
+R 00 00 02 00
+T 02 00 00
+R 00 00 02 00
+T 02 00 00
+R 00 00 02 00
+T 03 00 00
+R 00 00 02 00
+T 03 00 00
+R 00 00 02 00
+T 04 00 00
+R 00 00 02 00
+T 04 00 00
+R 00 00 02 00
+T 05 00 00
+R 00 00 02 00
+T 05 00 00
+R 00 00 02 00
+T 06 00 00
+R 00 00 02 00
+T 06 00 00
+R 00 00 02 00
+T 07 00 00
+R 00 00 02 00
+T 07 00 00
+R 00 00 02 00
+T 08 00 00
+R 00 00 02 00
+T 08 00 00
+R 00 00 02 00
+T 09 00 00
+R 00 00 02 00
+T 09 00 00
+R 00 00 02 00
+T 0A 00 00
+R 00 00 02 00
+T 0A 00 00
+R 00 00 02 00
+T 0B 00 00
+R 00 00 02 00
+T 0B 00 00
+R 00 00 02 00
+T 0C 00 00
+R 00 00 02 00
+T 0C 00 00
+R 00 00 02 00
+T 0D 00 00
+R 00 00 02 00
+T 0D 00 00
+R 00 00 02 00
+T 0E 00 00
+R 00 00 02 00
+T 0E 00 00
+R 00 00 02 00
+T 00 00 00
+R 00 00 07 00
+T 00 00 00 00
+R 00 00 07 00
+T 01 00 00
+R 00 00 07 00
+T 01 00 00 01
+R 00 00 07 00
+T 02 00 00
+R 00 00 07 00
+T 02 00 00 01
+R 00 00 07 00
+T 03 00 00
+R 00 00 07 00
+T 03 00 00 01
+R 00 00 07 00
+T 04 00 00
+R 00 00 07 00
+T 04 00 00 01
+R 00 00 07 00
+T 05 00 00
+R 00 00 07 00
+T 05 00 00 03
+R 00 00 07 00
+T 06 00 00
+R 00 00 07 00
+T 06 00 00 02
+R 00 00 07 00
+T 07 00 00
+R 00 00 07 00
+T 07 00 00 06
+R 00 00 07 00
+T 08 00 00
+R 00 00 07 00
+T 08 00 00 00
+R 00 00 07 00
+T 09 00 00
+R 00 00 07 00
+T 09 00 00 00
+R 00 00 07 00
+T 0A 00 00
+R 00 00 07 00
+T 0A 00 00 00
+R 00 00 07 00
+T 0B 00 00
+R 00 00 07 00
+T 0B 00 00 00
+R 00 00 07 00
+T 0C 00 00
+R 00 00 07 00
+T 0C 00 00 10
+R 00 00 07 00
+T 0D 00 00
+R 00 00 07 00
+T 0D 00 00 00
+R 00 00 07 00
+T 0E 00 00
+R 00 00 07 00
+T 0E 00 00 00
+R 00 00 07 00

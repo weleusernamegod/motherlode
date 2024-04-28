@@ -1,0 +1,1127 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.2 #14228 (Mac OS X x86_64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module attributes
+                                      6 	.optsdcc -msm83
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _attributes_numbers
+                                     12 	.globl _init_attributes
+                                     13 ;--------------------------------------------------------
+                                     14 ; special function registers
+                                     15 ;--------------------------------------------------------
+                                     16 ;--------------------------------------------------------
+                                     17 ; ram data
+                                     18 ;--------------------------------------------------------
+                                     19 	.area _DATA
+                                     20 ;--------------------------------------------------------
+                                     21 ; ram data
+                                     22 ;--------------------------------------------------------
+                                     23 	.area _INITIALIZED
+      000000                         24 _attributes_numbers::
+      000000                         25 	.ds 12
+                                     26 ;--------------------------------------------------------
+                                     27 ; absolute external ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area _DABS (ABS)
+                                     30 ;--------------------------------------------------------
+                                     31 ; global & static initialisations
+                                     32 ;--------------------------------------------------------
+                                     33 	.area _HOME
+                                     34 	.area _GSINIT
+                                     35 	.area _GSFINAL
+                                     36 	.area _GSINIT
+                                     37 ;--------------------------------------------------------
+                                     38 ; Home
+                                     39 ;--------------------------------------------------------
+                                     40 	.area _HOME
+                                     41 	.area _HOME
+                                     42 ;--------------------------------------------------------
+                                     43 ; code
+                                     44 ;--------------------------------------------------------
+                                     45 	.area _CODE
+                                     46 ;src/attributes.c:16: void init_attributes(void){
+                                     47 ;	---------------------------------
+                                     48 ; Function init_attributes
+                                     49 ; ---------------------------------
+      000000                         50 _init_attributes::
+                                     51 ;src/attributes.c:17: player.drill.attribute_name = "Drill";
+      000000 21r7Er00         [12]   52 	ld	hl, #(_player + 126)
+      000003 3Er6E            [ 8]   53 	ld	a, #<(___str_0)
+      000005 22               [ 8]   54 	ld	(hl+), a
+      000006 36s05            [12]   55 	ld	(hl), #>(___str_0)
+                                     56 ;src/attributes.c:18: player.drill.attribute_unit = "m/s";
+      000008 21r80r00         [12]   57 	ld	hl, #(_player + 128)
+      00000B 3Er74            [ 8]   58 	ld	a, #<(___str_1)
+      00000D 22               [ 8]   59 	ld	(hl+), a
+      00000E 36s05            [12]   60 	ld	(hl), #>(___str_1)
+                                     61 ;src/attributes.c:19: player.drill.current_value = 1;
+      000010 21r82r00         [12]   62 	ld	hl, #(_player + 130)
+      000013 3E 01            [ 8]   63 	ld	a, #0x01
+      000015 22               [ 8]   64 	ld	(hl+), a
+      000016 36 00            [12]   65 	ld	(hl), #0x00
+                                     66 ;src/attributes.c:20: player.drill.max_value = 1;
+      000018 21r84r00         [12]   67 	ld	hl, #(_player + 132)
+      00001B 3E 01            [ 8]   68 	ld	a, #0x01
+      00001D 22               [ 8]   69 	ld	(hl+), a
+      00001E 36 00            [12]   70 	ld	(hl), #0x00
+                                     71 ;src/attributes.c:21: player.drill.upgrade_level = 0;
+      000020 21r86r00         [12]   72 	ld	hl, #(_player + 134)
+      000023 36 00            [12]   73 	ld	(hl), #0x00
+                                     74 ;src/attributes.c:22: player.drill.upgrade_value[0] = 1;
+      000025 21r87r00         [12]   75 	ld	hl, #(_player + 135)
+      000028 3E 01            [ 8]   76 	ld	a, #0x01
+      00002A 22               [ 8]   77 	ld	(hl+), a
+      00002B 36 00            [12]   78 	ld	(hl), #0x00
+                                     79 ;src/attributes.c:23: player.drill.upgrade_value[1] = 2;
+      00002D 21r89r00         [12]   80 	ld	hl, #(_player + 137)
+      000030 3E 02            [ 8]   81 	ld	a, #0x02
+      000032 22               [ 8]   82 	ld	(hl+), a
+      000033 36 00            [12]   83 	ld	(hl), #0x00
+                                     84 ;src/attributes.c:24: player.drill.upgrade_value[2] = 4;    
+      000035 21r8Br00         [12]   85 	ld	hl, #(_player + 139)
+      000038 3E 04            [ 8]   86 	ld	a, #0x04
+      00003A 22               [ 8]   87 	ld	(hl+), a
+      00003B 36 00            [12]   88 	ld	(hl), #0x00
+                                     89 ;src/attributes.c:25: player.drill.upgrade_value[3] = 6;
+      00003D 21r8Dr00         [12]   90 	ld	hl, #(_player + 141)
+      000040 3E 06            [ 8]   91 	ld	a, #0x06
+      000042 22               [ 8]   92 	ld	(hl+), a
+      000043 36 00            [12]   93 	ld	(hl), #0x00
+                                     94 ;src/attributes.c:26: player.drill.upgrade_value[4] = 8;
+      000045 21r8Fr00         [12]   95 	ld	hl, #(_player + 143)
+      000048 3E 08            [ 8]   96 	ld	a, #0x08
+      00004A 22               [ 8]   97 	ld	(hl+), a
+      00004B 36 00            [12]   98 	ld	(hl), #0x00
+                                     99 ;src/attributes.c:27: player.drill.upgrade_value[5] = 10;
+      00004D 21r91r00         [12]  100 	ld	hl, #(_player + 145)
+      000050 3E 0A            [ 8]  101 	ld	a, #0x0a
+      000052 22               [ 8]  102 	ld	(hl+), a
+      000053 36 00            [12]  103 	ld	(hl), #0x00
+                                    104 ;src/attributes.c:28: player.drill.upgrade_cost[0] = 0;
+      000055 21r93r00         [12]  105 	ld	hl, #(_player + 147)
+      000058 AF               [ 4]  106 	xor	a, a
+      000059 22               [ 8]  107 	ld	(hl+), a
+      00005A 77               [ 8]  108 	ld	(hl), a
+                                    109 ;src/attributes.c:29: player.drill.upgrade_cost[1] = 2000;
+      00005B 21r95r00         [12]  110 	ld	hl, #(_player + 149)
+      00005E 36 D0            [12]  111 	ld	(hl), #0xd0
+      000060 23               [ 8]  112 	inc	hl
+      000061 36 07            [12]  113 	ld	(hl), #0x07
+                                    114 ;src/attributes.c:30: player.drill.upgrade_cost[2] = 5000;
+      000063 21r97r00         [12]  115 	ld	hl, #(_player + 151)
+      000066 36 88            [12]  116 	ld	(hl), #0x88
+      000068 23               [ 8]  117 	inc	hl
+      000069 36 13            [12]  118 	ld	(hl), #0x13
+                                    119 ;src/attributes.c:31: player.drill.upgrade_cost[3] = 8000;
+      00006B 21r99r00         [12]  120 	ld	hl, #(_player + 153)
+      00006E 36 40            [12]  121 	ld	(hl), #0x40
+      000070 23               [ 8]  122 	inc	hl
+      000071 36 1F            [12]  123 	ld	(hl), #0x1f
+                                    124 ;src/attributes.c:32: player.drill.upgrade_cost[4] = 10000;
+      000073 21r9Br00         [12]  125 	ld	hl, #(_player + 155)
+      000076 36 10            [12]  126 	ld	(hl), #0x10
+      000078 23               [ 8]  127 	inc	hl
+      000079 36 27            [12]  128 	ld	(hl), #0x27
+                                    129 ;src/attributes.c:33: player.drill.upgrade_cost[5] = 30000;
+      00007B 21r9Dr00         [12]  130 	ld	hl, #(_player + 157)
+      00007E 36 30            [12]  131 	ld	(hl), #0x30
+      000080 23               [ 8]  132 	inc	hl
+      000081 36 75            [12]  133 	ld	(hl), #0x75
+                                    134 ;src/attributes.c:34: player.drill.upgrade_name[0] = "Stock Drill";
+      000083 21r72r00         [12]  135 	ld	hl, #(_player + 114)
+      000086 36r78            [12]  136 	ld	(hl), #<(___str_2)
+      000088 23               [ 8]  137 	inc	hl
+      000089 36s05            [12]  138 	ld	(hl), #>(___str_2)
+                                    139 ;src/attributes.c:35: player.drill.upgrade_name[1] = "Iron Drill";
+      00008B 21r74r00         [12]  140 	ld	hl, #(_player + 116)
+      00008E 36r84            [12]  141 	ld	(hl), #<(___str_3)
+      000090 23               [ 8]  142 	inc	hl
+      000091 36s05            [12]  143 	ld	(hl), #>(___str_3)
+                                    144 ;src/attributes.c:36: player.drill.upgrade_name[2] = "Steel Drill";
+      000093 21r76r00         [12]  145 	ld	hl, #(_player + 118)
+      000096 36r8F            [12]  146 	ld	(hl), #<(___str_4)
+      000098 23               [ 8]  147 	inc	hl
+      000099 36s05            [12]  148 	ld	(hl), #>(___str_4)
+                                    149 ;src/attributes.c:37: player.drill.upgrade_name[3] = "Titanium Drill";
+      00009B 21r78r00         [12]  150 	ld	hl, #(_player + 120)
+      00009E 36r9B            [12]  151 	ld	(hl), #<(___str_5)
+      0000A0 23               [ 8]  152 	inc	hl
+      0000A1 36s05            [12]  153 	ld	(hl), #>(___str_5)
+                                    154 ;src/attributes.c:38: player.drill.upgrade_name[4] = "Diamond Drill";
+      0000A3 21r7Ar00         [12]  155 	ld	hl, #(_player + 122)
+      0000A6 36rAA            [12]  156 	ld	(hl), #<(___str_6)
+      0000A8 23               [ 8]  157 	inc	hl
+      0000A9 36s05            [12]  158 	ld	(hl), #>(___str_6)
+                                    159 ;src/attributes.c:39: player.drill.upgrade_name[5] = "Platinum Drill";
+      0000AB 21r7Cr00         [12]  160 	ld	hl, #(_player + 124)
+      0000AE 36rB8            [12]  161 	ld	(hl), #<(___str_7)
+      0000B0 23               [ 8]  162 	inc	hl
+      0000B1 36s05            [12]  163 	ld	(hl), #>(___str_7)
+                                    164 ;src/attributes.c:40: player.drill.color_palette[0] = palette_red;
+      0000B3 21r9Fr00         [12]  165 	ld	hl, #(_player + 159)
+      0000B6 36r00            [12]  166 	ld	(hl), #<(_palette_red)
+      0000B8 23               [ 8]  167 	inc	hl
+      0000B9 36s00            [12]  168 	ld	(hl), #>(_palette_red)
+                                    169 ;src/attributes.c:41: player.drill.color_palette[1] = palette_yellow;
+      0000BB 21rA1r00         [12]  170 	ld	hl, #(_player + 161)
+      0000BE 36r00            [12]  171 	ld	(hl), #<(_palette_yellow)
+      0000C0 23               [ 8]  172 	inc	hl
+      0000C1 36s00            [12]  173 	ld	(hl), #>(_palette_yellow)
+                                    174 ;src/attributes.c:42: player.drill.color_palette[2] = palette_orange;
+      0000C3 21rA3r00         [12]  175 	ld	hl, #(_player + 163)
+      0000C6 36r00            [12]  176 	ld	(hl), #<(_palette_orange)
+      0000C8 23               [ 8]  177 	inc	hl
+      0000C9 36s00            [12]  178 	ld	(hl), #>(_palette_orange)
+                                    179 ;src/attributes.c:43: player.drill.color_palette[3] = palette_red;
+      0000CB 21rA5r00         [12]  180 	ld	hl, #(_player + 165)
+      0000CE 36r00            [12]  181 	ld	(hl), #<(_palette_red)
+      0000D0 23               [ 8]  182 	inc	hl
+      0000D1 36s00            [12]  183 	ld	(hl), #>(_palette_red)
+                                    184 ;src/attributes.c:44: player.drill.color_palette[4] = palette_yellow;
+      0000D3 21rA7r00         [12]  185 	ld	hl, #(_player + 167)
+      0000D6 36r00            [12]  186 	ld	(hl), #<(_palette_yellow)
+      0000D8 23               [ 8]  187 	inc	hl
+      0000D9 36s00            [12]  188 	ld	(hl), #>(_palette_yellow)
+                                    189 ;src/attributes.c:45: player.drill.color_palette[5] = palette_orange;
+      0000DB 21rA9r00         [12]  190 	ld	hl, #(_player + 169)
+      0000DE 36r00            [12]  191 	ld	(hl), #<(_palette_orange)
+      0000E0 23               [ 8]  192 	inc	hl
+      0000E1 36s00            [12]  193 	ld	(hl), #>(_palette_orange)
+                                    194 ;src/attributes.c:47: player.hull.attribute_name = "Hull";
+      0000E3 21r45r00         [12]  195 	ld	hl, #(_player + 69)
+      0000E6 3ErC7            [ 8]  196 	ld	a, #<(___str_8)
+      0000E8 22               [ 8]  197 	ld	(hl+), a
+      0000E9 36s05            [12]  198 	ld	(hl), #>(___str_8)
+                                    199 ;src/attributes.c:48: player.hull.attribute_unit = "pt";
+      0000EB 21r47r00         [12]  200 	ld	hl, #(_player + 71)
+      0000EE 3ErCC            [ 8]  201 	ld	a, #<(___str_9)
+      0000F0 22               [ 8]  202 	ld	(hl+), a
+      0000F1 36s05            [12]  203 	ld	(hl), #>(___str_9)
+                                    204 ;src/attributes.c:49: player.hull.current_value = 20;
+      0000F3 21r49r00         [12]  205 	ld	hl, #(_player + 73)
+      0000F6 3E 14            [ 8]  206 	ld	a, #0x14
+      0000F8 22               [ 8]  207 	ld	(hl+), a
+      0000F9 36 00            [12]  208 	ld	(hl), #0x00
+                                    209 ;src/attributes.c:50: player.hull.max_value = 20;
+      0000FB 21r4Br00         [12]  210 	ld	hl, #(_player + 75)
+      0000FE 3E 14            [ 8]  211 	ld	a, #0x14
+      000100 22               [ 8]  212 	ld	(hl+), a
+      000101 36 00            [12]  213 	ld	(hl), #0x00
+                                    214 ;src/attributes.c:51: player.hull.upgrade_level = 0;
+      000103 21r4Dr00         [12]  215 	ld	hl, #(_player + 77)
+      000106 36 00            [12]  216 	ld	(hl), #0x00
+                                    217 ;src/attributes.c:52: player.hull.upgrade_value[0] = 17;
+      000108 21r4Er00         [12]  218 	ld	hl, #(_player + 78)
+      00010B 3E 11            [ 8]  219 	ld	a, #0x11
+      00010D 22               [ 8]  220 	ld	(hl+), a
+      00010E 36 00            [12]  221 	ld	(hl), #0x00
+                                    222 ;src/attributes.c:53: player.hull.upgrade_value[1] = 30;
+      000110 21r50r00         [12]  223 	ld	hl, #(_player + 80)
+      000113 3E 1E            [ 8]  224 	ld	a, #0x1e
+      000115 22               [ 8]  225 	ld	(hl+), a
+      000116 36 00            [12]  226 	ld	(hl), #0x00
+                                    227 ;src/attributes.c:54: player.hull.upgrade_value[2] = 50;
+      000118 21r52r00         [12]  228 	ld	hl, #(_player + 82)
+      00011B 3E 32            [ 8]  229 	ld	a, #0x32
+      00011D 22               [ 8]  230 	ld	(hl+), a
+      00011E 36 00            [12]  231 	ld	(hl), #0x00
+                                    232 ;src/attributes.c:55: player.hull.upgrade_value[3] = 80;
+      000120 21r54r00         [12]  233 	ld	hl, #(_player + 84)
+      000123 3E 50            [ 8]  234 	ld	a, #0x50
+      000125 22               [ 8]  235 	ld	(hl+), a
+      000126 36 00            [12]  236 	ld	(hl), #0x00
+                                    237 ;src/attributes.c:56: player.hull.upgrade_value[4] = 120;
+      000128 21r56r00         [12]  238 	ld	hl, #(_player + 86)
+      00012B 3E 78            [ 8]  239 	ld	a, #0x78
+      00012D 22               [ 8]  240 	ld	(hl+), a
+      00012E 36 00            [12]  241 	ld	(hl), #0x00
+                                    242 ;src/attributes.c:57: player.hull.upgrade_value[5] = 180;
+      000130 21r58r00         [12]  243 	ld	hl, #(_player + 88)
+      000133 3E B4            [ 8]  244 	ld	a, #0xb4
+      000135 22               [ 8]  245 	ld	(hl+), a
+      000136 36 00            [12]  246 	ld	(hl), #0x00
+                                    247 ;src/attributes.c:58: player.hull.upgrade_cost[0] = 0;
+      000138 21r5Ar00         [12]  248 	ld	hl, #(_player + 90)
+      00013B AF               [ 4]  249 	xor	a, a
+      00013C 22               [ 8]  250 	ld	(hl+), a
+      00013D 77               [ 8]  251 	ld	(hl), a
+                                    252 ;src/attributes.c:59: player.hull.upgrade_cost[1] = 750;
+      00013E 21r5Cr00         [12]  253 	ld	hl, #(_player + 92)
+      000141 36 EE            [12]  254 	ld	(hl), #0xee
+      000143 23               [ 8]  255 	inc	hl
+      000144 36 02            [12]  256 	ld	(hl), #0x02
+                                    257 ;src/attributes.c:60: player.hull.upgrade_cost[2] = 2000;
+      000146 21r5Er00         [12]  258 	ld	hl, #(_player + 94)
+      000149 36 D0            [12]  259 	ld	(hl), #0xd0
+      00014B 23               [ 8]  260 	inc	hl
+      00014C 36 07            [12]  261 	ld	(hl), #0x07
+                                    262 ;src/attributes.c:61: player.hull.upgrade_cost[3] = 5000;
+      00014E 21r60r00         [12]  263 	ld	hl, #(_player + 96)
+      000151 36 88            [12]  264 	ld	(hl), #0x88
+      000153 23               [ 8]  265 	inc	hl
+      000154 36 13            [12]  266 	ld	(hl), #0x13
+                                    267 ;src/attributes.c:62: player.hull.upgrade_cost[4] = 15000;
+      000156 21r62r00         [12]  268 	ld	hl, #(_player + 98)
+      000159 36 98            [12]  269 	ld	(hl), #0x98
+      00015B 23               [ 8]  270 	inc	hl
+      00015C 36 3A            [12]  271 	ld	(hl), #0x3a
+                                    272 ;src/attributes.c:63: player.hull.upgrade_cost[5] = 30000;
+      00015E 21r64r00         [12]  273 	ld	hl, #(_player + 100)
+      000161 36 30            [12]  274 	ld	(hl), #0x30
+      000163 23               [ 8]  275 	inc	hl
+      000164 36 75            [12]  276 	ld	(hl), #0x75
+                                    277 ;src/attributes.c:64: player.hull.upgrade_name[0] = "Stock Hull";
+      000166 21r39r00         [12]  278 	ld	hl, #(_player + 57)
+      000169 36rCF            [12]  279 	ld	(hl), #<(___str_10)
+      00016B 23               [ 8]  280 	inc	hl
+      00016C 36s05            [12]  281 	ld	(hl), #>(___str_10)
+                                    282 ;src/attributes.c:65: player.hull.upgrade_name[1] = "Iron Hull";
+      00016E 21r3Br00         [12]  283 	ld	hl, #(_player + 59)
+      000171 36rDA            [12]  284 	ld	(hl), #<(___str_11)
+      000173 23               [ 8]  285 	inc	hl
+      000174 36s05            [12]  286 	ld	(hl), #>(___str_11)
+                                    287 ;src/attributes.c:66: player.hull.upgrade_name[2] = "Bronze Hull";
+      000176 21r3Dr00         [12]  288 	ld	hl, #(_player + 61)
+      000179 36rE4            [12]  289 	ld	(hl), #<(___str_12)
+      00017B 23               [ 8]  290 	inc	hl
+      00017C 36s05            [12]  291 	ld	(hl), #>(___str_12)
+                                    292 ;src/attributes.c:67: player.hull.upgrade_name[3] = "Steel Hull";
+      00017E 21r3Fr00         [12]  293 	ld	hl, #(_player + 63)
+      000181 36rF0            [12]  294 	ld	(hl), #<(___str_13)
+      000183 23               [ 8]  295 	inc	hl
+      000184 36s05            [12]  296 	ld	(hl), #>(___str_13)
+                                    297 ;src/attributes.c:68: player.hull.upgrade_name[4] = "Platinum Hull";
+      000186 21r41r00         [12]  298 	ld	hl, #(_player + 65)
+      000189 36rFB            [12]  299 	ld	(hl), #<(___str_14)
+      00018B 23               [ 8]  300 	inc	hl
+      00018C 36s05            [12]  301 	ld	(hl), #>(___str_14)
+                                    302 ;src/attributes.c:69: player.hull.upgrade_name[5] = "Enegry Shield";
+      00018E 21r43r00         [12]  303 	ld	hl, #(_player + 67)
+      000191 36r09            [12]  304 	ld	(hl), #<(___str_15)
+      000193 23               [ 8]  305 	inc	hl
+      000194 36s06            [12]  306 	ld	(hl), #>(___str_15)
+                                    307 ;src/attributes.c:70: player.hull.color_palette[0] = palette_green;
+      000196 21r66r00         [12]  308 	ld	hl, #(_player + 102)
+      000199 36r00            [12]  309 	ld	(hl), #<(_palette_green)
+      00019B 23               [ 8]  310 	inc	hl
+      00019C 36s00            [12]  311 	ld	(hl), #>(_palette_green)
+                                    312 ;src/attributes.c:71: player.hull.color_palette[1] = palette_blue;
+      00019E 21r68r00         [12]  313 	ld	hl, #(_player + 104)
+      0001A1 36r00            [12]  314 	ld	(hl), #<(_palette_blue)
+      0001A3 23               [ 8]  315 	inc	hl
+      0001A4 36s00            [12]  316 	ld	(hl), #>(_palette_blue)
+                                    317 ;src/attributes.c:72: player.hull.color_palette[2] = palette_purple;
+      0001A6 21r6Ar00         [12]  318 	ld	hl, #(_player + 106)
+      0001A9 36r00            [12]  319 	ld	(hl), #<(_palette_purple)
+      0001AB 23               [ 8]  320 	inc	hl
+      0001AC 36s00            [12]  321 	ld	(hl), #>(_palette_purple)
+                                    322 ;src/attributes.c:73: player.hull.color_palette[3] = palette_green;
+      0001AE 21r6Cr00         [12]  323 	ld	hl, #(_player + 108)
+      0001B1 36r00            [12]  324 	ld	(hl), #<(_palette_green)
+      0001B3 23               [ 8]  325 	inc	hl
+      0001B4 36s00            [12]  326 	ld	(hl), #>(_palette_green)
+                                    327 ;src/attributes.c:74: player.hull.color_palette[4] = palette_blue;
+      0001B6 21r6Er00         [12]  328 	ld	hl, #(_player + 110)
+      0001B9 36r00            [12]  329 	ld	(hl), #<(_palette_blue)
+      0001BB 23               [ 8]  330 	inc	hl
+      0001BC 36s00            [12]  331 	ld	(hl), #>(_palette_blue)
+                                    332 ;src/attributes.c:75: player.hull.color_palette[5] = palette_purple;
+      0001BE 21r70r00         [12]  333 	ld	hl, #(_player + 112)
+      0001C1 36r00            [12]  334 	ld	(hl), #<(_palette_purple)
+      0001C3 23               [ 8]  335 	inc	hl
+      0001C4 36s00            [12]  336 	ld	(hl), #>(_palette_purple)
+                                    337 ;src/attributes.c:77: player.engine.attribute_name = "Engine";
+      0001C6 21r29r01         [12]  338 	ld	hl, #(_player + 297)
+      0001C9 3Er17            [ 8]  339 	ld	a, #<(___str_16)
+      0001CB 22               [ 8]  340 	ld	(hl+), a
+      0001CC 36s06            [12]  341 	ld	(hl), #>(___str_16)
+                                    342 ;src/attributes.c:78: player.engine.attribute_unit = "hp";
+      0001CE 21r2Br01         [12]  343 	ld	hl, #(_player + 299)
+      0001D1 3Er1E            [ 8]  344 	ld	a, #<(___str_17)
+      0001D3 22               [ 8]  345 	ld	(hl+), a
+      0001D4 36s06            [12]  346 	ld	(hl), #>(___str_17)
+                                    347 ;src/attributes.c:79: player.engine.current_value = 16;
+      0001D6 21r2Dr01         [12]  348 	ld	hl, #(_player + 301)
+      0001D9 3E 10            [ 8]  349 	ld	a, #0x10
+      0001DB 22               [ 8]  350 	ld	(hl+), a
+      0001DC 36 00            [12]  351 	ld	(hl), #0x00
+                                    352 ;src/attributes.c:80: player.engine.max_value = 16;
+      0001DE 21r2Fr01         [12]  353 	ld	hl, #(_player + 303)
+      0001E1 3E 10            [ 8]  354 	ld	a, #0x10
+      0001E3 22               [ 8]  355 	ld	(hl+), a
+      0001E4 36 00            [12]  356 	ld	(hl), #0x00
+                                    357 ;src/attributes.c:81: player.engine.upgrade_level = 0;
+      0001E6 21r31r01         [12]  358 	ld	hl, #(_player + 305)
+      0001E9 36 00            [12]  359 	ld	(hl), #0x00
+                                    360 ;src/attributes.c:82: player.engine.upgrade_value[0] = 16;
+      0001EB 21r32r01         [12]  361 	ld	hl, #(_player + 306)
+      0001EE 3E 10            [ 8]  362 	ld	a, #0x10
+      0001F0 22               [ 8]  363 	ld	(hl+), a
+      0001F1 36 00            [12]  364 	ld	(hl), #0x00
+                                    365 ;src/attributes.c:83: player.engine.upgrade_value[1] = 18;
+      0001F3 21r34r01         [12]  366 	ld	hl, #(_player + 308)
+      0001F6 3E 12            [ 8]  367 	ld	a, #0x12
+      0001F8 22               [ 8]  368 	ld	(hl+), a
+      0001F9 36 00            [12]  369 	ld	(hl), #0x00
+                                    370 ;src/attributes.c:84: player.engine.upgrade_value[2] = 21;
+      0001FB 21r36r01         [12]  371 	ld	hl, #(_player + 310)
+      0001FE 3E 15            [ 8]  372 	ld	a, #0x15
+      000200 22               [ 8]  373 	ld	(hl+), a
+      000201 36 00            [12]  374 	ld	(hl), #0x00
+                                    375 ;src/attributes.c:85: player.engine.upgrade_value[3] = 25;
+      000203 21r38r01         [12]  376 	ld	hl, #(_player + 312)
+      000206 3E 19            [ 8]  377 	ld	a, #0x19
+      000208 22               [ 8]  378 	ld	(hl+), a
+      000209 36 00            [12]  379 	ld	(hl), #0x00
+                                    380 ;src/attributes.c:86: player.engine.upgrade_value[4] = 32;
+      00020B 21r3Ar01         [12]  381 	ld	hl, #(_player + 314)
+      00020E 3E 20            [ 8]  382 	ld	a, #0x20
+      000210 22               [ 8]  383 	ld	(hl+), a
+      000211 36 00            [12]  384 	ld	(hl), #0x00
+                                    385 ;src/attributes.c:87: player.engine.upgrade_value[5] = 40;
+      000213 21r3Cr01         [12]  386 	ld	hl, #(_player + 316)
+      000216 3E 28            [ 8]  387 	ld	a, #0x28
+      000218 22               [ 8]  388 	ld	(hl+), a
+      000219 36 00            [12]  389 	ld	(hl), #0x00
+                                    390 ;src/attributes.c:88: player.engine.upgrade_cost[0] = 0;
+      00021B 21r3Er01         [12]  391 	ld	hl, #(_player + 318)
+      00021E AF               [ 4]  392 	xor	a, a
+      00021F 22               [ 8]  393 	ld	(hl+), a
+      000220 77               [ 8]  394 	ld	(hl), a
+                                    395 ;src/attributes.c:89: player.engine.upgrade_cost[1] = 750;
+      000221 21r40r01         [12]  396 	ld	hl, #(_player + 320)
+      000224 36 EE            [12]  397 	ld	(hl), #0xee
+      000226 23               [ 8]  398 	inc	hl
+      000227 36 02            [12]  399 	ld	(hl), #0x02
+                                    400 ;src/attributes.c:90: player.engine.upgrade_cost[2] = 2000;
+      000229 21r42r01         [12]  401 	ld	hl, #(_player + 322)
+      00022C 36 D0            [12]  402 	ld	(hl), #0xd0
+      00022E 23               [ 8]  403 	inc	hl
+      00022F 36 07            [12]  404 	ld	(hl), #0x07
+                                    405 ;src/attributes.c:91: player.engine.upgrade_cost[3] = 5000;
+      000231 21r44r01         [12]  406 	ld	hl, #(_player + 324)
+      000234 36 88            [12]  407 	ld	(hl), #0x88
+      000236 23               [ 8]  408 	inc	hl
+      000237 36 13            [12]  409 	ld	(hl), #0x13
+                                    410 ;src/attributes.c:92: player.engine.upgrade_cost[4] = 20000;
+      000239 21r46r01         [12]  411 	ld	hl, #(_player + 326)
+      00023C 36 20            [12]  412 	ld	(hl), #0x20
+      00023E 23               [ 8]  413 	inc	hl
+      00023F 36 4E            [12]  414 	ld	(hl), #0x4e
+                                    415 ;src/attributes.c:93: player.engine.upgrade_cost[5] = 30000;
+      000241 21r48r01         [12]  416 	ld	hl, #(_player + 328)
+      000244 36 30            [12]  417 	ld	(hl), #0x30
+      000246 23               [ 8]  418 	inc	hl
+      000247 36 75            [12]  419 	ld	(hl), #0x75
+                                    420 ;src/attributes.c:94: player.engine.upgrade_name[0] = "Stock Engine";
+      000249 21r1Dr01         [12]  421 	ld	hl, #(_player + 285)
+      00024C 36r21            [12]  422 	ld	(hl), #<(___str_18)
+      00024E 23               [ 8]  423 	inc	hl
+      00024F 36s06            [12]  424 	ld	(hl), #>(___str_18)
+                                    425 ;src/attributes.c:95: player.engine.upgrade_name[1] = "V4 1.6 Ltr";
+      000251 21r1Fr01         [12]  426 	ld	hl, #(_player + 287)
+      000254 36r2E            [12]  427 	ld	(hl), #<(___str_19)
+      000256 23               [ 8]  428 	inc	hl
+      000257 36s06            [12]  429 	ld	(hl), #>(___str_19)
+                                    430 ;src/attributes.c:96: player.engine.upgrade_name[2] = "V4 2.0 Ltr Turbo";
+      000259 21r21r01         [12]  431 	ld	hl, #(_player + 289)
+      00025C 36r39            [12]  432 	ld	(hl), #<(___str_20)
+      00025E 23               [ 8]  433 	inc	hl
+      00025F 36s06            [12]  434 	ld	(hl), #>(___str_20)
+                                    435 ;src/attributes.c:97: player.engine.upgrade_name[3] = "V6 3.8 Ltr";
+      000261 21r23r01         [12]  436 	ld	hl, #(_player + 291)
+      000264 36r4A            [12]  437 	ld	(hl), #<(___str_21)
+      000266 23               [ 8]  438 	inc	hl
+      000267 36s06            [12]  439 	ld	(hl), #>(___str_21)
+                                    440 ;src/attributes.c:98: player.engine.upgrade_name[4] = "V8 5.0 Ltr Turbo";
+      000269 21r25r01         [12]  441 	ld	hl, #(_player + 293)
+      00026C 36r55            [12]  442 	ld	(hl), #<(___str_22)
+      00026E 23               [ 8]  443 	inc	hl
+      00026F 36s06            [12]  444 	ld	(hl), #>(___str_22)
+                                    445 ;src/attributes.c:99: player.engine.upgrade_name[5] = "V16 Jaguar";
+      000271 21r27r01         [12]  446 	ld	hl, #(_player + 295)
+      000274 36r66            [12]  447 	ld	(hl), #<(___str_23)
+      000276 23               [ 8]  448 	inc	hl
+      000277 36s06            [12]  449 	ld	(hl), #>(___str_23)
+                                    450 ;src/attributes.c:100: player.engine.color_palette[0] = palette_dark_red;
+      000279 21r4Ar01         [12]  451 	ld	hl, #(_player + 330)
+      00027C 36r00            [12]  452 	ld	(hl), #<(_palette_dark_red)
+      00027E 23               [ 8]  453 	inc	hl
+      00027F 36s00            [12]  454 	ld	(hl), #>(_palette_dark_red)
+                                    455 ;src/attributes.c:101: player.engine.color_palette[1] = palette_grey;
+      000281 21r4Cr01         [12]  456 	ld	hl, #(_player + 332)
+      000284 36r00            [12]  457 	ld	(hl), #<(_palette_grey)
+      000286 23               [ 8]  458 	inc	hl
+      000287 36s00            [12]  459 	ld	(hl), #>(_palette_grey)
+                                    460 ;src/attributes.c:102: player.engine.color_palette[2] = palette_grey;
+      000289 21r4Er01         [12]  461 	ld	hl, #(_player + 334)
+      00028C 36r00            [12]  462 	ld	(hl), #<(_palette_grey)
+      00028E 23               [ 8]  463 	inc	hl
+      00028F 36s00            [12]  464 	ld	(hl), #>(_palette_grey)
+                                    465 ;src/attributes.c:103: player.engine.color_palette[3] = palette_orange;
+      000291 21r50r01         [12]  466 	ld	hl, #(_player + 336)
+      000294 36r00            [12]  467 	ld	(hl), #<(_palette_orange)
+      000296 23               [ 8]  468 	inc	hl
+      000297 36s00            [12]  469 	ld	(hl), #>(_palette_orange)
+                                    470 ;src/attributes.c:104: player.engine.color_palette[4] = palette_blue;
+      000299 21r52r01         [12]  471 	ld	hl, #(_player + 338)
+      00029C 36r00            [12]  472 	ld	(hl), #<(_palette_blue)
+      00029E 23               [ 8]  473 	inc	hl
+      00029F 36s00            [12]  474 	ld	(hl), #>(_palette_blue)
+                                    475 ;src/attributes.c:105: player.engine.color_palette[5] = palette_red;
+      0002A1 21r54r01         [12]  476 	ld	hl, #(_player + 340)
+      0002A4 36r00            [12]  477 	ld	(hl), #<(_palette_red)
+      0002A6 23               [ 8]  478 	inc	hl
+      0002A7 36s00            [12]  479 	ld	(hl), #>(_palette_red)
+                                    480 ;src/attributes.c:107: player.fuel.attribute_name = "Fueltank";
+      0002A9 21r0Cr00         [12]  481 	ld	hl, #(_player + 12)
+      0002AC 3Er71            [ 8]  482 	ld	a, #<(___str_24)
+      0002AE 22               [ 8]  483 	ld	(hl+), a
+      0002AF 36s06            [12]  484 	ld	(hl), #>(___str_24)
+                                    485 ;src/attributes.c:108: player.fuel.attribute_unit = "ltr";
+      0002B1 21r0Er00         [12]  486 	ld	hl, #(_player + 14)
+      0002B4 3Er7A            [ 8]  487 	ld	a, #<(___str_25)
+      0002B6 22               [ 8]  488 	ld	(hl+), a
+      0002B7 36s06            [12]  489 	ld	(hl), #>(___str_25)
+                                    490 ;src/attributes.c:109: player.fuel.current_value = 120;
+      0002B9 21r10r00         [12]  491 	ld	hl, #(_player + 16)
+      0002BC 3E 78            [ 8]  492 	ld	a, #0x78
+      0002BE 22               [ 8]  493 	ld	(hl+), a
+      0002BF 36 00            [12]  494 	ld	(hl), #0x00
+                                    495 ;src/attributes.c:110: player.fuel.max_value = 120;
+      0002C1 21r12r00         [12]  496 	ld	hl, #(_player + 18)
+      0002C4 3E 78            [ 8]  497 	ld	a, #0x78
+      0002C6 22               [ 8]  498 	ld	(hl+), a
+      0002C7 36 00            [12]  499 	ld	(hl), #0x00
+                                    500 ;src/attributes.c:111: player.fuel.upgrade_level = 0;
+      0002C9 21r14r00         [12]  501 	ld	hl, #(_player + 20)
+      0002CC 36 00            [12]  502 	ld	(hl), #0x00
+                                    503 ;src/attributes.c:112: player.fuel.upgrade_value[0] = 120;
+      0002CE 21r15r00         [12]  504 	ld	hl, #(_player + 21)
+      0002D1 3E 78            [ 8]  505 	ld	a, #0x78
+      0002D3 22               [ 8]  506 	ld	(hl+), a
+      0002D4 36 00            [12]  507 	ld	(hl), #0x00
+                                    508 ;src/attributes.c:113: player.fuel.upgrade_value[1] = 200;
+      0002D6 21r17r00         [12]  509 	ld	hl, #(_player + 23)
+      0002D9 3E C8            [ 8]  510 	ld	a, #0xc8
+      0002DB 22               [ 8]  511 	ld	(hl+), a
+      0002DC 36 00            [12]  512 	ld	(hl), #0x00
+                                    513 ;src/attributes.c:114: player.fuel.upgrade_value[2] = 350;
+      0002DE 21r19r00         [12]  514 	ld	hl, #(_player + 25)
+      0002E1 3E 5E            [ 8]  515 	ld	a, #0x5e
+      0002E3 22               [ 8]  516 	ld	(hl+), a
+      0002E4 36 01            [12]  517 	ld	(hl), #0x01
+                                    518 ;src/attributes.c:115: player.fuel.upgrade_value[3] = 600;
+      0002E6 21r1Br00         [12]  519 	ld	hl, #(_player + 27)
+      0002E9 3E 58            [ 8]  520 	ld	a, #0x58
+      0002EB 22               [ 8]  521 	ld	(hl+), a
+      0002EC 36 02            [12]  522 	ld	(hl), #0x02
+                                    523 ;src/attributes.c:116: player.fuel.upgrade_value[4] = 950;
+      0002EE 21r1Dr00         [12]  524 	ld	hl, #(_player + 29)
+      0002F1 3E B6            [ 8]  525 	ld	a, #0xb6
+      0002F3 22               [ 8]  526 	ld	(hl+), a
+      0002F4 36 03            [12]  527 	ld	(hl), #0x03
+                                    528 ;src/attributes.c:117: player.fuel.upgrade_value[5] = 1200;
+      0002F6 21r1Fr00         [12]  529 	ld	hl, #(_player + 31)
+      0002F9 3E B0            [ 8]  530 	ld	a, #0xb0
+      0002FB 22               [ 8]  531 	ld	(hl+), a
+      0002FC 36 04            [12]  532 	ld	(hl), #0x04
+                                    533 ;src/attributes.c:118: player.fuel.upgrade_cost[0] = 0;
+      0002FE 21r21r00         [12]  534 	ld	hl, #(_player + 33)
+      000301 AF               [ 4]  535 	xor	a, a
+      000302 22               [ 8]  536 	ld	(hl+), a
+      000303 77               [ 8]  537 	ld	(hl), a
+                                    538 ;src/attributes.c:119: player.fuel.upgrade_cost[1] = 750;
+      000304 21r23r00         [12]  539 	ld	hl, #(_player + 35)
+      000307 36 EE            [12]  540 	ld	(hl), #0xee
+      000309 23               [ 8]  541 	inc	hl
+      00030A 36 02            [12]  542 	ld	(hl), #0x02
+                                    543 ;src/attributes.c:120: player.fuel.upgrade_cost[2] = 2000;
+      00030C 21r25r00         [12]  544 	ld	hl, #(_player + 37)
+      00030F 36 D0            [12]  545 	ld	(hl), #0xd0
+      000311 23               [ 8]  546 	inc	hl
+      000312 36 07            [12]  547 	ld	(hl), #0x07
+                                    548 ;src/attributes.c:121: player.fuel.upgrade_cost[3] = 8000;
+      000314 21r27r00         [12]  549 	ld	hl, #(_player + 39)
+      000317 36 40            [12]  550 	ld	(hl), #0x40
+      000319 23               [ 8]  551 	inc	hl
+      00031A 36 1F            [12]  552 	ld	(hl), #0x1f
+                                    553 ;src/attributes.c:122: player.fuel.upgrade_cost[4] = 10000;
+      00031C 21r29r00         [12]  554 	ld	hl, #(_player + 41)
+      00031F 36 10            [12]  555 	ld	(hl), #0x10
+      000321 23               [ 8]  556 	inc	hl
+      000322 36 27            [12]  557 	ld	(hl), #0x27
+                                    558 ;src/attributes.c:123: player.fuel.upgrade_cost[5] = 30000;
+      000324 21r2Br00         [12]  559 	ld	hl, #(_player + 43)
+      000327 36 30            [12]  560 	ld	(hl), #0x30
+      000329 23               [ 8]  561 	inc	hl
+      00032A 36 75            [12]  562 	ld	(hl), #0x75
+                                    563 ;src/attributes.c:124: player.fuel.upgrade_name[0] = "Micro Tank";
+      00032C 21r00r00         [12]  564 	ld	hl, #_player
+      00032F 36r7E            [12]  565 	ld	(hl), #<(___str_26)
+      000331 23               [ 8]  566 	inc	hl
+      000332 36s06            [12]  567 	ld	(hl), #>(___str_26)
+                                    568 ;src/attributes.c:125: player.fuel.upgrade_name[1] = "Medium Tank";
+      000334 21r02r00         [12]  569 	ld	hl, #(_player + 2)
+      000337 36r89            [12]  570 	ld	(hl), #<(___str_27)
+      000339 23               [ 8]  571 	inc	hl
+      00033A 36s06            [12]  572 	ld	(hl), #>(___str_27)
+                                    573 ;src/attributes.c:126: player.fuel.upgrade_name[2] = "Huge Tank";
+      00033C 21r04r00         [12]  574 	ld	hl, #(_player + 4)
+      00033F 36r95            [12]  575 	ld	(hl), #<(___str_28)
+      000341 23               [ 8]  576 	inc	hl
+      000342 36s06            [12]  577 	ld	(hl), #>(___str_28)
+                                    578 ;src/attributes.c:127: player.fuel.upgrade_name[3] = "Titanic Tank";
+      000344 21r06r00         [12]  579 	ld	hl, #(_player + 6)
+      000347 36r9F            [12]  580 	ld	(hl), #<(___str_29)
+      000349 23               [ 8]  581 	inc	hl
+      00034A 36s06            [12]  582 	ld	(hl), #>(___str_29)
+                                    583 ;src/attributes.c:128: player.fuel.upgrade_name[4] = "Leviathan Tank";
+      00034C 21r08r00         [12]  584 	ld	hl, #(_player + 8)
+      00034F 36rAC            [12]  585 	ld	(hl), #<(___str_30)
+      000351 23               [ 8]  586 	inc	hl
+      000352 36s06            [12]  587 	ld	(hl), #>(___str_30)
+                                    588 ;src/attributes.c:129: player.fuel.upgrade_name[5] = "Liquid Gas";
+      000354 21r0Ar00         [12]  589 	ld	hl, #(_player + 10)
+      000357 36rBB            [12]  590 	ld	(hl), #<(___str_31)
+      000359 23               [ 8]  591 	inc	hl
+      00035A 36s06            [12]  592 	ld	(hl), #>(___str_31)
+                                    593 ;src/attributes.c:130: player.fuel.color_palette[0] = palette_green;
+      00035C 21r2Dr00         [12]  594 	ld	hl, #(_player + 45)
+      00035F 36r00            [12]  595 	ld	(hl), #<(_palette_green)
+      000361 23               [ 8]  596 	inc	hl
+      000362 36s00            [12]  597 	ld	(hl), #>(_palette_green)
+                                    598 ;src/attributes.c:131: player.fuel.color_palette[1] = palette_blue;
+      000364 21r2Fr00         [12]  599 	ld	hl, #(_player + 47)
+      000367 36r00            [12]  600 	ld	(hl), #<(_palette_blue)
+      000369 23               [ 8]  601 	inc	hl
+      00036A 36s00            [12]  602 	ld	(hl), #>(_palette_blue)
+                                    603 ;src/attributes.c:132: player.fuel.color_palette[2] = palette_purple;
+      00036C 21r31r00         [12]  604 	ld	hl, #(_player + 49)
+      00036F 36r00            [12]  605 	ld	(hl), #<(_palette_purple)
+      000371 23               [ 8]  606 	inc	hl
+      000372 36s00            [12]  607 	ld	(hl), #>(_palette_purple)
+                                    608 ;src/attributes.c:133: player.fuel.color_palette[3] = palette_green;
+      000374 21r33r00         [12]  609 	ld	hl, #(_player + 51)
+      000377 36r00            [12]  610 	ld	(hl), #<(_palette_green)
+      000379 23               [ 8]  611 	inc	hl
+      00037A 36s00            [12]  612 	ld	(hl), #>(_palette_green)
+                                    613 ;src/attributes.c:134: player.fuel.color_palette[4] = palette_blue;
+      00037C 21r35r00         [12]  614 	ld	hl, #(_player + 53)
+      00037F 36r00            [12]  615 	ld	(hl), #<(_palette_blue)
+      000381 23               [ 8]  616 	inc	hl
+      000382 36s00            [12]  617 	ld	(hl), #>(_palette_blue)
+                                    618 ;src/attributes.c:135: player.fuel.color_palette[5] = palette_purple;
+      000384 21r37r00         [12]  619 	ld	hl, #(_player + 55)
+      000387 36r00            [12]  620 	ld	(hl), #<(_palette_purple)
+      000389 23               [ 8]  621 	inc	hl
+      00038A 36s00            [12]  622 	ld	(hl), #>(_palette_purple)
+                                    623 ;src/attributes.c:137: player.radiator.attribute_name = "Radiator";
+      00038C 21rF0r00         [12]  624 	ld	hl, #(_player + 240)
+      00038F 36rC6            [12]  625 	ld	(hl), #<(___str_32)
+      000391 23               [ 8]  626 	inc	hl
+      000392 36s06            [12]  627 	ld	(hl), #>(___str_32)
+                                    628 ;src/attributes.c:138: player.radiator.attribute_unit = "&";
+      000394 21rF2r00         [12]  629 	ld	hl, #(_player + 242)
+      000397 36rCF            [12]  630 	ld	(hl), #<(___str_33)
+      000399 23               [ 8]  631 	inc	hl
+      00039A 36s06            [12]  632 	ld	(hl), #>(___str_33)
+                                    633 ;src/attributes.c:139: player.radiator.current_value = 10;
+      00039C 21rF4r00         [12]  634 	ld	hl, #(_player + 244)
+      00039F 3E 0A            [ 8]  635 	ld	a, #0x0a
+      0003A1 22               [ 8]  636 	ld	(hl+), a
+      0003A2 36 00            [12]  637 	ld	(hl), #0x00
+                                    638 ;src/attributes.c:140: player.radiator.max_value = 10;
+      0003A4 21rF6r00         [12]  639 	ld	hl, #(_player + 246)
+      0003A7 3E 0A            [ 8]  640 	ld	a, #0x0a
+      0003A9 22               [ 8]  641 	ld	(hl+), a
+      0003AA 36 00            [12]  642 	ld	(hl), #0x00
+                                    643 ;src/attributes.c:141: player.radiator.upgrade_level = 0;
+      0003AC 21rF8r00         [12]  644 	ld	hl, #(_player + 248)
+      0003AF 36 00            [12]  645 	ld	(hl), #0x00
+                                    646 ;src/attributes.c:142: player.radiator.upgrade_value[0] = 0;
+      0003B1 21rF9r00         [12]  647 	ld	hl, #(_player + 249)
+      0003B4 AF               [ 4]  648 	xor	a, a
+      0003B5 22               [ 8]  649 	ld	(hl+), a
+      0003B6 77               [ 8]  650 	ld	(hl), a
+                                    651 ;src/attributes.c:143: player.radiator.upgrade_value[1] = 10;
+      0003B7 21rFBr00         [12]  652 	ld	hl, #(_player + 251)
+      0003BA 3E 0A            [ 8]  653 	ld	a, #0x0a
+      0003BC 22               [ 8]  654 	ld	(hl+), a
+      0003BD 36 00            [12]  655 	ld	(hl), #0x00
+                                    656 ;src/attributes.c:144: player.radiator.upgrade_value[2] = 25;
+      0003BF 21rFDr00         [12]  657 	ld	hl, #(_player + 253)
+      0003C2 3E 19            [ 8]  658 	ld	a, #0x19
+      0003C4 22               [ 8]  659 	ld	(hl+), a
+      0003C5 36 00            [12]  660 	ld	(hl), #0x00
+                                    661 ;src/attributes.c:145: player.radiator.upgrade_value[3] = 40;
+      0003C7 21rFFr00         [12]  662 	ld	hl, #(_player + 255)
+      0003CA 3E 28            [ 8]  663 	ld	a, #0x28
+      0003CC 22               [ 8]  664 	ld	(hl+), a
+      0003CD 36 00            [12]  665 	ld	(hl), #0x00
+                                    666 ;src/attributes.c:146: player.radiator.upgrade_value[4] = 30;
+      0003CF 21r01r01         [12]  667 	ld	hl, #(_player + 257)
+      0003D2 3E 1E            [ 8]  668 	ld	a, #0x1e
+      0003D4 22               [ 8]  669 	ld	(hl+), a
+      0003D5 36 00            [12]  670 	ld	(hl), #0x00
+                                    671 ;src/attributes.c:147: player.radiator.upgrade_value[5] = 80;
+      0003D7 21r03r01         [12]  672 	ld	hl, #(_player + 259)
+      0003DA 3E 50            [ 8]  673 	ld	a, #0x50
+      0003DC 22               [ 8]  674 	ld	(hl+), a
+      0003DD 36 00            [12]  675 	ld	(hl), #0x00
+                                    676 ;src/attributes.c:148: player.radiator.upgrade_cost[0] = 0;
+      0003DF 21r05r01         [12]  677 	ld	hl, #(_player + 261)
+      0003E2 AF               [ 4]  678 	xor	a, a
+      0003E3 22               [ 8]  679 	ld	(hl+), a
+      0003E4 77               [ 8]  680 	ld	(hl), a
+                                    681 ;src/attributes.c:149: player.radiator.upgrade_cost[1] = 2000;
+      0003E5 21r07r01         [12]  682 	ld	hl, #(_player + 263)
+      0003E8 36 D0            [12]  683 	ld	(hl), #0xd0
+      0003EA 23               [ 8]  684 	inc	hl
+      0003EB 36 07            [12]  685 	ld	(hl), #0x07
+                                    686 ;src/attributes.c:150: player.radiator.upgrade_cost[2] = 5000;
+      0003ED 21r09r01         [12]  687 	ld	hl, #(_player + 265)
+      0003F0 36 88            [12]  688 	ld	(hl), #0x88
+      0003F2 23               [ 8]  689 	inc	hl
+      0003F3 36 13            [12]  690 	ld	(hl), #0x13
+                                    691 ;src/attributes.c:151: player.radiator.upgrade_cost[3] = 8000;
+      0003F5 21r0Br01         [12]  692 	ld	hl, #(_player + 267)
+      0003F8 36 40            [12]  693 	ld	(hl), #0x40
+      0003FA 23               [ 8]  694 	inc	hl
+      0003FB 36 1F            [12]  695 	ld	(hl), #0x1f
+                                    696 ;src/attributes.c:152: player.radiator.upgrade_cost[4] = 10000;
+      0003FD 21r0Dr01         [12]  697 	ld	hl, #(_player + 269)
+      000400 36 10            [12]  698 	ld	(hl), #0x10
+      000402 23               [ 8]  699 	inc	hl
+      000403 36 27            [12]  700 	ld	(hl), #0x27
+                                    701 ;src/attributes.c:153: player.radiator.upgrade_cost[5] = 30000;
+      000405 21r0Fr01         [12]  702 	ld	hl, #(_player + 271)
+      000408 36 30            [12]  703 	ld	(hl), #0x30
+      00040A 23               [ 8]  704 	inc	hl
+      00040B 36 75            [12]  705 	ld	(hl), #0x75
+                                    706 ;src/attributes.c:154: player.radiator.upgrade_name[0] = "Stock Fan";
+      00040D 21rE4r00         [12]  707 	ld	hl, #(_player + 228)
+      000410 36rD1            [12]  708 	ld	(hl), #<(___str_34)
+      000412 23               [ 8]  709 	inc	hl
+      000413 36s06            [12]  710 	ld	(hl), #>(___str_34)
+                                    711 ;src/attributes.c:155: player.radiator.upgrade_name[1] = "Dual Fans";
+      000415 21rE6r00         [12]  712 	ld	hl, #(_player + 230)
+      000418 36rDB            [12]  713 	ld	(hl), #<(___str_35)
+      00041A 23               [ 8]  714 	inc	hl
+      00041B 36s06            [12]  715 	ld	(hl), #>(___str_35)
+                                    716 ;src/attributes.c:156: player.radiator.upgrade_name[2] = "Single Turbine";
+      00041D 21rE8r00         [12]  717 	ld	hl, #(_player + 232)
+      000420 36rE5            [12]  718 	ld	(hl), #<(___str_36)
+      000422 23               [ 8]  719 	inc	hl
+      000423 36s06            [12]  720 	ld	(hl), #>(___str_36)
+                                    721 ;src/attributes.c:157: player.radiator.upgrade_name[3] = "Dual Turbines";
+      000425 21rEAr00         [12]  722 	ld	hl, #(_player + 234)
+      000428 36rF4            [12]  723 	ld	(hl), #<(___str_37)
+      00042A 23               [ 8]  724 	inc	hl
+      00042B 36s06            [12]  725 	ld	(hl), #>(___str_37)
+                                    726 ;src/attributes.c:158: player.radiator.upgrade_name[4] = "Puron Cooling";
+      00042D 21rECr00         [12]  727 	ld	hl, #(_player + 236)
+      000430 36r02            [12]  728 	ld	(hl), #<(___str_38)
+      000432 23               [ 8]  729 	inc	hl
+      000433 36s07            [12]  730 	ld	(hl), #>(___str_38)
+                                    731 ;src/attributes.c:159: player.radiator.upgrade_name[5] = "Tri-Turbine";
+      000435 21rEEr00         [12]  732 	ld	hl, #(_player + 238)
+      000438 36r10            [12]  733 	ld	(hl), #<(___str_39)
+      00043A 23               [ 8]  734 	inc	hl
+      00043B 36s07            [12]  735 	ld	(hl), #>(___str_39)
+                                    736 ;src/attributes.c:160: player.radiator.color_palette[0] = palette_red;
+      00043D 21r11r01         [12]  737 	ld	hl, #(_player + 273)
+      000440 36r00            [12]  738 	ld	(hl), #<(_palette_red)
+      000442 23               [ 8]  739 	inc	hl
+      000443 36s00            [12]  740 	ld	(hl), #>(_palette_red)
+                                    741 ;src/attributes.c:161: player.radiator.color_palette[1] = palette_yellow;
+      000445 21r13r01         [12]  742 	ld	hl, #(_player + 275)
+      000448 36r00            [12]  743 	ld	(hl), #<(_palette_yellow)
+      00044A 23               [ 8]  744 	inc	hl
+      00044B 36s00            [12]  745 	ld	(hl), #>(_palette_yellow)
+                                    746 ;src/attributes.c:162: player.radiator.color_palette[2] = palette_orange;
+      00044D 21r15r01         [12]  747 	ld	hl, #(_player + 277)
+      000450 36r00            [12]  748 	ld	(hl), #<(_palette_orange)
+      000452 23               [ 8]  749 	inc	hl
+      000453 36s00            [12]  750 	ld	(hl), #>(_palette_orange)
+                                    751 ;src/attributes.c:163: player.radiator.color_palette[3] = palette_red;
+      000455 21r17r01         [12]  752 	ld	hl, #(_player + 279)
+      000458 36r00            [12]  753 	ld	(hl), #<(_palette_red)
+      00045A 23               [ 8]  754 	inc	hl
+      00045B 36s00            [12]  755 	ld	(hl), #>(_palette_red)
+                                    756 ;src/attributes.c:164: player.radiator.color_palette[4] = palette_yellow;
+      00045D 21r19r01         [12]  757 	ld	hl, #(_player + 281)
+      000460 36r00            [12]  758 	ld	(hl), #<(_palette_yellow)
+      000462 23               [ 8]  759 	inc	hl
+      000463 36s00            [12]  760 	ld	(hl), #>(_palette_yellow)
+                                    761 ;src/attributes.c:165: player.radiator.color_palette[5] = palette_orange;
+      000465 21r1Br01         [12]  762 	ld	hl, #(_player + 283)
+      000468 36r00            [12]  763 	ld	(hl), #<(_palette_orange)
+      00046A 23               [ 8]  764 	inc	hl
+      00046B 36s00            [12]  765 	ld	(hl), #>(_palette_orange)
+                                    766 ;src/attributes.c:167: player.cargo.attribute_name = "Cargo Bay";
+      00046D 21rB7r00         [12]  767 	ld	hl, #(_player + 183)
+      000470 3Er1C            [ 8]  768 	ld	a, #<(___str_40)
+      000472 22               [ 8]  769 	ld	(hl+), a
+      000473 36s07            [12]  770 	ld	(hl), #>(___str_40)
+                                    771 ;src/attributes.c:168: player.cargo.attribute_unit = "m3";
+      000475 21rB9r00         [12]  772 	ld	hl, #(_player + 185)
+      000478 3Er26            [ 8]  773 	ld	a, #<(___str_41)
+      00047A 22               [ 8]  774 	ld	(hl+), a
+      00047B 36s07            [12]  775 	ld	(hl), #>(___str_41)
+                                    776 ;src/attributes.c:169: player.cargo.current_value = 15;
+      00047D 21rBBr00         [12]  777 	ld	hl, #(_player + 187)
+      000480 3E 0F            [ 8]  778 	ld	a, #0x0f
+      000482 22               [ 8]  779 	ld	(hl+), a
+      000483 36 00            [12]  780 	ld	(hl), #0x00
+                                    781 ;src/attributes.c:170: player.cargo.max_value = 15;
+      000485 21rBDr00         [12]  782 	ld	hl, #(_player + 189)
+      000488 3E 0F            [ 8]  783 	ld	a, #0x0f
+      00048A 22               [ 8]  784 	ld	(hl+), a
+      00048B 36 00            [12]  785 	ld	(hl), #0x00
+                                    786 ;src/attributes.c:171: player.cargo.upgrade_level = 0;
+      00048D 21rBFr00         [12]  787 	ld	hl, #(_player + 191)
+      000490 36 00            [12]  788 	ld	(hl), #0x00
+                                    789 ;src/attributes.c:172: player.cargo.upgrade_value[0] = 7;
+      000492 21rC0r00         [12]  790 	ld	hl, #(_player + 192)
+      000495 3E 07            [ 8]  791 	ld	a, #0x07
+      000497 22               [ 8]  792 	ld	(hl+), a
+      000498 36 00            [12]  793 	ld	(hl), #0x00
+                                    794 ;src/attributes.c:173: player.cargo.upgrade_value[1] = 15;
+      00049A 21rC2r00         [12]  795 	ld	hl, #(_player + 194)
+      00049D 3E 0F            [ 8]  796 	ld	a, #0x0f
+      00049F 22               [ 8]  797 	ld	(hl+), a
+      0004A0 36 00            [12]  798 	ld	(hl), #0x00
+                                    799 ;src/attributes.c:174: player.cargo.upgrade_value[2] = 25;
+      0004A2 21rC4r00         [12]  800 	ld	hl, #(_player + 196)
+      0004A5 3E 19            [ 8]  801 	ld	a, #0x19
+      0004A7 22               [ 8]  802 	ld	(hl+), a
+      0004A8 36 00            [12]  803 	ld	(hl), #0x00
+                                    804 ;src/attributes.c:175: player.cargo.upgrade_value[3] = 40;
+      0004AA 21rC6r00         [12]  805 	ld	hl, #(_player + 198)
+      0004AD 3E 28            [ 8]  806 	ld	a, #0x28
+      0004AF 22               [ 8]  807 	ld	(hl+), a
+      0004B0 36 00            [12]  808 	ld	(hl), #0x00
+                                    809 ;src/attributes.c:176: player.cargo.upgrade_value[4] = 70;
+      0004B2 21rC8r00         [12]  810 	ld	hl, #(_player + 200)
+      0004B5 3E 46            [ 8]  811 	ld	a, #0x46
+      0004B7 22               [ 8]  812 	ld	(hl+), a
+      0004B8 36 00            [12]  813 	ld	(hl), #0x00
+                                    814 ;src/attributes.c:177: player.cargo.upgrade_value[5] = 120;
+      0004BA 21rCAr00         [12]  815 	ld	hl, #(_player + 202)
+      0004BD 3E 78            [ 8]  816 	ld	a, #0x78
+      0004BF 22               [ 8]  817 	ld	(hl+), a
+      0004C0 36 00            [12]  818 	ld	(hl), #0x00
+                                    819 ;src/attributes.c:178: player.cargo.upgrade_cost[0] = 0;
+      0004C2 21rCCr00         [12]  820 	ld	hl, #(_player + 204)
+      0004C5 AF               [ 4]  821 	xor	a, a
+      0004C6 22               [ 8]  822 	ld	(hl+), a
+      0004C7 77               [ 8]  823 	ld	(hl), a
+                                    824 ;src/attributes.c:179: player.cargo.upgrade_cost[1] = 750;
+      0004C8 21rCEr00         [12]  825 	ld	hl, #(_player + 206)
+      0004CB 36 EE            [12]  826 	ld	(hl), #0xee
+      0004CD 23               [ 8]  827 	inc	hl
+      0004CE 36 02            [12]  828 	ld	(hl), #0x02
+                                    829 ;src/attributes.c:180: player.cargo.upgrade_cost[2] = 2000;
+      0004D0 21rD0r00         [12]  830 	ld	hl, #(_player + 208)
+      0004D3 36 D0            [12]  831 	ld	(hl), #0xd0
+      0004D5 23               [ 8]  832 	inc	hl
+      0004D6 36 07            [12]  833 	ld	(hl), #0x07
+                                    834 ;src/attributes.c:181: player.cargo.upgrade_cost[3] = 5000;
+      0004D8 21rD2r00         [12]  835 	ld	hl, #(_player + 210)
+      0004DB 36 88            [12]  836 	ld	(hl), #0x88
+      0004DD 23               [ 8]  837 	inc	hl
+      0004DE 36 13            [12]  838 	ld	(hl), #0x13
+                                    839 ;src/attributes.c:182: player.cargo.upgrade_cost[4] = 10000;
+      0004E0 21rD4r00         [12]  840 	ld	hl, #(_player + 212)
+      0004E3 36 10            [12]  841 	ld	(hl), #0x10
+      0004E5 23               [ 8]  842 	inc	hl
+      0004E6 36 27            [12]  843 	ld	(hl), #0x27
+                                    844 ;src/attributes.c:183: player.cargo.upgrade_cost[5] = 30000;
+      0004E8 21rD6r00         [12]  845 	ld	hl, #(_player + 214)
+      0004EB 36 30            [12]  846 	ld	(hl), #0x30
+      0004ED 23               [ 8]  847 	inc	hl
+      0004EE 36 75            [12]  848 	ld	(hl), #0x75
+                                    849 ;src/attributes.c:184: player.cargo.upgrade_name[0] = "Micro Bay";
+      0004F0 21rABr00         [12]  850 	ld	hl, #(_player + 171)
+      0004F3 36r29            [12]  851 	ld	(hl), #<(___str_42)
+      0004F5 23               [ 8]  852 	inc	hl
+      0004F6 36s07            [12]  853 	ld	(hl), #>(___str_42)
+                                    854 ;src/attributes.c:185: player.cargo.upgrade_name[1] = "Medium Bay";
+      0004F8 21rADr00         [12]  855 	ld	hl, #(_player + 173)
+      0004FB 36r33            [12]  856 	ld	(hl), #<(___str_43)
+      0004FD 23               [ 8]  857 	inc	hl
+      0004FE 36s07            [12]  858 	ld	(hl), #>(___str_43)
+                                    859 ;src/attributes.c:186: player.cargo.upgrade_name[2] = "Huge Bay";
+      000500 21rAFr00         [12]  860 	ld	hl, #(_player + 175)
+      000503 36r3E            [12]  861 	ld	(hl), #<(___str_44)
+      000505 23               [ 8]  862 	inc	hl
+      000506 36s07            [12]  863 	ld	(hl), #>(___str_44)
+                                    864 ;src/attributes.c:187: player.cargo.upgrade_name[3] = "Gigantic Bay";
+      000508 21rB1r00         [12]  865 	ld	hl, #(_player + 177)
+      00050B 36r47            [12]  866 	ld	(hl), #<(___str_45)
+      00050D 23               [ 8]  867 	inc	hl
+      00050E 36s07            [12]  868 	ld	(hl), #>(___str_45)
+                                    869 ;src/attributes.c:188: player.cargo.upgrade_name[4] = "Titanic Bay";
+      000510 21rB3r00         [12]  870 	ld	hl, #(_player + 179)
+      000513 36r54            [12]  871 	ld	(hl), #<(___str_46)
+      000515 23               [ 8]  872 	inc	hl
+      000516 36s07            [12]  873 	ld	(hl), #>(___str_46)
+                                    874 ;src/attributes.c:189: player.cargo.upgrade_name[5] = "Leviathan Bay";
+      000518 21rB5r00         [12]  875 	ld	hl, #(_player + 181)
+      00051B 36r60            [12]  876 	ld	(hl), #<(___str_47)
+      00051D 23               [ 8]  877 	inc	hl
+      00051E 36s07            [12]  878 	ld	(hl), #>(___str_47)
+                                    879 ;src/attributes.c:190: player.cargo.color_palette[0] = palette_green;
+      000520 21rD8r00         [12]  880 	ld	hl, #(_player + 216)
+      000523 36r00            [12]  881 	ld	(hl), #<(_palette_green)
+      000525 23               [ 8]  882 	inc	hl
+      000526 36s00            [12]  883 	ld	(hl), #>(_palette_green)
+                                    884 ;src/attributes.c:191: player.cargo.color_palette[1] = palette_blue;
+      000528 21rDAr00         [12]  885 	ld	hl, #(_player + 218)
+      00052B 36r00            [12]  886 	ld	(hl), #<(_palette_blue)
+      00052D 23               [ 8]  887 	inc	hl
+      00052E 36s00            [12]  888 	ld	(hl), #>(_palette_blue)
+                                    889 ;src/attributes.c:192: player.cargo.color_palette[2] = palette_purple;
+      000530 21rDCr00         [12]  890 	ld	hl, #(_player + 220)
+      000533 36r00            [12]  891 	ld	(hl), #<(_palette_purple)
+      000535 23               [ 8]  892 	inc	hl
+      000536 36s00            [12]  893 	ld	(hl), #>(_palette_purple)
+                                    894 ;src/attributes.c:193: player.cargo.color_palette[3] = palette_green;
+      000538 21rDEr00         [12]  895 	ld	hl, #(_player + 222)
+      00053B 36r00            [12]  896 	ld	(hl), #<(_palette_green)
+      00053D 23               [ 8]  897 	inc	hl
+      00053E 36s00            [12]  898 	ld	(hl), #>(_palette_green)
+                                    899 ;src/attributes.c:194: player.cargo.color_palette[4] = palette_blue;
+      000540 21rE0r00         [12]  900 	ld	hl, #(_player + 224)
+      000543 36r00            [12]  901 	ld	(hl), #<(_palette_blue)
+      000545 23               [ 8]  902 	inc	hl
+      000546 36s00            [12]  903 	ld	(hl), #>(_palette_blue)
+                                    904 ;src/attributes.c:195: player.cargo.color_palette[5] = palette_purple;
+      000548 21rE2r00         [12]  905 	ld	hl, #(_player + 226)
+      00054B 36r00            [12]  906 	ld	(hl), #<(_palette_purple)
+      00054D 23               [ 8]  907 	inc	hl
+      00054E 36s00            [12]  908 	ld	(hl), #>(_palette_purple)
+                                    909 ;src/attributes.c:197: player.money = 31100;
+      000550 21r56r01         [12]  910 	ld	hl, #(_player + 342)
+      000553 3E 7C            [ 8]  911 	ld	a, #0x7c
+      000555 22               [ 8]  912 	ld	(hl+), a
+      000556 36 79            [12]  913 	ld	(hl), #0x79
+                                    914 ;src/attributes.c:198: player.speed.l = 0;
+      000558 01r58r01         [12]  915 	ld	bc, #_player + 344
+      00055B AF               [ 4]  916 	xor	a, a
+      00055C 02               [ 8]  917 	ld	(bc), a
+                                    918 ;src/attributes.c:199: player.speed.h = 16;
+      00055D 21r59r01         [12]  919 	ld	hl, #(_player + 345)
+      000560 36 10            [12]  920 	ld	(hl), #0x10
+                                    921 ;src/attributes.c:200: player.prev_speed.w = player.speed.w;
+      000562 69               [ 4]  922 	ld	l, c
+      000563 60               [ 4]  923 	ld	h, b
+      000564 2A               [ 8]  924 	ld	a, (hl+)
+      000565 4F               [ 4]  925 	ld	c, a
+      000566 46               [ 8]  926 	ld	b, (hl)
+      000567 21r5Ar01         [12]  927 	ld	hl, #(_player + 346)
+      00056A 79               [ 4]  928 	ld	a, c
+      00056B 22               [ 8]  929 	ld	(hl+), a
+      00056C 70               [ 8]  930 	ld	(hl), b
+                                    931 ;src/attributes.c:202: }
+      00056D C9               [16]  932 	ret
+      00056E                        933 ___str_0:
+      00056E 44 72 69 6C 6C         934 	.ascii "Drill"
+      000573 00                     935 	.db 0x00
+      000574                        936 ___str_1:
+      000574 6D 2F 73               937 	.ascii "m/s"
+      000577 00                     938 	.db 0x00
+      000578                        939 ___str_2:
+      000578 53 74 6F 63 6B 20 44   940 	.ascii "Stock Drill"
+             72 69 6C 6C
+      000583 00                     941 	.db 0x00
+      000584                        942 ___str_3:
+      000584 49 72 6F 6E 20 44 72   943 	.ascii "Iron Drill"
+             69 6C 6C
+      00058E 00                     944 	.db 0x00
+      00058F                        945 ___str_4:
+      00058F 53 74 65 65 6C 20 44   946 	.ascii "Steel Drill"
+             72 69 6C 6C
+      00059A 00                     947 	.db 0x00
+      00059B                        948 ___str_5:
+      00059B 54 69 74 61 6E 69 75   949 	.ascii "Titanium Drill"
+             6D 20 44 72 69 6C 6C
+      0005A9 00                     950 	.db 0x00
+      0005AA                        951 ___str_6:
+      0005AA 44 69 61 6D 6F 6E 64   952 	.ascii "Diamond Drill"
+             20 44 72 69 6C 6C
+      0005B7 00                     953 	.db 0x00
+      0005B8                        954 ___str_7:
+      0005B8 50 6C 61 74 69 6E 75   955 	.ascii "Platinum Drill"
+             6D 20 44 72 69 6C 6C
+      0005C6 00                     956 	.db 0x00
+      0005C7                        957 ___str_8:
+      0005C7 48 75 6C 6C            958 	.ascii "Hull"
+      0005CB 00                     959 	.db 0x00
+      0005CC                        960 ___str_9:
+      0005CC 70 74                  961 	.ascii "pt"
+      0005CE 00                     962 	.db 0x00
+      0005CF                        963 ___str_10:
+      0005CF 53 74 6F 63 6B 20 48   964 	.ascii "Stock Hull"
+             75 6C 6C
+      0005D9 00                     965 	.db 0x00
+      0005DA                        966 ___str_11:
+      0005DA 49 72 6F 6E 20 48 75   967 	.ascii "Iron Hull"
+             6C 6C
+      0005E3 00                     968 	.db 0x00
+      0005E4                        969 ___str_12:
+      0005E4 42 72 6F 6E 7A 65 20   970 	.ascii "Bronze Hull"
+             48 75 6C 6C
+      0005EF 00                     971 	.db 0x00
+      0005F0                        972 ___str_13:
+      0005F0 53 74 65 65 6C 20 48   973 	.ascii "Steel Hull"
+             75 6C 6C
+      0005FA 00                     974 	.db 0x00
+      0005FB                        975 ___str_14:
+      0005FB 50 6C 61 74 69 6E 75   976 	.ascii "Platinum Hull"
+             6D 20 48 75 6C 6C
+      000608 00                     977 	.db 0x00
+      000609                        978 ___str_15:
+      000609 45 6E 65 67 72 79 20   979 	.ascii "Enegry Shield"
+             53 68 69 65 6C 64
+      000616 00                     980 	.db 0x00
+      000617                        981 ___str_16:
+      000617 45 6E 67 69 6E 65      982 	.ascii "Engine"
+      00061D 00                     983 	.db 0x00
+      00061E                        984 ___str_17:
+      00061E 68 70                  985 	.ascii "hp"
+      000620 00                     986 	.db 0x00
+      000621                        987 ___str_18:
+      000621 53 74 6F 63 6B 20 45   988 	.ascii "Stock Engine"
+             6E 67 69 6E 65
+      00062D 00                     989 	.db 0x00
+      00062E                        990 ___str_19:
+      00062E 56 34 20 31 2E 36 20   991 	.ascii "V4 1.6 Ltr"
+             4C 74 72
+      000638 00                     992 	.db 0x00
+      000639                        993 ___str_20:
+      000639 56 34 20 32 2E 30 20   994 	.ascii "V4 2.0 Ltr Turbo"
+             4C 74 72 20 54 75 72
+             62 6F
+      000649 00                     995 	.db 0x00
+      00064A                        996 ___str_21:
+      00064A 56 36 20 33 2E 38 20   997 	.ascii "V6 3.8 Ltr"
+             4C 74 72
+      000654 00                     998 	.db 0x00
+      000655                        999 ___str_22:
+      000655 56 38 20 35 2E 30 20  1000 	.ascii "V8 5.0 Ltr Turbo"
+             4C 74 72 20 54 75 72
+             62 6F
+      000665 00                    1001 	.db 0x00
+      000666                       1002 ___str_23:
+      000666 56 31 36 20 4A 61 67  1003 	.ascii "V16 Jaguar"
+             75 61 72
+      000670 00                    1004 	.db 0x00
+      000671                       1005 ___str_24:
+      000671 46 75 65 6C 74 61 6E  1006 	.ascii "Fueltank"
+             6B
+      000679 00                    1007 	.db 0x00
+      00067A                       1008 ___str_25:
+      00067A 6C 74 72              1009 	.ascii "ltr"
+      00067D 00                    1010 	.db 0x00
+      00067E                       1011 ___str_26:
+      00067E 4D 69 63 72 6F 20 54  1012 	.ascii "Micro Tank"
+             61 6E 6B
+      000688 00                    1013 	.db 0x00
+      000689                       1014 ___str_27:
+      000689 4D 65 64 69 75 6D 20  1015 	.ascii "Medium Tank"
+             54 61 6E 6B
+      000694 00                    1016 	.db 0x00
+      000695                       1017 ___str_28:
+      000695 48 75 67 65 20 54 61  1018 	.ascii "Huge Tank"
+             6E 6B
+      00069E 00                    1019 	.db 0x00
+      00069F                       1020 ___str_29:
+      00069F 54 69 74 61 6E 69 63  1021 	.ascii "Titanic Tank"
+             20 54 61 6E 6B
+      0006AB 00                    1022 	.db 0x00
+      0006AC                       1023 ___str_30:
+      0006AC 4C 65 76 69 61 74 68  1024 	.ascii "Leviathan Tank"
+             61 6E 20 54 61 6E 6B
+      0006BA 00                    1025 	.db 0x00
+      0006BB                       1026 ___str_31:
+      0006BB 4C 69 71 75 69 64 20  1027 	.ascii "Liquid Gas"
+             47 61 73
+      0006C5 00                    1028 	.db 0x00
+      0006C6                       1029 ___str_32:
+      0006C6 52 61 64 69 61 74 6F  1030 	.ascii "Radiator"
+             72
+      0006CE 00                    1031 	.db 0x00
+      0006CF                       1032 ___str_33:
+      0006CF 26                    1033 	.ascii "&"
+      0006D0 00                    1034 	.db 0x00
+      0006D1                       1035 ___str_34:
+      0006D1 53 74 6F 63 6B 20 46  1036 	.ascii "Stock Fan"
+             61 6E
+      0006DA 00                    1037 	.db 0x00
+      0006DB                       1038 ___str_35:
+      0006DB 44 75 61 6C 20 46 61  1039 	.ascii "Dual Fans"
+             6E 73
+      0006E4 00                    1040 	.db 0x00
+      0006E5                       1041 ___str_36:
+      0006E5 53 69 6E 67 6C 65 20  1042 	.ascii "Single Turbine"
+             54 75 72 62 69 6E 65
+      0006F3 00                    1043 	.db 0x00
+      0006F4                       1044 ___str_37:
+      0006F4 44 75 61 6C 20 54 75  1045 	.ascii "Dual Turbines"
+             72 62 69 6E 65 73
+      000701 00                    1046 	.db 0x00
+      000702                       1047 ___str_38:
+      000702 50 75 72 6F 6E 20 43  1048 	.ascii "Puron Cooling"
+             6F 6F 6C 69 6E 67
+      00070F 00                    1049 	.db 0x00
+      000710                       1050 ___str_39:
+      000710 54 72 69 2D 54 75 72  1051 	.ascii "Tri-Turbine"
+             62 69 6E 65
+      00071B 00                    1052 	.db 0x00
+      00071C                       1053 ___str_40:
+      00071C 43 61 72 67 6F 20 42  1054 	.ascii "Cargo Bay"
+             61 79
+      000725 00                    1055 	.db 0x00
+      000726                       1056 ___str_41:
+      000726 6D 33                 1057 	.ascii "m3"
+      000728 00                    1058 	.db 0x00
+      000729                       1059 ___str_42:
+      000729 4D 69 63 72 6F 20 42  1060 	.ascii "Micro Bay"
+             61 79
+      000732 00                    1061 	.db 0x00
+      000733                       1062 ___str_43:
+      000733 4D 65 64 69 75 6D 20  1063 	.ascii "Medium Bay"
+             42 61 79
+      00073D 00                    1064 	.db 0x00
+      00073E                       1065 ___str_44:
+      00073E 48 75 67 65 20 42 61  1066 	.ascii "Huge Bay"
+             79
+      000746 00                    1067 	.db 0x00
+      000747                       1068 ___str_45:
+      000747 47 69 67 61 6E 74 69  1069 	.ascii "Gigantic Bay"
+             63 20 42 61 79
+      000753 00                    1070 	.db 0x00
+      000754                       1071 ___str_46:
+      000754 54 69 74 61 6E 69 63  1072 	.ascii "Titanic Bay"
+             20 42 61 79
+      00075F 00                    1073 	.db 0x00
+      000760                       1074 ___str_47:
+      000760 4C 65 76 69 61 74 68  1075 	.ascii "Leviathan Bay"
+             61 6E 20 42 61 79
+      00076D 00                    1076 	.db 0x00
+                                   1077 	.area _CODE
+                                   1078 	.area _INITIALIZER
+      000000                       1079 __xinit__attributes_numbers:
+      000000r72r00                 1080 	.dw (_player + 114)
+      000002r39r00                 1081 	.dw (_player + 57)
+      000004r1Dr01                 1082 	.dw (_player + 285)
+      000006r00r00                 1083 	.dw (_player + 0)
+      000008rE4r00                 1084 	.dw (_player + 228)
+      00000ArABr00                 1085 	.dw (_player + 171)
+                                   1086 	.area _CABS (ABS)

@@ -1,0 +1,56 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 1
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+    _LCDC_REG                                                      ****** GX
+    _VBK_REG                                                       ****** GX
+  0 ___str_0                                                       000463 R
+    __mulsuchar                                                    ****** GX
+    __muluschar                                                    ****** GX
+    _buttons                                                       ****** GX
+  0 _convert_char_to_tile                                          0000BC GR
+  0 _draw_number_sprite                                            000320 GR
+  0 _draw_text                                                     00016C GR
+    _font                                                          ****** GX
+    _font_ibm                                                      ****** GX
+    _font_init                                                     ****** GX
+    _font_load                                                     ****** GX
+    _font_set                                                      ****** GX
+    _get_win_xy_addr                                               ****** GX
+  0 _init_clear_screen                                             00002A GR
+  0 _init_font                                                     000000 GR
+  0 _init_screen                                                   000011 GR
+    _joypad                                                        ****** GX
+    _palette_default                                               ****** GX
+  0 _read_buttons                                                  0000B5 GR
+    _set_bkg_palette                                               ****** GX
+    _set_bkg_tiles                                                 ****** GX
+    _set_sprite_data                                               ****** GX
+    _set_sprite_palette                                            ****** GX
+    _set_vram_byte                                                 ****** GX
+    _set_win_tile_xy                                               ****** GX
+    _shadow_OAM                                                    ****** GX
+    _sprintf                                                       ****** GX
+    _strlen                                                        ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size    466   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size      0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size      0   flags    0
+   8 _CABS                                      size      0   flags    8
+

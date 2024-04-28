@@ -1,0 +1,77 @@
+XL3
+H 9 areas 1E global symbols
+M gameloop
+O -msm83
+S _initiate_movement Ref000000
+S _draw_depth Ref000000
+S _animation_frames_left Ref000000
+S _prev_buttons Ref000000
+S _prev_depth Ref000000
+S _spawn_bkg_row Ref000000
+S _draw_fuel Ref000000
+S _prev_width Ref000000
+S .__.ABS. Def000000
+S _draw_hull Ref000000
+S _check_fuel Ref000000
+S _read_buttons Ref000000
+S _calculate_falldamage Ref000000
+S _update_movement Ref000000
+S _update_fuel Ref000000
+S _clear_4bkg_tiles Ref000000
+S _buttons Ref000000
+S _check_surroundings Ref000000
+S _update_inventory Ref000000
+S _check_hull Ref000000
+S _check_game_over Ref000000
+S _depth Ref000000
+S _level_array Ref000000
+S _calculate_cargo Ref000000
+S _draw_cargo Ref000000
+S _tile_mined Ref000000
+S _check_enter_buildings Ref000000
+S _wait_vbl_done Ref000000
+S _width Ref000000
+A _CODE size 71 flags 0 addr 0
+S _game_loop Def000000
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 00
+T 00 00 00 CD 00 00 CD 00 00 FA 00 00 B7 20 03 CD
+R 00 00 00 00 02 04 0B 00 02 07 11 00 02 0A 02 00
+T 0D 00 00 00 00
+R 00 00 00 00 02 03 00 00
+T 0F 00 00
+R 00 00 00 00
+T 0F 00 00 CD 00 00 FA 00 00 3D 20 1C CD 00 00 FA
+R 00 00 00 00 02 04 0D 00 02 07 19 00 02 0D 12 00
+T 1C 00 00 00 00 F5 33 FA 00 00 11 00 00 CD
+R 00 00 00 00 02 03 15 00 02 08 1C 00 02 0B 16 00
+T 27 00 00 00 00 CD 00 00 CD 00 00 21
+R 00 00 00 00 02 03 0F 00 02 06 17 00 02 09 18 00
+T 30 00 00 00 00 36 00
+R 00 00 00 00 02 03 19 00
+T 34 00 00
+R 00 00 00 00
+T 34 00 00 CD 00 00 CD 00 00 CD 00 00 CD
+R 00 00 00 00 02 04 0E 00 02 07 06 00 02 0A 09 00
+T 3E 00 00 00 00 CD 00 00 CD 00 00 CD
+R 00 00 00 00 02 03 0C 00 02 06 13 00 02 09 0A 00
+T 47 00 00 00 00 FA 00 00 21 00 00 96 28 06 CD
+R 00 00 00 00 02 03 14 00 02 06 04 00 02 09 15 00
+T 53 00 00 00 00 CD 00 00
+R 00 00 00 00 02 03 05 00 02 06 01 00
+T 58 00 00
+R 00 00 00 00
+T 58 00 00 CD 00 00 FA 00 00 EA 00 00 FA
+R 00 00 00 00 02 04 1A 00 02 07 10 00 02 0A 03 00
+T 62 00 00 00 00 EA 00 00 FA 00 00 21
+R 00 00 00 00 02 03 15 00 02 06 04 00 02 09 1C 00
+T 6B 00 00 00 00 77 C3 00 00
+R 00 00 00 00 02 03 07 00 02 07 1B 00

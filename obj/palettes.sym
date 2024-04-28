@@ -1,0 +1,38 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 1
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+  0 _palette_blue                                                  000048 GR
+  0 _palette_button_active                                         000018 GR
+  0 _palette_button_passive                                        000020 GR
+  0 _palette_dark_red                                              000030 GR
+  0 _palette_default                                               000000 GR
+  0 _palette_green                                                 000040 GR
+  0 _palette_grey                                                  000010 GR
+  0 _palette_light_grey                                            000008 GR
+  0 _palette_orange                                                000038 GR
+  0 _palette_purple                                                000058 GR
+  0 _palette_red                                                   000028 GR
+  0 _palette_yellow                                                000050 GR
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size     60   flags    0
+   1 _DATA                                      size      0   flags    0
+   2 _INITIALIZED                               size      0   flags    0
+   3 _DABS                                      size      0   flags    8
+   4 _HOME                                      size      0   flags    0
+   5 _GSINIT                                    size      0   flags    0
+   6 _GSFINAL                                   size      0   flags    0
+   7 _INITIALIZER                               size      0   flags    0
+   8 _CABS                                      size      0   flags    8
+
