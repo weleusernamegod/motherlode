@@ -4,24 +4,25 @@
 #include <stdio.h>
 #include <rand.h>
 
+#include "globals.h"
+#include "constants.h"
+#include "palettes.h"
+#include "inventory.h"
+#include "attributes.h"
+
 #include "map.h"
 #include "player.h"
 #include "general.h"
 #include "interrupt.h"
 #include "gameloop.h"
-#include "inventory.h"
-#include "attributes.h"
+#include "shop.h"
 
 #include "../assets/rover.h"
 #include "../assets/nav.h"
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
 
-#include "globals.h"
-#include "constants.h"
-#include "attributes.h"
-#include "inventory.h"
-#include "palettes.h"
+
 
 BANKREF_EXTERN(bank_map)
 BANKREF_EXTERN(bank_player)

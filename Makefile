@@ -11,7 +11,7 @@ endif
 
 LCC = $(GBDK_HOME)bin/lcc 
 
-LCCFLAGS += -debug -v -Wl-j -Wm-yoA -Wm-ya4 -Wb-ext=.rel -Wb-v -Wl-yt0x1B -Wm-yc
+LCCFLAGS += -debug -Wall -v -Wl-j -Wm-yoA -Wm-ya4 -Wb-ext=.rel -Wb-v -Wl-yt0x1B -Wm-yc
 
 
 # You can set the name of the .gbc ROM file here
@@ -48,7 +48,7 @@ png2asset:
 
 
 
-all:	prepare png2asset $(BINS)
+all:	clean prepare png2asset $(BINS) move-rom
 
 # Compile .c files in "src/" to .o object files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
@@ -66,8 +66,10 @@ prepare:
 	mkdir -p $(OBJDIR)
 
 clean:
-#	rm -f  *.gb *.ihx *.cdb *.adb *.noi *.map
-	rm -f  $(OBJDIR)/*.*
+	rm -f  $(OBJDIR)/*.* $(BINDIR)/*.*
+
+move-rom:
+	mv $(BINDIR)/$(PROJECTNAME).gbc .
 
 # create necessary directories after Makefile is parsed but before build
 # info prevents the command from being pasted into the makefile

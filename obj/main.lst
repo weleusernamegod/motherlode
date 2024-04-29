@@ -9,358 +9,360 @@
                                       9 ; Public variables in this module
                                      10 ;--------------------------------------------------------
                                      11 	.globl _main
-                                     12 	.globl _init_attributes
-                                     13 	.globl _sell_all_ores
-                                     14 	.globl _calculate_cargo
-                                     15 	.globl _game_loop
-                                     16 	.globl _init_disable_lcd_interrupt
-                                     17 	.globl _init_enable_lcd_interrupt
-                                     18 	.globl _init_framecounter
-                                     19 	.globl _init_clear_screen
-                                     20 	.globl _init_screen
-                                     21 	.globl _init_font
-                                     22 	.globl _reset_player
-                                     23 	.globl _init_speed
-                                     24 	.globl _init_character
-                                     25 	.globl _init_progressbar
-                                     26 	.globl _init_tiles
-                                     27 	.globl _init_nav
-                                     28 	.globl _draw_character
-                                     29 	.globl _draw_hull
-                                     30 	.globl _draw_fuel
-                                     31 	.globl _draw_cargo
-                                     32 	.globl _draw_depth
-                                     33 	.globl _initrand
-                                     34 	.globl _set_bkg_palette
-                                     35 	.globl _waitpad
-                                     36 ;--------------------------------------------------------
-                                     37 ; special function registers
+                                     12 	.globl _init_shop_tiles_palettes
+                                     13 	.globl _init_shop
+                                     14 	.globl _game_loop
+                                     15 	.globl _init_disable_lcd_interrupt
+                                     16 	.globl _init_enable_lcd_interrupt
+                                     17 	.globl _init_framecounter
+                                     18 	.globl _init_clear_screen
+                                     19 	.globl _init_screen
+                                     20 	.globl _init_font
+                                     21 	.globl _reset_player
+                                     22 	.globl _init_speed
+                                     23 	.globl _init_character
+                                     24 	.globl _init_progressbar
+                                     25 	.globl _init_tiles
+                                     26 	.globl _init_nav
+                                     27 	.globl _draw_character
+                                     28 	.globl _draw_hull
+                                     29 	.globl _draw_fuel
+                                     30 	.globl _draw_cargo
+                                     31 	.globl _draw_depth
+                                     32 	.globl _init_attributes
+                                     33 	.globl _sell_all_ores
+                                     34 	.globl _calculate_cargo
+                                     35 	.globl _initrand
+                                     36 	.globl _set_bkg_palette
+                                     37 	.globl _waitpad
                                      38 ;--------------------------------------------------------
-                                     39 ;--------------------------------------------------------
-                                     40 ; ram data
+                                     39 ; special function registers
+                                     40 ;--------------------------------------------------------
                                      41 ;--------------------------------------------------------
-                                     42 	.area _DATA
+                                     42 ; ram data
                                      43 ;--------------------------------------------------------
-                                     44 ; ram data
+                                     44 	.area _DATA
                                      45 ;--------------------------------------------------------
-                                     46 	.area _INITIALIZED
+                                     46 ; ram data
                                      47 ;--------------------------------------------------------
-                                     48 ; absolute external ram data
+                                     48 	.area _INITIALIZED
                                      49 ;--------------------------------------------------------
-                                     50 	.area _DABS (ABS)
+                                     50 ; absolute external ram data
                                      51 ;--------------------------------------------------------
-                                     52 ; global & static initialisations
+                                     52 	.area _DABS (ABS)
                                      53 ;--------------------------------------------------------
-                                     54 	.area _HOME
-                                     55 	.area _GSINIT
-                                     56 	.area _GSFINAL
+                                     54 ; global & static initialisations
+                                     55 ;--------------------------------------------------------
+                                     56 	.area _HOME
                                      57 	.area _GSINIT
-                                     58 ;--------------------------------------------------------
-                                     59 ; Home
+                                     58 	.area _GSFINAL
+                                     59 	.area _GSINIT
                                      60 ;--------------------------------------------------------
-                                     61 	.area _HOME
-                                     62 	.area _HOME
-                                     63 ;--------------------------------------------------------
-                                     64 ; code
+                                     61 ; Home
+                                     62 ;--------------------------------------------------------
+                                     63 	.area _HOME
+                                     64 	.area _HOME
                                      65 ;--------------------------------------------------------
-                                     66 	.area _CODE
-                           000000    67 	G$main$0$0	= .
-                                     68 	.globl	G$main$0$0
-                           000000    69 	C$main.c$30$0_0$228	= .
-                                     70 	.globl	C$main.c$30$0_0$228
-                                     71 ;src/main.c:30: void main(void) {
-                                     72 ;	---------------------------------
-                                     73 ; Function main
-                                     74 ; ---------------------------------
-      000000                         75 _main::
-                           000000    76 	C$main.c$31$1_0$228	= .
-                                     77 	.globl	C$main.c$31$1_0$228
-                                     78 ;src/main.c:31: init_framecounter();
-      000000 CDr00r00         [24]   79 	call	_init_framecounter
-                           000003    80 	C$main.c$32$1_0$228	= .
-                                     81 	.globl	C$main.c$32$1_0$228
-                                     82 ;src/main.c:32: initrand(DIV_REG);
-      000003 F0r00            [12]   83 	ldh	a, (_DIV_REG + 0)
-      000005 06 00            [ 8]   84 	ld	b, #0x00
-      000007 4F               [ 4]   85 	ld	c, a
-      000008 C5               [16]   86 	push	bc
-      000009 CDr00r00         [24]   87 	call	_initrand
-      00000C E1               [12]   88 	pop	hl
-                           00000D    89 	C$main.c$33$1_0$228	= .
-                                     90 	.globl	C$main.c$33$1_0$228
-                                     91 ;src/main.c:33: init_attributes();
-      00000D CDr00r00         [24]   92 	call	_init_attributes
-                           000010    93 	C$main.c$34$1_0$228	= .
-                                     94 	.globl	C$main.c$34$1_0$228
-                                     95 ;src/main.c:34: init_font();
-      000010 CDr00r00         [24]   96 	call	_init_font
-                           000013    97 	C$main.c$35$1_0$228	= .
-                                     98 	.globl	C$main.c$35$1_0$228
-                                     99 ;src/main.c:35: init_speed();
-      000013 CDr00r00         [24]  100 	call	_init_speed
-                           000016   101 	C$main.c$36$1_0$228	= .
-                                    102 	.globl	C$main.c$36$1_0$228
-                                    103 ;src/main.c:36: init_character();
-      000016 CDr00r00         [24]  104 	call	_init_character
-                           000019   105 	C$main.c$37$1_0$228	= .
-                                    106 	.globl	C$main.c$37$1_0$228
-                                    107 ;src/main.c:37: init_screen();
-      000019 CDr00r00         [24]  108 	call	_init_screen
-                           00001C   109 	C$main.c$40$1_1$229	= .
-                                    110 	.globl	C$main.c$40$1_1$229
-                                    111 ;src/main.c:40: saved_bank = CURRENT_BANK;
-      00001C F0r00            [12]  112 	ldh	a, (__current_bank + 0)
-                           00001E   113 	C$main.c$42$1_1$229	= .
-                                    114 	.globl	C$main.c$42$1_1$229
-                                    115 ;src/main.c:42: while (1) {
-      00001E                        116 00114$:
-                           00001E   117 	C$main.c$43$2_1$230	= .
-                                    118 	.globl	C$main.c$43$2_1$230
-                                    119 ;src/main.c:43: switch (currentGameState) {
-      00001E FAr00r00         [16]  120 	ld	a, (#_currentGameState)
-      000021 3D               [ 4]  121 	dec	a
-      000022 CArE3r00         [16]  122 	jp	Z,00106$
-      000025 FAr00r00         [16]  123 	ld	a, (#_currentGameState)
-      000028 D6 02            [ 8]  124 	sub	a, #0x02
-      00002A CAr04r01         [16]  125 	jp	Z,00110$
-      00002D FAr00r00         [16]  126 	ld	a, (#_currentGameState)
-      000030 D6 03            [ 8]  127 	sub	a, #0x03
-      000032 28 0A            [12]  128 	jr	Z, 00101$
-      000034 FAr00r00         [16]  129 	ld	a, (#_currentGameState)
-      000037 D6 04            [ 8]  130 	sub	a, #0x04
-      000039 CAr0Dr01         [16]  131 	jp	Z,00111$
-      00003C 18 E0            [12]  132 	jr	00114$
-                           00003E   133 	C$main.c$44$3_1$231	= .
-                                    134 	.globl	C$main.c$44$3_1$231
-                                    135 ;src/main.c:44: case GAME_STATE_PLAY:
-      00003E                        136 00101$:
-                           00003E   137 	C$main.c$46$3_1$231	= .
-                                    138 	.globl	C$main.c$46$3_1$231
-                                    139 ;src/main.c:46: SWITCH_ROM(1);
-      00003E 3E 01            [ 8]  140 	ld	a, #0x01
-      000040 E0r00            [12]  141 	ldh	(__current_bank + 0), a
-      000042 21r00r00         [12]  142 	ld	hl, #_rROMB0
-      000045 36 01            [12]  143 	ld	(hl), #0x01
-                           000047   144 	C$main.c$47$3_1$231	= .
-                                    145 	.globl	C$main.c$47$3_1$231
-                                    146 ;src/main.c:47: init_enable_lcd_interrupt();
-      000047 CDr00r00         [24]  147 	call	_init_enable_lcd_interrupt
-                           00004A   148 	C$main.c$48$3_1$231	= .
-                                    149 	.globl	C$main.c$48$3_1$231
-                                    150 ;src/main.c:48: init_clear_screen();
-      00004A CDr00r00         [24]  151 	call	_init_clear_screen
-                           00004D   152 	C$main.c$49$3_1$231	= .
-                                    153 	.globl	C$main.c$49$3_1$231
-                                    154 ;src/main.c:49: init_tiles();
-      00004D CDr00r00         [24]  155 	call	_init_tiles
-                           000050   156 	C$main.c$50$3_1$231	= .
-                                    157 	.globl	C$main.c$50$3_1$231
-                                    158 ;src/main.c:50: init_progressbar();
-      000050 CDr00r00         [24]  159 	call	_init_progressbar
-                           000053   160 	C$main.c$51$3_1$231	= .
-                                    161 	.globl	C$main.c$51$3_1$231
-                                    162 ;src/main.c:51: init_nav();
-      000053 CDr00r00         [24]  163 	call	_init_nav
-                           000056   164 	C$main.c$53$3_1$231	= .
-                                    165 	.globl	C$main.c$53$3_1$231
-                                    166 ;src/main.c:53: draw_character();
-      000056 CDr00r00         [24]  167 	call	_draw_character
-                           000059   168 	C$main.c$54$3_1$231	= .
-                                    169 	.globl	C$main.c$54$3_1$231
-                                    170 ;src/main.c:54: draw_fuel();
-      000059 CDr00r00         [24]  171 	call	_draw_fuel
-                           00005C   172 	C$main.c$55$3_1$231	= .
-                                    173 	.globl	C$main.c$55$3_1$231
-                                    174 ;src/main.c:55: draw_hull();
-      00005C CDr00r00         [24]  175 	call	_draw_hull
-                           00005F   176 	C$main.c$56$3_1$231	= .
-                                    177 	.globl	C$main.c$56$3_1$231
-                                    178 ;src/main.c:56: calculate_cargo();
-      00005F CDr00r00         [24]  179 	call	_calculate_cargo
-                           000062   180 	C$main.c$57$3_1$231	= .
-                                    181 	.globl	C$main.c$57$3_1$231
-                                    182 ;src/main.c:57: draw_cargo();
-      000062 CDr00r00         [24]  183 	call	_draw_cargo
-                           000065   184 	C$main.c$58$3_1$231	= .
-                                    185 	.globl	C$main.c$58$3_1$231
-                                    186 ;src/main.c:58: draw_depth();
-      000065 CDr00r00         [24]  187 	call	_draw_depth
-                           000068   188 	C$main.c$60$3_1$231	= .
-                                    189 	.globl	C$main.c$60$3_1$231
-                                    190 ;src/main.c:60: set_bkg_palette(0, 1, palette_default);
-      000068 11r00r00         [12]  191 	ld	de, #_palette_default
-      00006B D5               [16]  192 	push	de
-      00006C AF               [ 4]  193 	xor	a, a
-      00006D 3C               [ 4]  194 	inc	a
-      00006E F5               [16]  195 	push	af
-      00006F CDr00r00         [24]  196 	call	_set_bkg_palette
-      000072 E8 04            [16]  197 	add	sp, #4
-                           000074   198 	C$main.c$61$3_1$231	= .
-                                    199 	.globl	C$main.c$61$3_1$231
-                                    200 ;src/main.c:61: set_bkg_palette(1, 1, palette_gras);
-      000074 11r00r00         [12]  201 	ld	de, #_palette_gras
-      000077 D5               [16]  202 	push	de
-      000078 21 01 01         [12]  203 	ld	hl, #0x101
-      00007B E5               [16]  204 	push	hl
-      00007C CDr00r00         [24]  205 	call	_set_bkg_palette
-      00007F E8 04            [16]  206 	add	sp, #4
-                           000081   207 	C$main.c$62$3_1$231	= .
-                                    208 	.globl	C$main.c$62$3_1$231
-                                    209 ;src/main.c:62: set_bkg_palette(2, 1, palette_rock);
-      000081 11r00r00         [12]  210 	ld	de, #_palette_rock
-      000084 D5               [16]  211 	push	de
-      000085 21 02 01         [12]  212 	ld	hl, #0x102
-      000088 E5               [16]  213 	push	hl
-      000089 CDr00r00         [24]  214 	call	_set_bkg_palette
-      00008C E8 04            [16]  215 	add	sp, #4
-                           00008E   216 	C$main.c$63$3_1$231	= .
-                                    217 	.globl	C$main.c$63$3_1$231
-                                    218 ;src/main.c:63: set_bkg_palette(3, 1, palette_iron);
-      00008E 11r00r00         [12]  219 	ld	de, #_palette_iron
-      000091 D5               [16]  220 	push	de
-      000092 21 03 01         [12]  221 	ld	hl, #0x103
-      000095 E5               [16]  222 	push	hl
-      000096 CDr00r00         [24]  223 	call	_set_bkg_palette
-      000099 E8 04            [16]  224 	add	sp, #4
-                           00009B   225 	C$main.c$64$3_1$231	= .
-                                    226 	.globl	C$main.c$64$3_1$231
-                                    227 ;src/main.c:64: set_bkg_palette(4, 1, palette_copper);
-      00009B 11r00r00         [12]  228 	ld	de, #_palette_copper
-      00009E D5               [16]  229 	push	de
-      00009F 21 04 01         [12]  230 	ld	hl, #0x104
-      0000A2 E5               [16]  231 	push	hl
-      0000A3 CDr00r00         [24]  232 	call	_set_bkg_palette
-      0000A6 E8 04            [16]  233 	add	sp, #4
-                           0000A8   234 	C$main.c$65$3_1$231	= .
-                                    235 	.globl	C$main.c$65$3_1$231
-                                    236 ;src/main.c:65: set_bkg_palette(5, 1, palette_iron);
-      0000A8 11r00r00         [12]  237 	ld	de, #_palette_iron
-      0000AB D5               [16]  238 	push	de
-      0000AC 21 05 01         [12]  239 	ld	hl, #0x105
-      0000AF E5               [16]  240 	push	hl
-      0000B0 CDr00r00         [24]  241 	call	_set_bkg_palette
-      0000B3 E8 04            [16]  242 	add	sp, #4
-                           0000B5   243 	C$main.c$66$3_1$231	= .
-                                    244 	.globl	C$main.c$66$3_1$231
-                                    245 ;src/main.c:66: set_bkg_palette(6, 1, palette_yellow);
-      0000B5 11r00r00         [12]  246 	ld	de, #_palette_yellow
-      0000B8 D5               [16]  247 	push	de
-      0000B9 21 06 01         [12]  248 	ld	hl, #0x106
-      0000BC E5               [16]  249 	push	hl
-      0000BD CDr00r00         [24]  250 	call	_set_bkg_palette
-      0000C0 E8 04            [16]  251 	add	sp, #4
-                           0000C2   252 	C$main.c$67$3_1$231	= .
-                                    253 	.globl	C$main.c$67$3_1$231
-                                    254 ;src/main.c:67: set_bkg_palette(7, 1, palette_yellow);
-      0000C2 11r00r00         [12]  255 	ld	de, #_palette_yellow
-      0000C5 D5               [16]  256 	push	de
-      0000C6 21 07 01         [12]  257 	ld	hl, #0x107
-      0000C9 E5               [16]  258 	push	hl
-      0000CA CDr00r00         [24]  259 	call	_set_bkg_palette
-      0000CD E8 04            [16]  260 	add	sp, #4
-                           0000CF   261 	C$main.c$70$3_1$231	= .
-                                    262 	.globl	C$main.c$70$3_1$231
-                                    263 ;src/main.c:70: while (player_alive == TRUE && currentGameState == GAME_STATE_PLAY) {
-      0000CF                        264 00103$:
-      0000CF FAr00r00         [16]  265 	ld	a, (#_player_alive)
-      0000D2 3D               [ 4]  266 	dec	a
-      0000D3 C2r1Er00         [16]  267 	jp	NZ,00114$
-      0000D6 FAr00r00         [16]  268 	ld	a, (#_currentGameState)
-      0000D9 D6 03            [ 8]  269 	sub	a, #0x03
-      0000DB C2r1Er00         [16]  270 	jp	NZ,00114$
-                           0000DE   271 	C$main.c$71$4_1$232	= .
-                                    272 	.globl	C$main.c$71$4_1$232
-                                    273 ;src/main.c:71: game_loop();
-      0000DE CDr00r00         [24]  274 	call	_game_loop
-      0000E1 18 EC            [12]  275 	jr	00103$
-                           0000E3   276 	C$main.c$75$3_1$231	= .
-                                    277 	.globl	C$main.c$75$3_1$231
-                                    278 ;src/main.c:75: case GAME_STATE_UPGRADE_MENU:
-      0000E3                        279 00106$:
-                           0000E3   280 	C$main.c$76$3_1$231	= .
-                                    281 	.globl	C$main.c$76$3_1$231
-                                    282 ;src/main.c:76: SWITCH_ROM(2);
-      0000E3 3E 02            [ 8]  283 	ld	a, #0x02
-      0000E5 E0r00            [12]  284 	ldh	(__current_bank + 0), a
-      0000E7 21r00r00         [12]  285 	ld	hl, #_rROMB0
-      0000EA 36 02            [12]  286 	ld	(hl), #0x02
-                           0000EC   287 	C$main.c$78$3_1$231	= .
-                                    288 	.globl	C$main.c$78$3_1$231
-                                    289 ;src/main.c:78: init_disable_lcd_interrupt();
-      0000EC CDr00r00         [24]  290 	call	_init_disable_lcd_interrupt
-                           0000EF   291 	C$main.c$79$3_1$231	= .
-                                    292 	.globl	C$main.c$79$3_1$231
-                                    293 ;src/main.c:79: init_clear_screen();
-      0000EF CDr00r00         [24]  294 	call	_init_clear_screen
-                           0000F2   295 	C$main.c$80$3_1$231	= .
-                                    296 	.globl	C$main.c$80$3_1$231
-                                    297 ;src/main.c:80: init_shop();
-      0000F2 CDr00r00         [24]  298 	call	_init_shop
-                           0000F5   299 	C$main.c$81$3_1$231	= .
-                                    300 	.globl	C$main.c$81$3_1$231
-                                    301 ;src/main.c:81: init_shop_tiles_palettes();
-      0000F5 CDr00r00         [24]  302 	call	_init_shop_tiles_palettes
-                           0000F8   303 	C$main.c$82$3_1$231	= .
-                                    304 	.globl	C$main.c$82$3_1$231
-                                    305 ;src/main.c:82: while (currentGameState == GAME_STATE_UPGRADE_MENU){
-      0000F8                        306 00107$:
-      0000F8 FAr00r00         [16]  307 	ld	a, (#_currentGameState)
-      0000FB 3D               [ 4]  308 	dec	a
-      0000FC C2r1Er00         [16]  309 	jp	NZ,00114$
-                           0000FF   310 	C$main.c$83$4_1$233	= .
-                                    311 	.globl	C$main.c$83$4_1$233
-                                    312 ;src/main.c:83: shop_menu_loop();
-      0000FF CDr00r00         [24]  313 	call	_shop_menu_loop
-      000102 18 F4            [12]  314 	jr	00107$
-                           000104   315 	C$main.c$86$3_1$231	= .
-                                    316 	.globl	C$main.c$86$3_1$231
-                                    317 ;src/main.c:86: case GAME_STATE_SELL_MENU:
-      000104                        318 00110$:
-                           000104   319 	C$main.c$87$3_1$231	= .
-                                    320 	.globl	C$main.c$87$3_1$231
-                                    321 ;src/main.c:87: init_disable_lcd_interrupt();
-      000104 CDr00r00         [24]  322 	call	_init_disable_lcd_interrupt
-                           000107   323 	C$main.c$88$3_1$231	= .
-                                    324 	.globl	C$main.c$88$3_1$231
-                                    325 ;src/main.c:88: sell_all_ores();
-      000107 CDr00r00         [24]  326 	call	_sell_all_ores
-                           00010A   327 	C$main.c$89$3_1$231	= .
-                                    328 	.globl	C$main.c$89$3_1$231
-                                    329 ;src/main.c:89: break;
-      00010A C3r1Er00         [16]  330 	jp	00114$
-                           00010D   331 	C$main.c$91$3_1$231	= .
-                                    332 	.globl	C$main.c$91$3_1$231
-                                    333 ;src/main.c:91: case GAME_STATE_GAME_OVER:
-      00010D                        334 00111$:
-                           00010D   335 	C$main.c$92$3_1$231	= .
-                                    336 	.globl	C$main.c$92$3_1$231
-                                    337 ;src/main.c:92: init_disable_lcd_interrupt();
-      00010D CDr00r00         [24]  338 	call	_init_disable_lcd_interrupt
-                           000110   339 	C$main.c$93$3_1$231	= .
-                                    340 	.globl	C$main.c$93$3_1$231
-                                    341 ;src/main.c:93: waitpad(J_START);
-      000110 3E 80            [ 8]  342 	ld	a, #0x80
-      000112 CDr00r00         [24]  343 	call	_waitpad
-                           000115   344 	C$main.c$94$3_1$231	= .
-                                    345 	.globl	C$main.c$94$3_1$231
-                                    346 ;src/main.c:94: reset_player();
-      000115 CDr00r00         [24]  347 	call	_reset_player
-                           000118   348 	C$main.c$95$3_1$231	= .
-                                    349 	.globl	C$main.c$95$3_1$231
-                                    350 ;src/main.c:95: currentGameState = GAME_STATE_PLAY;
-      000118 21r00r00         [12]  351 	ld	hl, #_currentGameState
-      00011B 36 03            [12]  352 	ld	(hl), #0x03
-                           00011D   353 	C$main.c$98$1_1$229	= .
-                                    354 	.globl	C$main.c$98$1_1$229
-                                    355 ;src/main.c:98: }
-                           00011D   356 	C$main.c$100$1_1$228	= .
-                                    357 	.globl	C$main.c$100$1_1$228
-                                    358 ;src/main.c:100: }
-                           00011D   359 	C$main.c$100$1_1$228	= .
-                                    360 	.globl	C$main.c$100$1_1$228
-                           00011D   361 	XG$main$0$0	= .
-                                    362 	.globl	XG$main$0$0
-      00011D C3r1Er00         [16]  363 	jp	00114$
-                                    364 	.area _CODE
-                                    365 	.area _INITIALIZER
-                                    366 	.area _CABS (ABS)
+                                     66 ; code
+                                     67 ;--------------------------------------------------------
+                                     68 	.area _CODE
+                           000000    69 	G$main$0$0	= .
+                                     70 	.globl	G$main$0$0
+                           000000    71 	C$main.c$31$0_0$242	= .
+                                     72 	.globl	C$main.c$31$0_0$242
+                                     73 ;src/main.c:31: void main(void) {
+                                     74 ;	---------------------------------
+                                     75 ; Function main
+                                     76 ; ---------------------------------
+      000000                         77 _main::
+                           000000    78 	C$main.c$32$1_0$242	= .
+                                     79 	.globl	C$main.c$32$1_0$242
+                                     80 ;src/main.c:32: init_framecounter();
+      000000 CDr00r00         [24]   81 	call	_init_framecounter
+                           000003    82 	C$main.c$33$1_0$242	= .
+                                     83 	.globl	C$main.c$33$1_0$242
+                                     84 ;src/main.c:33: initrand(DIV_REG);
+      000003 F0r00            [12]   85 	ldh	a, (_DIV_REG + 0)
+      000005 06 00            [ 8]   86 	ld	b, #0x00
+      000007 4F               [ 4]   87 	ld	c, a
+      000008 C5               [16]   88 	push	bc
+      000009 CDr00r00         [24]   89 	call	_initrand
+      00000C E1               [12]   90 	pop	hl
+                           00000D    91 	C$main.c$34$1_0$242	= .
+                                     92 	.globl	C$main.c$34$1_0$242
+                                     93 ;src/main.c:34: init_attributes();
+      00000D CDr00r00         [24]   94 	call	_init_attributes
+                           000010    95 	C$main.c$35$1_0$242	= .
+                                     96 	.globl	C$main.c$35$1_0$242
+                                     97 ;src/main.c:35: init_font();
+      000010 CDr00r00         [24]   98 	call	_init_font
+                           000013    99 	C$main.c$36$1_0$242	= .
+                                    100 	.globl	C$main.c$36$1_0$242
+                                    101 ;src/main.c:36: init_speed();
+      000013 CDr00r00         [24]  102 	call	_init_speed
+                           000016   103 	C$main.c$37$1_0$242	= .
+                                    104 	.globl	C$main.c$37$1_0$242
+                                    105 ;src/main.c:37: init_character();
+      000016 CDr00r00         [24]  106 	call	_init_character
+                           000019   107 	C$main.c$38$1_0$242	= .
+                                    108 	.globl	C$main.c$38$1_0$242
+                                    109 ;src/main.c:38: init_screen();
+      000019 CDr00r00         [24]  110 	call	_init_screen
+                           00001C   111 	C$main.c$41$1_1$243	= .
+                                    112 	.globl	C$main.c$41$1_1$243
+                                    113 ;src/main.c:41: saved_bank = CURRENT_BANK;
+      00001C F0r00            [12]  114 	ldh	a, (__current_bank + 0)
+                           00001E   115 	C$main.c$43$1_1$243	= .
+                                    116 	.globl	C$main.c$43$1_1$243
+                                    117 ;src/main.c:43: while (1) {
+      00001E                        118 00114$:
+                           00001E   119 	C$main.c$44$2_1$244	= .
+                                    120 	.globl	C$main.c$44$2_1$244
+                                    121 ;src/main.c:44: switch (currentGameState) {
+      00001E FAr00r00         [16]  122 	ld	a, (#_currentGameState)
+      000021 3D               [ 4]  123 	dec	a
+      000022 CArE3r00         [16]  124 	jp	Z,00106$
+      000025 FAr00r00         [16]  125 	ld	a, (#_currentGameState)
+      000028 D6 02            [ 8]  126 	sub	a, #0x02
+      00002A CAr04r01         [16]  127 	jp	Z,00110$
+      00002D FAr00r00         [16]  128 	ld	a, (#_currentGameState)
+      000030 D6 03            [ 8]  129 	sub	a, #0x03
+      000032 28 0A            [12]  130 	jr	Z, 00101$
+      000034 FAr00r00         [16]  131 	ld	a, (#_currentGameState)
+      000037 D6 04            [ 8]  132 	sub	a, #0x04
+      000039 CAr0Dr01         [16]  133 	jp	Z,00111$
+      00003C 18 E0            [12]  134 	jr	00114$
+                           00003E   135 	C$main.c$45$3_1$245	= .
+                                    136 	.globl	C$main.c$45$3_1$245
+                                    137 ;src/main.c:45: case GAME_STATE_PLAY:
+      00003E                        138 00101$:
+                           00003E   139 	C$main.c$47$3_1$245	= .
+                                    140 	.globl	C$main.c$47$3_1$245
+                                    141 ;src/main.c:47: SWITCH_ROM(1);
+      00003E 3E 01            [ 8]  142 	ld	a, #0x01
+      000040 E0r00            [12]  143 	ldh	(__current_bank + 0), a
+      000042 21r00r00         [12]  144 	ld	hl, #_rROMB0
+      000045 36 01            [12]  145 	ld	(hl), #0x01
+                           000047   146 	C$main.c$48$3_1$245	= .
+                                    147 	.globl	C$main.c$48$3_1$245
+                                    148 ;src/main.c:48: init_enable_lcd_interrupt();
+      000047 CDr00r00         [24]  149 	call	_init_enable_lcd_interrupt
+                           00004A   150 	C$main.c$49$3_1$245	= .
+                                    151 	.globl	C$main.c$49$3_1$245
+                                    152 ;src/main.c:49: init_clear_screen();
+      00004A CDr00r00         [24]  153 	call	_init_clear_screen
+                           00004D   154 	C$main.c$50$3_1$245	= .
+                                    155 	.globl	C$main.c$50$3_1$245
+                                    156 ;src/main.c:50: init_tiles();
+      00004D CDr00r00         [24]  157 	call	_init_tiles
+                           000050   158 	C$main.c$51$3_1$245	= .
+                                    159 	.globl	C$main.c$51$3_1$245
+                                    160 ;src/main.c:51: init_progressbar();
+      000050 CDr00r00         [24]  161 	call	_init_progressbar
+                           000053   162 	C$main.c$52$3_1$245	= .
+                                    163 	.globl	C$main.c$52$3_1$245
+                                    164 ;src/main.c:52: init_nav();
+      000053 CDr00r00         [24]  165 	call	_init_nav
+                           000056   166 	C$main.c$54$3_1$245	= .
+                                    167 	.globl	C$main.c$54$3_1$245
+                                    168 ;src/main.c:54: draw_character();
+      000056 CDr00r00         [24]  169 	call	_draw_character
+                           000059   170 	C$main.c$55$3_1$245	= .
+                                    171 	.globl	C$main.c$55$3_1$245
+                                    172 ;src/main.c:55: draw_fuel();
+      000059 CDr00r00         [24]  173 	call	_draw_fuel
+                           00005C   174 	C$main.c$56$3_1$245	= .
+                                    175 	.globl	C$main.c$56$3_1$245
+                                    176 ;src/main.c:56: draw_hull();
+      00005C CDr00r00         [24]  177 	call	_draw_hull
+                           00005F   178 	C$main.c$57$3_1$245	= .
+                                    179 	.globl	C$main.c$57$3_1$245
+                                    180 ;src/main.c:57: calculate_cargo();
+      00005F CDr00r00         [24]  181 	call	_calculate_cargo
+                           000062   182 	C$main.c$58$3_1$245	= .
+                                    183 	.globl	C$main.c$58$3_1$245
+                                    184 ;src/main.c:58: draw_cargo();
+      000062 CDr00r00         [24]  185 	call	_draw_cargo
+                           000065   186 	C$main.c$59$3_1$245	= .
+                                    187 	.globl	C$main.c$59$3_1$245
+                                    188 ;src/main.c:59: draw_depth();
+      000065 CDr00r00         [24]  189 	call	_draw_depth
+                           000068   190 	C$main.c$61$3_1$245	= .
+                                    191 	.globl	C$main.c$61$3_1$245
+                                    192 ;src/main.c:61: set_bkg_palette(0, 1, palette_default);
+      000068 11r00r00         [12]  193 	ld	de, #_palette_default
+      00006B D5               [16]  194 	push	de
+      00006C AF               [ 4]  195 	xor	a, a
+      00006D 3C               [ 4]  196 	inc	a
+      00006E F5               [16]  197 	push	af
+      00006F CDr00r00         [24]  198 	call	_set_bkg_palette
+      000072 E8 04            [16]  199 	add	sp, #4
+                           000074   200 	C$main.c$62$3_1$245	= .
+                                    201 	.globl	C$main.c$62$3_1$245
+                                    202 ;src/main.c:62: set_bkg_palette(1, 1, palette_gras);
+      000074 11r00r00         [12]  203 	ld	de, #_palette_gras
+      000077 D5               [16]  204 	push	de
+      000078 21 01 01         [12]  205 	ld	hl, #0x101
+      00007B E5               [16]  206 	push	hl
+      00007C CDr00r00         [24]  207 	call	_set_bkg_palette
+      00007F E8 04            [16]  208 	add	sp, #4
+                           000081   209 	C$main.c$63$3_1$245	= .
+                                    210 	.globl	C$main.c$63$3_1$245
+                                    211 ;src/main.c:63: set_bkg_palette(2, 1, palette_rock);
+      000081 11r00r00         [12]  212 	ld	de, #_palette_rock
+      000084 D5               [16]  213 	push	de
+      000085 21 02 01         [12]  214 	ld	hl, #0x102
+      000088 E5               [16]  215 	push	hl
+      000089 CDr00r00         [24]  216 	call	_set_bkg_palette
+      00008C E8 04            [16]  217 	add	sp, #4
+                           00008E   218 	C$main.c$64$3_1$245	= .
+                                    219 	.globl	C$main.c$64$3_1$245
+                                    220 ;src/main.c:64: set_bkg_palette(3, 1, palette_iron);
+      00008E 11r00r00         [12]  221 	ld	de, #_palette_iron
+      000091 D5               [16]  222 	push	de
+      000092 21 03 01         [12]  223 	ld	hl, #0x103
+      000095 E5               [16]  224 	push	hl
+      000096 CDr00r00         [24]  225 	call	_set_bkg_palette
+      000099 E8 04            [16]  226 	add	sp, #4
+                           00009B   227 	C$main.c$65$3_1$245	= .
+                                    228 	.globl	C$main.c$65$3_1$245
+                                    229 ;src/main.c:65: set_bkg_palette(4, 1, palette_copper);
+      00009B 11r00r00         [12]  230 	ld	de, #_palette_copper
+      00009E D5               [16]  231 	push	de
+      00009F 21 04 01         [12]  232 	ld	hl, #0x104
+      0000A2 E5               [16]  233 	push	hl
+      0000A3 CDr00r00         [24]  234 	call	_set_bkg_palette
+      0000A6 E8 04            [16]  235 	add	sp, #4
+                           0000A8   236 	C$main.c$66$3_1$245	= .
+                                    237 	.globl	C$main.c$66$3_1$245
+                                    238 ;src/main.c:66: set_bkg_palette(5, 1, palette_iron);
+      0000A8 11r00r00         [12]  239 	ld	de, #_palette_iron
+      0000AB D5               [16]  240 	push	de
+      0000AC 21 05 01         [12]  241 	ld	hl, #0x105
+      0000AF E5               [16]  242 	push	hl
+      0000B0 CDr00r00         [24]  243 	call	_set_bkg_palette
+      0000B3 E8 04            [16]  244 	add	sp, #4
+                           0000B5   245 	C$main.c$67$3_1$245	= .
+                                    246 	.globl	C$main.c$67$3_1$245
+                                    247 ;src/main.c:67: set_bkg_palette(6, 1, palette_yellow);
+      0000B5 11r00r00         [12]  248 	ld	de, #_palette_yellow
+      0000B8 D5               [16]  249 	push	de
+      0000B9 21 06 01         [12]  250 	ld	hl, #0x106
+      0000BC E5               [16]  251 	push	hl
+      0000BD CDr00r00         [24]  252 	call	_set_bkg_palette
+      0000C0 E8 04            [16]  253 	add	sp, #4
+                           0000C2   254 	C$main.c$68$3_1$245	= .
+                                    255 	.globl	C$main.c$68$3_1$245
+                                    256 ;src/main.c:68: set_bkg_palette(7, 1, palette_yellow);
+      0000C2 11r00r00         [12]  257 	ld	de, #_palette_yellow
+      0000C5 D5               [16]  258 	push	de
+      0000C6 21 07 01         [12]  259 	ld	hl, #0x107
+      0000C9 E5               [16]  260 	push	hl
+      0000CA CDr00r00         [24]  261 	call	_set_bkg_palette
+      0000CD E8 04            [16]  262 	add	sp, #4
+                           0000CF   263 	C$main.c$71$3_1$245	= .
+                                    264 	.globl	C$main.c$71$3_1$245
+                                    265 ;src/main.c:71: while (player_alive == TRUE && currentGameState == GAME_STATE_PLAY) {
+      0000CF                        266 00103$:
+      0000CF FAr00r00         [16]  267 	ld	a, (#_player_alive)
+      0000D2 3D               [ 4]  268 	dec	a
+      0000D3 C2r1Er00         [16]  269 	jp	NZ,00114$
+      0000D6 FAr00r00         [16]  270 	ld	a, (#_currentGameState)
+      0000D9 D6 03            [ 8]  271 	sub	a, #0x03
+      0000DB C2r1Er00         [16]  272 	jp	NZ,00114$
+                           0000DE   273 	C$main.c$72$4_1$246	= .
+                                    274 	.globl	C$main.c$72$4_1$246
+                                    275 ;src/main.c:72: game_loop();
+      0000DE CDr00r00         [24]  276 	call	_game_loop
+      0000E1 18 EC            [12]  277 	jr	00103$
+                           0000E3   278 	C$main.c$76$3_1$245	= .
+                                    279 	.globl	C$main.c$76$3_1$245
+                                    280 ;src/main.c:76: case GAME_STATE_UPGRADE_MENU:
+      0000E3                        281 00106$:
+                           0000E3   282 	C$main.c$77$3_1$245	= .
+                                    283 	.globl	C$main.c$77$3_1$245
+                                    284 ;src/main.c:77: SWITCH_ROM(2);
+      0000E3 3E 02            [ 8]  285 	ld	a, #0x02
+      0000E5 E0r00            [12]  286 	ldh	(__current_bank + 0), a
+      0000E7 21r00r00         [12]  287 	ld	hl, #_rROMB0
+      0000EA 36 02            [12]  288 	ld	(hl), #0x02
+                           0000EC   289 	C$main.c$79$3_1$245	= .
+                                    290 	.globl	C$main.c$79$3_1$245
+                                    291 ;src/main.c:79: init_disable_lcd_interrupt();
+      0000EC CDr00r00         [24]  292 	call	_init_disable_lcd_interrupt
+                           0000EF   293 	C$main.c$80$3_1$245	= .
+                                    294 	.globl	C$main.c$80$3_1$245
+                                    295 ;src/main.c:80: init_clear_screen();
+      0000EF CDr00r00         [24]  296 	call	_init_clear_screen
+                           0000F2   297 	C$main.c$81$3_1$245	= .
+                                    298 	.globl	C$main.c$81$3_1$245
+                                    299 ;src/main.c:81: init_shop();
+      0000F2 CDr00r00         [24]  300 	call	_init_shop
+                           0000F5   301 	C$main.c$82$3_1$245	= .
+                                    302 	.globl	C$main.c$82$3_1$245
+                                    303 ;src/main.c:82: init_shop_tiles_palettes();
+      0000F5 CDr00r00         [24]  304 	call	_init_shop_tiles_palettes
+                           0000F8   305 	C$main.c$83$3_1$245	= .
+                                    306 	.globl	C$main.c$83$3_1$245
+                                    307 ;src/main.c:83: while (currentGameState == GAME_STATE_UPGRADE_MENU){
+      0000F8                        308 00107$:
+      0000F8 FAr00r00         [16]  309 	ld	a, (#_currentGameState)
+      0000FB 3D               [ 4]  310 	dec	a
+      0000FC C2r1Er00         [16]  311 	jp	NZ,00114$
+                           0000FF   312 	C$main.c$84$4_1$247	= .
+                                    313 	.globl	C$main.c$84$4_1$247
+                                    314 ;src/main.c:84: shop_menu_loop();
+      0000FF CDr00r00         [24]  315 	call	_shop_menu_loop
+      000102 18 F4            [12]  316 	jr	00107$
+                           000104   317 	C$main.c$87$3_1$245	= .
+                                    318 	.globl	C$main.c$87$3_1$245
+                                    319 ;src/main.c:87: case GAME_STATE_SELL_MENU:
+      000104                        320 00110$:
+                           000104   321 	C$main.c$88$3_1$245	= .
+                                    322 	.globl	C$main.c$88$3_1$245
+                                    323 ;src/main.c:88: init_disable_lcd_interrupt();
+      000104 CDr00r00         [24]  324 	call	_init_disable_lcd_interrupt
+                           000107   325 	C$main.c$89$3_1$245	= .
+                                    326 	.globl	C$main.c$89$3_1$245
+                                    327 ;src/main.c:89: sell_all_ores();
+      000107 CDr00r00         [24]  328 	call	_sell_all_ores
+                           00010A   329 	C$main.c$90$3_1$245	= .
+                                    330 	.globl	C$main.c$90$3_1$245
+                                    331 ;src/main.c:90: break;
+      00010A C3r1Er00         [16]  332 	jp	00114$
+                           00010D   333 	C$main.c$92$3_1$245	= .
+                                    334 	.globl	C$main.c$92$3_1$245
+                                    335 ;src/main.c:92: case GAME_STATE_GAME_OVER:
+      00010D                        336 00111$:
+                           00010D   337 	C$main.c$93$3_1$245	= .
+                                    338 	.globl	C$main.c$93$3_1$245
+                                    339 ;src/main.c:93: init_disable_lcd_interrupt();
+      00010D CDr00r00         [24]  340 	call	_init_disable_lcd_interrupt
+                           000110   341 	C$main.c$94$3_1$245	= .
+                                    342 	.globl	C$main.c$94$3_1$245
+                                    343 ;src/main.c:94: waitpad(J_START);
+      000110 3E 80            [ 8]  344 	ld	a, #0x80
+      000112 CDr00r00         [24]  345 	call	_waitpad
+                           000115   346 	C$main.c$95$3_1$245	= .
+                                    347 	.globl	C$main.c$95$3_1$245
+                                    348 ;src/main.c:95: reset_player();
+      000115 CDr00r00         [24]  349 	call	_reset_player
+                           000118   350 	C$main.c$96$3_1$245	= .
+                                    351 	.globl	C$main.c$96$3_1$245
+                                    352 ;src/main.c:96: currentGameState = GAME_STATE_PLAY;
+      000118 21r00r00         [12]  353 	ld	hl, #_currentGameState
+      00011B 36 03            [12]  354 	ld	(hl), #0x03
+                           00011D   355 	C$main.c$99$1_1$243	= .
+                                    356 	.globl	C$main.c$99$1_1$243
+                                    357 ;src/main.c:99: }
+                           00011D   358 	C$main.c$101$1_1$242	= .
+                                    359 	.globl	C$main.c$101$1_1$242
+                                    360 ;src/main.c:101: }
+                           00011D   361 	C$main.c$101$1_1$242	= .
+                                    362 	.globl	C$main.c$101$1_1$242
+                           00011D   363 	XG$main$0$0	= .
+                                    364 	.globl	XG$main$0$0
+      00011D C3r1Er00         [16]  365 	jp	00114$
+                                    366 	.area _CODE
+                                    367 	.area _INITIALIZER
+                                    368 	.area _CABS (ABS)
