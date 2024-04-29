@@ -15,128 +15,198 @@
                                      15 	.globl _draw_depth
                                      16 	.globl _clear_4bkg_tiles
                                      17 	.globl _spawn_bkg_row
-                                     18 	.globl _read_buttons
-                                     19 	.globl _calculate_cargo
-                                     20 	.globl _update_inventory
-                                     21 	.globl _check_game_over
-                                     22 	.globl _check_enter_buildings
-                                     23 	.globl _update_fuel
-                                     24 	.globl _check_fuel
-                                     25 	.globl _check_hull
-                                     26 	.globl _calculate_falldamage
-                                     27 	.globl _initiate_movement
-                                     28 	.globl _update_movement
-                                     29 	.globl _check_surroundings
-                                     30 	.globl _wait_vbl_done
-                                     31 ;--------------------------------------------------------
-                                     32 ; special function registers
-                                     33 ;--------------------------------------------------------
+                                     18 	.globl _change_background_color
+                                     19 	.globl _read_buttons
+                                     20 	.globl _calculate_cargo
+                                     21 	.globl _update_inventory
+                                     22 	.globl _check_game_over
+                                     23 	.globl _check_enter_buildings
+                                     24 	.globl _update_fuel
+                                     25 	.globl _check_fuel
+                                     26 	.globl _check_hull
+                                     27 	.globl _calculate_falldamage
+                                     28 	.globl _initiate_movement
+                                     29 	.globl _update_movement
+                                     30 	.globl _check_surroundings
+                                     31 	.globl _wait_vbl_done
+                                     32 ;--------------------------------------------------------
+                                     33 ; special function registers
                                      34 ;--------------------------------------------------------
-                                     35 ; ram data
-                                     36 ;--------------------------------------------------------
-                                     37 	.area _DATA
-                                     38 ;--------------------------------------------------------
-                                     39 ; ram data
-                                     40 ;--------------------------------------------------------
-                                     41 	.area _INITIALIZED
-                                     42 ;--------------------------------------------------------
-                                     43 ; absolute external ram data
-                                     44 ;--------------------------------------------------------
-                                     45 	.area _DABS (ABS)
-                                     46 ;--------------------------------------------------------
-                                     47 ; global & static initialisations
-                                     48 ;--------------------------------------------------------
-                                     49 	.area _HOME
-                                     50 	.area _GSINIT
-                                     51 	.area _GSFINAL
-                                     52 	.area _GSINIT
-                                     53 ;--------------------------------------------------------
-                                     54 ; Home
-                                     55 ;--------------------------------------------------------
-                                     56 	.area _HOME
+                                     35 ;--------------------------------------------------------
+                                     36 ; ram data
+                                     37 ;--------------------------------------------------------
+                                     38 	.area _DATA
+                                     39 ;--------------------------------------------------------
+                                     40 ; ram data
+                                     41 ;--------------------------------------------------------
+                                     42 	.area _INITIALIZED
+                                     43 ;--------------------------------------------------------
+                                     44 ; absolute external ram data
+                                     45 ;--------------------------------------------------------
+                                     46 	.area _DABS (ABS)
+                                     47 ;--------------------------------------------------------
+                                     48 ; global & static initialisations
+                                     49 ;--------------------------------------------------------
+                                     50 	.area _HOME
+                                     51 	.area _GSINIT
+                                     52 	.area _GSFINAL
+                                     53 	.area _GSINIT
+                                     54 ;--------------------------------------------------------
+                                     55 ; Home
+                                     56 ;--------------------------------------------------------
                                      57 	.area _HOME
-                                     58 ;--------------------------------------------------------
-                                     59 ; code
-                                     60 ;--------------------------------------------------------
-                                     61 	.area _CODE
-                                     62 ;src/gameloop.c:18: void game_loop(void) {
-                                     63 ;	---------------------------------
-                                     64 ; Function game_loop
-                                     65 ; ---------------------------------
-      000000                         66 _game_loop::
-                                     67 ;src/gameloop.c:20: read_buttons();
-      000000 CDr00r00         [24]   68 	call	_read_buttons
-                                     69 ;src/gameloop.c:21: check_surroundings();
-      000003 CDr00r00         [24]   70 	call	_check_surroundings
-                                     71 ;src/gameloop.c:23: if (animation_frames_left == 0) {
-      000006 FAr00r00         [16]   72 	ld	a, (#_animation_frames_left)
-      000009 B7               [ 4]   73 	or	a, a
-      00000A 20 03            [12]   74 	jr	NZ, 00102$
-                                     75 ;src/gameloop.c:24: initiate_movement();
-      00000C CDr00r00         [24]   76 	call	_initiate_movement
-      00000F                         77 00102$:
-                                     78 ;src/gameloop.c:27: update_movement();
-      00000F CDr00r00         [24]   79 	call	_update_movement
-                                     80 ;src/gameloop.c:29: if (tile_mined == TRUE) {
-      000012 FAr00r00         [16]   81 	ld	a, (#_tile_mined)
-      000015 3D               [ 4]   82 	dec	a
-      000016 20 1C            [12]   83 	jr	NZ, 00104$
-                                     84 ;src/gameloop.c:30: update_inventory();
-      000018 CDr00r00         [24]   85 	call	_update_inventory
-                                     86 ;src/gameloop.c:31: clear_4bkg_tiles(level_array, width, depth);
-      00001B FAr00r00         [16]   87 	ld	a, (#_depth)
-      00001E F5               [16]   88 	push	af
-      00001F 33               [ 8]   89 	inc	sp
-      000020 FAr00r00         [16]   90 	ld	a, (#_width)
-      000023 11r00r00         [12]   91 	ld	de, #_level_array
-      000026 CDr00r00         [24]   92 	call	_clear_4bkg_tiles
-                                     93 ;src/gameloop.c:32: calculate_cargo();
-      000029 CDr00r00         [24]   94 	call	_calculate_cargo
-                                     95 ;src/gameloop.c:33: draw_cargo();
-      00002C CDr00r00         [24]   96 	call	_draw_cargo
-                                     97 ;src/gameloop.c:34: tile_mined = FALSE;
-      00002F 21r00r00         [12]   98 	ld	hl, #_tile_mined
-      000032 36 00            [12]   99 	ld	(hl), #0x00
-      000034                        100 00104$:
-                                    101 ;src/gameloop.c:37: update_fuel();
-      000034 CDr00r00         [24]  102 	call	_update_fuel
-                                    103 ;src/gameloop.c:38: draw_fuel();
-      000037 CDr00r00         [24]  104 	call	_draw_fuel
-                                    105 ;src/gameloop.c:39: draw_hull();
-      00003A CDr00r00         [24]  106 	call	_draw_hull
-                                    107 ;src/gameloop.c:40: calculate_falldamage();
-      00003D CDr00r00         [24]  108 	call	_calculate_falldamage
-                                    109 ;src/gameloop.c:41: check_hull();
-      000040 CDr00r00         [24]  110 	call	_check_hull
-                                    111 ;src/gameloop.c:42: check_fuel();
-      000043 CDr00r00         [24]  112 	call	_check_fuel
-                                    113 ;src/gameloop.c:43: check_game_over();
-      000046 CDr00r00         [24]  114 	call	_check_game_over
-                                    115 ;src/gameloop.c:45: if (prev_depth != depth) {
-      000049 FAr00r00         [16]  116 	ld	a, (#_prev_depth)
-      00004C 21r00r00         [12]  117 	ld	hl, #_depth
-      00004F 96               [ 8]  118 	sub	a, (hl)
-      000050 28 06            [12]  119 	jr	Z, 00106$
-                                    120 ;src/gameloop.c:46: spawn_bkg_row();
-      000052 CDr00r00         [24]  121 	call	_spawn_bkg_row
-                                    122 ;src/gameloop.c:47: draw_depth();
-      000055 CDr00r00         [24]  123 	call	_draw_depth
-      000058                        124 00106$:
-                                    125 ;src/gameloop.c:50: check_enter_buildings();
-      000058 CDr00r00         [24]  126 	call	_check_enter_buildings
-                                    127 ;src/gameloop.c:53: prev_buttons = buttons;
-      00005B FAr00r00         [16]  128 	ld	a, (#_buttons)
-      00005E EAr00r00         [16]  129 	ld	(#_prev_buttons),a
-                                    130 ;src/gameloop.c:54: prev_depth = depth;
-      000061 FAr00r00         [16]  131 	ld	a, (#_depth)
-      000064 EAr00r00         [16]  132 	ld	(#_prev_depth),a
-                                    133 ;src/gameloop.c:55: prev_width = width;
-      000067 FAr00r00         [16]  134 	ld	a, (#_width)
-      00006A 21r00r00         [12]  135 	ld	hl, #_prev_width
-      00006D 77               [ 8]  136 	ld	(hl), a
-                                    137 ;src/gameloop.c:57: wait_vbl_done();
-                                    138 ;src/gameloop.c:58: }
-      00006E C3r00r00         [16]  139 	jp	_wait_vbl_done
-                                    140 	.area _CODE
-                                    141 	.area _INITIALIZER
-                                    142 	.area _CABS (ABS)
+                                     58 	.area _HOME
+                                     59 ;--------------------------------------------------------
+                                     60 ; code
+                                     61 ;--------------------------------------------------------
+                                     62 	.area _CODE
+                           000000    63 	G$game_loop$0$0	= .
+                                     64 	.globl	G$game_loop$0$0
+                           000000    65 	C$gameloop.c$18$0_0$213	= .
+                                     66 	.globl	C$gameloop.c$18$0_0$213
+                                     67 ;src/gameloop.c:18: void game_loop(void) {
+                                     68 ;	---------------------------------
+                                     69 ; Function game_loop
+                                     70 ; ---------------------------------
+      000000                         71 _game_loop::
+                           000000    72 	C$gameloop.c$20$1_0$213	= .
+                                     73 	.globl	C$gameloop.c$20$1_0$213
+                                     74 ;src/gameloop.c:20: read_buttons();
+      000000 CDr00r00         [24]   75 	call	_read_buttons
+                           000003    76 	C$gameloop.c$21$1_0$213	= .
+                                     77 	.globl	C$gameloop.c$21$1_0$213
+                                     78 ;src/gameloop.c:21: check_surroundings();
+      000003 CDr00r00         [24]   79 	call	_check_surroundings
+                           000006    80 	C$gameloop.c$23$1_0$213	= .
+                                     81 	.globl	C$gameloop.c$23$1_0$213
+                                     82 ;src/gameloop.c:23: if (animation_frames_left == 0) {
+      000006 FAr00r00         [16]   83 	ld	a, (#_animation_frames_left)
+      000009 B7               [ 4]   84 	or	a, a
+      00000A 20 03            [12]   85 	jr	NZ, 00102$
+                           00000C    86 	C$gameloop.c$24$2_0$214	= .
+                                     87 	.globl	C$gameloop.c$24$2_0$214
+                                     88 ;src/gameloop.c:24: initiate_movement();
+      00000C CDr00r00         [24]   89 	call	_initiate_movement
+      00000F                         90 00102$:
+                           00000F    91 	C$gameloop.c$27$1_0$213	= .
+                                     92 	.globl	C$gameloop.c$27$1_0$213
+                                     93 ;src/gameloop.c:27: update_movement();
+      00000F CDr00r00         [24]   94 	call	_update_movement
+                           000012    95 	C$gameloop.c$29$1_0$213	= .
+                                     96 	.globl	C$gameloop.c$29$1_0$213
+                                     97 ;src/gameloop.c:29: if (tile_mined == TRUE) {
+      000012 FAr00r00         [16]   98 	ld	a, (#_tile_mined)
+      000015 3D               [ 4]   99 	dec	a
+      000016 20 20            [12]  100 	jr	NZ, 00106$
+                           000018   101 	C$gameloop.c$30$2_0$215	= .
+                                    102 	.globl	C$gameloop.c$30$2_0$215
+                                    103 ;src/gameloop.c:30: if (depth >= EARTH_START) clear_4bkg_tiles(level_array, width, depth);
+      000018 FAr00r00         [16]  104 	ld	a, (#_depth)
+      00001B FE 05            [ 8]  105 	cp	a,#0x05
+      00001D 38 0B            [12]  106 	jr	C, 00104$
+      00001F F5               [16]  107 	push	af
+      000020 33               [ 8]  108 	inc	sp
+      000021 FAr00r00         [16]  109 	ld	a, (#_width)
+      000024 11r00r00         [12]  110 	ld	de, #_level_array
+      000027 CDr00r00         [24]  111 	call	_clear_4bkg_tiles
+      00002A                        112 00104$:
+                           00002A   113 	C$gameloop.c$31$2_0$215	= .
+                                    114 	.globl	C$gameloop.c$31$2_0$215
+                                    115 ;src/gameloop.c:31: update_inventory();
+      00002A CDr00r00         [24]  116 	call	_update_inventory
+                           00002D   117 	C$gameloop.c$32$2_0$215	= .
+                                    118 	.globl	C$gameloop.c$32$2_0$215
+                                    119 ;src/gameloop.c:32: calculate_cargo();
+      00002D CDr00r00         [24]  120 	call	_calculate_cargo
+                           000030   121 	C$gameloop.c$33$2_0$215	= .
+                                    122 	.globl	C$gameloop.c$33$2_0$215
+                                    123 ;src/gameloop.c:33: draw_cargo();
+      000030 CDr00r00         [24]  124 	call	_draw_cargo
+                           000033   125 	C$gameloop.c$34$2_0$215	= .
+                                    126 	.globl	C$gameloop.c$34$2_0$215
+                                    127 ;src/gameloop.c:34: tile_mined = FALSE;
+      000033 21r00r00         [12]  128 	ld	hl, #_tile_mined
+      000036 36 00            [12]  129 	ld	(hl), #0x00
+      000038                        130 00106$:
+                           000038   131 	C$gameloop.c$37$1_0$213	= .
+                                    132 	.globl	C$gameloop.c$37$1_0$213
+                                    133 ;src/gameloop.c:37: update_fuel();
+      000038 CDr00r00         [24]  134 	call	_update_fuel
+                           00003B   135 	C$gameloop.c$38$1_0$213	= .
+                                    136 	.globl	C$gameloop.c$38$1_0$213
+                                    137 ;src/gameloop.c:38: draw_fuel();
+      00003B CDr00r00         [24]  138 	call	_draw_fuel
+                           00003E   139 	C$gameloop.c$39$1_0$213	= .
+                                    140 	.globl	C$gameloop.c$39$1_0$213
+                                    141 ;src/gameloop.c:39: draw_hull();
+      00003E CDr00r00         [24]  142 	call	_draw_hull
+                           000041   143 	C$gameloop.c$40$1_0$213	= .
+                                    144 	.globl	C$gameloop.c$40$1_0$213
+                                    145 ;src/gameloop.c:40: calculate_falldamage();
+      000041 CDr00r00         [24]  146 	call	_calculate_falldamage
+                           000044   147 	C$gameloop.c$41$1_0$213	= .
+                                    148 	.globl	C$gameloop.c$41$1_0$213
+                                    149 ;src/gameloop.c:41: check_hull();
+      000044 CDr00r00         [24]  150 	call	_check_hull
+                           000047   151 	C$gameloop.c$42$1_0$213	= .
+                                    152 	.globl	C$gameloop.c$42$1_0$213
+                                    153 ;src/gameloop.c:42: check_fuel();
+      000047 CDr00r00         [24]  154 	call	_check_fuel
+                           00004A   155 	C$gameloop.c$43$1_0$213	= .
+                                    156 	.globl	C$gameloop.c$43$1_0$213
+                                    157 ;src/gameloop.c:43: check_game_over();
+      00004A CDr00r00         [24]  158 	call	_check_game_over
+                           00004D   159 	C$gameloop.c$45$1_0$213	= .
+                                    160 	.globl	C$gameloop.c$45$1_0$213
+                                    161 ;src/gameloop.c:45: if (prev_depth != depth) {
+      00004D FAr00r00         [16]  162 	ld	a, (#_prev_depth)
+      000050 21r00r00         [12]  163 	ld	hl, #_depth
+      000053 96               [ 8]  164 	sub	a, (hl)
+      000054 28 09            [12]  165 	jr	Z, 00108$
+                           000056   166 	C$gameloop.c$46$2_0$216	= .
+                                    167 	.globl	C$gameloop.c$46$2_0$216
+                                    168 ;src/gameloop.c:46: spawn_bkg_row();
+      000056 CDr00r00         [24]  169 	call	_spawn_bkg_row
+                           000059   170 	C$gameloop.c$47$2_0$216	= .
+                                    171 	.globl	C$gameloop.c$47$2_0$216
+                                    172 ;src/gameloop.c:47: draw_depth();
+      000059 CDr00r00         [24]  173 	call	_draw_depth
+                           00005C   174 	C$gameloop.c$48$2_0$216	= .
+                                    175 	.globl	C$gameloop.c$48$2_0$216
+                                    176 ;src/gameloop.c:48: change_background_color();
+      00005C CDr00r00         [24]  177 	call	_change_background_color
+      00005F                        178 00108$:
+                           00005F   179 	C$gameloop.c$51$1_0$213	= .
+                                    180 	.globl	C$gameloop.c$51$1_0$213
+                                    181 ;src/gameloop.c:51: check_enter_buildings();
+      00005F CDr00r00         [24]  182 	call	_check_enter_buildings
+                           000062   183 	C$gameloop.c$54$1_0$213	= .
+                                    184 	.globl	C$gameloop.c$54$1_0$213
+                                    185 ;src/gameloop.c:54: prev_buttons = buttons;
+      000062 FAr00r00         [16]  186 	ld	a, (#_buttons)
+      000065 EAr00r00         [16]  187 	ld	(#_prev_buttons),a
+                           000068   188 	C$gameloop.c$55$1_0$213	= .
+                                    189 	.globl	C$gameloop.c$55$1_0$213
+                                    190 ;src/gameloop.c:55: prev_depth = depth;
+      000068 FAr00r00         [16]  191 	ld	a, (#_depth)
+      00006B EAr00r00         [16]  192 	ld	(#_prev_depth),a
+                           00006E   193 	C$gameloop.c$56$1_0$213	= .
+                                    194 	.globl	C$gameloop.c$56$1_0$213
+                                    195 ;src/gameloop.c:56: prev_width = width;
+      00006E FAr00r00         [16]  196 	ld	a, (#_width)
+      000071 21r00r00         [12]  197 	ld	hl, #_prev_width
+      000074 77               [ 8]  198 	ld	(hl), a
+                           000075   199 	C$gameloop.c$58$1_0$213	= .
+                                    200 	.globl	C$gameloop.c$58$1_0$213
+                                    201 ;src/gameloop.c:58: wait_vbl_done();
+                           000075   202 	C$gameloop.c$59$1_0$213	= .
+                                    203 	.globl	C$gameloop.c$59$1_0$213
+                                    204 ;src/gameloop.c:59: }
+                           000075   205 	C$gameloop.c$59$1_0$213	= .
+                                    206 	.globl	C$gameloop.c$59$1_0$213
+                           000075   207 	XG$game_loop$0$0	= .
+                                    208 	.globl	XG$game_loop$0$0
+      000075 C3r00r00         [16]  209 	jp	_wait_vbl_done
+                                    210 	.area _CODE
+                                    211 	.area _INITIALIZER
+                                    212 	.area _CABS (ABS)

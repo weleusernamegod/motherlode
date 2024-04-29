@@ -1,52 +1,103 @@
 XL3
-H 9 areas 25 global symbols
+H 9 areas 58 global symbols
 M globals
 O -msm83
 S .__.ABS. Def000000
 A _CODE size 0 flags 0 addr 0
 A _DATA size 1E flags 0 addr 0
+S G$move_x_per_frame$0_0$0 Def00000D
 S _width_pixel Def000005
+S G$move_y_per_frame$0_0$0 Def00000F
 S _next_tile_down Def00001B
+S G$width_pixel$0_0$0 Def000005
+S G$next_tile_down$0_0$0 Def00001B
 S _scroll_x Def000007
 S _scroll_y Def000009
+S G$scroll_x$0_0$0 Def000007
+S G$scroll_y$0_0$0 Def000009
 S _prev_depth Def000001
+S G$prev_depth$0_0$0 Def000001
 S _direction_now Def000015
 S _scroll_x_per_frame Def000011
+S G$direction_now$0_0$0 Def000015
 S _scroll_y_per_frame Def000013
+S G$scroll_x_per_frame$0_0$0 Def000011
+S G$scroll_y_per_frame$0_0$0 Def000013
 S _prev_width Def000002
+S G$prev_width$0_0$0 Def000002
 S _next_tile_right Def00001D
+S G$next_tile_right$0_0$0 Def00001D
 S _next_tile Def000019
 S _saved_bank Def000000
+S G$next_tile$0_0$0 Def000019
 S _buttons Def000018
 S _is_drilling Def000017
 S _next_tile_up Def00001A
+S G$saved_bank$0_0$0 Def000000
+S G$buttons$0_0$0 Def000018
+S G$next_tile_up$0_0$0 Def00001A
+S G$is_drilling$0_0$0 Def000017
 S _depth_pixel Def000003
 S _ore_resistance Def00000B
 S _next_tile_left Def00001C
+S G$next_tile_left$0_0$0 Def00001C
+S G$ore_resistance$0_0$0 Def00000B
+S G$depth_pixel$0_0$0 Def000003
 S _direction_prev Def000016
 S _move_x_per_frame Def00000D
 S _move_y_per_frame Def00000F
+S G$direction_prev$0_0$0 Def000016
 A _INITIALIZED size F flags 0 addr 0
+S G$width$0_0$0 Def000007
 S _animation_frames_left Def00000A
+S G$animation_frames_left$0_0$0 Def00000A
 S _frame_counter Def000000
 S _prev_buttons Def00000E
+S G$frame_counter$0_0$0 Def000000
+S G$prev_buttons$0_0$0 Def00000E
 S _velocity Def00000B
+S G$velocity$0_0$0 Def00000B
 S _left_sell_area Def000003
+S G$left_sell_area$0_0$0 Def000003
 S _depth_offset Def000008
 S _left_shop_area Def000002
 S _player_alive Def000004
+S G$depth_offset$0_0$0 Def000008
 S _currentGameState Def000005
+S G$left_shop_area$0_0$0 Def000002
+S G$player_alive$0_0$0 Def000004
 S _base_drilltime Def00000C
+S G$currentGameState$0_0$0 Def000005
+S G$base_drilltime$0_0$0 Def00000C
 S _width_offset Def000009
+S G$width_offset$0_0$0 Def000009
 S _depth Def000006
 S _update_menu Def000001
+S G$depth$0_0$0 Def000006
+S G$update_menu$0_0$0 Def000001
 S _tile_mined Def00000D
+S G$tile_mined$0_0$0 Def00000D
 S _width Def000007
 A _DABS size 0 flags 8 addr 0
 A _HOME size 0 flags 0 addr 0
 A _GSINIT size 0 flags 0 addr 0
 A _GSFINAL size 0 flags 0 addr 0
 A _INITIALIZER size F flags 0 addr 0
+S Fglobals$__xinit_left_sell_area$0_0$0 Def000003
+S Fglobals$__xinit_depth_offset$0_0$0 Def000008
+S Fglobals$__xinit_left_shop_area$0_0$0 Def000002
+S Fglobals$__xinit_player_alive$0_0$0 Def000004
+S Fglobals$__xinit_currentGameState$0_0$0 Def000005
+S Fglobals$__xinit_base_drilltime$0_0$0 Def00000C
+S Fglobals$__xinit_width_offset$0_0$0 Def000009
+S Fglobals$__xinit_depth$0_0$0 Def000006
+S Fglobals$__xinit_update_menu$0_0$0 Def000001
+S Fglobals$__xinit_tile_mined$0_0$0 Def00000D
+S Fglobals$__xinit_width$0_0$0 Def000007
+S Fglobals$__xinit_animation_frames_left$0_0$0 Def00000A
+S Fglobals$__xinit_frame_counter$0_0$0 Def000000
+S Fglobals$__xinit_prev_buttons$0_0$0 Def00000E
+S Fglobals$__xinit_velocity$0_0$0 Def00000B
 A _CABS size 0 flags 8 addr 0
 T 00 00 00
 R 00 00 01 00

@@ -1,5 +1,6 @@
+;!FILE obj/interrupt.asm
 XL3
-H 9 areas 11 global symbols
+H 9 areas 64 global symbols
 M interrupt
 O -msm83
 S _LYC_REG Ref000000
@@ -14,10 +15,93 @@ S _set_interrupts Ref000000
 S _remove_VBL Ref000000
 S _add_LCD Ref000000
 A _CODE size 56 flags 0 addr 0
+S XG$init_enable_lcd_interrupt$0$0 Def00003C
+S XG$interrupt_VBL_framecounter$0$0 Def00001B
 S _interrupt_VBL_window Def000008
+S C$interrupt.c$10$3_0$130 Def000007
+S A$interrupt$102 Def00000F
+S XG$init_framecounter$0$0 Def000023
+S A$interrupt$220 Def000043
+S A$interrupt$121 Def000015
+S C$interrupt.c$20$1_0$142 Def00001C
+S XG$interrupt_LCD$0$0 Def000007
+S A$interrupt$230 Def00004E
+S A$interrupt$122 Def000016
+S C$interrupt.c$21$1_0$142 Def00001C
+S A$interrupt$204 Def00003C
+S A$interrupt$132 Def00001B
+S A$interrupt$123 Def000018
+S A$interrupt$232 Def000050
+S A$interrupt$124 Def000019
+S A$interrupt$115 Def000010
+S C$interrupt.c$16$1_0$140 Def000010
+S A$interrupt$224 Def000046
+S A$interrupt$215 Def00003F
+S A$interrupt$116 Def000013
+S C$interrupt.c$22$3_0$142 Def000023
+S C$interrupt.c$17$1_0$140 Def000015
+S C$interrupt.c$15$3_0$140 Def000010
+S C$interrupt.c$11$3_0$135 Def000008
+S A$interrupt$225 Def000049
+S A$interrupt$180 Def00002C
+S A$interrupt$117 Def000014
+S C$interrupt.c$23$3_0$142 Def000023
+S C$interrupt.c$18$1_0$140 Def00001B
+S C$interrupt.c$12$3_0$135 Def00000F
+S A$interrupt$244 Def000053
+S A$interrupt$190 Def000036
+S A$interrupt$172 Def000024
+S A$interrupt$145 Def00001C
+S C$interrupt.c$13$3_0$135 Def00000F
+S A$interrupt$236 Def000051
+S A$interrupt$173 Def000026
+S A$interrupt$146 Def00001F
+S C$interrupt.c$41$1_0$155 Def000040
+S C$interrupt.c$31$1_0$147 Def00002D
+S A$interrupt$219 Def000040
+S A$interrupt$192 Def000039
+S C$interrupt.c$42$1_0$155 Def000046
+S C$interrupt.c$32$1_0$147 Def000033
+S XG$interrupt_VBL_window$0$0 Def00000F
+S A$interrupt$229 Def00004C
+S A$interrupt$184 Def00002D
+S A$interrupt$148 Def000022
+S A$interrupt$185 Def000030
+S C$interrupt.c$34$1_0$147 Def00003A
+S A$interrupt$177 Def000028
+S A$interrupt$159 Def000023
+S C$interrupt.c$45$1_0$155 Def00004C
+S C$interrupt.c$35$1_0$147 Def00003C
+S A$interrupt$196 Def00003A
+S A$interrupt$178 Def00002A
+S C$interrupt.c$37$1_0$155 Def00003F
+S C$interrupt.c$27$1_0$147 Def000024
+S C$interrupt.c$25$3_0$147 Def000024
+S C$interrupt.c$47$1_0$155 Def000051
+S A$interrupt$189 Def000033
+S C$interrupt.c$48$1_0$155 Def000053
+S G$init_disable_lcd_interrupt$0$0 Def00003F
+S C$interrupt.c$29$1_0$147 Def000028
+S C$interrupt.c$8$0_0$130 Def000000
+S A$interrupt$90 Def00000C
+S A$interrupt$63 Def000000
+S A$interrupt$91 Def00000D
+S A$interrupt$64 Def000002
+S C$interrupt.c$9$3_0$130 Def000007
+S A$interrupt$65 Def000004
+S A$interrupt$66 Def000005
+S A$interrupt$77 Def000007
 S _init_disable_lcd_interrupt Def00003F
+S A$interrupt$88 Def000008
+S A$interrupt$89 Def00000A
+S G$init_enable_lcd_interrupt$0$0 Def000024
+S G$interrupt_VBL_framecounter$0$0 Def000010
+S XG$init_disable_lcd_interrupt$0$0 Def000053
+S G$init_framecounter$0$0 Def00001C
+S G$interrupt_LCD$0$0 Def000000
 S _init_enable_lcd_interrupt Def000024
 S _interrupt_VBL_framecounter Def000010
+S G$interrupt_VBL_window$0$0 Def000008
 S _init_framecounter Def00001C
 S _interrupt_LCD Def000000
 A _DATA size 0 flags 0 addr 0

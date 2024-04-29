@@ -1,9 +1,11 @@
+;!FILE obj/gameloop.asm
 XL3
-H 9 areas 1E global symbols
+H 9 areas 6C global symbols
 M gameloop
 O -msm83
 S _initiate_movement Ref000000
 S _draw_depth Ref000000
+S _change_background_color Ref000000
 S _animation_frames_left Ref000000
 S _prev_buttons Ref000000
 S _prev_depth Ref000000
@@ -31,8 +33,85 @@ S _tile_mined Ref000000
 S _check_enter_buildings Ref000000
 S _wait_vbl_done Ref000000
 S _width Ref000000
-A _CODE size 71 flags 0 addr 0
+A _CODE size 78 flags 0 addr 0
+S G$game_loop$0$0 Def000000
+S A$gameloop$83 Def000006
+S A$gameloop$84 Def000009
+S A$gameloop$75 Def000000
+S A$gameloop$94 Def00000F
+S A$gameloop$85 Def00000A
+S A$gameloop$79 Def000003
+S A$gameloop$98 Def000012
+S A$gameloop$89 Def00000C
+S A$gameloop$99 Def000015
 S _game_loop Def000000
+S XG$game_loop$0$0 Def000075
+S A$gameloop$100 Def000016
+S A$gameloop$110 Def000024
+S A$gameloop$120 Def00002D
+S A$gameloop$111 Def000027
+S C$gameloop.c$20$1_0$213 Def000000
+S C$gameloop.c$21$1_0$213 Def000003
+S A$gameloop$104 Def000018
+S C$gameloop.c$40$1_0$213 Def000041
+S A$gameloop$150 Def000044
+S A$gameloop$105 Def00001B
+S C$gameloop.c$41$1_0$213 Def000044
+S C$gameloop.c$23$1_0$213 Def000006
+S A$gameloop$142 Def00003E
+S A$gameloop$124 Def000030
+S A$gameloop$106 Def00001D
+S C$gameloop.c$51$1_0$213 Def00005F
+S C$gameloop.c$42$1_0$213 Def000047
+S C$gameloop.c$30$2_0$215 Def000018
+S A$gameloop$134 Def000038
+S A$gameloop$116 Def00002A
+S A$gameloop$107 Def00001F
+S C$gameloop.c$43$1_0$213 Def00004A
+S C$gameloop.c$31$2_0$215 Def00002A
+S A$gameloop$162 Def00004D
+S A$gameloop$108 Def000020
+S C$gameloop.c$32$2_0$215 Def00002D
+S C$gameloop.c$24$2_0$214 Def00000C
+S C$gameloop.c$18$0_0$213 Def000000
+S A$gameloop$163 Def000050
+S A$gameloop$154 Def000047
+S A$gameloop$109 Def000021
+S C$gameloop.c$54$1_0$213 Def000062
+S C$gameloop.c$45$1_0$213 Def00004D
+S C$gameloop.c$33$2_0$215 Def000030
+S C$gameloop.c$27$1_0$213 Def00000F
+S A$gameloop$209 Def000075
+S A$gameloop$191 Def000068
+S A$gameloop$182 Def00005F
+S A$gameloop$173 Def000059
+S A$gameloop$164 Def000053
+S A$gameloop$146 Def000041
+S A$gameloop$128 Def000033
+S C$gameloop.c$55$1_0$213 Def000068
+S C$gameloop.c$37$1_0$213 Def000038
+S C$gameloop.c$34$2_0$215 Def000033
+S A$gameloop$192 Def00006B
+S A$gameloop$165 Def000054
+S A$gameloop$138 Def00003B
+S A$gameloop$129 Def000036
+S C$gameloop.c$56$1_0$213 Def00006E
+S C$gameloop.c$38$1_0$213 Def00003B
+S C$gameloop.c$29$1_0$213 Def000012
+S C$gameloop.c$39$1_0$213 Def00003E
+S A$gameloop$158 Def00004A
+S C$gameloop.c$58$1_0$213 Def000075
+S A$gameloop$186 Def000062
+S A$gameloop$177 Def00005C
+S C$gameloop.c$59$1_0$213 Def000075
+S C$gameloop.c$46$2_0$216 Def000056
+S A$gameloop$196 Def00006E
+S A$gameloop$187 Def000065
+S A$gameloop$169 Def000056
+S C$gameloop.c$47$2_0$216 Def000059
+S A$gameloop$197 Def000071
+S C$gameloop.c$48$2_0$216 Def00005C
+S A$gameloop$198 Def000074
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
 A _DABS size 0 flags 8 addr 0
@@ -44,34 +123,38 @@ A _CABS size 0 flags 8 addr 0
 T 00 00 00
 R 00 00 00 00
 T 00 00 00 CD 00 00 CD 00 00 FA 00 00 B7 20 03 CD
-R 00 00 00 00 02 04 0B 00 02 07 11 00 02 0A 02 00
+R 00 00 00 00 02 04 0C 00 02 07 12 00 02 0A 03 00
 T 0D 00 00 00 00
 R 00 00 00 00 02 03 00 00
 T 0F 00 00
 R 00 00 00 00
-T 0F 00 00 CD 00 00 FA 00 00 3D 20 1C CD 00 00 FA
-R 00 00 00 00 02 04 0D 00 02 07 19 00 02 0D 12 00
-T 1C 00 00 00 00 F5 33 FA 00 00 11 00 00 CD
-R 00 00 00 00 02 03 15 00 02 08 1C 00 02 0B 16 00
-T 27 00 00 00 00 CD 00 00 CD 00 00 21
-R 00 00 00 00 02 03 0F 00 02 06 17 00 02 09 18 00
-T 30 00 00 00 00 36 00
-R 00 00 00 00 02 03 19 00
-T 34 00 00
+T 0F 00 00 CD 00 00 FA 00 00 3D 20 20 FA 00 00 FE
+R 00 00 00 00 02 04 0E 00 02 07 1A 00 02 0D 16 00
+T 1C 00 00 05 38 0B F5 33 FA 00 00 11 00 00 CD
+R 00 00 00 00 02 09 1D 00 02 0C 17 00
+T 28 00 00 00 00
+R 00 00 00 00 02 03 10 00
+T 2A 00 00
 R 00 00 00 00
-T 34 00 00 CD 00 00 CD 00 00 CD 00 00 CD
-R 00 00 00 00 02 04 0E 00 02 07 06 00 02 0A 09 00
-T 3E 00 00 00 00 CD 00 00 CD 00 00 CD
-R 00 00 00 00 02 03 0C 00 02 06 13 00 02 09 0A 00
-T 47 00 00 00 00 FA 00 00 21 00 00 96 28 06 CD
-R 00 00 00 00 02 03 14 00 02 06 04 00 02 09 15 00
-T 53 00 00 00 00 CD 00 00
-R 00 00 00 00 02 03 05 00 02 06 01 00
-T 58 00 00
+T 2A 00 00 CD 00 00 CD 00 00 CD 00 00 21
+R 00 00 00 00 02 04 13 00 02 07 18 00 02 0A 19 00
+T 34 00 00 00 00 36 00
+R 00 00 00 00 02 03 1A 00
+T 38 00 00
 R 00 00 00 00
-T 58 00 00 CD 00 00 FA 00 00 EA 00 00 FA
-R 00 00 00 00 02 04 1A 00 02 07 10 00 02 0A 03 00
-T 62 00 00 00 00 EA 00 00 FA 00 00 21
-R 00 00 00 00 02 03 15 00 02 06 04 00 02 09 1C 00
-T 6B 00 00 00 00 77 C3 00 00
-R 00 00 00 00 02 03 07 00 02 07 1B 00
+T 38 00 00 CD 00 00 CD 00 00 CD 00 00 CD
+R 00 00 00 00 02 04 0F 00 02 07 07 00 02 0A 0A 00
+T 42 00 00 00 00 CD 00 00 CD 00 00 CD
+R 00 00 00 00 02 03 0D 00 02 06 14 00 02 09 0B 00
+T 4B 00 00 00 00 FA 00 00 21 00 00 96 28 09 CD
+R 00 00 00 00 02 03 15 00 02 06 05 00 02 09 16 00
+T 57 00 00 00 00 CD 00 00 CD 00 00
+R 00 00 00 00 02 03 06 00 02 06 01 00 02 09 02 00
+T 5F 00 00
+R 00 00 00 00
+T 5F 00 00 CD 00 00 FA 00 00 EA 00 00 FA
+R 00 00 00 00 02 04 1B 00 02 07 11 00 02 0A 04 00
+T 69 00 00 00 00 EA 00 00 FA 00 00 21
+R 00 00 00 00 02 03 16 00 02 06 05 00 02 09 1D 00
+T 72 00 00 00 00 77 C3 00 00
+R 00 00 00 00 02 03 08 00 02 07 1C 00

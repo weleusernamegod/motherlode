@@ -13,13 +13,17 @@
 	.globl _palette_blue
 	.globl _palette_green
 	.globl _palette_orange
-	.globl _palette_dark_red
 	.globl _palette_red
 	.globl _palette_button_passive
 	.globl _palette_button_active
-	.globl _palette_grey
 	.globl _palette_light_grey
+	.globl _palette_grey
+	.globl _palette_copper
+	.globl _palette_iron
+	.globl _palette_rock
+	.globl _palette_gras
 	.globl _palette_default
+	.globl _palette_sky
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -31,6 +35,9 @@
 ; ram data
 ;--------------------------------------------------------
 	.area _INITIALIZED
+G$palette_sky$0_0$0==.
+_palette_sky::
+	.ds 8
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -52,65 +59,101 @@
 ;--------------------------------------------------------
 	.area _CODE
 	.area _CODE
+G$palette_default$0_0$0 == .
 _palette_default:
 	.dw #0x7fff
 	.dw #0x56b5
 	.dw #0x294a
 	.dw #0x0000
+G$palette_gras$0_0$0 == .
+_palette_gras:
+	.dw #0x1973
+	.dw #0x1e8c
+	.dw #0x1dc8
+	.dw #0x10e5
+G$palette_rock$0_0$0 == .
+_palette_rock:
+	.dw #0x1973
+	.dw #0x14e9
+	.dw #0x3df0
+	.dw #0x18c6
+G$palette_iron$0_0$0 == .
+_palette_iron:
+	.dw #0x1973
+	.dw #0x14e9
+	.dw #0x5ef7
+	.dw #0x294a
+G$palette_copper$0_0$0 == .
+_palette_copper:
+	.dw #0x1973
+	.dw #0x14e9
+	.dw #0x19d7
+	.dw #0x0993
+G$palette_grey$0_0$0 == .
+_palette_grey:
+	.dw #0x7fff
+	.dw #0x56b5
+	.dw #0x3df0
+	.dw #0x294a
+G$palette_light_grey$0_0$0 == .
 _palette_light_grey:
 	.dw #0x7fff
 	.dw #0x739c
 	.dw #0x739c
 	.dw #0x6b5a
-_palette_grey:
-	.dw #0x7fff
-	.dw #0x5294
-	.dw #0x4210
-	.dw #0x2108
+G$palette_button_active$0_0$0 == .
 _palette_button_active:
 	.dw #0x7fff
 	.dw #0x2ade
 	.dw #0x167b
 	.dw #0x6fff
+G$palette_button_passive$0_0$0 == .
 _palette_button_passive:
 	.dw #0x7fff
 	.dw #0x1973
 	.dw #0x10ee
 	.dw #0x0400
+G$palette_red$0_0$0 == .
 _palette_red:
 	.dw #0x7fff
-	.dw #0x5294
-	.dw #0x001a
-	.dw #0x2108
-_palette_dark_red:
-	.dw #0x7fff
-	.dw #0x5294
+	.dw #0x739c
+	.dw #0x017f
 	.dw #0x14b4
-	.dw #0x2108
+G$palette_orange$0_0$0 == .
 _palette_orange:
 	.dw #0x7fff
-	.dw #0x5294
+	.dw #0x56b5
 	.dw #0x017f
-	.dw #0x2108
+	.dw #0x294a
+G$palette_green$0_0$0 == .
 _palette_green:
 	.dw #0x7fff
-	.dw #0x33ec
-	.dw #0x1b06
-	.dw #0x2108
+	.dw #0x1e8c
+	.dw #0x1dc8
+	.dw #0x10e5
+G$palette_blue$0_0$0 == .
 _palette_blue:
 	.dw #0x7fff
-	.dw #0x5294
+	.dw #0x739c
 	.dw #0x668c
-	.dw #0x2108
+	.dw #0x294a
+G$palette_yellow$0_0$0 == .
 _palette_yellow:
 	.dw #0x63ff
 	.dw #0x33ff
 	.dw #0x1b18
 	.dw #0x0210
+G$palette_purple$0_0$0 == .
 _palette_purple:
 	.dw #0x7f1f
 	.dw #0x7d98
 	.dw #0x60d0
 	.dw #0x400c
 	.area _INITIALIZER
+Fpalettes$__xinit_palette_sky$0_0$0 == .
+__xinit__palette_sky:
+	.dw #0x7fff
+	.dw #0x56b5
+	.dw #0x294a
+	.dw #0x0000
 	.area _CABS (ABS)

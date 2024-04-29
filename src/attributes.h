@@ -5,7 +5,6 @@
 #include <gb/cgb.h>
 #include <stdio.h>
 
-typedef const palette_color_t* PalettePtr;
 
 /**
  * Define a structure for player attributes
@@ -16,6 +15,9 @@ typedef const palette_color_t* PalettePtr;
  * @param upgrade1 cost of upgrade 1?
  * @param upgrade2 
  */
+
+typedef const palette_color_t* PalettePtr;
+
 typedef struct player_attributes {
     const char *upgrade_name[6];
     const char *attribute_name;

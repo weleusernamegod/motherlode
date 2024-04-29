@@ -20,6 +20,7 @@
 ; ram data
 ;--------------------------------------------------------
 	.area _INITIALIZED
+G$font$0_0$0==.
 _font::
 	.ds 160
 ;--------------------------------------------------------
@@ -44,6 +45,7 @@ _font::
 	.area _CODE
 	.area _CODE
 	.area _INITIALIZER
+Ffont$__xinit_font$0_0$0 == .
 __xinit__font:
 	.db #0xe0	; 224
 	.db #0x00	; 0

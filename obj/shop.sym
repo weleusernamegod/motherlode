@@ -1820,11 +1820,10 @@ Symbol Table
   2 _menu_numbers                                                  000000 GR
   7 _metasprite_buttonframe                                        0000D2 GR
     _palette_blue                                                  ****** GX
+    _palette_copper                                                ****** GX
     _palette_default                                               ****** GX
     _palette_green                                                 ****** GX
-    _palette_grey                                                  ****** GX
     _palette_light_grey                                            ****** GX
-    _palette_orange                                                ****** GX
     _palette_purple                                                ****** GX
     _palette_red                                                   ****** GX
     _palette_yellow                                                ****** GX

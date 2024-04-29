@@ -59,968 +59,1173 @@
                                      59 ; code
                                      60 ;--------------------------------------------------------
                                      61 	.area _CODE
-                                     62 ;src/general.c:13: void init_font(void){
-                                     63 ;	---------------------------------
-                                     64 ; Function init_font
-                                     65 ; ---------------------------------
-      000000                         66 _init_font::
-                                     67 ;src/general.c:15: font_init();
-      000000 CDr00r00         [24]   68 	call	_font_init
-                                     69 ;src/general.c:16: min_font = font_load(font_ibm);
-      000003 11r00r00         [12]   70 	ld	de, #_font_ibm
-      000006 D5               [16]   71 	push	de
-      000007 CDr00r00         [24]   72 	call	_font_load
-      00000A E1               [12]   73 	pop	hl
-                                     74 ;src/general.c:17: font_set(min_font);
-      00000B D5               [16]   75 	push	de
-      00000C CDr00r00         [24]   76 	call	_font_set
-      00000F E1               [12]   77 	pop	hl
-                                     78 ;src/general.c:18: }
-      000010 C9               [16]   79 	ret
-                                     80 ;src/general.c:20: void init_screen(void){
-                                     81 ;	---------------------------------
-                                     82 ; Function init_screen
-                                     83 ; ---------------------------------
-      000011                         84 _init_screen::
-                                     85 ;src/general.c:21: SHOW_BKG;
-      000011 F0r00            [12]   86 	ldh	a, (_LCDC_REG + 0)
-      000013 F6 01            [ 8]   87 	or	a, #0x01
-      000015 E0r00            [12]   88 	ldh	(_LCDC_REG + 0), a
-                                     89 ;src/general.c:22: SHOW_WIN;
-      000017 F0r00            [12]   90 	ldh	a, (_LCDC_REG + 0)
-      000019 F6 20            [ 8]   91 	or	a, #0x20
-      00001B E0r00            [12]   92 	ldh	(_LCDC_REG + 0), a
-                                     93 ;src/general.c:23: SHOW_SPRITES;
-      00001D F0r00            [12]   94 	ldh	a, (_LCDC_REG + 0)
-      00001F F6 02            [ 8]   95 	or	a, #0x02
-      000021 E0r00            [12]   96 	ldh	(_LCDC_REG + 0), a
-                                     97 ;src/general.c:24: DISPLAY_ON;
-      000023 F0r00            [12]   98 	ldh	a, (_LCDC_REG + 0)
-      000025 F6 80            [ 8]   99 	or	a, #0x80
-      000027 E0r00            [12]  100 	ldh	(_LCDC_REG + 0), a
-                                    101 ;src/general.c:25: }
-      000029 C9               [16]  102 	ret
-                                    103 ;src/general.c:27: void init_clear_screen(void) {
-                                    104 ;	---------------------------------
-                                    105 ; Function init_clear_screen
-                                    106 ; ---------------------------------
-      00002A                        107 _init_clear_screen::
-      00002A 21 00 F0         [12]  108 	ld	hl, #-4096
-      00002D 39               [ 8]  109 	add	hl, sp
-      00002E F9               [ 8]  110 	ld	sp, hl
-                                    111 ;src/general.c:30: for (uint16_t i = 0; i < 2048; i++){
-      00002F F8 00            [12]  112 	ldhl	sp,	#0
-      000031 4D               [ 4]  113 	ld	c, l
-      000032 44               [ 4]  114 	ld	b, h
-      000033 11 00 00         [12]  115 	ld	de, #0x0000
-      000036                        116 00107$:
-                                    117 ;	spillPairReg hl
-                                    118 ;	spillPairReg hl
-                                    119 ;	spillPairReg hl
-                                    120 ;	spillPairReg hl
-      000036 7A               [ 4]  121 	ld	a, d
-      000037 D6 08            [ 8]  122 	sub	a, #0x08
-      000039 30 0A            [12]  123 	jr	NC, 00101$
-                                    124 ;src/general.c:31: temparray[i] = 0;
-      00003B 6B               [ 4]  125 	ld	l, e
-      00003C 62               [ 4]  126 	ld	h, d
-      00003D 29               [ 8]  127 	add	hl, hl
-      00003E 09               [ 8]  128 	add	hl, bc
-      00003F AF               [ 4]  129 	xor	a, a
-      000040 22               [ 8]  130 	ld	(hl+), a
-      000041 77               [ 8]  131 	ld	(hl), a
-                                    132 ;src/general.c:30: for (uint16_t i = 0; i < 2048; i++){
-      000042 13               [ 8]  133 	inc	de
-      000043 18 F1            [12]  134 	jr	00107$
-      000045                        135 00101$:
-                                    136 ;src/general.c:33: VBK_REG = 1;
-      000045 3E 01            [ 8]  137 	ld	a, #0x01
-      000047 E0r00            [12]  138 	ldh	(_VBK_REG + 0), a
-                                    139 ;src/general.c:34: set_bkg_tiles(0,0,20, 18, temparray);
-      000049 C5               [16]  140 	push	bc
-      00004A 21 14 12         [12]  141 	ld	hl, #0x1214
-      00004D E5               [16]  142 	push	hl
-      00004E AF               [ 4]  143 	xor	a, a
-      00004F 0F               [ 4]  144 	rrca
-      000050 F5               [16]  145 	push	af
-      000051 CDr00r00         [24]  146 	call	_set_bkg_tiles
-      000054 E8 06            [16]  147 	add	sp, #6
-                                    148 ;src/general.c:35: VBK_REG = 0;
-      000056 AF               [ 4]  149 	xor	a, a
-      000057 E0r00            [12]  150 	ldh	(_VBK_REG + 0), a
-                                    151 ;src/general.c:38: for (uint8_t i = 0; i < 8; i++) {
-      000059 16 00            [ 8]  152 	ld	d, #0x00
-      00005B                        153 00110$:
-      00005B 7A               [ 4]  154 	ld	a, d
-      00005C D6 08            [ 8]  155 	sub	a, #0x08
-      00005E 30 27            [12]  156 	jr	NC, 00102$
-                                    157 ;src/general.c:39: set_sprite_palette(i, 1, palette_default);
-      000060 C5               [16]  158 	push	bc
-      000061 D5               [16]  159 	push	de
-      000062 21r00r00         [12]  160 	ld	hl, #_palette_default
-      000065 E5               [16]  161 	push	hl
-      000066 3E 01            [ 8]  162 	ld	a, #0x01
-      000068 F5               [16]  163 	push	af
-      000069 33               [ 8]  164 	inc	sp
-      00006A D5               [16]  165 	push	de
-      00006B 33               [ 8]  166 	inc	sp
-      00006C CDr00r00         [24]  167 	call	_set_sprite_palette
-      00006F E8 04            [16]  168 	add	sp, #4
-      000071 D1               [12]  169 	pop	de
-      000072 D5               [16]  170 	push	de
-      000073 21r00r00         [12]  171 	ld	hl, #_palette_default
-      000076 E5               [16]  172 	push	hl
-      000077 3E 01            [ 8]  173 	ld	a, #0x01
-      000079 F5               [16]  174 	push	af
-      00007A 33               [ 8]  175 	inc	sp
-      00007B D5               [16]  176 	push	de
-      00007C 33               [ 8]  177 	inc	sp
-      00007D CDr00r00         [24]  178 	call	_set_bkg_palette
-      000080 E8 04            [16]  179 	add	sp, #4
-      000082 D1               [12]  180 	pop	de
-      000083 C1               [12]  181 	pop	bc
-                                    182 ;src/general.c:38: for (uint8_t i = 0; i < 8; i++) {
-      000084 14               [ 4]  183 	inc	d
-      000085 18 D4            [12]  184 	jr	00110$
-      000087                        185 00102$:
-                                    186 ;src/general.c:44: set_sprite_data(0, 128, temparray);
-      000087 C5               [16]  187 	push	bc
-      000088 21 00 80         [12]  188 	ld	hl, #0x8000
-      00008B E5               [16]  189 	push	hl
-      00008C CDr00r00         [24]  190 	call	_set_sprite_data
-      00008F E8 04            [16]  191 	add	sp, #4
-                                    192 ;src/general.c:47: for (uint8_t i = 0; i < 40; i++) {
-      000091 0E 00            [ 8]  193 	ld	c, #0x00
-      000093                        194 00113$:
-      000093 79               [ 4]  195 	ld	a, c
-      000094 D6 28            [ 8]  196 	sub	a, #0x28
-      000096 30 17            [12]  197 	jr	NC, 00115$
-                                    198 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
-      000098 69               [ 4]  199 	ld	l, c
-                                    200 ;	spillPairReg hl
-                                    201 ;	spillPairReg hl
-      000099 26 00            [ 8]  202 	ld	h, #0x00
-                                    203 ;	spillPairReg hl
-                                    204 ;	spillPairReg hl
-      00009B 29               [ 8]  205 	add	hl, hl
-      00009C 29               [ 8]  206 	add	hl, hl
-      00009D 5D               [ 4]  207 	ld	e, l
-      00009E 54               [ 4]  208 	ld	d, h
-      00009F 21r01r00         [12]  209 	ld	hl,#_shadow_OAM + 1
-      0000A2 19               [ 8]  210 	add	hl,de
-      0000A3 23               [ 8]  211 	inc	hl
-      0000A4 36 00            [12]  212 	ld	(hl), #0x00
-                                    213 ;/usr/local/opt/gbdk/include/gb/gb.h:1905: shadow_OAM[nb].y = 0;
-      0000A6 21r00r00         [12]  214 	ld	hl, #_shadow_OAM
-      0000A9 19               [ 8]  215 	add	hl, de
-      0000AA 36 00            [12]  216 	ld	(hl), #0x00
-                                    217 ;src/general.c:47: for (uint8_t i = 0; i < 40; i++) {
-      0000AC 0C               [ 4]  218 	inc	c
-      0000AD 18 E4            [12]  219 	jr	00113$
-      0000AF                        220 00115$:
-                                    221 ;src/general.c:51: }
-      0000AF 21 00 10         [12]  222 	ld	hl, #4096
-      0000B2 39               [ 8]  223 	add	hl, sp
-      0000B3 F9               [ 8]  224 	ld	sp, hl
-      0000B4 C9               [16]  225 	ret
-                                    226 ;src/general.c:53: void read_buttons(void) {
-                                    227 ;	---------------------------------
-                                    228 ; Function read_buttons
-                                    229 ; ---------------------------------
-      0000B5                        230 _read_buttons::
-                                    231 ;src/general.c:54: buttons = joypad(); // Read current gamepad state
-      0000B5 CDr00r00         [24]  232 	call	_joypad
-      0000B8 EAr00r00         [16]  233 	ld	(#_buttons),a
-                                    234 ;src/general.c:55: }
-      0000BB C9               [16]  235 	ret
-                                    236 ;src/general.c:57: unsigned char convert_char_to_tile(char c) {
-                                    237 ;	---------------------------------
-                                    238 ; Function convert_char_to_tile
-                                    239 ; ---------------------------------
-      0000BC                        240 _convert_char_to_tile::
-                                    241 ;src/general.c:58: if (c >= 'A' && c <= 'Z') return LETTERSTART + (c - 'A');
-      0000BC 4F               [ 4]  242 	ld	c, a
-      0000BD EE 80            [ 8]  243 	xor	a, #0x80
-      0000BF D6 C1            [ 8]  244 	sub	a, #0xc1
-      0000C1 38 1B            [12]  245 	jr	C, 00102$
-      0000C3 59               [ 4]  246 	ld	e, c
-      0000C4 3E 5A            [ 8]  247 	ld	a,#0x5a
-      0000C6 57               [ 4]  248 	ld	d,a
-      0000C7 91               [ 4]  249 	sub	a, c
-      0000C8 CB 7B            [ 8]  250 	bit	7, e
-      0000CA 28 07            [12]  251 	jr	Z, 00236$
-      0000CC CB 7A            [ 8]  252 	bit	7, d
-      0000CE 20 08            [12]  253 	jr	NZ, 00237$
-      0000D0 BF               [ 4]  254 	cp	a, a
-      0000D1 18 05            [12]  255 	jr	00237$
-      0000D3                        256 00236$:
-      0000D3 CB 7A            [ 8]  257 	bit	7, d
-      0000D5 28 01            [12]  258 	jr	Z, 00237$
-      0000D7 37               [ 4]  259 	scf
-      0000D8                        260 00237$:
-      0000D8 38 04            [12]  261 	jr	C, 00102$
-      0000DA 79               [ 4]  262 	ld	a, c
-      0000DB C6 E0            [ 8]  263 	add	a, #0xe0
-      0000DD C9               [16]  264 	ret
-      0000DE                        265 00102$:
-                                    266 ;src/general.c:59: if (c >= 'a' && c <= 'z') return SLETTERSTART + (c - 'a');
-      0000DE 79               [ 4]  267 	ld	a, c
-      0000DF EE 80            [ 8]  268 	xor	a, #0x80
-      0000E1 D6 E1            [ 8]  269 	sub	a, #0xe1
-      0000E3 38 1B            [12]  270 	jr	C, 00105$
-      0000E5 59               [ 4]  271 	ld	e, c
-      0000E6 3E 7A            [ 8]  272 	ld	a,#0x7a
-      0000E8 57               [ 4]  273 	ld	d,a
-      0000E9 91               [ 4]  274 	sub	a, c
-      0000EA CB 7B            [ 8]  275 	bit	7, e
-      0000EC 28 07            [12]  276 	jr	Z, 00238$
-      0000EE CB 7A            [ 8]  277 	bit	7, d
-      0000F0 20 08            [12]  278 	jr	NZ, 00239$
-      0000F2 BF               [ 4]  279 	cp	a, a
-      0000F3 18 05            [12]  280 	jr	00239$
-      0000F5                        281 00238$:
-      0000F5 CB 7A            [ 8]  282 	bit	7, d
-      0000F7 28 01            [12]  283 	jr	Z, 00239$
-      0000F9 37               [ 4]  284 	scf
-      0000FA                        285 00239$:
-      0000FA 38 04            [12]  286 	jr	C, 00105$
-      0000FC 79               [ 4]  287 	ld	a, c
-      0000FD C6 E0            [ 8]  288 	add	a, #0xe0
-      0000FF C9               [16]  289 	ret
-      000100                        290 00105$:
-                                    291 ;src/general.c:60: if (c >= '0' && c <= '9') return NUMSTART + (c - '0');
-      000100 79               [ 4]  292 	ld	a, c
-      000101 EE 80            [ 8]  293 	xor	a, #0x80
-      000103 D6 B0            [ 8]  294 	sub	a, #0xb0
-      000105 38 1B            [12]  295 	jr	C, 00108$
-      000107 59               [ 4]  296 	ld	e, c
-      000108 3E 39            [ 8]  297 	ld	a,#0x39
-      00010A 57               [ 4]  298 	ld	d,a
-      00010B 91               [ 4]  299 	sub	a, c
-      00010C CB 7B            [ 8]  300 	bit	7, e
-      00010E 28 07            [12]  301 	jr	Z, 00240$
-      000110 CB 7A            [ 8]  302 	bit	7, d
-      000112 20 08            [12]  303 	jr	NZ, 00241$
-      000114 BF               [ 4]  304 	cp	a, a
-      000115 18 05            [12]  305 	jr	00241$
-      000117                        306 00240$:
-      000117 CB 7A            [ 8]  307 	bit	7, d
-      000119 28 01            [12]  308 	jr	Z, 00241$
-      00011B 37               [ 4]  309 	scf
-      00011C                        310 00241$:
-      00011C 38 04            [12]  311 	jr	C, 00108$
-      00011E 79               [ 4]  312 	ld	a, c
-      00011F C6 E0            [ 8]  313 	add	a, #0xe0
-      000121 C9               [16]  314 	ret
-      000122                        315 00108$:
-                                    316 ;src/general.c:61: switch (c) {
-      000122 79               [ 4]  317 	ld	a,c
-      000123 FE 20            [ 8]  318 	cp	a,#0x20
-      000125 28 41            [12]  319 	jr	Z, 00119$
-      000127 FE 21            [ 8]  320 	cp	a,#0x21
-      000129 28 3A            [12]  321 	jr	Z, 00118$
-      00012B FE 24            [ 8]  322 	cp	a,#0x24
-      00012D 28 30            [12]  323 	jr	Z, 00116$
-      00012F FE 26            [ 8]  324 	cp	a,#0x26
-      000131 28 2F            [12]  325 	jr	Z, 00117$
-      000133 FE 2A            [ 8]  326 	cp	a,#0x2a
-      000135 28 22            [12]  327 	jr	Z, 00114$
-      000137 FE 2D            [ 8]  328 	cp	a,#0x2d
-      000139 28 18            [12]  329 	jr	Z, 00112$
-      00013B FE 2E            [ 8]  330 	cp	a,#0x2e
-      00013D 28 11            [12]  331 	jr	Z, 00111$
-      00013F FE 2F            [ 8]  332 	cp	a,#0x2f
-      000141 28 0A            [12]  333 	jr	Z, 00110$
-      000143 FE 3D            [ 8]  334 	cp	a,#0x3d
-      000145 28 0F            [12]  335 	jr	Z, 00113$
-      000147 D6 3F            [ 8]  336 	sub	a, #0x3f
-      000149 28 11            [12]  337 	jr	Z, 00115$
-      00014B 18 1D            [12]  338 	jr	00120$
-                                    339 ;src/general.c:62: case '/': return 15;
-      00014D                        340 00110$:
-      00014D 3E 0F            [ 8]  341 	ld	a, #0x0f
-      00014F C9               [16]  342 	ret
-                                    343 ;src/general.c:63: case '.': return 14;
-      000150                        344 00111$:
-      000150 3E 0E            [ 8]  345 	ld	a, #0x0e
-      000152 C9               [16]  346 	ret
-                                    347 ;src/general.c:64: case '-': return 13;
-      000153                        348 00112$:
-      000153 3E 0D            [ 8]  349 	ld	a, #0x0d
-      000155 C9               [16]  350 	ret
-                                    351 ;src/general.c:65: case '=': return 38;
-      000156                        352 00113$:
-      000156 3E 26            [ 8]  353 	ld	a, #0x26
-      000158 C9               [16]  354 	ret
-                                    355 ;src/general.c:66: case '*': return 39;
-      000159                        356 00114$:
-      000159 3E 27            [ 8]  357 	ld	a, #0x27
-      00015B C9               [16]  358 	ret
-                                    359 ;src/general.c:67: case '?': return 31;
-      00015C                        360 00115$:
-      00015C 3E 1F            [ 8]  361 	ld	a, #0x1f
-      00015E C9               [16]  362 	ret
-                                    363 ;src/general.c:68: case '$': return 4;
-      00015F                        364 00116$:
-      00015F 3E 04            [ 8]  365 	ld	a, #0x04
-      000161 C9               [16]  366 	ret
-                                    367 ;src/general.c:69: case '&': return 5;
-      000162                        368 00117$:
-      000162 3E 05            [ 8]  369 	ld	a, #0x05
-      000164 C9               [16]  370 	ret
-                                    371 ;src/general.c:70: case '!': return 1;
-      000165                        372 00118$:
-      000165 3E 01            [ 8]  373 	ld	a, #0x01
-      000167 C9               [16]  374 	ret
-                                    375 ;src/general.c:71: case ' ': return 0;
-      000168                        376 00119$:
-      000168 AF               [ 4]  377 	xor	a, a
-      000169 C9               [16]  378 	ret
-                                    379 ;src/general.c:72: default: return 0;  // Default to space if character is not handled
-      00016A                        380 00120$:
-      00016A AF               [ 4]  381 	xor	a, a
-                                    382 ;src/general.c:73: }
-                                    383 ;src/general.c:74: }
-      00016B C9               [16]  384 	ret
-                                    385 ;src/general.c:76: void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
-                                    386 ;	---------------------------------
-                                    387 ; Function draw_text
-                                    388 ; ---------------------------------
-      00016C                        389 _draw_text::
-      00016C E8 F2            [16]  390 	add	sp, #-14
-      00016E F8 0A            [12]  391 	ldhl	sp,	#10
-      000170 32               [ 8]  392 	ld	(hl-), a
-      000171 73               [ 8]  393 	ld	(hl), e
-                                    394 ;src/general.c:77: uint8_t textLength = strlen(text);
-      000172 F8 10            [12]  395 	ldhl	sp,	#16
-      000174 2A               [ 8]  396 	ld	a, (hl+)
-      000175 5F               [ 4]  397 	ld	e, a
-      000176 56               [ 8]  398 	ld	d, (hl)
-      000177 D5               [16]  399 	push	de
-      000178 CDr00r00         [24]  400 	call	_strlen
-      00017B E1               [12]  401 	pop	hl
-      00017C F8 02            [12]  402 	ldhl	sp,	#2
-      00017E 73               [ 8]  403 	ld	(hl), e
-                                    404 ;src/general.c:78: uint8_t *vramAddr = get_win_xy_addr(x, y);
-      00017F F8 09            [12]  405 	ldhl	sp,	#9
-      000181 2A               [ 8]  406 	ld	a, (hl+)
-      000182 57               [ 4]  407 	ld	d, a
-      000183 5E               [ 8]  408 	ld	e, (hl)
-      000184 D5               [16]  409 	push	de
-      000185 CDr00r00         [24]  410 	call	_get_win_xy_addr
-      000188 E1               [12]  411 	pop	hl
-      000189 F8 0B            [12]  412 	ldhl	sp,	#11
-      00018B 7B               [ 4]  413 	ld	a, e
-      00018C 22               [ 8]  414 	ld	(hl+), a
-      00018D 72               [ 8]  415 	ld	(hl), d
-                                    416 ;src/general.c:80: if (textLength > length) {
-      00018E F8 12            [12]  417 	ldhl	sp,	#18
-      000190 7E               [ 8]  418 	ld	a, (hl)
-      000191 F8 02            [12]  419 	ldhl	sp,	#2
-      000193 96               [ 8]  420 	sub	a, (hl)
-      000194 30 06            [12]  421 	jr	NC, 00102$
-                                    422 ;src/general.c:81: textLength = length;  // Cap the text length at the defined maximum
-      000196 F8 12            [12]  423 	ldhl	sp,	#18
-      000198 7E               [ 8]  424 	ld	a, (hl)
-      000199 F8 02            [12]  425 	ldhl	sp,	#2
-      00019B 77               [ 8]  426 	ld	(hl), a
-      00019C                        427 00102$:
-                                    428 ;src/general.c:87: vramAddr += length - textLength;
-      00019C F8 12            [12]  429 	ldhl	sp,	#18
-      00019E 7E               [ 8]  430 	ld	a, (hl)
-      00019F F8 03            [12]  431 	ldhl	sp,	#3
-      0001A1 22               [ 8]  432 	ld	(hl+), a
-      0001A2 AF               [ 4]  433 	xor	a, a
-      0001A3 32               [ 8]  434 	ld	(hl-), a
-      0001A4 2B               [ 8]  435 	dec	hl
-      0001A5 7E               [ 8]  436 	ld	a, (hl)
-      0001A6 F8 07            [12]  437 	ldhl	sp,	#7
-      0001A8 22               [ 8]  438 	ld	(hl+), a
-      0001A9 36 00            [12]  439 	ld	(hl), #0x00
-      0001AB F8 03            [12]  440 	ldhl	sp,#3
-      0001AD 2A               [ 8]  441 	ld	a, (hl+)
-      0001AE 5F               [ 4]  442 	ld	e, a
-      0001AF 56               [ 8]  443 	ld	d, (hl)
-      0001B0 F8 07            [12]  444 	ldhl	sp,	#7
-      0001B2 2A               [ 8]  445 	ld	a,	(hl+)
-      0001B3 66               [ 8]  446 	ld	h, (hl)
-      0001B4 6F               [ 4]  447 	ld	l, a
-      0001B5 7B               [ 4]  448 	ld	a, e
-      0001B6 95               [ 4]  449 	sub	a, l
-      0001B7 5F               [ 4]  450 	ld	e, a
-      0001B8 7A               [ 4]  451 	ld	a, d
-      0001B9 9C               [ 4]  452 	sbc	a, h
-      0001BA F8 06            [12]  453 	ldhl	sp,	#6
-      0001BC 32               [ 8]  454 	ld	(hl-), a
-      0001BD 73               [ 8]  455 	ld	(hl), e
-                                    456 ;src/general.c:85: if (!left_aligned) {
-      0001BE F8 13            [12]  457 	ldhl	sp,	#19
-      0001C0 7E               [ 8]  458 	ld	a, (hl)
-      0001C1 B7               [ 4]  459 	or	a, a
-      0001C2 20 1F            [12]  460 	jr	NZ, 00104$
-                                    461 ;src/general.c:87: vramAddr += length - textLength;
-      0001C4 F8 05            [12]  462 	ldhl	sp,#5
-      0001C6 2A               [ 8]  463 	ld	a, (hl+)
-      0001C7 5F               [ 4]  464 	ld	e, a
-      0001C8 56               [ 8]  465 	ld	d, (hl)
-      0001C9 F8 0B            [12]  466 	ldhl	sp,	#11
-      0001CB 2A               [ 8]  467 	ld	a,	(hl+)
-      0001CC 66               [ 8]  468 	ld	h, (hl)
-      0001CD 6F               [ 4]  469 	ld	l, a
-      0001CE 19               [ 8]  470 	add	hl, de
-      0001CF E5               [16]  471 	push	hl
-      0001D0 7D               [ 4]  472 	ld	a, l
-      0001D1 F8 0D            [12]  473 	ldhl	sp,	#13
-      0001D3 77               [ 8]  474 	ld	(hl), a
-      0001D4 E1               [12]  475 	pop	hl
-      0001D5 7C               [ 4]  476 	ld	a, h
-      0001D6 F8 0C            [12]  477 	ldhl	sp,	#12
-      0001D8 77               [ 8]  478 	ld	(hl), a
-                                    479 ;src/general.c:88: x += length - textLength;
-      0001D9 F8 12            [12]  480 	ldhl	sp,	#18
-      0001DB 7E               [ 8]  481 	ld	a, (hl)
-      0001DC F8 02            [12]  482 	ldhl	sp,	#2
-      0001DE 96               [ 8]  483 	sub	a, (hl)
-      0001DF F8 0A            [12]  484 	ldhl	sp,	#10
-      0001E1 86               [ 8]  485 	add	a, (hl)
-      0001E2 77               [ 8]  486 	ld	(hl), a
-      0001E3                        487 00104$:
-                                    488 ;src/general.c:92: if (!left_aligned) {
-      0001E3 F8 13            [12]  489 	ldhl	sp,	#19
-      0001E5 7E               [ 8]  490 	ld	a, (hl)
-      0001E6 B7               [ 4]  491 	or	a, a
-      0001E7 C2r6Er02         [16]  492 	jp	NZ, 00129$
-                                    493 ;src/general.c:93: for (uint8_t i = 0; i < length - textLength; i++) {
-      0001EA F8 0A            [12]  494 	ldhl	sp,	#10
-      0001EC 7E               [ 8]  495 	ld	a, (hl)
-      0001ED F8 12            [12]  496 	ldhl	sp,	#18
-      0001EF 96               [ 8]  497 	sub	a, (hl)
-      0001F0 F8 02            [12]  498 	ldhl	sp,	#2
-      0001F2 86               [ 8]  499 	add	a, (hl)
-      0001F3 F8 07            [12]  500 	ldhl	sp,	#7
-      0001F5 77               [ 8]  501 	ld	(hl), a
-      0001F6 F8 0D            [12]  502 	ldhl	sp,	#13
-      0001F8 36 00            [12]  503 	ld	(hl), #0x00
-      0001FA                        504 00113$:
-      0001FA F8 0D            [12]  505 	ldhl	sp,	#13
-      0001FC 7E               [ 8]  506 	ld	a, (hl)
-      0001FD F8 00            [12]  507 	ldhl	sp,	#0
-      0001FF 22               [ 8]  508 	ld	(hl+), a
-      000200 36 00            [12]  509 	ld	(hl), #0x00
-      000202 F8 00            [12]  510 	ldhl	sp,	#0
-      000204 5D               [ 4]  511 	ld	e, l
-      000205 54               [ 4]  512 	ld	d, h
-      000206 F8 05            [12]  513 	ldhl	sp,	#5
-      000208 1A               [ 8]  514 	ld	a, (de)
-      000209 13               [ 8]  515 	inc	de
-      00020A 96               [ 8]  516 	sub	a, (hl)
-      00020B 23               [ 8]  517 	inc	hl
-      00020C 1A               [ 8]  518 	ld	a, (de)
-      00020D 9E               [ 8]  519 	sbc	a, (hl)
-      00020E 1A               [ 8]  520 	ld	a, (de)
-      00020F 57               [ 4]  521 	ld	d, a
-      000210 5E               [ 8]  522 	ld	e, (hl)
-      000211 CB 7B            [ 8]  523 	bit	7, e
-      000213 28 07            [12]  524 	jr	Z, 00196$
-      000215 CB 7A            [ 8]  525 	bit	7, d
-      000217 20 08            [12]  526 	jr	NZ, 00197$
-      000219 BF               [ 4]  527 	cp	a, a
-      00021A 18 05            [12]  528 	jr	00197$
-      00021C                        529 00196$:
-      00021C CB 7A            [ 8]  530 	bit	7, d
-      00021E 28 01            [12]  531 	jr	Z, 00197$
-      000220 37               [ 4]  532 	scf
-      000221                        533 00197$:
-      000221 30 4B            [12]  534 	jr	NC, 00129$
-                                    535 ;src/general.c:94: set_win_tile_xy(x - length + textLength + i, y, palette);
-      000223 F8 07            [12]  536 	ldhl	sp,	#7
-      000225 7E               [ 8]  537 	ld	a, (hl)
-      000226 F8 0D            [12]  538 	ldhl	sp,	#13
-      000228 86               [ 8]  539 	add	a, (hl)
-      000229 F8 14            [12]  540 	ldhl	sp,	#20
-      00022B 66               [ 8]  541 	ld	h, (hl)
-                                    542 ;	spillPairReg hl
-                                    543 ;	spillPairReg hl
-      00022C E5               [16]  544 	push	hl
-      00022D 33               [ 8]  545 	inc	sp
-      00022E F8 0A            [12]  546 	ldhl	sp,	#10
-      000230 66               [ 8]  547 	ld	h, (hl)
-                                    548 ;	spillPairReg hl
-                                    549 ;	spillPairReg hl
-      000231 E5               [16]  550 	push	hl
-      000232 33               [ 8]  551 	inc	sp
-      000233 F5               [16]  552 	push	af
-      000234 33               [ 8]  553 	inc	sp
-      000235 CDr00r00         [24]  554 	call	_set_win_tile_xy
-      000238 E8 03            [16]  555 	add	sp, #3
-                                    556 ;src/general.c:95: set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
-      00023A 3E 20            [ 8]  557 	ld	a, #0x20
-      00023C CDrBCr00         [24]  558 	call	_convert_char_to_tile
-      00023F F8 08            [12]  559 	ldhl	sp,	#8
-      000241 77               [ 8]  560 	ld	(hl), a
-      000242 F8 0B            [12]  561 	ldhl	sp,#11
-      000244 2A               [ 8]  562 	ld	a, (hl+)
-      000245 5F               [ 4]  563 	ld	e, a
-      000246 56               [ 8]  564 	ld	d, (hl)
-      000247 F8 03            [12]  565 	ldhl	sp,	#3
-      000249 2A               [ 8]  566 	ld	a,	(hl+)
-      00024A 66               [ 8]  567 	ld	h, (hl)
-      00024B 6F               [ 4]  568 	ld	l, a
-      00024C 7B               [ 4]  569 	ld	a, e
-      00024D 95               [ 4]  570 	sub	a, l
-      00024E 5F               [ 4]  571 	ld	e, a
-      00024F 7A               [ 4]  572 	ld	a, d
-      000250 9C               [ 4]  573 	sbc	a, h
-      000251 47               [ 4]  574 	ld	b, a
-      000252 4B               [ 4]  575 	ld	c, e
-      000253 F8 02            [12]  576 	ldhl	sp,	#2
-      000255 6E               [ 8]  577 	ld	l, (hl)
-      000256 26 00            [ 8]  578 	ld	h, #0x00
-      000258 09               [ 8]  579 	add	hl, bc
-      000259 4D               [ 4]  580 	ld	c, l
-      00025A 44               [ 4]  581 	ld	b, h
-      00025B F8 0D            [12]  582 	ldhl	sp,	#13
-      00025D 6E               [ 8]  583 	ld	l, (hl)
-      00025E 26 00            [ 8]  584 	ld	h, #0x00
-      000260 09               [ 8]  585 	add	hl, bc
-      000261 5D               [ 4]  586 	ld	e, l
-      000262 54               [ 4]  587 	ld	d, h
-      000263 F8 08            [12]  588 	ldhl	sp,	#8
-      000265 7E               [ 8]  589 	ld	a, (hl)
-      000266 CDr00r00         [24]  590 	call	_set_vram_byte
-                                    591 ;src/general.c:93: for (uint8_t i = 0; i < length - textLength; i++) {
-      000269 F8 0D            [12]  592 	ldhl	sp,	#13
-      00026B 34               [12]  593 	inc	(hl)
-      00026C 18 8C            [12]  594 	jr	00113$
-                                    595 ;src/general.c:100: for (uint8_t i = 0; i < textLength; i++) {
-      00026E                        596 00129$:
-      00026E F8 0B            [12]  597 	ldhl	sp,	#11
-      000270 7E               [ 8]  598 	ld	a, (hl)
-      000271 F8 07            [12]  599 	ldhl	sp,	#7
-      000273 77               [ 8]  600 	ld	(hl), a
-      000274 F8 0C            [12]  601 	ldhl	sp,	#12
-      000276 7E               [ 8]  602 	ld	a, (hl)
-      000277 F8 08            [12]  603 	ldhl	sp,	#8
-      000279 77               [ 8]  604 	ld	(hl), a
-      00027A 0E 00            [ 8]  605 	ld	c, #0x00
-      00027C                        606 00116$:
-      00027C 79               [ 4]  607 	ld	a, c
-      00027D F8 02            [12]  608 	ldhl	sp,	#2
-      00027F 96               [ 8]  609 	sub	a, (hl)
-      000280 30 3C            [12]  610 	jr	NC, 00108$
-                                    611 ;src/general.c:101: set_win_tile_xy(x + i, y, palette);
-      000282 F8 0A            [12]  612 	ldhl	sp,	#10
-      000284 7E               [ 8]  613 	ld	a, (hl)
-      000285 81               [ 4]  614 	add	a, c
-      000286 F8 14            [12]  615 	ldhl	sp,	#20
-      000288 66               [ 8]  616 	ld	h, (hl)
-                                    617 ;	spillPairReg hl
-                                    618 ;	spillPairReg hl
-      000289 E5               [16]  619 	push	hl
-      00028A 33               [ 8]  620 	inc	sp
-      00028B F8 0A            [12]  621 	ldhl	sp,	#10
-      00028D 66               [ 8]  622 	ld	h, (hl)
-                                    623 ;	spillPairReg hl
-                                    624 ;	spillPairReg hl
-      00028E E5               [16]  625 	push	hl
-      00028F 33               [ 8]  626 	inc	sp
-      000290 F5               [16]  627 	push	af
-      000291 33               [ 8]  628 	inc	sp
-      000292 CDr00r00         [24]  629 	call	_set_win_tile_xy
-      000295 E8 03            [16]  630 	add	sp, #3
-                                    631 ;src/general.c:102: set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
-      000297 F8 10            [12]  632 	ldhl	sp,#16
-      000299 2A               [ 8]  633 	ld	a, (hl+)
-      00029A 5F               [ 4]  634 	ld	e, a
-      00029B 56               [ 8]  635 	ld	d, (hl)
-      00029C 69               [ 4]  636 	ld	l, c
-      00029D 26 00            [ 8]  637 	ld	h, #0x00
-      00029F 19               [ 8]  638 	add	hl, de
-      0002A0 5D               [ 4]  639 	ld	e, l
-      0002A1 54               [ 4]  640 	ld	d, h
-      0002A2 1A               [ 8]  641 	ld	a, (de)
-      0002A3 47               [ 4]  642 	ld	b, a
-      0002A4 C5               [16]  643 	push	bc
-      0002A5 78               [ 4]  644 	ld	a, b
-      0002A6 CDrBCr00         [24]  645 	call	_convert_char_to_tile
-      0002A9 5F               [ 4]  646 	ld	e, a
-      0002AA C1               [12]  647 	pop	bc
-      0002AB F8 07            [12]  648 	ldhl	sp,	#7
-      0002AD 2A               [ 8]  649 	ld	a, (hl+)
-      0002AE 47               [ 4]  650 	ld	b, a
-      0002AF 3A               [ 8]  651 	ld	a, (hl-)
-      0002B0 57               [ 4]  652 	ld	d, a
-      0002B1 34               [12]  653 	inc	(hl)
-      0002B2 20 02            [12]  654 	jr	NZ, 00198$
-      0002B4 23               [ 8]  655 	inc	hl
-      0002B5 34               [12]  656 	inc	(hl)
-      0002B6                        657 00198$:
-      0002B6 7B               [ 4]  658 	ld	a, e
-      0002B7 58               [ 4]  659 	ld	e, b
-      0002B8 CDr00r00         [24]  660 	call	_set_vram_byte
-                                    661 ;src/general.c:100: for (uint8_t i = 0; i < textLength; i++) {
-      0002BB 0C               [ 4]  662 	inc	c
-      0002BC 18 BE            [12]  663 	jr	00116$
-      0002BE                        664 00108$:
-                                    665 ;src/general.c:106: if (left_aligned) {
-      0002BE F8 13            [12]  666 	ldhl	sp,	#19
-      0002C0 7E               [ 8]  667 	ld	a, (hl)
-      0002C1 B7               [ 4]  668 	or	a, a
-      0002C2 28 56            [12]  669 	jr	Z, 00121$
-                                    670 ;src/general.c:107: for (uint8_t i = textLength; i < length; i++) {
-      0002C4 F8 07            [12]  671 	ldhl	sp,	#7
-      0002C6 7E               [ 8]  672 	ld	a, (hl)
-      0002C7 F8 0C            [12]  673 	ldhl	sp,	#12
-      0002C9 77               [ 8]  674 	ld	(hl), a
-      0002CA F8 08            [12]  675 	ldhl	sp,	#8
-      0002CC 7E               [ 8]  676 	ld	a, (hl)
-      0002CD F8 0D            [12]  677 	ldhl	sp,	#13
-      0002CF 77               [ 8]  678 	ld	(hl), a
-      0002D0 F8 02            [12]  679 	ldhl	sp,	#2
-      0002D2 7E               [ 8]  680 	ld	a, (hl)
-      0002D3 F8 0B            [12]  681 	ldhl	sp,	#11
-      0002D5 77               [ 8]  682 	ld	(hl), a
-      0002D6                        683 00119$:
-      0002D6 F8 0B            [12]  684 	ldhl	sp,	#11
-      0002D8 7E               [ 8]  685 	ld	a, (hl)
-      0002D9 F8 12            [12]  686 	ldhl	sp,	#18
-      0002DB 96               [ 8]  687 	sub	a, (hl)
-      0002DC 30 3C            [12]  688 	jr	NC, 00121$
-                                    689 ;src/general.c:108: set_win_tile_xy(x + i, y, palette);
-      0002DE F8 0A            [12]  690 	ldhl	sp,	#10
-      0002E0 2A               [ 8]  691 	ld	a, (hl+)
-      0002E1 86               [ 8]  692 	add	a, (hl)
-      0002E2 F8 14            [12]  693 	ldhl	sp,	#20
-      0002E4 66               [ 8]  694 	ld	h, (hl)
-                                    695 ;	spillPairReg hl
+                           000000    62 	G$init_font$0$0	= .
+                                     63 	.globl	G$init_font$0$0
+                           000000    64 	C$general.c$13$0_0$154	= .
+                                     65 	.globl	C$general.c$13$0_0$154
+                                     66 ;src/general.c:13: void init_font(void){
+                                     67 ;	---------------------------------
+                                     68 ; Function init_font
+                                     69 ; ---------------------------------
+      000000                         70 _init_font::
+                           000000    71 	C$general.c$15$1_0$154	= .
+                                     72 	.globl	C$general.c$15$1_0$154
+                                     73 ;src/general.c:15: font_init();
+      000000 CDr00r00         [24]   74 	call	_font_init
+                           000003    75 	C$general.c$16$1_0$154	= .
+                                     76 	.globl	C$general.c$16$1_0$154
+                                     77 ;src/general.c:16: min_font = font_load(font_ibm);
+      000003 11r00r00         [12]   78 	ld	de, #_font_ibm
+      000006 D5               [16]   79 	push	de
+      000007 CDr00r00         [24]   80 	call	_font_load
+      00000A E1               [12]   81 	pop	hl
+                           00000B    82 	C$general.c$17$1_0$154	= .
+                                     83 	.globl	C$general.c$17$1_0$154
+                                     84 ;src/general.c:17: font_set(min_font);
+      00000B D5               [16]   85 	push	de
+      00000C CDr00r00         [24]   86 	call	_font_set
+      00000F E1               [12]   87 	pop	hl
+                           000010    88 	C$general.c$18$1_0$154	= .
+                                     89 	.globl	C$general.c$18$1_0$154
+                                     90 ;src/general.c:18: }
+                           000010    91 	C$general.c$18$1_0$154	= .
+                                     92 	.globl	C$general.c$18$1_0$154
+                           000010    93 	XG$init_font$0$0	= .
+                                     94 	.globl	XG$init_font$0$0
+      000010 C9               [16]   95 	ret
+                           000011    96 	G$init_screen$0$0	= .
+                                     97 	.globl	G$init_screen$0$0
+                           000011    98 	C$general.c$20$1_0$156	= .
+                                     99 	.globl	C$general.c$20$1_0$156
+                                    100 ;src/general.c:20: void init_screen(void){
+                                    101 ;	---------------------------------
+                                    102 ; Function init_screen
+                                    103 ; ---------------------------------
+      000011                        104 _init_screen::
+                           000011   105 	C$general.c$21$1_0$156	= .
+                                    106 	.globl	C$general.c$21$1_0$156
+                                    107 ;src/general.c:21: SHOW_BKG;
+      000011 F0r00            [12]  108 	ldh	a, (_LCDC_REG + 0)
+      000013 F6 01            [ 8]  109 	or	a, #0x01
+      000015 E0r00            [12]  110 	ldh	(_LCDC_REG + 0), a
+                           000017   111 	C$general.c$22$1_0$156	= .
+                                    112 	.globl	C$general.c$22$1_0$156
+                                    113 ;src/general.c:22: SHOW_WIN;
+      000017 F0r00            [12]  114 	ldh	a, (_LCDC_REG + 0)
+      000019 F6 20            [ 8]  115 	or	a, #0x20
+      00001B E0r00            [12]  116 	ldh	(_LCDC_REG + 0), a
+                           00001D   117 	C$general.c$23$1_0$156	= .
+                                    118 	.globl	C$general.c$23$1_0$156
+                                    119 ;src/general.c:23: SHOW_SPRITES;
+      00001D F0r00            [12]  120 	ldh	a, (_LCDC_REG + 0)
+      00001F F6 02            [ 8]  121 	or	a, #0x02
+      000021 E0r00            [12]  122 	ldh	(_LCDC_REG + 0), a
+                           000023   123 	C$general.c$24$1_0$156	= .
+                                    124 	.globl	C$general.c$24$1_0$156
+                                    125 ;src/general.c:24: DISPLAY_ON;
+      000023 F0r00            [12]  126 	ldh	a, (_LCDC_REG + 0)
+      000025 F6 80            [ 8]  127 	or	a, #0x80
+      000027 E0r00            [12]  128 	ldh	(_LCDC_REG + 0), a
+                           000029   129 	C$general.c$25$1_0$156	= .
+                                    130 	.globl	C$general.c$25$1_0$156
+                                    131 ;src/general.c:25: }
+                           000029   132 	C$general.c$25$1_0$156	= .
+                                    133 	.globl	C$general.c$25$1_0$156
+                           000029   134 	XG$init_screen$0$0	= .
+                                    135 	.globl	XG$init_screen$0$0
+      000029 C9               [16]  136 	ret
+                           00002A   137 	G$init_clear_screen$0$0	= .
+                                    138 	.globl	G$init_clear_screen$0$0
+                           00002A   139 	C$general.c$27$1_0$158	= .
+                                    140 	.globl	C$general.c$27$1_0$158
+                                    141 ;src/general.c:27: void init_clear_screen(void) {
+                                    142 ;	---------------------------------
+                                    143 ; Function init_clear_screen
+                                    144 ; ---------------------------------
+      00002A                        145 _init_clear_screen::
+      00002A 21 00 F0         [12]  146 	ld	hl, #-4096
+      00002D 39               [ 8]  147 	add	hl, sp
+      00002E F9               [ 8]  148 	ld	sp, hl
+                           00002F   149 	C$general.c$30$3_0$160	= .
+                                    150 	.globl	C$general.c$30$3_0$160
+                                    151 ;src/general.c:30: for (uint16_t i = 0; i < 2048; i++){
+      00002F F8 00            [12]  152 	ldhl	sp,	#0
+      000031 4D               [ 4]  153 	ld	c, l
+      000032 44               [ 4]  154 	ld	b, h
+      000033 11 00 00         [12]  155 	ld	de, #0x0000
+      000036                        156 00107$:
+                                    157 ;	spillPairReg hl
+                                    158 ;	spillPairReg hl
+                                    159 ;	spillPairReg hl
+                                    160 ;	spillPairReg hl
+      000036 7A               [ 4]  161 	ld	a, d
+      000037 D6 08            [ 8]  162 	sub	a, #0x08
+      000039 30 0A            [12]  163 	jr	NC, 00101$
+                           00003B   164 	C$general.c$31$3_0$160	= .
+                                    165 	.globl	C$general.c$31$3_0$160
+                                    166 ;src/general.c:31: temparray[i] = 0;
+      00003B 6B               [ 4]  167 	ld	l, e
+      00003C 62               [ 4]  168 	ld	h, d
+      00003D 29               [ 8]  169 	add	hl, hl
+      00003E 09               [ 8]  170 	add	hl, bc
+      00003F AF               [ 4]  171 	xor	a, a
+      000040 22               [ 8]  172 	ld	(hl+), a
+      000041 77               [ 8]  173 	ld	(hl), a
+                           000042   174 	C$general.c$30$2_0$159	= .
+                                    175 	.globl	C$general.c$30$2_0$159
+                                    176 ;src/general.c:30: for (uint16_t i = 0; i < 2048; i++){
+      000042 13               [ 8]  177 	inc	de
+      000043 18 F1            [12]  178 	jr	00107$
+      000045                        179 00101$:
+                           000045   180 	C$general.c$33$1_0$158	= .
+                                    181 	.globl	C$general.c$33$1_0$158
+                                    182 ;src/general.c:33: VBK_REG = 1;
+      000045 3E 01            [ 8]  183 	ld	a, #0x01
+      000047 E0r00            [12]  184 	ldh	(_VBK_REG + 0), a
+                           000049   185 	C$general.c$34$1_0$158	= .
+                                    186 	.globl	C$general.c$34$1_0$158
+                                    187 ;src/general.c:34: set_bkg_tiles(0,0,20, 18, temparray);
+      000049 C5               [16]  188 	push	bc
+      00004A 21 14 12         [12]  189 	ld	hl, #0x1214
+      00004D E5               [16]  190 	push	hl
+      00004E AF               [ 4]  191 	xor	a, a
+      00004F 0F               [ 4]  192 	rrca
+      000050 F5               [16]  193 	push	af
+      000051 CDr00r00         [24]  194 	call	_set_bkg_tiles
+      000054 E8 06            [16]  195 	add	sp, #6
+                           000056   196 	C$general.c$35$1_0$158	= .
+                                    197 	.globl	C$general.c$35$1_0$158
+                                    198 ;src/general.c:35: VBK_REG = 0;
+      000056 AF               [ 4]  199 	xor	a, a
+      000057 E0r00            [12]  200 	ldh	(_VBK_REG + 0), a
+                           000059   201 	C$general.c$38$3_0$162	= .
+                                    202 	.globl	C$general.c$38$3_0$162
+                                    203 ;src/general.c:38: for (uint8_t i = 0; i < 8; i++) {
+      000059 16 00            [ 8]  204 	ld	d, #0x00
+      00005B                        205 00110$:
+      00005B 7A               [ 4]  206 	ld	a, d
+      00005C D6 08            [ 8]  207 	sub	a, #0x08
+      00005E 30 27            [12]  208 	jr	NC, 00102$
+                           000060   209 	C$general.c$39$3_0$162	= .
+                                    210 	.globl	C$general.c$39$3_0$162
+                                    211 ;src/general.c:39: set_sprite_palette(i, 1, palette_default);
+      000060 C5               [16]  212 	push	bc
+      000061 D5               [16]  213 	push	de
+      000062 21r00r00         [12]  214 	ld	hl, #_palette_default
+      000065 E5               [16]  215 	push	hl
+      000066 3E 01            [ 8]  216 	ld	a, #0x01
+      000068 F5               [16]  217 	push	af
+      000069 33               [ 8]  218 	inc	sp
+      00006A D5               [16]  219 	push	de
+      00006B 33               [ 8]  220 	inc	sp
+      00006C CDr00r00         [24]  221 	call	_set_sprite_palette
+      00006F E8 04            [16]  222 	add	sp, #4
+      000071 D1               [12]  223 	pop	de
+      000072 D5               [16]  224 	push	de
+      000073 21r00r00         [12]  225 	ld	hl, #_palette_default
+      000076 E5               [16]  226 	push	hl
+      000077 3E 01            [ 8]  227 	ld	a, #0x01
+      000079 F5               [16]  228 	push	af
+      00007A 33               [ 8]  229 	inc	sp
+      00007B D5               [16]  230 	push	de
+      00007C 33               [ 8]  231 	inc	sp
+      00007D CDr00r00         [24]  232 	call	_set_bkg_palette
+      000080 E8 04            [16]  233 	add	sp, #4
+      000082 D1               [12]  234 	pop	de
+      000083 C1               [12]  235 	pop	bc
+                           000084   236 	C$general.c$38$2_0$161	= .
+                                    237 	.globl	C$general.c$38$2_0$161
+                                    238 ;src/general.c:38: for (uint8_t i = 0; i < 8; i++) {
+      000084 14               [ 4]  239 	inc	d
+      000085 18 D4            [12]  240 	jr	00110$
+      000087                        241 00102$:
+                           000087   242 	C$general.c$44$1_0$158	= .
+                                    243 	.globl	C$general.c$44$1_0$158
+                                    244 ;src/general.c:44: set_sprite_data(0, 128, temparray);
+      000087 C5               [16]  245 	push	bc
+      000088 21 00 80         [12]  246 	ld	hl, #0x8000
+      00008B E5               [16]  247 	push	hl
+      00008C CDr00r00         [24]  248 	call	_set_sprite_data
+      00008F E8 04            [16]  249 	add	sp, #4
+                           000091   250 	C$general.c$47$2_0$158	= .
+                                    251 	.globl	C$general.c$47$2_0$158
+                                    252 ;src/general.c:47: for (uint8_t i = 0; i < 40; i++) {
+      000091 0E 00            [ 8]  253 	ld	c, #0x00
+      000093                        254 00113$:
+      000093 79               [ 4]  255 	ld	a, c
+      000094 D6 28            [ 8]  256 	sub	a, #0x28
+      000096 30 17            [12]  257 	jr	NC, 00115$
+                                    258 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
+      000098 69               [ 4]  259 	ld	l, c
+                                    260 ;	spillPairReg hl
+                                    261 ;	spillPairReg hl
+      000099 26 00            [ 8]  262 	ld	h, #0x00
+                                    263 ;	spillPairReg hl
+                                    264 ;	spillPairReg hl
+      00009B 29               [ 8]  265 	add	hl, hl
+      00009C 29               [ 8]  266 	add	hl, hl
+      00009D 5D               [ 4]  267 	ld	e, l
+      00009E 54               [ 4]  268 	ld	d, h
+      00009F 21r01r00         [12]  269 	ld	hl,#_shadow_OAM + 1
+      0000A2 19               [ 8]  270 	add	hl,de
+      0000A3 23               [ 8]  271 	inc	hl
+      0000A4 36 00            [12]  272 	ld	(hl), #0x00
+                                    273 ;/usr/local/opt/gbdk/include/gb/gb.h:1905: shadow_OAM[nb].y = 0;
+      0000A6 21r00r00         [12]  274 	ld	hl, #_shadow_OAM
+      0000A9 19               [ 8]  275 	add	hl, de
+      0000AA 36 00            [12]  276 	ld	(hl), #0x00
+                           0000AC   277 	C$general.c$47$2_0$163	= .
+                                    278 	.globl	C$general.c$47$2_0$163
+                                    279 ;src/general.c:47: for (uint8_t i = 0; i < 40; i++) {
+      0000AC 0C               [ 4]  280 	inc	c
+      0000AD 18 E4            [12]  281 	jr	00113$
+      0000AF                        282 00115$:
+                           0000AF   283 	C$general.c$51$2_0$158	= .
+                                    284 	.globl	C$general.c$51$2_0$158
+                                    285 ;src/general.c:51: }
+      0000AF 21 00 10         [12]  286 	ld	hl, #4096
+      0000B2 39               [ 8]  287 	add	hl, sp
+      0000B3 F9               [ 8]  288 	ld	sp, hl
+                           0000B4   289 	C$general.c$51$2_0$158	= .
+                                    290 	.globl	C$general.c$51$2_0$158
+                           0000B4   291 	XG$init_clear_screen$0$0	= .
+                                    292 	.globl	XG$init_clear_screen$0$0
+      0000B4 C9               [16]  293 	ret
+                           0000B5   294 	G$read_buttons$0$0	= .
+                                    295 	.globl	G$read_buttons$0$0
+                           0000B5   296 	C$general.c$53$2_0$172	= .
+                                    297 	.globl	C$general.c$53$2_0$172
+                                    298 ;src/general.c:53: void read_buttons(void) {
+                                    299 ;	---------------------------------
+                                    300 ; Function read_buttons
+                                    301 ; ---------------------------------
+      0000B5                        302 _read_buttons::
+                           0000B5   303 	C$general.c$54$1_0$172	= .
+                                    304 	.globl	C$general.c$54$1_0$172
+                                    305 ;src/general.c:54: buttons = joypad(); // Read current gamepad state
+      0000B5 CDr00r00         [24]  306 	call	_joypad
+      0000B8 EAr00r00         [16]  307 	ld	(#_buttons),a
+                           0000BB   308 	C$general.c$55$1_0$172	= .
+                                    309 	.globl	C$general.c$55$1_0$172
+                                    310 ;src/general.c:55: }
+                           0000BB   311 	C$general.c$55$1_0$172	= .
+                                    312 	.globl	C$general.c$55$1_0$172
+                           0000BB   313 	XG$read_buttons$0$0	= .
+                                    314 	.globl	XG$read_buttons$0$0
+      0000BB C9               [16]  315 	ret
+                           0000BC   316 	G$convert_char_to_tile$0$0	= .
+                                    317 	.globl	G$convert_char_to_tile$0$0
+                           0000BC   318 	C$general.c$57$1_0$174	= .
+                                    319 	.globl	C$general.c$57$1_0$174
+                                    320 ;src/general.c:57: unsigned char convert_char_to_tile(char c) {
+                                    321 ;	---------------------------------
+                                    322 ; Function convert_char_to_tile
+                                    323 ; ---------------------------------
+      0000BC                        324 _convert_char_to_tile::
+                           0000BC   325 	C$general.c$58$1_0$174	= .
+                                    326 	.globl	C$general.c$58$1_0$174
+                                    327 ;src/general.c:58: if (c >= 'A' && c <= 'Z') return LETTERSTART + (c - 'A');
+      0000BC 4F               [ 4]  328 	ld	c, a
+      0000BD EE 80            [ 8]  329 	xor	a, #0x80
+      0000BF D6 C1            [ 8]  330 	sub	a, #0xc1
+      0000C1 38 1B            [12]  331 	jr	C, 00102$
+      0000C3 59               [ 4]  332 	ld	e, c
+      0000C4 3E 5A            [ 8]  333 	ld	a,#0x5a
+      0000C6 57               [ 4]  334 	ld	d,a
+      0000C7 91               [ 4]  335 	sub	a, c
+      0000C8 CB 7B            [ 8]  336 	bit	7, e
+      0000CA 28 07            [12]  337 	jr	Z, 00236$
+      0000CC CB 7A            [ 8]  338 	bit	7, d
+      0000CE 20 08            [12]  339 	jr	NZ, 00237$
+      0000D0 BF               [ 4]  340 	cp	a, a
+      0000D1 18 05            [12]  341 	jr	00237$
+      0000D3                        342 00236$:
+      0000D3 CB 7A            [ 8]  343 	bit	7, d
+      0000D5 28 01            [12]  344 	jr	Z, 00237$
+      0000D7 37               [ 4]  345 	scf
+      0000D8                        346 00237$:
+      0000D8 38 04            [12]  347 	jr	C, 00102$
+      0000DA 79               [ 4]  348 	ld	a, c
+      0000DB C6 E0            [ 8]  349 	add	a, #0xe0
+      0000DD C9               [16]  350 	ret
+      0000DE                        351 00102$:
+                           0000DE   352 	C$general.c$59$1_0$174	= .
+                                    353 	.globl	C$general.c$59$1_0$174
+                                    354 ;src/general.c:59: if (c >= 'a' && c <= 'z') return SLETTERSTART + (c - 'a');
+      0000DE 79               [ 4]  355 	ld	a, c
+      0000DF EE 80            [ 8]  356 	xor	a, #0x80
+      0000E1 D6 E1            [ 8]  357 	sub	a, #0xe1
+      0000E3 38 1B            [12]  358 	jr	C, 00105$
+      0000E5 59               [ 4]  359 	ld	e, c
+      0000E6 3E 7A            [ 8]  360 	ld	a,#0x7a
+      0000E8 57               [ 4]  361 	ld	d,a
+      0000E9 91               [ 4]  362 	sub	a, c
+      0000EA CB 7B            [ 8]  363 	bit	7, e
+      0000EC 28 07            [12]  364 	jr	Z, 00238$
+      0000EE CB 7A            [ 8]  365 	bit	7, d
+      0000F0 20 08            [12]  366 	jr	NZ, 00239$
+      0000F2 BF               [ 4]  367 	cp	a, a
+      0000F3 18 05            [12]  368 	jr	00239$
+      0000F5                        369 00238$:
+      0000F5 CB 7A            [ 8]  370 	bit	7, d
+      0000F7 28 01            [12]  371 	jr	Z, 00239$
+      0000F9 37               [ 4]  372 	scf
+      0000FA                        373 00239$:
+      0000FA 38 04            [12]  374 	jr	C, 00105$
+      0000FC 79               [ 4]  375 	ld	a, c
+      0000FD C6 E0            [ 8]  376 	add	a, #0xe0
+      0000FF C9               [16]  377 	ret
+      000100                        378 00105$:
+                           000100   379 	C$general.c$60$1_0$174	= .
+                                    380 	.globl	C$general.c$60$1_0$174
+                                    381 ;src/general.c:60: if (c >= '0' && c <= '9') return NUMSTART + (c - '0');
+      000100 79               [ 4]  382 	ld	a, c
+      000101 EE 80            [ 8]  383 	xor	a, #0x80
+      000103 D6 B0            [ 8]  384 	sub	a, #0xb0
+      000105 38 1B            [12]  385 	jr	C, 00108$
+      000107 59               [ 4]  386 	ld	e, c
+      000108 3E 39            [ 8]  387 	ld	a,#0x39
+      00010A 57               [ 4]  388 	ld	d,a
+      00010B 91               [ 4]  389 	sub	a, c
+      00010C CB 7B            [ 8]  390 	bit	7, e
+      00010E 28 07            [12]  391 	jr	Z, 00240$
+      000110 CB 7A            [ 8]  392 	bit	7, d
+      000112 20 08            [12]  393 	jr	NZ, 00241$
+      000114 BF               [ 4]  394 	cp	a, a
+      000115 18 05            [12]  395 	jr	00241$
+      000117                        396 00240$:
+      000117 CB 7A            [ 8]  397 	bit	7, d
+      000119 28 01            [12]  398 	jr	Z, 00241$
+      00011B 37               [ 4]  399 	scf
+      00011C                        400 00241$:
+      00011C 38 04            [12]  401 	jr	C, 00108$
+      00011E 79               [ 4]  402 	ld	a, c
+      00011F C6 E0            [ 8]  403 	add	a, #0xe0
+      000121 C9               [16]  404 	ret
+      000122                        405 00108$:
+                           000122   406 	C$general.c$61$1_0$174	= .
+                                    407 	.globl	C$general.c$61$1_0$174
+                                    408 ;src/general.c:61: switch (c) {
+      000122 79               [ 4]  409 	ld	a,c
+      000123 FE 20            [ 8]  410 	cp	a,#0x20
+      000125 28 41            [12]  411 	jr	Z, 00119$
+      000127 FE 21            [ 8]  412 	cp	a,#0x21
+      000129 28 3A            [12]  413 	jr	Z, 00118$
+      00012B FE 24            [ 8]  414 	cp	a,#0x24
+      00012D 28 30            [12]  415 	jr	Z, 00116$
+      00012F FE 26            [ 8]  416 	cp	a,#0x26
+      000131 28 2F            [12]  417 	jr	Z, 00117$
+      000133 FE 2A            [ 8]  418 	cp	a,#0x2a
+      000135 28 22            [12]  419 	jr	Z, 00114$
+      000137 FE 2D            [ 8]  420 	cp	a,#0x2d
+      000139 28 18            [12]  421 	jr	Z, 00112$
+      00013B FE 2E            [ 8]  422 	cp	a,#0x2e
+      00013D 28 11            [12]  423 	jr	Z, 00111$
+      00013F FE 2F            [ 8]  424 	cp	a,#0x2f
+      000141 28 0A            [12]  425 	jr	Z, 00110$
+      000143 FE 3D            [ 8]  426 	cp	a,#0x3d
+      000145 28 0F            [12]  427 	jr	Z, 00113$
+      000147 D6 3F            [ 8]  428 	sub	a, #0x3f
+      000149 28 11            [12]  429 	jr	Z, 00115$
+      00014B 18 1D            [12]  430 	jr	00120$
+                           00014D   431 	C$general.c$62$2_0$175	= .
+                                    432 	.globl	C$general.c$62$2_0$175
+                                    433 ;src/general.c:62: case '/': return 15;
+      00014D                        434 00110$:
+      00014D 3E 0F            [ 8]  435 	ld	a, #0x0f
+      00014F C9               [16]  436 	ret
+                           000150   437 	C$general.c$63$2_0$175	= .
+                                    438 	.globl	C$general.c$63$2_0$175
+                                    439 ;src/general.c:63: case '.': return 14;
+      000150                        440 00111$:
+      000150 3E 0E            [ 8]  441 	ld	a, #0x0e
+      000152 C9               [16]  442 	ret
+                           000153   443 	C$general.c$64$2_0$175	= .
+                                    444 	.globl	C$general.c$64$2_0$175
+                                    445 ;src/general.c:64: case '-': return 13;
+      000153                        446 00112$:
+      000153 3E 0D            [ 8]  447 	ld	a, #0x0d
+      000155 C9               [16]  448 	ret
+                           000156   449 	C$general.c$65$2_0$175	= .
+                                    450 	.globl	C$general.c$65$2_0$175
+                                    451 ;src/general.c:65: case '=': return 38;
+      000156                        452 00113$:
+      000156 3E 26            [ 8]  453 	ld	a, #0x26
+      000158 C9               [16]  454 	ret
+                           000159   455 	C$general.c$66$2_0$175	= .
+                                    456 	.globl	C$general.c$66$2_0$175
+                                    457 ;src/general.c:66: case '*': return 39;
+      000159                        458 00114$:
+      000159 3E 27            [ 8]  459 	ld	a, #0x27
+      00015B C9               [16]  460 	ret
+                           00015C   461 	C$general.c$67$2_0$175	= .
+                                    462 	.globl	C$general.c$67$2_0$175
+                                    463 ;src/general.c:67: case '?': return 31;
+      00015C                        464 00115$:
+      00015C 3E 1F            [ 8]  465 	ld	a, #0x1f
+      00015E C9               [16]  466 	ret
+                           00015F   467 	C$general.c$68$2_0$175	= .
+                                    468 	.globl	C$general.c$68$2_0$175
+                                    469 ;src/general.c:68: case '$': return 4;
+      00015F                        470 00116$:
+      00015F 3E 04            [ 8]  471 	ld	a, #0x04
+      000161 C9               [16]  472 	ret
+                           000162   473 	C$general.c$69$2_0$175	= .
+                                    474 	.globl	C$general.c$69$2_0$175
+                                    475 ;src/general.c:69: case '&': return 5;
+      000162                        476 00117$:
+      000162 3E 05            [ 8]  477 	ld	a, #0x05
+      000164 C9               [16]  478 	ret
+                           000165   479 	C$general.c$70$2_0$175	= .
+                                    480 	.globl	C$general.c$70$2_0$175
+                                    481 ;src/general.c:70: case '!': return 1;
+      000165                        482 00118$:
+      000165 3E 01            [ 8]  483 	ld	a, #0x01
+      000167 C9               [16]  484 	ret
+                           000168   485 	C$general.c$71$2_0$175	= .
+                                    486 	.globl	C$general.c$71$2_0$175
+                                    487 ;src/general.c:71: case ' ': return 0;
+      000168                        488 00119$:
+      000168 AF               [ 4]  489 	xor	a, a
+      000169 C9               [16]  490 	ret
+                           00016A   491 	C$general.c$72$2_0$175	= .
+                                    492 	.globl	C$general.c$72$2_0$175
+                                    493 ;src/general.c:72: default: return 0;  // Default to space if character is not handled
+      00016A                        494 00120$:
+      00016A AF               [ 4]  495 	xor	a, a
+                           00016B   496 	C$general.c$73$1_0$174	= .
+                                    497 	.globl	C$general.c$73$1_0$174
+                                    498 ;src/general.c:73: }
+                           00016B   499 	C$general.c$74$1_0$174	= .
+                                    500 	.globl	C$general.c$74$1_0$174
+                                    501 ;src/general.c:74: }
+                           00016B   502 	C$general.c$74$1_0$174	= .
+                                    503 	.globl	C$general.c$74$1_0$174
+                           00016B   504 	XG$convert_char_to_tile$0$0	= .
+                                    505 	.globl	XG$convert_char_to_tile$0$0
+      00016B C9               [16]  506 	ret
+                           00016C   507 	G$draw_text$0$0	= .
+                                    508 	.globl	G$draw_text$0$0
+                           00016C   509 	C$general.c$76$1_0$177	= .
+                                    510 	.globl	C$general.c$76$1_0$177
+                                    511 ;src/general.c:76: void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
+                                    512 ;	---------------------------------
+                                    513 ; Function draw_text
+                                    514 ; ---------------------------------
+      00016C                        515 _draw_text::
+      00016C E8 F2            [16]  516 	add	sp, #-14
+      00016E F8 0A            [12]  517 	ldhl	sp,	#10
+      000170 32               [ 8]  518 	ld	(hl-), a
+      000171 73               [ 8]  519 	ld	(hl), e
+                           000172   520 	C$general.c$77$1_0$177	= .
+                                    521 	.globl	C$general.c$77$1_0$177
+                                    522 ;src/general.c:77: uint8_t textLength = strlen(text);
+      000172 F8 10            [12]  523 	ldhl	sp,	#16
+      000174 2A               [ 8]  524 	ld	a, (hl+)
+      000175 5F               [ 4]  525 	ld	e, a
+      000176 56               [ 8]  526 	ld	d, (hl)
+      000177 D5               [16]  527 	push	de
+      000178 CDr00r00         [24]  528 	call	_strlen
+      00017B E1               [12]  529 	pop	hl
+      00017C F8 02            [12]  530 	ldhl	sp,	#2
+      00017E 73               [ 8]  531 	ld	(hl), e
+                           00017F   532 	C$general.c$78$1_0$177	= .
+                                    533 	.globl	C$general.c$78$1_0$177
+                                    534 ;src/general.c:78: uint8_t *vramAddr = get_win_xy_addr(x, y);
+      00017F F8 09            [12]  535 	ldhl	sp,	#9
+      000181 2A               [ 8]  536 	ld	a, (hl+)
+      000182 57               [ 4]  537 	ld	d, a
+      000183 5E               [ 8]  538 	ld	e, (hl)
+      000184 D5               [16]  539 	push	de
+      000185 CDr00r00         [24]  540 	call	_get_win_xy_addr
+      000188 E1               [12]  541 	pop	hl
+      000189 F8 0B            [12]  542 	ldhl	sp,	#11
+      00018B 7B               [ 4]  543 	ld	a, e
+      00018C 22               [ 8]  544 	ld	(hl+), a
+      00018D 72               [ 8]  545 	ld	(hl), d
+                           00018E   546 	C$general.c$80$1_0$177	= .
+                                    547 	.globl	C$general.c$80$1_0$177
+                                    548 ;src/general.c:80: if (textLength > length) {
+      00018E F8 12            [12]  549 	ldhl	sp,	#18
+      000190 7E               [ 8]  550 	ld	a, (hl)
+      000191 F8 02            [12]  551 	ldhl	sp,	#2
+      000193 96               [ 8]  552 	sub	a, (hl)
+      000194 30 06            [12]  553 	jr	NC, 00102$
+                           000196   554 	C$general.c$81$2_0$178	= .
+                                    555 	.globl	C$general.c$81$2_0$178
+                                    556 ;src/general.c:81: textLength = length;  // Cap the text length at the defined maximum
+      000196 F8 12            [12]  557 	ldhl	sp,	#18
+      000198 7E               [ 8]  558 	ld	a, (hl)
+      000199 F8 02            [12]  559 	ldhl	sp,	#2
+      00019B 77               [ 8]  560 	ld	(hl), a
+      00019C                        561 00102$:
+                           00019C   562 	C$general.c$87$1_0$177	= .
+                                    563 	.globl	C$general.c$87$1_0$177
+                                    564 ;src/general.c:87: vramAddr += length - textLength;
+      00019C F8 12            [12]  565 	ldhl	sp,	#18
+      00019E 7E               [ 8]  566 	ld	a, (hl)
+      00019F F8 03            [12]  567 	ldhl	sp,	#3
+      0001A1 22               [ 8]  568 	ld	(hl+), a
+      0001A2 AF               [ 4]  569 	xor	a, a
+      0001A3 32               [ 8]  570 	ld	(hl-), a
+      0001A4 2B               [ 8]  571 	dec	hl
+      0001A5 7E               [ 8]  572 	ld	a, (hl)
+      0001A6 F8 07            [12]  573 	ldhl	sp,	#7
+      0001A8 22               [ 8]  574 	ld	(hl+), a
+      0001A9 36 00            [12]  575 	ld	(hl), #0x00
+      0001AB F8 03            [12]  576 	ldhl	sp,#3
+      0001AD 2A               [ 8]  577 	ld	a, (hl+)
+      0001AE 5F               [ 4]  578 	ld	e, a
+      0001AF 56               [ 8]  579 	ld	d, (hl)
+      0001B0 F8 07            [12]  580 	ldhl	sp,	#7
+      0001B2 2A               [ 8]  581 	ld	a,	(hl+)
+      0001B3 66               [ 8]  582 	ld	h, (hl)
+      0001B4 6F               [ 4]  583 	ld	l, a
+      0001B5 7B               [ 4]  584 	ld	a, e
+      0001B6 95               [ 4]  585 	sub	a, l
+      0001B7 5F               [ 4]  586 	ld	e, a
+      0001B8 7A               [ 4]  587 	ld	a, d
+      0001B9 9C               [ 4]  588 	sbc	a, h
+      0001BA F8 06            [12]  589 	ldhl	sp,	#6
+      0001BC 32               [ 8]  590 	ld	(hl-), a
+      0001BD 73               [ 8]  591 	ld	(hl), e
+                           0001BE   592 	C$general.c$85$1_0$177	= .
+                                    593 	.globl	C$general.c$85$1_0$177
+                                    594 ;src/general.c:85: if (!left_aligned) {
+      0001BE F8 13            [12]  595 	ldhl	sp,	#19
+      0001C0 7E               [ 8]  596 	ld	a, (hl)
+      0001C1 B7               [ 4]  597 	or	a, a
+      0001C2 20 1F            [12]  598 	jr	NZ, 00104$
+                           0001C4   599 	C$general.c$87$2_0$179	= .
+                                    600 	.globl	C$general.c$87$2_0$179
+                                    601 ;src/general.c:87: vramAddr += length - textLength;
+      0001C4 F8 05            [12]  602 	ldhl	sp,#5
+      0001C6 2A               [ 8]  603 	ld	a, (hl+)
+      0001C7 5F               [ 4]  604 	ld	e, a
+      0001C8 56               [ 8]  605 	ld	d, (hl)
+      0001C9 F8 0B            [12]  606 	ldhl	sp,	#11
+      0001CB 2A               [ 8]  607 	ld	a,	(hl+)
+      0001CC 66               [ 8]  608 	ld	h, (hl)
+      0001CD 6F               [ 4]  609 	ld	l, a
+      0001CE 19               [ 8]  610 	add	hl, de
+      0001CF E5               [16]  611 	push	hl
+      0001D0 7D               [ 4]  612 	ld	a, l
+      0001D1 F8 0D            [12]  613 	ldhl	sp,	#13
+      0001D3 77               [ 8]  614 	ld	(hl), a
+      0001D4 E1               [12]  615 	pop	hl
+      0001D5 7C               [ 4]  616 	ld	a, h
+      0001D6 F8 0C            [12]  617 	ldhl	sp,	#12
+      0001D8 77               [ 8]  618 	ld	(hl), a
+                           0001D9   619 	C$general.c$88$2_0$179	= .
+                                    620 	.globl	C$general.c$88$2_0$179
+                                    621 ;src/general.c:88: x += length - textLength;
+      0001D9 F8 12            [12]  622 	ldhl	sp,	#18
+      0001DB 7E               [ 8]  623 	ld	a, (hl)
+      0001DC F8 02            [12]  624 	ldhl	sp,	#2
+      0001DE 96               [ 8]  625 	sub	a, (hl)
+      0001DF F8 0A            [12]  626 	ldhl	sp,	#10
+      0001E1 86               [ 8]  627 	add	a, (hl)
+      0001E2 77               [ 8]  628 	ld	(hl), a
+      0001E3                        629 00104$:
+                           0001E3   630 	C$general.c$92$1_0$177	= .
+                                    631 	.globl	C$general.c$92$1_0$177
+                                    632 ;src/general.c:92: if (!left_aligned) {
+      0001E3 F8 13            [12]  633 	ldhl	sp,	#19
+      0001E5 7E               [ 8]  634 	ld	a, (hl)
+      0001E6 B7               [ 4]  635 	or	a, a
+      0001E7 C2r6Er02         [16]  636 	jp	NZ, 00129$
+                           0001EA   637 	C$general.c$93$4_0$182	= .
+                                    638 	.globl	C$general.c$93$4_0$182
+                                    639 ;src/general.c:93: for (uint8_t i = 0; i < length - textLength; i++) {
+      0001EA F8 0A            [12]  640 	ldhl	sp,	#10
+      0001EC 7E               [ 8]  641 	ld	a, (hl)
+      0001ED F8 12            [12]  642 	ldhl	sp,	#18
+      0001EF 96               [ 8]  643 	sub	a, (hl)
+      0001F0 F8 02            [12]  644 	ldhl	sp,	#2
+      0001F2 86               [ 8]  645 	add	a, (hl)
+      0001F3 F8 07            [12]  646 	ldhl	sp,	#7
+      0001F5 77               [ 8]  647 	ld	(hl), a
+      0001F6 F8 0D            [12]  648 	ldhl	sp,	#13
+      0001F8 36 00            [12]  649 	ld	(hl), #0x00
+      0001FA                        650 00113$:
+      0001FA F8 0D            [12]  651 	ldhl	sp,	#13
+      0001FC 7E               [ 8]  652 	ld	a, (hl)
+      0001FD F8 00            [12]  653 	ldhl	sp,	#0
+      0001FF 22               [ 8]  654 	ld	(hl+), a
+      000200 36 00            [12]  655 	ld	(hl), #0x00
+      000202 F8 00            [12]  656 	ldhl	sp,	#0
+      000204 5D               [ 4]  657 	ld	e, l
+      000205 54               [ 4]  658 	ld	d, h
+      000206 F8 05            [12]  659 	ldhl	sp,	#5
+      000208 1A               [ 8]  660 	ld	a, (de)
+      000209 13               [ 8]  661 	inc	de
+      00020A 96               [ 8]  662 	sub	a, (hl)
+      00020B 23               [ 8]  663 	inc	hl
+      00020C 1A               [ 8]  664 	ld	a, (de)
+      00020D 9E               [ 8]  665 	sbc	a, (hl)
+      00020E 1A               [ 8]  666 	ld	a, (de)
+      00020F 57               [ 4]  667 	ld	d, a
+      000210 5E               [ 8]  668 	ld	e, (hl)
+      000211 CB 7B            [ 8]  669 	bit	7, e
+      000213 28 07            [12]  670 	jr	Z, 00196$
+      000215 CB 7A            [ 8]  671 	bit	7, d
+      000217 20 08            [12]  672 	jr	NZ, 00197$
+      000219 BF               [ 4]  673 	cp	a, a
+      00021A 18 05            [12]  674 	jr	00197$
+      00021C                        675 00196$:
+      00021C CB 7A            [ 8]  676 	bit	7, d
+      00021E 28 01            [12]  677 	jr	Z, 00197$
+      000220 37               [ 4]  678 	scf
+      000221                        679 00197$:
+      000221 30 4B            [12]  680 	jr	NC, 00129$
+                           000223   681 	C$general.c$94$4_0$182	= .
+                                    682 	.globl	C$general.c$94$4_0$182
+                                    683 ;src/general.c:94: set_win_tile_xy(x - length + textLength + i, y, palette);
+      000223 F8 07            [12]  684 	ldhl	sp,	#7
+      000225 7E               [ 8]  685 	ld	a, (hl)
+      000226 F8 0D            [12]  686 	ldhl	sp,	#13
+      000228 86               [ 8]  687 	add	a, (hl)
+      000229 F8 14            [12]  688 	ldhl	sp,	#20
+      00022B 66               [ 8]  689 	ld	h, (hl)
+                                    690 ;	spillPairReg hl
+                                    691 ;	spillPairReg hl
+      00022C E5               [16]  692 	push	hl
+      00022D 33               [ 8]  693 	inc	sp
+      00022E F8 0A            [12]  694 	ldhl	sp,	#10
+      000230 66               [ 8]  695 	ld	h, (hl)
                                     696 ;	spillPairReg hl
-      0002E5 E5               [16]  697 	push	hl
-      0002E6 33               [ 8]  698 	inc	sp
-      0002E7 F8 0A            [12]  699 	ldhl	sp,	#10
-      0002E9 66               [ 8]  700 	ld	h, (hl)
-                                    701 ;	spillPairReg hl
-                                    702 ;	spillPairReg hl
-      0002EA E5               [16]  703 	push	hl
-      0002EB 33               [ 8]  704 	inc	sp
-      0002EC F5               [16]  705 	push	af
-      0002ED 33               [ 8]  706 	inc	sp
-      0002EE CDr00r00         [24]  707 	call	_set_win_tile_xy
-      0002F1 E8 03            [16]  708 	add	sp, #3
-                                    709 ;src/general.c:109: set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
-      0002F3 3E 20            [ 8]  710 	ld	a, #0x20
-      0002F5 CDrBCr00         [24]  711 	call	_convert_char_to_tile
-      0002F8 4F               [ 4]  712 	ld	c, a
-      0002F9 F8 0C            [12]  713 	ldhl	sp,	#12
-      0002FB 7E               [ 8]  714 	ld	a, (hl)
-      0002FC F8 07            [12]  715 	ldhl	sp,	#7
-      0002FE 77               [ 8]  716 	ld	(hl), a
-      0002FF F8 0D            [12]  717 	ldhl	sp,	#13
-      000301 7E               [ 8]  718 	ld	a, (hl)
-      000302 F8 08            [12]  719 	ldhl	sp,	#8
-      000304 77               [ 8]  720 	ld	(hl), a
-      000305 F8 0C            [12]  721 	ldhl	sp,	#12
-      000307 34               [12]  722 	inc	(hl)
-      000308 20 02            [12]  723 	jr	NZ, 00199$
-      00030A 23               [ 8]  724 	inc	hl
-      00030B 34               [12]  725 	inc	(hl)
-      00030C                        726 00199$:
-      00030C 79               [ 4]  727 	ld	a, c
-      00030D F8 07            [12]  728 	ldhl	sp,	#7
-      00030F 5E               [ 8]  729 	ld	e, (hl)
-      000310 23               [ 8]  730 	inc	hl
-      000311 56               [ 8]  731 	ld	d, (hl)
-      000312 CDr00r00         [24]  732 	call	_set_vram_byte
-                                    733 ;src/general.c:107: for (uint8_t i = textLength; i < length; i++) {
-      000315 F8 0B            [12]  734 	ldhl	sp,	#11
-      000317 34               [12]  735 	inc	(hl)
-      000318 18 BC            [12]  736 	jr	00119$
-      00031A                        737 00121$:
-                                    738 ;src/general.c:112: }
-      00031A E8 0E            [16]  739 	add	sp, #14
-      00031C E1               [12]  740 	pop	hl
-      00031D E8 05            [16]  741 	add	sp, #5
-      00031F E9               [ 4]  742 	jp	(hl)
-                                    743 ;src/general.c:114: void draw_number_sprite(uint8_t x, uint8_t y, uint16_t number, uint8_t digits, int8_t tileoffset, int8_t fontspacing) {
-                                    744 ;	---------------------------------
-                                    745 ; Function draw_number_sprite
-                                    746 ; ---------------------------------
-      000320                        747 _draw_number_sprite::
-      000320 E8 F1            [16]  748 	add	sp, #-15
-      000322 4F               [ 4]  749 	ld	c, a
-      000323 F8 0D            [12]  750 	ldhl	sp,	#13
-      000325 73               [ 8]  751 	ld	(hl), e
-                                    752 ;src/general.c:118: sprintf(buffer, "%u", number);
-      000326 C5               [16]  753 	push	bc
-      000327 F8 13            [12]  754 	ldhl	sp,	#19
-      000329 2A               [ 8]  755 	ld	a, (hl+)
-      00032A 5F               [ 4]  756 	ld	e, a
-      00032B 56               [ 8]  757 	ld	d, (hl)
-      00032C D5               [16]  758 	push	de
-      00032D 11r63r04         [12]  759 	ld	de, #___str_0
-      000330 D5               [16]  760 	push	de
-      000331 21 06 00         [12]  761 	ld	hl, #6
-      000334 39               [ 8]  762 	add	hl, sp
-      000335 E5               [16]  763 	push	hl
-      000336 CDr00r00         [24]  764 	call	_sprintf
-      000339 E8 06            [16]  765 	add	sp, #6
-      00033B C1               [12]  766 	pop	bc
-                                    767 ;src/general.c:121: uint8_t len = strlen(buffer);
-      00033C 21 00 00         [12]  768 	ld	hl, #0
-      00033F 39               [ 8]  769 	add	hl, sp
-      000340 E5               [16]  770 	push	hl
-      000341 CDr00r00         [24]  771 	call	_strlen
-      000344 E1               [12]  772 	pop	hl
-      000345 43               [ 4]  773 	ld	b, e
-                                    774 ;src/general.c:124: uint8_t displayLength = len < digits ? len : digits;  // Display length is the minimum of len or digits
-      000346 78               [ 4]  775 	ld	a, b
-      000347 F8 13            [12]  776 	ldhl	sp,	#19
-      000349 96               [ 8]  777 	sub	a, (hl)
-      00034A 38 03            [12]  778 	jr	C, 00116$
-      00034C F8 13            [12]  779 	ldhl	sp,	#19
-      00034E 46               [ 8]  780 	ld	b, (hl)
-      00034F                        781 00116$:
-                                    782 ;src/general.c:125: uint8_t startX = x + (digits - displayLength) * fontspacing;  // Adjust start position
-      00034F F8 13            [12]  783 	ldhl	sp,	#19
-      000351 2A               [ 8]  784 	ld	a, (hl+)
-      000352 23               [ 8]  785 	inc	hl
-      000353 90               [ 4]  786 	sub	a, b
-      000354 57               [ 4]  787 	ld	d, a
-      000355 C5               [16]  788 	push	bc
-      000356 5E               [ 8]  789 	ld	e, (hl)
-      000357 7A               [ 4]  790 	ld	a, d
-      000358 CDr00r00         [24]  791 	call	__mulsuchar
-      00035B 79               [ 4]  792 	ld	a, c
-      00035C C1               [12]  793 	pop	bc
-      00035D 81               [ 4]  794 	add	a, c
-      00035E F8 06            [12]  795 	ldhl	sp,	#6
-      000360 77               [ 8]  796 	ld	(hl), a
-                                    797 ;src/general.c:128: for(uint8_t i = 0; i < digits - displayLength; i++) {
-      000361 F8 0E            [12]  798 	ldhl	sp,	#14
-      000363 36 00            [12]  799 	ld	(hl), #0x00
-      000365                        800 00108$:
-      000365 F8 13            [12]  801 	ldhl	sp,	#19
-      000367 7E               [ 8]  802 	ld	a, (hl)
-      000368 F8 07            [12]  803 	ldhl	sp,	#7
-      00036A 22               [ 8]  804 	ld	(hl+), a
-      00036B AF               [ 4]  805 	xor	a, a
-      00036C 22               [ 8]  806 	ld	(hl+), a
-      00036D 78               [ 4]  807 	ld	a, b
-      00036E 22               [ 8]  808 	ld	(hl+), a
-      00036F AF               [ 4]  809 	xor	a, a
-      000370 32               [ 8]  810 	ld	(hl-), a
-      000371 2B               [ 8]  811 	dec	hl
-      000372 2B               [ 8]  812 	dec	hl
-      000373 2A               [ 8]  813 	ld	a, (hl+)
-      000374 5F               [ 4]  814 	ld	e, a
-      000375 2A               [ 8]  815 	ld	a, (hl+)
-      000376 57               [ 4]  816 	ld	d, a
-      000377 2A               [ 8]  817 	ld	a,	(hl+)
-      000378 66               [ 8]  818 	ld	h, (hl)
-      000379 6F               [ 4]  819 	ld	l, a
-      00037A 7B               [ 4]  820 	ld	a, e
-      00037B 95               [ 4]  821 	sub	a, l
-      00037C 5F               [ 4]  822 	ld	e, a
-      00037D 7A               [ 4]  823 	ld	a, d
-      00037E 9C               [ 4]  824 	sbc	a, h
-      00037F F8 0C            [12]  825 	ldhl	sp,	#12
-      000381 32               [ 8]  826 	ld	(hl-), a
-      000382 73               [ 8]  827 	ld	(hl), e
-      000383 F8 0E            [12]  828 	ldhl	sp,	#14
-      000385 7E               [ 8]  829 	ld	a, (hl)
-      000386 F8 09            [12]  830 	ldhl	sp,	#9
-      000388 22               [ 8]  831 	ld	(hl+), a
-      000389 36 00            [12]  832 	ld	(hl), #0x00
-      00038B F8 09            [12]  833 	ldhl	sp,	#9
-      00038D 5D               [ 4]  834 	ld	e, l
-      00038E 54               [ 4]  835 	ld	d, h
-      00038F F8 0B            [12]  836 	ldhl	sp,	#11
-      000391 1A               [ 8]  837 	ld	a, (de)
-      000392 13               [ 8]  838 	inc	de
-      000393 96               [ 8]  839 	sub	a, (hl)
-      000394 23               [ 8]  840 	inc	hl
-      000395 1A               [ 8]  841 	ld	a, (de)
-      000396 9E               [ 8]  842 	sbc	a, (hl)
-      000397 1A               [ 8]  843 	ld	a, (de)
-      000398 57               [ 4]  844 	ld	d, a
-      000399 5E               [ 8]  845 	ld	e, (hl)
-      00039A CB 7B            [ 8]  846 	bit	7, e
-      00039C 28 07            [12]  847 	jr	Z, 00154$
-      00039E CB 7A            [ 8]  848 	bit	7, d
-      0003A0 20 08            [12]  849 	jr	NZ, 00155$
-      0003A2 BF               [ 4]  850 	cp	a, a
-      0003A3 18 05            [12]  851 	jr	00155$
-      0003A5                        852 00154$:
-      0003A5 CB 7A            [ 8]  853 	bit	7, d
-      0003A7 28 01            [12]  854 	jr	Z, 00155$
-      0003A9 37               [ 4]  855 	scf
-      0003AA                        856 00155$:
-      0003AA 30 40            [12]  857 	jr	NC, 00101$
-                                    858 ;src/general.c:129: set_sprite_tile(tileoffset + i, 0);
-      0003AC F8 0E            [12]  859 	ldhl	sp,	#14
-      0003AE 7E               [ 8]  860 	ld	a, (hl)
-      0003AF F8 14            [12]  861 	ldhl	sp,	#20
-      0003B1 86               [ 8]  862 	add	a, (hl)
-      0003B2 5F               [ 4]  863 	ld	e, a
-      0003B3 53               [ 4]  864 	ld	d, e
-                                    865 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
-      0003B4 26 00            [ 8]  866 	ld	h, #0x00
+                                    697 ;	spillPairReg hl
+      000231 E5               [16]  698 	push	hl
+      000232 33               [ 8]  699 	inc	sp
+      000233 F5               [16]  700 	push	af
+      000234 33               [ 8]  701 	inc	sp
+      000235 CDr00r00         [24]  702 	call	_set_win_tile_xy
+      000238 E8 03            [16]  703 	add	sp, #3
+                           00023A   704 	C$general.c$95$4_0$182	= .
+                                    705 	.globl	C$general.c$95$4_0$182
+                                    706 ;src/general.c:95: set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+      00023A 3E 20            [ 8]  707 	ld	a, #0x20
+      00023C CDrBCr00         [24]  708 	call	_convert_char_to_tile
+      00023F F8 08            [12]  709 	ldhl	sp,	#8
+      000241 77               [ 8]  710 	ld	(hl), a
+      000242 F8 0B            [12]  711 	ldhl	sp,#11
+      000244 2A               [ 8]  712 	ld	a, (hl+)
+      000245 5F               [ 4]  713 	ld	e, a
+      000246 56               [ 8]  714 	ld	d, (hl)
+      000247 F8 03            [12]  715 	ldhl	sp,	#3
+      000249 2A               [ 8]  716 	ld	a,	(hl+)
+      00024A 66               [ 8]  717 	ld	h, (hl)
+      00024B 6F               [ 4]  718 	ld	l, a
+      00024C 7B               [ 4]  719 	ld	a, e
+      00024D 95               [ 4]  720 	sub	a, l
+      00024E 5F               [ 4]  721 	ld	e, a
+      00024F 7A               [ 4]  722 	ld	a, d
+      000250 9C               [ 4]  723 	sbc	a, h
+      000251 47               [ 4]  724 	ld	b, a
+      000252 4B               [ 4]  725 	ld	c, e
+      000253 F8 02            [12]  726 	ldhl	sp,	#2
+      000255 6E               [ 8]  727 	ld	l, (hl)
+      000256 26 00            [ 8]  728 	ld	h, #0x00
+      000258 09               [ 8]  729 	add	hl, bc
+      000259 4D               [ 4]  730 	ld	c, l
+      00025A 44               [ 4]  731 	ld	b, h
+      00025B F8 0D            [12]  732 	ldhl	sp,	#13
+      00025D 6E               [ 8]  733 	ld	l, (hl)
+      00025E 26 00            [ 8]  734 	ld	h, #0x00
+      000260 09               [ 8]  735 	add	hl, bc
+      000261 5D               [ 4]  736 	ld	e, l
+      000262 54               [ 4]  737 	ld	d, h
+      000263 F8 08            [12]  738 	ldhl	sp,	#8
+      000265 7E               [ 8]  739 	ld	a, (hl)
+      000266 CDr00r00         [24]  740 	call	_set_vram_byte
+                           000269   741 	C$general.c$93$3_0$181	= .
+                                    742 	.globl	C$general.c$93$3_0$181
+                                    743 ;src/general.c:93: for (uint8_t i = 0; i < length - textLength; i++) {
+      000269 F8 0D            [12]  744 	ldhl	sp,	#13
+      00026B 34               [12]  745 	inc	(hl)
+      00026C 18 8C            [12]  746 	jr	00113$
+                           00026E   747 	C$general.c$100$1_0$177	= .
+                                    748 	.globl	C$general.c$100$1_0$177
+                                    749 ;src/general.c:100: for (uint8_t i = 0; i < textLength; i++) {
+      00026E                        750 00129$:
+      00026E F8 0B            [12]  751 	ldhl	sp,	#11
+      000270 7E               [ 8]  752 	ld	a, (hl)
+      000271 F8 07            [12]  753 	ldhl	sp,	#7
+      000273 77               [ 8]  754 	ld	(hl), a
+      000274 F8 0C            [12]  755 	ldhl	sp,	#12
+      000276 7E               [ 8]  756 	ld	a, (hl)
+      000277 F8 08            [12]  757 	ldhl	sp,	#8
+      000279 77               [ 8]  758 	ld	(hl), a
+      00027A 0E 00            [ 8]  759 	ld	c, #0x00
+      00027C                        760 00116$:
+      00027C 79               [ 4]  761 	ld	a, c
+      00027D F8 02            [12]  762 	ldhl	sp,	#2
+      00027F 96               [ 8]  763 	sub	a, (hl)
+      000280 30 3C            [12]  764 	jr	NC, 00108$
+                           000282   765 	C$general.c$101$3_0$184	= .
+                                    766 	.globl	C$general.c$101$3_0$184
+                                    767 ;src/general.c:101: set_win_tile_xy(x + i, y, palette);
+      000282 F8 0A            [12]  768 	ldhl	sp,	#10
+      000284 7E               [ 8]  769 	ld	a, (hl)
+      000285 81               [ 4]  770 	add	a, c
+      000286 F8 14            [12]  771 	ldhl	sp,	#20
+      000288 66               [ 8]  772 	ld	h, (hl)
+                                    773 ;	spillPairReg hl
+                                    774 ;	spillPairReg hl
+      000289 E5               [16]  775 	push	hl
+      00028A 33               [ 8]  776 	inc	sp
+      00028B F8 0A            [12]  777 	ldhl	sp,	#10
+      00028D 66               [ 8]  778 	ld	h, (hl)
+                                    779 ;	spillPairReg hl
+                                    780 ;	spillPairReg hl
+      00028E E5               [16]  781 	push	hl
+      00028F 33               [ 8]  782 	inc	sp
+      000290 F5               [16]  783 	push	af
+      000291 33               [ 8]  784 	inc	sp
+      000292 CDr00r00         [24]  785 	call	_set_win_tile_xy
+      000295 E8 03            [16]  786 	add	sp, #3
+                           000297   787 	C$general.c$102$3_0$184	= .
+                                    788 	.globl	C$general.c$102$3_0$184
+                                    789 ;src/general.c:102: set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
+      000297 F8 10            [12]  790 	ldhl	sp,#16
+      000299 2A               [ 8]  791 	ld	a, (hl+)
+      00029A 5F               [ 4]  792 	ld	e, a
+      00029B 56               [ 8]  793 	ld	d, (hl)
+      00029C 69               [ 4]  794 	ld	l, c
+      00029D 26 00            [ 8]  795 	ld	h, #0x00
+      00029F 19               [ 8]  796 	add	hl, de
+      0002A0 5D               [ 4]  797 	ld	e, l
+      0002A1 54               [ 4]  798 	ld	d, h
+      0002A2 1A               [ 8]  799 	ld	a, (de)
+      0002A3 47               [ 4]  800 	ld	b, a
+      0002A4 C5               [16]  801 	push	bc
+      0002A5 78               [ 4]  802 	ld	a, b
+      0002A6 CDrBCr00         [24]  803 	call	_convert_char_to_tile
+      0002A9 5F               [ 4]  804 	ld	e, a
+      0002AA C1               [12]  805 	pop	bc
+      0002AB F8 07            [12]  806 	ldhl	sp,	#7
+      0002AD 2A               [ 8]  807 	ld	a, (hl+)
+      0002AE 47               [ 4]  808 	ld	b, a
+      0002AF 3A               [ 8]  809 	ld	a, (hl-)
+      0002B0 57               [ 4]  810 	ld	d, a
+      0002B1 34               [12]  811 	inc	(hl)
+      0002B2 20 02            [12]  812 	jr	NZ, 00198$
+      0002B4 23               [ 8]  813 	inc	hl
+      0002B5 34               [12]  814 	inc	(hl)
+      0002B6                        815 00198$:
+      0002B6 7B               [ 4]  816 	ld	a, e
+      0002B7 58               [ 4]  817 	ld	e, b
+      0002B8 CDr00r00         [24]  818 	call	_set_vram_byte
+                           0002BB   819 	C$general.c$100$2_0$183	= .
+                                    820 	.globl	C$general.c$100$2_0$183
+                                    821 ;src/general.c:100: for (uint8_t i = 0; i < textLength; i++) {
+      0002BB 0C               [ 4]  822 	inc	c
+      0002BC 18 BE            [12]  823 	jr	00116$
+      0002BE                        824 00108$:
+                           0002BE   825 	C$general.c$106$1_0$177	= .
+                                    826 	.globl	C$general.c$106$1_0$177
+                                    827 ;src/general.c:106: if (left_aligned) {
+      0002BE F8 13            [12]  828 	ldhl	sp,	#19
+      0002C0 7E               [ 8]  829 	ld	a, (hl)
+      0002C1 B7               [ 4]  830 	or	a, a
+      0002C2 28 56            [12]  831 	jr	Z, 00121$
+                           0002C4   832 	C$general.c$107$1_0$177	= .
+                                    833 	.globl	C$general.c$107$1_0$177
+                                    834 ;src/general.c:107: for (uint8_t i = textLength; i < length; i++) {
+      0002C4 F8 07            [12]  835 	ldhl	sp,	#7
+      0002C6 7E               [ 8]  836 	ld	a, (hl)
+      0002C7 F8 0C            [12]  837 	ldhl	sp,	#12
+      0002C9 77               [ 8]  838 	ld	(hl), a
+      0002CA F8 08            [12]  839 	ldhl	sp,	#8
+      0002CC 7E               [ 8]  840 	ld	a, (hl)
+      0002CD F8 0D            [12]  841 	ldhl	sp,	#13
+      0002CF 77               [ 8]  842 	ld	(hl), a
+      0002D0 F8 02            [12]  843 	ldhl	sp,	#2
+      0002D2 7E               [ 8]  844 	ld	a, (hl)
+      0002D3 F8 0B            [12]  845 	ldhl	sp,	#11
+      0002D5 77               [ 8]  846 	ld	(hl), a
+      0002D6                        847 00119$:
+      0002D6 F8 0B            [12]  848 	ldhl	sp,	#11
+      0002D8 7E               [ 8]  849 	ld	a, (hl)
+      0002D9 F8 12            [12]  850 	ldhl	sp,	#18
+      0002DB 96               [ 8]  851 	sub	a, (hl)
+      0002DC 30 3C            [12]  852 	jr	NC, 00121$
+                           0002DE   853 	C$general.c$108$4_0$187	= .
+                                    854 	.globl	C$general.c$108$4_0$187
+                                    855 ;src/general.c:108: set_win_tile_xy(x + i, y, palette);
+      0002DE F8 0A            [12]  856 	ldhl	sp,	#10
+      0002E0 2A               [ 8]  857 	ld	a, (hl+)
+      0002E1 86               [ 8]  858 	add	a, (hl)
+      0002E2 F8 14            [12]  859 	ldhl	sp,	#20
+      0002E4 66               [ 8]  860 	ld	h, (hl)
+                                    861 ;	spillPairReg hl
+                                    862 ;	spillPairReg hl
+      0002E5 E5               [16]  863 	push	hl
+      0002E6 33               [ 8]  864 	inc	sp
+      0002E7 F8 0A            [12]  865 	ldhl	sp,	#10
+      0002E9 66               [ 8]  866 	ld	h, (hl)
                                     867 ;	spillPairReg hl
                                     868 ;	spillPairReg hl
-      0003B6 6A               [ 4]  869 	ld	l, d
-      0003B7 29               [ 8]  870 	add	hl, hl
-      0003B8 29               [ 8]  871 	add	hl, hl
-      0003B9 D5               [16]  872 	push	de
-      0003BA 11r00r00         [12]  873 	ld	de, #_shadow_OAM
-      0003BD 19               [ 8]  874 	add	hl, de
-      0003BE 23               [ 8]  875 	inc	hl
-      0003BF 23               [ 8]  876 	inc	hl
-      0003C0 D1               [12]  877 	pop	de
-      0003C1 36 00            [12]  878 	ld	(hl), #0x00
-                                    879 ;src/general.c:130: move_sprite(tileoffset + i, x + (fontspacing * i), y);
-      0003C3 C5               [16]  880 	push	bc
-      0003C4 D5               [16]  881 	push	de
-      0003C5 F8 12            [12]  882 	ldhl	sp,	#18
-      0003C7 5E               [ 8]  883 	ld	e, (hl)
-      0003C8 F8 19            [12]  884 	ldhl	sp,	#25
-      0003CA 7E               [ 8]  885 	ld	a, (hl)
-      0003CB CDr00r00         [24]  886 	call	__muluschar
-      0003CE 79               [ 4]  887 	ld	a, c
-      0003CF D1               [12]  888 	pop	de
-      0003D0 C1               [12]  889 	pop	bc
-      0003D1 81               [ 4]  890 	add	a, c
-      0003D2 F8 0C            [12]  891 	ldhl	sp,	#12
-      0003D4 77               [ 8]  892 	ld	(hl), a
-                                    893 ;/usr/local/opt/gbdk/include/gb/gb.h:1877: OAM_item_t * itm = &shadow_OAM[nb];
-      0003D5 26 00            [ 8]  894 	ld	h, #0x00
-                                    895 ;	spillPairReg hl
-                                    896 ;	spillPairReg hl
-      0003D7 6B               [ 4]  897 	ld	l, e
-      0003D8 29               [ 8]  898 	add	hl, hl
-      0003D9 29               [ 8]  899 	add	hl, hl
-      0003DA 11r00r00         [12]  900 	ld	de, #_shadow_OAM
-      0003DD 19               [ 8]  901 	add	hl, de
-      0003DE 5D               [ 4]  902 	ld	e, l
-      0003DF 54               [ 4]  903 	ld	d, h
-                                    904 ;/usr/local/opt/gbdk/include/gb/gb.h:1878: itm->y=y, itm->x=x;
-      0003E0 F8 0D            [12]  905 	ldhl	sp,	#13
-      0003E2 3A               [ 8]  906 	ld	a, (hl-)
-      0003E3 12               [ 8]  907 	ld	(de), a
-      0003E4 13               [ 8]  908 	inc	de
-                                    909 ;src/general.c:128: for(uint8_t i = 0; i < digits - displayLength; i++) {
-      0003E5 2A               [ 8]  910 	ld	a, (hl+)
-      0003E6 23               [ 8]  911 	inc	hl
-      0003E7 12               [ 8]  912 	ld	(de), a
-      0003E8 34               [12]  913 	inc	(hl)
-      0003E9 C3r65r03         [16]  914 	jp	00108$
-      0003EC                        915 00101$:
-                                    916 ;src/general.c:134: for(uint8_t i = 0; i < displayLength; i++) {
-      0003EC F8 0E            [12]  917 	ldhl	sp,	#14
-      0003EE 36 00            [12]  918 	ld	(hl), #0x00
-      0003F0                        919 00111$:
-      0003F0 F8 0E            [12]  920 	ldhl	sp,	#14
-      0003F2 7E               [ 8]  921 	ld	a, (hl)
-      0003F3 90               [ 4]  922 	sub	a, b
-      0003F4 30 67            [12]  923 	jr	NC, 00113$
-                                    924 ;src/general.c:135: uint8_t spriteIndex = buffer[i] - '0';
-      0003F6 E5               [16]  925 	push	hl
-      0003F7 21 02 00         [12]  926 	ld	hl, #2
-      0003FA 39               [ 8]  927 	add	hl, sp
-      0003FB 5D               [ 4]  928 	ld	e, l
-      0003FC 54               [ 4]  929 	ld	d, h
-      0003FD E1               [12]  930 	pop	hl
-      0003FE F8 0E            [12]  931 	ldhl	sp,	#14
-      000400 6E               [ 8]  932 	ld	l, (hl)
-      000401 26 00            [ 8]  933 	ld	h, #0x00
-      000403 19               [ 8]  934 	add	hl, de
-      000404 5D               [ 4]  935 	ld	e, l
-      000405 54               [ 4]  936 	ld	d, h
-      000406 1A               [ 8]  937 	ld	a, (de)
-      000407 C6 D0            [ 8]  938 	add	a, #0xd0
-      000409 5F               [ 4]  939 	ld	e, a
-                                    940 ;src/general.c:136: uint8_t spritePos = tileoffset + digits - displayLength + i;
-      00040A F8 13            [12]  941 	ldhl	sp,	#19
-      00040C 2A               [ 8]  942 	ld	a, (hl+)
-      00040D 86               [ 8]  943 	add	a, (hl)
-      00040E 48               [ 4]  944 	ld	c, b
-      00040F 91               [ 4]  945 	sub	a, c
-      000410 F8 0E            [12]  946 	ldhl	sp,	#14
-      000412 4E               [ 8]  947 	ld	c, (hl)
-      000413 81               [ 4]  948 	add	a, c
-      000414 4F               [ 4]  949 	ld	c, a
-                                    950 ;src/general.c:137: set_sprite_data(spritePos, 1, &font[spriteIndex * 16]); // Assuming 'font' is defined elsewhere
-      000415 26 00            [ 8]  951 	ld	h, #0x00
-                                    952 ;	spillPairReg hl
-                                    953 ;	spillPairReg hl
-      000417 6B               [ 4]  954 	ld	l, e
-      000418 29               [ 8]  955 	add	hl, hl
-      000419 29               [ 8]  956 	add	hl, hl
-      00041A 29               [ 8]  957 	add	hl, hl
-      00041B 29               [ 8]  958 	add	hl, hl
-      00041C 11r00r00         [12]  959 	ld	de, #_font
-      00041F 19               [ 8]  960 	add	hl, de
-      000420 E5               [16]  961 	push	hl
-      000421 3E 01            [ 8]  962 	ld	a, #0x01
-      000423 F5               [16]  963 	push	af
-      000424 33               [ 8]  964 	inc	sp
-      000425 79               [ 4]  965 	ld	a, c
-      000426 F5               [16]  966 	push	af
-      000427 33               [ 8]  967 	inc	sp
-      000428 CDr00r00         [24]  968 	call	_set_sprite_data
-      00042B E8 04            [16]  969 	add	sp, #4
-                                    970 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
-      00042D 69               [ 4]  971 	ld	l, c
-                                    972 ;	spillPairReg hl
-                                    973 ;	spillPairReg hl
-      00042E 26 00            [ 8]  974 	ld	h, #0x00
-                                    975 ;	spillPairReg hl
-                                    976 ;	spillPairReg hl
-      000430 29               [ 8]  977 	add	hl, hl
-      000431 29               [ 8]  978 	add	hl, hl
-      000432 5D               [ 4]  979 	ld	e, l
-      000433 54               [ 4]  980 	ld	d, h
-      000434 21r01r00         [12]  981 	ld	hl,#_shadow_OAM + 1
-      000437 19               [ 8]  982 	add	hl,de
-      000438 23               [ 8]  983 	inc	hl
-      000439 71               [ 8]  984 	ld	(hl), c
-                                    985 ;src/general.c:139: move_sprite(spritePos, startX + (fontspacing * i), y);
-      00043A C5               [16]  986 	push	bc
-      00043B D5               [16]  987 	push	de
-      00043C F8 12            [12]  988 	ldhl	sp,	#18
-      00043E 5E               [ 8]  989 	ld	e, (hl)
-      00043F F8 19            [12]  990 	ldhl	sp,	#25
-      000441 7E               [ 8]  991 	ld	a, (hl)
-      000442 CDr00r00         [24]  992 	call	__muluschar
-      000445 79               [ 4]  993 	ld	a, c
-      000446 D1               [12]  994 	pop	de
-      000447 C1               [12]  995 	pop	bc
-      000448 F8 06            [12]  996 	ldhl	sp,	#6
-      00044A 4E               [ 8]  997 	ld	c, (hl)
-      00044B 81               [ 4]  998 	add	a, c
-      00044C 4F               [ 4]  999 	ld	c, a
-                                   1000 ;/usr/local/opt/gbdk/include/gb/gb.h:1877: OAM_item_t * itm = &shadow_OAM[nb];
-      00044D 21r00r00         [12] 1001 	ld	hl, #_shadow_OAM
-      000450 19               [ 8] 1002 	add	hl, de
-      000451 5D               [ 4] 1003 	ld	e, l
-      000452 54               [ 4] 1004 	ld	d, h
-                                   1005 ;/usr/local/opt/gbdk/include/gb/gb.h:1878: itm->y=y, itm->x=x;
-      000453 F8 0D            [12] 1006 	ldhl	sp,	#13
-                                   1007 ;src/general.c:134: for(uint8_t i = 0; i < displayLength; i++) {
-      000455 2A               [ 8] 1008 	ld	a, (hl+)
-      000456 12               [ 8] 1009 	ld	(de), a
-      000457 13               [ 8] 1010 	inc	de
-      000458 79               [ 4] 1011 	ld	a, c
-      000459 12               [ 8] 1012 	ld	(de), a
-      00045A 34               [12] 1013 	inc	(hl)
-      00045B 18 93            [12] 1014 	jr	00111$
-      00045D                       1015 00113$:
-                                   1016 ;src/general.c:142: }
-      00045D E8 0F            [16] 1017 	add	sp, #15
-      00045F E1               [12] 1018 	pop	hl
-      000460 E8 05            [16] 1019 	add	sp, #5
-      000462 E9               [ 4] 1020 	jp	(hl)
-      000463                       1021 ___str_0:
-      000463 25 75                 1022 	.ascii "%u"
-      000465 00                    1023 	.db 0x00
-                                   1024 	.area _CODE
-                                   1025 	.area _INITIALIZER
-                                   1026 	.area _CABS (ABS)
+      0002EA E5               [16]  869 	push	hl
+      0002EB 33               [ 8]  870 	inc	sp
+      0002EC F5               [16]  871 	push	af
+      0002ED 33               [ 8]  872 	inc	sp
+      0002EE CDr00r00         [24]  873 	call	_set_win_tile_xy
+      0002F1 E8 03            [16]  874 	add	sp, #3
+                           0002F3   875 	C$general.c$109$4_0$187	= .
+                                    876 	.globl	C$general.c$109$4_0$187
+                                    877 ;src/general.c:109: set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+      0002F3 3E 20            [ 8]  878 	ld	a, #0x20
+      0002F5 CDrBCr00         [24]  879 	call	_convert_char_to_tile
+      0002F8 4F               [ 4]  880 	ld	c, a
+      0002F9 F8 0C            [12]  881 	ldhl	sp,	#12
+      0002FB 7E               [ 8]  882 	ld	a, (hl)
+      0002FC F8 07            [12]  883 	ldhl	sp,	#7
+      0002FE 77               [ 8]  884 	ld	(hl), a
+      0002FF F8 0D            [12]  885 	ldhl	sp,	#13
+      000301 7E               [ 8]  886 	ld	a, (hl)
+      000302 F8 08            [12]  887 	ldhl	sp,	#8
+      000304 77               [ 8]  888 	ld	(hl), a
+      000305 F8 0C            [12]  889 	ldhl	sp,	#12
+      000307 34               [12]  890 	inc	(hl)
+      000308 20 02            [12]  891 	jr	NZ, 00199$
+      00030A 23               [ 8]  892 	inc	hl
+      00030B 34               [12]  893 	inc	(hl)
+      00030C                        894 00199$:
+      00030C 79               [ 4]  895 	ld	a, c
+      00030D F8 07            [12]  896 	ldhl	sp,	#7
+      00030F 5E               [ 8]  897 	ld	e, (hl)
+      000310 23               [ 8]  898 	inc	hl
+      000311 56               [ 8]  899 	ld	d, (hl)
+      000312 CDr00r00         [24]  900 	call	_set_vram_byte
+                           000315   901 	C$general.c$107$3_0$186	= .
+                                    902 	.globl	C$general.c$107$3_0$186
+                                    903 ;src/general.c:107: for (uint8_t i = textLength; i < length; i++) {
+      000315 F8 0B            [12]  904 	ldhl	sp,	#11
+      000317 34               [12]  905 	inc	(hl)
+      000318 18 BC            [12]  906 	jr	00119$
+      00031A                        907 00121$:
+                           00031A   908 	C$general.c$112$1_0$177	= .
+                                    909 	.globl	C$general.c$112$1_0$177
+                                    910 ;src/general.c:112: }
+      00031A E8 0E            [16]  911 	add	sp, #14
+      00031C E1               [12]  912 	pop	hl
+      00031D E8 05            [16]  913 	add	sp, #5
+      00031F E9               [ 4]  914 	jp	(hl)
+                           000320   915 	G$draw_number_sprite$0$0	= .
+                                    916 	.globl	G$draw_number_sprite$0$0
+                           000320   917 	C$general.c$114$1_0$189	= .
+                                    918 	.globl	C$general.c$114$1_0$189
+                                    919 ;src/general.c:114: void draw_number_sprite(uint8_t x, uint8_t y, uint16_t number, uint8_t digits, int8_t tileoffset, int8_t fontspacing) {
+                                    920 ;	---------------------------------
+                                    921 ; Function draw_number_sprite
+                                    922 ; ---------------------------------
+      000320                        923 _draw_number_sprite::
+      000320 E8 F1            [16]  924 	add	sp, #-15
+      000322 4F               [ 4]  925 	ld	c, a
+      000323 F8 0D            [12]  926 	ldhl	sp,	#13
+      000325 73               [ 8]  927 	ld	(hl), e
+                           000326   928 	C$general.c$118$1_0$189	= .
+                                    929 	.globl	C$general.c$118$1_0$189
+                                    930 ;src/general.c:118: sprintf(buffer, "%u", number);
+      000326 C5               [16]  931 	push	bc
+      000327 F8 13            [12]  932 	ldhl	sp,	#19
+      000329 2A               [ 8]  933 	ld	a, (hl+)
+      00032A 5F               [ 4]  934 	ld	e, a
+      00032B 56               [ 8]  935 	ld	d, (hl)
+      00032C D5               [16]  936 	push	de
+      00032D 11r63r04         [12]  937 	ld	de, #___str_0
+      000330 D5               [16]  938 	push	de
+      000331 21 06 00         [12]  939 	ld	hl, #6
+      000334 39               [ 8]  940 	add	hl, sp
+      000335 E5               [16]  941 	push	hl
+      000336 CDr00r00         [24]  942 	call	_sprintf
+      000339 E8 06            [16]  943 	add	sp, #6
+      00033B C1               [12]  944 	pop	bc
+                           00033C   945 	C$general.c$121$1_1$190	= .
+                                    946 	.globl	C$general.c$121$1_1$190
+                                    947 ;src/general.c:121: uint8_t len = strlen(buffer);
+      00033C 21 00 00         [12]  948 	ld	hl, #0
+      00033F 39               [ 8]  949 	add	hl, sp
+      000340 E5               [16]  950 	push	hl
+      000341 CDr00r00         [24]  951 	call	_strlen
+      000344 E1               [12]  952 	pop	hl
+      000345 43               [ 4]  953 	ld	b, e
+                           000346   954 	C$general.c$124$1_1$190	= .
+                                    955 	.globl	C$general.c$124$1_1$190
+                                    956 ;src/general.c:124: uint8_t displayLength = len < digits ? len : digits;  // Display length is the minimum of len or digits
+      000346 78               [ 4]  957 	ld	a, b
+      000347 F8 13            [12]  958 	ldhl	sp,	#19
+      000349 96               [ 8]  959 	sub	a, (hl)
+      00034A 38 03            [12]  960 	jr	C, 00116$
+      00034C F8 13            [12]  961 	ldhl	sp,	#19
+      00034E 46               [ 8]  962 	ld	b, (hl)
+      00034F                        963 00116$:
+                           00034F   964 	C$general.c$125$1_1$190	= .
+                                    965 	.globl	C$general.c$125$1_1$190
+                                    966 ;src/general.c:125: uint8_t startX = x + (digits - displayLength) * fontspacing;  // Adjust start position
+      00034F F8 13            [12]  967 	ldhl	sp,	#19
+      000351 2A               [ 8]  968 	ld	a, (hl+)
+      000352 23               [ 8]  969 	inc	hl
+      000353 90               [ 4]  970 	sub	a, b
+      000354 57               [ 4]  971 	ld	d, a
+      000355 C5               [16]  972 	push	bc
+      000356 5E               [ 8]  973 	ld	e, (hl)
+      000357 7A               [ 4]  974 	ld	a, d
+      000358 CDr00r00         [24]  975 	call	__mulsuchar
+      00035B 79               [ 4]  976 	ld	a, c
+      00035C C1               [12]  977 	pop	bc
+      00035D 81               [ 4]  978 	add	a, c
+      00035E F8 06            [12]  979 	ldhl	sp,	#6
+      000360 77               [ 8]  980 	ld	(hl), a
+                           000361   981 	C$general.c$128$2_1$189	= .
+                                    982 	.globl	C$general.c$128$2_1$189
+                                    983 ;src/general.c:128: for(uint8_t i = 0; i < digits - displayLength; i++) {
+      000361 F8 0E            [12]  984 	ldhl	sp,	#14
+      000363 36 00            [12]  985 	ld	(hl), #0x00
+      000365                        986 00108$:
+      000365 F8 13            [12]  987 	ldhl	sp,	#19
+      000367 7E               [ 8]  988 	ld	a, (hl)
+      000368 F8 07            [12]  989 	ldhl	sp,	#7
+      00036A 22               [ 8]  990 	ld	(hl+), a
+      00036B AF               [ 4]  991 	xor	a, a
+      00036C 22               [ 8]  992 	ld	(hl+), a
+      00036D 78               [ 4]  993 	ld	a, b
+      00036E 22               [ 8]  994 	ld	(hl+), a
+      00036F AF               [ 4]  995 	xor	a, a
+      000370 32               [ 8]  996 	ld	(hl-), a
+      000371 2B               [ 8]  997 	dec	hl
+      000372 2B               [ 8]  998 	dec	hl
+      000373 2A               [ 8]  999 	ld	a, (hl+)
+      000374 5F               [ 4] 1000 	ld	e, a
+      000375 2A               [ 8] 1001 	ld	a, (hl+)
+      000376 57               [ 4] 1002 	ld	d, a
+      000377 2A               [ 8] 1003 	ld	a,	(hl+)
+      000378 66               [ 8] 1004 	ld	h, (hl)
+      000379 6F               [ 4] 1005 	ld	l, a
+      00037A 7B               [ 4] 1006 	ld	a, e
+      00037B 95               [ 4] 1007 	sub	a, l
+      00037C 5F               [ 4] 1008 	ld	e, a
+      00037D 7A               [ 4] 1009 	ld	a, d
+      00037E 9C               [ 4] 1010 	sbc	a, h
+      00037F F8 0C            [12] 1011 	ldhl	sp,	#12
+      000381 32               [ 8] 1012 	ld	(hl-), a
+      000382 73               [ 8] 1013 	ld	(hl), e
+      000383 F8 0E            [12] 1014 	ldhl	sp,	#14
+      000385 7E               [ 8] 1015 	ld	a, (hl)
+      000386 F8 09            [12] 1016 	ldhl	sp,	#9
+      000388 22               [ 8] 1017 	ld	(hl+), a
+      000389 36 00            [12] 1018 	ld	(hl), #0x00
+      00038B F8 09            [12] 1019 	ldhl	sp,	#9
+      00038D 5D               [ 4] 1020 	ld	e, l
+      00038E 54               [ 4] 1021 	ld	d, h
+      00038F F8 0B            [12] 1022 	ldhl	sp,	#11
+      000391 1A               [ 8] 1023 	ld	a, (de)
+      000392 13               [ 8] 1024 	inc	de
+      000393 96               [ 8] 1025 	sub	a, (hl)
+      000394 23               [ 8] 1026 	inc	hl
+      000395 1A               [ 8] 1027 	ld	a, (de)
+      000396 9E               [ 8] 1028 	sbc	a, (hl)
+      000397 1A               [ 8] 1029 	ld	a, (de)
+      000398 57               [ 4] 1030 	ld	d, a
+      000399 5E               [ 8] 1031 	ld	e, (hl)
+      00039A CB 7B            [ 8] 1032 	bit	7, e
+      00039C 28 07            [12] 1033 	jr	Z, 00154$
+      00039E CB 7A            [ 8] 1034 	bit	7, d
+      0003A0 20 08            [12] 1035 	jr	NZ, 00155$
+      0003A2 BF               [ 4] 1036 	cp	a, a
+      0003A3 18 05            [12] 1037 	jr	00155$
+      0003A5                       1038 00154$:
+      0003A5 CB 7A            [ 8] 1039 	bit	7, d
+      0003A7 28 01            [12] 1040 	jr	Z, 00155$
+      0003A9 37               [ 4] 1041 	scf
+      0003AA                       1042 00155$:
+      0003AA 30 40            [12] 1043 	jr	NC, 00101$
+                                   1044 ;src/general.c:129: set_sprite_tile(tileoffset + i, 0);
+      0003AC F8 0E            [12] 1045 	ldhl	sp,	#14
+      0003AE 7E               [ 8] 1046 	ld	a, (hl)
+      0003AF F8 14            [12] 1047 	ldhl	sp,	#20
+      0003B1 86               [ 8] 1048 	add	a, (hl)
+      0003B2 5F               [ 4] 1049 	ld	e, a
+      0003B3 53               [ 4] 1050 	ld	d, e
+                                   1051 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
+      0003B4 26 00            [ 8] 1052 	ld	h, #0x00
+                                   1053 ;	spillPairReg hl
+                                   1054 ;	spillPairReg hl
+      0003B6 6A               [ 4] 1055 	ld	l, d
+      0003B7 29               [ 8] 1056 	add	hl, hl
+      0003B8 29               [ 8] 1057 	add	hl, hl
+      0003B9 D5               [16] 1058 	push	de
+      0003BA 11r00r00         [12] 1059 	ld	de, #_shadow_OAM
+      0003BD 19               [ 8] 1060 	add	hl, de
+      0003BE 23               [ 8] 1061 	inc	hl
+      0003BF 23               [ 8] 1062 	inc	hl
+      0003C0 D1               [12] 1063 	pop	de
+      0003C1 36 00            [12] 1064 	ld	(hl), #0x00
+                           0003C3  1065 	C$general.c$130$2_1$189	= .
+                                   1066 	.globl	C$general.c$130$2_1$189
+                                   1067 ;src/general.c:130: move_sprite(tileoffset + i, x + (fontspacing * i), y);
+      0003C3 C5               [16] 1068 	push	bc
+      0003C4 D5               [16] 1069 	push	de
+      0003C5 F8 12            [12] 1070 	ldhl	sp,	#18
+      0003C7 5E               [ 8] 1071 	ld	e, (hl)
+      0003C8 F8 19            [12] 1072 	ldhl	sp,	#25
+      0003CA 7E               [ 8] 1073 	ld	a, (hl)
+      0003CB CDr00r00         [24] 1074 	call	__muluschar
+      0003CE 79               [ 4] 1075 	ld	a, c
+      0003CF D1               [12] 1076 	pop	de
+      0003D0 C1               [12] 1077 	pop	bc
+      0003D1 81               [ 4] 1078 	add	a, c
+      0003D2 F8 0C            [12] 1079 	ldhl	sp,	#12
+      0003D4 77               [ 8] 1080 	ld	(hl), a
+                                   1081 ;/usr/local/opt/gbdk/include/gb/gb.h:1877: OAM_item_t * itm = &shadow_OAM[nb];
+      0003D5 26 00            [ 8] 1082 	ld	h, #0x00
+                                   1083 ;	spillPairReg hl
+                                   1084 ;	spillPairReg hl
+      0003D7 6B               [ 4] 1085 	ld	l, e
+      0003D8 29               [ 8] 1086 	add	hl, hl
+      0003D9 29               [ 8] 1087 	add	hl, hl
+      0003DA 11r00r00         [12] 1088 	ld	de, #_shadow_OAM
+      0003DD 19               [ 8] 1089 	add	hl, de
+      0003DE 5D               [ 4] 1090 	ld	e, l
+      0003DF 54               [ 4] 1091 	ld	d, h
+                                   1092 ;/usr/local/opt/gbdk/include/gb/gb.h:1878: itm->y=y, itm->x=x;
+      0003E0 F8 0D            [12] 1093 	ldhl	sp,	#13
+      0003E2 3A               [ 8] 1094 	ld	a, (hl-)
+      0003E3 12               [ 8] 1095 	ld	(de), a
+      0003E4 13               [ 8] 1096 	inc	de
+                           0003E5  1097 	C$general.c$128$2_1$191	= .
+                                   1098 	.globl	C$general.c$128$2_1$191
+                                   1099 ;src/general.c:128: for(uint8_t i = 0; i < digits - displayLength; i++) {
+      0003E5 2A               [ 8] 1100 	ld	a, (hl+)
+      0003E6 23               [ 8] 1101 	inc	hl
+      0003E7 12               [ 8] 1102 	ld	(de), a
+      0003E8 34               [12] 1103 	inc	(hl)
+      0003E9 C3r65r03         [16] 1104 	jp	00108$
+      0003EC                       1105 00101$:
+                           0003EC  1106 	C$general.c$134$3_1$194	= .
+                                   1107 	.globl	C$general.c$134$3_1$194
+                                   1108 ;src/general.c:134: for(uint8_t i = 0; i < displayLength; i++) {
+      0003EC F8 0E            [12] 1109 	ldhl	sp,	#14
+      0003EE 36 00            [12] 1110 	ld	(hl), #0x00
+      0003F0                       1111 00111$:
+      0003F0 F8 0E            [12] 1112 	ldhl	sp,	#14
+      0003F2 7E               [ 8] 1113 	ld	a, (hl)
+      0003F3 90               [ 4] 1114 	sub	a, b
+      0003F4 30 67            [12] 1115 	jr	NC, 00113$
+                           0003F6  1116 	C$general.c$135$3_1$194	= .
+                                   1117 	.globl	C$general.c$135$3_1$194
+                                   1118 ;src/general.c:135: uint8_t spriteIndex = buffer[i] - '0';
+      0003F6 E5               [16] 1119 	push	hl
+      0003F7 21 02 00         [12] 1120 	ld	hl, #2
+      0003FA 39               [ 8] 1121 	add	hl, sp
+      0003FB 5D               [ 4] 1122 	ld	e, l
+      0003FC 54               [ 4] 1123 	ld	d, h
+      0003FD E1               [12] 1124 	pop	hl
+      0003FE F8 0E            [12] 1125 	ldhl	sp,	#14
+      000400 6E               [ 8] 1126 	ld	l, (hl)
+      000401 26 00            [ 8] 1127 	ld	h, #0x00
+      000403 19               [ 8] 1128 	add	hl, de
+      000404 5D               [ 4] 1129 	ld	e, l
+      000405 54               [ 4] 1130 	ld	d, h
+      000406 1A               [ 8] 1131 	ld	a, (de)
+      000407 C6 D0            [ 8] 1132 	add	a, #0xd0
+      000409 5F               [ 4] 1133 	ld	e, a
+                           00040A  1134 	C$general.c$136$3_1$194	= .
+                                   1135 	.globl	C$general.c$136$3_1$194
+                                   1136 ;src/general.c:136: uint8_t spritePos = tileoffset + digits - displayLength + i;
+      00040A F8 13            [12] 1137 	ldhl	sp,	#19
+      00040C 2A               [ 8] 1138 	ld	a, (hl+)
+      00040D 86               [ 8] 1139 	add	a, (hl)
+      00040E 48               [ 4] 1140 	ld	c, b
+      00040F 91               [ 4] 1141 	sub	a, c
+      000410 F8 0E            [12] 1142 	ldhl	sp,	#14
+      000412 4E               [ 8] 1143 	ld	c, (hl)
+      000413 81               [ 4] 1144 	add	a, c
+      000414 4F               [ 4] 1145 	ld	c, a
+                           000415  1146 	C$general.c$137$3_1$194	= .
+                                   1147 	.globl	C$general.c$137$3_1$194
+                                   1148 ;src/general.c:137: set_sprite_data(spritePos, 1, &font[spriteIndex * 16]); // Assuming 'font' is defined elsewhere
+      000415 26 00            [ 8] 1149 	ld	h, #0x00
+                                   1150 ;	spillPairReg hl
+                                   1151 ;	spillPairReg hl
+      000417 6B               [ 4] 1152 	ld	l, e
+      000418 29               [ 8] 1153 	add	hl, hl
+      000419 29               [ 8] 1154 	add	hl, hl
+      00041A 29               [ 8] 1155 	add	hl, hl
+      00041B 29               [ 8] 1156 	add	hl, hl
+      00041C 11r00r00         [12] 1157 	ld	de, #_font
+      00041F 19               [ 8] 1158 	add	hl, de
+      000420 E5               [16] 1159 	push	hl
+      000421 3E 01            [ 8] 1160 	ld	a, #0x01
+      000423 F5               [16] 1161 	push	af
+      000424 33               [ 8] 1162 	inc	sp
+      000425 79               [ 4] 1163 	ld	a, c
+      000426 F5               [16] 1164 	push	af
+      000427 33               [ 8] 1165 	inc	sp
+      000428 CDr00r00         [24] 1166 	call	_set_sprite_data
+      00042B E8 04            [16] 1167 	add	sp, #4
+                                   1168 ;/usr/local/opt/gbdk/include/gb/gb.h:1804: shadow_OAM[nb].tile=tile;
+      00042D 69               [ 4] 1169 	ld	l, c
+                                   1170 ;	spillPairReg hl
+                                   1171 ;	spillPairReg hl
+      00042E 26 00            [ 8] 1172 	ld	h, #0x00
+                                   1173 ;	spillPairReg hl
+                                   1174 ;	spillPairReg hl
+      000430 29               [ 8] 1175 	add	hl, hl
+      000431 29               [ 8] 1176 	add	hl, hl
+      000432 5D               [ 4] 1177 	ld	e, l
+      000433 54               [ 4] 1178 	ld	d, h
+      000434 21r01r00         [12] 1179 	ld	hl,#_shadow_OAM + 1
+      000437 19               [ 8] 1180 	add	hl,de
+      000438 23               [ 8] 1181 	inc	hl
+      000439 71               [ 8] 1182 	ld	(hl), c
+                           00043A  1183 	C$general.c$139$2_1$189	= .
+                                   1184 	.globl	C$general.c$139$2_1$189
+                                   1185 ;src/general.c:139: move_sprite(spritePos, startX + (fontspacing * i), y);
+      00043A C5               [16] 1186 	push	bc
+      00043B D5               [16] 1187 	push	de
+      00043C F8 12            [12] 1188 	ldhl	sp,	#18
+      00043E 5E               [ 8] 1189 	ld	e, (hl)
+      00043F F8 19            [12] 1190 	ldhl	sp,	#25
+      000441 7E               [ 8] 1191 	ld	a, (hl)
+      000442 CDr00r00         [24] 1192 	call	__muluschar
+      000445 79               [ 4] 1193 	ld	a, c
+      000446 D1               [12] 1194 	pop	de
+      000447 C1               [12] 1195 	pop	bc
+      000448 F8 06            [12] 1196 	ldhl	sp,	#6
+      00044A 4E               [ 8] 1197 	ld	c, (hl)
+      00044B 81               [ 4] 1198 	add	a, c
+      00044C 4F               [ 4] 1199 	ld	c, a
+                                   1200 ;/usr/local/opt/gbdk/include/gb/gb.h:1877: OAM_item_t * itm = &shadow_OAM[nb];
+      00044D 21r00r00         [12] 1201 	ld	hl, #_shadow_OAM
+      000450 19               [ 8] 1202 	add	hl, de
+      000451 5D               [ 4] 1203 	ld	e, l
+      000452 54               [ 4] 1204 	ld	d, h
+                                   1205 ;/usr/local/opt/gbdk/include/gb/gb.h:1878: itm->y=y, itm->x=x;
+      000453 F8 0D            [12] 1206 	ldhl	sp,	#13
+                           000455  1207 	C$general.c$134$2_1$193	= .
+                                   1208 	.globl	C$general.c$134$2_1$193
+                                   1209 ;src/general.c:134: for(uint8_t i = 0; i < displayLength; i++) {
+      000455 2A               [ 8] 1210 	ld	a, (hl+)
+      000456 12               [ 8] 1211 	ld	(de), a
+      000457 13               [ 8] 1212 	inc	de
+      000458 79               [ 4] 1213 	ld	a, c
+      000459 12               [ 8] 1214 	ld	(de), a
+      00045A 34               [12] 1215 	inc	(hl)
+      00045B 18 93            [12] 1216 	jr	00111$
+      00045D                       1217 00113$:
+                           00045D  1218 	C$general.c$142$2_1$189	= .
+                                   1219 	.globl	C$general.c$142$2_1$189
+                                   1220 ;src/general.c:142: }
+      00045D E8 0F            [16] 1221 	add	sp, #15
+      00045F E1               [12] 1222 	pop	hl
+      000460 E8 05            [16] 1223 	add	sp, #5
+      000462 E9               [ 4] 1224 	jp	(hl)
+                           000463  1225 Fgeneral$__str_0$0_0$0 == .
+      000463                       1226 ___str_0:
+      000463 25 75                 1227 	.ascii "%u"
+      000465 00                    1228 	.db 0x00
+                                   1229 	.area _CODE
+                                   1230 	.area _INITIALIZER
+                                   1231 	.area _CABS (ABS)

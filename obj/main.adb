@@ -123,9 +123,9 @@ S:Lmain.move_metasprite_hvflip$metasprite$1_0$154({2}DG,STmetasprite_t:S),B,1,-3
 S:Lmain.hide_metasprite$base_sprite$1_0$156({1}SC:U),B,1,-1
 S:Lmain.hide_metasprite$metasprite$1_0$156({2}DG,STmetasprite_t:S),B,1,-3
 F:G$main$0_0$0({2}DF,SV:S),C,0,0,0,0,0
-S:Lmain.main$saved_bank$1_1$228({1}SC:U),R,0,0,[]
+S:Lmain.main$saved_bank$1_1$229({1}SC:U),R,0,0,[]
 T:Fmain$metasprite_t[({0}S:S$dy$0_0$0({1}SC:S),Z,0,0)({1}S:S$dx$0_0$0({1}SC:S),Z,0,0)({2}S:S$dtile$0_0$0({1}SC:U),Z,0,0)({3}S:S$props$0_0$0({1}SC:U),Z,0,0)]
-T:Fmain$Material[({0}S:S$name$0_0$0({2}DG,SC:S),Z,0,0)({2}S:S$tile_number$0_0$0({1}SC:U),Z,0,0)({3}S:S$ore_resistance$0_0$0({1}SC:U),Z,0,0)({4}S:S$weight$0_0$0({1}SC:U),Z,0,0)({5}S:S$value$0_0$0({2}SI:U),Z,0,0)({7}S:S$inventory$0_0$0({1}SC:U),Z,0,0)]
+T:Fmain$Material[({0}S:S$name$0_0$0({2}DG,SC:S),Z,0,0)({2}S:S$tile_number$0_0$0({1}SC:U),Z,0,0)({3}S:S$ore_resistance$0_0$0({1}SC:U),Z,0,0)({4}S:S$weight$0_0$0({1}SC:U),Z,0,0)({5}S:S$value$0_0$0({2}SI:U),Z,0,0)({7}S:S$inventory$0_0$0({1}SC:U),Z,0,0)({8}S:S$color_palette$0_0$0({1}SC:U),Z,0,0)]
 T:Fmain$player_attributes[({0}S:S$upgrade_name$0_0$0({12}DA6d,DG,SC:S),Z,0,0)({12}S:S$attribute_name$0_0$0({2}DG,SC:S),Z,0,0)({14}S:S$attribute_unit$0_0$0({2}DG,SC:S),Z,0,0)({16}S:S$current_value$0_0$0({2}SI:S),Z,0,0)({18}S:S$max_value$0_0$0({2}SI:S),Z,0,0)({20}S:S$upgrade_level$0_0$0({1}SC:U),Z,0,0)({21}S:S$upgrade_value$0_0$0({12}DA6d,SI:S),Z,0,0)({33}S:S$upgrade_cost$0_0$0({12}DA6d,SI:S),Z,0,0)({45}S:S$color_palette$0_0$0({12}DA6d,DG,SI:U),Z,0,0)]
 T:Fmain$__00000000[({0}S:S$l$0_0$0({1}SC:U),Z,0,0)({1}S:S$h$0_0$0({1}SC:U),Z,0,0)]
 T:Fmain$__00000001[({0}S:S$l$0_0$0({1}SC:U),Z,0,0)({1}S:S$h$0_0$0({1}SC:U),Z,0,0)]
@@ -209,6 +209,7 @@ S:G$next_tile_down$0_0$0({1}SC:U),E,0,0
 S:G$next_tile_left$0_0$0({1}SC:U),E,0,0
 S:G$next_tile_right$0_0$0({1}SC:U),E,0,0
 S:G$shop_selection$0_0$0({1}SC:U),E,0,0
+S:G$palette_sky$0_0$0({8}DA4d,SI:U),E,0,0
 S:G$P1_REG$0_0$0({1}SC:U),I,0,0
 S:G$SB_REG$0_0$0({1}SC:U),I,0,0
 S:G$SC_REG$0_0$0({1}SC:U),I,0,0
@@ -398,6 +399,7 @@ S:G$randw$0_0$0({2}DF,SI:U),C,0,0
 S:G$initarand$0_0$0({2}DF,SV:S),C,0,0
 S:G$arand$0_0$0({2}DF,SC:U),C,0,0
 S:G$shuffle$0_0$0({2}DF,SV:S),C,0,0
+S:G$change_background_color$0_0$0({2}DF,SV:S),C,0,0
 S:G$set_4bkg_tiles$0_0$0({2}DF,SV:S),C,0,0
 S:G$spawn_bkg_row$0_0$0({2}DF,SV:S),C,0,0
 S:G$clear_4bkg_tiles$0_0$0({2}DF,SV:S),C,0,0
@@ -455,6 +457,6 @@ S:G$init_attributes$0_0$0({2}DF,SV:S),C,0,0
 S:G$sgb_check$0_0$0({2}DF,SC:U),C,0,0
 S:G$sgb_transfer$0_0$0({2}DF,SV:S),C,0,0
 S:G$main$0_0$0({2}DF,SV:S),C,0,0
-S:G$init_shop$3_1$230({2}DF,SI:S),C,0,0
-S:G$init_shop_tiles_palettes$3_1$230({2}DF,SI:S),C,0,0
-S:G$shop_menu_loop$4_1$232({2}DF,SI:S),C,0,0
+S:G$init_shop$3_1$231({2}DF,SI:S),C,0,0
+S:G$init_shop_tiles_palettes$3_1$231({2}DF,SI:S),C,0,0
+S:G$shop_menu_loop$4_1$233({2}DF,SI:S),C,0,0

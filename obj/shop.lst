@@ -138,8 +138,8 @@
       00000A E8 04            [16]  138 	add	sp, #4
                            00000C   139 	C$shop.c$71$1_0$231	= .
                                     140 	.globl	C$shop.c$71$1_0$231
-                                    141 ;src/shop.c:71: set_sprite_palette(1, 1, palette_grey);
-      00000C 11r00r00         [12]  142 	ld	de, #_palette_grey
+                                    141 ;src/shop.c:71: set_sprite_palette(1, 1, palette_light_grey);
+      00000C 11r00r00         [12]  142 	ld	de, #_palette_light_grey
       00000F D5               [16]  143 	push	de
       000010 21 01 01         [12]  144 	ld	hl, #0x101
       000013 E5               [16]  145 	push	hl
@@ -178,8 +178,8 @@
       000040 E8 04            [16]  178 	add	sp, #4
                            000042   179 	C$shop.c$77$1_0$231	= .
                                     180 	.globl	C$shop.c$77$1_0$231
-                                    181 ;src/shop.c:77: set_bkg_palette(1, 1, palette_grey);
-      000042 11r00r00         [12]  182 	ld	de, #_palette_grey
+                                    181 ;src/shop.c:77: set_bkg_palette(1, 1, palette_light_grey);
+      000042 11r00r00         [12]  182 	ld	de, #_palette_light_grey
       000045 D5               [16]  183 	push	de
       000046 21 01 01         [12]  184 	ld	hl, #0x101
       000049 E5               [16]  185 	push	hl
@@ -205,8 +205,8 @@
       000067 E8 04            [16]  205 	add	sp, #4
                            000069   206 	C$shop.c$80$1_0$231	= .
                                     207 	.globl	C$shop.c$80$1_0$231
-                                    208 ;src/shop.c:80: set_bkg_palette(4, 1, palette_orange);
-      000069 11r00r00         [12]  209 	ld	de, #_palette_orange
+                                    208 ;src/shop.c:80: set_bkg_palette(4, 1, palette_copper);
+      000069 11r00r00         [12]  209 	ld	de, #_palette_copper
       00006C D5               [16]  210 	push	de
       00006D 21 04 01         [12]  211 	ld	hl, #0x104
       000070 E5               [16]  212 	push	hl

@@ -7,6 +7,7 @@
 BANKREF_EXTERN(bank_map)
 
 void shuffle(uint8_t array[4]);
+void change_background_color(void);
 void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c);
 void spawn_bkg_row(void);
 void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y);

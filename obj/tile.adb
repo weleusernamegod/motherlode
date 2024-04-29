@@ -344,4 +344,4 @@ S:G$move_metasprite_flipxy$0_0$0({2}DF,SC:U),C,0,3
 S:G$move_metasprite_hvflip$0_0$0({2}DF,SC:U),C,0,3
 S:G$hide_metasprite$0_0$0({2}DF,SV:S),C,0,3
 S:G$__func_tile$0_0$0({2}DF,SV:S),C,0,0
-S:G$tile_tiles$0_0$0({512}DA512d,SC:U),D,0,0
+S:G$tile_tiles$0_0$0({544}DA544d,SC:U),D,0,0

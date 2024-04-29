@@ -10,12 +10,12 @@
 #define rover_TILE_W 8
 #define rover_TILE_H 8
 #define rover_WIDTH 16
-#define rover_HEIGHT 64
-#define rover_TILE_COUNT 16
+#define rover_HEIGHT 104
+#define rover_TILE_COUNT 26
 
 BANKREF_EXTERN(rover)
 
-extern const uint8_t rover_tiles[256];
+extern const uint8_t rover_tiles[416];
 
 
 #endif

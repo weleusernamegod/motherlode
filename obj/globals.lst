@@ -51,132 +51,183 @@
                                      51 ; ram data
                                      52 ;--------------------------------------------------------
                                      53 	.area _DATA
-      000000                         54 _saved_bank::
-      000000                         55 	.ds 1
-      000001                         56 _prev_depth::
-      000001                         57 	.ds 1
-      000002                         58 _prev_width::
-      000002                         59 	.ds 1
-      000003                         60 _depth_pixel::
-      000003                         61 	.ds 2
-      000005                         62 _width_pixel::
-      000005                         63 	.ds 2
-      000007                         64 _scroll_x::
-      000007                         65 	.ds 2
-      000009                         66 _scroll_y::
-      000009                         67 	.ds 2
-      00000B                         68 _ore_resistance::
-      00000B                         69 	.ds 2
-      00000D                         70 _move_x_per_frame::
-      00000D                         71 	.ds 2
-      00000F                         72 _move_y_per_frame::
-      00000F                         73 	.ds 2
-      000011                         74 _scroll_x_per_frame::
-      000011                         75 	.ds 2
-      000013                         76 _scroll_y_per_frame::
-      000013                         77 	.ds 2
-      000015                         78 _direction_now::
-      000015                         79 	.ds 1
-      000016                         80 _direction_prev::
-      000016                         81 	.ds 1
-      000017                         82 _is_drilling::
-      000017                         83 	.ds 1
-      000018                         84 _buttons::
-      000018                         85 	.ds 1
-      000019                         86 _next_tile::
-      000019                         87 	.ds 1
-      00001A                         88 _next_tile_up::
-      00001A                         89 	.ds 1
-      00001B                         90 _next_tile_down::
-      00001B                         91 	.ds 1
-      00001C                         92 _next_tile_left::
-      00001C                         93 	.ds 1
-      00001D                         94 _next_tile_right::
-      00001D                         95 	.ds 1
-                                     96 ;--------------------------------------------------------
-                                     97 ; ram data
-                                     98 ;--------------------------------------------------------
-                                     99 	.area _INITIALIZED
-      000000                        100 _frame_counter::
-      000000                        101 	.ds 1
-      000001                        102 _update_menu::
-      000001                        103 	.ds 1
-      000002                        104 _left_shop_area::
-      000002                        105 	.ds 1
-      000003                        106 _left_sell_area::
-      000003                        107 	.ds 1
-      000004                        108 _player_alive::
-      000004                        109 	.ds 1
-      000005                        110 _currentGameState::
-      000005                        111 	.ds 1
-      000006                        112 _depth::
-      000006                        113 	.ds 1
-      000007                        114 _width::
-      000007                        115 	.ds 1
-      000008                        116 _depth_offset::
-      000008                        117 	.ds 1
-      000009                        118 _width_offset::
-      000009                        119 	.ds 1
-      00000A                        120 _animation_frames_left::
-      00000A                        121 	.ds 1
-      00000B                        122 _velocity::
-      00000B                        123 	.ds 1
-      00000C                        124 _base_drilltime::
-      00000C                        125 	.ds 1
-      00000D                        126 _tile_mined::
-      00000D                        127 	.ds 1
-      00000E                        128 _prev_buttons::
-      00000E                        129 	.ds 1
-                                    130 ;--------------------------------------------------------
-                                    131 ; absolute external ram data
-                                    132 ;--------------------------------------------------------
-                                    133 	.area _DABS (ABS)
-                                    134 ;--------------------------------------------------------
-                                    135 ; global & static initialisations
-                                    136 ;--------------------------------------------------------
-                                    137 	.area _HOME
-                                    138 	.area _GSINIT
-                                    139 	.area _GSFINAL
-                                    140 	.area _GSINIT
-                                    141 ;--------------------------------------------------------
-                                    142 ; Home
-                                    143 ;--------------------------------------------------------
-                                    144 	.area _HOME
-                                    145 	.area _HOME
-                                    146 ;--------------------------------------------------------
-                                    147 ; code
-                                    148 ;--------------------------------------------------------
-                                    149 	.area _CODE
-                                    150 	.area _CODE
-                                    151 	.area _INITIALIZER
-      000000                        152 __xinit__frame_counter:
-      000000 00                     153 	.db #0x00	; 0
-      000001                        154 __xinit__update_menu:
-      000001 01                     155 	.db #0x01	;  1
-      000002                        156 __xinit__left_shop_area:
-      000002 01                     157 	.db #0x01	;  1
-      000003                        158 __xinit__left_sell_area:
-      000003 01                     159 	.db #0x01	;  1
-      000004                        160 __xinit__player_alive:
-      000004 01                     161 	.db #0x01	;  1
-      000005                        162 __xinit__currentGameState:
-      000005 03                     163 	.db #0x03	; 3
-      000006                        164 __xinit__depth:
-      000006 02                     165 	.db #0x02	; 2
-      000007                        166 __xinit__width:
-      000007 06                     167 	.db #0x06	; 6
-      000008                        168 __xinit__depth_offset:
-      000008 00                     169 	.db #0x00	; 0
-      000009                        170 __xinit__width_offset:
-      000009 00                     171 	.db #0x00	; 0
-      00000A                        172 __xinit__animation_frames_left:
-      00000A 00                     173 	.db #0x00	; 0
-      00000B                        174 __xinit__velocity:
-      00000B 00                     175 	.db #0x00	;  0
-      00000C                        176 __xinit__base_drilltime:
-      00000C 10                     177 	.db #0x10	; 16
-      00000D                        178 __xinit__tile_mined:
-      00000D 00                     179 	.db #0x00	;  0
-      00000E                        180 __xinit__prev_buttons:
-      00000E 00                     181 	.db #0x00	; 0
-                                    182 	.area _CABS (ABS)
+                           000000    54 G$saved_bank$0_0$0==.
+      000000                         55 _saved_bank::
+      000000                         56 	.ds 1
+                           000001    57 G$prev_depth$0_0$0==.
+      000001                         58 _prev_depth::
+      000001                         59 	.ds 1
+                           000002    60 G$prev_width$0_0$0==.
+      000002                         61 _prev_width::
+      000002                         62 	.ds 1
+                           000003    63 G$depth_pixel$0_0$0==.
+      000003                         64 _depth_pixel::
+      000003                         65 	.ds 2
+                           000005    66 G$width_pixel$0_0$0==.
+      000005                         67 _width_pixel::
+      000005                         68 	.ds 2
+                           000007    69 G$scroll_x$0_0$0==.
+      000007                         70 _scroll_x::
+      000007                         71 	.ds 2
+                           000009    72 G$scroll_y$0_0$0==.
+      000009                         73 _scroll_y::
+      000009                         74 	.ds 2
+                           00000B    75 G$ore_resistance$0_0$0==.
+      00000B                         76 _ore_resistance::
+      00000B                         77 	.ds 2
+                           00000D    78 G$move_x_per_frame$0_0$0==.
+      00000D                         79 _move_x_per_frame::
+      00000D                         80 	.ds 2
+                           00000F    81 G$move_y_per_frame$0_0$0==.
+      00000F                         82 _move_y_per_frame::
+      00000F                         83 	.ds 2
+                           000011    84 G$scroll_x_per_frame$0_0$0==.
+      000011                         85 _scroll_x_per_frame::
+      000011                         86 	.ds 2
+                           000013    87 G$scroll_y_per_frame$0_0$0==.
+      000013                         88 _scroll_y_per_frame::
+      000013                         89 	.ds 2
+                           000015    90 G$direction_now$0_0$0==.
+      000015                         91 _direction_now::
+      000015                         92 	.ds 1
+                           000016    93 G$direction_prev$0_0$0==.
+      000016                         94 _direction_prev::
+      000016                         95 	.ds 1
+                           000017    96 G$is_drilling$0_0$0==.
+      000017                         97 _is_drilling::
+      000017                         98 	.ds 1
+                           000018    99 G$buttons$0_0$0==.
+      000018                        100 _buttons::
+      000018                        101 	.ds 1
+                           000019   102 G$next_tile$0_0$0==.
+      000019                        103 _next_tile::
+      000019                        104 	.ds 1
+                           00001A   105 G$next_tile_up$0_0$0==.
+      00001A                        106 _next_tile_up::
+      00001A                        107 	.ds 1
+                           00001B   108 G$next_tile_down$0_0$0==.
+      00001B                        109 _next_tile_down::
+      00001B                        110 	.ds 1
+                           00001C   111 G$next_tile_left$0_0$0==.
+      00001C                        112 _next_tile_left::
+      00001C                        113 	.ds 1
+                           00001D   114 G$next_tile_right$0_0$0==.
+      00001D                        115 _next_tile_right::
+      00001D                        116 	.ds 1
+                                    117 ;--------------------------------------------------------
+                                    118 ; ram data
+                                    119 ;--------------------------------------------------------
+                                    120 	.area _INITIALIZED
+                           000000   121 G$frame_counter$0_0$0==.
+      000000                        122 _frame_counter::
+      000000                        123 	.ds 1
+                           000001   124 G$update_menu$0_0$0==.
+      000001                        125 _update_menu::
+      000001                        126 	.ds 1
+                           000002   127 G$left_shop_area$0_0$0==.
+      000002                        128 _left_shop_area::
+      000002                        129 	.ds 1
+                           000003   130 G$left_sell_area$0_0$0==.
+      000003                        131 _left_sell_area::
+      000003                        132 	.ds 1
+                           000004   133 G$player_alive$0_0$0==.
+      000004                        134 _player_alive::
+      000004                        135 	.ds 1
+                           000005   136 G$currentGameState$0_0$0==.
+      000005                        137 _currentGameState::
+      000005                        138 	.ds 1
+                           000006   139 G$depth$0_0$0==.
+      000006                        140 _depth::
+      000006                        141 	.ds 1
+                           000007   142 G$width$0_0$0==.
+      000007                        143 _width::
+      000007                        144 	.ds 1
+                           000008   145 G$depth_offset$0_0$0==.
+      000008                        146 _depth_offset::
+      000008                        147 	.ds 1
+                           000009   148 G$width_offset$0_0$0==.
+      000009                        149 _width_offset::
+      000009                        150 	.ds 1
+                           00000A   151 G$animation_frames_left$0_0$0==.
+      00000A                        152 _animation_frames_left::
+      00000A                        153 	.ds 1
+                           00000B   154 G$velocity$0_0$0==.
+      00000B                        155 _velocity::
+      00000B                        156 	.ds 1
+                           00000C   157 G$base_drilltime$0_0$0==.
+      00000C                        158 _base_drilltime::
+      00000C                        159 	.ds 1
+                           00000D   160 G$tile_mined$0_0$0==.
+      00000D                        161 _tile_mined::
+      00000D                        162 	.ds 1
+                           00000E   163 G$prev_buttons$0_0$0==.
+      00000E                        164 _prev_buttons::
+      00000E                        165 	.ds 1
+                                    166 ;--------------------------------------------------------
+                                    167 ; absolute external ram data
+                                    168 ;--------------------------------------------------------
+                                    169 	.area _DABS (ABS)
+                                    170 ;--------------------------------------------------------
+                                    171 ; global & static initialisations
+                                    172 ;--------------------------------------------------------
+                                    173 	.area _HOME
+                                    174 	.area _GSINIT
+                                    175 	.area _GSFINAL
+                                    176 	.area _GSINIT
+                                    177 ;--------------------------------------------------------
+                                    178 ; Home
+                                    179 ;--------------------------------------------------------
+                                    180 	.area _HOME
+                                    181 	.area _HOME
+                                    182 ;--------------------------------------------------------
+                                    183 ; code
+                                    184 ;--------------------------------------------------------
+                                    185 	.area _CODE
+                                    186 	.area _CODE
+                                    187 	.area _INITIALIZER
+                           000000   188 Fglobals$__xinit_frame_counter$0_0$0 == .
+      000000                        189 __xinit__frame_counter:
+      000000 00                     190 	.db #0x00	; 0
+                           000001   191 Fglobals$__xinit_update_menu$0_0$0 == .
+      000001                        192 __xinit__update_menu:
+      000001 01                     193 	.db #0x01	;  1
+                           000002   194 Fglobals$__xinit_left_shop_area$0_0$0 == .
+      000002                        195 __xinit__left_shop_area:
+      000002 01                     196 	.db #0x01	;  1
+                           000003   197 Fglobals$__xinit_left_sell_area$0_0$0 == .
+      000003                        198 __xinit__left_sell_area:
+      000003 01                     199 	.db #0x01	;  1
+                           000004   200 Fglobals$__xinit_player_alive$0_0$0 == .
+      000004                        201 __xinit__player_alive:
+      000004 01                     202 	.db #0x01	;  1
+                           000005   203 Fglobals$__xinit_currentGameState$0_0$0 == .
+      000005                        204 __xinit__currentGameState:
+      000005 03                     205 	.db #0x03	; 3
+                           000006   206 Fglobals$__xinit_depth$0_0$0 == .
+      000006                        207 __xinit__depth:
+      000006 02                     208 	.db #0x02	; 2
+                           000007   209 Fglobals$__xinit_width$0_0$0 == .
+      000007                        210 __xinit__width:
+      000007 06                     211 	.db #0x06	; 6
+                           000008   212 Fglobals$__xinit_depth_offset$0_0$0 == .
+      000008                        213 __xinit__depth_offset:
+      000008 00                     214 	.db #0x00	; 0
+                           000009   215 Fglobals$__xinit_width_offset$0_0$0 == .
+      000009                        216 __xinit__width_offset:
+      000009 00                     217 	.db #0x00	; 0
+                           00000A   218 Fglobals$__xinit_animation_frames_left$0_0$0 == .
+      00000A                        219 __xinit__animation_frames_left:
+      00000A 00                     220 	.db #0x00	; 0
+                           00000B   221 Fglobals$__xinit_velocity$0_0$0 == .
+      00000B                        222 __xinit__velocity:
+      00000B 00                     223 	.db #0x00	;  0
+                           00000C   224 Fglobals$__xinit_base_drilltime$0_0$0 == .
+      00000C                        225 __xinit__base_drilltime:
+      00000C 10                     226 	.db #0x10	; 16
+                           00000D   227 Fglobals$__xinit_tile_mined$0_0$0 == .
+      00000D                        228 __xinit__tile_mined:
+      00000D 00                     229 	.db #0x00	;  0
+                           00000E   230 Fglobals$__xinit_prev_buttons$0_0$0 == .
+      00000E                        231 __xinit__prev_buttons:
+      00000E 00                     232 	.db #0x00	; 0
+                                    233 	.area _CABS (ABS)

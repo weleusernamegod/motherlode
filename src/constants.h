@@ -23,17 +23,27 @@ typedef int16_t sint16;
 #define STATION_SELL_X 10
 #define STATION_SELL_Y 5
 
+// color palettes
+
+#define PALETTE_DEFAULT 0
+#define PALETTE_GRAS 1
+#define PALETTE_STONE 2
+#define PALETTE_IRON 3
+#define PALETTE_COPPER 4
+
 // game
 #define ROWS 96
 #define COLS 16
 
+
+#define EARTH_START 5 // at that level does the digging start
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen, to account for the nav/window element
 
-#define TILESTART 0x5C
-#define NUMSTART 0x10
-#define LETTERSTART 0x21
-#define SLETTERSTART 0x41
+#define TILESTART 92
+#define NUMSTART 16
+#define LETTERSTART 33
+#define SLETTERSTART 65
 #define CHARSTART 1
 #define NUMTILESTART 17
 #define NAVSTART 128

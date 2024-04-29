@@ -1,5 +1,5 @@
 XL3
-H 9 areas 2 global symbols
+H 9 areas 4 global symbols
 M font
 O -msm83
 S .__.ABS. Def000000
@@ -7,11 +7,13 @@ A _CODE size 0 flags 0 addr 0
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size A0 flags 0 addr 0
 S _font Def000000
+S G$font$0_0$0 Def000000
 A _DABS size 0 flags 8 addr 0
 A _HOME size 0 flags 0 addr 0
 A _GSINIT size 0 flags 0 addr 0
 A _GSFINAL size 0 flags 0 addr 0
 A _INITIALIZER size A0 flags 0 addr 0
+S Ffont$__xinit_font$0_0$0 Def000000
 A _CABS size 0 flags 8 addr 0
 T 00 00 00
 R 00 00 02 00

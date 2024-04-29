@@ -97,7 +97,7 @@ void init_attributes(void){
     player.engine.upgrade_name[3] = "V6 3.8 Ltr";
     player.engine.upgrade_name[4] = "V8 5.0 Ltr Turbo";
     player.engine.upgrade_name[5] = "V16 Jaguar";
-    player.engine.color_palette[0] = palette_dark_red;
+    player.engine.color_palette[0] = palette_red;
     player.engine.color_palette[1] = palette_grey;
     player.engine.color_palette[2] = palette_grey;
     player.engine.color_palette[3] = palette_orange;

@@ -27,8 +27,8 @@ void game_loop(void) {
     update_movement();
 
     if (tile_mined == TRUE) {
+        if (depth >= EARTH_START) clear_4bkg_tiles(level_array, width, depth);
         update_inventory();
-        clear_4bkg_tiles(level_array, width, depth);
         calculate_cargo();
         draw_cargo();
         tile_mined = FALSE;
@@ -45,6 +45,7 @@ void game_loop(void) {
     if (prev_depth != depth) {
         spawn_bkg_row();
         draw_depth();
+        change_background_color();
     }
     
     check_enter_buildings();

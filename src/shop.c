@@ -68,16 +68,16 @@ Menu *currentMenu = &main_menu;
 
 void init_shop(void) {
     set_sprite_palette(0, 1, palette_default);
-    set_sprite_palette(1, 1, palette_grey);
+    set_sprite_palette(1, 1, palette_light_grey);
 
     set_win_data(SHOP_FRAME_START, shopframe_TILE_COUNT, shopframe_tiles);
     set_win_tiles(0, 0, 20, 18, shopframe_map);
 
     set_bkg_palette(0, 1, palette_default);
-    set_bkg_palette(1, 1, palette_grey);
+    set_bkg_palette(1, 1, palette_light_grey);
     set_bkg_palette(2, 1, palette_blue);
     set_bkg_palette(3, 1, palette_green);
-    set_bkg_palette(4, 1, palette_orange);
+    set_bkg_palette(4, 1, palette_copper);
     set_bkg_palette(5, 1, palette_purple);
     set_bkg_palette(6, 1, palette_red);
     set_bkg_palette(7, 1, palette_yellow);

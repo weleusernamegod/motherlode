@@ -52,7 +52,6 @@ void init_character(void){
     scroll_y.h = depth_offset * 16;
 }
 
-
 void init_speed(void){
     move_x_per_frame.w = 0;
     move_y_per_frame.w = 0;
@@ -61,7 +60,6 @@ void init_speed(void){
     scroll_x.w = 0;
     scroll_y.w = 0;
 }
-
 
 void check_surroundings(void){
     next_tile_down = level_array[depth + 1][width];
@@ -318,13 +316,13 @@ void update_fuel(void){
     if (frame_counter == 0) {
         player.fuel.current_value --;   // only once every 60 frames
     }
-    if (depth <= 5) player.fuel.current_value = player.fuel.max_value;
+    if (depth <= EARTH_START) player.fuel.current_value = player.fuel.max_value;
 }
 
 void check_enter_buildings(void){
     // Check for entering the shop
     if (depth == STATION_SHOP_Y && width == STATION_SHOP_X && animation_frames_left == 0 && left_shop_area) {
-        currentGameState = GAME_STATE_SHOP_MENU;
+        currentGameState = GAME_STATE_UPGRADE_MENU;
         velocity = 0;
         left_shop_area = FALSE;  // Player enters the shop, set flag to false
     } else if (depth != STATION_SHOP_Y || width != STATION_SHOP_X) {

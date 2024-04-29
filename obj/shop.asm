@@ -138,8 +138,8 @@ _init_shop::
 	add	sp, #4
 	C$shop.c$71$1_0$231	= .
 	.globl	C$shop.c$71$1_0$231
-;src/shop.c:71: set_sprite_palette(1, 1, palette_grey);
-	ld	de, #_palette_grey
+;src/shop.c:71: set_sprite_palette(1, 1, palette_light_grey);
+	ld	de, #_palette_light_grey
 	push	de
 	ld	hl, #0x101
 	push	hl
@@ -178,8 +178,8 @@ _init_shop::
 	add	sp, #4
 	C$shop.c$77$1_0$231	= .
 	.globl	C$shop.c$77$1_0$231
-;src/shop.c:77: set_bkg_palette(1, 1, palette_grey);
-	ld	de, #_palette_grey
+;src/shop.c:77: set_bkg_palette(1, 1, palette_light_grey);
+	ld	de, #_palette_light_grey
 	push	de
 	ld	hl, #0x101
 	push	hl
@@ -205,8 +205,8 @@ _init_shop::
 	add	sp, #4
 	C$shop.c$80$1_0$231	= .
 	.globl	C$shop.c$80$1_0$231
-;src/shop.c:80: set_bkg_palette(4, 1, palette_orange);
-	ld	de, #_palette_orange
+;src/shop.c:80: set_bkg_palette(4, 1, palette_copper);
+	ld	de, #_palette_copper
 	push	de
 	ld	hl, #0x104
 	push	hl

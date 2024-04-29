@@ -13,104 +13,147 @@
                                      13 	.globl _palette_blue
                                      14 	.globl _palette_green
                                      15 	.globl _palette_orange
-                                     16 	.globl _palette_dark_red
-                                     17 	.globl _palette_red
-                                     18 	.globl _palette_button_passive
-                                     19 	.globl _palette_button_active
+                                     16 	.globl _palette_red
+                                     17 	.globl _palette_button_passive
+                                     18 	.globl _palette_button_active
+                                     19 	.globl _palette_light_grey
                                      20 	.globl _palette_grey
-                                     21 	.globl _palette_light_grey
-                                     22 	.globl _palette_default
-                                     23 ;--------------------------------------------------------
-                                     24 ; special function registers
-                                     25 ;--------------------------------------------------------
-                                     26 ;--------------------------------------------------------
-                                     27 ; ram data
-                                     28 ;--------------------------------------------------------
-                                     29 	.area _DATA
+                                     21 	.globl _palette_copper
+                                     22 	.globl _palette_iron
+                                     23 	.globl _palette_rock
+                                     24 	.globl _palette_gras
+                                     25 	.globl _palette_default
+                                     26 	.globl _palette_sky
+                                     27 ;--------------------------------------------------------
+                                     28 ; special function registers
+                                     29 ;--------------------------------------------------------
                                      30 ;--------------------------------------------------------
                                      31 ; ram data
                                      32 ;--------------------------------------------------------
-                                     33 	.area _INITIALIZED
+                                     33 	.area _DATA
                                      34 ;--------------------------------------------------------
-                                     35 ; absolute external ram data
+                                     35 ; ram data
                                      36 ;--------------------------------------------------------
-                                     37 	.area _DABS (ABS)
-                                     38 ;--------------------------------------------------------
-                                     39 ; global & static initialisations
-                                     40 ;--------------------------------------------------------
-                                     41 	.area _HOME
-                                     42 	.area _GSINIT
-                                     43 	.area _GSFINAL
-                                     44 	.area _GSINIT
+                                     37 	.area _INITIALIZED
+                           000000    38 G$palette_sky$0_0$0==.
+      000000                         39 _palette_sky::
+      000000                         40 	.ds 8
+                                     41 ;--------------------------------------------------------
+                                     42 ; absolute external ram data
+                                     43 ;--------------------------------------------------------
+                                     44 	.area _DABS (ABS)
                                      45 ;--------------------------------------------------------
-                                     46 ; Home
+                                     46 ; global & static initialisations
                                      47 ;--------------------------------------------------------
                                      48 	.area _HOME
-                                     49 	.area _HOME
-                                     50 ;--------------------------------------------------------
-                                     51 ; code
+                                     49 	.area _GSINIT
+                                     50 	.area _GSFINAL
+                                     51 	.area _GSINIT
                                      52 ;--------------------------------------------------------
-                                     53 	.area _CODE
-                                     54 	.area _CODE
-      000000                         55 _palette_default:
-      000000 FF 7F                   56 	.dw #0x7fff
-      000002 B5 56                   57 	.dw #0x56b5
-      000004 4A 29                   58 	.dw #0x294a
-      000006 00 00                   59 	.dw #0x0000
-      000008                         60 _palette_light_grey:
-      000008 FF 7F                   61 	.dw #0x7fff
-      00000A 9C 73                   62 	.dw #0x739c
-      00000C 9C 73                   63 	.dw #0x739c
-      00000E 5A 6B                   64 	.dw #0x6b5a
-      000010                         65 _palette_grey:
-      000010 FF 7F                   66 	.dw #0x7fff
-      000012 94 52                   67 	.dw #0x5294
-      000014 10 42                   68 	.dw #0x4210
-      000016 08 21                   69 	.dw #0x2108
-      000018                         70 _palette_button_active:
-      000018 FF 7F                   71 	.dw #0x7fff
-      00001A DE 2A                   72 	.dw #0x2ade
-      00001C 7B 16                   73 	.dw #0x167b
-      00001E FF 6F                   74 	.dw #0x6fff
-      000020                         75 _palette_button_passive:
-      000020 FF 7F                   76 	.dw #0x7fff
-      000022 73 19                   77 	.dw #0x1973
-      000024 EE 10                   78 	.dw #0x10ee
-      000026 00 04                   79 	.dw #0x0400
-      000028                         80 _palette_red:
-      000028 FF 7F                   81 	.dw #0x7fff
-      00002A 94 52                   82 	.dw #0x5294
-      00002C 1A 00                   83 	.dw #0x001a
-      00002E 08 21                   84 	.dw #0x2108
-      000030                         85 _palette_dark_red:
-      000030 FF 7F                   86 	.dw #0x7fff
-      000032 94 52                   87 	.dw #0x5294
-      000034 B4 14                   88 	.dw #0x14b4
-      000036 08 21                   89 	.dw #0x2108
-      000038                         90 _palette_orange:
-      000038 FF 7F                   91 	.dw #0x7fff
-      00003A 94 52                   92 	.dw #0x5294
-      00003C 7F 01                   93 	.dw #0x017f
-      00003E 08 21                   94 	.dw #0x2108
-      000040                         95 _palette_green:
-      000040 FF 7F                   96 	.dw #0x7fff
-      000042 EC 33                   97 	.dw #0x33ec
-      000044 06 1B                   98 	.dw #0x1b06
-      000046 08 21                   99 	.dw #0x2108
-      000048                        100 _palette_blue:
-      000048 FF 7F                  101 	.dw #0x7fff
-      00004A 94 52                  102 	.dw #0x5294
-      00004C 8C 66                  103 	.dw #0x668c
-      00004E 08 21                  104 	.dw #0x2108
-      000050                        105 _palette_yellow:
-      000050 FF 63                  106 	.dw #0x63ff
-      000052 FF 33                  107 	.dw #0x33ff
-      000054 18 1B                  108 	.dw #0x1b18
-      000056 10 02                  109 	.dw #0x0210
-      000058                        110 _palette_purple:
-      000058 1F 7F                  111 	.dw #0x7f1f
-      00005A 98 7D                  112 	.dw #0x7d98
-      00005C D0 60                  113 	.dw #0x60d0
-      00005E 0C 40                  114 	.dw #0x400c
-                                    115 	.area _INITIALIZER
-                                    116 	.area _CABS (ABS)
+                                     53 ; Home
+                                     54 ;--------------------------------------------------------
+                                     55 	.area _HOME
+                                     56 	.area _HOME
+                                     57 ;--------------------------------------------------------
+                                     58 ; code
+                                     59 ;--------------------------------------------------------
+                                     60 	.area _CODE
+                                     61 	.area _CODE
+                           000000    62 G$palette_default$0_0$0 == .
+      000000                         63 _palette_default:
+      000000 FF 7F                   64 	.dw #0x7fff
+      000002 B5 56                   65 	.dw #0x56b5
+      000004 4A 29                   66 	.dw #0x294a
+      000006 00 00                   67 	.dw #0x0000
+                           000008    68 G$palette_gras$0_0$0 == .
+      000008                         69 _palette_gras:
+      000008 73 19                   70 	.dw #0x1973
+      00000A 8C 1E                   71 	.dw #0x1e8c
+      00000C C8 1D                   72 	.dw #0x1dc8
+      00000E E5 10                   73 	.dw #0x10e5
+                           000010    74 G$palette_rock$0_0$0 == .
+      000010                         75 _palette_rock:
+      000010 73 19                   76 	.dw #0x1973
+      000012 E9 14                   77 	.dw #0x14e9
+      000014 F0 3D                   78 	.dw #0x3df0
+      000016 C6 18                   79 	.dw #0x18c6
+                           000018    80 G$palette_iron$0_0$0 == .
+      000018                         81 _palette_iron:
+      000018 73 19                   82 	.dw #0x1973
+      00001A E9 14                   83 	.dw #0x14e9
+      00001C F7 5E                   84 	.dw #0x5ef7
+      00001E 4A 29                   85 	.dw #0x294a
+                           000020    86 G$palette_copper$0_0$0 == .
+      000020                         87 _palette_copper:
+      000020 73 19                   88 	.dw #0x1973
+      000022 E9 14                   89 	.dw #0x14e9
+      000024 D7 19                   90 	.dw #0x19d7
+      000026 93 09                   91 	.dw #0x0993
+                           000028    92 G$palette_grey$0_0$0 == .
+      000028                         93 _palette_grey:
+      000028 FF 7F                   94 	.dw #0x7fff
+      00002A B5 56                   95 	.dw #0x56b5
+      00002C F0 3D                   96 	.dw #0x3df0
+      00002E 4A 29                   97 	.dw #0x294a
+                           000030    98 G$palette_light_grey$0_0$0 == .
+      000030                         99 _palette_light_grey:
+      000030 FF 7F                  100 	.dw #0x7fff
+      000032 9C 73                  101 	.dw #0x739c
+      000034 9C 73                  102 	.dw #0x739c
+      000036 5A 6B                  103 	.dw #0x6b5a
+                           000038   104 G$palette_button_active$0_0$0 == .
+      000038                        105 _palette_button_active:
+      000038 FF 7F                  106 	.dw #0x7fff
+      00003A DE 2A                  107 	.dw #0x2ade
+      00003C 7B 16                  108 	.dw #0x167b
+      00003E FF 6F                  109 	.dw #0x6fff
+                           000040   110 G$palette_button_passive$0_0$0 == .
+      000040                        111 _palette_button_passive:
+      000040 FF 7F                  112 	.dw #0x7fff
+      000042 73 19                  113 	.dw #0x1973
+      000044 EE 10                  114 	.dw #0x10ee
+      000046 00 04                  115 	.dw #0x0400
+                           000048   116 G$palette_red$0_0$0 == .
+      000048                        117 _palette_red:
+      000048 FF 7F                  118 	.dw #0x7fff
+      00004A 9C 73                  119 	.dw #0x739c
+      00004C 7F 01                  120 	.dw #0x017f
+      00004E B4 14                  121 	.dw #0x14b4
+                           000050   122 G$palette_orange$0_0$0 == .
+      000050                        123 _palette_orange:
+      000050 FF 7F                  124 	.dw #0x7fff
+      000052 B5 56                  125 	.dw #0x56b5
+      000054 7F 01                  126 	.dw #0x017f
+      000056 4A 29                  127 	.dw #0x294a
+                           000058   128 G$palette_green$0_0$0 == .
+      000058                        129 _palette_green:
+      000058 FF 7F                  130 	.dw #0x7fff
+      00005A 8C 1E                  131 	.dw #0x1e8c
+      00005C C8 1D                  132 	.dw #0x1dc8
+      00005E E5 10                  133 	.dw #0x10e5
+                           000060   134 G$palette_blue$0_0$0 == .
+      000060                        135 _palette_blue:
+      000060 FF 7F                  136 	.dw #0x7fff
+      000062 9C 73                  137 	.dw #0x739c
+      000064 8C 66                  138 	.dw #0x668c
+      000066 4A 29                  139 	.dw #0x294a
+                           000068   140 G$palette_yellow$0_0$0 == .
+      000068                        141 _palette_yellow:
+      000068 FF 63                  142 	.dw #0x63ff
+      00006A FF 33                  143 	.dw #0x33ff
+      00006C 18 1B                  144 	.dw #0x1b18
+      00006E 10 02                  145 	.dw #0x0210
+                           000070   146 G$palette_purple$0_0$0 == .
+      000070                        147 _palette_purple:
+      000070 1F 7F                  148 	.dw #0x7f1f
+      000072 98 7D                  149 	.dw #0x7d98
+      000074 D0 60                  150 	.dw #0x60d0
+      000076 0C 40                  151 	.dw #0x400c
+                                    152 	.area _INITIALIZER
+                           000000   153 Fpalettes$__xinit_palette_sky$0_0$0 == .
+      000000                        154 __xinit__palette_sky:
+      000000 FF 7F                  155 	.dw #0x7fff
+      000002 B5 56                  156 	.dw #0x56b5
+      000004 4A 29                  157 	.dw #0x294a
+      000006 00 00                  158 	.dw #0x0000
+                                    159 	.area _CABS (ABS)

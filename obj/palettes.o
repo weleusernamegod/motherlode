@@ -1,74 +1,115 @@
 XL3
-H 9 areas D global symbols
+H 9 areas 22 global symbols
 M palettes
 O -msm83
 S .__.ABS. Def000000
-A _CODE size 60 flags 0 addr 0
-S _palette_purple Def000058
-S _palette_yellow Def000050
+A _CODE size 78 flags 0 addr 0
+S G$palette_green$0_0$0 Def000058
+S _palette_purple Def000070
+S G$palette_purple$0_0$0 Def000070
+S _palette_yellow Def000068
+S G$palette_yellow$0_0$0 Def000068
 S _palette_default Def000000
-S _palette_blue Def000048
-S _palette_light_grey Def000008
-S _palette_button_passive Def000020
-S _palette_grey Def000010
-S _palette_button_active Def000018
-S _palette_red Def000028
-S _palette_dark_red Def000030
-S _palette_orange Def000038
-S _palette_green Def000040
+S G$palette_default$0_0$0 Def000000
+S _palette_blue Def000060
+S G$palette_blue$0_0$0 Def000060
+S _palette_gras Def000008
+S _palette_light_grey Def000030
+S _palette_rock Def000010
+S G$palette_gras$0_0$0 Def000008
+S G$palette_light_grey$0_0$0 Def000030
+S G$palette_rock$0_0$0 Def000010
+S _palette_button_passive Def000040
+S _palette_grey Def000028
+S _palette_button_active Def000038
+S _palette_iron Def000018
+S G$palette_button_passive$0_0$0 Def000040
+S G$palette_button_active$0_0$0 Def000038
+S G$palette_grey$0_0$0 Def000028
+S G$palette_iron$0_0$0 Def000018
+S _palette_red Def000048
+S _palette_orange Def000050
+S G$palette_red$0_0$0 Def000048
+S G$palette_orange$0_0$0 Def000050
+S _palette_copper Def000020
+S G$palette_copper$0_0$0 Def000020
+S _palette_green Def000058
 A _DATA size 0 flags 0 addr 0
-A _INITIALIZED size 0 flags 0 addr 0
+A _INITIALIZED size 8 flags 0 addr 0
+S _palette_sky Def000000
+S G$palette_sky$0_0$0 Def000000
 A _DABS size 0 flags 8 addr 0
 A _HOME size 0 flags 0 addr 0
 A _GSINIT size 0 flags 0 addr 0
 A _GSFINAL size 0 flags 0 addr 0
-A _INITIALIZER size 0 flags 0 addr 0
+A _INITIALIZER size 8 flags 0 addr 0
+S Fpalettes$__xinit_palette_sky$0_0$0 Def000000
 A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 02 00
+T 00 00 00
+R 00 00 02 00
 T 00 00 00
 R 00 00 00 00
 T 00 00 00 FF 7F B5 56 4A 29 00 00
 R 00 00 00 00
 T 08 00 00
 R 00 00 00 00
-T 08 00 00 FF 7F 9C 73 9C 73 5A 6B
+T 08 00 00 73 19 8C 1E C8 1D E5 10
 R 00 00 00 00
 T 10 00 00
 R 00 00 00 00
-T 10 00 00 FF 7F 94 52 10 42 08 21
+T 10 00 00 73 19 E9 14 F0 3D C6 18
 R 00 00 00 00
 T 18 00 00
 R 00 00 00 00
-T 18 00 00 FF 7F DE 2A 7B 16 FF 6F
+T 18 00 00 73 19 E9 14 F7 5E 4A 29
 R 00 00 00 00
 T 20 00 00
 R 00 00 00 00
-T 20 00 00 FF 7F 73 19 EE 10 00 04
+T 20 00 00 73 19 E9 14 D7 19 93 09
 R 00 00 00 00
 T 28 00 00
 R 00 00 00 00
-T 28 00 00 FF 7F 94 52 1A 00 08 21
+T 28 00 00 FF 7F B5 56 F0 3D 4A 29
 R 00 00 00 00
 T 30 00 00
 R 00 00 00 00
-T 30 00 00 FF 7F 94 52 B4 14 08 21
+T 30 00 00 FF 7F 9C 73 9C 73 5A 6B
 R 00 00 00 00
 T 38 00 00
 R 00 00 00 00
-T 38 00 00 FF 7F 94 52 7F 01 08 21
+T 38 00 00 FF 7F DE 2A 7B 16 FF 6F
 R 00 00 00 00
 T 40 00 00
 R 00 00 00 00
-T 40 00 00 FF 7F EC 33 06 1B 08 21
+T 40 00 00 FF 7F 73 19 EE 10 00 04
 R 00 00 00 00
 T 48 00 00
 R 00 00 00 00
-T 48 00 00 FF 7F 94 52 8C 66 08 21
+T 48 00 00 FF 7F 9C 73 7F 01 B4 14
 R 00 00 00 00
 T 50 00 00
 R 00 00 00 00
-T 50 00 00 FF 63 FF 33 18 1B 10 02
+T 50 00 00 FF 7F B5 56 7F 01 4A 29
 R 00 00 00 00
 T 58 00 00
 R 00 00 00 00
-T 58 00 00 1F 7F 98 7D D0 60 0C 40
+T 58 00 00 FF 7F 8C 1E C8 1D E5 10
 R 00 00 00 00
+T 60 00 00
+R 00 00 00 00
+T 60 00 00 FF 7F 9C 73 8C 66 4A 29
+R 00 00 00 00
+T 68 00 00
+R 00 00 00 00
+T 68 00 00 FF 63 FF 33 18 1B 10 02
+R 00 00 00 00
+T 70 00 00
+R 00 00 00 00
+T 70 00 00 1F 7F 98 7D D0 60 0C 40
+R 00 00 00 00
+T 00 00 00
+R 00 00 07 00
+T 00 00 00 FF 7F B5 56 4A 29 00 00
+R 00 00 07 00

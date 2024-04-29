@@ -50,108 +50,198 @@
                                      50 ; code
                                      51 ;--------------------------------------------------------
                                      52 	.area _CODE
-                                     53 ;src/interrupt.c:8: void interrupt_LCD(void) {
-                                     54 ;	---------------------------------
-                                     55 ; Function interrupt_LCD
-                                     56 ; ---------------------------------
-      000000                         57 _interrupt_LCD::
-                                     58 ;/usr/local/opt/gbdk/include/gb/gb.h:1656: WX_REG=x, WY_REG=y;
-      000000 3E A7            [ 8]   59 	ld	a, #0xa7
-      000002 E0r00            [12]   60 	ldh	(_WX_REG + 0), a
-      000004 AF               [ 4]   61 	xor	a, a
-      000005 E0r00            [12]   62 	ldh	(_WY_REG + 0), a
-                                     63 ;src/interrupt.c:9: move_win(167, 0);
-                                     64 ;src/interrupt.c:10: }
-      000007 C9               [16]   65 	ret
-                                     66 ;src/interrupt.c:11: void interrupt_VBL_window(void) {
-                                     67 ;	---------------------------------
-                                     68 ; Function interrupt_VBL_window
-                                     69 ; ---------------------------------
-      000008                         70 _interrupt_VBL_window::
-                                     71 ;/usr/local/opt/gbdk/include/gb/gb.h:1656: WX_REG=x, WY_REG=y;
-      000008 3E 07            [ 8]   72 	ld	a, #0x07
-      00000A E0r00            [12]   73 	ldh	(_WX_REG + 0), a
-      00000C AF               [ 4]   74 	xor	a, a
-      00000D E0r00            [12]   75 	ldh	(_WY_REG + 0), a
-                                     76 ;src/interrupt.c:12: move_win(7, 0);
-                                     77 ;src/interrupt.c:13: }
-      00000F C9               [16]   78 	ret
-                                     79 ;src/interrupt.c:15: void interrupt_VBL_framecounter(void) {
-                                     80 ;	---------------------------------
-                                     81 ; Function interrupt_VBL_framecounter
-                                     82 ; ---------------------------------
-      000010                         83 _interrupt_VBL_framecounter::
-                                     84 ;src/interrupt.c:16: frame_counter++;  // Increment the frame counter every VBlank
-      000010 21r00r00         [12]   85 	ld	hl, #_frame_counter
-      000013 34               [12]   86 	inc	(hl)
-      000014 7E               [ 8]   87 	ld	a, (hl)
-                                     88 ;src/interrupt.c:17: if (frame_counter >= 60) frame_counter = 0;
-      000015 7E               [ 8]   89 	ld	a, (hl)
-      000016 D6 3C            [ 8]   90 	sub	a, #0x3c
-      000018 D8               [20]   91 	ret	C
-      000019 36 00            [12]   92 	ld	(hl), #0x00
-                                     93 ;src/interrupt.c:18: }
-      00001B C9               [16]   94 	ret
-                                     95 ;src/interrupt.c:20: void init_framecounter(void) {
-                                     96 ;	---------------------------------
-                                     97 ; Function init_framecounter
-                                     98 ; ---------------------------------
-      00001C                         99 _init_framecounter::
-                                    100 ;src/interrupt.c:21: add_VBL(interrupt_VBL_framecounter);  // Add the VBL interrupt handler
-      00001C 11r10r00         [12]  101 	ld	de, #_interrupt_VBL_framecounter
-      00001F CDr00r00         [24]  102 	call	_add_VBL
-                                    103 ;/usr/local/opt/gbdk/include/gb/gb.h:738: __asm__("ei");
-      000022 FB               [ 4]  104 	ei
-                                    105 ;src/interrupt.c:22: enable_interrupts();  // Enable interrupts globally
-                                    106 ;src/interrupt.c:23: }
-      000023 C9               [16]  107 	ret
-                                    108 ;src/interrupt.c:25: void init_enable_lcd_interrupt(void){
-                                    109 ;	---------------------------------
-                                    110 ; Function init_enable_lcd_interrupt
-                                    111 ; ---------------------------------
-      000024                        112 _init_enable_lcd_interrupt::
-                                    113 ;src/interrupt.c:27: STAT_REG = 0x40;
-      000024 3E 40            [ 8]  114 	ld	a, #0x40
-      000026 E0r00            [12]  115 	ldh	(_STAT_REG + 0), a
-                                    116 ;src/interrupt.c:29: LYC_REG = 16;
-      000028 3E 10            [ 8]  117 	ld	a, #0x10
-      00002A E0r00            [12]  118 	ldh	(_LYC_REG + 0), a
-                                    119 ;/usr/local/opt/gbdk/include/gb/gb.h:754: __asm__("di");
-      00002C F3               [ 4]  120 	di
-                                    121 ;src/interrupt.c:31: add_LCD(interrupt_LCD);
-      00002D 11r00r00         [12]  122 	ld	de, #_interrupt_LCD
-      000030 CDr00r00         [24]  123 	call	_add_LCD
-                                    124 ;src/interrupt.c:32: add_VBL(interrupt_VBL_window);
-      000033 11r08r00         [12]  125 	ld	de, #_interrupt_VBL_window
-      000036 CDr00r00         [24]  126 	call	_add_VBL
-                                    127 ;/usr/local/opt/gbdk/include/gb/gb.h:738: __asm__("ei");
-      000039 FB               [ 4]  128 	ei
-                                    129 ;src/interrupt.c:34: set_interrupts(VBL_IFLAG | LCD_IFLAG);
-      00003A 3E 03            [ 8]  130 	ld	a, #0x03
-                                    131 ;src/interrupt.c:35: }
-      00003C C3r00r00         [16]  132 	jp	_set_interrupts
-                                    133 ;src/interrupt.c:37: void init_disable_lcd_interrupt(void) {
-                                    134 ;	---------------------------------
-                                    135 ; Function init_disable_lcd_interrupt
-                                    136 ; ---------------------------------
-      00003F                        137 _init_disable_lcd_interrupt::
-                                    138 ;/usr/local/opt/gbdk/include/gb/gb.h:754: __asm__("di");
-      00003F F3               [ 4]  139 	di
-                                    140 ;src/interrupt.c:41: remove_LCD(interrupt_LCD);
-      000040 11r00r00         [12]  141 	ld	de, #_interrupt_LCD
-      000043 CDr00r00         [24]  142 	call	_remove_LCD
-                                    143 ;src/interrupt.c:42: remove_VBL(interrupt_VBL_window);
-      000046 11r08r00         [12]  144 	ld	de, #_interrupt_VBL_window
-      000049 CDr00r00         [24]  145 	call	_remove_VBL
-                                    146 ;src/interrupt.c:45: STAT_REG = 0x00; // This sets the STAT_REG to a state where no LCD STAT interrupts are enabled
-      00004C 3E 00            [ 8]  147 	ld	a, #0x00
-      00004E E0r00            [12]  148 	ldh	(_STAT_REG + 0), a
-                                    149 ;/usr/local/opt/gbdk/include/gb/gb.h:738: __asm__("ei");
-      000050 FB               [ 4]  150 	ei
-                                    151 ;src/interrupt.c:47: set_interrupts(VBL_IFLAG | LCD_IFLAG);
-      000051 3E 03            [ 8]  152 	ld	a, #0x03
-                                    153 ;src/interrupt.c:48: }
-      000053 C3r00r00         [16]  154 	jp	_set_interrupts
-                                    155 	.area _CODE
-                                    156 	.area _INITIALIZER
-                                    157 	.area _CABS (ABS)
+                           000000    53 	G$interrupt_LCD$0$0	= .
+                                     54 	.globl	G$interrupt_LCD$0$0
+                           000000    55 	C$interrupt.c$8$0_0$130	= .
+                                     56 	.globl	C$interrupt.c$8$0_0$130
+                                     57 ;src/interrupt.c:8: void interrupt_LCD(void) {
+                                     58 ;	---------------------------------
+                                     59 ; Function interrupt_LCD
+                                     60 ; ---------------------------------
+      000000                         61 _interrupt_LCD::
+                                     62 ;/usr/local/opt/gbdk/include/gb/gb.h:1656: WX_REG=x, WY_REG=y;
+      000000 3E A7            [ 8]   63 	ld	a, #0xa7
+      000002 E0r00            [12]   64 	ldh	(_WX_REG + 0), a
+      000004 AF               [ 4]   65 	xor	a, a
+      000005 E0r00            [12]   66 	ldh	(_WY_REG + 0), a
+                           000007    67 	C$interrupt.c$9$3_0$130	= .
+                                     68 	.globl	C$interrupt.c$9$3_0$130
+                                     69 ;src/interrupt.c:9: move_win(167, 0);
+                           000007    70 	C$interrupt.c$10$3_0$130	= .
+                                     71 	.globl	C$interrupt.c$10$3_0$130
+                                     72 ;src/interrupt.c:10: }
+                           000007    73 	C$interrupt.c$10$3_0$130	= .
+                                     74 	.globl	C$interrupt.c$10$3_0$130
+                           000007    75 	XG$interrupt_LCD$0$0	= .
+                                     76 	.globl	XG$interrupt_LCD$0$0
+      000007 C9               [16]   77 	ret
+                           000008    78 	G$interrupt_VBL_window$0$0	= .
+                                     79 	.globl	G$interrupt_VBL_window$0$0
+                           000008    80 	C$interrupt.c$11$3_0$135	= .
+                                     81 	.globl	C$interrupt.c$11$3_0$135
+                                     82 ;src/interrupt.c:11: void interrupt_VBL_window(void) {
+                                     83 ;	---------------------------------
+                                     84 ; Function interrupt_VBL_window
+                                     85 ; ---------------------------------
+      000008                         86 _interrupt_VBL_window::
+                                     87 ;/usr/local/opt/gbdk/include/gb/gb.h:1656: WX_REG=x, WY_REG=y;
+      000008 3E 07            [ 8]   88 	ld	a, #0x07
+      00000A E0r00            [12]   89 	ldh	(_WX_REG + 0), a
+      00000C AF               [ 4]   90 	xor	a, a
+      00000D E0r00            [12]   91 	ldh	(_WY_REG + 0), a
+                           00000F    92 	C$interrupt.c$12$3_0$135	= .
+                                     93 	.globl	C$interrupt.c$12$3_0$135
+                                     94 ;src/interrupt.c:12: move_win(7, 0);
+                           00000F    95 	C$interrupt.c$13$3_0$135	= .
+                                     96 	.globl	C$interrupt.c$13$3_0$135
+                                     97 ;src/interrupt.c:13: }
+                           00000F    98 	C$interrupt.c$13$3_0$135	= .
+                                     99 	.globl	C$interrupt.c$13$3_0$135
+                           00000F   100 	XG$interrupt_VBL_window$0$0	= .
+                                    101 	.globl	XG$interrupt_VBL_window$0$0
+      00000F C9               [16]  102 	ret
+                           000010   103 	G$interrupt_VBL_framecounter$0$0	= .
+                                    104 	.globl	G$interrupt_VBL_framecounter$0$0
+                           000010   105 	C$interrupt.c$15$3_0$140	= .
+                                    106 	.globl	C$interrupt.c$15$3_0$140
+                                    107 ;src/interrupt.c:15: void interrupt_VBL_framecounter(void) {
+                                    108 ;	---------------------------------
+                                    109 ; Function interrupt_VBL_framecounter
+                                    110 ; ---------------------------------
+      000010                        111 _interrupt_VBL_framecounter::
+                           000010   112 	C$interrupt.c$16$1_0$140	= .
+                                    113 	.globl	C$interrupt.c$16$1_0$140
+                                    114 ;src/interrupt.c:16: frame_counter++;  // Increment the frame counter every VBlank
+      000010 21r00r00         [12]  115 	ld	hl, #_frame_counter
+      000013 34               [12]  116 	inc	(hl)
+      000014 7E               [ 8]  117 	ld	a, (hl)
+                           000015   118 	C$interrupt.c$17$1_0$140	= .
+                                    119 	.globl	C$interrupt.c$17$1_0$140
+                                    120 ;src/interrupt.c:17: if (frame_counter >= 60) frame_counter = 0;
+      000015 7E               [ 8]  121 	ld	a, (hl)
+      000016 D6 3C            [ 8]  122 	sub	a, #0x3c
+      000018 D8               [20]  123 	ret	C
+      000019 36 00            [12]  124 	ld	(hl), #0x00
+                           00001B   125 	C$interrupt.c$18$1_0$140	= .
+                                    126 	.globl	C$interrupt.c$18$1_0$140
+                                    127 ;src/interrupt.c:18: }
+                           00001B   128 	C$interrupt.c$18$1_0$140	= .
+                                    129 	.globl	C$interrupt.c$18$1_0$140
+                           00001B   130 	XG$interrupt_VBL_framecounter$0$0	= .
+                                    131 	.globl	XG$interrupt_VBL_framecounter$0$0
+      00001B C9               [16]  132 	ret
+                           00001C   133 	G$init_framecounter$0$0	= .
+                                    134 	.globl	G$init_framecounter$0$0
+                           00001C   135 	C$interrupt.c$20$1_0$142	= .
+                                    136 	.globl	C$interrupt.c$20$1_0$142
+                                    137 ;src/interrupt.c:20: void init_framecounter(void) {
+                                    138 ;	---------------------------------
+                                    139 ; Function init_framecounter
+                                    140 ; ---------------------------------
+      00001C                        141 _init_framecounter::
+                           00001C   142 	C$interrupt.c$21$1_0$142	= .
+                                    143 	.globl	C$interrupt.c$21$1_0$142
+                                    144 ;src/interrupt.c:21: add_VBL(interrupt_VBL_framecounter);  // Add the VBL interrupt handler
+      00001C 11r10r00         [12]  145 	ld	de, #_interrupt_VBL_framecounter
+      00001F CDr00r00         [24]  146 	call	_add_VBL
+                                    147 ;/usr/local/opt/gbdk/include/gb/gb.h:738: __asm__("ei");
+      000022 FB               [ 4]  148 	ei
+                           000023   149 	C$interrupt.c$22$3_0$142	= .
+                                    150 	.globl	C$interrupt.c$22$3_0$142
+                                    151 ;src/interrupt.c:22: enable_interrupts();  // Enable interrupts globally
+                           000023   152 	C$interrupt.c$23$3_0$142	= .
+                                    153 	.globl	C$interrupt.c$23$3_0$142
+                                    154 ;src/interrupt.c:23: }
+                           000023   155 	C$interrupt.c$23$3_0$142	= .
+                                    156 	.globl	C$interrupt.c$23$3_0$142
+                           000023   157 	XG$init_framecounter$0$0	= .
+                                    158 	.globl	XG$init_framecounter$0$0
+      000023 C9               [16]  159 	ret
+                           000024   160 	G$init_enable_lcd_interrupt$0$0	= .
+                                    161 	.globl	G$init_enable_lcd_interrupt$0$0
+                           000024   162 	C$interrupt.c$25$3_0$147	= .
+                                    163 	.globl	C$interrupt.c$25$3_0$147
+                                    164 ;src/interrupt.c:25: void init_enable_lcd_interrupt(void){
+                                    165 ;	---------------------------------
+                                    166 ; Function init_enable_lcd_interrupt
+                                    167 ; ---------------------------------
+      000024                        168 _init_enable_lcd_interrupt::
+                           000024   169 	C$interrupt.c$27$1_0$147	= .
+                                    170 	.globl	C$interrupt.c$27$1_0$147
+                                    171 ;src/interrupt.c:27: STAT_REG = 0x40;
+      000024 3E 40            [ 8]  172 	ld	a, #0x40
+      000026 E0r00            [12]  173 	ldh	(_STAT_REG + 0), a
+                           000028   174 	C$interrupt.c$29$1_0$147	= .
+                                    175 	.globl	C$interrupt.c$29$1_0$147
+                                    176 ;src/interrupt.c:29: LYC_REG = 16;
+      000028 3E 10            [ 8]  177 	ld	a, #0x10
+      00002A E0r00            [12]  178 	ldh	(_LYC_REG + 0), a
+                                    179 ;/usr/local/opt/gbdk/include/gb/gb.h:754: __asm__("di");
+      00002C F3               [ 4]  180 	di
+                           00002D   181 	C$interrupt.c$31$1_0$147	= .
+                                    182 	.globl	C$interrupt.c$31$1_0$147
+                                    183 ;src/interrupt.c:31: add_LCD(interrupt_LCD);
+      00002D 11r00r00         [12]  184 	ld	de, #_interrupt_LCD
+      000030 CDr00r00         [24]  185 	call	_add_LCD
+                           000033   186 	C$interrupt.c$32$1_0$147	= .
+                                    187 	.globl	C$interrupt.c$32$1_0$147
+                                    188 ;src/interrupt.c:32: add_VBL(interrupt_VBL_window);
+      000033 11r08r00         [12]  189 	ld	de, #_interrupt_VBL_window
+      000036 CDr00r00         [24]  190 	call	_add_VBL
+                                    191 ;/usr/local/opt/gbdk/include/gb/gb.h:738: __asm__("ei");
+      000039 FB               [ 4]  192 	ei
+                           00003A   193 	C$interrupt.c$34$1_0$147	= .
+                                    194 	.globl	C$interrupt.c$34$1_0$147
+                                    195 ;src/interrupt.c:34: set_interrupts(VBL_IFLAG | LCD_IFLAG);
+      00003A 3E 03            [ 8]  196 	ld	a, #0x03
+                           00003C   197 	C$interrupt.c$35$1_0$147	= .
+                                    198 	.globl	C$interrupt.c$35$1_0$147
+                                    199 ;src/interrupt.c:35: }
+                           00003C   200 	C$interrupt.c$35$1_0$147	= .
+                                    201 	.globl	C$interrupt.c$35$1_0$147
+                           00003C   202 	XG$init_enable_lcd_interrupt$0$0	= .
+                                    203 	.globl	XG$init_enable_lcd_interrupt$0$0
+      00003C C3r00r00         [16]  204 	jp	_set_interrupts
+                           00003F   205 	G$init_disable_lcd_interrupt$0$0	= .
+                                    206 	.globl	G$init_disable_lcd_interrupt$0$0
+                           00003F   207 	C$interrupt.c$37$1_0$155	= .
+                                    208 	.globl	C$interrupt.c$37$1_0$155
+                                    209 ;src/interrupt.c:37: void init_disable_lcd_interrupt(void) {
+                                    210 ;	---------------------------------
+                                    211 ; Function init_disable_lcd_interrupt
+                                    212 ; ---------------------------------
+      00003F                        213 _init_disable_lcd_interrupt::
+                                    214 ;/usr/local/opt/gbdk/include/gb/gb.h:754: __asm__("di");
+      00003F F3               [ 4]  215 	di
+                           000040   216 	C$interrupt.c$41$1_0$155	= .
+                                    217 	.globl	C$interrupt.c$41$1_0$155
+                                    218 ;src/interrupt.c:41: remove_LCD(interrupt_LCD);
+      000040 11r00r00         [12]  219 	ld	de, #_interrupt_LCD
+      000043 CDr00r00         [24]  220 	call	_remove_LCD
+                           000046   221 	C$interrupt.c$42$1_0$155	= .
+                                    222 	.globl	C$interrupt.c$42$1_0$155
+                                    223 ;src/interrupt.c:42: remove_VBL(interrupt_VBL_window);
+      000046 11r08r00         [12]  224 	ld	de, #_interrupt_VBL_window
+      000049 CDr00r00         [24]  225 	call	_remove_VBL
+                           00004C   226 	C$interrupt.c$45$1_0$155	= .
+                                    227 	.globl	C$interrupt.c$45$1_0$155
+                                    228 ;src/interrupt.c:45: STAT_REG = 0x00; // This sets the STAT_REG to a state where no LCD STAT interrupts are enabled
+      00004C 3E 00            [ 8]  229 	ld	a, #0x00
+      00004E E0r00            [12]  230 	ldh	(_STAT_REG + 0), a
+                                    231 ;/usr/local/opt/gbdk/include/gb/gb.h:738: __asm__("ei");
+      000050 FB               [ 4]  232 	ei
+                           000051   233 	C$interrupt.c$47$1_0$155	= .
+                                    234 	.globl	C$interrupt.c$47$1_0$155
+                                    235 ;src/interrupt.c:47: set_interrupts(VBL_IFLAG | LCD_IFLAG);
+      000051 3E 03            [ 8]  236 	ld	a, #0x03
+                           000053   237 	C$interrupt.c$48$1_0$155	= .
+                                    238 	.globl	C$interrupt.c$48$1_0$155
+                                    239 ;src/interrupt.c:48: }
+                           000053   240 	C$interrupt.c$48$1_0$155	= .
+                                    241 	.globl	C$interrupt.c$48$1_0$155
+                           000053   242 	XG$init_disable_lcd_interrupt$0$0	= .
+                                    243 	.globl	XG$init_disable_lcd_interrupt$0$0
+      000053 C3r00r00         [16]  244 	jp	_set_interrupts
+                                    245 	.area _CODE
+                                    246 	.area _INITIALIZER
+                                    247 	.area _CABS (ABS)

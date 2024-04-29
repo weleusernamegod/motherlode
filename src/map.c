@@ -15,6 +15,7 @@
 #include "attributes.h"
 #include "inventory.h"
 #include "general.h"
+#include "palettes.h"
 
 #include "level.h"
 #include "player.h"
@@ -56,6 +57,10 @@ void shuffle(uint8_t array[4]) {
     array[secondSwapIndex] = temp;
 }
 
+void change_background_color(void) {
+    set_bkg_palette_entry(0,0,RGB8(255 - 5 * depth, 255, 255));
+}
+
 /**
  * Sets a 16x16 background tile by setting four 8x8 tiles.
  * 
@@ -68,33 +73,44 @@ void shuffle(uint8_t array[4]) {
 void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c) {
     for (uint8_t y = y1; y < y1 + r; y++) {
         for (uint8_t x = x1; x < x1 + c; x++) {
-            uint8_t temp = (array[y][x] * 4) + TILESTART - 4; // Calculate tile offset
-            uint8_t temp_array[4] = {temp, temp + 1, temp + 2, temp + 3};
-            // 
+            uint8_t temp = (array[y][x] * 4) + TILESTART - 4;
+            uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
+            uint8_t palette_array[4];
+
             if (array[y][x] == EMPTY) {
-                temp_array[0] = 0;
-                temp_array[1] = 0;
-                temp_array[2] = 0;
-                temp_array[3] = 0;
+                for (int i = 0; i < 4; i++) tile_array[i] = 0;
             } else if (array[y][x] == GRAS) {
-                temp_array[0] = temp + (rand() % 4);
-                temp_array[1] = temp + (rand() % 4);
-                temp_array[2] = temp - 1;
-                temp_array[3] = temp - 2;
+                tile_array[0] = temp + (rand() % 4);
+                tile_array[1] = temp + (rand() % 4);
+                tile_array[2] = temp - 1;
+                tile_array[3] = temp - 2;
+            } else if (array[y][x] == DIRT) {
+                for (int i = 0; i < 4; i++) tile_array[i] = temp + i;
+                shuffle(tile_array);
             }
-            else if (array[y][x] == DIRT) {
-                temp_array[0] = temp;
-                temp_array[1] = temp + 1;
-                temp_array[2] = temp + 2;
-                temp_array[3] = temp + 3;
-                shuffle(temp_array);
+
+            if (array[y][x] == EMPTY) {
+                for (int i = 0; i < 4; i++) palette_array[i] = 0;
+            } else {
+                for (int i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILESTART) / 4].color_palette;
             }
-            // loop x any y amount of times to create the grid, always drawing 2x tiles at once
-            set_bkg_tiles(2 * x, 2 * y, 2, 1, temp_array);
-            set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, temp_array + 2);
+
+            // Set tiles first with VBK_REG = 0 (tile data)
+            VBK_REG = 0;
+            set_bkg_tiles(2 * x, 2 * y, 2, 1, tile_array);
+            set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, tile_array + 2);
+
+            // Then set palette with VBK_REG = 1 (palette data)
+            VBK_REG = 1;
+            set_bkg_tiles(2 * x, 2 * y, 2, 1, palette_array);
+            set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, palette_array + 2);
+
+            // Switch back to VBK_REG = 0 for further tile setting
+            VBK_REG = 0;
         }
     }
 }
+
 
 void spawn_bkg_row(void) {
         if (depth > 3) {
@@ -112,7 +128,7 @@ void spawn_bkg_row(void) {
  */
 void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y) {
     array[y][x] = 0; // Clear the tile in the array
-    set_4bkg_tiles(level_array, x, y, 1, 1); // Update the background
+    set_4bkg_tiles(array, x, y, 1, 1); // Update the background
 }
 
 /**
@@ -182,7 +198,7 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 
 void draw_depth(void){
     char string[10];
-    itoa((depth <= 5) ? 0 : (depth - 5), string, 10);
+    itoa((depth <= EARTH_START) ? 0 : (depth - EARTH_START), string, 10);
     strcat(string, "m");
     draw_text(15,0,"Depth",5,TRUE,0);
     draw_text(15,1,string,5,FALSE,0);

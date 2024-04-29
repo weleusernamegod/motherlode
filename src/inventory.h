@@ -46,8 +46,8 @@ typedef struct Material {
     uint8_t weight;                 // Weight of the material
     uint16_t value;                  // Value of the material per piece
     uint8_t inventory;              // How many of that type in inventory
-    //PalettePtr color_palette[1]; // array of pointers to color palettes
-} Material;
+    uint8_t color_palette;
+    } Material;
 extern Material materials[];
 
 
