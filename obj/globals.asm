@@ -22,6 +22,7 @@
 	.globl _left_sell_area
 	.globl _left_shop_area
 	.globl _update_menu
+	.globl _current_menu_index
 	.globl _frame_counter
 	.globl _next_tile_right
 	.globl _next_tile_left
@@ -121,6 +122,9 @@ _next_tile_right::
 G$frame_counter$0_0$0==.
 _frame_counter::
 	.ds 1
+G$current_menu_index$0_0$0==.
+_current_menu_index::
+	.ds 1
 G$update_menu$0_0$0==.
 _update_menu::
 	.ds 1
@@ -188,6 +192,9 @@ _prev_buttons::
 Fglobals$__xinit_frame_counter$0_0$0 == .
 __xinit__frame_counter:
 	.db #0x00	; 0
+Fglobals$__xinit_current_menu_index$0_0$0 == .
+__xinit__current_menu_index:
+	.db #0x00	; 0
 Fglobals$__xinit_update_menu$0_0$0 == .
 __xinit__update_menu:
 	.db #0x01	;  1
@@ -202,7 +209,7 @@ __xinit__player_alive:
 	.db #0x01	;  1
 Fglobals$__xinit_currentGameState$0_0$0 == .
 __xinit__currentGameState:
-	.db #0x03	; 3
+	.db #0x00	; 0
 Fglobals$__xinit_depth$0_0$0 == .
 __xinit__depth:
 	.db #0x02	; 2

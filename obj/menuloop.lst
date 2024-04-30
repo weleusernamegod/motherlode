@@ -18,176 +18,177 @@
                                      18 	.globl _load_sub_shop_tiles
                                      19 	.globl _displayMenu
                                      20 	.globl _update_upgrade_tick
-                                     21 	.globl _wait_vbl_done
-                                     22 ;--------------------------------------------------------
-                                     23 ; special function registers
-                                     24 ;--------------------------------------------------------
+                                     21 	.globl _read_buttons
+                                     22 	.globl _wait_vbl_done
+                                     23 ;--------------------------------------------------------
+                                     24 ; special function registers
                                      25 ;--------------------------------------------------------
-                                     26 ; ram data
-                                     27 ;--------------------------------------------------------
-                                     28 	.area _DATA
-                                     29 ;--------------------------------------------------------
-                                     30 ; ram data
-                                     31 ;--------------------------------------------------------
-                                     32 	.area _INITIALIZED
-                                     33 ;--------------------------------------------------------
-                                     34 ; absolute external ram data
-                                     35 ;--------------------------------------------------------
-                                     36 	.area _DABS (ABS)
-                                     37 ;--------------------------------------------------------
-                                     38 ; global & static initialisations
-                                     39 ;--------------------------------------------------------
-                                     40 	.area _HOME
-                                     41 	.area _GSINIT
-                                     42 	.area _GSFINAL
-                                     43 	.area _GSINIT
-                                     44 ;--------------------------------------------------------
-                                     45 ; Home
-                                     46 ;--------------------------------------------------------
-                                     47 	.area _HOME
+                                     26 ;--------------------------------------------------------
+                                     27 ; ram data
+                                     28 ;--------------------------------------------------------
+                                     29 	.area _DATA
+                                     30 ;--------------------------------------------------------
+                                     31 ; ram data
+                                     32 ;--------------------------------------------------------
+                                     33 	.area _INITIALIZED
+                                     34 ;--------------------------------------------------------
+                                     35 ; absolute external ram data
+                                     36 ;--------------------------------------------------------
+                                     37 	.area _DABS (ABS)
+                                     38 ;--------------------------------------------------------
+                                     39 ; global & static initialisations
+                                     40 ;--------------------------------------------------------
+                                     41 	.area _HOME
+                                     42 	.area _GSINIT
+                                     43 	.area _GSFINAL
+                                     44 	.area _GSINIT
+                                     45 ;--------------------------------------------------------
+                                     46 ; Home
+                                     47 ;--------------------------------------------------------
                                      48 	.area _HOME
-                                     49 ;--------------------------------------------------------
-                                     50 ; code
-                                     51 ;--------------------------------------------------------
-                                     52 	.area _CODE
-                           000000    53 	G$shop_menu_loop$0$0	= .
-                                     54 	.globl	G$shop_menu_loop$0$0
-                           000000    55 	C$menuloop.c$8$0_0$179	= .
-                                     56 	.globl	C$menuloop.c$8$0_0$179
-                                     57 ;src/menuloop.c:8: void shop_menu_loop(void) {
-                                     58 ;	---------------------------------
-                                     59 ; Function shop_menu_loop
-                                     60 ; ---------------------------------
-      000000                         61 _shop_menu_loop::
-                           000000    62 	C$menuloop.c$10$1_0$179	= .
-                                     63 	.globl	C$menuloop.c$10$1_0$179
-                                     64 ;src/menuloop.c:10: read_buttons();
-      000000 CDr00r00         [24]   65 	call	_read_buttons
-                           000003    66 	C$menuloop.c$13$1_0$179	= .
-                                     67 	.globl	C$menuloop.c$13$1_0$179
-                                     68 ;src/menuloop.c:13: if (prev_buttons != buttons) {
-      000003 FAr00r00         [16]   69 	ld	a, (#_prev_buttons)
-      000006 21r00r00         [12]   70 	ld	hl, #_buttons
-      000009 96               [ 8]   71 	sub	a, (hl)
-      00000A 28 11            [12]   72 	jr	Z, 00102$
-                           00000C    73 	C$menuloop.c$14$2_0$180	= .
-                                     74 	.globl	C$menuloop.c$14$2_0$180
-                                     75 ;src/menuloop.c:14: handleInput(&currentState, currentMenu);
-      00000C 21r00r00         [12]   76 	ld	hl, #_currentMenu
-      00000F 2A               [ 8]   77 	ld	a, (hl+)
-      000010 4F               [ 4]   78 	ld	c, a
-      000011 46               [ 8]   79 	ld	b, (hl)
-      000012 11r00r00         [12]   80 	ld	de, #_currentState
-      000015 CDr00r00         [24]   81 	call	_handleInput
-                           000018    82 	C$menuloop.c$15$2_0$180	= .
-                                     83 	.globl	C$menuloop.c$15$2_0$180
-                                     84 ;src/menuloop.c:15: update_menu = TRUE;  // Set the update flag
-      000018 21r00r00         [12]   85 	ld	hl, #_update_menu
-      00001B 36 01            [12]   86 	ld	(hl), #0x01
-      00001D                         87 00102$:
-                           00001D    88 	C$menuloop.c$18$1_0$179	= .
-                                     89 	.globl	C$menuloop.c$18$1_0$179
-                                     90 ;src/menuloop.c:18: if (update_menu) {
-      00001D FAr00r00         [16]   91 	ld	a, (#_update_menu)
-      000020 B7               [ 4]   92 	or	a, a
-      000021 28 4C            [12]   93 	jr	Z, 00107$
-                           000023    94 	C$menuloop.c$19$2_0$181	= .
-                                     95 	.globl	C$menuloop.c$19$2_0$181
-                                     96 ;src/menuloop.c:19: displayMenu(currentMenu);
-      000023 21r00r00         [12]   97 	ld	hl, #_currentMenu
-      000026 2A               [ 8]   98 	ld	a, (hl+)
-      000027 5F               [ 4]   99 	ld	e, a
-      000028 56               [ 8]  100 	ld	d, (hl)
-      000029 CDr00r00         [24]  101 	call	_displayMenu
-                           00002C   102 	C$menuloop.c$20$2_0$181	= .
-                                    103 	.globl	C$menuloop.c$20$2_0$181
-                                    104 ;src/menuloop.c:20: update_upgrade_tick(currentState);
-      00002C FAr00r00         [16]  105 	ld	a, (#_currentState)
-      00002F CDr00r00         [24]  106 	call	_update_upgrade_tick
-                           000032   107 	C$menuloop.c$23$2_0$181	= .
-                                    108 	.globl	C$menuloop.c$23$2_0$181
-                                    109 ;src/menuloop.c:23: if (currentState == MAIN_MENU) {
-      000032 FAr00r00         [16]  110 	ld	a, (#_currentState)
-      000035 D6 06            [ 8]  111 	sub	a, #0x06
-      000037 20 13            [12]  112 	jr	NZ, 00104$
-                           000039   113 	C$menuloop.c$24$3_0$182	= .
-                                    114 	.globl	C$menuloop.c$24$3_0$182
-                                    115 ;src/menuloop.c:24: currentMenu = &main_menu;
-      000039 21r00r00         [12]  116 	ld	hl, #_currentMenu
-      00003C 36r00            [12]  117 	ld	(hl), #<(_main_menu)
-      00003E 23               [ 8]  118 	inc	hl
-      00003F 36s00            [12]  119 	ld	(hl), #>(_main_menu)
-                           000041   120 	C$menuloop.c$25$3_0$182	= .
-                                    121 	.globl	C$menuloop.c$25$3_0$182
-                                    122 ;src/menuloop.c:25: change_main_shop_tile_palettes();
-      000041 CDr00r00         [24]  123 	call	_change_main_shop_tile_palettes
-                           000044   124 	C$menuloop.c$26$3_0$182	= .
-                                    125 	.globl	C$menuloop.c$26$3_0$182
-                                    126 ;src/menuloop.c:26: write_main_shop_text();
-      000044 CDr00r00         [24]  127 	call	_write_main_shop_text
-                           000047   128 	C$menuloop.c$27$3_0$182	= .
-                                    129 	.globl	C$menuloop.c$27$3_0$182
-                                    130 ;src/menuloop.c:27: load_main_shop_tiles();
-      000047 CDr00r00         [24]  131 	call	_load_main_shop_tiles
-      00004A 18 1E            [12]  132 	jr	00105$
-      00004C                        133 00104$:
-                           00004C   134 	C$menuloop.c$29$3_0$183	= .
-                                    135 	.globl	C$menuloop.c$29$3_0$183
-                                    136 ;src/menuloop.c:29: currentMenu = menu_numbers[currentState];
-      00004C 01r00r00         [12]  137 	ld	bc, #_menu_numbers+0
-      00004F 21r00r00         [12]  138 	ld	hl, #_currentState
-      000052 6E               [ 8]  139 	ld	l, (hl)
-                                    140 ;	spillPairReg hl
+                                     49 	.area _HOME
+                                     50 ;--------------------------------------------------------
+                                     51 ; code
+                                     52 ;--------------------------------------------------------
+                                     53 	.area _CODE
+                           000000    54 	G$shop_menu_loop$0$0	= .
+                                     55 	.globl	G$shop_menu_loop$0$0
+                           000000    56 	C$menuloop.c$9$0_0$186	= .
+                                     57 	.globl	C$menuloop.c$9$0_0$186
+                                     58 ;src/menuloop.c:9: void shop_menu_loop(void) {
+                                     59 ;	---------------------------------
+                                     60 ; Function shop_menu_loop
+                                     61 ; ---------------------------------
+      000000                         62 _shop_menu_loop::
+                           000000    63 	C$menuloop.c$11$1_0$186	= .
+                                     64 	.globl	C$menuloop.c$11$1_0$186
+                                     65 ;src/menuloop.c:11: read_buttons();
+      000000 CDr00r00         [24]   66 	call	_read_buttons
+                           000003    67 	C$menuloop.c$14$1_0$186	= .
+                                     68 	.globl	C$menuloop.c$14$1_0$186
+                                     69 ;src/menuloop.c:14: if (prev_buttons != buttons) {
+      000003 FAr00r00         [16]   70 	ld	a, (#_prev_buttons)
+      000006 21r00r00         [12]   71 	ld	hl, #_buttons
+      000009 96               [ 8]   72 	sub	a, (hl)
+      00000A 28 11            [12]   73 	jr	Z, 00102$
+                           00000C    74 	C$menuloop.c$15$2_0$187	= .
+                                     75 	.globl	C$menuloop.c$15$2_0$187
+                                     76 ;src/menuloop.c:15: handleInput(&currentState, currentMenu);
+      00000C 21r00r00         [12]   77 	ld	hl, #_currentMenu
+      00000F 2A               [ 8]   78 	ld	a, (hl+)
+      000010 4F               [ 4]   79 	ld	c, a
+      000011 46               [ 8]   80 	ld	b, (hl)
+      000012 11r00r00         [12]   81 	ld	de, #_currentState
+      000015 CDr00r00         [24]   82 	call	_handleInput
+                           000018    83 	C$menuloop.c$16$2_0$187	= .
+                                     84 	.globl	C$menuloop.c$16$2_0$187
+                                     85 ;src/menuloop.c:16: update_menu = TRUE;  // Set the update flag
+      000018 21r00r00         [12]   86 	ld	hl, #_update_menu
+      00001B 36 01            [12]   87 	ld	(hl), #0x01
+      00001D                         88 00102$:
+                           00001D    89 	C$menuloop.c$19$1_0$186	= .
+                                     90 	.globl	C$menuloop.c$19$1_0$186
+                                     91 ;src/menuloop.c:19: if (update_menu) {
+      00001D FAr00r00         [16]   92 	ld	a, (#_update_menu)
+      000020 B7               [ 4]   93 	or	a, a
+      000021 28 4C            [12]   94 	jr	Z, 00107$
+                           000023    95 	C$menuloop.c$20$2_0$188	= .
+                                     96 	.globl	C$menuloop.c$20$2_0$188
+                                     97 ;src/menuloop.c:20: displayMenu(currentMenu);
+      000023 21r00r00         [12]   98 	ld	hl, #_currentMenu
+      000026 2A               [ 8]   99 	ld	a, (hl+)
+      000027 5F               [ 4]  100 	ld	e, a
+      000028 56               [ 8]  101 	ld	d, (hl)
+      000029 CDr00r00         [24]  102 	call	_displayMenu
+                           00002C   103 	C$menuloop.c$21$2_0$188	= .
+                                    104 	.globl	C$menuloop.c$21$2_0$188
+                                    105 ;src/menuloop.c:21: update_upgrade_tick(currentState);
+      00002C FAr00r00         [16]  106 	ld	a, (#_currentState)
+      00002F CDr00r00         [24]  107 	call	_update_upgrade_tick
+                           000032   108 	C$menuloop.c$24$2_0$188	= .
+                                    109 	.globl	C$menuloop.c$24$2_0$188
+                                    110 ;src/menuloop.c:24: if (currentState == MAIN_MENU) {
+      000032 FAr00r00         [16]  111 	ld	a, (#_currentState)
+      000035 D6 06            [ 8]  112 	sub	a, #0x06
+      000037 20 13            [12]  113 	jr	NZ, 00104$
+                           000039   114 	C$menuloop.c$25$3_0$189	= .
+                                    115 	.globl	C$menuloop.c$25$3_0$189
+                                    116 ;src/menuloop.c:25: currentMenu = &main_menu;
+      000039 21r00r00         [12]  117 	ld	hl, #_currentMenu
+      00003C 36r00            [12]  118 	ld	(hl), #<(_main_menu)
+      00003E 23               [ 8]  119 	inc	hl
+      00003F 36s00            [12]  120 	ld	(hl), #>(_main_menu)
+                           000041   121 	C$menuloop.c$26$3_0$189	= .
+                                    122 	.globl	C$menuloop.c$26$3_0$189
+                                    123 ;src/menuloop.c:26: change_main_shop_tile_palettes();
+      000041 CDr00r00         [24]  124 	call	_change_main_shop_tile_palettes
+                           000044   125 	C$menuloop.c$27$3_0$189	= .
+                                    126 	.globl	C$menuloop.c$27$3_0$189
+                                    127 ;src/menuloop.c:27: write_main_shop_text();
+      000044 CDr00r00         [24]  128 	call	_write_main_shop_text
+                           000047   129 	C$menuloop.c$28$3_0$189	= .
+                                    130 	.globl	C$menuloop.c$28$3_0$189
+                                    131 ;src/menuloop.c:28: load_main_shop_tiles();
+      000047 CDr00r00         [24]  132 	call	_load_main_shop_tiles
+      00004A 18 1E            [12]  133 	jr	00105$
+      00004C                        134 00104$:
+                           00004C   135 	C$menuloop.c$30$3_0$190	= .
+                                    136 	.globl	C$menuloop.c$30$3_0$190
+                                    137 ;src/menuloop.c:30: currentMenu = menu_numbers[currentState];
+      00004C 01r00r00         [12]  138 	ld	bc, #_menu_numbers+0
+      00004F 21r00r00         [12]  139 	ld	hl, #_currentState
+      000052 6E               [ 8]  140 	ld	l, (hl)
                                     141 ;	spillPairReg hl
-      000053 26 00            [ 8]  142 	ld	h, #0x00
-                                    143 ;	spillPairReg hl
+                                    142 ;	spillPairReg hl
+      000053 26 00            [ 8]  143 	ld	h, #0x00
                                     144 ;	spillPairReg hl
-      000055 29               [ 8]  145 	add	hl, hl
-      000056 09               [ 8]  146 	add	hl, bc
-      000057 5D               [ 4]  147 	ld	e, l
-      000058 54               [ 4]  148 	ld	d, h
-      000059 1A               [ 8]  149 	ld	a, (de)
-      00005A 21r00r00         [12]  150 	ld	hl, #_currentMenu
-      00005D 22               [ 8]  151 	ld	(hl+), a
-      00005E 13               [ 8]  152 	inc	de
-      00005F 1A               [ 8]  153 	ld	a, (de)
-      000060 77               [ 8]  154 	ld	(hl), a
-                           000061   155 	C$menuloop.c$30$3_0$183	= .
-                                    156 	.globl	C$menuloop.c$30$3_0$183
-                                    157 ;src/menuloop.c:30: change_sub_shop_tile_palettes();
-      000061 CDr00r00         [24]  158 	call	_change_sub_shop_tile_palettes
-                           000064   159 	C$menuloop.c$31$3_0$183	= .
-                                    160 	.globl	C$menuloop.c$31$3_0$183
-                                    161 ;src/menuloop.c:31: write_sub_shop_text();
-      000064 CDr00r00         [24]  162 	call	_write_sub_shop_text
-                           000067   163 	C$menuloop.c$32$3_0$183	= .
-                                    164 	.globl	C$menuloop.c$32$3_0$183
-                                    165 ;src/menuloop.c:32: load_sub_shop_tiles();
-      000067 CDr00r00         [24]  166 	call	_load_sub_shop_tiles
-      00006A                        167 00105$:
-                           00006A   168 	C$menuloop.c$35$2_0$181	= .
-                                    169 	.globl	C$menuloop.c$35$2_0$181
-                                    170 ;src/menuloop.c:35: update_menu = FALSE;  // Reset the update flag after updating the screen
-      00006A 21r00r00         [12]  171 	ld	hl, #_update_menu
-      00006D 36 00            [12]  172 	ld	(hl), #0x00
-      00006F                        173 00107$:
-                           00006F   174 	C$menuloop.c$38$1_0$179	= .
-                                    175 	.globl	C$menuloop.c$38$1_0$179
-                                    176 ;src/menuloop.c:38: prev_buttons = buttons;
-      00006F FAr00r00         [16]  177 	ld	a, (#_buttons)
-      000072 21r00r00         [12]  178 	ld	hl, #_prev_buttons
-      000075 77               [ 8]  179 	ld	(hl), a
-                           000076   180 	C$menuloop.c$39$1_0$179	= .
-                                    181 	.globl	C$menuloop.c$39$1_0$179
-                                    182 ;src/menuloop.c:39: wait_vbl_done();
-                           000076   183 	C$menuloop.c$41$1_0$179	= .
-                                    184 	.globl	C$menuloop.c$41$1_0$179
-                                    185 ;src/menuloop.c:41: }
-                           000076   186 	C$menuloop.c$41$1_0$179	= .
-                                    187 	.globl	C$menuloop.c$41$1_0$179
-                           000076   188 	XG$shop_menu_loop$0$0	= .
-                                    189 	.globl	XG$shop_menu_loop$0$0
-      000076 C3r00r00         [16]  190 	jp	_wait_vbl_done
-                                    191 	.area _CODE
-                                    192 	.area _INITIALIZER
-                                    193 	.area _CABS (ABS)
+                                    145 ;	spillPairReg hl
+      000055 29               [ 8]  146 	add	hl, hl
+      000056 09               [ 8]  147 	add	hl, bc
+      000057 5D               [ 4]  148 	ld	e, l
+      000058 54               [ 4]  149 	ld	d, h
+      000059 1A               [ 8]  150 	ld	a, (de)
+      00005A 21r00r00         [12]  151 	ld	hl, #_currentMenu
+      00005D 22               [ 8]  152 	ld	(hl+), a
+      00005E 13               [ 8]  153 	inc	de
+      00005F 1A               [ 8]  154 	ld	a, (de)
+      000060 77               [ 8]  155 	ld	(hl), a
+                           000061   156 	C$menuloop.c$31$3_0$190	= .
+                                    157 	.globl	C$menuloop.c$31$3_0$190
+                                    158 ;src/menuloop.c:31: change_sub_shop_tile_palettes();
+      000061 CDr00r00         [24]  159 	call	_change_sub_shop_tile_palettes
+                           000064   160 	C$menuloop.c$32$3_0$190	= .
+                                    161 	.globl	C$menuloop.c$32$3_0$190
+                                    162 ;src/menuloop.c:32: write_sub_shop_text();
+      000064 CDr00r00         [24]  163 	call	_write_sub_shop_text
+                           000067   164 	C$menuloop.c$33$3_0$190	= .
+                                    165 	.globl	C$menuloop.c$33$3_0$190
+                                    166 ;src/menuloop.c:33: load_sub_shop_tiles();
+      000067 CDr00r00         [24]  167 	call	_load_sub_shop_tiles
+      00006A                        168 00105$:
+                           00006A   169 	C$menuloop.c$36$2_0$188	= .
+                                    170 	.globl	C$menuloop.c$36$2_0$188
+                                    171 ;src/menuloop.c:36: update_menu = FALSE;  // Reset the update flag after updating the screen
+      00006A 21r00r00         [12]  172 	ld	hl, #_update_menu
+      00006D 36 00            [12]  173 	ld	(hl), #0x00
+      00006F                        174 00107$:
+                           00006F   175 	C$menuloop.c$39$1_0$186	= .
+                                    176 	.globl	C$menuloop.c$39$1_0$186
+                                    177 ;src/menuloop.c:39: prev_buttons = buttons;
+      00006F FAr00r00         [16]  178 	ld	a, (#_buttons)
+      000072 21r00r00         [12]  179 	ld	hl, #_prev_buttons
+      000075 77               [ 8]  180 	ld	(hl), a
+                           000076   181 	C$menuloop.c$40$1_0$186	= .
+                                    182 	.globl	C$menuloop.c$40$1_0$186
+                                    183 ;src/menuloop.c:40: wait_vbl_done();
+                           000076   184 	C$menuloop.c$42$1_0$186	= .
+                                    185 	.globl	C$menuloop.c$42$1_0$186
+                                    186 ;src/menuloop.c:42: }
+                           000076   187 	C$menuloop.c$42$1_0$186	= .
+                                    188 	.globl	C$menuloop.c$42$1_0$186
+                           000076   189 	XG$shop_menu_loop$0$0	= .
+                                    190 	.globl	XG$shop_menu_loop$0$0
+      000076 C3r00r00         [16]  191 	jp	_wait_vbl_done
+                                    192 	.area _CODE
+                                    193 	.area _INITIALIZER
+                                    194 	.area _CABS (ABS)

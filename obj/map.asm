@@ -23,6 +23,7 @@
 	.globl _set_4bkg_tiles
 	.globl _change_background_color
 	.globl _shuffle
+	.globl _draw_buildings
 	.globl b___func_bank_map
 	.globl ___func_bank_map
 	.globl _draw_metasprite
@@ -80,35 +81,52 @@ ___func_bank_map::
 	.local b___func_bank_map 
 	___bank_bank_map = b___func_bank_map 
 	.globl ___bank_bank_map 
+	G$draw_buildings$0$0	= .
+	.globl	G$draw_buildings$0$0
+	C$map.c$33$1_0$249	= .
+	.globl	C$map.c$33$1_0$249
+;src/map.c:33: void draw_buildings(void){
+;	---------------------------------
+; Function draw_buildings
+; ---------------------------------
+_draw_buildings::
+	C$map.c$35$1_0$249	= .
+	.globl	C$map.c$35$1_0$249
+;src/map.c:35: }
+	C$map.c$35$1_0$249	= .
+	.globl	C$map.c$35$1_0$249
+	XG$draw_buildings$0$0	= .
+	.globl	XG$draw_buildings$0$0
+	ret
 	G$shuffle$0$0	= .
 	.globl	G$shuffle$0$0
-	C$map.c$33$1_0$248	= .
-	.globl	C$map.c$33$1_0$248
-;src/map.c:33: void shuffle(uint8_t array[4]) {
+	C$map.c$38$1_0$251	= .
+	.globl	C$map.c$38$1_0$251
+;src/map.c:38: void shuffle(uint8_t array[4]) {
 ;	---------------------------------
 ; Function shuffle
 ; ---------------------------------
 _shuffle::
 	dec	sp
-	C$map.c$34$2_0$248	= .
-	.globl	C$map.c$34$2_0$248
-;src/map.c:34: uint16_t seed = LY_REG;
+	C$map.c$39$2_0$251	= .
+	.globl	C$map.c$39$2_0$251
+;src/map.c:39: uint16_t seed = LY_REG;
 	ldh	a, (_LY_REG + 0)
 	ld	l, a
 ;	spillPairReg hl
 ;	spillPairReg hl
 ;	spillPairReg hl
 ;	spillPairReg hl
-	C$map.c$35$1_0$248	= .
-	.globl	C$map.c$35$1_0$248
-;src/map.c:35: seed |= (uint16_t)DIV_REG << 8;
+	C$map.c$40$1_0$251	= .
+	.globl	C$map.c$40$1_0$251
+;src/map.c:40: seed |= (uint16_t)DIV_REG << 8;
 	ldh	a, (_DIV_REG + 0)
 	ld	c, a
 	xor	a, a
 	or	a, l
-	C$map.c$36$1_0$248	= .
-	.globl	C$map.c$36$1_0$248
-;src/map.c:36: initrand(seed);
+	C$map.c$41$1_0$251	= .
+	.globl	C$map.c$41$1_0$251
+;src/map.c:41: initrand(seed);
 	push	de
 	ld	b, c
 	ld	c, a
@@ -122,13 +140,13 @@ _shuffle::
 	ld	l, a
 ;	spillPairReg hl
 ;	spillPairReg hl
-	C$map.c$40$1_1$249	= .
-	.globl	C$map.c$40$1_1$249
-;src/map.c:40: do {
+	C$map.c$45$1_1$252	= .
+	.globl	C$map.c$45$1_1$252
+;src/map.c:45: do {
 00101$:
-	C$map.c$41$2_1$250	= .
-	.globl	C$map.c$41$2_1$250
-;src/map.c:41: secondSwapIndex = rand() % 4;
+	C$map.c$46$2_1$253	= .
+	.globl	C$map.c$46$2_1$253
+;src/map.c:46: secondSwapIndex = rand() % 4;
 	push	hl
 	push	de
 	call	_rand
@@ -137,15 +155,15 @@ _shuffle::
 	pop	hl
 	and	a, #0x03
 	ld	c, a
-	C$map.c$42$1_1$249	= .
-	.globl	C$map.c$42$1_1$249
-;src/map.c:42: } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
+	C$map.c$47$1_1$252	= .
+	.globl	C$map.c$47$1_1$252
+;src/map.c:47: } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
 	ld	a, l
 	sub	a, c
 	jr	Z, 00101$
-	C$map.c$45$1_2$251	= .
-	.globl	C$map.c$45$1_2$251
-;src/map.c:45: uint8_t temp = array[firstSwapIndex];
+	C$map.c$50$1_2$254	= .
+	.globl	C$map.c$50$1_2$254
+;src/map.c:50: uint8_t temp = array[firstSwapIndex];
 	ld	h, #0x00
 	add	hl, de
 	ld	a, (hl)
@@ -153,9 +171,9 @@ _shuffle::
 	ldhl	sp,	#2
 	ld	(hl), a
 	pop	hl
-	C$map.c$46$1_2$251	= .
-	.globl	C$map.c$46$1_2$251
-;src/map.c:46: array[firstSwapIndex] = array[secondSwapIndex];
+	C$map.c$51$1_2$254	= .
+	.globl	C$map.c$51$1_2$254
+;src/map.c:51: array[firstSwapIndex] = array[secondSwapIndex];
 	ld	a, e
 	add	a, c
 	ld	c, a
@@ -164,15 +182,15 @@ _shuffle::
 	ld	b, a
 	ld	a, (bc)
 	ld	(hl), a
-	C$map.c$47$1_2$251	= .
-	.globl	C$map.c$47$1_2$251
-;src/map.c:47: array[secondSwapIndex] = temp;
+	C$map.c$52$1_2$254	= .
+	.globl	C$map.c$52$1_2$254
+;src/map.c:52: array[secondSwapIndex] = temp;
 	ldhl	sp,	#0
 	ld	a, (hl)
 	ld	(bc), a
-	C$map.c$50$1_2$251	= .
-	.globl	C$map.c$50$1_2$251
-;src/map.c:50: firstSwapIndex = rand() % 4;
+	C$map.c$55$1_2$254	= .
+	.globl	C$map.c$55$1_2$254
+;src/map.c:55: firstSwapIndex = rand() % 4;
 	push	de
 	call	_rand
 	ld	a, e
@@ -181,13 +199,13 @@ _shuffle::
 	ld	l, a
 ;	spillPairReg hl
 ;	spillPairReg hl
-	C$map.c$51$1_2$251	= .
-	.globl	C$map.c$51$1_2$251
-;src/map.c:51: do {
+	C$map.c$56$1_2$254	= .
+	.globl	C$map.c$56$1_2$254
+;src/map.c:56: do {
 00104$:
-	C$map.c$52$2_2$252	= .
-	.globl	C$map.c$52$2_2$252
-;src/map.c:52: secondSwapIndex = rand() % 4;
+	C$map.c$57$2_2$255	= .
+	.globl	C$map.c$57$2_2$255
+;src/map.c:57: secondSwapIndex = rand() % 4;
 	push	hl
 	push	de
 	call	_rand
@@ -196,21 +214,21 @@ _shuffle::
 	pop	hl
 	and	a, #0x03
 	ld	b, a
-	C$map.c$53$1_2$251	= .
-	.globl	C$map.c$53$1_2$251
-;src/map.c:53: } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
+	C$map.c$58$1_2$254	= .
+	.globl	C$map.c$58$1_2$254
+;src/map.c:58: } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
 	ld	a, l
 	sub	a, b
 	jr	Z, 00104$
-	C$map.c$55$1_2$251	= .
-	.globl	C$map.c$55$1_2$251
-;src/map.c:55: temp = array[firstSwapIndex];
+	C$map.c$60$1_2$254	= .
+	.globl	C$map.c$60$1_2$254
+;src/map.c:60: temp = array[firstSwapIndex];
 	ld	h, #0x00
 	add	hl, de
 	ld	c, (hl)
-	C$map.c$56$1_2$251	= .
-	.globl	C$map.c$56$1_2$251
-;src/map.c:56: array[firstSwapIndex] = array[secondSwapIndex];
+	C$map.c$61$1_2$254	= .
+	.globl	C$map.c$61$1_2$254
+;src/map.c:61: array[firstSwapIndex] = array[secondSwapIndex];
 	ld	a, e
 	add	a, b
 	ld	e, a
@@ -219,39 +237,42 @@ _shuffle::
 00139$:
 	ld	a, (de)
 	ld	(hl), a
-	C$map.c$57$1_2$251	= .
-	.globl	C$map.c$57$1_2$251
-;src/map.c:57: array[secondSwapIndex] = temp;
+	C$map.c$62$1_2$254	= .
+	.globl	C$map.c$62$1_2$254
+;src/map.c:62: array[secondSwapIndex] = temp;
 	ld	a, c
 	ld	(de), a
-	C$map.c$58$1_2$248	= .
-	.globl	C$map.c$58$1_2$248
-;src/map.c:58: }
+	C$map.c$63$1_2$251	= .
+	.globl	C$map.c$63$1_2$251
+;src/map.c:63: }
 	inc	sp
-	C$map.c$58$1_2$248	= .
-	.globl	C$map.c$58$1_2$248
+	C$map.c$63$1_2$251	= .
+	.globl	C$map.c$63$1_2$251
 	XG$shuffle$0$0	= .
 	.globl	XG$shuffle$0$0
 	ret
 	G$change_background_color$0$0	= .
 	.globl	G$change_background_color$0$0
-	C$map.c$60$1_2$254	= .
-	.globl	C$map.c$60$1_2$254
-;src/map.c:60: void change_background_color(void) {
+	C$map.c$65$1_2$257	= .
+	.globl	C$map.c$65$1_2$257
+;src/map.c:65: void change_background_color(void) {
 ;	---------------------------------
 ; Function change_background_color
 ; ---------------------------------
 _change_background_color::
-	C$map.c$61$1_0$254	= .
-	.globl	C$map.c$61$1_0$254
-;src/map.c:61: set_bkg_palette_entry(0,0,RGB8(255 - 5 * depth, 255, 255));
-	ld	hl, #_depth
-	ld	c, (hl)
+	C$map.c$66$1_0$257	= .
+	.globl	C$map.c$66$1_0$257
+;src/map.c:66: set_bkg_palette_entry(0,0,RGB8(255 - (scroll_y.h + depth_pixel.h), 255, 255));
+	ld	a, (#(_scroll_y + 1) + 0)
+	ld	c, a
 	ld	b, #0x00
-	ld	l, c
-	ld	h, b
-	add	hl, hl
-	add	hl, hl
+	ld	a, (#(_depth_pixel + 1) + 0)
+	ld	l, a
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	h, #0x00
+;	spillPairReg hl
+;	spillPairReg hl
 	add	hl, bc
 	ld	a, #0xff
 	sub	a, l
@@ -276,19 +297,19 @@ _change_background_color::
 	push	af
 	call	_set_bkg_palette_entry
 	add	sp, #4
-	C$map.c$62$1_0$254	= .
-	.globl	C$map.c$62$1_0$254
-;src/map.c:62: }
-	C$map.c$62$1_0$254	= .
-	.globl	C$map.c$62$1_0$254
+	C$map.c$67$1_0$257	= .
+	.globl	C$map.c$67$1_0$257
+;src/map.c:67: }
+	C$map.c$67$1_0$257	= .
+	.globl	C$map.c$67$1_0$257
 	XG$change_background_color$0$0	= .
 	.globl	XG$change_background_color$0$0
 	ret
 	G$set_4bkg_tiles$0$0	= .
 	.globl	G$set_4bkg_tiles$0$0
-	C$map.c$73$1_0$257	= .
-	.globl	C$map.c$73$1_0$257
-;src/map.c:73: void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c) {
+	C$map.c$78$1_0$260	= .
+	.globl	C$map.c$78$1_0$260
+;src/map.c:78: void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c) {
 ;	---------------------------------
 ; Function set_4bkg_tiles
 ; ---------------------------------
@@ -301,9 +322,9 @@ _set_4bkg_tiles::
 	dec	hl
 	dec	hl
 	ld	(hl), a
-	C$map.c$74$3_0$257	= .
-	.globl	C$map.c$74$3_0$257
-;src/map.c:74: for (uint8_t y = y1; y < y1 + r; y++) {
+	C$map.c$79$3_0$260	= .
+	.globl	C$map.c$79$3_0$260
+;src/map.c:79: for (uint8_t y = y1; y < y1 + r; y++) {
 	ldhl	sp,	#26
 	ld	a, (hl)
 	ldhl	sp,	#20
@@ -343,9 +364,9 @@ _set_4bkg_tiles::
 	scf
 00266$:
 	jp	NC, 00136$
-	C$map.c$75$5_0$260	= .
-	.globl	C$map.c$75$5_0$260
-;src/map.c:75: for (uint8_t x = x1; x < x1 + c; x++) {
+	C$map.c$80$5_0$263	= .
+	.globl	C$map.c$80$5_0$263
+;src/map.c:80: for (uint8_t x = x1; x < x1 + c; x++) {
 	ldhl	sp,	#20
 	ld	a, (hl)
 	add	a, a
@@ -412,9 +433,9 @@ _set_4bkg_tiles::
 	scf
 00268$:
 	jp	NC, 00135$
-	C$map.c$76$5_0$260	= .
-	.globl	C$map.c$76$5_0$260
-;src/map.c:76: uint8_t temp = (array[y][x] * 4) + TILESTART - 4;
+	C$map.c$81$5_0$263	= .
+	.globl	C$map.c$81$5_0$263
+;src/map.c:81: uint8_t temp = (array[y][x] * 4) + TILESTART - 4;
 	ldhl	sp,	#8
 	ld	a, (hl)
 	ld	d, #0x00
@@ -446,9 +467,9 @@ _set_4bkg_tiles::
 	add	a, #0x58
 	ldhl	sp,	#23
 	ld	(hl), a
-	C$map.c$77$5_0$260	= .
-	.globl	C$map.c$77$5_0$260
-;src/map.c:77: uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
+	C$map.c$82$5_0$263	= .
+	.globl	C$map.c$82$5_0$263
+;src/map.c:82: uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
 	ld	a, (hl)
 	ldhl	sp,	#0
 	ld	(hl), a
@@ -473,13 +494,13 @@ _set_4bkg_tiles::
 	inc	a
 	ldhl	sp,	#3
 	ld	(hl), a
-	C$map.c$80$5_0$260	= .
-	.globl	C$map.c$80$5_0$260
-;src/map.c:80: if (array[y][x] == EMPTY) {
+	C$map.c$85$5_0$263	= .
+	.globl	C$map.c$85$5_0$263
+;src/map.c:85: if (array[y][x] == EMPTY) {
 	ld	a, (bc)
-	C$map.c$81$2_0$257	= .
-	.globl	C$map.c$81$2_0$257
-;src/map.c:81: for (int i = 0; i < 4; i++) tile_array[i] = 0;
+	C$map.c$86$2_0$260	= .
+	.globl	C$map.c$86$2_0$260
+;src/map.c:86: for (int i = 0; i < 4; i++) tile_array[i] = 0;
 	or	a,a
 	jr	NZ, 00109$
 	ldhl	sp,	#22
@@ -527,14 +548,14 @@ _set_4bkg_tiles::
 	inc	(hl)
 	jr	00119$
 00109$:
-	C$map.c$82$5_0$260	= .
-	.globl	C$map.c$82$5_0$260
-;src/map.c:82: } else if (array[y][x] == GRAS) {
+	C$map.c$87$5_0$263	= .
+	.globl	C$map.c$87$5_0$263
+;src/map.c:87: } else if (array[y][x] == GRAS) {
 	cp	a, #0x02
 	jr	NZ, 00106$
-	C$map.c$83$6_0$263	= .
-	.globl	C$map.c$83$6_0$263
-;src/map.c:83: tile_array[0] = temp + (rand() % 4);
+	C$map.c$88$6_0$266	= .
+	.globl	C$map.c$88$6_0$266
+;src/map.c:88: tile_array[0] = temp + (rand() % 4);
 	push	bc
 	call	_rand
 	ld	a, e
@@ -544,9 +565,9 @@ _set_4bkg_tiles::
 	add	a, (hl)
 	ldhl	sp,	#0
 	ld	(hl), a
-	C$map.c$84$6_0$263	= .
-	.globl	C$map.c$84$6_0$263
-;src/map.c:84: tile_array[1] = temp + (rand() % 4);
+	C$map.c$89$6_0$266	= .
+	.globl	C$map.c$89$6_0$266
+;src/map.c:89: tile_array[1] = temp + (rand() % 4);
 	push	bc
 	call	_rand
 	ld	a, e
@@ -556,17 +577,17 @@ _set_4bkg_tiles::
 	add	a, (hl)
 	ldhl	sp,	#1
 	ld	(hl), a
-	C$map.c$85$6_0$263	= .
-	.globl	C$map.c$85$6_0$263
-;src/map.c:85: tile_array[2] = temp - 1;
+	C$map.c$90$6_0$266	= .
+	.globl	C$map.c$90$6_0$266
+;src/map.c:90: tile_array[2] = temp - 1;
 	ldhl	sp,	#16
 	ld	a, (hl)
 	dec	a
 	ldhl	sp,	#2
 	ld	(hl), a
-	C$map.c$86$6_0$263	= .
-	.globl	C$map.c$86$6_0$263
-;src/map.c:86: tile_array[3] = temp - 2;
+	C$map.c$91$6_0$266	= .
+	.globl	C$map.c$91$6_0$266
+;src/map.c:91: tile_array[3] = temp - 2;
 	ldhl	sp,	#16
 	ld	a, (hl)
 	dec	a
@@ -575,12 +596,12 @@ _set_4bkg_tiles::
 	ld	(hl), a
 	jr	00110$
 00106$:
-	C$map.c$87$5_0$260	= .
-	.globl	C$map.c$87$5_0$260
-;src/map.c:87: } else if (array[y][x] == DIRT) {
-	C$map.c$88$2_0$257	= .
-	.globl	C$map.c$88$2_0$257
-;src/map.c:88: for (int i = 0; i < 4; i++) tile_array[i] = temp + i;
+	C$map.c$92$5_0$263	= .
+	.globl	C$map.c$92$5_0$263
+;src/map.c:92: } else if (array[y][x] == DIRT) {
+	C$map.c$93$2_0$260	= .
+	.globl	C$map.c$93$2_0$260
+;src/map.c:93: for (int i = 0; i < 4; i++) tile_array[i] = temp + i;
 	dec	a
 	jr	NZ, 00110$
 	ldhl	sp,	#22
@@ -631,9 +652,9 @@ _set_4bkg_tiles::
 	inc	(hl)
 	jr	00122$
 00102$:
-	C$map.c$89$6_0$264	= .
-	.globl	C$map.c$89$6_0$264
-;src/map.c:89: shuffle(tile_array);
+	C$map.c$94$6_0$267	= .
+	.globl	C$map.c$94$6_0$267
+;src/map.c:94: shuffle(tile_array);
 	push	bc
 	ld	hl, #2
 	add	hl, sp
@@ -642,15 +663,15 @@ _set_4bkg_tiles::
 	call	_shuffle
 	pop	bc
 00110$:
-	C$map.c$92$5_0$260	= .
-	.globl	C$map.c$92$5_0$260
-;src/map.c:92: if (array[y][x] == EMPTY) {
+	C$map.c$97$5_0$263	= .
+	.globl	C$map.c$97$5_0$263
+;src/map.c:97: if (array[y][x] == EMPTY) {
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00153$
-	C$map.c$93$2_0$257	= .
-	.globl	C$map.c$93$2_0$257
-;src/map.c:93: for (int i = 0; i < 4; i++) palette_array[i] = 0;
+	C$map.c$98$2_0$260	= .
+	.globl	C$map.c$98$2_0$260
+;src/map.c:98: for (int i = 0; i < 4; i++) palette_array[i] = 0;
 	ld	bc, #0x0000
 00125$:
 	ld	a, c
@@ -667,9 +688,9 @@ _set_4bkg_tiles::
 	ld	(hl), #0x00
 	inc	bc
 	jr	00125$
-	C$map.c$95$2_0$257	= .
-	.globl	C$map.c$95$2_0$257
-;src/map.c:95: for (int i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILESTART) / 4].color_palette;
+	C$map.c$100$2_0$260	= .
+	.globl	C$map.c$100$2_0$260
+;src/map.c:100: for (int i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILESTART) / 4].color_palette;
 00153$:
 	xor	a, a
 	ldhl	sp,	#22
@@ -791,14 +812,14 @@ _set_4bkg_tiles::
 	inc	(hl)
 	jp	00128$
 00115$:
-	C$map.c$99$5_0$260	= .
-	.globl	C$map.c$99$5_0$260
-;src/map.c:99: VBK_REG = 0;
+	C$map.c$104$5_0$263	= .
+	.globl	C$map.c$104$5_0$263
+;src/map.c:104: VBK_REG = 0;
 	xor	a, a
 	ldh	(_VBK_REG + 0), a
-	C$map.c$100$5_0$260	= .
-	.globl	C$map.c$100$5_0$260
-;src/map.c:100: set_bkg_tiles(2 * x, 2 * y, 2, 1, tile_array);
+	C$map.c$105$5_0$263	= .
+	.globl	C$map.c$105$5_0$263
+;src/map.c:105: set_bkg_tiles(2 * x, 2 * y, 2, 1, tile_array);
 	ldhl	sp,	#21
 	ld	a, (hl)
 	add	a, a
@@ -816,9 +837,9 @@ _set_4bkg_tiles::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-	C$map.c$101$5_0$260	= .
-	.globl	C$map.c$101$5_0$260
-;src/map.c:101: set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, tile_array + 2);
+	C$map.c$106$5_0$263	= .
+	.globl	C$map.c$106$5_0$263
+;src/map.c:106: set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, tile_array + 2);
 	ldhl	sp,	#20
 	ld	a, (hl)
 	add	a, a
@@ -836,14 +857,14 @@ _set_4bkg_tiles::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-	C$map.c$104$5_0$260	= .
-	.globl	C$map.c$104$5_0$260
-;src/map.c:104: VBK_REG = 1;
+	C$map.c$109$5_0$263	= .
+	.globl	C$map.c$109$5_0$263
+;src/map.c:109: VBK_REG = 1;
 	ld	a, #0x01
 	ldh	(_VBK_REG + 0), a
-	C$map.c$105$5_0$260	= .
-	.globl	C$map.c$105$5_0$260
-;src/map.c:105: set_bkg_tiles(2 * x, 2 * y, 2, 1, palette_array);
+	C$map.c$110$5_0$263	= .
+	.globl	C$map.c$110$5_0$263
+;src/map.c:110: set_bkg_tiles(2 * x, 2 * y, 2, 1, palette_array);
 	ld	hl, #4
 	add	hl, sp
 	push	hl
@@ -857,9 +878,9 @@ _set_4bkg_tiles::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-	C$map.c$106$5_0$260	= .
-	.globl	C$map.c$106$5_0$260
-;src/map.c:106: set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, palette_array + 2);
+	C$map.c$111$5_0$263	= .
+	.globl	C$map.c$111$5_0$263
+;src/map.c:111: set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, palette_array + 2);
 	ld	hl, #6
 	add	hl, sp
 	push	hl
@@ -872,51 +893,51 @@ _set_4bkg_tiles::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-	C$map.c$109$5_0$260	= .
-	.globl	C$map.c$109$5_0$260
-;src/map.c:109: VBK_REG = 0;
+	C$map.c$114$5_0$263	= .
+	.globl	C$map.c$114$5_0$263
+;src/map.c:114: VBK_REG = 0;
 	xor	a, a
 	ldh	(_VBK_REG + 0), a
-	C$map.c$75$4_0$259	= .
-	.globl	C$map.c$75$4_0$259
-;src/map.c:75: for (uint8_t x = x1; x < x1 + c; x++) {
+	C$map.c$80$4_0$262	= .
+	.globl	C$map.c$80$4_0$262
+;src/map.c:80: for (uint8_t x = x1; x < x1 + c; x++) {
 	ldhl	sp,	#21
 	inc	(hl)
 	jp	00131$
 00135$:
-	C$map.c$74$2_0$257	= .
-	.globl	C$map.c$74$2_0$257
-;src/map.c:74: for (uint8_t y = y1; y < y1 + r; y++) {
+	C$map.c$79$2_0$260	= .
+	.globl	C$map.c$79$2_0$260
+;src/map.c:79: for (uint8_t y = y1; y < y1 + r; y++) {
 	ldhl	sp,	#20
 	inc	(hl)
 	jp	00134$
 00136$:
-	C$map.c$112$2_0$257	= .
-	.globl	C$map.c$112$2_0$257
-;src/map.c:112: }
+	C$map.c$117$2_0$260	= .
+	.globl	C$map.c$117$2_0$260
+;src/map.c:117: }
 	add	sp, #24
 	pop	hl
 	add	sp, #3
 	jp	(hl)
 	G$spawn_bkg_row$0$0	= .
 	.globl	G$spawn_bkg_row$0$0
-	C$map.c$115$2_0$271	= .
-	.globl	C$map.c$115$2_0$271
-;src/map.c:115: void spawn_bkg_row(void) {
+	C$map.c$120$2_0$274	= .
+	.globl	C$map.c$120$2_0$274
+;src/map.c:120: void spawn_bkg_row(void) {
 ;	---------------------------------
 ; Function spawn_bkg_row
 ; ---------------------------------
 _spawn_bkg_row::
-	C$map.c$116$1_0$271	= .
-	.globl	C$map.c$116$1_0$271
-;src/map.c:116: if (depth > 3) {
+	C$map.c$121$1_0$274	= .
+	.globl	C$map.c$121$1_0$274
+;src/map.c:121: if (depth > 3) {
 	ld	a, #0x03
 	ld	hl, #_depth
 	sub	a, (hl)
 	ret	NC
-	C$map.c$117$2_0$272	= .
-	.globl	C$map.c$117$2_0$272
-;src/map.c:117: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) set_4bkg_tiles(level_array, 0, depth + 4, 1, 16);
+	C$map.c$122$2_0$275	= .
+	.globl	C$map.c$122$2_0$275
+;src/map.c:122: if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) set_4bkg_tiles(level_array, 0, depth + 4, 1, 16);
 	ld	a, (hl)
 	ld	c, #0x00
 	ld	hl, #_depth_offset
@@ -947,9 +968,9 @@ _spawn_bkg_row::
 	call	_set_4bkg_tiles
 	ret
 00104$:
-	C$map.c$118$2_0$272	= .
-	.globl	C$map.c$118$2_0$272
-;src/map.c:118: else if (depth - depth_offset == THRESHOLD) set_4bkg_tiles(level_array, 0, depth - 4, 1, 16);
+	C$map.c$123$2_0$275	= .
+	.globl	C$map.c$123$2_0$275
+;src/map.c:123: else if (depth - depth_offset == THRESHOLD) set_4bkg_tiles(level_array, 0, depth - 4, 1, 16);
 	ld	a, e
 	sub	a, #0x02
 	or	a, d
@@ -964,27 +985,27 @@ _spawn_bkg_row::
 	xor	a, a
 	ld	de, #_level_array
 	call	_set_4bkg_tiles
-	C$map.c$120$1_0$271	= .
-	.globl	C$map.c$120$1_0$271
-;src/map.c:120: }
-	C$map.c$120$1_0$271	= .
-	.globl	C$map.c$120$1_0$271
+	C$map.c$125$1_0$274	= .
+	.globl	C$map.c$125$1_0$274
+;src/map.c:125: }
+	C$map.c$125$1_0$274	= .
+	.globl	C$map.c$125$1_0$274
 	XG$spawn_bkg_row$0$0	= .
 	.globl	XG$spawn_bkg_row$0$0
 	ret
 	G$clear_4bkg_tiles$0$0	= .
 	.globl	G$clear_4bkg_tiles$0$0
-	C$map.c$129$1_0$274	= .
-	.globl	C$map.c$129$1_0$274
-;src/map.c:129: void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y) {
+	C$map.c$134$1_0$277	= .
+	.globl	C$map.c$134$1_0$277
+;src/map.c:134: void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y) {
 ;	---------------------------------
 ; Function clear_4bkg_tiles
 ; ---------------------------------
 _clear_4bkg_tiles::
 	ld	c, a
-	C$map.c$130$1_0$274	= .
-	.globl	C$map.c$130$1_0$274
-;src/map.c:130: array[y][x] = 0; // Clear the tile in the array
+	C$map.c$135$1_0$277	= .
+	.globl	C$map.c$135$1_0$277
+;src/map.c:135: array[y][x] = 0; // Clear the tile in the array
 	ldhl	sp,	#2
 	ld	l, (hl)
 	ld	h, #0x00
@@ -996,9 +1017,9 @@ _clear_4bkg_tiles::
 	ld	b, #0x00
 	add	hl, bc
 	ld	(hl), #0x00
-	C$map.c$131$1_0$274	= .
-	.globl	C$map.c$131$1_0$274
-;src/map.c:131: set_4bkg_tiles(array, x, y, 1, 1); // Update the background
+	C$map.c$136$1_0$277	= .
+	.globl	C$map.c$136$1_0$277
+;src/map.c:136: set_4bkg_tiles(array, x, y, 1, 1); // Update the background
 	ld	hl, #0x101
 	push	hl
 	ldhl	sp,	#4
@@ -1007,25 +1028,25 @@ _clear_4bkg_tiles::
 	inc	sp
 	ld	a, c
 	call	_set_4bkg_tiles
-	C$map.c$132$1_0$274	= .
-	.globl	C$map.c$132$1_0$274
-;src/map.c:132: }
+	C$map.c$137$1_0$277	= .
+	.globl	C$map.c$137$1_0$277
+;src/map.c:137: }
 	pop	hl
 	inc	sp
 	jp	(hl)
 	G$add_block$0$0	= .
 	.globl	G$add_block$0$0
-	C$map.c$144$1_0$276	= .
-	.globl	C$map.c$144$1_0$276
-;src/map.c:144: void add_block(uint8_t array[][16], uint8_t x, uint8_t y, uint8_t type) {
+	C$map.c$149$1_0$279	= .
+	.globl	C$map.c$149$1_0$279
+;src/map.c:149: void add_block(uint8_t array[][16], uint8_t x, uint8_t y, uint8_t type) {
 ;	---------------------------------
 ; Function add_block
 ; ---------------------------------
 _add_block::
 	ld	c, a
-	C$map.c$145$1_0$276	= .
-	.globl	C$map.c$145$1_0$276
-;src/map.c:145: array[y][x] = type;
+	C$map.c$150$1_0$279	= .
+	.globl	C$map.c$150$1_0$279
+;src/map.c:150: array[y][x] = type;
 	ldhl	sp,	#2
 	ld	l, (hl)
 	ld	h, #0x00
@@ -1042,9 +1063,9 @@ _add_block::
 	inc	d
 00103$:
 	ldhl	sp,	#3
-	C$map.c$146$1_0$276	= .
-	.globl	C$map.c$146$1_0$276
-;src/map.c:146: set_4bkg_tiles(level_array, x, y, 1, 1);
+	C$map.c$151$1_0$279	= .
+	.globl	C$map.c$151$1_0$279
+;src/map.c:151: set_4bkg_tiles(level_array, x, y, 1, 1);
 	ld	a, (hl-)
 	ld	(de), a
 	ld	de, #0x101
@@ -1055,17 +1076,17 @@ _add_block::
 	ld	a, c
 	ld	de, #_level_array
 	call	_set_4bkg_tiles
-	C$map.c$147$1_0$276	= .
-	.globl	C$map.c$147$1_0$276
-;src/map.c:147: }
+	C$map.c$152$1_0$279	= .
+	.globl	C$map.c$152$1_0$279
+;src/map.c:152: }
 	pop	hl
 	pop	af
 	jp	(hl)
 	G$progressbar$0$0	= .
 	.globl	G$progressbar$0$0
-	C$map.c$159$1_0$279	= .
-	.globl	C$map.c$159$1_0$279
-;src/map.c:159: void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t x, uint8_t y) {
+	C$map.c$164$1_0$282	= .
+	.globl	C$map.c$164$1_0$282
+;src/map.c:164: void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t x, uint8_t y) {
 ;	---------------------------------
 ; Function progressbar
 ; ---------------------------------
@@ -1075,9 +1096,9 @@ _progressbar::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-	C$map.c$161$1_0$278	= .
-	.globl	C$map.c$161$1_0$278
-;src/map.c:161: uint8_t total_pixels = digits * 8;
+	C$map.c$166$1_0$281	= .
+	.globl	C$map.c$166$1_0$281
+;src/map.c:166: uint8_t total_pixels = digits * 8;
 	ldhl	sp,	#10
 	ld	a, (hl)
 	ldhl	sp,	#0
@@ -1086,9 +1107,9 @@ _progressbar::
 	add	a, a
 	add	a, a
 	add	a, a
-	C$map.c$162$1_0$278	= .
-	.globl	C$map.c$162$1_0$278
-;src/map.c:162: uint16_t pixels_to_fill = (current_value * total_pixels) / max_value;
+	C$map.c$167$1_0$281	= .
+	.globl	C$map.c$167$1_0$281
+;src/map.c:167: uint16_t pixels_to_fill = (current_value * total_pixels) / max_value;
 	ld	c, a
 	ld	b, #0x00
 	call	__mulint
@@ -1099,9 +1120,9 @@ _progressbar::
 	ld	c, a
 	ld	b, (hl)
 	call	__divsint
-	C$map.c$164$5_0$282	= .
-	.globl	C$map.c$164$5_0$282
-;src/map.c:164: for (uint8_t i = 0; i < digits; i++) {
+	C$map.c$169$5_0$285	= .
+	.globl	C$map.c$169$5_0$285
+;src/map.c:169: for (uint8_t i = 0; i < digits; i++) {
 	ldhl	sp,	#0
 	ld	a, (hl)
 	dec	a
@@ -1123,13 +1144,13 @@ _progressbar::
 	ldhl	sp,	#0
 	sub	a, (hl)
 	jp	NC, 00124$
-	C$map.c$165$4_0$280	= .
-	.globl	C$map.c$165$4_0$280
-;src/map.c:165: uint8_t tile_index = SPRITE_TILE_EMPTY; // Default to empty
+	C$map.c$170$4_0$283	= .
+	.globl	C$map.c$170$4_0$283
+;src/map.c:170: uint8_t tile_index = SPRITE_TILE_EMPTY; // Default to empty
 	ld	e, #0x00
-	C$map.c$167$3_0$280	= .
-	.globl	C$map.c$167$3_0$280
-;src/map.c:167: uint8_t effective_pixels = (pixels_to_fill > sprite_pixels) ? sprite_pixels : pixels_to_fill;
+	C$map.c$172$3_0$283	= .
+	.globl	C$map.c$172$3_0$283
+;src/map.c:172: uint8_t effective_pixels = (pixels_to_fill > sprite_pixels) ? sprite_pixels : pixels_to_fill;
 	ld	a, #0x08
 	cp	a, c
 	ld	a, #0x00
@@ -1140,9 +1161,9 @@ _progressbar::
 00126$:
 	ld	d, c
 00127$:
-	C$map.c$170$3_0$280	= .
-	.globl	C$map.c$170$3_0$280
-;src/map.c:170: pixels_to_fill -= effective_pixels;
+	C$map.c$175$3_0$283	= .
+	.globl	C$map.c$175$3_0$283
+;src/map.c:175: pixels_to_fill -= effective_pixels;
 	ld	l, d
 ;	spillPairReg hl
 ;	spillPairReg hl
@@ -1155,9 +1176,9 @@ _progressbar::
 	ld	a, b
 	sbc	a, h
 	ld	b, a
-	C$map.c$173$3_0$280	= .
-	.globl	C$map.c$173$3_0$280
-;src/map.c:173: switch (effective_pixels) {
+	C$map.c$178$3_0$283	= .
+	.globl	C$map.c$178$3_0$283
+;src/map.c:178: switch (effective_pixels) {
 	ld	a, #0x08
 	sub	a, d
 	jp	C, 00117$
@@ -1178,68 +1199,68 @@ _progressbar::
 	jp	00107$
 	jp	00108$
 	jp	00109$
-	C$map.c$174$4_0$281	= .
-	.globl	C$map.c$174$4_0$281
-;src/map.c:174: case 0: tile_index = SPRITE_TILE_EMPTY; break;
+	C$map.c$179$4_0$284	= .
+	.globl	C$map.c$179$4_0$284
+;src/map.c:179: case 0: tile_index = SPRITE_TILE_EMPTY; break;
 00101$:
 	ld	e, #0x00
 	jr	00117$
-	C$map.c$175$4_0$281	= .
-	.globl	C$map.c$175$4_0$281
-;src/map.c:175: case 1: tile_index = SPRITE_TILE_1_8; break;
+	C$map.c$180$4_0$284	= .
+	.globl	C$map.c$180$4_0$284
+;src/map.c:180: case 1: tile_index = SPRITE_TILE_1_8; break;
 00102$:
 	ld	e, #0x20
 	jr	00117$
-	C$map.c$176$4_0$281	= .
-	.globl	C$map.c$176$4_0$281
-;src/map.c:176: case 2: tile_index = SPRITE_TILE_2_8; break;
+	C$map.c$181$4_0$284	= .
+	.globl	C$map.c$181$4_0$284
+;src/map.c:181: case 2: tile_index = SPRITE_TILE_2_8; break;
 00103$:
 	ld	e, #0x21
 	jr	00117$
-	C$map.c$177$4_0$281	= .
-	.globl	C$map.c$177$4_0$281
-;src/map.c:177: case 3: tile_index = SPRITE_TILE_3_8; break;
+	C$map.c$182$4_0$284	= .
+	.globl	C$map.c$182$4_0$284
+;src/map.c:182: case 3: tile_index = SPRITE_TILE_3_8; break;
 00104$:
 	ld	e, #0x22
 	jr	00117$
-	C$map.c$178$4_0$281	= .
-	.globl	C$map.c$178$4_0$281
-;src/map.c:178: case 4: tile_index = SPRITE_TILE_4_8; break;
+	C$map.c$183$4_0$284	= .
+	.globl	C$map.c$183$4_0$284
+;src/map.c:183: case 4: tile_index = SPRITE_TILE_4_8; break;
 00105$:
 	ld	e, #0x23
 	jr	00117$
-	C$map.c$179$4_0$281	= .
-	.globl	C$map.c$179$4_0$281
-;src/map.c:179: case 5: tile_index = SPRITE_TILE_5_8; break;
+	C$map.c$184$4_0$284	= .
+	.globl	C$map.c$184$4_0$284
+;src/map.c:184: case 5: tile_index = SPRITE_TILE_5_8; break;
 00106$:
 	ld	e, #0x24
 	jr	00117$
-	C$map.c$180$4_0$281	= .
-	.globl	C$map.c$180$4_0$281
-;src/map.c:180: case 6: tile_index = SPRITE_TILE_6_8; break;
+	C$map.c$185$4_0$284	= .
+	.globl	C$map.c$185$4_0$284
+;src/map.c:185: case 6: tile_index = SPRITE_TILE_6_8; break;
 00107$:
 	ld	e, #0x25
 	jr	00117$
-	C$map.c$181$4_0$281	= .
-	.globl	C$map.c$181$4_0$281
-;src/map.c:181: case 7: tile_index = SPRITE_TILE_7_8; break;
+	C$map.c$186$4_0$284	= .
+	.globl	C$map.c$186$4_0$284
+;src/map.c:186: case 7: tile_index = SPRITE_TILE_7_8; break;
 00108$:
 	ld	e, #0x26
 	jr	00117$
-	C$map.c$182$4_0$281	= .
-	.globl	C$map.c$182$4_0$281
-;src/map.c:182: case 8: 
+	C$map.c$187$4_0$284	= .
+	.globl	C$map.c$187$4_0$284
+;src/map.c:187: case 8: 
 00109$:
-	C$map.c$183$4_0$281	= .
-	.globl	C$map.c$183$4_0$281
-;src/map.c:183: if (i == 0) { // First sprite
+	C$map.c$188$4_0$284	= .
+	.globl	C$map.c$188$4_0$284
+;src/map.c:188: if (i == 0) { // First sprite
 	ldhl	sp,	#7
 	ld	a, (hl)
 	or	a, a
 	jr	NZ, 00115$
-	C$map.c$184$5_0$282	= .
-	.globl	C$map.c$184$5_0$282
-;src/map.c:184: tile_index = (digits == 1 || pixels_to_fill == 0) ? SPRITE_TILE_END : SPRITE_TILE_MID;
+	C$map.c$189$5_0$285	= .
+	.globl	C$map.c$189$5_0$285
+;src/map.c:189: tile_index = (digits == 1 || pixels_to_fill == 0) ? SPRITE_TILE_END : SPRITE_TILE_MID;
 	ldhl	sp,	#1
 	bit	0, (hl)
 	jr	NZ, 00131$
@@ -1253,9 +1274,9 @@ _progressbar::
 	ld	de, #0x0028
 	jr	00117$
 00115$:
-	C$map.c$185$4_0$281	= .
-	.globl	C$map.c$185$4_0$281
-;src/map.c:185: } else if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
+	C$map.c$190$4_0$284	= .
+	.globl	C$map.c$190$4_0$284
+;src/map.c:190: } else if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
 	ldhl	sp,	#0
 	ld	e, (hl)
 	ld	d, #0x00
@@ -1278,21 +1299,21 @@ _progressbar::
 	or	a, c
 	jr	NZ, 00111$
 00110$:
-	C$map.c$186$5_0$283	= .
-	.globl	C$map.c$186$5_0$283
-;src/map.c:186: tile_index = SPRITE_TILE_END;
+	C$map.c$191$5_0$286	= .
+	.globl	C$map.c$191$5_0$286
+;src/map.c:191: tile_index = SPRITE_TILE_END;
 	ld	e, #0x27
 	jr	00117$
 00111$:
-	C$map.c$188$5_0$284	= .
-	.globl	C$map.c$188$5_0$284
-;src/map.c:188: tile_index = SPRITE_TILE_MID;
+	C$map.c$193$5_0$287	= .
+	.globl	C$map.c$193$5_0$287
+;src/map.c:193: tile_index = SPRITE_TILE_MID;
 	ld	e, #0x28
-	C$map.c$191$3_0$280	= .
-	.globl	C$map.c$191$3_0$280
-;src/map.c:191: }
+	C$map.c$196$3_0$283	= .
+	.globl	C$map.c$196$3_0$283
+;src/map.c:196: }
 00117$:
-;src/map.c:194: set_sprite_tile(tilestart + i, tile_index);
+;src/map.c:199: set_sprite_tile(tilestart + i, tile_index);
 	ldhl	sp,	#11
 	ld	a, (hl)
 	ldhl	sp,	#7
@@ -1314,7 +1335,7 @@ _progressbar::
 	inc	hl
 	pop	de
 	ld	(hl), e
-;src/map.c:195: move_sprite(tilestart + i, x + i * 8, y);
+;src/map.c:200: move_sprite(tilestart + i, x + i * 8, y);
 	ldhl	sp,	#7
 	ld	a, (hl)
 	add	a, a
@@ -1342,33 +1363,33 @@ _progressbar::
 	inc	de
 	ld	a, (hl)
 	ld	(de), a
-	C$map.c$164$2_0$279	= .
-	.globl	C$map.c$164$2_0$279
-;src/map.c:164: for (uint8_t i = 0; i < digits; i++) {
+	C$map.c$169$2_0$282	= .
+	.globl	C$map.c$169$2_0$282
+;src/map.c:169: for (uint8_t i = 0; i < digits; i++) {
 	ldhl	sp,	#7
 	inc	(hl)
 	jp	00122$
 00124$:
-	C$map.c$197$2_0$279	= .
-	.globl	C$map.c$197$2_0$279
-;src/map.c:197: }
+	C$map.c$202$2_0$282	= .
+	.globl	C$map.c$202$2_0$282
+;src/map.c:202: }
 	add	sp, #8
 	pop	hl
 	add	sp, #4
 	jp	(hl)
 	G$draw_depth$0$0	= .
 	.globl	G$draw_depth$0$0
-	C$map.c$199$2_0$292	= .
-	.globl	C$map.c$199$2_0$292
-;src/map.c:199: void draw_depth(void){
+	C$map.c$204$2_0$295	= .
+	.globl	C$map.c$204$2_0$295
+;src/map.c:204: void draw_depth(void){
 ;	---------------------------------
 ; Function draw_depth
 ; ---------------------------------
 _draw_depth::
 	add	sp, #-10
-	C$map.c$201$1_0$292	= .
-	.globl	C$map.c$201$1_0$292
-;src/map.c:201: itoa((depth <= EARTH_START) ? 0 : (depth - EARTH_START), string, 10);
+	C$map.c$206$1_0$295	= .
+	.globl	C$map.c$206$1_0$295
+;src/map.c:206: itoa((depth <= EARTH_START) ? 0 : (depth - EARTH_START), string, 10);
 	ld	hl, #0
 	add	hl, sp
 	ld	e, l
@@ -1395,18 +1416,18 @@ _draw_depth::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$map.c$202$1_0$292	= .
-	.globl	C$map.c$202$1_0$292
-;src/map.c:202: strcat(string, "m");
+	C$map.c$207$1_0$295	= .
+	.globl	C$map.c$207$1_0$295
+;src/map.c:207: strcat(string, "m");
 	ld	bc, #___str_0
 	ld	hl, #0
 	add	hl, sp
 	ld	e, l
 	ld	d, h
 	call	_strcat
-	C$map.c$203$1_0$292	= .
-	.globl	C$map.c$203$1_0$292
-;src/map.c:203: draw_text(15,0,"Depth",5,TRUE,0);
+	C$map.c$208$1_0$295	= .
+	.globl	C$map.c$208$1_0$295
+;src/map.c:208: draw_text(15,0,"Depth",5,TRUE,0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1419,9 +1440,9 @@ _draw_depth::
 	ld	e, #0x00
 	ld	a, #0x0f
 	call	_draw_text
-	C$map.c$204$1_0$292	= .
-	.globl	C$map.c$204$1_0$292
-;src/map.c:204: draw_text(15,1,string,5,FALSE,0);
+	C$map.c$209$1_0$295	= .
+	.globl	C$map.c$209$1_0$295
+;src/map.c:209: draw_text(15,1,string,5,FALSE,0);
 	ld	hl, #0
 	add	hl, sp
 	xor	a, a
@@ -1435,12 +1456,12 @@ _draw_depth::
 	ld	e, #0x01
 	ld	a, #0x0f
 	call	_draw_text
-	C$map.c$205$1_0$292	= .
-	.globl	C$map.c$205$1_0$292
-;src/map.c:205: }
+	C$map.c$210$1_0$295	= .
+	.globl	C$map.c$210$1_0$295
+;src/map.c:210: }
 	add	sp, #10
-	C$map.c$205$1_0$292	= .
-	.globl	C$map.c$205$1_0$292
+	C$map.c$210$1_0$295	= .
+	.globl	C$map.c$210$1_0$295
 	XG$draw_depth$0$0	= .
 	.globl	XG$draw_depth$0$0
 	ret
@@ -1454,17 +1475,17 @@ ___str_1:
 	.db 0x00
 	G$draw_cargo$0$0	= .
 	.globl	G$draw_cargo$0$0
-	C$map.c$207$1_0$294	= .
-	.globl	C$map.c$207$1_0$294
-;src/map.c:207: void draw_cargo(void){
+	C$map.c$212$1_0$297	= .
+	.globl	C$map.c$212$1_0$297
+;src/map.c:212: void draw_cargo(void){
 ;	---------------------------------
 ; Function draw_cargo
 ; ---------------------------------
 _draw_cargo::
 	add	sp, #-20
-	C$map.c$210$1_0$294	= .
-	.globl	C$map.c$210$1_0$294
-;src/map.c:210: itoa(player.cargo.current_value, string, 10);
+	C$map.c$215$1_0$297	= .
+	.globl	C$map.c$215$1_0$297
+;src/map.c:215: itoa(player.cargo.current_value, string, 10);
 	ld	hl, #_player + 187
 	ld	a, (hl+)
 	ld	c, a
@@ -1478,9 +1499,9 @@ _draw_cargo::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$map.c$211$1_0$294	= .
-	.globl	C$map.c$211$1_0$294
-;src/map.c:211: itoa(player.cargo.max_value, string_max, 10);
+	C$map.c$216$1_0$297	= .
+	.globl	C$map.c$216$1_0$297
+;src/map.c:216: itoa(player.cargo.max_value, string_max, 10);
 	ld	hl, #_player + 189
 	ld	a, (hl+)
 	ld	c, a
@@ -1494,18 +1515,18 @@ _draw_cargo::
 	push	bc
 	call	_itoa
 	add	sp, #5
-	C$map.c$212$1_0$294	= .
-	.globl	C$map.c$212$1_0$294
-;src/map.c:212: strcat(string, "/");
+	C$map.c$217$1_0$297	= .
+	.globl	C$map.c$217$1_0$297
+;src/map.c:217: strcat(string, "/");
 	ld	bc, #___str_2
 	ld	hl, #0
 	add	hl, sp
 	ld	e, l
 	ld	d, h
 	call	_strcat
-	C$map.c$213$1_0$294	= .
-	.globl	C$map.c$213$1_0$294
-;src/map.c:213: strcat(string, string_max);
+	C$map.c$218$1_0$297	= .
+	.globl	C$map.c$218$1_0$297
+;src/map.c:218: strcat(string, string_max);
 	ld	hl, #10
 	add	hl, sp
 	ld	c, l
@@ -1515,9 +1536,9 @@ _draw_cargo::
 	ld	e, l
 	ld	d, h
 	call	_strcat
-	C$map.c$214$1_0$294	= .
-	.globl	C$map.c$214$1_0$294
-;src/map.c:214: draw_text(9,0,"Cargo",5,TRUE,0);
+	C$map.c$219$1_0$297	= .
+	.globl	C$map.c$219$1_0$297
+;src/map.c:219: draw_text(9,0,"Cargo",5,TRUE,0);
 	xor	a, a
 	ld	h, a
 	ld	l, #0x01
@@ -1530,9 +1551,9 @@ _draw_cargo::
 	ld	e, #0x00
 	ld	a, #0x09
 	call	_draw_text
-	C$map.c$215$1_0$294	= .
-	.globl	C$map.c$215$1_0$294
-;src/map.c:215: draw_text(9,1,string,5,TRUE,0);
+	C$map.c$220$1_0$297	= .
+	.globl	C$map.c$220$1_0$297
+;src/map.c:220: draw_text(9,1,string,5,TRUE,0);
 	ld	hl, #0
 	add	hl, sp
 	xor	a, a
@@ -1546,12 +1567,12 @@ _draw_cargo::
 	ld	e, #0x01
 	ld	a, #0x09
 	call	_draw_text
-	C$map.c$216$1_0$294	= .
-	.globl	C$map.c$216$1_0$294
-;src/map.c:216: }
+	C$map.c$221$1_0$297	= .
+	.globl	C$map.c$221$1_0$297
+;src/map.c:221: }
 	add	sp, #20
-	C$map.c$216$1_0$294	= .
-	.globl	C$map.c$216$1_0$294
+	C$map.c$221$1_0$297	= .
+	.globl	C$map.c$221$1_0$297
 	XG$draw_cargo$0$0	= .
 	.globl	XG$draw_cargo$0$0
 	ret
@@ -1565,16 +1586,16 @@ ___str_3:
 	.db 0x00
 	G$draw_fuel$0$0	= .
 	.globl	G$draw_fuel$0$0
-	C$map.c$218$1_0$296	= .
-	.globl	C$map.c$218$1_0$296
-;src/map.c:218: void draw_fuel(void){
+	C$map.c$223$1_0$299	= .
+	.globl	C$map.c$223$1_0$299
+;src/map.c:223: void draw_fuel(void){
 ;	---------------------------------
 ; Function draw_fuel
 ; ---------------------------------
 _draw_fuel::
-	C$map.c$219$1_0$296	= .
-	.globl	C$map.c$219$1_0$296
-;src/map.c:219: progressbar(player.fuel.current_value, player.fuel.max_value, 3, 35, 44, 20);
+	C$map.c$224$1_0$299	= .
+	.globl	C$map.c$224$1_0$299
+;src/map.c:224: progressbar(player.fuel.current_value, player.fuel.max_value, 3, 35, 44, 20);
 	ld	hl, #_player + 18
 	ld	a, (hl+)
 	ld	c, a
@@ -1593,26 +1614,26 @@ _draw_fuel::
 	ld	e, l
 	ld	d, h
 	call	_progressbar
-	C$map.c$220$1_0$296	= .
-	.globl	C$map.c$220$1_0$296
-;src/map.c:220: }
-	C$map.c$220$1_0$296	= .
-	.globl	C$map.c$220$1_0$296
+	C$map.c$225$1_0$299	= .
+	.globl	C$map.c$225$1_0$299
+;src/map.c:225: }
+	C$map.c$225$1_0$299	= .
+	.globl	C$map.c$225$1_0$299
 	XG$draw_fuel$0$0	= .
 	.globl	XG$draw_fuel$0$0
 	ret
 	G$draw_hull$0$0	= .
 	.globl	G$draw_hull$0$0
-	C$map.c$221$1_0$298	= .
-	.globl	C$map.c$221$1_0$298
-;src/map.c:221: void draw_hull(void){
+	C$map.c$226$1_0$301	= .
+	.globl	C$map.c$226$1_0$301
+;src/map.c:226: void draw_hull(void){
 ;	---------------------------------
 ; Function draw_hull
 ; ---------------------------------
 _draw_hull::
-	C$map.c$222$1_0$298	= .
-	.globl	C$map.c$222$1_0$298
-;src/map.c:222: progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+	C$map.c$227$1_0$301	= .
+	.globl	C$map.c$227$1_0$301
+;src/map.c:227: progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
 	ld	hl, #_player + 75
 	ld	a, (hl+)
 	ld	c, a
@@ -1631,57 +1652,57 @@ _draw_hull::
 	ld	e, l
 	ld	d, h
 	call	_progressbar
-	C$map.c$223$1_0$298	= .
-	.globl	C$map.c$223$1_0$298
-;src/map.c:223: }
-	C$map.c$223$1_0$298	= .
-	.globl	C$map.c$223$1_0$298
+	C$map.c$228$1_0$301	= .
+	.globl	C$map.c$228$1_0$301
+;src/map.c:228: }
+	C$map.c$228$1_0$301	= .
+	.globl	C$map.c$228$1_0$301
 	XG$draw_hull$0$0	= .
 	.globl	XG$draw_hull$0$0
 	ret
 	G$draw_character$0$0	= .
 	.globl	G$draw_character$0$0
-	C$map.c$226$1_0$300	= .
-	.globl	C$map.c$226$1_0$300
-;src/map.c:226: void draw_character(void){
+	C$map.c$231$1_0$303	= .
+	.globl	C$map.c$231$1_0$303
+;src/map.c:231: void draw_character(void){
 ;	---------------------------------
 ; Function draw_character
 ; ---------------------------------
 _draw_character::
-	C$map.c$227$1_0$300	= .
-	.globl	C$map.c$227$1_0$300
-;src/map.c:227: set_sprite_data(CHARSTART, 16, rover_tiles);
+	C$map.c$232$1_0$303	= .
+	.globl	C$map.c$232$1_0$303
+;src/map.c:232: set_sprite_data(CHARSTART, 16, rover_tiles);
 	ld	de, #_rover_tiles
 	push	de
 	ld	hl, #0x1001
 	push	hl
 	call	_set_sprite_data
 	add	sp, #4
-	C$map.c$228$1_0$300	= .
-	.globl	C$map.c$228$1_0$300
-;src/map.c:228: draw_metasprite(direction_prev);
+	C$map.c$233$1_0$303	= .
+	.globl	C$map.c$233$1_0$303
+;src/map.c:233: draw_metasprite(direction_prev);
 	ld	hl, #_direction_prev
 	ld	a, (hl)
-	C$map.c$229$1_0$300	= .
-	.globl	C$map.c$229$1_0$300
-;src/map.c:229: }
-	C$map.c$229$1_0$300	= .
-	.globl	C$map.c$229$1_0$300
+	C$map.c$234$1_0$303	= .
+	.globl	C$map.c$234$1_0$303
+;src/map.c:234: }
+	C$map.c$234$1_0$303	= .
+	.globl	C$map.c$234$1_0$303
 	XG$draw_character$0$0	= .
 	.globl	XG$draw_character$0$0
 	jp	_draw_metasprite
 	G$init_nav$0$0	= .
 	.globl	G$init_nav$0$0
-	C$map.c$231$1_0$302	= .
-	.globl	C$map.c$231$1_0$302
-;src/map.c:231: void init_nav(void){
+	C$map.c$236$1_0$305	= .
+	.globl	C$map.c$236$1_0$305
+;src/map.c:236: void init_nav(void){
 ;	---------------------------------
 ; Function init_nav
 ; ---------------------------------
 _init_nav::
-	C$map.c$232$1_0$302	= .
-	.globl	C$map.c$232$1_0$302
-;src/map.c:232: set_win_tiles(0,0,20,3,nav_map);
+	C$map.c$237$1_0$305	= .
+	.globl	C$map.c$237$1_0$305
+;src/map.c:237: set_win_tiles(0,0,20,3,nav_map);
 	ld	de, #_nav_map
 	push	de
 	ld	hl, #0x314
@@ -1696,47 +1717,47 @@ _init_nav::
 	ldh	(_WX_REG + 0), a
 	xor	a, a
 	ldh	(_WY_REG + 0), a
-	C$map.c$233$3_0$302	= .
-	.globl	C$map.c$233$3_0$302
-;src/map.c:233: move_win(7, 0); //124
-	C$map.c$234$3_0$302	= .
-	.globl	C$map.c$234$3_0$302
-;src/map.c:234: }
-	C$map.c$234$3_0$302	= .
-	.globl	C$map.c$234$3_0$302
+	C$map.c$238$3_0$305	= .
+	.globl	C$map.c$238$3_0$305
+;src/map.c:238: move_win(7, 0); //124
+	C$map.c$239$3_0$305	= .
+	.globl	C$map.c$239$3_0$305
+;src/map.c:239: }
+	C$map.c$239$3_0$305	= .
+	.globl	C$map.c$239$3_0$305
 	XG$init_nav$0$0	= .
 	.globl	XG$init_nav$0$0
 	ret
 	G$init_tiles$0$0	= .
 	.globl	G$init_tiles$0$0
-	C$map.c$236$3_0$307	= .
-	.globl	C$map.c$236$3_0$307
-;src/map.c:236: void init_tiles(void){
+	C$map.c$241$3_0$310	= .
+	.globl	C$map.c$241$3_0$310
+;src/map.c:241: void init_tiles(void){
 ;	---------------------------------
 ; Function init_tiles
 ; ---------------------------------
 _init_tiles::
-	C$map.c$237$1_0$307	= .
-	.globl	C$map.c$237$1_0$307
-;src/map.c:237: set_bkg_data(TILESTART, 28, tile_tiles);
+	C$map.c$242$1_0$310	= .
+	.globl	C$map.c$242$1_0$310
+;src/map.c:242: set_bkg_data(TILESTART, 28, tile_tiles);
 	ld	de, #_tile_tiles
 	push	de
 	ld	hl, #0x1c5c
 	push	hl
 	call	_set_bkg_data
 	add	sp, #4
-	C$map.c$238$1_0$307	= .
-	.globl	C$map.c$238$1_0$307
-;src/map.c:238: set_bkg_data(NAVSTART, nav_TILE_COUNT, nav_tiles);
+	C$map.c$243$1_0$310	= .
+	.globl	C$map.c$243$1_0$310
+;src/map.c:243: set_bkg_data(NAVSTART, nav_TILE_COUNT, nav_tiles);
 	ld	de, #_nav_tiles
 	push	de
 	ld	hl, #0xc80
 	push	hl
 	call	_set_bkg_data
 	add	sp, #4
-	C$map.c$239$1_0$307	= .
-	.globl	C$map.c$239$1_0$307
-;src/map.c:239: set_4bkg_tiles(level_array, 0, 0, 16, 16);
+	C$map.c$244$1_0$310	= .
+	.globl	C$map.c$244$1_0$310
+;src/map.c:244: set_4bkg_tiles(level_array, 0, 0, 16, 16);
 	ld	hl, #0x1010
 	push	hl
 	xor	a, a
@@ -1745,35 +1766,35 @@ _init_tiles::
 	xor	a, a
 	ld	de, #_level_array
 	call	_set_4bkg_tiles
-	C$map.c$240$1_0$307	= .
-	.globl	C$map.c$240$1_0$307
-;src/map.c:240: }
-	C$map.c$240$1_0$307	= .
-	.globl	C$map.c$240$1_0$307
+	C$map.c$245$1_0$310	= .
+	.globl	C$map.c$245$1_0$310
+;src/map.c:245: }
+	C$map.c$245$1_0$310	= .
+	.globl	C$map.c$245$1_0$310
 	XG$init_tiles$0$0	= .
 	.globl	XG$init_tiles$0$0
 	ret
 	G$init_progressbar$0$0	= .
 	.globl	G$init_progressbar$0$0
-	C$map.c$242$1_0$309	= .
-	.globl	C$map.c$242$1_0$309
-;src/map.c:242: void init_progressbar(void){
+	C$map.c$247$1_0$312	= .
+	.globl	C$map.c$247$1_0$312
+;src/map.c:247: void init_progressbar(void){
 ;	---------------------------------
 ; Function init_progressbar
 ; ---------------------------------
 _init_progressbar::
-	C$map.c$243$1_0$309	= .
-	.globl	C$map.c$243$1_0$309
-;src/map.c:243: set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
+	C$map.c$248$1_0$312	= .
+	.globl	C$map.c$248$1_0$312
+;src/map.c:248: set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
 	ld	de, #_progressbar_tiles
 	push	de
 	ld	hl, #0x920
 	push	hl
 	call	_set_sprite_data
 	add	sp, #4
-	C$map.c$244$1_0$309	= .
-	.globl	C$map.c$244$1_0$309
-;src/map.c:244: progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+	C$map.c$249$1_0$312	= .
+	.globl	C$map.c$249$1_0$312
+;src/map.c:249: progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
 	ld	hl, #_player + 75
 	ld	a, (hl+)
 	ld	c, a
@@ -1792,11 +1813,11 @@ _init_progressbar::
 	ld	e, l
 	ld	d, h
 	call	_progressbar
-	C$map.c$245$1_0$309	= .
-	.globl	C$map.c$245$1_0$309
-;src/map.c:245: }
-	C$map.c$245$1_0$309	= .
-	.globl	C$map.c$245$1_0$309
+	C$map.c$250$1_0$312	= .
+	.globl	C$map.c$250$1_0$312
+;src/map.c:250: }
+	C$map.c$250$1_0$312	= .
+	.globl	C$map.c$250$1_0$312
 	XG$init_progressbar$0$0	= .
 	.globl	XG$init_progressbar$0$0
 	ret

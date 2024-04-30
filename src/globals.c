@@ -8,7 +8,10 @@
 // framecounter
 volatile uint8_t frame_counter = 0;
 
-// shop and menu
+// main menu
+uint8_t current_menu_index = 0;
+
+// shop
 BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time
 BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
 BOOLEAN left_sell_area = TRUE;  // Initially true to allow first entry
@@ -18,7 +21,7 @@ uint8_t saved_bank;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
-GameState currentGameState = GAME_STATE_PLAY;  // Start with the game loop
+GameState currentGameState = GAME_STATE_MAIN_MENU;  // Start with the game loop
 
 // movement
 uint8_t depth = 2, width = 6;

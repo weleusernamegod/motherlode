@@ -84,6 +84,7 @@ T:Fglobals$__00000004[({0}S:S$joy0$0_0$0({1}SC:U),Z,0,0)({1}S:S$joy1$0_0$0({1}SC
 T:Fglobals$_fixed[({0}S:S$l$0_0$0({1}SC:U),Z,0,0)({1}S:S$h$0_0$0({1}SC:U),Z,0,0)({0}S:S$b$0_0$0({2}ST__00000001:S),Z,0,0)({0}S:S$w$0_0$0({2}SI:U),Z,0,0)]
 T:Fglobals$OAM_item_t[({0}S:S$y$0_0$0({1}SC:U),Z,0,0)({1}S:S$x$0_0$0({1}SC:U),Z,0,0)({2}S:S$tile$0_0$0({1}SC:U),Z,0,0)({3}S:S$prop$0_0$0({1}SC:U),Z,0,0)]
 S:G$frame_counter$0_0$0({1}SC:U),E,0,0
+S:G$current_menu_index$0_0$0({1}SC:U),E,0,0
 S:G$update_menu$0_0$0({1}SC:S),E,0,0
 S:G$left_shop_area$0_0$0({1}SC:S),E,0,0
 S:G$left_sell_area$0_0$0({1}SC:S),E,0,0

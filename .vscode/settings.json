@@ -10,7 +10,12 @@
         "progressbar.h": "c",
         "nav.h": "c",
         "player.h": "c",
-        "rover.h": "c"
+        "rover.h": "c",
+        "splashscreen.h": "c",
+        "cgb.h": "c",
+        "tile.h": "c",
+        "stdint.h": "c",
+        "gameloop.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

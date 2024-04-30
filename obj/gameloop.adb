@@ -162,6 +162,7 @@ S:G$_current_1bpp_colors$0_0$0({2}SI:U),E,0,0
 S:G$_map_tile_offset$0_0$0({1}SC:U),E,0,0
 S:G$_submap_tile_offset$0_0$0({1}SC:U),E,0,0
 S:G$shadow_OAM$0_0$0({0}DA0d,STOAM_item_t:S),E,0,0
+S:G$current_menu_index$0_0$0({1}SC:U),E,0,0
 S:G$frame_counter$0_0$0({1}SC:U),E,0,0
 S:G$update_menu$0_0$0({1}SC:S),E,0,0
 S:G$left_shop_area$0_0$0({1}SC:S),E,0,0
@@ -422,6 +423,7 @@ S:G$read_buttons$0_0$0({2}DF,SV:S),C,0,0
 S:G$convert_char_to_tile$0_0$0({2}DF,SC:U),C,0,0
 S:G$draw_text$0_0$0({2}DF,SV:S),C,0,0
 S:G$draw_number_sprite$0_0$0({2}DF,SV:S),C,0,0
+S:G$draw_buildings$0_0$0({2}DF,SV:S),C,0,0
 S:G$shuffle$0_0$0({2}DF,SV:S),C,0,0
 S:G$change_background_color$0_0$0({2}DF,SV:S),C,0,0
 S:G$set_4bkg_tiles$0_0$0({2}DF,SV:S),C,0,0

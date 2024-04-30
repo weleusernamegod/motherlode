@@ -62,44 +62,44 @@
                                      62 	.area _CODE
                            000000    63 	G$game_loop$0$0	= .
                                      64 	.globl	G$game_loop$0$0
-                           000000    65 	C$gameloop.c$18$0_0$213	= .
-                                     66 	.globl	C$gameloop.c$18$0_0$213
+                           000000    65 	C$gameloop.c$18$0_0$214	= .
+                                     66 	.globl	C$gameloop.c$18$0_0$214
                                      67 ;src/gameloop.c:18: void game_loop(void) {
                                      68 ;	---------------------------------
                                      69 ; Function game_loop
                                      70 ; ---------------------------------
       000000                         71 _game_loop::
-                           000000    72 	C$gameloop.c$20$1_0$213	= .
-                                     73 	.globl	C$gameloop.c$20$1_0$213
+                           000000    72 	C$gameloop.c$20$1_0$214	= .
+                                     73 	.globl	C$gameloop.c$20$1_0$214
                                      74 ;src/gameloop.c:20: read_buttons();
       000000 CDr00r00         [24]   75 	call	_read_buttons
-                           000003    76 	C$gameloop.c$21$1_0$213	= .
-                                     77 	.globl	C$gameloop.c$21$1_0$213
+                           000003    76 	C$gameloop.c$21$1_0$214	= .
+                                     77 	.globl	C$gameloop.c$21$1_0$214
                                      78 ;src/gameloop.c:21: check_surroundings();
       000003 CDr00r00         [24]   79 	call	_check_surroundings
-                           000006    80 	C$gameloop.c$23$1_0$213	= .
-                                     81 	.globl	C$gameloop.c$23$1_0$213
+                           000006    80 	C$gameloop.c$23$1_0$214	= .
+                                     81 	.globl	C$gameloop.c$23$1_0$214
                                      82 ;src/gameloop.c:23: if (animation_frames_left == 0) {
       000006 FAr00r00         [16]   83 	ld	a, (#_animation_frames_left)
       000009 B7               [ 4]   84 	or	a, a
       00000A 20 03            [12]   85 	jr	NZ, 00102$
-                           00000C    86 	C$gameloop.c$24$2_0$214	= .
-                                     87 	.globl	C$gameloop.c$24$2_0$214
+                           00000C    86 	C$gameloop.c$24$2_0$215	= .
+                                     87 	.globl	C$gameloop.c$24$2_0$215
                                      88 ;src/gameloop.c:24: initiate_movement();
       00000C CDr00r00         [24]   89 	call	_initiate_movement
       00000F                         90 00102$:
-                           00000F    91 	C$gameloop.c$27$1_0$213	= .
-                                     92 	.globl	C$gameloop.c$27$1_0$213
+                           00000F    91 	C$gameloop.c$27$1_0$214	= .
+                                     92 	.globl	C$gameloop.c$27$1_0$214
                                      93 ;src/gameloop.c:27: update_movement();
       00000F CDr00r00         [24]   94 	call	_update_movement
-                           000012    95 	C$gameloop.c$29$1_0$213	= .
-                                     96 	.globl	C$gameloop.c$29$1_0$213
+                           000012    95 	C$gameloop.c$29$1_0$214	= .
+                                     96 	.globl	C$gameloop.c$29$1_0$214
                                      97 ;src/gameloop.c:29: if (tile_mined == TRUE) {
       000012 FAr00r00         [16]   98 	ld	a, (#_tile_mined)
       000015 3D               [ 4]   99 	dec	a
       000016 20 20            [12]  100 	jr	NZ, 00106$
-                           000018   101 	C$gameloop.c$30$2_0$215	= .
-                                    102 	.globl	C$gameloop.c$30$2_0$215
+                           000018   101 	C$gameloop.c$30$2_0$216	= .
+                                    102 	.globl	C$gameloop.c$30$2_0$216
                                     103 ;src/gameloop.c:30: if (depth >= EARTH_START) clear_4bkg_tiles(level_array, width, depth);
       000018 FAr00r00         [16]  104 	ld	a, (#_depth)
       00001B FE 05            [ 8]  105 	cp	a,#0x05
@@ -110,100 +110,100 @@
       000024 11r00r00         [12]  110 	ld	de, #_level_array
       000027 CDr00r00         [24]  111 	call	_clear_4bkg_tiles
       00002A                        112 00104$:
-                           00002A   113 	C$gameloop.c$31$2_0$215	= .
-                                    114 	.globl	C$gameloop.c$31$2_0$215
+                           00002A   113 	C$gameloop.c$31$2_0$216	= .
+                                    114 	.globl	C$gameloop.c$31$2_0$216
                                     115 ;src/gameloop.c:31: update_inventory();
       00002A CDr00r00         [24]  116 	call	_update_inventory
-                           00002D   117 	C$gameloop.c$32$2_0$215	= .
-                                    118 	.globl	C$gameloop.c$32$2_0$215
+                           00002D   117 	C$gameloop.c$32$2_0$216	= .
+                                    118 	.globl	C$gameloop.c$32$2_0$216
                                     119 ;src/gameloop.c:32: calculate_cargo();
       00002D CDr00r00         [24]  120 	call	_calculate_cargo
-                           000030   121 	C$gameloop.c$33$2_0$215	= .
-                                    122 	.globl	C$gameloop.c$33$2_0$215
+                           000030   121 	C$gameloop.c$33$2_0$216	= .
+                                    122 	.globl	C$gameloop.c$33$2_0$216
                                     123 ;src/gameloop.c:33: draw_cargo();
       000030 CDr00r00         [24]  124 	call	_draw_cargo
-                           000033   125 	C$gameloop.c$34$2_0$215	= .
-                                    126 	.globl	C$gameloop.c$34$2_0$215
+                           000033   125 	C$gameloop.c$34$2_0$216	= .
+                                    126 	.globl	C$gameloop.c$34$2_0$216
                                     127 ;src/gameloop.c:34: tile_mined = FALSE;
       000033 21r00r00         [12]  128 	ld	hl, #_tile_mined
       000036 36 00            [12]  129 	ld	(hl), #0x00
       000038                        130 00106$:
-                           000038   131 	C$gameloop.c$37$1_0$213	= .
-                                    132 	.globl	C$gameloop.c$37$1_0$213
+                           000038   131 	C$gameloop.c$37$1_0$214	= .
+                                    132 	.globl	C$gameloop.c$37$1_0$214
                                     133 ;src/gameloop.c:37: update_fuel();
       000038 CDr00r00         [24]  134 	call	_update_fuel
-                           00003B   135 	C$gameloop.c$38$1_0$213	= .
-                                    136 	.globl	C$gameloop.c$38$1_0$213
+                           00003B   135 	C$gameloop.c$38$1_0$214	= .
+                                    136 	.globl	C$gameloop.c$38$1_0$214
                                     137 ;src/gameloop.c:38: draw_fuel();
       00003B CDr00r00         [24]  138 	call	_draw_fuel
-                           00003E   139 	C$gameloop.c$39$1_0$213	= .
-                                    140 	.globl	C$gameloop.c$39$1_0$213
+                           00003E   139 	C$gameloop.c$39$1_0$214	= .
+                                    140 	.globl	C$gameloop.c$39$1_0$214
                                     141 ;src/gameloop.c:39: draw_hull();
       00003E CDr00r00         [24]  142 	call	_draw_hull
-                           000041   143 	C$gameloop.c$40$1_0$213	= .
-                                    144 	.globl	C$gameloop.c$40$1_0$213
+                           000041   143 	C$gameloop.c$40$1_0$214	= .
+                                    144 	.globl	C$gameloop.c$40$1_0$214
                                     145 ;src/gameloop.c:40: calculate_falldamage();
       000041 CDr00r00         [24]  146 	call	_calculate_falldamage
-                           000044   147 	C$gameloop.c$41$1_0$213	= .
-                                    148 	.globl	C$gameloop.c$41$1_0$213
+                           000044   147 	C$gameloop.c$41$1_0$214	= .
+                                    148 	.globl	C$gameloop.c$41$1_0$214
                                     149 ;src/gameloop.c:41: check_hull();
       000044 CDr00r00         [24]  150 	call	_check_hull
-                           000047   151 	C$gameloop.c$42$1_0$213	= .
-                                    152 	.globl	C$gameloop.c$42$1_0$213
+                           000047   151 	C$gameloop.c$42$1_0$214	= .
+                                    152 	.globl	C$gameloop.c$42$1_0$214
                                     153 ;src/gameloop.c:42: check_fuel();
       000047 CDr00r00         [24]  154 	call	_check_fuel
-                           00004A   155 	C$gameloop.c$43$1_0$213	= .
-                                    156 	.globl	C$gameloop.c$43$1_0$213
+                           00004A   155 	C$gameloop.c$43$1_0$214	= .
+                                    156 	.globl	C$gameloop.c$43$1_0$214
                                     157 ;src/gameloop.c:43: check_game_over();
       00004A CDr00r00         [24]  158 	call	_check_game_over
-                           00004D   159 	C$gameloop.c$45$1_0$213	= .
-                                    160 	.globl	C$gameloop.c$45$1_0$213
+                           00004D   159 	C$gameloop.c$45$1_0$214	= .
+                                    160 	.globl	C$gameloop.c$45$1_0$214
                                     161 ;src/gameloop.c:45: if (prev_depth != depth) {
       00004D FAr00r00         [16]  162 	ld	a, (#_prev_depth)
       000050 21r00r00         [12]  163 	ld	hl, #_depth
       000053 96               [ 8]  164 	sub	a, (hl)
       000054 28 09            [12]  165 	jr	Z, 00108$
-                           000056   166 	C$gameloop.c$46$2_0$216	= .
-                                    167 	.globl	C$gameloop.c$46$2_0$216
+                           000056   166 	C$gameloop.c$46$2_0$217	= .
+                                    167 	.globl	C$gameloop.c$46$2_0$217
                                     168 ;src/gameloop.c:46: spawn_bkg_row();
       000056 CDr00r00         [24]  169 	call	_spawn_bkg_row
-                           000059   170 	C$gameloop.c$47$2_0$216	= .
-                                    171 	.globl	C$gameloop.c$47$2_0$216
+                           000059   170 	C$gameloop.c$47$2_0$217	= .
+                                    171 	.globl	C$gameloop.c$47$2_0$217
                                     172 ;src/gameloop.c:47: draw_depth();
       000059 CDr00r00         [24]  173 	call	_draw_depth
-                           00005C   174 	C$gameloop.c$48$2_0$216	= .
-                                    175 	.globl	C$gameloop.c$48$2_0$216
+                           00005C   174 	C$gameloop.c$48$2_0$217	= .
+                                    175 	.globl	C$gameloop.c$48$2_0$217
                                     176 ;src/gameloop.c:48: change_background_color();
       00005C CDr00r00         [24]  177 	call	_change_background_color
       00005F                        178 00108$:
-                           00005F   179 	C$gameloop.c$51$1_0$213	= .
-                                    180 	.globl	C$gameloop.c$51$1_0$213
+                           00005F   179 	C$gameloop.c$51$1_0$214	= .
+                                    180 	.globl	C$gameloop.c$51$1_0$214
                                     181 ;src/gameloop.c:51: check_enter_buildings();
       00005F CDr00r00         [24]  182 	call	_check_enter_buildings
-                           000062   183 	C$gameloop.c$54$1_0$213	= .
-                                    184 	.globl	C$gameloop.c$54$1_0$213
+                           000062   183 	C$gameloop.c$54$1_0$214	= .
+                                    184 	.globl	C$gameloop.c$54$1_0$214
                                     185 ;src/gameloop.c:54: prev_buttons = buttons;
       000062 FAr00r00         [16]  186 	ld	a, (#_buttons)
       000065 EAr00r00         [16]  187 	ld	(#_prev_buttons),a
-                           000068   188 	C$gameloop.c$55$1_0$213	= .
-                                    189 	.globl	C$gameloop.c$55$1_0$213
+                           000068   188 	C$gameloop.c$55$1_0$214	= .
+                                    189 	.globl	C$gameloop.c$55$1_0$214
                                     190 ;src/gameloop.c:55: prev_depth = depth;
       000068 FAr00r00         [16]  191 	ld	a, (#_depth)
       00006B EAr00r00         [16]  192 	ld	(#_prev_depth),a
-                           00006E   193 	C$gameloop.c$56$1_0$213	= .
-                                    194 	.globl	C$gameloop.c$56$1_0$213
+                           00006E   193 	C$gameloop.c$56$1_0$214	= .
+                                    194 	.globl	C$gameloop.c$56$1_0$214
                                     195 ;src/gameloop.c:56: prev_width = width;
       00006E FAr00r00         [16]  196 	ld	a, (#_width)
       000071 21r00r00         [12]  197 	ld	hl, #_prev_width
       000074 77               [ 8]  198 	ld	(hl), a
-                           000075   199 	C$gameloop.c$58$1_0$213	= .
-                                    200 	.globl	C$gameloop.c$58$1_0$213
+                           000075   199 	C$gameloop.c$58$1_0$214	= .
+                                    200 	.globl	C$gameloop.c$58$1_0$214
                                     201 ;src/gameloop.c:58: wait_vbl_done();
-                           000075   202 	C$gameloop.c$59$1_0$213	= .
-                                    203 	.globl	C$gameloop.c$59$1_0$213
+                           000075   202 	C$gameloop.c$59$1_0$214	= .
+                                    203 	.globl	C$gameloop.c$59$1_0$214
                                     204 ;src/gameloop.c:59: }
-                           000075   205 	C$gameloop.c$59$1_0$213	= .
-                                    206 	.globl	C$gameloop.c$59$1_0$213
+                           000075   205 	C$gameloop.c$59$1_0$214	= .
+                                    206 	.globl	C$gameloop.c$59$1_0$214
                            000075   207 	XG$game_loop$0$0	= .
                                     208 	.globl	XG$game_loop$0$0
       000075 C3r00r00         [16]  209 	jp	_wait_vbl_done

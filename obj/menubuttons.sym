@@ -12,12 +12,12 @@ Symbol Table
   7 G$menubuttons_metasprite0$0_0$0                             =  000150 GR
   7 G$menubuttons_metasprites$0_0$0                             =  0001A8 GR
   7 G$menubuttons_tiles$0_0$0                                   =  000000 GR
-    ___bank_menubuttons                                         =  000002 G
+    ___bank_menubuttons                                         =  000003 G
   7 ___func_menubuttons                                            000000 GR
   7 _menubuttons_metasprite0                                       000150 GR
   7 _menubuttons_metasprites                                       0001A8 GR
   7 _menubuttons_tiles                                             000000 GR
-    b___func_menubuttons                                        =  000002 L
+    b___func_menubuttons                                        =  000003 L
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
 Hexadecimal [24-Bits]
@@ -31,7 +31,7 @@ Area Table
    4 _HOME                                      size      0   flags    0
    5 _GSINIT                                    size      0   flags    0
    6 _GSFINAL                                   size      0   flags    0
-   7 _CODE_2                                    size    1AA   flags    0
+   7 _CODE_3                                    size    1AA   flags    0
    8 _INITIALIZER                               size      0   flags    0
    9 _CABS                                      size      0   flags    8
 

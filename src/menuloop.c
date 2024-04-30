@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "globals.h"
+#include "general.h"
 
 #include "shop.h"
 

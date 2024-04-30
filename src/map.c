@@ -30,6 +30,11 @@
 BANKREF(bank_map)
 #endif
 
+void draw_buildings(void){
+
+}
+
+
 void shuffle(uint8_t array[4]) {
     uint16_t seed = LY_REG;
     seed |= (uint16_t)DIV_REG << 8;
@@ -58,7 +63,7 @@ void shuffle(uint8_t array[4]) {
 }
 
 void change_background_color(void) {
-    set_bkg_palette_entry(0,0,RGB8(255 - 5 * depth, 255, 255));
+    set_bkg_palette_entry(0,0,RGB8(255 - depth, 255, 255));
 }
 
 /**

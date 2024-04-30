@@ -4,10 +4,9 @@
 #include <gb/gb.h>
 #include <stdio.h>
 
-typedef uint8_t int8;
-typedef uint16_t int16;
-typedef int8_t int8_t;
-typedef int16_t sint16;
+// main menu
+
+#define MENU_ITEMS 3
 
 // shop
 #define SHOP_FRAME_START 151

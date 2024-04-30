@@ -2,7 +2,7 @@ XL3
 H A areas B global symbols
 M menubuttons
 O -msm83
-S ___bank_menubuttons Def000002
+S ___bank_menubuttons Def000003
 S .__.ABS. Def000000
 A _CODE size 0 flags 0 addr 0
 A _DATA size 0 flags 0 addr 0
@@ -11,7 +11,7 @@ A _DABS size 0 flags 8 addr 0
 A _HOME size 0 flags 0 addr 0
 A _GSINIT size 0 flags 0 addr 0
 A _GSFINAL size 0 flags 0 addr 0
-A _CODE_2 size 1AA flags 0 addr 0
+A _CODE_3 size 1AA flags 0 addr 0
 S G$__func_menubuttons$0$0 Def000000
 S _menubuttons_tiles Def000000
 S G$menubuttons_tiles$0_0$0 Def000000

@@ -123,7 +123,6 @@ S:Lmain.move_metasprite_hvflip$metasprite$1_0$154({2}DG,STmetasprite_t:S),B,1,-3
 S:Lmain.hide_metasprite$base_sprite$1_0$156({1}SC:U),B,1,-1
 S:Lmain.hide_metasprite$metasprite$1_0$156({2}DG,STmetasprite_t:S),B,1,-3
 F:G$main$0_0$0({2}DF,SV:S),C,0,0,0,0,0
-S:Lmain.main$saved_bank$1_1$243({1}SC:U),R,0,0,[]
 T:Fmain$metasprite_t[({0}S:S$dy$0_0$0({1}SC:S),Z,0,0)({1}S:S$dx$0_0$0({1}SC:S),Z,0,0)({2}S:S$dtile$0_0$0({1}SC:U),Z,0,0)({3}S:S$props$0_0$0({1}SC:U),Z,0,0)]
 T:Fmain$Material[({0}S:S$name$0_0$0({2}DG,SC:S),Z,0,0)({2}S:S$tile_number$0_0$0({1}SC:U),Z,0,0)({3}S:S$ore_resistance$0_0$0({1}SC:U),Z,0,0)({4}S:S$weight$0_0$0({1}SC:U),Z,0,0)({5}S:S$value$0_0$0({2}SI:U),Z,0,0)({7}S:S$inventory$0_0$0({1}SC:U),Z,0,0)({8}S:S$color_palette$0_0$0({1}SC:U),Z,0,0)]
 T:Fmain$player_attributes[({0}S:S$upgrade_name$0_0$0({12}DA6d,DG,SC:S),Z,0,0)({12}S:S$attribute_name$0_0$0({2}DG,SC:S),Z,0,0)({14}S:S$attribute_unit$0_0$0({2}DG,SC:S),Z,0,0)({16}S:S$current_value$0_0$0({2}SI:S),Z,0,0)({18}S:S$max_value$0_0$0({2}SI:S),Z,0,0)({20}S:S$upgrade_level$0_0$0({1}SC:U),Z,0,0)({21}S:S$upgrade_value$0_0$0({12}DA6d,SI:S),Z,0,0)({33}S:S$upgrade_cost$0_0$0({12}DA6d,SI:S),Z,0,0)({45}S:S$color_palette$0_0$0({12}DA6d,DG,SI:U),Z,0,0)]
@@ -170,6 +169,7 @@ S:G$__current_base_tile$0_0$0({1}SC:U),E,0,0
 S:G$__current_base_prop$0_0$0({1}SC:U),E,0,0
 S:G$__render_shadow_OAM$0_0$0({1}SC:U),E,0,0
 S:G$__rand_seed$0_0$0({2}SI:U),E,0,0
+S:G$current_menu_index$0_0$0({1}SC:U),E,0,0
 S:G$frame_counter$0_0$0({1}SC:U),E,0,0
 S:G$update_menu$0_0$0({1}SC:S),E,0,0
 S:G$left_shop_area$0_0$0({1}SC:S),E,0,0
@@ -413,6 +413,7 @@ S:G$update_inventory$0_0$0({2}DF,SV:S),C,0,0
 S:G$calculate_cargo$0_0$0({2}DF,SV:S),C,0,0
 S:G$sell_all_ores$0_0$0({2}DF,SV:S),C,0,0
 S:G$init_attributes$0_0$0({2}DF,SV:S),C,0,0
+S:G$draw_buildings$0_0$0({2}DF,SV:S),C,0,0
 S:G$shuffle$0_0$0({2}DF,SV:S),C,0,0
 S:G$change_background_color$0_0$0({2}DF,SV:S),C,0,0
 S:G$set_4bkg_tiles$0_0$0({2}DF,SV:S),C,0,0
@@ -465,6 +466,10 @@ S:G$init_framecounter$0_0$0({2}DF,SV:S),C,0,0
 S:G$init_enable_lcd_interrupt$0_0$0({2}DF,SV:S),C,0,0
 S:G$init_disable_lcd_interrupt$0_0$0({2}DF,SV:S),C,0,0
 S:G$game_loop$0_0$0({2}DF,SV:S),C,0,0
+S:G$shop_menu_loop$0_0$0({2}DF,SV:S),C,0,0
+S:G$draw_menu_buttons$0_0$0({2}DF,SV:S),C,0,0
+S:G$draw_main_menu$0_0$0({2}DF,SV:S),C,0,0
+S:G$init_main_menu$0_0$0({2}DF,SV:S),C,0,0
 S:G$init_shop$0_0$0({2}DF,SV:S),C,0,0
 S:G$init_shop_tiles_palettes$0_0$0({2}DF,SV:S),C,0,0
 S:G$updateMetaSpritePosition$0_0$0({2}DF,SV:S),C,0,0
@@ -482,4 +487,3 @@ S:G$handleInput$0_0$0({2}DF,SV:S),C,0,0
 S:G$sgb_check$0_0$0({2}DF,SC:U),C,0,0
 S:G$sgb_transfer$0_0$0({2}DF,SV:S),C,0,0
 S:G$main$0_0$0({2}DF,SV:S),C,0,0
-S:G$shop_menu_loop$4_1$247({2}DF,SI:S),C,0,0

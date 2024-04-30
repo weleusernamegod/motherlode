@@ -1,12 +1,13 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-
+// main menu
+extern uint8_t current_menu_index;
 
 // framecounter
 extern volatile uint8_t frame_counter;
 
-// shop menu
+// shop
 extern BOOLEAN update_menu;  // Initially set to TRUE to draw the menu the first time
 extern BOOLEAN left_shop_area;  // Initially true to allow first entry
 extern BOOLEAN left_sell_area;  // Initially true to allow first entry

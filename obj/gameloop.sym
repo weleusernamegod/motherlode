@@ -53,40 +53,40 @@ Symbol Table
   0 A$gameloop$94                                                  00000F GR
   0 A$gameloop$98                                                  000012 GR
   0 A$gameloop$99                                                  000015 GR
-  0 C$gameloop.c$18$0_0$213                                     =  000000 GR
-  0 C$gameloop.c$20$1_0$213                                     =  000000 GR
-  0 C$gameloop.c$21$1_0$213                                     =  000003 GR
-  0 C$gameloop.c$23$1_0$213                                     =  000006 GR
-  0 C$gameloop.c$24$2_0$214                                     =  00000C GR
+  0 C$gameloop.c$18$0_0$214                                     =  000000 GR
+  0 C$gameloop.c$20$1_0$214                                     =  000000 GR
+  0 C$gameloop.c$21$1_0$214                                     =  000003 GR
+  0 C$gameloop.c$23$1_0$214                                     =  000006 GR
+  0 C$gameloop.c$24$2_0$215                                     =  00000C GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy)                  Page 2
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-  0 C$gameloop.c$27$1_0$213                                     =  00000F GR
-  0 C$gameloop.c$29$1_0$213                                     =  000012 GR
-  0 C$gameloop.c$30$2_0$215                                     =  000018 GR
-  0 C$gameloop.c$31$2_0$215                                     =  00002A GR
-  0 C$gameloop.c$32$2_0$215                                     =  00002D GR
-  0 C$gameloop.c$33$2_0$215                                     =  000030 GR
-  0 C$gameloop.c$34$2_0$215                                     =  000033 GR
-  0 C$gameloop.c$37$1_0$213                                     =  000038 GR
-  0 C$gameloop.c$38$1_0$213                                     =  00003B GR
-  0 C$gameloop.c$39$1_0$213                                     =  00003E GR
-  0 C$gameloop.c$40$1_0$213                                     =  000041 GR
-  0 C$gameloop.c$41$1_0$213                                     =  000044 GR
-  0 C$gameloop.c$42$1_0$213                                     =  000047 GR
-  0 C$gameloop.c$43$1_0$213                                     =  00004A GR
-  0 C$gameloop.c$45$1_0$213                                     =  00004D GR
-  0 C$gameloop.c$46$2_0$216                                     =  000056 GR
-  0 C$gameloop.c$47$2_0$216                                     =  000059 GR
-  0 C$gameloop.c$48$2_0$216                                     =  00005C GR
-  0 C$gameloop.c$51$1_0$213                                     =  00005F GR
-  0 C$gameloop.c$54$1_0$213                                     =  000062 GR
-  0 C$gameloop.c$55$1_0$213                                     =  000068 GR
-  0 C$gameloop.c$56$1_0$213                                     =  00006E GR
-  0 C$gameloop.c$58$1_0$213                                     =  000075 GR
-  0 C$gameloop.c$59$1_0$213                                     =  000075 GR
+  0 C$gameloop.c$27$1_0$214                                     =  00000F GR
+  0 C$gameloop.c$29$1_0$214                                     =  000012 GR
+  0 C$gameloop.c$30$2_0$216                                     =  000018 GR
+  0 C$gameloop.c$31$2_0$216                                     =  00002A GR
+  0 C$gameloop.c$32$2_0$216                                     =  00002D GR
+  0 C$gameloop.c$33$2_0$216                                     =  000030 GR
+  0 C$gameloop.c$34$2_0$216                                     =  000033 GR
+  0 C$gameloop.c$37$1_0$214                                     =  000038 GR
+  0 C$gameloop.c$38$1_0$214                                     =  00003B GR
+  0 C$gameloop.c$39$1_0$214                                     =  00003E GR
+  0 C$gameloop.c$40$1_0$214                                     =  000041 GR
+  0 C$gameloop.c$41$1_0$214                                     =  000044 GR
+  0 C$gameloop.c$42$1_0$214                                     =  000047 GR
+  0 C$gameloop.c$43$1_0$214                                     =  00004A GR
+  0 C$gameloop.c$45$1_0$214                                     =  00004D GR
+  0 C$gameloop.c$46$2_0$217                                     =  000056 GR
+  0 C$gameloop.c$47$2_0$217                                     =  000059 GR
+  0 C$gameloop.c$48$2_0$217                                     =  00005C GR
+  0 C$gameloop.c$51$1_0$214                                     =  00005F GR
+  0 C$gameloop.c$54$1_0$214                                     =  000062 GR
+  0 C$gameloop.c$55$1_0$214                                     =  000068 GR
+  0 C$gameloop.c$56$1_0$214                                     =  00006E GR
+  0 C$gameloop.c$58$1_0$214                                     =  000075 GR
+  0 C$gameloop.c$59$1_0$214                                     =  000075 GR
   0 G$game_loop$0$0                                             =  000000 GR
   0 XG$game_loop$0$0                                            =  000075 GR
     _animation_frames_left                                         ****** GX

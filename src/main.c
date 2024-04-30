@@ -15,6 +15,8 @@
 #include "general.h"
 #include "interrupt.h"
 #include "gameloop.h"
+#include "menuloop.h"
+#include "mainmenu.h"
 #include "shop.h"
 
 #include "../assets/rover.h"
@@ -22,8 +24,9 @@
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
 
-
-
+BANKREF_EXTERN(bank_main_menu)
+BANKREF_EXTERN(splashscreen)
+BANKREF_EXTERN(bank_level)
 BANKREF_EXTERN(bank_map)
 BANKREF_EXTERN(bank_player)
 BANKREF_EXTERN(bank_shop)
@@ -32,21 +35,34 @@ void main(void) {
     init_framecounter();
     initrand(DIV_REG);
     init_attributes();
-    init_font();
     init_speed();
     init_character();
     init_screen();
 
-    uint8_t saved_bank;
-    saved_bank = CURRENT_BANK;
-
     while (1) {
         switch (currentGameState) {
+            case GAME_STATE_MAIN_MENU:
+                SWITCH_ROM(3);
+                init_clear_screen();
+                init_main_menu();
+                while (currentGameState == GAME_STATE_MAIN_MENU){
+                    draw_main_menu();
+                    if (joypad() & J_START) {
+                        if (current_menu_index == 0) currentGameState = GAME_STATE_PLAY;
+                        else if (current_menu_index == 1) currentGameState = GAME_STATE_PLAY;
+                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_PLAY;
+                    }
+                    
+                    wait_vbl_done();
+                }
+                init_screen();
+                break;
             case GAME_STATE_PLAY:
 
                 SWITCH_ROM(1);
                 init_enable_lcd_interrupt();
                 init_clear_screen();
+                init_font();
                 init_tiles();
                 init_progressbar();
                 init_nav();
@@ -71,12 +87,13 @@ void main(void) {
                 while (player_alive == TRUE && currentGameState == GAME_STATE_PLAY) {
                     game_loop();
                 }
+                init_disable_lcd_interrupt();
+
                 break;
 
             case GAME_STATE_UPGRADE_MENU:
                 SWITCH_ROM(2);
 
-                init_disable_lcd_interrupt();
                 init_clear_screen();
                 init_shop();
                 init_shop_tiles_palettes();
@@ -85,17 +102,14 @@ void main(void) {
                 }
                 break;
             case GAME_STATE_SELL_MENU:
-                init_disable_lcd_interrupt();
                 sell_all_ores();
                 break;
 
             case GAME_STATE_GAME_OVER:
-                init_disable_lcd_interrupt();
                 waitpad(J_START);
                 reset_player();
                 currentGameState = GAME_STATE_PLAY;
                 break;
-
         }
     }
 }

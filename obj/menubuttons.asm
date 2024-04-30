@@ -43,7 +43,7 @@
 ;--------------------------------------------------------
 ; code
 ;--------------------------------------------------------
-	.area _CODE_2
+	.area _CODE_3
 	G$__func_menubuttons$0$0	= .
 	.globl	G$__func_menubuttons$0$0
 	C$menubuttons.c$9$0_0$161	= .
@@ -52,12 +52,12 @@
 ;	---------------------------------
 ; Function __func_menubuttons
 ; ---------------------------------
-	b___func_menubuttons	= 2
+	b___func_menubuttons	= 3
 ___func_menubuttons::
 	.local b___func_menubuttons 
 	___bank_menubuttons = b___func_menubuttons 
 	.globl ___bank_menubuttons 
-	.area _CODE_2
+	.area _CODE_3
 G$menubuttons_tiles$0_0$0 == .
 _menubuttons_tiles:
 	.db #0x00	; 0

@@ -309,6 +309,7 @@ S:G$font_italic$0_0$0({0}DA0d,SC:U),E,0,0
 S:G$font_ibm$0_0$0({0}DA0d,SC:U),E,0,0
 S:G$font_min$0_0$0({0}DA0d,SC:U),E,0,0
 S:G$font_ibm_fixed$0_0$0({0}DA0d,SC:U),E,0,0
+S:G$current_menu_index$0_0$0({1}SC:U),E,0,0
 S:G$frame_counter$0_0$0({1}SC:U),E,0,0
 S:G$update_menu$0_0$0({1}SC:S),E,0,0
 S:G$left_shop_area$0_0$0({1}SC:S),E,0,0

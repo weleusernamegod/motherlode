@@ -11,7 +11,7 @@ endif
 
 LCC = $(GBDK_HOME)bin/lcc 
 
-LCCFLAGS += -debug -Wall -v -Wl-j -Wm-yoA -Wm-ya4 -Wb-ext=.rel -Wb-v -Wl-yt0x1B -Wm-yc
+LCCFLAGS += -debug -Wm-yoA -Wm-ya4 -Wb-ext=.rel -Wb-v -Wl-yt0x1B -Wm-yc
 
 
 # You can set the name of the .gbc ROM file here
@@ -30,25 +30,23 @@ OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o)
 
 .PHONY: png2asset
 png2asset:
-	# /usr/local/opt/gbdk/bin/png2asset png/menubuttons.png -c assets/menubuttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 3
-	# /usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 3
-
 	/usr/local/opt/gbdk/bin/png2asset png/nav.png -c assets/nav.c -spr8x8 -map -tile_origin 128 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/rover.png -c assets/rover.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/tile.png -c assets/tile.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
-	# /usr/local/opt/gbdk/bin/png2asset png/stationfuel.png -c assets/stationfuel.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
-	# /usr/local/opt/gbdk/bin/png2asset png/stationsell.png -c assets/stationsell.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
-	# /usr/local/opt/gbdk/bin/png2asset png/stationupgrade.png -c assets/stationupgrade.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
-	# /usr/local/opt/gbdk/bin/png2asset png/stationrepair.png -c assets/stationrepair.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/stationfuel.png -c assets/stationfuel.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/stationsell.png -c assets/stationsell.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/stationupgrade.png -c assets/stationupgrade.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/stationrepair.png -c assets/stationrepair.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 1
 
 	/usr/local/opt/gbdk/bin/png2asset png/shoptiles.png -c assets/shoptiles.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/shopframe.png -c assets/shopframe.c -spr8x8 -map -noflip -tile_origin 151 -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/buttonframe.png -c assets/buttonframe.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
 
+	/usr/local/opt/gbdk/bin/png2asset png/menubuttons.png -c assets/menubuttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 3
+	/usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 3
 
-
-all:	clean prepare png2asset $(BINS) move-rom
+all:	clean prepare png2asset $(BINS) copy-rom
 
 # Compile .c files in "src/" to .o object files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
@@ -68,8 +66,8 @@ prepare:
 clean:
 	rm -f  $(OBJDIR)/*.* $(BINDIR)/*.*
 
-move-rom:
-	mv $(BINDIR)/$(PROJECTNAME).gbc .
+copy-rom:
+	cp $(BINDIR)/$(PROJECTNAME).gbc .
 
 # create necessary directories after Makefile is parsed but before build
 # info prevents the command from being pasted into the makefile
