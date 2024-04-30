@@ -262,23 +262,15 @@ _shuffle::
 _change_background_color::
 	C$map.c$66$1_0$257	= .
 	.globl	C$map.c$66$1_0$257
-;src/map.c:66: set_bkg_palette_entry(0,0,RGB8(255 - (scroll_y.h + depth_pixel.h), 255, 255));
-	ld	a, (#(_scroll_y + 1) + 0)
-	ld	c, a
+;src/map.c:66: set_bkg_palette_entry(0,0,RGB8(255 - depth, 255, 255));
+	ld	hl, #_depth
+	ld	c, (hl)
 	ld	b, #0x00
-	ld	a, (#(_depth_pixel + 1) + 0)
-	ld	l, a
-;	spillPairReg hl
-;	spillPairReg hl
-	ld	h, #0x00
-;	spillPairReg hl
-;	spillPairReg hl
-	add	hl, bc
 	ld	a, #0xff
-	sub	a, l
+	sub	a, c
 	ld	c, a
 	sbc	a, a
-	sub	a, h
+	sub	a, b
 	ld	b, a
 	sra	b
 	rr	c
