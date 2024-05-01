@@ -11,7 +11,7 @@ endif
 
 LCC = $(GBDK_HOME)bin/lcc 
 
-LCCFLAGS += -debug -Wm-yo4 -Wm-ya4 -Wb-ext=.rel -Wl-yt0x1B -Wm-yc
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo4 -Wm-ya4 -Wb-ext=.rel -Wm-yc
 
 
 # You can set the name of the .gbc ROM file here
@@ -50,9 +50,12 @@ png2asset:
 
 all:	clean prepare png2asset $(BINS) copy-rom
 
-# Compile .c files in "src/" to .o object files
+# Compile .c files in "src/" to .o object files with specific flags for bank files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
-	$(LCC) $(LCCFLAGS) -c -o $@ $<
+	$(eval EXTRA_FLAGS :=)
+	$(if $(findstring level.ba0,$<), $(eval EXTRA_FLAGS := -Wf-ba0))
+	$(if $(findstring level.ba1,$<), $(eval EXTRA_FLAGS := -Wf-ba1))
+	$(LCC) $(LCCFLAGS) $(EXTRA_FLAGS) -c -o $@ $<
 
 # Compile .c files in "res/" to .o object files
 $(OBJDIR)/%.o:	$(ASSETDIR)/%.c

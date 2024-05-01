@@ -26,12 +26,13 @@
 
 BANKREF_EXTERN(bank_main_menu)
 BANKREF_EXTERN(splashscreen)
-BANKREF_EXTERN(bank_level)
 BANKREF_EXTERN(bank_map)
 BANKREF_EXTERN(bank_player)
 BANKREF_EXTERN(bank_shop)
 
 void main(void) {
+    ENABLE_RAM;
+    SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
     generateMap();

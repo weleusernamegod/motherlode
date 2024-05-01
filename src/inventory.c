@@ -5,7 +5,7 @@
 #include "inventory.h"
 #include "palettes.h"
 
-#include "level.h"
+#include "level.ba0.h"
 #include "attributes.h"
 
 Material materials[] = {
@@ -59,24 +59,24 @@ void update_inventory(void) {
 }
 
 void calculate_cargo(void) {
-    int total_weight = 0;
-    for (int i = COAL; i <= DIAMOND; i++) {
+    uint8_t total_weight = 0;
+    for (uint8_t i = COAL; i <= DIAMOND; i++) {
         total_weight += materials[i].inventory * materials[i].weight;
     }
     player.cargo.current_value = total_weight;
 }
 
 void sell_all_ores(void) {
-    int total_value = 0;
+    uint8_t total_value = 0;
     // Assuming COAL to DIAMOND includes all sellable ores and gems
-    for (int i = COAL; i <= DIAMOND; i++) {
+    for (uint8_t i = COAL; i <= DIAMOND; i++) {
         total_value += materials[i].inventory * materials[i].value;
     }
     // Update player's money or another financial attribute
     player.money += total_value;
 
     // Optionally reset inventory if they're sold
-    for (int i = COAL; i <= DIAMOND; i++) {
+    for (uint8_t i = COAL; i <= DIAMOND; i++) {
         materials[i].inventory = 0;  // Reset inventory after selling
     }
     currentGameState = GAME_STATE_CONTINUE_GAME;

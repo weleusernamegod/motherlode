@@ -17,7 +17,7 @@
 #include "general.h"
 #include "palettes.h"
 
-#include "level.h"
+#include "level.ba0.h"
 #include "player.h"
 
 #include "../assets/rover.h"
@@ -35,7 +35,7 @@ void draw_buildings(void){
 }
 
 void generateMap(void) {
-    int i, j;
+    uint16_t i, j;
     for (i = 0; i < ROWS; i++) {
         for (j = 0; j < COLS; j++) {
             if (i < 6) {
@@ -47,7 +47,7 @@ void generateMap(void) {
             } else {
                 // Start generating the map based on depth
                 uint8_t tileType = 1;  // Default to dirt
-                int randValue = rand() % 100;  // Random value from 0 to 99
+                uint8_t randValue = rand() % 100;  // Random value from 0 to 99
 
                 // Determine ore distribution based on depth
                 if (i < 20 && randValue >= 80) {
@@ -135,21 +135,21 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint
             uint8_t palette_array[4];
 
             if (array[y][x] == EMPTY) {
-                for (int i = 0; i < 4; i++) tile_array[i] = 0;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = 0;
             } else if (array[y][x] == GRAS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);
                 tile_array[2] = temp - 1;
                 tile_array[3] = temp - 2;
             } else if (array[y][x] == DIRT) {
-                for (int i = 0; i < 4; i++) tile_array[i] = temp + i;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = temp + i;
                 shuffle(tile_array);
             }
 
             if (array[y][x] == EMPTY) {
-                for (int i = 0; i < 4; i++) palette_array[i] = 0;
+                for (uint8_t i = 0; i < 4; i++) palette_array[i] = 0;
             } else {
-                for (int i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILESTART) / 4].color_palette;
+                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILESTART) / 4].color_palette;
             }
 
             // Set tiles first with VBK_REG = 0 (tile data)

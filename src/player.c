@@ -14,7 +14,7 @@
 #include "attributes.h"
 #include "inventory.h"
 
-#include "level.h"
+#include "level.ba0.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__

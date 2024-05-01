@@ -52,7 +52,7 @@
 
 
 // game
-#define ROWS 128
+#define ROWS 256
 #define COLS 16
 
 

@@ -28,9 +28,9 @@ typedef enum {
 extern GameState currentGameState;
 
 // movement
-extern uint8_t depth, width;
-extern uint8_t depth_offset, width_offset;
-extern uint8_t prev_depth, prev_width;
+extern uint16_t depth, width;
+extern uint16_t depth_offset, width_offset;
+extern uint16_t prev_depth, prev_width;
 extern fixed depth_pixel, width_pixel;
 extern fixed scroll_x, scroll_y;
 
