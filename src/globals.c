@@ -21,7 +21,7 @@ uint8_t saved_bank;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
-GameState currentGameState = GAME_STATE_MAIN_MENU;  // Start with the game loop
+GameState currentGameState = GAME_STATE_NEW_GAME;  // Start with the game loop
 
 // movement
 uint8_t depth = 2, width = 6;

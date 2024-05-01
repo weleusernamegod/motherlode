@@ -7,6 +7,7 @@
 BANKREF_EXTERN(bank_map)
 
 void draw_buildings(void);
+void generateMap(void);
 void shuffle(uint8_t array[4]);
 void change_background_color(void);
 void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c);

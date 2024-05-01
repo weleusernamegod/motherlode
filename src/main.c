@@ -34,6 +34,7 @@ BANKREF_EXTERN(bank_shop)
 void main(void) {
     init_framecounter();
     initrand(DIV_REG);
+    generateMap();
     init_attributes();
     init_speed();
     init_character();
@@ -48,19 +49,18 @@ void main(void) {
                 while (currentGameState == GAME_STATE_MAIN_MENU){
                     draw_main_menu();
                     if (joypad() & J_START) {
-                        if (current_menu_index == 0) currentGameState = GAME_STATE_PLAY;
-                        else if (current_menu_index == 1) currentGameState = GAME_STATE_PLAY;
-                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_PLAY;
+                        if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
+                        else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
+                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
                     }
                     
                     wait_vbl_done();
                 }
                 init_screen();
                 break;
-            case GAME_STATE_PLAY:
+            case GAME_STATE_NEW_GAME:
 
                 SWITCH_ROM(1);
-                init_enable_lcd_interrupt();
                 init_clear_screen();
                 init_font();
                 init_tiles();
@@ -75,20 +75,35 @@ void main(void) {
                 draw_depth();
 
                 set_bkg_palette(0, 1, palette_default);
-                set_bkg_palette(1, 1, palette_gras);
-                set_bkg_palette(2, 1, palette_rock);
+                set_bkg_palette(1, 1, palette_stone);
+                set_bkg_palette(2, 1, palette_coal);
                 set_bkg_palette(3, 1, palette_iron);
                 set_bkg_palette(4, 1, palette_copper);
-                set_bkg_palette(5, 1, palette_iron);
-                set_bkg_palette(6, 1, palette_yellow);
-                set_bkg_palette(7, 1, palette_yellow);
+                set_bkg_palette(5, 1, palette_gras);
+                set_bkg_palette(6, 1, palette_default);
+                set_bkg_palette(7, 1, palette_default);
+                currentGameState = GAME_STATE_CONTINUE_GAME;
+                break;
 
-
-                while (player_alive == TRUE && currentGameState == GAME_STATE_PLAY) {
+            case GAME_STATE_CONTINUE_GAME:
+                SWITCH_ROM(1);
+                init_enable_lcd_interrupt();
+                while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE_GAME) {
                     game_loop();
+                    if (depth >= 15) {
+                        set_bkg_palette(0, 1, palette_default);
+                        set_bkg_palette(1, 1, palette_stone);
+                        set_bkg_palette(2, 1, palette_coal);
+                        set_bkg_palette(3, 1, palette_iron);
+                        set_bkg_palette(4, 1, palette_copper);
+                        set_bkg_palette(5, 1, palette_tin);
+                        set_bkg_palette(6, 1, palette_silver);
+                        set_bkg_palette(7, 1, palette_gold);
+                    }
+
+
                 }
                 init_disable_lcd_interrupt();
-
                 break;
 
             case GAME_STATE_UPGRADE_MENU:
@@ -108,7 +123,7 @@ void main(void) {
             case GAME_STATE_GAME_OVER:
                 waitpad(J_START);
                 reset_player();
-                currentGameState = GAME_STATE_PLAY;
+                currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
         }
     }

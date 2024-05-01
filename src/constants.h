@@ -25,13 +25,34 @@
 // color palettes
 
 #define PALETTE_DEFAULT 0
-#define PALETTE_GRAS 1
-#define PALETTE_STONE 2
+#define PALETTE_DIRT 1
+#define PALETTE_GRAS 5
+#define PALETTE_STONE 1
+#define PALETTE_COAL 2
 #define PALETTE_IRON 3
 #define PALETTE_COPPER 4
+#define PALETTE_TIN 5
+#define PALETTE_SILVER 6
+#define PALETTE_GOLD 7
+#define PALETTE_MITHRIL 2
+#define PALETTE_PLATINUM 3
+#define PALETTE_TITANIUM 4
+#define PALETTE_OBSIDIUM 5
+#define PALETTE_ELEMENTIUM 6
+#define PALETTE_ADAMANTITE 7
+#define PALETTE_EMERALD 2
+#define PALETTE_RUBY 3
+#define PALETTE_DIAMOND 4
+#define PALETTE_AQUAMARINE 5
+#define PALETTE_LAVA 6
+#define PALETTE_GAS 7
+#define PALETTE_BONES 2
+#define PALETTE_SKULL 3
+#define PALETTE_ARTEFACT 4
+
 
 // game
-#define ROWS 96
+#define ROWS 128
 #define COLS 16
 
 
@@ -39,14 +60,12 @@
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen, to account for the nav/window element
 
-#define TILESTART 92
-#define NUMSTART 16
-#define LETTERSTART 33
-#define SLETTERSTART 65
+#define TILESTART 128
+#define NUMSTART 1
+#define LETTERSTART 25
+#define SLETTERSTART 51
 #define CHARSTART 1
-#define NUMTILESTART 17
-#define NAVSTART 128
-#define MAX_FRAMES 16
+#define NAVSTART 96
 
 #define LEFT 1
 #define RIGHT 2

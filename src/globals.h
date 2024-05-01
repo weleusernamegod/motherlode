@@ -21,7 +21,8 @@ typedef enum {
     GAME_STATE_MAIN_MENU,
     GAME_STATE_UPGRADE_MENU,
     GAME_STATE_SELL_MENU,
-    GAME_STATE_PLAY,
+    GAME_STATE_NEW_GAME,
+    GAME_STATE_CONTINUE_GAME,
     GAME_STATE_GAME_OVER,
 } GameState;
 extern GameState currentGameState;

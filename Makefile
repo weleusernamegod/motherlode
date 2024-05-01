@@ -11,7 +11,7 @@ endif
 
 LCC = $(GBDK_HOME)bin/lcc 
 
-LCCFLAGS += -debug -Wm-yoA -Wm-ya4 -Wb-ext=.rel -Wb-v -Wl-yt0x1B -Wm-yc
+LCCFLAGS += -debug -Wm-yo4 -Wm-ya4 -Wb-ext=.rel -Wl-yt0x1B -Wm-yc
 
 
 # You can set the name of the .gbc ROM file here
@@ -30,7 +30,9 @@ OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o)
 
 .PHONY: png2asset
 png2asset:
-	/usr/local/opt/gbdk/bin/png2asset png/nav.png -c assets/nav.c -spr8x8 -map -tile_origin 128 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip
+
+	/usr/local/opt/gbdk/bin/png2asset png/nav.png -c assets/nav.c -spr8x8 -map -tile_origin 96 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/rover.png -c assets/rover.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/tile.png -c assets/tile.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1

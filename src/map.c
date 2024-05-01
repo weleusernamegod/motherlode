@@ -34,6 +34,58 @@ void draw_buildings(void){
 
 }
 
+void generateMap(void) {
+    int i, j;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            if (i < 6) {
+                // First six rows are empty
+                level_array[i][j] = 0;
+            } else if (i == 6) {
+                // Seventh row is all '2'
+                level_array[i][j] = 2;
+            } else {
+                // Start generating the map based on depth
+                uint8_t tileType = 1;  // Default to dirt
+                int randValue = rand() % 100;  // Random value from 0 to 99
+
+                // Determine ore distribution based on depth
+                if (i < 20 && randValue >= 80) {
+                    // Rows 7 to 19: Ores 4 to 6
+                    tileType = rand() % 3 + 4;
+                } else if (i >= 20 && i < 40 && randValue >= 80) {
+                    // Rows 20 to 39: Ores 5 to 9
+                    tileType = rand() % 5 + 5;
+                } else if (i >= 40 && i < 80 && randValue >= 80) {
+                    // Rows 40 to 79: Introduce very rare ores 16 to 19
+                    if (randValue >= 99) { // Extremely rare ore 19
+                        tileType = 19;
+                    } else if (randValue >= 95) { // Rare ores 16 to 18
+                        tileType = rand() % 3 + 16;
+                    } else {
+                        // Rows 40 to 79: Ores 10 to 15
+                        tileType = rand() % 6 + 10;
+                    }
+                } else if (i >= 80) {
+                    // Rows 80 and deeper: Rarest ores 15, and slowly introduce 20 and 21
+                    if (randValue >= 90) {
+                        tileType = rand() % 2 + 20; // Tiles 20 or 21
+                    } else {
+                        tileType = 15; // Rarest ore 15
+                    }
+                }
+
+                // Introduce caves (empty spaces)
+                if (randValue < 10) {  // Increase to 10% chance for caves
+                    tileType = 0;
+                }
+
+                level_array[i][j] = tileType;
+            }
+        }
+    }
+}
+
 
 void shuffle(uint8_t array[4]) {
     uint16_t seed = LY_REG;
@@ -63,7 +115,7 @@ void shuffle(uint8_t array[4]) {
 }
 
 void change_background_color(void) {
-    set_bkg_palette_entry(0,0,RGB8(255 - depth, 255, 255));
+    set_bkg_palette_entry(0,0,RGB8(255 - depth*5, 255 - depth*5, 255 - depth*5));
 }
 
 /**
@@ -239,7 +291,7 @@ void init_nav(void){
 }
 
 void init_tiles(void){
-    set_bkg_data(TILESTART, 28, tile_tiles);
+    set_bkg_data(TILESTART, tile_TILE_COUNT, tile_tiles);
     set_bkg_data(NAVSTART, nav_TILE_COUNT, nav_tiles);
     set_4bkg_tiles(level_array, 0, 0, 16, 16);
 }

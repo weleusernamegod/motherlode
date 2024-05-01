@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define nav_TILE_ORIGIN 128
+#define nav_TILE_ORIGIN 96
 #define nav_TILE_W 8
 #define nav_TILE_H 8
 #define nav_WIDTH 160

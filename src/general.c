@@ -8,13 +8,10 @@
 #include "palettes.h"
 #include "globals.h"
 #include "constants.h"
-#include "font.h"
+#include "../assets/font.h"
 
 void init_font(void){
-    font_t min_font;
-    font_init();
-    min_font = font_load(font_ibm);
-    font_set(min_font);
+    set_bkg_data(NUMSTART, font_TILE_COUNT, font_tiles);
 }
 
 void init_screen(void){
@@ -59,16 +56,16 @@ unsigned char convert_char_to_tile(char c) {
     if (c >= 'a' && c <= 'z') return SLETTERSTART + (c - 'a');
     if (c >= '0' && c <= '9') return NUMSTART + (c - '0');
     switch (c) {
+        case '!': return 11;
+        case '?': return 12;
+        case '.': return 13;
+        case ':': return 14;
         case '/': return 15;
-        case '.': return 14;
-        case '-': return 13;
-        case '=': return 38;
-        case '*': return 39;
-        case '?': return 31;
-        case '$': return 4;
-        case '&': return 5;
-        case '!': return 1;
-        case ' ': return 0;
+        case '+': return 16;
+        case '-': return 17;
+        case '$': return 18;
+        case '%': return 19;
+
         default: return 0;  // Default to space if character is not handled
     }
 }
@@ -111,32 +108,3 @@ void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN l
     }
 }
 
-void draw_number_sprite(uint8_t x, uint8_t y, uint16_t number, uint8_t digits, int8_t tileoffset, int8_t fontspacing) {
-    char buffer[6]; // Buffer size for largest possible uint16_t value + null terminator
-
-    // Convert the number to a decimal string
-    sprintf(buffer, "%u", number);
-
-    // Length of the number for leading zeroes (empty tiles) calculation
-    uint8_t len = strlen(buffer);
-
-    // Adjust starting X position based on total digits to display, for right alignment
-    uint8_t displayLength = len < digits ? len : digits;  // Display length is the minimum of len or digits
-    uint8_t startX = x + (digits - displayLength) * fontspacing;  // Adjust start position
-
-    // Load and display empty tiles for leading spaces if the number uses fewer digits than 'digits'
-    for(uint8_t i = 0; i < digits - displayLength; i++) {
-        set_sprite_tile(tileoffset + i, 0);
-        move_sprite(tileoffset + i, x + (fontspacing * i), y);
-    }
-
-    // Draw the number, considering displayLength and ensuring it does not exceed 'digits'
-    for(uint8_t i = 0; i < displayLength; i++) {
-        uint8_t spriteIndex = buffer[i] - '0';
-        uint8_t spritePos = tileoffset + digits - displayLength + i;
-        set_sprite_data(spritePos, 1, &font[spriteIndex * 16]); // Assuming 'font' is defined elsewhere
-        set_sprite_tile(spritePos, spritePos);
-        move_sprite(spritePos, startX + (fontspacing * i), y);
-
-    }
-}

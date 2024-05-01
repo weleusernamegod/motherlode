@@ -75,12 +75,12 @@ void init_shop(void) {
 
     set_bkg_palette(0, 1, palette_default);
     set_bkg_palette(1, 1, palette_light_grey);
-    set_bkg_palette(2, 1, palette_blue);
-    set_bkg_palette(3, 1, palette_green);
+    set_bkg_palette(2, 1, palette_copper);
+    set_bkg_palette(3, 1, palette_copper);
     set_bkg_palette(4, 1, palette_copper);
-    set_bkg_palette(5, 1, palette_purple);
-    set_bkg_palette(6, 1, palette_red);
-    set_bkg_palette(7, 1, palette_yellow);
+    set_bkg_palette(5, 1, palette_copper);
+    set_bkg_palette(6, 1, palette_copper);
+    set_bkg_palette(7, 1, palette_copper);
 
     set_sprite_data(1, buttonframe_TILE_COUNT, buttonframe_tiles); // blank tile in the end
     set_sprite_tile(12, 4); // the tick for the upgrades
@@ -276,7 +276,7 @@ void handleInput(MenuState *currentState, Menu *currentMenu) {
         if (buttons & J_B) {
             switch (*currentState) {
                 case MAIN_MENU:
-                    currentGameState = GAME_STATE_PLAY;
+                    currentGameState = GAME_STATE_CONTINUE_GAME;
                     main_menu.currentSelection = 0;
                     drill_menu.currentSelection = 0;
                     hull_menu.currentSelection = 0;

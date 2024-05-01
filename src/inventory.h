@@ -26,14 +26,14 @@
 #define EMERALD 16
 #define RUBY 17
 #define DIAMOND 18
+#define AQUAMARINE 19
 // hazards
 #define LAVA 20
 #define GAS 21
 // special
-#define BONES 30
-#define ARTEFACT 31
-#define TREASURE 32
-
+#define BONES 22
+#define SKULL 23
+#define ARTEFACT 24
 
 void update_inventory(void);
 void calculate_cargo(void);

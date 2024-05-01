@@ -10,12 +10,12 @@
 #define tile_TILE_W 8
 #define tile_TILE_H 8
 #define tile_WIDTH 16
-#define tile_HEIGHT 256
-#define tile_TILE_COUNT 34
+#define tile_HEIGHT 384
+#define tile_TILE_COUNT 96
 
 BANKREF_EXTERN(tile)
 
-extern const uint8_t tile_tiles[544];
+extern const uint8_t tile_tiles[1536];
 
 
 #endif
