@@ -92,7 +92,6 @@ void main(void) {
                 while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE_GAME) {
                     game_loop();
                     if (depth >= 15) {
-                        set_bkg_palette(0, 1, palette_default);
                         set_bkg_palette(1, 1, palette_stone);
                         set_bkg_palette(2, 1, palette_coal);
                         set_bkg_palette(3, 1, palette_iron);

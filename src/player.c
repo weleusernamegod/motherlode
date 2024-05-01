@@ -47,7 +47,7 @@ void init_character(void){
     direction_prev = RIGHT;    // start with the rover facing right
     prev_depth = depth;
     width_pixel.h = 16 + ((width - width_offset) * 16);
-    depth_pixel.h = 16 + 8 + (depth - depth_offset) * 16;
+    depth_pixel.h = 16 + 8 + ((depth - depth_offset) * 16);
     scroll_x.h = width_offset * 16;
     scroll_y.h = depth_offset * 16;
 }
@@ -96,11 +96,18 @@ void draw_metasprite(char direction){
 
 void update_movement(void) {
     if (animation_frames_left > 0) {
+
         // incrementally add to the x and y values
         scroll_x.w += scroll_x_per_frame.w;
         scroll_y.w += scroll_y_per_frame.w;
         width_pixel.w += move_x_per_frame.w;
         depth_pixel.w += move_y_per_frame.w;
+
+        // calculate pixel movement for background color change
+        vertical_movement_pixel.w += scroll_y_per_frame.w + move_y_per_frame.w;
+        int8_t vertical_movement_signed = (int8_t)vertical_movement_pixel.h;
+        current_bkg_color = prev_bkg_color + vertical_movement_signed;
+        current_bkg_color %= TRANSITION_LENGTH;
 
         // move or scroll background
         draw_metasprite(direction_now);
@@ -122,6 +129,8 @@ void update_movement(void) {
             move_y_per_frame.w = 0;
             scroll_x_per_frame.w = 0;
             scroll_y_per_frame.w = 0;
+            vertical_movement_pixel.w = 0;
+            prev_bkg_color = depth * 16;
 
             // reset position (h and l) to account for rounding errors
             width_pixel.h = 16 + (width - width_offset) * 16, width_pixel.l = 0;

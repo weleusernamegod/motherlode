@@ -114,9 +114,28 @@ void shuffle(uint8_t array[4]) {
     array[secondSwapIndex] = temp;
 }
 
+
 void change_background_color(void) {
-    set_bkg_palette_entry(0,0,RGB8(255 - depth*5, 255 - depth*5, 255 - depth*5));
+        int color_phase = current_bkg_color % TRANSITION_LENGTH;
+
+        uint8_t red = 0, green = 0, blue = 0;
+
+        if (color_phase < COLOR_MAX) {
+            // Phase 1: White to Black
+            red = green = blue = COLOR_MAX - color_phase;
+        } else if (color_phase < 2 * COLOR_MAX) {
+            // Phase 2: Black to Green
+            green = color_phase - COLOR_MAX;
+        } else {
+            // Phase 3: Green to Red
+            red = color_phase - 2 * COLOR_MAX;
+            green = 3 * COLOR_MAX - color_phase; // Ensure green decreases as red increases
+        }
+        // Set background palette entry to the calculated color
+        set_bkg_palette_entry(0, 0, RGB8(red, green, blue));
+
 }
+
 
 /**
  * Sets a 16x16 background tile by setting four 8x8 tiles.
@@ -127,7 +146,7 @@ void change_background_color(void) {
  * @param r Number of rows (height) to set, in tiles (1 - 16).
  * @param c Number of columns (width) to set, in tiles (1 - 16).
  */
-void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint8_t y1, uint8_t r, uint8_t c) {
+void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c) {
     for (uint8_t y = y1; y < y1 + r; y++) {
         for (uint8_t x = x1; x < x1 + c; x++) {
             uint8_t temp = (array[y][x] * 4) + TILESTART - 4;
@@ -183,9 +202,9 @@ void spawn_bkg_row(void) {
  * @param x X position in 16x16 tile coordinates (0 - 15).
  * @param y Y position in 16x16 tile coordinates (0 - 15).
  */
-void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y) {
-    array[y][x] = 0; // Clear the tile in the array
-    set_4bkg_tiles(array, x, y, 1, 1); // Update the background
+void clear_4bkg_tiles(uint8_t x, uint16_t y) {
+    level_array[y][x] = 0; // Clear the tile in the array
+    set_4bkg_tiles(level_array, x, y, 1, 1); // Update the background
 }
 
 /**
@@ -198,8 +217,8 @@ void clear_4bkg_tiles(uint8_t array[][16], uint8_t x, uint8_t y) {
  * 
  * Example: add_block(level_array, 6, 6, ROCK);
  */
-void add_block(uint8_t array[][16], uint8_t x, uint8_t y, uint8_t type) {
-    array[y][x] = type;
+void add_block(uint8_t x, uint16_t y, uint8_t type) {
+    level_array[y][x] = type;
     set_4bkg_tiles(level_array, x, y, 1, 1);
 }
 

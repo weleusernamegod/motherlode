@@ -50,9 +50,12 @@
 #define PALETTE_SKULL 3
 #define PALETTE_ARTEFACT 4
 
+// background color change
+#define COLOR_MAX 255
+#define TRANSITION_LENGTH (COLOR_MAX * 3)
 
 // game
-#define ROWS 256
+#define ROWS 100
 #define COLS 16
 
 

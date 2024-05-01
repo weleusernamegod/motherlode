@@ -31,8 +31,12 @@ extern GameState currentGameState;
 extern uint16_t depth, width;
 extern uint16_t depth_offset, width_offset;
 extern uint16_t prev_depth, prev_width;
+extern uint16_t current_bkg_color;
+extern uint16_t prev_bkg_color;
 extern fixed depth_pixel, width_pixel;
 extern fixed scroll_x, scroll_y;
+extern fixed vertical_movement_pixel;
+
 
 // movement animation
 extern uint16_t ore_resistance;

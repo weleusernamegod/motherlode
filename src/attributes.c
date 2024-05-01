@@ -16,8 +16,6 @@ player_attributes *attributes_numbers[] = {
 void init_attributes(void){
     player.drill.attribute_name = "Drill";
     player.drill.attribute_unit = "m/s";
-    player.drill.current_value = 1;
-    player.drill.max_value = 1;
     player.drill.upgrade_level = 0;
     player.drill.upgrade_value[0] = 1;
     player.drill.upgrade_value[1] = 2;
@@ -46,8 +44,6 @@ void init_attributes(void){
 
     player.hull.attribute_name = "Hull";
     player.hull.attribute_unit = "pt";
-    player.hull.current_value = 20;
-    player.hull.max_value = 20;
     player.hull.upgrade_level = 0;
     player.hull.upgrade_value[0] = 17;
     player.hull.upgrade_value[1] = 30;
@@ -76,8 +72,6 @@ void init_attributes(void){
 
     player.engine.attribute_name = "Engine";
     player.engine.attribute_unit = "hp";
-    player.engine.current_value = 16;
-    player.engine.max_value = 16;
     player.engine.upgrade_level = 0;
     player.engine.upgrade_value[0] = 16;
     player.engine.upgrade_value[1] = 18;
@@ -106,9 +100,7 @@ void init_attributes(void){
 
     player.fuel.attribute_name = "Fueltank";
     player.fuel.attribute_unit = "ltr";
-    player.fuel.current_value = 120;
-    player.fuel.max_value = 120;
-    player.fuel.upgrade_level = 0;
+    player.fuel.upgrade_level = 2;
     player.fuel.upgrade_value[0] = 120;
     player.fuel.upgrade_value[1] = 200;
     player.fuel.upgrade_value[2] = 350;
@@ -136,9 +128,7 @@ void init_attributes(void){
 
     player.radiator.attribute_name = "Radiator";
     player.radiator.attribute_unit = "&";
-    player.radiator.current_value = 10;
-    player.radiator.max_value = 10;
-    player.radiator.upgrade_level = 0;
+    player.radiator.upgrade_level = 1;
     player.radiator.upgrade_value[0] = 0;
     player.radiator.upgrade_value[1] = 10;
     player.radiator.upgrade_value[2] = 25;
@@ -166,9 +156,7 @@ void init_attributes(void){
 
     player.cargo.attribute_name = "Cargo Bay";
     player.cargo.attribute_unit = "m3";
-    player.cargo.current_value = 15;
-    player.cargo.max_value = 15;
-    player.cargo.upgrade_level = 0;
+    player.cargo.upgrade_level = 1;
     player.cargo.upgrade_value[0] = 7;
     player.cargo.upgrade_value[1] = 15;
     player.cargo.upgrade_value[2] = 25;
@@ -198,6 +186,11 @@ void init_attributes(void){
     player.speed.l = 0;
     player.speed.h = 16;
     player.prev_speed.w = player.speed.w;
+
+    // set all attributes based on the upgrade level
+    for (uint8_t i = 0; i < 6; i++) {
+        attributes_numbers[i]->current_value = attributes_numbers[i]->max_value = attributes_numbers[i]->upgrade_value[attributes_numbers[i]->upgrade_level];
+    }
 
 }
 

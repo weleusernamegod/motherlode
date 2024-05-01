@@ -27,8 +27,11 @@ GameState currentGameState = GAME_STATE_NEW_GAME;  // Start with the game loop
 uint16_t depth = 2, width = 6;
 uint16_t depth_offset = 0, width_offset = 0;
 uint16_t prev_depth, prev_width;
+uint16_t current_bkg_color;
+uint16_t prev_bkg_color;
 fixed depth_pixel, width_pixel;
 fixed scroll_x, scroll_y;
+fixed vertical_movement_pixel;
 
 // movement animation
 uint16_t ore_resistance;

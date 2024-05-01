@@ -27,7 +27,7 @@ void game_loop(void) {
     update_movement();
 
     if (tile_mined == TRUE) {
-        if (depth >= EARTH_START) clear_4bkg_tiles(level_array, width, depth);
+        if (depth >= EARTH_START) clear_4bkg_tiles(width, depth);
         update_inventory();
         calculate_cargo();
         draw_cargo();
@@ -42,10 +42,14 @@ void game_loop(void) {
     check_fuel();
     check_game_over();
 
+    // player is moving pixel by pixel
+    change_background_color();
+
+
+    // player has moved one block
     if (prev_depth != depth) {
         spawn_bkg_row();
         draw_depth();
-        change_background_color();
     }
     
     check_enter_buildings();
