@@ -20,6 +20,7 @@ GameState currentGameState = GAME_STATE_NEW_GAME;  // Start with the game loop
 BOOLEAN leave_station = FALSE;
 BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
 BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time
+BOOLEAN buildings_loaded = TRUE;  // for checks if buildings need to be loaded or not
 
 // movement
 uint16_t depth = 2, width = 6;
@@ -45,6 +46,9 @@ BOOLEAN is_drilling;
 // player stats
 uint8_t base_drilltime = 16;
 BOOLEAN tile_mined = FALSE;
+BOOLEAN ore_mined = FALSE;
+BOOLEAN display_warning_cargo = FALSE;
+BOOLEAN display_warning_fuel = FALSE;
 
 // controlls
 uint8_t buttons;

@@ -17,7 +17,11 @@
         "stdint.h": "c",
         "gameloop.h": "c",
         "stdio.h": "c",
-        "stationfuel.h": "c"
+        "stationfuel.h": "c",
+        "stddef.h": "c",
+        "stationrepair.h": "c",
+        "stationsell.h": "c",
+        "stationupgrade.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

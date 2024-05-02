@@ -1,50 +1,23 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 
-// Define colors as constants
+#include "palettes.h"
 
 #define RGB_MEDIUM_WHITE			RGB8(230, 230, 230)
 #define RGB_DARK_WHITE				RGB8(210, 210, 210)
 #define RGB_VERY_LIGHT_GREY			RGB8(184, 184, 184)
 #define RGB_LIGHT_GREY				RGB8(170, 170, 170)
-// #define RGB_MEDIUM_GREY				RGB8(128, 123, 122)
-// #define RGB_DARK_GREY				RGB8(85, 85, 85)
-// #define RGB_VERY_DARK_GREY			RGB8(55, 51, 52)
-
-// #define RGB_MEDIUM_BROWN			RGB8(154, 90, 50)
-// #define RGB_MEDIUM_DARK_BROWN		RGB8(133, 95, 57)
-// #define RGB_DARK_BROWN				RGB8(113, 56, 37)
-// #define RGB_VERY_DARK_BROWN			RGB8(76, 61, 46)
-
-// #define RGB_LIGHT_RED				RGB8(255, 255, 255)
-// #define RGB_MEDIUM_LIGHT_RED		RGB8(230, 230, 230)
-// #define RGB_MEDIUM_DARK_RED			RGB8(255, 95, 0)
-// #define RGB_DARK_RED				RGB8(160, 40, 40)
-
-// #define RGB_MEDIUM_COPPER			RGB8(184, 115, 51)
-// #define RGB_DARK_COPPER				RGB8(153, 101, 21)
 
 #define RGB_BRIGHT_WHITE			RGB8(255, 255, 255)
 #define RGB_LIGHT_ORANGE			RGB8(242, 182, 82)
 #define RGB_DARK_ORANGE				RGB8(217, 157, 40)
 #define RGB_OFF_WHITE				RGB8(255, 255, 223)
 
-// #define RGB_LIGHT_GREEN				RGB8(97, 165, 63)
-// #define RGB_MEDIUM_GREEN			RGB8(71, 114, 56)
-// #define RGB_DARK_GREEN				RGB8(41, 63, 33)
 
-// #define RGB_MEDIUM_DARK_BLUE		RGB8(100, 160, 200)
+
+
+#define RGB_LIGHT_BLUE				RGB8(232, 252, 255)
 #define RGB_VERY_DARK_BLUE			RGB8(0, 1, 11)
-
-// #define RGB_LIGHT_YELLOW			RGB8(255, 255, 192)
-// #define RGB_MEDIUM_LIGHT_YELLOW		RGB8(255, 255, 96)
-// #define RGB_MEDIUM_DARK_YELLOW		RGB8(192, 192, 48)
-// #define RGB_DARK_YELLOW				RGB8(128, 128, 0)
-
-// #define RGB_LIGHT_PURPLE			RGB8(255, 192, 255)
-// #define RGB_MEDIUM_LIGHT_PURPLE		RGB8(192, 96, 255)
-// #define RGB_MEDIUM_DARK_PURPLE		RGB8(128, 48, 192)
-// #define RGB_DARK_PURPLE				RGB8(96, 0, 128)
 
 #define RGB_MEDIUM_BROWN			RGB8(84, 63, 51)
 #define RGB_VIVID_GREEN				RGB8(110, 159, 69)
@@ -93,8 +66,22 @@
 #define RGB_WARM_BROWN				RGB8(115, 93, 83)
 
 
-palette_color_t palette_sky[4] = {
+palette_color_t palette_background[4] = {
+	RGB_LIGHT_GREY,
 	RGB_WHITE,
+	RGB_DARK_GREY,
+	RGB_BLACK
+};
+
+const palette_color_t palette_sky[4] = {
+	RGB_LIGHT_BLUE,
+	RGB_LIGHT_GREY,
+	RGB_DARK_GREY,
+	RGB_BLACK
+};
+
+const palette_color_t palette_station[4] = {
+	RGB_LIGHT_BLUE,
 	RGB_LIGHT_GREY,
 	RGB_DARK_GREY,
 	RGB_BLACK
@@ -106,6 +93,9 @@ const palette_color_t palette_default[4] = {
 	RGB_DARK_GREY,
 	RGB_BLACK
 };
+
+
+
 
 const palette_color_t palette_gras[4] = {
 	RGB_MEDIUM_BROWN,
@@ -267,6 +257,8 @@ const palette_color_t palette_artefact[4] = {
 	RGB_LIGHT_BROWN, 
 RGB_WARM_BROWN, 
 };
+
+
 
 
 // Define a uniform grey palette

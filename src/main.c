@@ -24,6 +24,7 @@
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
 
+BANKREF_EXTERN(warnings)
 BANKREF_EXTERN(bank_main_menu)
 BANKREF_EXTERN(splashscreen)
 BANKREF_EXTERN(bank_map)
@@ -38,7 +39,7 @@ void main(void) {
     generateMap();
     init_attributes();
     init_speed();
-    init_character();
+    init_depth();
     init_screen();
 
     while (1) {
@@ -57,7 +58,6 @@ void main(void) {
                     
                     wait_vbl_done();
                 }
-                init_screen();
                 break;
             case GAME_STATE_NEW_GAME:
 
@@ -65,25 +65,26 @@ void main(void) {
                 init_clear_screen();
                 init_font();
                 init_tiles();
+                draw_tiles();
                 init_progressbar();
+                draw_progressbar();
                 init_nav();
-
+                draw_nav();
+                init_character();
                 draw_character();
                 draw_fuel();
                 draw_hull();
+                init_warning();
                 calculate_cargo();
                 draw_cargo();
                 draw_depth();
-
-                set_bkg_palette(0, 1, palette_default);
-                set_bkg_palette(1, 1, palette_stone);
-                set_bkg_palette(2, 1, palette_coal);
-                set_bkg_palette(3, 1, palette_iron);
-                set_bkg_palette(4, 1, palette_copper);
-                set_bkg_palette(5, 1, palette_gras);
-                set_bkg_palette(6, 1, palette_default);
-                set_bkg_palette(7, 1, palette_default);
+                draw_sky();
+                init_buildings();
                 draw_buildings();
+                init_palette_based_on_depth();
+                update_palette_based_on_depth();
+                change_background_color();
+                turn_screen_on();
                 currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
 
@@ -92,38 +93,31 @@ void main(void) {
                 init_enable_lcd_interrupt();
                 while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE_GAME) {
                     game_loop();
-                    if (depth >= 15) {
-                        set_bkg_palette(1, 1, palette_stone);
-                        set_bkg_palette(2, 1, palette_coal);
-                        set_bkg_palette(3, 1, palette_iron);
-                        set_bkg_palette(4, 1, palette_copper);
-                        set_bkg_palette(5, 1, palette_tin);
-                        set_bkg_palette(6, 1, palette_silver);
-                        set_bkg_palette(7, 1, palette_gold);
-                    }
-
-
                 }
+                turn_screen_off();
                 init_disable_lcd_interrupt();
                 break;
 
             case GAME_STATE_UPGRADE_MENU:
                 SWITCH_ROM(2);
-
                 init_clear_screen();
                 init_shop();
                 init_shop_tiles_palettes();
+                turn_screen_on();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     shop_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_NEW_GAME;
+                    if (leave_station) currentGameState = GAME_STATE_NEW_GAME; leave_station = FALSE;
                 }
+                turn_screen_off();
                 break;
             case GAME_STATE_SELL_MENU:
+                turn_screen_on();
                 sell_all_ores();
                 currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
 
             case GAME_STATE_GAME_OVER:
+                turn_screen_on();
                 waitpad(J_START);
                 reset_player();
                 currentGameState = GAME_STATE_CONTINUE_GAME;

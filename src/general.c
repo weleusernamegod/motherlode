@@ -11,7 +11,7 @@
 #include "../assets/font.h"
 
 void init_font(void){
-    set_bkg_data(NUMSTART, font_TILE_COUNT, font_tiles);
+    set_bkg_data(1, font_TILE_COUNT, font_tiles);
 }
 
 void init_screen(void){
@@ -52,19 +52,19 @@ void read_buttons(void) {
 }
 
 unsigned char convert_char_to_tile(char c) {
-    if (c >= 'A' && c <= 'Z') return LETTERSTART + (c - 'A');
-    if (c >= 'a' && c <= 'z') return SLETTERSTART + (c - 'a');
-    if (c >= '0' && c <= '9') return NUMSTART + (c - '0');
+    if (c >= 'A' && c <= 'Z') return LETTER_START + (c - 'A');
+    if (c >= 'a' && c <= 'z') return SLETTER_START + (c - 'a');
+    if (c >= '0' && c <= '9') return NUMBERS_START + (c - '0');
     switch (c) {
-        case '!': return 11;
-        case '?': return 12;
-        case '.': return 13;
-        case ':': return 14;
-        case '/': return 15;
-        case '+': return 16;
-        case '-': return 17;
-        case '$': return 18;
-        case '%': return 19;
+        case '!': return 15;
+        case '?': return 16;
+        case '.': return 17;
+        case ':': return 18;
+        case '/': return 19;
+        case '+': return 20;
+        case '-': return 21;
+        case '$': return 22;
+        case '%': return 23;
 
         default: return 0;  // Default to space if character is not handled
     }
@@ -108,3 +108,10 @@ void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN l
     }
 }
 
+void turn_screen_off(void) {
+    DISPLAY_OFF;
+}
+
+void turn_screen_on(void) {
+    DISPLAY_ON;
+}

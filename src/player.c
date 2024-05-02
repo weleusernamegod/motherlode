@@ -43,7 +43,7 @@ const metasprite_t drill_vertical_metasprite[] = {
 
 struct Player player;
 
-void init_character(void){
+void init_depth(void){
     direction_prev = RIGHT;    // start with the rover facing right
     prev_depth = depth;
     width_pixel.h = 16 + ((width - width_offset) * 16);
@@ -145,7 +145,10 @@ void update_movement(void) {
             // animation has ended, so the rover has stopped drilling
             is_drilling = FALSE;
             // the player has cleared a tile, so set flag to update inventory
-            if (level_array[depth][width] != 0){
+            if (level_array[depth][width] != EMPTY && depth >= UNDERGROUND){
+                if (level_array[depth][width] >= MIN_MINABLE_MATERIAL){
+                    ore_mined = TRUE;
+                }
                 tile_mined = TRUE;
             }
             // redraw character / scroll again to make sure the rounding errors are gone
@@ -318,37 +321,52 @@ void check_fuel(void){
         player_alive = FALSE;
         player.fuel.current_value = 0;
     }
+    if (player.fuel.current_value * 5 <= player.fuel.max_value) {
+        display_warning_fuel = TRUE;
+    } else {
+        display_warning_fuel = FALSE;
+    }
 }
 void update_fuel(void){
     if (frame_counter == 0) {
         player.fuel.current_value --;   // only once every 60 frames
     }
-    if (depth <= EARTH_START) player.fuel.current_value = player.fuel.max_value;
+    if (depth < UNDERGROUND) player.fuel.current_value = player.fuel.max_value;
 }
 
-void check_enter_buildings(void){
-    // This variable must be reset at the start of each call to the function
-    bool entered_any_station = FALSE;
+// check if player has entered a building
+typedef enum {
+    ENTER_NO_STATION,
+    ENTER_UPGRADE_STATION,
+    ENTER_SELL_STATION
+} Station_proximity;
 
+Station_proximity station_proximity = ENTER_NO_STATION;
+
+void proximity_check_station(void) {
     // Check for entering the upgrade station
-    if (depth == STATION_Y && width == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET && animation_frames_left == 0 && left_shop_area) {
-        currentGameState = GAME_STATE_UPGRADE_MENU;
-        velocity = 0;
-        left_shop_area = FALSE;  // Player enters the shop, set flag to false
-        entered_any_station = TRUE;
+    if (depth == STATION_Y && width == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET) {
+        if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
+            station_proximity = ENTER_UPGRADE_STATION;
+        }
+    } else if (depth == STATION_Y && width == STATION_SELL_X + STATION_SELL_DOOR_OFFSET) {
+        if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
+            station_proximity = ENTER_SELL_STATION;
+        }
+    } else {
+        // Update player's station proximity state if they are not near any station
+        station_proximity = ENTER_NO_STATION;
     }
+}
 
-    // Check for entering the sell station
-    if (depth == STATION_Y && width == STATION_SELL_X + STATION_SELL_DOOR_OFFSET && animation_frames_left == 0 && left_shop_area) {
-        currentGameState = GAME_STATE_SELL_MENU;
+void enter_station(void) {
+    if (buttons & J_A) {
+        if (station_proximity == ENTER_SELL_STATION) {
+            currentGameState = GAME_STATE_SELL_MENU;
+        } else if (station_proximity == ENTER_UPGRADE_STATION) {
+            currentGameState = GAME_STATE_UPGRADE_MENU;
+        }
         velocity = 0;
-        left_shop_area = FALSE;  // Player enters the sell station, set flag to false
-        entered_any_station = TRUE;
-    }
-
-    // Check if player has left the area of any station, only if no station was entered this frame
-    if (!entered_any_station && (depth != STATION_Y || (width != STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET && width != STATION_SELL_X + STATION_SELL_DOOR_OFFSET))) {
-        left_shop_area = TRUE;  // Player moves away from the shop trigger location
     }
 }
 

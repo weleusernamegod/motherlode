@@ -13,9 +13,11 @@ extern const metasprite_t rover_metasprite[];
 extern const metasprite_t drill_horizontal_metasprite[];
 extern const metasprite_t drill_vertical_metasprite[];
 extern struct Player player;
+extern struct Station_proximity station_proximity;
+
 
 // Function declarations
-void init_character(void);
+void init_depth(void);
 void init_speed(void);
 void check_surroundings(void);
 void metasprite_drill_horizontal(char direction);
@@ -35,7 +37,8 @@ void calculate_falldamage(void);
 void check_hull(void);
 void check_fuel(void);
 void update_fuel(void);
-void check_enter_buildings(void);
+void proximity_check_station(void);
+void enter_station(void);
 void check_game_over(void);
 void reset_player(void);
 

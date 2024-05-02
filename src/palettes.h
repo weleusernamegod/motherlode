@@ -6,7 +6,9 @@
 #include <stdio.h>
 
 // External declarations for color palettes
-extern palette_color_t palette_sky[4];
+extern palette_color_t palette_background[4];
+extern const palette_color_t palette_sky[4];
+extern const palette_color_t palette_station[4];
 extern const palette_color_t palette_default[4];
 extern const palette_color_t palette_gras[4];
 extern const palette_color_t palette_stone[4];

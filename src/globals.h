@@ -15,6 +15,7 @@ extern BOOLEAN player_alive;
 extern BOOLEAN leave_station;
 extern BOOLEAN left_shop_area;  // Initially true to allow first entry
 extern BOOLEAN update_menu;  // Initially set to TRUE to draw the menu the first time
+extern BOOLEAN buildings_loaded;  // for checks if buildings need to be loaded or not
 
 typedef enum {
     GAME_STATE_MAIN_MENU,
@@ -50,7 +51,9 @@ extern BOOLEAN is_drilling;
 // player stats
 extern uint8_t base_drilltime;
 extern BOOLEAN tile_mined;
-
+extern BOOLEAN ore_mined;
+extern BOOLEAN display_warning_cargo;
+extern BOOLEAN display_warning_fuel;
 
 // controlls
 extern uint8_t buttons;

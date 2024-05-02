@@ -1,5 +1,5 @@
 # Motherlode
-Gameboy / Gameboy Color port of a flash game from around the ~2005-2010 with (almost) the same name: [Motherload on crazygames.com](https://de.crazygames.com/spiele/motherload)
+Gameboy / Gameboy Background_color port of a flash game from around the ~2005-2010 with (almost) the same name: [Motherload on crazygames.com](https://de.crazygames.com/spiele/motherload)
 
 This MVP is a work in progress.
 

@@ -42,25 +42,57 @@ Material materials[] = {
 {"Artefact", ARTEFACT, 64, 0, 0, 0, PALETTE_ARTEFACT},
 };
 
+
+
 void update_inventory(void) {
     uint8_t material_index = level_array[depth][width];
-    // Increment the inventory count for materials that can be mined
-    if (material_index >= COAL && material_index <= DIAMOND) {
-        materials[material_index].inventory++;
+    
+    // Check if the material is minable and within the defined range
+    if (material_index >= MIN_MINABLE_MATERIAL && material_index <= MAX_MINABLE_MATERIAL) {
+        // Calculate potential new weight if this material is added
+        uint16_t new_weight = player.cargo.current_value + materials[material_index].weight;
+        
+        // Check if adding this material would exceed the cargo capacity
+        if (new_weight > player.cargo.max_value) {
+            // Set the warning flag to true because adding this material would exceed cargo capacity
+            display_warning_cargo = TRUE;
+        } else {
+            // Increment the inventory since there's enough space
+            materials[material_index].inventory++;
+            // Update current cargo weight
+            player.cargo.current_value = new_weight;
+
+            // Check if the cargo is now exactly full
+            if (player.cargo.current_value == player.cargo.max_value) {
+                display_warning_cargo = TRUE;
+            } else {
+                // Reset the warning flag as cargo is not exceeded and not full
+                display_warning_cargo = FALSE;
+            }
+        }
+
+
+        return;  // Skip adding the item to inventory and exit the function
     }
-    // Handle special cases for money directly here if needed
-    if (material_index == BONES) {
-        player.money += 1000;
-    } else if (material_index == ARTEFACT) {
-        player.money += 5000;
-    } else if (material_index == SKULL) {
-        player.money += 10000;
+
+    // Handling special cases where materials directly translate into money
+    switch(material_index) {
+        case BONES:
+            player.money += 1000;
+            break;
+        case ARTEFACT:
+            player.money += 5000;
+            break;
+        case SKULL:
+            player.money += 10000;
+            break;
     }
 }
 
+
 void calculate_cargo(void) {
-    uint8_t total_weight = 0;
-    for (uint8_t i = COAL; i <= DIAMOND; i++) {
+    uint16_t total_weight = 0;  // Use uint16_t to avoid overflow
+    for (uint8_t i = MIN_MINABLE_MATERIAL; i <= MAX_MINABLE_MATERIAL; i++) {
         total_weight += materials[i].inventory * materials[i].weight;
     }
     player.cargo.current_value = total_weight;

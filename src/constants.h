@@ -22,10 +22,10 @@
 #define STATION_SELL_DOOR_OFFSET 1
 #define STATION_UPGRADE_X 1
 #define STATION_UPGRADE_DOOR_OFFSET 1
+#define WAIT_FRAMES 10
 
 
 // color palettes
-
 #define PALETTE_DEFAULT 0
 #define PALETTE_DIRT 1
 #define PALETTE_GRAS 5
@@ -56,16 +56,22 @@
 #define ROWS 256
 #define COLS 16
 
+#define MIN_MINABLE_MATERIAL COAL
+#define MAX_MINABLE_MATERIAL DIAMOND
 
-#define EARTH_START 5 // at that level does the digging start
+#define METATILES_PER_SCREEN 9
+#define GROUND 5
+#define UNDERGROUND (GROUND + 1)
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen, to account for the nav/window element
 
-#define TILESTART 96
-#define NUMSTART 1
-#define LETTERSTART 25
-#define SLETTERSTART 51
-#define CHARSTART 1
+#define TILE_START 96
+#define NUMBERS_START 4
+#define LETTER_START 26
+#define SLETTER_START 52
+#define CHAR_START 1
+#define WARNING_CARGO_START 17
+#define WARNING_FUEL_START 24
 
 #define LEFT 1
 #define RIGHT 2

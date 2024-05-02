@@ -37,6 +37,5 @@ void shop_menu_loop(void) {
     }
 
     prev_buttons = buttons;
-    wait_vbl_done();
-
+    vsync();
 }

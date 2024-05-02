@@ -26,11 +26,14 @@ void game_loop(void) {
     update_movement();
 
     if (tile_mined == TRUE) {
-        if (depth >= EARTH_START) clear_4bkg_tiles(width, depth);
-        update_inventory();
-        calculate_cargo();
-        draw_cargo();
+        if (ore_mined == TRUE) {
+            update_inventory();
+            calculate_cargo();
+            draw_cargo();
+        }
+        clear_4bkg_tiles(width, depth);
         tile_mined = FALSE;
+        ore_mined = FALSE;
     }
 
     update_fuel();
@@ -39,6 +42,8 @@ void game_loop(void) {
     calculate_falldamage();
     check_hull();
     check_fuel();
+    draw_warning_fuel();
+    draw_warning_cargo();
     check_game_over();
 
     // player has moved one block
@@ -46,15 +51,19 @@ void game_loop(void) {
         spawn_bkg_row();
         draw_depth();
         change_background_color();
+        update_palette_based_on_depth();
+        swap_tiles_sky_buildings();
     }
     
-    check_enter_buildings();
+    proximity_check_station();
+    enter_station();
+
 
     // Update the previous button state for the next check
     prev_buttons = buttons;
     prev_depth = depth;
     prev_width = width;
 
-    wait_vbl_done();
+    vsync();
 }
 

@@ -30,7 +30,7 @@ OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o)
 
 .PHONY: png2asset
 png2asset:
-	/usr/local/opt/gbdk/bin/png2asset png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip
+	/usr/local/opt/gbdk/bin/png2asset png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles
 
 	/usr/local/opt/gbdk/bin/png2asset png/nav.png -c assets/nav.c -spr8x8 -map -tile_origin 80 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/rover.png -c assets/rover.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
@@ -40,6 +40,7 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/stationrepair.png -c assets/stationrepair.c -spr8x8 -map -tile_origin 148 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/stationsell.png -c assets/stationsell.c -spr8x8 -map -tile_origin 189 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/stationupgrade.png -c assets/stationupgrade.c -spr8x8 -map -tile_origin 224 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/warnings.png -c assets/warnings.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
 
 	/usr/local/opt/gbdk/bin/png2asset png/shoptiles.png -c assets/shoptiles.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/shopframe.png -c assets/shopframe.c -spr8x8 -map -noflip -tile_origin 151 -b 2

@@ -31,24 +31,12 @@
 #include "../assets/stationsell.h"
 #include "../assets/stationupgrade.h"
 
+#include "../assets/warnings.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
 BANKREF(bank_map)
 #endif
-
-void draw_buildings(void){
-    set_bkg_data(stationfuel_TILE_ORIGIN, stationfuel_TILE_COUNT, stationfuel_tiles);
-    set_bkg_data(stationrepair_TILE_ORIGIN, stationrepair_TILE_COUNT, stationrepair_tiles);
-    set_bkg_data(stationsell_TILE_ORIGIN, stationsell_TILE_COUNT, stationsell_tiles);
-    set_bkg_data(stationupgrade_TILE_ORIGIN, stationupgrade_TILE_COUNT, stationupgrade_tiles);
-
-
-    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (stationfuel_HEIGHT/stationfuel_TILE_H)), (stationfuel_WIDTH/stationfuel_TILE_W), (stationfuel_HEIGHT/stationfuel_TILE_H), stationfuel_map);
-    set_bkg_tiles(STATION_REPAIR_X * 2, (((STATION_Y + 1)* 2) - (stationrepair_HEIGHT/stationrepair_TILE_H)), (stationrepair_WIDTH/stationrepair_TILE_W), (stationrepair_HEIGHT/stationrepair_TILE_H), stationrepair_map);
-    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (stationsell_HEIGHT/stationsell_TILE_H)), (stationsell_WIDTH/stationsell_TILE_W), (stationsell_HEIGHT/stationsell_TILE_H), stationsell_map);
-    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (stationupgrade_HEIGHT/stationupgrade_TILE_H)), (stationupgrade_WIDTH/stationupgrade_TILE_W), (stationupgrade_HEIGHT/stationupgrade_TILE_H), stationupgrade_map);
-}
 
 void generateMap(void) {
     uint16_t i, j;
@@ -130,7 +118,7 @@ void shuffle(uint8_t array[4]) {
     array[secondSwapIndex] = temp;
 }
 
-Color colors[] = {
+Background_color colors[] = {
     {100, 80, 60},   // Brown
     {25, 20, 15},    // Almost Black
     {50, 100, 50},   // Green
@@ -138,7 +126,7 @@ Color colors[] = {
     {140, 50, 30}    // Red
 };
 
-void interpolate_color(Color* result, Color start, Color end, uint16_t progress, uint16_t max_progress) {
+void interpolate_color(Background_color* result, Background_color start, Background_color end, uint16_t progress, uint16_t max_progress) {
     if (result != NULL) {
         result->r = start.r + ((end.r - start.r) * progress / max_progress);
         result->g = start.g + ((end.g - start.g) * progress / max_progress);
@@ -154,14 +142,43 @@ void change_background_color(void) {
     int index = color_phase / phase_per_color;
     int progress = color_phase % phase_per_color;
 
-    Color current_color;
+    Background_color current_color;
     interpolate_color(&current_color, colors[index], colors[index + 1], progress, phase_per_color);
 
-    // Assuming set_bkg_palette_entry and RGB8 are implemented elsewhere
-    set_bkg_palette_entry(0, 0, RGB8(current_color.r, current_color.g, current_color.b));
+    set_bkg_palette_entry(0, 1, RGB8(current_color.r, current_color.g, current_color.b));
 }
 
+const Palette_group palette_groups[] = {
+    { {palette_background, palette_stone, palette_coal, palette_iron, palette_copper, palette_gras, palette_sky, palette_station}, 0},
+    { {palette_background, palette_stone, palette_coal, palette_iron, palette_copper, palette_tin, palette_silver, palette_gold}, 9},
+};
+const int palette_groups_count = sizeof(palette_groups) / sizeof(palette_groups[0]);
+const Palette_group* last_used_palette_group = NULL;  // Initialize to NULL
 
+void init_palette_based_on_depth(void) {
+    last_used_palette_group = NULL;
+}
+
+void update_palette_based_on_depth(void) {
+    const Palette_group* selected_palette_group = NULL;
+
+    // Use palette_groups_count instead of sizeof calculation
+    for (int i = 0; i < palette_groups_count; i++) {
+        if (depth_offset >= palette_groups[i].depth_threshold) {
+            selected_palette_group = &palette_groups[i];
+        } else {
+            break;  // Assumes palette_groups are sorted by depth_threshold
+        }
+    }
+
+    // Update the palette if it has changed
+    if (selected_palette_group != last_used_palette_group) {
+        for (uint8_t i = 1; i < 8; i++) {  // Assuming each group has 8 palettes
+            set_bkg_palette(i, 1, selected_palette_group->palettes[i]);
+        }
+        last_used_palette_group = selected_palette_group;
+    }
+}
 
 
 /**
@@ -176,12 +193,12 @@ void change_background_color(void) {
 void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c) {
     for (uint8_t y = y1; y < y1 + r; y++) {
         for (uint8_t x = x1; x < x1 + c; x++) {
-            uint8_t temp = (array[y][x] * 4) + TILESTART - 4;
+            uint8_t temp = (array[y][x] * 4) + TILE_START - 4;
             uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
             uint8_t palette_array[4];
 
             if (array[y][x] == EMPTY) {
-                for (uint8_t i = 0; i < 4; i++) tile_array[i] = 0;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = 1;
             } else if (array[y][x] == GRAS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);
@@ -195,7 +212,7 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uin
             if (array[y][x] == EMPTY) {
                 for (uint8_t i = 0; i < 4; i++) palette_array[i] = 0;
             } else {
-                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILESTART) / 4].color_palette;
+                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILE_START) / 4].color_palette;
             }
 
             // Set tiles first with VBK_REG = 0 (tile data)
@@ -216,7 +233,7 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uin
 
 
 void spawn_bkg_row(void) {
-        if (depth > 3) {
+        if (depth > METATILES_PER_SCREEN) { // just a guess, tested and found out it has to be 9
             if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) set_4bkg_tiles(level_array, 0, depth + 4, 1, 16);
             else if (depth - depth_offset == THRESHOLD) set_4bkg_tiles(level_array, 0, depth - 4, 1, 16);
         }
@@ -250,8 +267,6 @@ void add_block(uint8_t x, uint16_t y, uint8_t type) {
 }
 
 /**
- * Sets a 16x16 background tile by setting four 8x8 tiles.
- * 
  * @param current_value the current value for the progressbar
  * @param max_value the max value / range of the bar
  * @param digits how many 8x8 sprites the bar should be long
@@ -301,7 +316,7 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 
 void draw_depth(void){
     char string[10];
-    itoa((depth <= EARTH_START) ? 0 : (depth - EARTH_START), string, 10);
+    itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     strcat(string, "m");
     draw_text(15,0,"Depth",5,TRUE,0);
     draw_text(15,1,string,5,FALSE,0);
@@ -318,6 +333,49 @@ void draw_cargo(void){
     draw_text(9,1,string,5,TRUE,0);
 }
 
+const metasprite_t warning_cargo_metasprite[] = {
+    {.dy=-8, .dx=-16, .dtile=warnings_TILE_ORIGIN, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+1, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+2, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+3, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+4, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+5, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+6, .props=0},
+	METASPR_TERM
+};
+
+const metasprite_t warning_fuel_metasprite[] = {
+    {.dy=-8, .dx=-16, .dtile=warnings_TILE_ORIGIN+7, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+8, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+9, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+10, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+11, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+12, .props=0},
+    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+13, .props=0},
+	METASPR_TERM
+};
+
+
+void init_warning(void){
+    set_sprite_data(warnings_TILE_ORIGIN, warnings_TILE_COUNT, warnings_tiles);
+}
+
+void draw_warning_cargo(void){
+    if (display_warning_cargo == TRUE) {
+        move_metasprite_ex(warning_cargo_metasprite, 0, 0, WARNING_CARGO_START, 50, 50);
+    } else {
+        hide_metasprite(warning_cargo_metasprite, WARNING_CARGO_START);
+    }
+}
+
+void draw_warning_fuel(void){
+    if (display_warning_fuel == TRUE) {
+        move_metasprite_ex(warning_fuel_metasprite, 0, 0, WARNING_FUEL_START, 50, 80);
+    } else {
+        hide_metasprite(warning_fuel_metasprite, WARNING_FUEL_START);
+    }
+}
+
 void draw_fuel(void){
     progressbar(player.fuel.current_value, player.fuel.max_value, 3, 35, 44, 20);
 }
@@ -325,24 +383,77 @@ void draw_hull(void){
     progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
 }
 
-
+void init_character(void){
+    set_sprite_data(CHAR_START, 16, rover_tiles);
+}
 void draw_character(void){
-    set_sprite_data(CHARSTART, 16, rover_tiles);
     draw_metasprite(direction_prev);
 }
 
 void init_nav(void){
+    set_bkg_data(nav_TILE_ORIGIN, nav_TILE_COUNT, nav_tiles);
+}
+void draw_nav(void){
     set_win_tiles(0,0,20,3,nav_map);
     move_win(7, 0); //124
 }
 
+void init_progressbar(void){
+    set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
+}
+void draw_progressbar(void){
+    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+}
+
 void init_tiles(void){
-    set_bkg_data(TILESTART, tile_TILE_COUNT, tile_tiles);
-    set_bkg_data(nav_TILE_ORIGIN, nav_TILE_COUNT, nav_tiles);
+    set_bkg_data(TILE_START, tile_TILE_COUNT, tile_tiles);
+}
+void draw_tiles(void){
     set_4bkg_tiles(level_array, 0, 0, 16, 16);
 }
 
-void init_progressbar(void){
-    set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
-    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+void init_buildings(void){
+    set_bkg_data(stationfuel_TILE_ORIGIN, stationfuel_TILE_COUNT, stationfuel_tiles);
+    set_bkg_data(stationrepair_TILE_ORIGIN, stationrepair_TILE_COUNT, stationrepair_tiles);
+    set_bkg_data(stationsell_TILE_ORIGIN, stationsell_TILE_COUNT, stationsell_tiles);
+    set_bkg_data(stationupgrade_TILE_ORIGIN, stationupgrade_TILE_COUNT, stationupgrade_tiles);
+}
+void draw_buildings(void){
+    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (stationfuel_HEIGHT/stationfuel_TILE_H)), (stationfuel_WIDTH/stationfuel_TILE_W), (stationfuel_HEIGHT/stationfuel_TILE_H), stationfuel_map);
+    set_bkg_tiles(STATION_REPAIR_X * 2, (((STATION_Y + 1)* 2) - (stationrepair_HEIGHT/stationrepair_TILE_H)), (stationrepair_WIDTH/stationrepair_TILE_W), (stationrepair_HEIGHT/stationrepair_TILE_H), stationrepair_map);
+    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (stationsell_HEIGHT/stationsell_TILE_H)), (stationsell_WIDTH/stationsell_TILE_W), (stationsell_HEIGHT/stationsell_TILE_H), stationsell_map);
+    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (stationupgrade_HEIGHT/stationupgrade_TILE_H)), (stationupgrade_WIDTH/stationupgrade_TILE_W), (stationupgrade_HEIGHT/stationupgrade_TILE_H), stationupgrade_map);
+}
+
+void draw_sky(void){
+    unsigned char sky_map[32 * UNDERGROUND * 2];
+    unsigned char sky_palette[32 * UNDERGROUND * 2];
+
+    // Initialize sky_map array using memset
+    memset(sky_map, 0, sizeof(sky_map));
+
+    // Initialize sky_palette array using memset
+    memset(sky_palette, 6, sizeof(sky_palette));
+
+    VBK_REG = 0;
+    set_bkg_tiles(0, 0, 32, UNDERGROUND * 2, sky_map);
+    VBK_REG = 1;
+    set_bkg_tiles(0, 0, 32, UNDERGROUND * 2, sky_palette);
+    VBK_REG = 0;
+}
+
+void swap_tiles_sky_buildings(void) {
+    const uint8_t depth_threshold = UNDERGROUND;
+
+    if (depth_offset < depth_threshold && !buildings_loaded) {
+        // Load and draw buildings if the player is deeper than the threshold and buildings are not loaded
+        init_buildings();
+        draw_sky();
+        draw_buildings();
+        buildings_loaded = TRUE;  // Mark buildings as loaded
+    } else if (depth_offset >= depth_threshold && buildings_loaded) {
+        // Load tiles if the player is shallower than the threshold and tiles are not loaded
+        init_tiles();
+        buildings_loaded = FALSE;  // Mark tiles as loaded (buildings are not loaded)
+    }
 }
