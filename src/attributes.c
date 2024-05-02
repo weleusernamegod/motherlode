@@ -16,7 +16,7 @@ player_attributes *attributes_numbers[] = {
 void init_attributes(void){
     player.drill.attribute_name = "Drill";
     player.drill.attribute_unit = "m/s";
-    player.drill.upgrade_level = 0;
+    player.drill.upgrade_level = 6;
     player.drill.upgrade_value[0] = 1;
     player.drill.upgrade_value[1] = 2;
     player.drill.upgrade_value[2] = 4;    

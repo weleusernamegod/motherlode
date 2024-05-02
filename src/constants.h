@@ -13,14 +13,16 @@
 #define SHOP_TILES_START 160
 #define UPGRADE_TICK_TILE 12
 
-#define STATION_SHOP_X 2
-#define STATION_SHOP_Y 5
-#define STATION_FUEL_X 10
-#define STATION_FUEL_Y 5
-#define STATION_REPAIR_X 16
-#define STATION_REPAIR_Y 5
-#define STATION_SELL_X 10
-#define STATION_SELL_Y 5
+#define STATION_Y 5
+#define STATION_FUEL_X 14
+#define STATION_FUEL_DOOR_OFFSET 1
+#define STATION_REPAIR_X 10
+#define STATION_REPAIR_DOOR_OFFSET 1
+#define STATION_SELL_X 6
+#define STATION_SELL_DOOR_OFFSET 1
+#define STATION_UPGRADE_X 1
+#define STATION_UPGRADE_DOOR_OFFSET 1
+
 
 // color palettes
 
@@ -50,12 +52,8 @@
 #define PALETTE_SKULL 3
 #define PALETTE_ARTEFACT 4
 
-// background color change
-#define COLOR_MAX 255
-#define TRANSITION_LENGTH (COLOR_MAX * 3)
-
 // game
-#define ROWS 100
+#define ROWS 256
 #define COLS 16
 
 
@@ -63,12 +61,11 @@
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen, to account for the nav/window element
 
-#define TILESTART 128
+#define TILESTART 96
 #define NUMSTART 1
 #define LETTERSTART 25
 #define SLETTERSTART 51
 #define CHARSTART 1
-#define NAVSTART 96
 
 #define LEFT 1
 #define RIGHT 2

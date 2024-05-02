@@ -7,16 +7,15 @@ extern uint8_t current_menu_index;
 // framecounter
 extern volatile uint8_t frame_counter;
 
-// shop
-extern BOOLEAN update_menu;  // Initially set to TRUE to draw the menu the first time
-extern BOOLEAN left_shop_area;  // Initially true to allow first entry
-extern BOOLEAN left_sell_area;  // Initially true to allow first entry
-
 // bank switching
 extern uint8_t saved_bank;
 
 // gamestates
 extern BOOLEAN player_alive;
+extern BOOLEAN leave_station;
+extern BOOLEAN left_shop_area;  // Initially true to allow first entry
+extern BOOLEAN update_menu;  // Initially set to TRUE to draw the menu the first time
+
 typedef enum {
     GAME_STATE_MAIN_MENU,
     GAME_STATE_UPGRADE_MENU,
@@ -32,11 +31,9 @@ extern uint16_t depth, width;
 extern uint16_t depth_offset, width_offset;
 extern uint16_t prev_depth, prev_width;
 extern uint16_t current_bkg_color;
-extern uint16_t prev_bkg_color;
 extern fixed depth_pixel, width_pixel;
 extern fixed scroll_x, scroll_y;
 extern fixed vertical_movement_pixel;
-
 
 // movement animation
 extern uint16_t ore_resistance;

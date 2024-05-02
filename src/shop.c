@@ -276,7 +276,7 @@ void handleInput(MenuState *currentState, Menu *currentMenu) {
         if (buttons & J_B) {
             switch (*currentState) {
                 case MAIN_MENU:
-                    currentGameState = GAME_STATE_CONTINUE_GAME;
+                    leave_station = TRUE;
                     main_menu.currentSelection = 0;
                     drill_menu.currentSelection = 0;
                     hull_menu.currentSelection = 0;

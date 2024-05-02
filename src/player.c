@@ -103,11 +103,9 @@ void update_movement(void) {
         width_pixel.w += move_x_per_frame.w;
         depth_pixel.w += move_y_per_frame.w;
 
-        // calculate pixel movement for background color change
+        // calculate pixel movement (delete at some point if not used)
         vertical_movement_pixel.w += scroll_y_per_frame.w + move_y_per_frame.w;
         int8_t vertical_movement_signed = (int8_t)vertical_movement_pixel.h;
-        current_bkg_color = prev_bkg_color + vertical_movement_signed;
-        current_bkg_color %= TRANSITION_LENGTH;
 
         // move or scroll background
         draw_metasprite(direction_now);
@@ -130,7 +128,7 @@ void update_movement(void) {
             scroll_x_per_frame.w = 0;
             scroll_y_per_frame.w = 0;
             vertical_movement_pixel.w = 0;
-            prev_bkg_color = depth * 16;
+            current_bkg_color = depth * 16;
 
             // reset position (h and l) to account for rounding errors
             width_pixel.h = 16 + (width - width_offset) * 16, width_pixel.l = 0;
@@ -329,22 +327,28 @@ void update_fuel(void){
 }
 
 void check_enter_buildings(void){
-    // Check for entering the shop
-    if (depth == STATION_SHOP_Y && width == STATION_SHOP_X && animation_frames_left == 0 && left_shop_area) {
+    // This variable must be reset at the start of each call to the function
+    bool entered_any_station = FALSE;
+
+    // Check for entering the upgrade station
+    if (depth == STATION_Y && width == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET && animation_frames_left == 0 && left_shop_area) {
         currentGameState = GAME_STATE_UPGRADE_MENU;
         velocity = 0;
         left_shop_area = FALSE;  // Player enters the shop, set flag to false
-    } else if (depth != STATION_SHOP_Y || width != STATION_SHOP_X) {
-        left_shop_area = TRUE;  // Player moves away from the shop trigger location
+        entered_any_station = TRUE;
     }
 
     // Check for entering the sell station
-    if (depth == STATION_SELL_Y && width == STATION_SELL_X && animation_frames_left == 0 && left_sell_area) {
+    if (depth == STATION_Y && width == STATION_SELL_X + STATION_SELL_DOOR_OFFSET && animation_frames_left == 0 && left_shop_area) {
         currentGameState = GAME_STATE_SELL_MENU;
         velocity = 0;
-        left_sell_area = FALSE;  // Player enters the sell station, set flag to false
-    } else if (depth != STATION_SELL_Y || width != STATION_SELL_X) {
-        left_sell_area = TRUE;  // Player moves away from the sell station trigger location
+        left_shop_area = FALSE;  // Player enters the sell station, set flag to false
+        entered_any_station = TRUE;
+    }
+
+    // Check if player has left the area of any station, only if no station was entered this frame
+    if (!entered_any_station && (depth != STATION_Y || (width != STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET && width != STATION_SELL_X + STATION_SELL_DOOR_OFFSET))) {
+        left_shop_area = TRUE;  // Player moves away from the shop trigger location
     }
 }
 

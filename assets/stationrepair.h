@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define stationrepair_TILE_ORIGIN 0
+#define stationrepair_TILE_ORIGIN 148
 #define stationrepair_TILE_W 8
 #define stationrepair_TILE_H 8
 #define stationrepair_WIDTH 72
@@ -15,11 +15,14 @@
 #define stationrepair_PALETTE_COUNT 1
 #define stationrepair_COLORS_PER_PALETTE 4
 #define stationrepair_TOTAL_COLORS 4
+#define stationrepair_MAP_ATTRIBUTES 0
 
 BANKREF_EXTERN(stationrepair)
 
 extern const palette_color_t stationrepair_palettes[4];
 extern const uint8_t stationrepair_tiles[672];
 
+extern const unsigned char stationrepair_map[45];
+#define stationrepair_map_attributes stationrepair_map
 
 #endif

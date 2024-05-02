@@ -19,7 +19,6 @@ void game_loop(void) {
 
     read_buttons();
     check_surroundings();
-
     if (animation_frames_left == 0) {
         initiate_movement();
     }
@@ -42,14 +41,11 @@ void game_loop(void) {
     check_fuel();
     check_game_over();
 
-    // player is moving pixel by pixel
-    change_background_color();
-
-
     // player has moved one block
     if (prev_depth != depth) {
         spawn_bkg_row();
         draw_depth();
+        change_background_color();
     }
     
     check_enter_buildings();

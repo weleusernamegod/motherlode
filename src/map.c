@@ -16,6 +16,7 @@
 #include "inventory.h"
 #include "general.h"
 #include "palettes.h"
+#include "map.h"
 
 #include "level.ba0.h"
 #include "player.h"
@@ -25,13 +26,28 @@
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
 
+#include "../assets/stationfuel.h"
+#include "../assets/stationrepair.h"
+#include "../assets/stationsell.h"
+#include "../assets/stationupgrade.h"
+
+
 #pragma bank 1
 #ifndef __INTELLISENSE__
 BANKREF(bank_map)
 #endif
 
 void draw_buildings(void){
+    set_bkg_data(stationfuel_TILE_ORIGIN, stationfuel_TILE_COUNT, stationfuel_tiles);
+    set_bkg_data(stationrepair_TILE_ORIGIN, stationrepair_TILE_COUNT, stationrepair_tiles);
+    set_bkg_data(stationsell_TILE_ORIGIN, stationsell_TILE_COUNT, stationsell_tiles);
+    set_bkg_data(stationupgrade_TILE_ORIGIN, stationupgrade_TILE_COUNT, stationupgrade_tiles);
 
+
+    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (stationfuel_HEIGHT/stationfuel_TILE_H)), (stationfuel_WIDTH/stationfuel_TILE_W), (stationfuel_HEIGHT/stationfuel_TILE_H), stationfuel_map);
+    set_bkg_tiles(STATION_REPAIR_X * 2, (((STATION_Y + 1)* 2) - (stationrepair_HEIGHT/stationrepair_TILE_H)), (stationrepair_WIDTH/stationrepair_TILE_W), (stationrepair_HEIGHT/stationrepair_TILE_H), stationrepair_map);
+    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (stationsell_HEIGHT/stationsell_TILE_H)), (stationsell_WIDTH/stationsell_TILE_W), (stationsell_HEIGHT/stationsell_TILE_H), stationsell_map);
+    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (stationupgrade_HEIGHT/stationupgrade_TILE_H)), (stationupgrade_WIDTH/stationupgrade_TILE_W), (stationupgrade_HEIGHT/stationupgrade_TILE_H), stationupgrade_map);
 }
 
 void generateMap(void) {
@@ -114,27 +130,38 @@ void shuffle(uint8_t array[4]) {
     array[secondSwapIndex] = temp;
 }
 
+Color colors[] = {
+    {100, 80, 60},   // Brown
+    {25, 20, 15},    // Almost Black
+    {50, 100, 50},   // Green
+    {30, 50, 100},   // Blue
+    {140, 50, 30}    // Red
+};
+
+void interpolate_color(Color* result, Color start, Color end, uint16_t progress, uint16_t max_progress) {
+    if (result != NULL) {
+        result->r = start.r + ((end.r - start.r) * progress / max_progress);
+        result->g = start.g + ((end.g - start.g) * progress / max_progress);
+        result->b = start.b + ((end.b - start.b) * progress / max_progress);
+    }
+}
 
 void change_background_color(void) {
-        int color_phase = current_bkg_color % TRANSITION_LENGTH;
+    int num_colors = sizeof(colors) / sizeof(colors[0]);
+    int phase_per_color = ROWS / (num_colors - 1);
 
-        uint8_t red = 0, green = 0, blue = 0;
+    int color_phase = depth % ROWS;
+    int index = color_phase / phase_per_color;
+    int progress = color_phase % phase_per_color;
 
-        if (color_phase < COLOR_MAX) {
-            // Phase 1: White to Black
-            red = green = blue = COLOR_MAX - color_phase;
-        } else if (color_phase < 2 * COLOR_MAX) {
-            // Phase 2: Black to Green
-            green = color_phase - COLOR_MAX;
-        } else {
-            // Phase 3: Green to Red
-            red = color_phase - 2 * COLOR_MAX;
-            green = 3 * COLOR_MAX - color_phase; // Ensure green decreases as red increases
-        }
-        // Set background palette entry to the calculated color
-        set_bkg_palette_entry(0, 0, RGB8(red, green, blue));
+    Color current_color;
+    interpolate_color(&current_color, colors[index], colors[index + 1], progress, phase_per_color);
 
+    // Assuming set_bkg_palette_entry and RGB8 are implemented elsewhere
+    set_bkg_palette_entry(0, 0, RGB8(current_color.r, current_color.g, current_color.b));
 }
+
+
 
 
 /**
@@ -311,7 +338,7 @@ void init_nav(void){
 
 void init_tiles(void){
     set_bkg_data(TILESTART, tile_TILE_COUNT, tile_tiles);
-    set_bkg_data(NAVSTART, nav_TILE_COUNT, nav_tiles);
+    set_bkg_data(nav_TILE_ORIGIN, nav_TILE_COUNT, nav_tiles);
     set_4bkg_tiles(level_array, 0, 0, 16, 16);
 }
 

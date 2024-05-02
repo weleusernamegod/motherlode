@@ -11,24 +11,21 @@ volatile uint8_t frame_counter = 0;
 // main menu
 uint8_t current_menu_index = 0;
 
-// shop
-BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time
-BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
-BOOLEAN left_sell_area = TRUE;  // Initially true to allow first entry
-
 // bank switching
 uint8_t saved_bank;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
 GameState currentGameState = GAME_STATE_NEW_GAME;  // Start with the game loop
+BOOLEAN leave_station = FALSE;
+BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
+BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time
 
 // movement
 uint16_t depth = 2, width = 6;
 uint16_t depth_offset = 0, width_offset = 0;
 uint16_t prev_depth, prev_width;
 uint16_t current_bkg_color;
-uint16_t prev_bkg_color;
 fixed depth_pixel, width_pixel;
 fixed scroll_x, scroll_y;
 fixed vertical_movement_pixel;

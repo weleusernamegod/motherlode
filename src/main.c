@@ -83,6 +83,7 @@ void main(void) {
                 set_bkg_palette(5, 1, palette_gras);
                 set_bkg_palette(6, 1, palette_default);
                 set_bkg_palette(7, 1, palette_default);
+                draw_buildings();
                 currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
 
@@ -114,10 +115,12 @@ void main(void) {
                 init_shop_tiles_palettes();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     shop_menu_loop();
+                    if (leave_station) currentGameState = GAME_STATE_NEW_GAME;
                 }
                 break;
             case GAME_STATE_SELL_MENU:
                 sell_all_ores();
+                currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
 
             case GAME_STATE_GAME_OVER:

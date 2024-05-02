@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define stationfuel_TILE_ORIGIN 0
+#define stationfuel_TILE_ORIGIN 128
 #define stationfuel_TILE_W 8
 #define stationfuel_TILE_H 8
 #define stationfuel_WIDTH 32
@@ -15,11 +15,14 @@
 #define stationfuel_PALETTE_COUNT 1
 #define stationfuel_COLORS_PER_PALETTE 4
 #define stationfuel_TOTAL_COLORS 4
+#define stationfuel_MAP_ATTRIBUTES 0
 
 BANKREF_EXTERN(stationfuel)
 
 extern const palette_color_t stationfuel_palettes[4];
 extern const uint8_t stationfuel_tiles[320];
 
+extern const unsigned char stationfuel_map[20];
+#define stationfuel_map_attributes stationfuel_map
 
 #endif

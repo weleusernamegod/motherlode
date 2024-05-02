@@ -79,6 +79,4 @@ void sell_all_ores(void) {
     for (uint8_t i = COAL; i <= DIAMOND; i++) {
         materials[i].inventory = 0;  // Reset inventory after selling
     }
-    currentGameState = GAME_STATE_CONTINUE_GAME;
-
 }

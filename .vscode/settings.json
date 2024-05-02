@@ -16,7 +16,8 @@
         "tile.h": "c",
         "stdint.h": "c",
         "gameloop.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "stationfuel.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }
