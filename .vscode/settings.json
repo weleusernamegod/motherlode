@@ -21,7 +21,8 @@
         "stddef.h": "c",
         "stationrepair.h": "c",
         "stationsell.h": "c",
-        "stationupgrade.h": "c"
+        "stationupgrade.h": "c",
+        "warningfuel.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

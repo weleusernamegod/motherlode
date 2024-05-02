@@ -9,7 +9,7 @@ void interrupt_LCD(void) {
     move_win(167, 0);
 }
 void interrupt_VBL_window(void) {
-    move_win(7, 0);
+    move_win(WIN_X, WIN_Y);
 }
 
 void interrupt_VBL_framecounter(void) {

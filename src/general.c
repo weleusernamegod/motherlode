@@ -32,10 +32,10 @@ void init_clear_screen(void) {
     VBK_REG = 0;
 
     // set all palettes to default
-    for (uint8_t i = 0; i < 8; i++) {
-        set_sprite_palette(i, 1, palette_default);
-        set_bkg_palette(i, 1, palette_default);
-    }
+    // for (uint8_t i = 0; i < 8; i++) {
+    //     set_sprite_palette(i, 1, palette_default);
+    //     set_bkg_palette(i, 1, palette_default);
+    // }
     
     // set all sprites to empty
     set_sprite_data(0, 128, temparray);
@@ -107,6 +107,22 @@ void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN l
         }
     }
 }
+
+void init_sprite_palettes(void){
+    set_sprite_palette(0, 1, palette_rover); // Rover
+    set_sprite_palette(1, 1, palette_drill); // Drill
+    set_sprite_palette(2, 1, palette_hull_bar); // Hull Bar
+    set_sprite_palette(3, 1, palette_fuel_bar); // Fuel Bar
+    set_sprite_palette(4, 1, palette_warnings); // Warnings
+    set_sprite_palette(5, 1, palette_default);
+    set_sprite_palette(6, 1, palette_default);
+    set_sprite_palette(7, 1, palette_default);
+}
+
+void init_palette_0(void) {
+    set_bkg_palette(0, 1, palette_background);
+}
+
 
 void turn_screen_off(void) {
     DISPLAY_OFF;

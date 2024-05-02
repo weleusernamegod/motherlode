@@ -22,7 +22,13 @@
 #define STATION_SELL_DOOR_OFFSET 1
 #define STATION_UPGRADE_X 1
 #define STATION_UPGRADE_DOOR_OFFSET 1
-#define WAIT_FRAMES 10
+
+// sprite palettes
+#define ROVER_PALETTE 0
+#define DRILL_PALETTE 1
+#define HULL_BAR_PALETTE 2
+#define FUEL_BAR_PALETTE 3
+#define WARNING_PALETTE 4
 
 
 // color palettes
@@ -72,6 +78,12 @@
 #define CHAR_START 1
 #define WARNING_CARGO_START 17
 #define WARNING_FUEL_START 24
+
+#define WARNING_CARGO_Y 40
+#define WARNING_FUEL_Y 50
+
+#define WIN_X 4
+#define WIN_Y 0
 
 #define LEFT 1
 #define RIGHT 2

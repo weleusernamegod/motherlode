@@ -70,18 +70,18 @@ void check_surroundings(void){
 
 void metasprite_drill_horizontal(char direction){
     hide_metasprite(drill_vertical_metasprite, 15);
-    if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
-    if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,0,11,width_pixel.h,depth_pixel.h);
+    if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,DRILL_PALETTE,11,width_pixel.h,depth_pixel.h);
+    if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,DRILL_PALETTE,11,width_pixel.h,depth_pixel.h);
 }
 void metasprite_drill_vertical(char direction){
     hide_metasprite(drill_horizontal_metasprite, 11);
-    if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,0,15,width_pixel.h,depth_pixel.h);
+    if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,DRILL_PALETTE,15,width_pixel.h,depth_pixel.h);
 }
 void metasprite_rover(char direction){
     hide_metasprite(drill_horizontal_metasprite, 15);
     hide_metasprite(drill_horizontal_metasprite, 11);
-    if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
-    if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,0,0,width_pixel.h,depth_pixel.h);
+    if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,ROVER_PALETTE,0,width_pixel.h,depth_pixel.h);
+    if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,ROVER_PALETTE,0,width_pixel.h,depth_pixel.h);
 }
 
 void draw_metasprite(char direction){

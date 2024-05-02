@@ -31,7 +31,8 @@
 #include "../assets/stationsell.h"
 #include "../assets/stationupgrade.h"
 
-#include "../assets/warnings.h"
+#include "../assets/warningcargo.h"
+#include "../assets/warningfuel.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
@@ -155,6 +156,7 @@ const Palette_group palette_groups[] = {
 const int palette_groups_count = sizeof(palette_groups) / sizeof(palette_groups[0]);
 const Palette_group* last_used_palette_group = NULL;  // Initialize to NULL
 
+
 void init_palette_based_on_depth(void) {
     last_used_palette_group = NULL;
 }
@@ -274,7 +276,7 @@ void add_block(uint8_t x, uint16_t y, uint8_t type) {
  * @param x x-coordinate of first tile
  * @param y y-coordinate of first tile
  */
-void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t x, uint8_t y) {
+void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t palette, uint8_t x, uint8_t y) {
     // Calculate percentage of progress in terms of total available width in pixels (digits * 8)
     uint8_t total_pixels = digits * 8;
     uint16_t pixels_to_fill = (current_value * total_pixels) / max_value;
@@ -310,6 +312,7 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 
         // Set the sprite tile and move it into position
         set_sprite_tile(tilestart + i, tile_index);
+        set_sprite_prop(tilestart + i, palette);
         move_sprite(tilestart + i, x + i * 8, y);
     }
 }
@@ -318,7 +321,7 @@ void draw_depth(void){
     char string[10];
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     strcat(string, "m");
-    draw_text(15,0,"Depth",5,TRUE,0);
+    //draw_text(15,0,"DEPTH",5,TRUE,0);
     draw_text(15,1,string,5,FALSE,0);
 }
 
@@ -329,40 +332,39 @@ void draw_cargo(void){
     itoa(player.cargo.max_value, string_max, 10);
     strcat(string, "/");
     strcat(string, string_max);
-    draw_text(9,0,"Cargo",5,TRUE,0);
+    //draw_text(9,0,"CARGO",5,TRUE,0);
     draw_text(9,1,string,5,TRUE,0);
 }
 
 const metasprite_t warning_cargo_metasprite[] = {
-    {.dy=-8, .dx=-16, .dtile=warnings_TILE_ORIGIN, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+1, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+2, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+3, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+4, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+5, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+6, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+1, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+2, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+3, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+4, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+5, .props=0},
+    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+6, .props=0},
 	METASPR_TERM
 };
 
 const metasprite_t warning_fuel_metasprite[] = {
-    {.dy=-8, .dx=-16, .dtile=warnings_TILE_ORIGIN+7, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+8, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+9, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+10, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+11, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+12, .props=0},
-    {.dy=0, .dx=8, .dtile=warnings_TILE_ORIGIN+13, .props=0},
+    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN, .props=0},
+    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+1, .props=0},
+    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+2, .props=0},
+    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+3, .props=0},
+    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+4, .props=0},
 	METASPR_TERM
 };
 
 
 void init_warning(void){
-    set_sprite_data(warnings_TILE_ORIGIN, warnings_TILE_COUNT, warnings_tiles);
+    set_sprite_data(warningcargo_TILE_ORIGIN, warningcargo_TILE_COUNT, warningcargo_tiles);
+    set_sprite_data(warningfuel_TILE_ORIGIN, warningfuel_TILE_COUNT, warningfuel_tiles);
 }
 
 void draw_warning_cargo(void){
     if (display_warning_cargo == TRUE) {
-        move_metasprite_ex(warning_cargo_metasprite, 0, 0, WARNING_CARGO_START, 50, 50);
+        move_metasprite_ex(warning_cargo_metasprite, 0, WARNING_PALETTE, WARNING_CARGO_START, (SCREENWIDTH - warningcargo_WIDTH)/2, WARNING_CARGO_Y);
     } else {
         hide_metasprite(warning_cargo_metasprite, WARNING_CARGO_START);
     }
@@ -370,17 +372,17 @@ void draw_warning_cargo(void){
 
 void draw_warning_fuel(void){
     if (display_warning_fuel == TRUE) {
-        move_metasprite_ex(warning_fuel_metasprite, 0, 0, WARNING_FUEL_START, 50, 80);
+        move_metasprite_ex(warning_fuel_metasprite, 0, WARNING_PALETTE, WARNING_FUEL_START, (SCREENWIDTH - warningfuel_WIDTH)/2, WARNING_FUEL_Y);
     } else {
         hide_metasprite(warning_fuel_metasprite, WARNING_FUEL_START);
     }
 }
 
 void draw_fuel(void){
-    progressbar(player.fuel.current_value, player.fuel.max_value, 3, 35, 44, 20);
+    progressbar(player.fuel.current_value, player.fuel.max_value, 3,  35, HULL_BAR_PALETTE, 46, 24);
 }
 void draw_hull(void){
-    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
+    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, FUEL_BAR_PALETTE, 14, 24);
 }
 
 void init_character(void){
@@ -394,15 +396,12 @@ void init_nav(void){
     set_bkg_data(nav_TILE_ORIGIN, nav_TILE_COUNT, nav_tiles);
 }
 void draw_nav(void){
-    set_win_tiles(0,0,20,3,nav_map);
-    move_win(7, 0); //124
+    set_win_tiles(0,0,nav_WIDTH / nav_TILE_W,nav_HEIGHT / nav_TILE_H,nav_map);
+    move_win(WIN_X, WIN_Y);
 }
 
 void init_progressbar(void){
     set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
-}
-void draw_progressbar(void){
-    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, 12, 20);
 }
 
 void init_tiles(void){

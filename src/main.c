@@ -63,17 +63,21 @@ void main(void) {
 
                 SWITCH_ROM(1);
                 init_clear_screen();
+
+                init_sprite_palettes();
+                init_palette_0();
+                init_palette_based_on_depth();
+                update_palette_based_on_depth();
                 init_font();
                 init_tiles();
                 draw_tiles();
                 init_progressbar();
-                draw_progressbar();
+                draw_fuel();
+                draw_hull();
                 init_nav();
                 draw_nav();
                 init_character();
                 draw_character();
-                draw_fuel();
-                draw_hull();
                 init_warning();
                 calculate_cargo();
                 draw_cargo();
@@ -81,8 +85,7 @@ void main(void) {
                 draw_sky();
                 init_buildings();
                 draw_buildings();
-                init_palette_based_on_depth();
-                update_palette_based_on_depth();
+
                 change_background_color();
                 turn_screen_on();
                 currentGameState = GAME_STATE_CONTINUE_GAME;
@@ -113,6 +116,7 @@ void main(void) {
             case GAME_STATE_SELL_MENU:
                 turn_screen_on();
                 sell_all_ores();
+                draw_cargo();
                 currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
 

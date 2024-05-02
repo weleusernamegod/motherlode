@@ -94,6 +94,40 @@ const palette_color_t palette_default[4] = {
 	RGB_BLACK
 };
 
+const palette_color_t palette_rover[4] = {
+	RGB_WHITE,
+	RGB_LIGHT_GREY,
+	RGB_DARK_GREY,
+	RGB_BLACK
+};
+
+const palette_color_t palette_drill[4] = {
+	RGB_WHITE,
+	RGB_LIGHT_GREY,
+	RGB_DARK_GREY,
+	RGB_BLACK
+};
+
+const palette_color_t palette_warnings[4] = {
+	RGB_WHITE,
+	RGB_RED,
+	RGB_DEEP_RED,
+	RGB_BLACK
+};
+
+const palette_color_t palette_fuel_bar[4] = {
+	RGB_WHITE,
+	RGB_RED,
+	RGB_ORANGE,
+	RGB_GREEN
+};
+
+const palette_color_t palette_hull_bar[4] = {
+	RGB_WHITE,
+	RGB_RED,
+	RGB_ORANGE,
+	RGB_GREEN
+};
 
 
 
