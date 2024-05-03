@@ -38,6 +38,7 @@
 void update_inventory(void);
 void calculate_cargo(void);
 void sell_all_ores(void);
+void fuel_up(void);
 
 typedef struct Material {
     const char* name;            // Name of the material

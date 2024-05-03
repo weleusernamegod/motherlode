@@ -16,15 +16,15 @@ Material materials[] = {
 {"Grass", GRAS, 16, 1, 0, 0, PALETTE_GRAS},
 {"Stone", STONE, 0, 0, 0, 0, PALETTE_STONE},
 // ore
-{"Coal", COAL, 32, 1, 15, 0, PALETTE_COAL},
-{"Iron", IRON, 32, 1, 30, 0, PALETTE_IRON},
-{"Copper", COPPER, 40, 2, 60, 0, PALETTE_COPPER},
-{"Tin", TIN, 45, 2, 80, 0, PALETTE_TIN},
-{"Silver", SILVER, 50, 3, 100, 0, PALETTE_SILVER},
-{"Gold", GOLD, 64, 3, 250, 0, PALETTE_GOLD},
-{"Mithril", MITHRIL, 80, 4, 500, 0, PALETTE_MITHRIL},
-{"Platinum", PLATINUM, 100, 5, 750, 0, PALETTE_PLATINUM},
-{"Titanium", TITANIUM, 120, 8, 1200, 0, PALETTE_TITANIUM},
+{"Coal", COAL, 32, 1, 30, 0, PALETTE_COAL},
+{"Iron", IRON, 32, 1, 50, 0, PALETTE_IRON},
+{"Copper", COPPER, 40, 2, 100, 0, PALETTE_COPPER},
+{"Tin", TIN, 45, 2, 200, 0, PALETTE_TIN},
+{"Silver", SILVER, 50, 3, 500, 0, PALETTE_SILVER},
+{"Gold", GOLD, 64, 3, 750, 0, PALETTE_GOLD},
+{"Mithril", MITHRIL, 80, 4, 1000, 0, PALETTE_MITHRIL},
+{"Platinum", PLATINUM, 100, 5, 1500, 0, PALETTE_PLATINUM},
+{"Titanium", TITANIUM, 120, 8, 2500, 0, PALETTE_TITANIUM},
 {"Obsidium", OBSIDIUM, 150, 10, 5000, 0, PALETTE_OBSIDIUM},
 {"Elementium", ELEMENTIUM, 200, 20, 10000, 0, PALETTE_ELEMENTIUM},
 {"Adamantite", ADAMANTITE, 250, 30, 15000, 0, PALETTE_ADAMANTITE},
@@ -99,7 +99,7 @@ void calculate_cargo(void) {
 }
 
 void sell_all_ores(void) {
-    uint8_t total_value = 0;
+    uint32_t total_value = 0;
     // Assuming COAL to DIAMOND includes all sellable ores and gems
     for (uint8_t i = COAL; i <= DIAMOND; i++) {
         total_value += materials[i].inventory * materials[i].value;
@@ -111,4 +111,9 @@ void sell_all_ores(void) {
     for (uint8_t i = COAL; i <= DIAMOND; i++) {
         materials[i].inventory = 0;  // Reset inventory after selling
     }
+}
+void fuel_up(void) {
+    uint16_t fuel_needed = player.fuel.max_value - player.fuel.current_value;
+    player.money -= fuel_needed / 3; // 1 dineros pro liter, good price
+    player.fuel.current_value = player.fuel.max_value;
 }

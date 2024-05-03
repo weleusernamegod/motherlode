@@ -13,6 +13,7 @@
 #include "constants.h"
 #include "attributes.h"
 #include "inventory.h"
+#include "map.h"
 
 #include "level.ba0.h"
 
@@ -94,6 +95,11 @@ void draw_metasprite(char direction){
     }
 }
 
+void move_or_scroll_character(void){
+    draw_metasprite(direction_now);
+    move_bkg(scroll_x.h, scroll_y.h);
+}
+
 void update_movement(void) {
     if (animation_frames_left > 0) {
 
@@ -108,16 +114,13 @@ void update_movement(void) {
         int8_t vertical_movement_signed = (int8_t)vertical_movement_pixel.h;
 
         // move or scroll background
-        draw_metasprite(direction_now);
-
-        //update_sprite_character(width_pixel, depth_pixel);
-        move_bkg(scroll_x.h, scroll_y.h);
+        move_or_scroll_character();
 
         // increment frame counter
         animation_frames_left--;
 
         // Check if it's time to decrement fuel
-        if (animation_frames_left % 15 == 0) {  // Every 15 frames
+        if (animation_frames_left % 20 == 0) {  // Every 15 frames
             player.fuel.current_value -= 1;
         }
 
@@ -331,13 +334,36 @@ void update_fuel(void){
     if (frame_counter == 0) {
         player.fuel.current_value --;   // only once every 60 frames
     }
-    if (depth < UNDERGROUND) player.fuel.current_value = player.fuel.max_value;
+    //if (depth < UNDERGROUND) player.fuel.current_value = player.fuel.max_value;
 }
+
+void handle_fuel(void) {
+    check_fuel();
+    update_fuel();
+    update_progressbar_palette(&player.fuel, FUEL_BAR_PALETTE);
+    draw_fuel();
+    draw_warning_fuel();
+}
+
+void handle_hull (void) {
+    check_hull();
+    calculate_falldamage();
+    update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
+    draw_hull();
+}
+
+void handle_cargo (void) {
+    calculate_cargo();
+    draw_cargo();
+    draw_warning_cargo();
+}
+
 
 // check if player has entered a building
 typedef enum {
     ENTER_NO_STATION,
     ENTER_UPGRADE_STATION,
+    ENTER_FUEL_STATION,
     ENTER_SELL_STATION
 } Station_proximity;
 
@@ -353,6 +379,10 @@ void proximity_check_station(void) {
         if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
             station_proximity = ENTER_SELL_STATION;
         }
+    } else if (depth == STATION_Y && width == STATION_FUEL_X + STATION_FUEL_DOOR_OFFSET) {
+        if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
+            station_proximity = ENTER_FUEL_STATION;
+        }
     } else {
         // Update player's station proximity state if they are not near any station
         station_proximity = ENTER_NO_STATION;
@@ -365,6 +395,8 @@ void enter_station(void) {
             currentGameState = GAME_STATE_SELL_MENU;
         } else if (station_proximity == ENTER_UPGRADE_STATION) {
             currentGameState = GAME_STATE_UPGRADE_MENU;
+        } else if (station_proximity == ENTER_FUEL_STATION) {
+            currentGameState = GAME_STATE_FUEL_MENU;
         }
         velocity = 0;
     }

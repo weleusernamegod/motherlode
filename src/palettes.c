@@ -7,6 +7,7 @@
 #define RGB_DARK_WHITE				RGB8(210, 210, 210)
 #define RGB_VERY_LIGHT_GREY			RGB8(184, 184, 184)
 #define RGB_LIGHT_GREY				RGB8(170, 170, 170)
+#define RGB_MEDIUM_DARK_GREY		RGB8(50, 50, 50)
 
 #define RGB_BRIGHT_WHITE			RGB8(255, 255, 255)
 #define RGB_LIGHT_ORANGE			RGB8(242, 182, 82)
@@ -67,11 +68,28 @@
 
 
 palette_color_t palette_background[4] = {
-	RGB_LIGHT_GREY,
+	RGB_MEDIUM_DARK_GREY,
 	RGB_WHITE,
-	RGB_DARK_GREY,
+	RGB_BLACK,
+	RGB_VERY_LIGHT_GREY,
+
+};
+
+palette_color_t palette_fuel_bar[4] = {
+	RGB_WHITE,
+	RGB_MEDIUM_WHITE,
+	RGB_WHITE,
 	RGB_BLACK
 };
+
+palette_color_t palette_hull_bar[4] = {
+	RGB_WHITE,
+	RGB_MEDIUM_WHITE,
+	RGB_WHITE,
+	RGB_BLACK
+};
+
+
 
 const palette_color_t palette_sky[4] = {
 	RGB_LIGHT_BLUE,
@@ -83,7 +101,7 @@ const palette_color_t palette_sky[4] = {
 const palette_color_t palette_station[4] = {
 	RGB_LIGHT_BLUE,
 	RGB_LIGHT_GREY,
-	RGB_DARK_GREY,
+	RGB_MEDIUM_DARK_GREY,
 	RGB_BLACK
 };
 
@@ -115,19 +133,6 @@ const palette_color_t palette_warnings[4] = {
 	RGB_BLACK
 };
 
-const palette_color_t palette_fuel_bar[4] = {
-	RGB_WHITE,
-	RGB_RED,
-	RGB_ORANGE,
-	RGB_GREEN
-};
-
-const palette_color_t palette_hull_bar[4] = {
-	RGB_WHITE,
-	RGB_RED,
-	RGB_ORANGE,
-	RGB_GREEN
-};
 
 
 

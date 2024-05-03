@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define stationsell_TILE_ORIGIN 189
+#define stationsell_TILE_ORIGIN 150
 #define stationsell_TILE_W 8
 #define stationsell_TILE_H 8
 #define stationsell_WIDTH 64

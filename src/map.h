@@ -3,6 +3,7 @@
 
 #include <gb/gb.h>
 #include <stdio.h>
+#include "attributes.h"
 
 BANKREF_EXTERN(bank_map)
 
@@ -26,6 +27,7 @@ void generateMap(void);
 void shuffle(uint8_t array[4]);
 void interpolate_color(Background_color* result, Background_color start, Background_color end, uint16_t progress, uint16_t max_progress);
 void change_background_color(void);
+void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index);
 void init_palette_based_on_depth(void);
 void update_palette_based_on_depth(void);
 void spawn_bkg_row(void);

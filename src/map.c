@@ -27,7 +27,6 @@
 #include "../assets/progressbar.h"
 
 #include "../assets/stationfuel.h"
-#include "../assets/stationrepair.h"
 #include "../assets/stationsell.h"
 #include "../assets/stationupgrade.h"
 
@@ -55,33 +54,36 @@ void generateMap(void) {
                 uint8_t randValue = rand() % 100;  // Random value from 0 to 99
 
                 // Determine ore distribution based on depth
-                if (i < 20 && randValue >= 80) {
+                if (i < 30 && randValue >= 80) {
                     // Rows 7 to 19: Ores 4 to 6
                     tileType = rand() % 3 + 4;
-                } else if (i >= 20 && i < 40 && randValue >= 80) {
-                    // Rows 20 to 39: Ores 5 to 9
-                    tileType = rand() % 5 + 5;
-                } else if (i >= 40 && i < 80 && randValue >= 80) {
-                    // Rows 40 to 79: Introduce very rare ores 16 to 19
-                    if (randValue >= 99) { // Extremely rare ore 19
-                        tileType = 19;
-                    } else if (randValue >= 95) { // Rare ores 16 to 18
-                        tileType = rand() % 3 + 16;
+                } else if (i >= 30 && i < 50 && randValue >= 80) {
+                    // Rows 20 to 39: Ores 5 to 7
+                    tileType = rand() % 3 + 5;
+                } else if (i >= 50 && i < 80 && randValue >= 80) {
+                    // Rows 20 to 39: Ores 7 to 9
+                    tileType = rand() % 3 + 7;
+                } else if (i >= 80 && i < 120 && randValue >= 80) {
+                    // Rows 40 to 79: Introduce rare ores 10 to 12
+                    if (randValue >= 90) { // Very rare ore 12
+                        tileType = 12;
+                    } else if (randValue >= 85) { // Rare ores 10 to 11
+                        tileType = rand() % 2 + 10;
                     } else {
-                        // Rows 40 to 79: Ores 10 to 15
-                        tileType = rand() % 6 + 10;
+                        // Rows 40 to 79: Ores 7 to 9
+                        tileType = rand() % 3 + 7;
                     }
-                } else if (i >= 80) {
-                    // Rows 80 and deeper: Rarest ores 15, and slowly introduce 20 and 21
-                    if (randValue >= 90) {
-                        tileType = rand() % 2 + 20; // Tiles 20 or 21
+                } else if (i >= 180 && randValue >= 70) {
+                    // Rows 80 and deeper: Rarest ores 13 and 14
+                    if (randValue >= 95) {
+                        tileType = 14; // Rarest ore 14
                     } else {
-                        tileType = 15; // Rarest ore 15
+                        tileType = 13; // Rarest ore 13
                     }
                 }
 
                 // Introduce caves (empty spaces)
-                if (randValue < 10) {  // Increase to 10% chance for caves
+                if (randValue < 20) {  // Increase to 10% chance for caves
                     tileType = 0;
                 }
 
@@ -90,7 +92,6 @@ void generateMap(void) {
         }
     }
 }
-
 
 void shuffle(uint8_t array[4]) {
     uint16_t seed = LY_REG;
@@ -146,7 +147,29 @@ void change_background_color(void) {
     Background_color current_color;
     interpolate_color(&current_color, colors[index], colors[index + 1], progress, phase_per_color);
 
-    set_bkg_palette_entry(0, 1, RGB8(current_color.r, current_color.g, current_color.b));
+    set_bkg_palette_entry(0, COLOR_TO_CHANGE, RGB8(current_color.r, current_color.g, current_color.b));
+}
+
+void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index) {
+    // Calculate the percentage using integer math
+    int scaled_max = 100;
+    int percentage = (attribute->current_value * scaled_max) / attribute->max_value;
+
+    // Choose color based on the percentage
+    uint8_t red, green, blue;
+    if (percentage > 50) {
+        red = (uint8_t)(50 + (50 * (100 - 2 * (percentage - 50)) / 100)); // Decrease red as the resource decreases
+        green = 100;
+        blue = 50;
+    } else {
+        // Less resource, more red
+        red = 100;
+        green = (uint8_t)((100 * 2 * percentage / 100)); // Decrease green as the resource decreases
+        blue = 50;
+    }
+
+    // Update the specified palette entry
+    set_sprite_palette_entry(palette_index, 2, RGB8(red, green, blue)); // Update the palette in the background
 }
 
 const Palette_group palette_groups[] = {
@@ -200,7 +223,7 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uin
             uint8_t palette_array[4];
 
             if (array[y][x] == EMPTY) {
-                for (uint8_t i = 0; i < 4; i++) tile_array[i] = 1;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_TO_CHANGE;
             } else if (array[y][x] == GRAS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);
@@ -282,7 +305,7 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
     uint16_t pixels_to_fill = (current_value * total_pixels) / max_value;
 
     for (uint8_t i = 0; i < digits; i++) {
-        uint8_t tile_index = SPRITE_TILE_EMPTY; // Default to empty
+        uint8_t tile_index = PROGRESSBAR_TILE_0_8; // Default to empty
         uint8_t sprite_pixels = 8; // Each sprite can show up to 8 pixels (full sprite width)
         uint8_t effective_pixels = (pixels_to_fill > sprite_pixels) ? sprite_pixels : pixels_to_fill;
 
@@ -291,23 +314,15 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 
         // Map effective pixels to sprite tiles
         switch (effective_pixels) {
-            case 0: tile_index = SPRITE_TILE_EMPTY; break;
-            case 1: tile_index = SPRITE_TILE_1_8; break;
-            case 2: tile_index = SPRITE_TILE_2_8; break;
-            case 3: tile_index = SPRITE_TILE_3_8; break;
-            case 4: tile_index = SPRITE_TILE_4_8; break;
-            case 5: tile_index = SPRITE_TILE_5_8; break;
-            case 6: tile_index = SPRITE_TILE_6_8; break;
-            case 7: tile_index = SPRITE_TILE_7_8; break;
-            case 8: 
-                if (i == 0) { // First sprite
-                    tile_index = (digits == 1 || pixels_to_fill == 0) ? SPRITE_TILE_END : SPRITE_TILE_MID;
-                } else if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
-                    tile_index = SPRITE_TILE_END;
-                } else {
-                    tile_index = SPRITE_TILE_MID;
-                }
-                break;
+            case 0: tile_index = PROGRESSBAR_TILE_0_8; break;
+            case 1: tile_index = PROGRESSBAR_TILE_1_8; break;
+            case 2: tile_index = PROGRESSBAR_TILE_2_8; break;
+            case 3: tile_index = PROGRESSBAR_TILE_3_8; break;
+            case 4: tile_index = PROGRESSBAR_TILE_4_8; break;
+            case 5: tile_index = PROGRESSBAR_TILE_5_8; break;
+            case 6: tile_index = PROGRESSBAR_TILE_6_8; break;
+            case 7: tile_index = PROGRESSBAR_TILE_7_8; break;
+            case 8: tile_index = PROGRESSBAR_TILE_8_8; break;
         }
 
         // Set the sprite tile and move it into position
@@ -320,7 +335,7 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 void draw_depth(void){
     char string[10];
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
-    strcat(string, "m");
+    strcat(string, "M");
     //draw_text(15,0,"DEPTH",5,TRUE,0);
     draw_text(15,1,string,5,FALSE,0);
 }
@@ -333,7 +348,7 @@ void draw_cargo(void){
     strcat(string, "/");
     strcat(string, string_max);
     //draw_text(9,0,"CARGO",5,TRUE,0);
-    draw_text(9,1,string,5,TRUE,0);
+    draw_text(10,1,string,5,FALSE,0);
 }
 
 const metasprite_t warning_cargo_metasprite[] = {
@@ -379,10 +394,10 @@ void draw_warning_fuel(void){
 }
 
 void draw_fuel(void){
-    progressbar(player.fuel.current_value, player.fuel.max_value, 3,  35, HULL_BAR_PALETTE, 46, 24);
+    progressbar(player.fuel.current_value, player.fuel.max_value, 3,  35, FUEL_BAR_PALETTE, 45, 24);
 }
 void draw_hull(void){
-    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, FUEL_BAR_PALETTE, 14, 24);
+    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, HULL_BAR_PALETTE, 13, 24);
 }
 
 void init_character(void){
@@ -401,7 +416,7 @@ void draw_nav(void){
 }
 
 void init_progressbar(void){
-    set_sprite_data(SPRITE_TILE_1_8, progressbar_TILE_COUNT, progressbar_tiles);
+    set_sprite_data(PROGRESSBAR_TILE_0_8, progressbar_TILE_COUNT, progressbar_tiles);
 }
 
 void init_tiles(void){
@@ -413,13 +428,11 @@ void draw_tiles(void){
 
 void init_buildings(void){
     set_bkg_data(stationfuel_TILE_ORIGIN, stationfuel_TILE_COUNT, stationfuel_tiles);
-    set_bkg_data(stationrepair_TILE_ORIGIN, stationrepair_TILE_COUNT, stationrepair_tiles);
     set_bkg_data(stationsell_TILE_ORIGIN, stationsell_TILE_COUNT, stationsell_tiles);
     set_bkg_data(stationupgrade_TILE_ORIGIN, stationupgrade_TILE_COUNT, stationupgrade_tiles);
 }
 void draw_buildings(void){
     set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (stationfuel_HEIGHT/stationfuel_TILE_H)), (stationfuel_WIDTH/stationfuel_TILE_W), (stationfuel_HEIGHT/stationfuel_TILE_H), stationfuel_map);
-    set_bkg_tiles(STATION_REPAIR_X * 2, (((STATION_Y + 1)* 2) - (stationrepair_HEIGHT/stationrepair_TILE_H)), (stationrepair_WIDTH/stationrepair_TILE_W), (stationrepair_HEIGHT/stationrepair_TILE_H), stationrepair_map);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (stationsell_HEIGHT/stationsell_TILE_H)), (stationsell_WIDTH/stationsell_TILE_W), (stationsell_HEIGHT/stationsell_TILE_H), stationsell_map);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (stationupgrade_HEIGHT/stationupgrade_TILE_H)), (stationupgrade_WIDTH/stationupgrade_TILE_W), (stationupgrade_HEIGHT/stationupgrade_TILE_H), stationupgrade_map);
 }

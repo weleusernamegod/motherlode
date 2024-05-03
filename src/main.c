@@ -30,6 +30,10 @@ BANKREF_EXTERN(splashscreen)
 BANKREF_EXTERN(bank_map)
 BANKREF_EXTERN(bank_player)
 BANKREF_EXTERN(bank_shop)
+BANKREF_EXTERN(stationfuel)
+BANKREF_EXTERN(stationsell)
+BANKREF_EXTERN(stationupgrade)
+
 
 void main(void) {
     ENABLE_RAM;
@@ -78,6 +82,7 @@ void main(void) {
                 draw_nav();
                 init_character();
                 draw_character();
+                move_or_scroll_character();
                 init_warning();
                 calculate_cargo();
                 draw_cargo();
@@ -116,7 +121,14 @@ void main(void) {
             case GAME_STATE_SELL_MENU:
                 turn_screen_on();
                 sell_all_ores();
-                draw_cargo();
+                handle_cargo();
+                display_warning_cargo = FALSE;
+                currentGameState = GAME_STATE_CONTINUE_GAME;
+                break;
+            case GAME_STATE_FUEL_MENU:
+                turn_screen_on();
+                fuel_up();
+                handle_fuel();
                 currentGameState = GAME_STATE_CONTINUE_GAME;
                 break;
 

@@ -37,7 +37,7 @@ typedef struct Player{
     player_attributes cargo;
     player_attributes radiator;
     player_attributes engine;
-    int16_t money;
+    int32_t money;
     fixed speed;
     fixed prev_speed;
 

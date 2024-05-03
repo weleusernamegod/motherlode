@@ -23,7 +23,7 @@ BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first
 BOOLEAN buildings_loaded = TRUE;  // for checks if buildings need to be loaded or not
 
 // movement
-uint16_t depth = 2, width = 6;
+uint16_t depth = 2, width = 4;
 uint16_t depth_offset = 0, width_offset = 0;
 uint16_t prev_depth, prev_width;
 uint16_t current_bkg_color;

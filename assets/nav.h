@@ -11,7 +11,7 @@
 #define nav_TILE_H 8
 #define nav_WIDTH 168
 #define nav_HEIGHT 24
-#define nav_TILE_COUNT 11
+#define nav_TILE_COUNT 12
 #define nav_PALETTE_COUNT 1
 #define nav_COLORS_PER_PALETTE 4
 #define nav_TOTAL_COLORS 4
@@ -20,7 +20,7 @@
 BANKREF_EXTERN(nav)
 
 extern const palette_color_t nav_palettes[4];
-extern const uint8_t nav_tiles[176];
+extern const uint8_t nav_tiles[192];
 
 extern const unsigned char nav_map[63];
 #define nav_map_attributes nav_map

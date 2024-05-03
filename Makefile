@@ -37,9 +37,8 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/tile.png -c assets/tile.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/stationfuel.png -c assets/stationfuel.c -spr8x8 -map -tile_origin 128 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/stationrepair.png -c assets/stationrepair.c -spr8x8 -map -tile_origin 148 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/stationsell.png -c assets/stationsell.c -spr8x8 -map -tile_origin 189 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/stationupgrade.png -c assets/stationupgrade.c -spr8x8 -map -tile_origin 224 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/stationsell.png -c assets/stationsell.c -spr8x8 -map -tile_origin 150 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/stationupgrade.png -c assets/stationupgrade.c -spr8x8 -map -tile_origin 185 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/warningcargo.png -c assets/warningcargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/warningfuel.png -c assets/warningfuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
 

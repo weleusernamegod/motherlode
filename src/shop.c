@@ -161,12 +161,12 @@ void write_main_shop_text(void) {
 
     itoa(player.money, money_string, 10);
     // line 1
-    draw_text(3, 2, "Upgrade Store", 14, TRUE, 0);
+    draw_text(3, 2, "UPGRADE STORE", 14, TRUE, 0);
     // line 2
     draw_text(3, 3, attributes_numbers[currentMenu->currentSelection]->attribute_name, 14, TRUE, 0);
     //draw_text(3, 3, attributes_numbers[selection]->upgrade_name[attributes_numbers[selection]->upgrade_level], 14, TRUE, 0);
     // line 3
-    draw_text(3, 15, "Money", 5, TRUE, 0);
+    draw_text(3, 15, "MONEY", 5, TRUE, 0);
     draw_text(11, 15, money_string, 5, FALSE, 0);
     draw_text(16, 15, "$", 1, TRUE, 0);
 }
@@ -182,13 +182,13 @@ void write_sub_shop_text(void) {
     strcat(upgrade_string, attributes_numbers[currentState]->attribute_unit);
     
     // line 1
-    draw_text(3, 2, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
+    draw_text(3, 2, upgrade_string, 8, TRUE, 0);
+    draw_text(11, 2, cost_string, 5, FALSE, 0);
+    draw_text(16, 2, "$", 1, TRUE, 0);
     // line 2
-    draw_text(3, 3, upgrade_string, 8, TRUE, 0);
-    draw_text(11, 3, cost_string, 5, FALSE, 0);
-    draw_text(16, 3, "$", 1, TRUE, 0);
+    draw_text(3, 3, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
     // line 3
-    draw_text(3, 15, "Money", 5, TRUE, 0);
+    draw_text(3, 15, "MONEY", 5, TRUE, 0);
     draw_text(11, 15, money_string, 5, FALSE, 0);
     draw_text(16, 15, "$", 1, TRUE, 0);
 }
@@ -227,8 +227,10 @@ void attempt_purchase(MenuState currentState, Menu *currentMenu) {
         // Deduct the cost and upgrade the level
         player.money -= cost;
         currentAttributes->upgrade_level = upgrade_to;
-        currentAttributes->max_value = currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
+        currentAttributes->max_value = currentAttributes->upgrade_value[upgrade_to];
+        currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
     } else {
+        return;
         // Handle feedback that the player can't afford the upgrade
         // display_cannot_afford_message();  // Hypothetical function to show error message
     }

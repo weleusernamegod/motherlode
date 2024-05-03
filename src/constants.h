@@ -14,13 +14,11 @@
 #define UPGRADE_TICK_TILE 12
 
 #define STATION_Y 5
-#define STATION_FUEL_X 14
+#define STATION_FUEL_X 0
 #define STATION_FUEL_DOOR_OFFSET 1
-#define STATION_REPAIR_X 10
-#define STATION_REPAIR_DOOR_OFFSET 1
 #define STATION_SELL_X 6
 #define STATION_SELL_DOOR_OFFSET 1
-#define STATION_UPGRADE_X 1
+#define STATION_UPGRADE_X 11
 #define STATION_UPGRADE_DOOR_OFFSET 1
 
 // sprite palettes
@@ -30,6 +28,7 @@
 #define FUEL_BAR_PALETTE 3
 #define WARNING_PALETTE 4
 
+#define COLOR_TO_CHANGE 1 // what color of bkg palette 0 is changing with depth
 
 // color palettes
 #define PALETTE_DEFAULT 0
@@ -79,10 +78,10 @@
 #define WARNING_CARGO_START 17
 #define WARNING_FUEL_START 24
 
-#define WARNING_CARGO_Y 40
-#define WARNING_FUEL_Y 50
+#define WARNING_CARGO_Y 45
+#define WARNING_FUEL_Y 55
 
-#define WIN_X 4
+#define WIN_X 3
 #define WIN_Y 0
 
 #define LEFT 1
@@ -94,22 +93,14 @@
 #define DRIVE 2
 #define ACCELERATE 3
 
-#define SPRITE_TILE_EMPTY 0    // Tile index for empty sprite
-#define SPRITE_TILE_1_8   32    // Tile index for 1/8 filled sprite
-#define SPRITE_TILE_2_8   33
-#define SPRITE_TILE_3_8   34
-#define SPRITE_TILE_4_8   35
-#define SPRITE_TILE_5_8   36
-#define SPRITE_TILE_6_8   37
-#define SPRITE_TILE_7_8   38
-#define SPRITE_TILE_END   39
-#define SPRITE_TILE_MID   40
-
-// Sprite IDs (example values, you need to set these based on your setup)
-#define SPRITE_ID_0 35
-#define SPRITE_ID_1 36
-#define SPRITE_ID_2 37
-
-
+#define PROGRESSBAR_TILE_0_8 32    // Tile index for empty sprite
+#define PROGRESSBAR_TILE_1_8   (PROGRESSBAR_TILE_0_8 + 1)    // Tile index for 1/8 filled sprite
+#define PROGRESSBAR_TILE_2_8   (PROGRESSBAR_TILE_0_8 + 2)
+#define PROGRESSBAR_TILE_3_8   (PROGRESSBAR_TILE_0_8 + 3)
+#define PROGRESSBAR_TILE_4_8   (PROGRESSBAR_TILE_0_8 + 4)
+#define PROGRESSBAR_TILE_5_8   (PROGRESSBAR_TILE_0_8 + 5)
+#define PROGRESSBAR_TILE_6_8   (PROGRESSBAR_TILE_0_8 + 6)
+#define PROGRESSBAR_TILE_7_8   (PROGRESSBAR_TILE_0_8 + 7)
+#define PROGRESSBAR_TILE_8_8   (PROGRESSBAR_TILE_0_8 + 8)
 
 #endif // CONSTANTS_H
