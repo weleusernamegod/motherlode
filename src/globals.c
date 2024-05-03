@@ -16,7 +16,7 @@ uint8_t saved_bank;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
-GameState currentGameState = GAME_STATE_NEW_GAME;  // Start with the game loop
+GameState currentGameState = GAME_STATE_MAIN_MENU;  // Start with the game loop
 BOOLEAN leave_station = FALSE;
 BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
 BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time

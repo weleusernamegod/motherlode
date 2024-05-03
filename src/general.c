@@ -30,17 +30,20 @@ void init_clear_screen(void) {
     for (uint16_t i = 0; i < 2048; i++){
         temparray[i] = 0;
     }
+    set_bkg_tiles(0,0,20, 18, temparray);
+    set_win_tiles(0,0,20, 18, temparray);
     VBK_REG = 1;
     set_bkg_tiles(0,0,20, 18, temparray);
+    set_win_tiles(0,0,20, 18, temparray);
     VBK_REG = 0;
 
     // set all palettes to default
-    // for (uint8_t i = 0; i < 8; i++) {
-    //     set_sprite_palette(i, 1, palette_default);
-    //     set_bkg_palette(i, 1, palette_default);
-    // }
+    for (uint8_t i = 0; i < 8; i++) {
+        set_sprite_palette(i, 1, palette_default);
+        set_bkg_palette(i, 1, palette_default);
+    }
     
-    // set all sprites to empty
+    set_bkg_data(0, 256, temparray);
     set_sprite_data(0, 128, temparray);
 
     // hide all sprites

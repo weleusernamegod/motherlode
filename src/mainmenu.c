@@ -58,8 +58,8 @@ void draw_main_menu(void){
 }
 
 void init_main_menu(void) {
-    uint8_t x = 60, y = 120;
-    uint8_t distance_between_buttons = 4;
+    uint8_t x = 20, y = 117;
+    uint8_t distance_between_buttons = 1;
 
     // load sprites
     set_bkg_data(0, splashscreen_TILE_COUNT, splashscreen_tiles);

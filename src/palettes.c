@@ -14,6 +14,8 @@
 #define RGB_DARK_ORANGE				RGB8(217, 157, 40)
 #define RGB_OFF_WHITE				RGB8(255, 255, 223)
 
+#define RGB_GREEN_UNSELECTED		RGB8(60, 150, 50)
+#define RGB_GREEN_SELECTED			RGB8(112, 190, 90)
 
 
 
@@ -319,15 +321,15 @@ const palette_color_t palette_light_grey[4] = {
 // Define the active button palette
 const palette_color_t palette_button_active[4] = {
 	RGB_BRIGHT_WHITE,
-	RGB_LIGHT_ORANGE,
-	RGB_DARK_ORANGE,
-	RGB_OFF_WHITE
+	RGB_GREEN_SELECTED,
+	RGB_GREEN_SELECTED,
+	RGB_GREEN_SELECTED
 };
 
 // Define the passive button palette
 const palette_color_t palette_button_passive[4] = {
 	RGB_WHITE,
-	RGB_MEDIUM_BROWN,
-	RGB_DARK_BROWN,
-	RGB_VERY_DARK_BLUE
+	RGB_GREEN_UNSELECTED,
+	RGB_GREEN_UNSELECTED,
+	RGB_GREEN_UNSELECTED
 };

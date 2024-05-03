@@ -40,11 +40,7 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
-    generateMap();
-    init_attributes();
-    init_speed();
-    init_depth();
-    init_screen();
+
 
     while (1) {
         switch (currentGameState) {
@@ -66,6 +62,11 @@ void main(void) {
             case GAME_STATE_NEW_GAME:
 
                 SWITCH_ROM(1);
+                generateMap();
+                init_attributes();
+                init_speed();
+                init_depth();
+                init_screen();
                 init_clear_screen();
 
                 init_sprite_palettes();
