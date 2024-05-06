@@ -50,7 +50,7 @@ void main(void) {
                 init_main_menu();
                 while (currentGameState == GAME_STATE_MAIN_MENU){
                     draw_main_menu();
-                    if (joypad() & J_START) {
+                    if (joypad() & J_START || joypad() & J_A) {
                         if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
                         else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
                         else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;

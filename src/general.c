@@ -38,10 +38,10 @@ void init_clear_screen(void) {
     VBK_REG = 0;
 
     // set all palettes to default
-    for (uint8_t i = 0; i < 8; i++) {
-        set_sprite_palette(i, 1, palette_default);
-        set_bkg_palette(i, 1, palette_default);
-    }
+    // for (uint8_t i = 0; i < 8; i++) {
+    //     set_sprite_palette(i, 1, palette_default);
+    //     set_bkg_palette(i, 1, palette_default);
+    // }
     
     set_bkg_data(0, 256, temparray);
     set_sprite_data(0, 128, temparray);
