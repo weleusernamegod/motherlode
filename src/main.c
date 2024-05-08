@@ -40,7 +40,10 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
-
+    generateMap();
+    init_attributes();
+    init_speed();
+    init_depth();
 
     while (1) {
         switch (currentGameState) {
@@ -51,21 +54,18 @@ void main(void) {
                 while (currentGameState == GAME_STATE_MAIN_MENU){
                     draw_main_menu();
                     if (joypad() & J_START || joypad() & J_A) {
-                        if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
-                        else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
-                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
+                        if (current_menu_index == 0) currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                        else if (current_menu_index == 1) currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_CONTINUE_RELOAD;
                     }
                     
                     wait_vbl_done();
                 }
                 break;
-            case GAME_STATE_NEW_GAME:
+            case GAME_STATE_CONTINUE_RELOAD:
 
                 SWITCH_ROM(1);
-                generateMap();
-                init_attributes();
-                init_speed();
-                init_depth();
+
                 init_screen();
                 init_clear_screen();
 
@@ -73,6 +73,7 @@ void main(void) {
                 init_palette_0();
                 init_palette_based_on_depth();
                 update_palette_based_on_depth();
+
                 init_font();
                 init_tiles();
                 draw_tiles();
@@ -94,13 +95,13 @@ void main(void) {
 
                 change_background_color();
                 turn_screen_on();
-                currentGameState = GAME_STATE_CONTINUE_GAME;
+                currentGameState = GAME_STATE_CONTINUE;
                 break;
 
-            case GAME_STATE_CONTINUE_GAME:
+            case GAME_STATE_CONTINUE:
                 SWITCH_ROM(1);
                 init_enable_lcd_interrupt();
-                while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE_GAME) {
+                while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE) {
                     game_loop();
                 }
                 turn_screen_off();
@@ -110,12 +111,13 @@ void main(void) {
             case GAME_STATE_UPGRADE_MENU:
                 SWITCH_ROM(2);
                 init_clear_screen();
+                init_font();
                 init_shop();
                 init_shop_tiles_palettes();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     shop_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_NEW_GAME; leave_station = FALSE;
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
                 }
                 turn_screen_off();
                 break;
@@ -124,20 +126,20 @@ void main(void) {
                 sell_all_ores();
                 handle_cargo();
                 display_warning_cargo = FALSE;
-                currentGameState = GAME_STATE_CONTINUE_GAME;
+                currentGameState = GAME_STATE_CONTINUE;
                 break;
             case GAME_STATE_FUEL_MENU:
                 turn_screen_on();
                 fuel_up();
                 handle_fuel();
-                currentGameState = GAME_STATE_CONTINUE_GAME;
+                currentGameState = GAME_STATE_CONTINUE;
                 break;
 
             case GAME_STATE_GAME_OVER:
                 turn_screen_on();
                 waitpad(J_START);
                 reset_player();
-                currentGameState = GAME_STATE_CONTINUE_GAME;
+                currentGameState = GAME_STATE_CONTINUE;
                 break;
         }
     }
