@@ -15,32 +15,17 @@
 #include "inventory.h"
 #include "map.h"
 
+#include "../assets/rover.h"
+#include "../assets/drill_h.h"
+#include "../assets/drill_v.h"
+#include "../assets/prop.h"
+
 #include "level.ba0.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
 BANKREF(bank_player)
 #endif
-
-const metasprite_t rover_metasprite[] = {
-    {.dy=-8, .dx=-8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=8, .dx=-8, .dtile=3, .props=0},
-    {.dy=0, .dx=8, .dtile=4, .props=0},
-	METASPR_TERM
-};
-
-const metasprite_t drill_horizontal_metasprite[] = {
-    {.dy=-8, .dx=-16, .dtile=11, .props=0},
-    {.dy=8, .dx=0, .dtile=12, .props=0},
-	METASPR_TERM
-};
-
-const metasprite_t drill_vertical_metasprite[] = {
-    {.dy=8, .dx=-8, .dtile=15, .props=0},
-    {.dy=0, .dx=8, .dtile=16, .props=0},
-	METASPR_TERM
-};
 
 struct Player player;
 
@@ -70,27 +55,69 @@ void check_surroundings(void){
 }
 
 void metasprite_drill_horizontal(char direction){
-    hide_metasprite(drill_vertical_metasprite, 15);
-    if (direction == LEFT) move_metasprite_ex (drill_horizontal_metasprite,0,DRILL_PALETTE,11,width_pixel.h,depth_pixel.h);
-    if (direction == RIGHT) move_metasprite_flipx (drill_horizontal_metasprite,0,DRILL_PALETTE,11,width_pixel.h,depth_pixel.h);
+    if (direction == LEFT) move_metasprite_ex (
+        drill_h_metasprites[absolute_movement % (sizeof(drill_h_metasprites) >> 1)],
+        drill_h_TILE_ORIGIN,
+        DRILL_PALETTE,
+        DRILL_H_START,
+        width_pixel.h - PIXEL_FROM_CENTER,
+        depth_pixel.h);
+    else if (direction == RIGHT) move_metasprite_flipx (
+        drill_h_metasprites[absolute_movement % (sizeof(drill_h_metasprites) >> 1)],
+        drill_h_TILE_ORIGIN,
+        DRILL_PALETTE,
+        DRILL_H_START,
+        width_pixel.h + PIXEL_FROM_CENTER,
+        depth_pixel.h);
 }
 void metasprite_drill_vertical(char direction){
-    hide_metasprite(drill_horizontal_metasprite, 11);
-    if (direction == DOWN) move_metasprite_ex(drill_vertical_metasprite,0,DRILL_PALETTE,15,width_pixel.h,depth_pixel.h);
+    if (direction == DOWN) move_metasprite_ex(
+        drill_v_metasprites[absolute_movement % (sizeof(drill_v_metasprites) >> 1)],
+        drill_v_TILE_ORIGIN,
+        DRILL_PALETTE,
+        DRILL_V_START,
+        width_pixel.h,
+        depth_pixel.h + PIXEL_FROM_CENTER);
+
 }
-void metasprite_rover(char direction){
-    hide_metasprite(drill_horizontal_metasprite, 15);
-    hide_metasprite(drill_horizontal_metasprite, 11);
-    if (direction == LEFT) move_metasprite_ex(rover_metasprite,0,ROVER_PALETTE,0,width_pixel.h,depth_pixel.h);
-    if (direction == RIGHT) move_metasprite_flipx(rover_metasprite,0,ROVER_PALETTE,0,width_pixel.h,depth_pixel.h);
+void metasprite_prop(void){
+    if (velocity != 0) move_metasprite_ex(
+        prop_metasprites[absolute_movement % (sizeof(prop_metasprites) >> 1)],
+        prop_TILE_ORIGIN,
+        ROVER_PALETTE,
+        PROP_START,
+        width_pixel.h,
+        depth_pixel.h - PIXEL_FROM_CENTER);
+}
+
+void metasprite_rover(char direction, BOOLEAN animate){
+    hide_metasprite(drill_h_metasprites[0], DRILL_H_START);
+    hide_metasprite(drill_v_metasprites[0], DRILL_V_START);
+    hide_metasprite(prop_metasprites[0], PROP_START);
+
+    if (direction == LEFT) move_metasprite_ex(
+        rover_metasprites[animate * (absolute_movement % (sizeof(rover_metasprites) >> 1))],
+        rover_TILE_ORIGIN,
+        ROVER_PALETTE,
+        ROVER_START,
+        width_pixel.h,
+        depth_pixel.h);
+    else if (direction == RIGHT) move_metasprite_flipx(
+        rover_metasprites[animate * (absolute_movement % (sizeof(rover_metasprites) >> 1))],
+        rover_TILE_ORIGIN,
+        ROVER_PALETTE,
+        ROVER_START,
+        width_pixel.h,
+        depth_pixel.h);
 }
 
 void draw_metasprite(char direction){
     if (direction == LEFT || direction == RIGHT){
-        metasprite_rover(direction);
+        metasprite_rover(direction, TRUE);
         if (is_drilling == TRUE) metasprite_drill_horizontal(direction);
     } else if (direction == UP || direction == DOWN) {
-        metasprite_rover(direction_prev);
+        metasprite_rover(direction_prev, FALSE);
+        if (direction == UP) metasprite_prop();
         if (is_drilling == TRUE) metasprite_drill_vertical(direction);
     }
 }
@@ -109,9 +136,16 @@ void update_movement(void) {
         width_pixel.w += move_x_per_frame.w;
         depth_pixel.w += move_y_per_frame.w;
 
-        // calculate pixel movement (delete at some point if not used)
-        vertical_movement_pixel.w += scroll_y_per_frame.w + move_y_per_frame.w;
-        int8_t vertical_movement_signed = (int8_t)vertical_movement_pixel.h;
+        // Update vertical and horizontal pixel counts with absolute movements
+        vertical_movement_pixel.w += abs(scroll_y_per_frame.w) + abs(move_y_per_frame.w);
+        horizontal_movement_pixel.w += abs(scroll_x_per_frame.w) + abs(move_x_per_frame.w);
+
+        // Convert word to higher precision signed values
+        vertical_movement = vertical_movement_pixel.h;
+        horizontal_movement = horizontal_movement_pixel.h;
+
+        // Calculate absolute movement by summing vertical and horizontal components
+        absolute_movement = vertical_movement + horizontal_movement;
 
         // move or scroll background
         move_or_scroll_character();
@@ -120,7 +154,7 @@ void update_movement(void) {
         animation_frames_left--;
 
         // Check if it's time to decrement fuel
-        if (animation_frames_left % 20 == 0) {  // Every 15 frames
+        if (animation_frames_left % 20 == 0) {  // Every 20 frames
             player.fuel.current_value -= 1;
         }
 
@@ -131,6 +165,9 @@ void update_movement(void) {
             scroll_x_per_frame.w = 0;
             scroll_y_per_frame.w = 0;
             vertical_movement_pixel.w = 0;
+            vertical_movement = 0;
+            horizontal_movement_pixel.w = 0;
+            horizontal_movement = 0;
             current_bkg_color = depth * 16;
 
             // reset position (h and l) to account for rounding errors
@@ -154,6 +191,7 @@ void update_movement(void) {
                 }
                 tile_mined = TRUE;
             }
+
             // redraw character / scroll again to make sure the rounding errors are gone
             draw_metasprite(direction_now);
             //update_sprite_character(width_pixel, depth_pixel);

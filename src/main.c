@@ -40,10 +40,6 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
-    generateMap();
-    init_attributes();
-    init_speed();
-    init_depth();
 
     while (1) {
         switch (currentGameState) {
@@ -59,9 +55,18 @@ void main(void) {
                         else if (current_menu_index >= 2) currentGameState = GAME_STATE_CONTINUE_RELOAD;
                     }
                     
-                    wait_vbl_done();
+                    vsync();
                 }
                 break;
+
+            case GAME_STATE_NEW_GAME:
+                generateMap(16);
+                init_attributes();
+                init_speed();
+                init_depth();
+                currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                break;
+
             case GAME_STATE_CONTINUE_RELOAD:
 
                 SWITCH_ROM(1);

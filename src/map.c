@@ -22,6 +22,9 @@
 #include "player.h"
 
 #include "../assets/rover.h"
+#include "../assets/drill_h.h"
+#include "../assets/drill_v.h"
+#include "../assets/prop.h"
 #include "../assets/nav.h"
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
@@ -38,9 +41,9 @@
 BANKREF(bank_map)
 #endif
 
-void generateMap(void) {
+void generateMap(uint16_t rows) {
     uint16_t i, j;
-    for (i = 0; i < ROWS; i++) {
+    for (i = 0; i < rows; i++) {
         for (j = 0; j < COLS; j++) {
             if (i < 6) {
                 // First six rows are empty
@@ -332,6 +335,16 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
     }
 }
 
+void draw_test(void) {
+    char string1[10];
+    char string2[10];
+    itoa(velocity, string1, 10);
+    itoa(abs(velocity), string2, 10);
+
+    draw_text(10,2,string1,5,FALSE,0);
+    draw_text(2,2,string2,5,FALSE,0);
+}
+
 void draw_depth(void){
     char string[10];
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
@@ -394,14 +407,17 @@ void draw_warning_fuel(void){
 }
 
 void draw_fuel(void){
-    progressbar(player.fuel.current_value, player.fuel.max_value, 3,  35, FUEL_BAR_PALETTE, 45, 24);
+    progressbar(player.fuel.current_value, player.fuel.max_value, 3,  PROGRESSBAR_FUEL_START, FUEL_BAR_PALETTE, 45, 24);
 }
 void draw_hull(void){
-    progressbar(player.hull.current_value, player.hull.max_value, 2, 32, HULL_BAR_PALETTE, 13, 24);
+    progressbar(player.hull.current_value, player.hull.max_value, 2, PROGRESSBAR_HULL_START, HULL_BAR_PALETTE, 13, 24);
 }
 
 void init_character(void){
-    set_sprite_data(CHAR_START, 16, rover_tiles);
+    set_sprite_data(rover_TILE_ORIGIN, rover_TILE_COUNT, rover_tiles);
+    set_sprite_data(drill_h_TILE_ORIGIN, drill_h_TILE_COUNT, drill_h_tiles);
+    set_sprite_data(drill_v_TILE_ORIGIN, drill_v_TILE_COUNT, drill_v_tiles);
+    set_sprite_data(prop_TILE_ORIGIN, prop_TILE_COUNT, prop_tiles);
 }
 void draw_character(void){
     draw_metasprite(direction_prev);

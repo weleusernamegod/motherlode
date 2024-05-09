@@ -23,7 +23,7 @@ extern const Palette_group* last_used_palette_group;
 extern const int palette_groups_count;  // Declare the size of palette_groups explicitly
 
 
-void generateMap(void);
+void generateMap(uint16_t rows);
 void shuffle(uint8_t array[4]);
 void interpolate_color(Background_color* result, Background_color start, Background_color end, uint16_t progress, uint16_t max_progress);
 void change_background_color(void);
@@ -34,6 +34,7 @@ void spawn_bkg_row(void);
 void clear_4bkg_tiles(uint8_t x, uint16_t y);
 void add_block(uint8_t x, uint16_t y, uint8_t type);
 void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t palette, uint8_t x, uint8_t y);
+void draw_test(void);
 void draw_depth(void);
 void draw_cargo(void);
 extern const metasprite_t warning_fuel_metasprite[];

@@ -22,6 +22,7 @@ typedef enum {
     GAME_STATE_UPGRADE_MENU,
     GAME_STATE_SELL_MENU,
     GAME_STATE_FUEL_MENU,
+    GAME_STATE_NEW_GAME,
     GAME_STATE_CONTINUE_RELOAD,
     GAME_STATE_CONTINUE,
     GAME_STATE_GAME_OVER,
@@ -35,7 +36,8 @@ extern uint16_t prev_depth, prev_width;
 extern uint16_t current_bkg_color;
 extern fixed depth_pixel, width_pixel;
 extern fixed scroll_x, scroll_y;
-extern fixed vertical_movement_pixel;
+extern fixed vertical_movement_pixel, horizontal_movement_pixel;
+extern uint8_t vertical_movement, horizontal_movement, absolute_movement;
 
 // movement animation
 extern uint16_t ore_resistance;

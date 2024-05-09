@@ -6,16 +6,21 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define rover_TILE_ORIGIN 0
+#define rover_TILE_ORIGIN 1
 #define rover_TILE_W 8
 #define rover_TILE_H 8
 #define rover_WIDTH 16
-#define rover_HEIGHT 104
-#define rover_TILE_COUNT 26
+#define rover_HEIGHT 16
+#define rover_TILE_COUNT 8
+#define rover_PIVOT_X 8
+#define rover_PIVOT_Y 8
+#define rover_PIVOT_W 16
+#define rover_PIVOT_H 16
 
 BANKREF_EXTERN(rover)
 
-extern const uint8_t rover_tiles[416];
+extern const uint8_t rover_tiles[128];
 
+extern const metasprite_t* const rover_metasprites[3];
 
 #endif

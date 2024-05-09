@@ -16,7 +16,7 @@ uint8_t saved_bank;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
-GameState currentGameState = GAME_STATE_MAIN_MENU;  // Start with the game loop
+GameState currentGameState = GAME_STATE_NEW_GAME;  // Start with the game loop
 BOOLEAN leave_station = FALSE;
 BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
 BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time
@@ -29,7 +29,8 @@ uint16_t prev_depth, prev_width;
 uint16_t current_bkg_color;
 fixed depth_pixel, width_pixel;
 fixed scroll_x, scroll_y;
-fixed vertical_movement_pixel;
+fixed vertical_movement_pixel, horizontal_movement_pixel;
+uint8_t vertical_movement, horizontal_movement, absolute_movement;
 
 // movement animation
 uint16_t ore_resistance;

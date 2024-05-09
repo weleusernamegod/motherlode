@@ -9,9 +9,6 @@
 BANKREF_EXTERN(bank_player)
 
 // Declaration of global structures and variables
-extern const metasprite_t rover_metasprite[];
-extern const metasprite_t drill_horizontal_metasprite[];
-extern const metasprite_t drill_vertical_metasprite[];
 extern struct Player player;
 extern struct Station_proximity station_proximity;
 
@@ -22,7 +19,8 @@ void init_speed(void);
 void check_surroundings(void);
 void metasprite_drill_horizontal(char direction);
 void metasprite_drill_vertical(char direction);
-void metasprite_rover(char direction);
+void metasprite_prop(void);
+void metasprite_rover(char direction, BOOLEAN animate);
 void draw_metasprite(char direction);
 void move_or_scroll_character(void);
 void update_movement(void);

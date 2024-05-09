@@ -57,33 +57,22 @@
 #define PALETTE_SKULL 3
 #define PALETTE_ARTEFACT 4
 
-// game
+// general
 #define ROWS 256
 #define COLS 16
+
+#define WIN_X 3
+#define WIN_Y 0
 
 #define MIN_MINABLE_MATERIAL COAL
 #define MAX_MINABLE_MATERIAL DIAMOND
 
+// movement
 #define METATILES_PER_SCREEN 9
 #define GROUND 5
 #define UNDERGROUND (GROUND + 1)
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen, to account for the nav/window element
-
-#define TILE_START 96
-#define NUMBERS_START 4
-#define LETTER_START 26
-#define SLETTER_START 52
-#define CHAR_START 1
-#define WARNING_CARGO_START 17
-#define WARNING_FUEL_START 24
-
-#define WARNING_CARGO_Y 45
-#define WARNING_FUEL_Y 55
-
-#define WIN_X 3
-#define WIN_Y 0
-
 #define LEFT 1
 #define RIGHT 2
 #define UP 3
@@ -92,7 +81,27 @@
 #define DRILL 1
 #define DRIVE 2
 #define ACCELERATE 3
+#define PIXEL_FROM_CENTER 12
 
+// sprites
+#define ROVER_START 1
+#define DRILL_H_START 5
+#define DRILL_V_START 7
+#define PROP_START 9
+#define WARNING_CARGO_START 23
+#define WARNING_FUEL_START 30
+#define PROGRESSBAR_HULL_START 35
+#define PROGRESSBAR_FUEL_START 37
+
+// tiles
+#define TILE_START 96
+#define NUMBERS_START 4
+#define LETTER_START 26
+#define SLETTER_START 52
+
+// progressbar and warnings
+#define WARNING_CARGO_Y 45
+#define WARNING_FUEL_Y 55
 #define PROGRESSBAR_TILE_0_8 32    // Tile index for empty sprite
 #define PROGRESSBAR_TILE_1_8   (PROGRESSBAR_TILE_0_8 + 1)    // Tile index for 1/8 filled sprite
 #define PROGRESSBAR_TILE_2_8   (PROGRESSBAR_TILE_0_8 + 2)
