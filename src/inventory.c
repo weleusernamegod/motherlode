@@ -52,28 +52,26 @@ void update_inventory(void) {
         // Calculate potential new weight if this material is added
         uint16_t new_weight = player.cargo.current_value + materials[material_index].weight;
         
-        // Check if adding this material would exceed the cargo capacity
-        if (new_weight > player.cargo.max_value) {
-            // Set the warning flag to true because adding this material would exceed cargo capacity
+        // If adding this material would exceed cargo capacity and already is beyond or at capacity, show warning
+        if (new_weight > player.cargo.max_value && player.cargo.current_value >= player.cargo.max_value) {
+            // Since the cargo is already full or over, do not add more and warn the player
             display_warning_cargo = TRUE;
         } else {
-            // Increment the inventory since there's enough space
+            // Increment the inventory since there's enough space or allow exceeding max once
             materials[material_index].inventory++;
             // Update current cargo weight
             player.cargo.current_value = new_weight;
 
-            // Check if the cargo is now exactly full
-            if (player.cargo.current_value == player.cargo.max_value) {
+            // If after adding the item, the cargo goes beyond the max, set warning
+            if (player.cargo.current_value > player.cargo.max_value) {
                 display_warning_cargo = TRUE;
             } else {
                 // Reset the warning flag as cargo is not exceeded and not full
                 display_warning_cargo = FALSE;
             }
         }
-
-
-        return;  // Skip adding the item to inventory and exit the function
     }
+
 
     // Handling special cases where materials directly translate into money
     switch(material_index) {

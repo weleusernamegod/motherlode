@@ -289,6 +289,7 @@ void move(char direction, char mode){
                     direction = UP;
                     velocity++;
                     velocity++;
+                    velocity++;
                 } else {
                 velocity++;
                 }

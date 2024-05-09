@@ -182,7 +182,7 @@ void init_attributes(void){
     player.cargo.color_palette[4] = palette_default;
     player.cargo.color_palette[5] = palette_default;
 
-    player.money = 30000;
+    player.money = 0;
     player.speed.l = 0;
     player.speed.h = 16;
     player.prev_speed.w = player.speed.w;
