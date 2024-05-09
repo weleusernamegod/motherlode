@@ -73,12 +73,12 @@ void init_attributes(void){
     player.engine.attribute_name = "engine";
     player.engine.attribute_unit = "HP";
     player.engine.upgrade_level = 0;
-    player.engine.upgrade_value[0] = 16;
-    player.engine.upgrade_value[1] = 18;
-    player.engine.upgrade_value[2] = 21;
-    player.engine.upgrade_value[3] = 25;
-    player.engine.upgrade_value[4] = 32;
-    player.engine.upgrade_value[5] = 40;
+    player.engine.upgrade_value[0] = 50;
+    player.engine.upgrade_value[1] = 80;
+    player.engine.upgrade_value[2] = 115;
+    player.engine.upgrade_value[3] = 140;
+    player.engine.upgrade_value[4] = 175;
+    player.engine.upgrade_value[5] = 250;
     player.engine.upgrade_cost[0] = 0;
     player.engine.upgrade_cost[1] = 750;
     player.engine.upgrade_cost[2] = 2000;
@@ -182,11 +182,11 @@ void init_attributes(void){
     player.cargo.color_palette[4] = palette_default;
     player.cargo.color_palette[5] = palette_default;
 
-    player.money = 0;
+    player.money = 30000;
     player.speed.l = 0;
     player.speed.h = 16;
     player.prev_speed.w = player.speed.w;
-
+    
     // set all attributes based on the upgrade level
     for (uint8_t i = 0; i < 6; i++) {
         attributes_numbers[i]->current_value = attributes_numbers[i]->max_value = attributes_numbers[i]->upgrade_value[attributes_numbers[i]->upgrade_level];

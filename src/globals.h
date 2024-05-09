@@ -38,6 +38,7 @@ extern fixed depth_pixel, width_pixel;
 extern fixed scroll_x, scroll_y;
 extern fixed vertical_movement_pixel, horizontal_movement_pixel;
 extern uint8_t vertical_movement, horizontal_movement, absolute_movement;
+extern uint8_t upward_velocity;
 
 // movement animation
 extern uint16_t ore_resistance;
@@ -47,6 +48,7 @@ extern fixed move_y_per_frame;
 extern fixed scroll_x_per_frame;
 extern fixed scroll_y_per_frame;
 extern int8_t velocity;
+extern int8_t prev_velocity;
 extern char direction_now;
 extern char direction_prev;
 extern BOOLEAN is_drilling;

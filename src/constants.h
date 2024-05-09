@@ -77,6 +77,10 @@
 #define RIGHT 2
 #define UP 3
 #define DOWN 4
+#define MAX_HEIGHT 2
+
+#define TERMINAL_VELOCITY 14
+#define FALL_DAMAGE_THRESHOLD 6
 
 #define DRILL 1
 #define DRIVE 2
@@ -84,10 +88,11 @@
 #define PIXEL_FROM_CENTER 12
 
 // sprites
-#define ROVER_START 1
-#define DRILL_H_START 5
-#define DRILL_V_START 7
-#define PROP_START 9
+#define ROVER_START 0
+#define DRILL_H_START 4
+#define DRILL_V_START 6
+#define PROP_START 8
+#define GAME_OVER_START 8
 #define WARNING_CARGO_START 23
 #define WARNING_FUEL_START 30
 #define PROGRESSBAR_HULL_START 35
@@ -100,6 +105,7 @@
 #define SLETTER_START 52
 
 // progressbar and warnings
+#define GAME_OVER_Y (SCREENHEIGHT/2)
 #define WARNING_CARGO_Y 45
 #define WARNING_FUEL_Y 55
 #define PROGRESSBAR_TILE_0_8 32    // Tile index for empty sprite

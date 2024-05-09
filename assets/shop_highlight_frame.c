@@ -6,10 +6,10 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(buttonframe)
+BANKREF(shop_highlight_frame)
 
 
-const uint8_t buttonframe_tiles[64] = {
+const uint8_t shop_highlight_frame_tiles[64] = {
 	0x00,0xff,0x00,0x80,
 	0x00,0x80,0x00,0x80,
 	0x00,0x80,0x00,0x80,

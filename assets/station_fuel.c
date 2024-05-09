@@ -6,14 +6,14 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(stationfuel)
+BANKREF(station_fuel)
 
-const palette_color_t stationfuel_palettes[4] = {
+const palette_color_t station_fuel_palettes[4] = {
 	RGB8(140,173, 40), RGB8(108,148, 33), RGB8( 66,107, 41), RGB8( 33, 66, 49)
 	
 };
 
-const uint8_t stationfuel_tiles[352] = {
+const uint8_t station_fuel_tiles[352] = {
 	0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,
@@ -105,7 +105,7 @@ const uint8_t stationfuel_tiles[352] = {
 	};
 
 
-const unsigned char stationfuel_map[28] = {
+const unsigned char station_fuel_map[28] = {
 	0x80,0x80,0x81,0x82,0x83,0x80,0x80,
 	0x80,0x84,0x85,0x86,0x87,0x88,0x80,
 	0x80,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,

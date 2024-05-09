@@ -24,16 +24,7 @@
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
 
-BANKREF_EXTERN(warnings)
-BANKREF_EXTERN(bank_main_menu)
-BANKREF_EXTERN(splashscreen)
-BANKREF_EXTERN(bank_map)
-BANKREF_EXTERN(bank_player)
-BANKREF_EXTERN(bank_shop)
-BANKREF_EXTERN(stationfuel)
-BANKREF_EXTERN(stationsell)
-BANKREF_EXTERN(stationupgrade)
-
+#include "bankref.h"
 
 void main(void) {
     ENABLE_RAM;
@@ -50,9 +41,9 @@ void main(void) {
                 while (currentGameState == GAME_STATE_MAIN_MENU){
                     draw_main_menu();
                     if (joypad() & J_START || joypad() & J_A) {
-                        if (current_menu_index == 0) currentGameState = GAME_STATE_CONTINUE_RELOAD;
-                        else if (current_menu_index == 1) currentGameState = GAME_STATE_CONTINUE_RELOAD;
-                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                        if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
+                        else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
+                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
                     }
                     
                     vsync();
@@ -60,17 +51,17 @@ void main(void) {
                 break;
 
             case GAME_STATE_NEW_GAME:
-                generateMap(16);
+                SWITCH_ROM(1);
+                generate_map(ROWS);
                 init_attributes();
                 init_speed();
+                calculate_upward_velocity();
                 init_depth();
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
 
             case GAME_STATE_CONTINUE_RELOAD:
-
                 SWITCH_ROM(1);
-
                 init_screen();
                 init_clear_screen();
 
@@ -90,6 +81,8 @@ void main(void) {
                 init_character();
                 draw_character();
                 move_or_scroll_character();
+
+                init_game_over();
                 init_warning();
                 calculate_cargo();
                 draw_cargo();
@@ -142,7 +135,10 @@ void main(void) {
 
             case GAME_STATE_GAME_OVER:
                 turn_screen_on();
+                move_win(7, 144);
+                draw_game_over();
                 waitpad(J_START);
+                hide_sprites_range(GAME_OVER_START, MAX_HARDWARE_SPRITES);
                 reset_player();
                 currentGameState = GAME_STATE_CONTINUE;
                 break;

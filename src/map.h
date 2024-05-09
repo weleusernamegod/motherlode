@@ -23,7 +23,7 @@ extern const Palette_group* last_used_palette_group;
 extern const int palette_groups_count;  // Declare the size of palette_groups explicitly
 
 
-void generateMap(uint16_t rows);
+void generate_map(uint16_t rows);
 void shuffle(uint8_t array[4]);
 void interpolate_color(Background_color* result, Background_color start, Background_color end, uint16_t progress, uint16_t max_progress);
 void change_background_color(void);
@@ -39,6 +39,8 @@ void draw_depth(void);
 void draw_cargo(void);
 extern const metasprite_t warning_fuel_metasprite[];
 extern const metasprite_t warning_cargo_metasprite[];
+void init_game_over(void);
+void draw_game_over(void);
 void init_warning(void);
 void draw_warning_fuel(void);
 void draw_warning_cargo(void);

@@ -17,15 +17,16 @@
         "stdint.h": "c",
         "gameloop.h": "c",
         "stdio.h": "c",
-        "stationfuel.h": "c",
+        "station_fuel.h": "c",
         "stddef.h": "c",
         "stationrepair.h": "c",
-        "stationsell.h": "c",
-        "stationupgrade.h": "c",
-        "warningfuel.h": "c",
+        "station_sell.h": "c",
+        "station_upgrade.h": "c",
+        "warning_fuel.h": "c",
         "map.h": "c",
         "drill_h.h": "c",
-        "level.ba0.h": "c"
+        "level.ba0.h": "c",
+        "warning_cargo.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

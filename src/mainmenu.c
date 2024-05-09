@@ -9,7 +9,7 @@
 #include "globals.h"
 #include "palettes.h"
 
-#include "../assets/menubuttons.h"
+#include "../assets/main_menu_buttons.h"
 #include "../assets/splashscreen.h"
 
 #pragma bank 3
@@ -64,10 +64,10 @@ void init_main_menu(void) {
     // load sprites
     set_bkg_data(0, splashscreen_TILE_COUNT, splashscreen_tiles);
     set_bkg_palette(0, splashscreen_PALETTE_COUNT, splashscreen_palettes);
-    set_sprite_data(0, menubuttons_TILE_COUNT, menubuttons_tiles);
+    set_sprite_data(0, main_menu_buttons_TILE_COUNT, main_menu_buttons_tiles);
 
     // set hardwaretiles
-    for (uint8_t i = 0; i <= menubuttons_TILE_COUNT; i++){
+    for (uint8_t i = 0; i <= main_menu_buttons_TILE_COUNT; i++){
         set_sprite_tile(i, i);
     }
 
@@ -81,7 +81,7 @@ void init_main_menu(void) {
 
     // draw the buttons as metasprites
     for (uint8_t i = 0; i < MENU_ITEMS; i++) {
-        move_metasprite_ex(metasprite_menu_button, i * (menubuttons_TILE_COUNT / MENU_ITEMS), i, i * (menubuttons_TILE_COUNT / MENU_ITEMS), x, (y + i * distance_between_buttons + i * menubuttons_TILE_H));
+        move_metasprite_ex(metasprite_menu_button, i * (main_menu_buttons_TILE_COUNT / MENU_ITEMS), i, i * (main_menu_buttons_TILE_COUNT / MENU_ITEMS), x, (y + i * distance_between_buttons + i * main_menu_buttons_TILE_H));
     }
 
     // initialize button palettes

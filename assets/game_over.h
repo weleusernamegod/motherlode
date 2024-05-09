@@ -6,16 +6,21 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define game_over_TILE_ORIGIN 55
+#define game_over_TILE_ORIGIN 64
 #define game_over_TILE_W 8
 #define game_over_TILE_H 8
-#define game_over_WIDTH 56
+#define game_over_WIDTH 64
 #define game_over_HEIGHT 32
-#define game_over_TILE_COUNT 28
+#define game_over_TILE_COUNT 32
+#define game_over_PIVOT_X 32
+#define game_over_PIVOT_Y 16
+#define game_over_PIVOT_W 64
+#define game_over_PIVOT_H 32
 
 BANKREF_EXTERN(game_over)
 
-extern const uint8_t game_over_tiles[448];
+extern const uint8_t game_over_tiles[512];
 
+extern const metasprite_t* const game_over_metasprites[1];
 
 #endif

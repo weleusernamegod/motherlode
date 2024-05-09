@@ -6,10 +6,10 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(warningfuel)
+BANKREF(warning_fuel)
 
 
-const uint8_t warningfuel_tiles[80] = {
+const uint8_t warning_fuel_tiles[80] = {
 	0x87,0x00,0x84,0x00,
 	0x84,0x00,0x84,0x00,
 	0xf7,0x00,0x00,0x00,

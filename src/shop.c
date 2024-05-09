@@ -10,10 +10,10 @@
 #include "inventory.h"
 #include "attributes.h"
 
-#include "../assets/buttonframe.h"
-#include "../assets/menubuttons.h"
-#include "../assets/shopframe.h"
-#include "../assets/shoptiles.h"
+#include "../assets/shop_highlight_frame.h"
+#include "../assets/main_menu_buttons.h"
+#include "../assets/shop_frame.h"
+#include "../assets/shop_tiles.h"
 
 #include "globals.h"
 #include "constants.h"
@@ -29,7 +29,7 @@ BANKREF(bank_shop)
 #endif
 
 
-const metasprite_t metasprite_buttonframe[] = {
+const metasprite_t metasprite_shop_highlight_frame[] = {
     {.dy=16, .dx=8, .dtile=1, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
@@ -70,8 +70,8 @@ void init_shop(void) {
     set_sprite_palette(0, 1, palette_default);
     set_sprite_palette(1, 1, palette_light_grey);
 
-    set_win_data(SHOP_FRAME_START, shopframe_TILE_COUNT, shopframe_tiles);
-    set_win_tiles(0, 0, 20, 18, shopframe_map);
+    set_win_data(SHOP_FRAME_START, shop_frame_TILE_COUNT, shop_frame_tiles);
+    set_win_tiles(0, 0, 20, 18, shop_frame_map);
 
     set_bkg_palette(0, 1, palette_default);
     set_bkg_palette(1, 1, palette_light_grey);
@@ -82,9 +82,9 @@ void init_shop(void) {
     set_bkg_palette(6, 1, palette_copper);
     set_bkg_palette(7, 1, palette_copper);
 
-    set_sprite_data(1, buttonframe_TILE_COUNT, buttonframe_tiles); // blank tile in the end
+    set_sprite_data(1, shop_highlight_frame_TILE_COUNT, shop_highlight_frame_tiles); // blank tile in the end
     set_sprite_tile(12, 4); // the tick for the upgrades
-    move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, 24, 40);
+    move_metasprite_ex(metasprite_shop_highlight_frame, 0, 0, 0, 24, 40);
 
     update_menu = TRUE; // always update the menu the first time the player enters the shop
 }
@@ -110,7 +110,7 @@ void updateMetaSpritePosition(uint8_t currentSelection) {
     uint8_t x, y;
     x = 24 + (40 * (currentSelection % 3));
     y = 40 + (40 * (currentSelection / 3));
-    move_metasprite_ex(metasprite_buttonframe, 0, 0, 0, x, y);
+    move_metasprite_ex(metasprite_shop_highlight_frame, 0, 0, 0, x, y);
 }
 
 void update_upgrade_tick(MenuState state) {
@@ -127,7 +127,7 @@ void update_upgrade_tick(MenuState state) {
 }
 
 
-void displayMenu(Menu *menu) {
+void display_menu(Menu *menu) {
     updateMetaSpritePosition(menu->currentSelection);
 }
 
@@ -136,7 +136,7 @@ void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t posit
     for (uint8_t i = 0; i < 16; i++){
         array[i] = tilestart+i;
     }
-    set_win_data(tilestart, 16, &shoptiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
+    set_win_data(tilestart, 16, &shop_tiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
     if (position == 0) set_win_tiles(3, 5, 4, 4, array);
     else if (position == 1) set_win_tiles(8, 5, 4, 4, array);
     else if (position == 2) set_win_tiles(13, 5, 4, 4, array);
@@ -237,7 +237,7 @@ void attempt_purchase(MenuState currentState, Menu *currentMenu) {
 }
 
 
-void handleInput(MenuState *currentState, Menu *currentMenu) {
+void handle_input(MenuState *currentState, Menu *currentMenu) {
         if (prev_buttons != buttons) {
         if (buttons & J_UP) {
             if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;

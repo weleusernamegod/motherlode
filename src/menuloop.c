@@ -12,12 +12,12 @@ void shop_menu_loop(void) {
 
     // Check if input has changed the state or selection
     if (prev_buttons != buttons) {
-        handleInput(&currentState, currentMenu);
+        handle_input(&currentState, currentMenu);
         update_menu = TRUE;  // Set the update flag
     }
 
     if (update_menu) {
-        displayMenu(currentMenu);
+        display_menu(currentMenu);
         update_upgrade_tick(currentState);
 
         // Update the display and functionality based on the current state

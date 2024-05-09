@@ -39,18 +39,18 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/nav.png -c assets/nav.c -spr8x8 -map -tile_origin 80 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/tile.png -c assets/tile.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/stationfuel.png -c assets/stationfuel.c -spr8x8 -map -tile_origin 128 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/stationsell.png -c assets/stationsell.c -spr8x8 -map -tile_origin 150 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/stationupgrade.png -c assets/stationupgrade.c -spr8x8 -map -tile_origin 185 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/warningcargo.png -c assets/warningcargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/warningfuel.png -c assets/warningfuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/game_over.png -c assets/game_over.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/station_fuel.png -c assets/station_fuel.c -spr8x8 -map -tile_origin 128 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/station_sell.png -c assets/station_sell.c -spr8x8 -map -tile_origin 150 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -tile_origin 185 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/warning_cargo.png -c assets/warning_cargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/warning_fuel.png -c assets/warning_fuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/game_over.png -c assets/game_over.c -spr8x8 -no_palettes -noflip -keep_duplicate_tiles -tile_origin 64 -b 1
 
-	/usr/local/opt/gbdk/bin/png2asset png/shoptiles.png -c assets/shoptiles.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 2
-	/usr/local/opt/gbdk/bin/png2asset png/shopframe.png -c assets/shopframe.c -spr8x8 -map -noflip -tile_origin 151 -b 2
-	/usr/local/opt/gbdk/bin/png2asset png/buttonframe.png -c assets/buttonframe.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
+	/usr/local/opt/gbdk/bin/png2asset png/shop_tiles.png -c assets/shop_tiles.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 2
+	/usr/local/opt/gbdk/bin/png2asset png/shop_frame.png -c assets/shop_frame.c -spr8x8 -map -noflip -tile_origin 151 -b 2
+	/usr/local/opt/gbdk/bin/png2asset png/shop_highlight_frame.png -c assets/shop_highlight_frame.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
 
-	/usr/local/opt/gbdk/bin/png2asset png/menubuttons.png -c assets/menubuttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 3
+	/usr/local/opt/gbdk/bin/png2asset png/main_menu_buttons.png -c assets/main_menu_buttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 3
 	/usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 3
 
 all:	clean prepare png2asset $(BINS) copy-rom
@@ -72,6 +72,7 @@ $(BINS):	$(OBJS)
 
 prepare:
 	mkdir -p $(OBJDIR)
+	mkdir -p $(ASSETDIR)
 
 clean:
 	rm -f  $(OBJDIR)/*.* $(BINDIR)/*.*

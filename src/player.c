@@ -245,7 +245,7 @@ void move_up(uint8_t frames){
         depth_offset--;
         depth--;
         scroll_y_per_frame.w = - player.speed.w;
-    } else if (depth > 1) {
+    } else if (depth > MAX_HEIGHT) {
         depth--;
         move_y_per_frame.w = - player.speed.w;
     } else return;
@@ -280,7 +280,7 @@ void move(char direction, char mode){
             if (direction == DOWN) next_tile = next_tile_down;
             frames = calculate_frames();
         } else if (mode == DRIVE) {
-            velocity = 0;
+            if (next_tile_down != EMPTY) velocity = 0;
             frames = 16;
         } else if (mode == ACCELERATE) {
             if (next_tile_up != EMPTY) velocity = 0;
@@ -301,8 +301,8 @@ void move(char direction, char mode){
                 velocity--;
                 }
             }
-            if (velocity >= 12) velocity = 12;
-            if (velocity <= -6) velocity = -6;
+            if (velocity >= TERMINAL_VELOCITY) velocity = TERMINAL_VELOCITY;
+            if (velocity <= - upward_velocity) velocity = - upward_velocity;
             frames = 16 - abs(velocity);
         }
 
@@ -340,14 +340,27 @@ void initiate_movement(void) {
         move(DOWN, ACCELERATE);
     }
 }
+void calculate_damage(void){
+    uint8_t damage = ((prev_velocity - FALL_DAMAGE_THRESHOLD) * 2) + 1;
+    player.hull.current_value -= damage;
+}
 
 void calculate_falldamage(void){
-    if (next_tile_down != EMPTY && velocity > 4) {
-        player.hull.current_value -= velocity;
+    if (velocity == 0 && prev_velocity > FALL_DAMAGE_THRESHOLD) {
+        calculate_damage();
+        prev_velocity = 0;
+    } else if (next_tile_down != EMPTY && velocity > FALL_DAMAGE_THRESHOLD) {
+        calculate_damage();
         velocity = 0;
-    } else if (next_tile_down != EMPTY && velocity <= 4 && velocity > 0){
+    } else if (next_tile_down != EMPTY && velocity <= FALL_DAMAGE_THRESHOLD && velocity > 0){
         velocity = 0;
     }
+}
+
+void calculate_upward_velocity(void){
+    // divide both by 8 and subtract, the cap at 8
+    upward_velocity = (player.engine.max_value >> 3) - (player.cargo.current_value >> 3);
+    if (upward_velocity >= 8) upward_velocity = 8;
 }
 
 void check_hull(void){
@@ -362,7 +375,8 @@ void check_fuel(void){
         player_alive = FALSE;
         player.fuel.current_value = 0;
     }
-    if (player.fuel.current_value * 5 <= player.fuel.max_value) {
+    // warn if fuel under 25%
+    if (player.fuel.current_value * 4 <= player.fuel.max_value) {
         display_warning_fuel = TRUE;
     } else {
         display_warning_fuel = FALSE;
@@ -428,7 +442,7 @@ void proximity_check_station(void) {
 }
 
 void enter_station(void) {
-    if (buttons & J_A) {
+    if (buttons & J_A && !(prev_buttons & J_A)) {
         if (station_proximity == ENTER_SELL_STATION) {
             currentGameState = GAME_STATE_SELL_MENU;
         } else if (station_proximity == ENTER_UPGRADE_STATION) {

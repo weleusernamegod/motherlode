@@ -29,19 +29,20 @@
 #include "../assets/tile.h"
 #include "../assets/progressbar.h"
 
-#include "../assets/stationfuel.h"
-#include "../assets/stationsell.h"
-#include "../assets/stationupgrade.h"
+#include "../assets/station_fuel.h"
+#include "../assets/station_sell.h"
+#include "../assets/station_upgrade.h"
 
-#include "../assets/warningcargo.h"
-#include "../assets/warningfuel.h"
+#include "../assets/game_over.h"
+#include "../assets/warning_cargo.h"
+#include "../assets/warning_fuel.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
 BANKREF(bank_map)
 #endif
 
-void generateMap(uint16_t rows) {
+void generate_map(uint16_t rows) {
     uint16_t i, j;
     for (i = 0; i < rows; i++) {
         for (j = 0; j < COLS; j++) {
@@ -155,8 +156,8 @@ void change_background_color(void) {
 
 void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index) {
     // Calculate the percentage using integer math
-    int scaled_max = 100;
-    int percentage = (attribute->current_value * scaled_max) / attribute->max_value;
+    uint16_t percentage = (attribute->current_value * 10) / attribute->max_value;
+    percentage = percentage * 10;
 
     // Choose color based on the percentage
     uint8_t red, green, blue;
@@ -338,11 +339,10 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 void draw_test(void) {
     char string1[10];
     char string2[10];
-    itoa(velocity, string1, 10);
+    itoa(upward_velocity, string1, 10);
     itoa(abs(velocity), string2, 10);
-
-    draw_text(10,2,string1,5,FALSE,0);
-    draw_text(2,2,string2,5,FALSE,0);
+    draw_text(2,2,string1,5,FALSE,0);
+    draw_text(10,2,string2,5,FALSE,0);
 }
 
 void draw_depth(void){
@@ -365,34 +365,41 @@ void draw_cargo(void){
 }
 
 const metasprite_t warning_cargo_metasprite[] = {
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN, .props=0},
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+1, .props=0},
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+2, .props=0},
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+3, .props=0},
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+4, .props=0},
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+5, .props=0},
-    {.dy=0, .dx=8, .dtile=warningcargo_TILE_ORIGIN+6, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN+1, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN+2, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN+3, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN+4, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN+5, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_cargo_TILE_ORIGIN+6, .props=0},
 	METASPR_TERM
 };
 
 const metasprite_t warning_fuel_metasprite[] = {
-    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN, .props=0},
-    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+1, .props=0},
-    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+2, .props=0},
-    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+3, .props=0},
-    {.dy=0, .dx=8, .dtile=warningfuel_TILE_ORIGIN+4, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_fuel_TILE_ORIGIN, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_fuel_TILE_ORIGIN+1, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_fuel_TILE_ORIGIN+2, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_fuel_TILE_ORIGIN+3, .props=0},
+    {.dy=0, .dx=8, .dtile=warning_fuel_TILE_ORIGIN+4, .props=0},
 	METASPR_TERM
 };
 
+void init_game_over(void){
+    set_sprite_data(game_over_TILE_ORIGIN, game_over_TILE_COUNT, game_over_tiles);
+}
+
+void draw_game_over(void){
+    move_metasprite_ex(game_over_metasprites[0], game_over_TILE_ORIGIN, WARNING_PALETTE, GAME_OVER_START, SCREENWIDTH/2+8, GAME_OVER_Y+16);
+}
 
 void init_warning(void){
-    set_sprite_data(warningcargo_TILE_ORIGIN, warningcargo_TILE_COUNT, warningcargo_tiles);
-    set_sprite_data(warningfuel_TILE_ORIGIN, warningfuel_TILE_COUNT, warningfuel_tiles);
+    set_sprite_data(warning_cargo_TILE_ORIGIN, warning_cargo_TILE_COUNT, warning_cargo_tiles);
+    set_sprite_data(warning_fuel_TILE_ORIGIN, warning_fuel_TILE_COUNT, warning_fuel_tiles);
 }
 
 void draw_warning_cargo(void){
     if (display_warning_cargo == TRUE) {
-        move_metasprite_ex(warning_cargo_metasprite, 0, WARNING_PALETTE, WARNING_CARGO_START, (SCREENWIDTH - warningcargo_WIDTH)/2, WARNING_CARGO_Y);
+        move_metasprite_ex(warning_cargo_metasprite, 0, WARNING_PALETTE, WARNING_CARGO_START, (SCREENWIDTH - warning_cargo_WIDTH)/2, WARNING_CARGO_Y);
     } else {
         hide_metasprite(warning_cargo_metasprite, WARNING_CARGO_START);
     }
@@ -400,7 +407,7 @@ void draw_warning_cargo(void){
 
 void draw_warning_fuel(void){
     if (display_warning_fuel == TRUE) {
-        move_metasprite_ex(warning_fuel_metasprite, 0, WARNING_PALETTE, WARNING_FUEL_START, (SCREENWIDTH - warningfuel_WIDTH)/2, WARNING_FUEL_Y);
+        move_metasprite_ex(warning_fuel_metasprite, 0, WARNING_PALETTE, WARNING_FUEL_START, (SCREENWIDTH - warning_fuel_WIDTH)/2, WARNING_FUEL_Y);
     } else {
         hide_metasprite(warning_fuel_metasprite, WARNING_FUEL_START);
     }
@@ -443,14 +450,14 @@ void draw_tiles(void){
 }
 
 void init_buildings(void){
-    set_bkg_data(stationfuel_TILE_ORIGIN, stationfuel_TILE_COUNT, stationfuel_tiles);
-    set_bkg_data(stationsell_TILE_ORIGIN, stationsell_TILE_COUNT, stationsell_tiles);
-    set_bkg_data(stationupgrade_TILE_ORIGIN, stationupgrade_TILE_COUNT, stationupgrade_tiles);
+    set_bkg_data(station_fuel_TILE_ORIGIN, station_fuel_TILE_COUNT, station_fuel_tiles);
+    set_bkg_data(station_sell_TILE_ORIGIN, station_sell_TILE_COUNT, station_sell_tiles);
+    set_bkg_data(station_upgrade_TILE_ORIGIN, station_upgrade_TILE_COUNT, station_upgrade_tiles);
 }
 void draw_buildings(void){
-    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (stationfuel_HEIGHT/stationfuel_TILE_H)), (stationfuel_WIDTH/stationfuel_TILE_W), (stationfuel_HEIGHT/stationfuel_TILE_H), stationfuel_map);
-    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (stationsell_HEIGHT/stationsell_TILE_H)), (stationsell_WIDTH/stationsell_TILE_W), (stationsell_HEIGHT/stationsell_TILE_H), stationsell_map);
-    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (stationupgrade_HEIGHT/stationupgrade_TILE_H)), (stationupgrade_WIDTH/stationupgrade_TILE_W), (stationupgrade_HEIGHT/stationupgrade_TILE_H), stationupgrade_map);
+    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (station_fuel_HEIGHT/station_fuel_TILE_H)), (station_fuel_WIDTH/station_fuel_TILE_W), (station_fuel_HEIGHT/station_fuel_TILE_H), station_fuel_map);
+    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map);
+    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map);
 }
 
 void draw_sky(void){

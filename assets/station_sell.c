@@ -6,14 +6,14 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(stationsell)
+BANKREF(station_sell)
 
-const palette_color_t stationsell_palettes[4] = {
+const palette_color_t station_sell_palettes[4] = {
 	RGB8(140,173, 40), RGB8(108,148, 33), RGB8( 66,107, 41), RGB8( 33, 66, 49)
 	
 };
 
-const uint8_t stationsell_tiles[560] = {
+const uint8_t station_sell_tiles[560] = {
 	0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,
@@ -157,7 +157,7 @@ const uint8_t stationsell_tiles[560] = {
 	};
 
 
-const unsigned char stationsell_map[40] = {
+const unsigned char station_sell_map[40] = {
 	0x96,0x97,0x98,0x98,0x99,0x9a,0x96,0x96,
 	0x9b,0x9c,0x9d,0x9e,0x9f,0xa0,0xa1,0x96,
 	0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,

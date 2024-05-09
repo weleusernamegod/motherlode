@@ -6,10 +6,10 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(menubuttons)
+BANKREF(main_menu_buttons)
 
 
-const uint8_t menubuttons_tiles[336] = {
+const uint8_t main_menu_buttons_tiles[336] = {
 	0x00,0x00,0x02,0x00,
 	0x03,0x00,0x02,0x00,
 	0x02,0x00,0x02,0x00,
@@ -117,7 +117,7 @@ const uint8_t menubuttons_tiles[336] = {
 	
 };
 
-const metasprite_t menubuttons_metasprite0[] = {
+const metasprite_t main_menu_buttons_metasprite0[] = {
 	METASPR_ITEM(-12, -28, 0, S_PAL(0)),
 	METASPR_ITEM(0, 8, 1, S_PAL(0)),
 	METASPR_ITEM(0, 8, 2, S_PAL(0)),
@@ -142,6 +142,6 @@ const metasprite_t menubuttons_metasprite0[] = {
 	METASPR_TERM
 };
 
-const metasprite_t* const menubuttons_metasprites[1] = {
-	menubuttons_metasprite0
+const metasprite_t* const main_menu_buttons_metasprites[1] = {
+	main_menu_buttons_metasprite0
 };

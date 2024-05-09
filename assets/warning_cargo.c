@@ -6,10 +6,10 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(warningcargo)
+BANKREF(warning_cargo)
 
 
-const uint8_t warningcargo_tiles[112] = {
+const uint8_t warning_cargo_tiles[112] = {
 	0xfb,0x00,0x82,0x00,
 	0x83,0x00,0x82,0x00,
 	0xfa,0x00,0x00,0x00,

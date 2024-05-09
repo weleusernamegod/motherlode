@@ -6,14 +6,14 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(shoptiles)
+BANKREF(shop_tiles)
 
-const palette_color_t shoptiles_palettes[4] = {
+const palette_color_t shop_tiles_palettes[4] = {
 	RGB8(140,173, 40), RGB8(108,148, 33), RGB8( 33, 66, 49), RGB8(  0,  0,  0)
 	
 };
 
-const uint8_t shoptiles_tiles[9216] = {
+const uint8_t shop_tiles_tiles[9216] = {
 	0xff,0x00,0x80,0x00,
 	0x80,0x00,0x80,0x00,
 	0x80,0x00,0x80,0x00,
