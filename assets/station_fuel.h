@@ -11,7 +11,7 @@
 #define station_fuel_TILE_H 8
 #define station_fuel_WIDTH 56
 #define station_fuel_HEIGHT 32
-#define station_fuel_TILE_COUNT 22
+#define station_fuel_TILE_COUNT 23
 #define station_fuel_PALETTE_COUNT 1
 #define station_fuel_COLORS_PER_PALETTE 4
 #define station_fuel_TOTAL_COLORS 4
@@ -20,7 +20,7 @@
 BANKREF_EXTERN(station_fuel)
 
 extern const palette_color_t station_fuel_palettes[4];
-extern const uint8_t station_fuel_tiles[352];
+extern const uint8_t station_fuel_tiles[368];
 
 extern const unsigned char station_fuel_map[28];
 #define station_fuel_map_attributes station_fuel_map

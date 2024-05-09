@@ -169,6 +169,7 @@ void update_movement(void) {
             horizontal_movement_pixel.w = 0;
             horizontal_movement = 0;
             current_bkg_color = depth * 16;
+            absolute_movement = 0;
 
             // reset position (h and l) to account for rounding errors
             width_pixel.h = 16 + (width - width_offset) * 16, width_pixel.l = 0;

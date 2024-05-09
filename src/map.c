@@ -339,7 +339,7 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
 void draw_test(void) {
     char string1[10];
     char string2[10];
-    itoa(upward_velocity, string1, 10);
+    itoa(absolute_movement, string1, 10);
     itoa(abs(velocity), string2, 10);
     draw_text(2,2,string1,5,FALSE,0);
     draw_text(10,2,string2,5,FALSE,0);
