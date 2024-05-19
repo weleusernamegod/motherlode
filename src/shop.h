@@ -40,13 +40,13 @@ extern MenuState currentState;
 extern Menu *currentMenu;
 
 void init_shop(void);
-void init_shop_tiles_palettes(void);
+void init_upgrade_tiles_palettes(void);
 void updateMetaSpritePosition(uint8_t currentSelection);
 void update_upgrade_tick(MenuState currentState);
 void display_menu(Menu *menu);
 void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type);
-void load_sub_shop_tiles(void);
-void load_main_shop_tiles(void);
+void load_sub_upgrade_tiles(void);
+void load_main_upgrade_tiles(void);
 void write_main_shop_text(void);
 void write_sub_shop_text(void);
 void change_sub_shop_tile_palettes (void);

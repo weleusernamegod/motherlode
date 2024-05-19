@@ -10,7 +10,7 @@
 
 // shop
 #define SHOP_FRAME_START 151
-#define SHOP_TILES_START 160
+#define upgrade_tiles_START 160
 #define UPGRADE_TICK_TILE 12
 
 #define STATION_Y 5
@@ -68,11 +68,12 @@
 #define MAX_MINABLE_MATERIAL DIAMOND
 
 // movement
-#define METATILES_PER_SCREEN 9
+#define METATILES_PER_SCREEN 8
 #define GROUND 5
 #define UNDERGROUND (GROUND + 1)
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
-#define BOTTOM 0    // Offset from the bottom edge of the screen, to account for the nav/window element
+#define BOTTOM 0    // Offset from the bottom edge of the screen
+#define TOP 1    // Offset from the top edge of the screen, to account for the nav/window element
 #define LEFT 1
 #define RIGHT 2
 #define UP 3
@@ -93,6 +94,7 @@
 #define DRILL_V_START 6
 #define PROP_START 8
 #define GAME_OVER_START 8
+#define A_BUTTON_START 19
 #define WARNING_CARGO_START 23
 #define WARNING_FUEL_START 30
 #define PROGRESSBAR_HULL_START 35

@@ -11,7 +11,7 @@
 #define shop_frame_TILE_H 8
 #define shop_frame_WIDTH 160
 #define shop_frame_HEIGHT 144
-#define shop_frame_TILE_COUNT 9
+#define shop_frame_TILE_COUNT 10
 #define shop_frame_PALETTE_COUNT 1
 #define shop_frame_COLORS_PER_PALETTE 4
 #define shop_frame_TOTAL_COLORS 4
@@ -20,7 +20,7 @@
 BANKREF_EXTERN(shop_frame)
 
 extern const palette_color_t shop_frame_palettes[4];
-extern const uint8_t shop_frame_tiles[144];
+extern const uint8_t shop_frame_tiles[160];
 
 extern const unsigned char shop_frame_map[360];
 #define shop_frame_map_attributes shop_frame_map

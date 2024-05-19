@@ -31,6 +31,7 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
+    currentGameState = GAME_STATE_NEW_GAME;
 
     while (1) {
         switch (currentGameState) {
@@ -52,7 +53,7 @@ void main(void) {
 
             case GAME_STATE_NEW_GAME:
                 SWITCH_ROM(1);
-                generate_map(ROWS);
+                generate_map(32);
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();
@@ -81,7 +82,7 @@ void main(void) {
                 init_character();
                 draw_character();
                 move_or_scroll_character();
-
+                init_a_button();
                 init_game_over();
                 init_warning();
                 calculate_cargo();
@@ -111,7 +112,7 @@ void main(void) {
                 init_clear_screen();
                 init_font();
                 init_shop();
-                init_shop_tiles_palettes();
+                init_upgrade_tiles_palettes();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     shop_menu_loop();
@@ -122,8 +123,8 @@ void main(void) {
             case GAME_STATE_SELL_MENU:
                 turn_screen_on();
                 sell_all_ores();
-                handle_cargo();
                 display_warning_cargo = FALSE;
+                handle_cargo();
                 currentGameState = GAME_STATE_CONTINUE;
                 break;
             case GAME_STATE_FUEL_MENU:

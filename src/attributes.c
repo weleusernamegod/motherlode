@@ -155,7 +155,7 @@ void init_attributes(void){
     player.radiator.color_palette[5] = palette_default;
 
     player.cargo.attribute_name = "cargo bay";
-    player.cargo.attribute_unit = "M3";
+    player.cargo.attribute_unit = "M&";
     player.cargo.upgrade_level = 0;
     player.cargo.upgrade_value[0] = 7;
     player.cargo.upgrade_value[1] = 15;

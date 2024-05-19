@@ -40,13 +40,14 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/tile.png -c assets/tile.c -spr8x8 -tiles_only -no_palettes -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/station_fuel.png -c assets/station_fuel.c -spr8x8 -map -tile_origin 128 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/station_sell.png -c assets/station_sell.c -spr8x8 -map -tile_origin 150 -noflip -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -tile_origin 185 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/station_sell.png -c assets/station_sell.c -spr8x8 -map -tile_origin 151 -noflip -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -tile_origin 187 -noflip -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/warning_cargo.png -c assets/warning_cargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/warning_fuel.png -c assets/warning_fuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
-	/usr/local/opt/gbdk/bin/png2asset png/game_over.png -c assets/game_over.c -spr8x8 -no_palettes -noflip -keep_duplicate_tiles -tile_origin 64 -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/game_over.png -c assets/game_over.c -spr8x8 -no_palettes -noflip -tile_origin 64 -b 1
+	/usr/local/opt/gbdk/bin/png2asset png/a_button.png -c assets/a_button.c -spr8x8 -no_palettes -noflip -sh 16 -tile_origin 96 -b 1
 
-	/usr/local/opt/gbdk/bin/png2asset png/shop_tiles.png -c assets/shop_tiles.c -spr8x8 -tiles_only -noflip -keep_duplicate_tiles -b 2
+	/usr/local/opt/gbdk/bin/png2asset png/upgrade_tiles.png -c assets/upgrade_tiles.c -spr8x8 -noflip -keep_palette_order -max_palettes 32 -keep_duplicate_tiles -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/shop_frame.png -c assets/shop_frame.c -spr8x8 -map -noflip -tile_origin 151 -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/shop_highlight_frame.png -c assets/shop_highlight_frame.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
 

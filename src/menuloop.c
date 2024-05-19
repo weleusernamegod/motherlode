@@ -25,12 +25,12 @@ void shop_menu_loop(void) {
             currentMenu = &main_menu;
             change_main_shop_tile_palettes();
             write_main_shop_text();
-            load_main_shop_tiles();
+            load_main_upgrade_tiles();
         } else {
             currentMenu = menu_numbers[currentState];
             change_sub_shop_tile_palettes();
             write_sub_shop_text();
-            load_sub_shop_tiles();
+            load_sub_upgrade_tiles();
         }
 
         update_menu = FALSE;  // Reset the update flag after updating the screen

@@ -6,12 +6,12 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define station_sell_TILE_ORIGIN 150
+#define station_sell_TILE_ORIGIN 151
 #define station_sell_TILE_W 8
 #define station_sell_TILE_H 8
 #define station_sell_WIDTH 64
 #define station_sell_HEIGHT 40
-#define station_sell_TILE_COUNT 35
+#define station_sell_TILE_COUNT 36
 #define station_sell_PALETTE_COUNT 1
 #define station_sell_COLORS_PER_PALETTE 4
 #define station_sell_TOTAL_COLORS 4
@@ -20,7 +20,7 @@
 BANKREF_EXTERN(station_sell)
 
 extern const palette_color_t station_sell_palettes[4];
-extern const uint8_t station_sell_tiles[560];
+extern const uint8_t station_sell_tiles[576];
 
 extern const unsigned char station_sell_map[40];
 #define station_sell_map_attributes station_sell_map

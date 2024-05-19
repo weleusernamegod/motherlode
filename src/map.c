@@ -34,6 +34,7 @@
 #include "../assets/station_upgrade.h"
 
 #include "../assets/game_over.h"
+#include "../assets/a_button.h"
 #include "../assets/warning_cargo.h"
 #include "../assets/warning_fuel.h"
 
@@ -262,7 +263,7 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uin
 
 
 void spawn_bkg_row(void) {
-        if (depth > METATILES_PER_SCREEN) { // just a guess, tested and found out it has to be 9
+        if (depth >= METATILES_PER_SCREEN) { // just a guess, tested and found out it has to be 8
             if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) set_4bkg_tiles(level_array, 0, depth + 4, 1, 16);
             else if (depth - depth_offset == THRESHOLD) set_4bkg_tiles(level_array, 0, depth - 4, 1, 16);
         }
@@ -383,6 +384,20 @@ const metasprite_t warning_fuel_metasprite[] = {
     {.dy=0, .dx=8, .dtile=warning_fuel_TILE_ORIGIN+4, .props=0},
 	METASPR_TERM
 };
+
+void init_a_button(void){
+    set_sprite_data(a_button_TILE_ORIGIN, a_button_TILE_COUNT, a_button_tiles);
+}
+
+void draw_a_button(void){
+    if (animation_frames_left == 0 && (frame_counter % (60 / (sizeof(a_button_metasprites) >> 1)) == 0)) {
+            move_metasprite_ex(a_button_metasprites[(frame_counter / (60 / (sizeof(a_button_metasprites) >> 1))) % (sizeof(a_button_metasprites) >> 1)], a_button_TILE_ORIGIN, PALETTE_DEFAULT, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
+    }
+}
+
+void hide_a_button(void){
+    hide_metasprite(a_button_metasprites[0], A_BUTTON_START);
+}
 
 void init_game_over(void){
     set_sprite_data(game_over_TILE_ORIGIN, game_over_TILE_COUNT, game_over_tiles);

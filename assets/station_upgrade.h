@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define station_upgrade_TILE_ORIGIN 185
+#define station_upgrade_TILE_ORIGIN 187
 #define station_upgrade_TILE_W 8
 #define station_upgrade_TILE_H 8
 #define station_upgrade_WIDTH 72

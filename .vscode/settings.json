@@ -26,7 +26,8 @@
         "map.h": "c",
         "drill_h.h": "c",
         "level.ba0.h": "c",
-        "warning_cargo.h": "c"
+        "warning_cargo.h": "c",
+        "game_over.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

@@ -13,7 +13,7 @@
 #include "../assets/shop_highlight_frame.h"
 #include "../assets/main_menu_buttons.h"
 #include "../assets/shop_frame.h"
-#include "../assets/shop_tiles.h"
+#include "../assets/upgrade_tiles.h"
 
 #include "globals.h"
 #include "constants.h"
@@ -89,7 +89,7 @@ void init_shop(void) {
     update_menu = TRUE; // always update the menu the first time the player enters the shop
 }
 
-void init_shop_tiles_palettes(void) {
+void init_upgrade_tiles_palettes(void) {
     // write every option in the menu with another palette from 2 to 7
     uint8_t x_coords[] = {3, 8, 13, 3, 8, 13};
     uint8_t y_coords[] = {5, 5, 5, 10, 10, 10};
@@ -136,7 +136,7 @@ void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t posit
     for (uint8_t i = 0; i < 16; i++){
         array[i] = tilestart+i;
     }
-    set_win_data(tilestart, 16, &shop_tiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
+    set_win_data(tilestart, 16, &upgrade_tiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
     if (position == 0) set_win_tiles(3, 5, 4, 4, array);
     else if (position == 1) set_win_tiles(8, 5, 4, 4, array);
     else if (position == 2) set_win_tiles(13, 5, 4, 4, array);
@@ -145,14 +145,14 @@ void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t posit
     else if (position == 5) set_win_tiles(13, 10, 4, 4, array);
 }
 
-void load_sub_shop_tiles(void) {
+void load_sub_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_shop_single_tile(SHOP_TILES_START + 16 * i, i, i, currentState);
+        load_shop_single_tile(upgrade_tiles_START + 16 * i, i, i, currentState);
     }
 }
-void load_main_shop_tiles(void) {
+void load_main_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_shop_single_tile(SHOP_TILES_START + i * 16, attributes_numbers[i]->upgrade_level, i, i);
+        load_shop_single_tile(upgrade_tiles_START + i * 16, attributes_numbers[i]->upgrade_level, i, i);
     }
 }
 

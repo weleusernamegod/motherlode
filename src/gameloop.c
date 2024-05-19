@@ -23,7 +23,7 @@ void game_loop(void) {
         initiate_movement();
     }
     update_movement();
-    draw_test();
+    //draw_test();
     if (tile_mined == TRUE) {
         if (ore_mined == TRUE) {
         update_inventory();

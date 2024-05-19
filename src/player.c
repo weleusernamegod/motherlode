@@ -229,7 +229,7 @@ void move_left(uint8_t frames){
 
 void move_right(uint8_t frames){
     player.speed = calculate_speed(frames);
-    if (width - width_offset == (8 - THRESHOLD) + 1 && width < (8 - THRESHOLD) + 7) {
+    if (width - width_offset == (METATILES_PER_SCREEN - THRESHOLD) + 1 && width < (METATILES_PER_SCREEN - THRESHOLD) + 7) {
         width_offset++;
         width++;
         scroll_x_per_frame.w = player.speed.w;
@@ -242,7 +242,7 @@ void move_right(uint8_t frames){
 
 void move_up(uint8_t frames){
     player.speed = calculate_speed(frames);
-    if (depth - depth_offset == THRESHOLD && depth > THRESHOLD) {
+    if (depth - depth_offset == THRESHOLD + TOP && depth > THRESHOLD + TOP) {
         depth_offset--;
         depth--;
         scroll_y_per_frame.w = - player.speed.w;
@@ -255,7 +255,7 @@ void move_up(uint8_t frames){
 
 void move_down(uint8_t frames){
     player.speed = calculate_speed(frames);
-    if (depth - depth_offset == (8 - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
+    if (depth - depth_offset == (METATILES_PER_SCREEN - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
         depth_offset++;
         depth++;
         scroll_y_per_frame.w = player.speed.w;
@@ -281,7 +281,8 @@ void move(char direction, char mode){
             if (direction == DOWN) next_tile = next_tile_down;
             frames = calculate_frames();
         } else if (mode == DRIVE) {
-            if (next_tile_down != EMPTY) velocity = 0;
+            // if (next_tile_down != EMPTY) velocity = 0; // attempt to keep velocity when flying
+            velocity = 0;
             frames = 16;
         } else if (mode == ACCELERATE) {
             if (next_tile_up != EMPTY) velocity = 0;
@@ -426,20 +427,17 @@ Station_proximity station_proximity = ENTER_NO_STATION;
 void proximity_check_station(void) {
     // Check for entering the upgrade station
     if (depth == STATION_Y && width == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET) {
-        if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
-            station_proximity = ENTER_UPGRADE_STATION;
-        }
+        station_proximity = ENTER_UPGRADE_STATION;
+        draw_a_button();
     } else if (depth == STATION_Y && width == STATION_SELL_X + STATION_SELL_DOOR_OFFSET) {
-        if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
-            station_proximity = ENTER_SELL_STATION;
-        }
+        station_proximity = ENTER_SELL_STATION;
+        draw_a_button();
     } else if (depth == STATION_Y && width == STATION_FUEL_X + STATION_FUEL_DOOR_OFFSET) {
-        if (animation_frames_left == 0 && station_proximity == ENTER_NO_STATION) {
-            station_proximity = ENTER_FUEL_STATION;
-        }
+        station_proximity = ENTER_FUEL_STATION;
+        draw_a_button();
     } else {
-        // Update player's station proximity state if they are not near any station
         station_proximity = ENTER_NO_STATION;
+        hide_a_button();
     }
 }
 
