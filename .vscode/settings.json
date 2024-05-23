@@ -13,7 +13,7 @@
         "rover.h": "c",
         "splashscreen.h": "c",
         "cgb.h": "c",
-        "tile.h": "c",
+        "ore_tiles.h": "c",
         "stdint.h": "c",
         "gameloop.h": "c",
         "stdio.h": "c",
@@ -27,7 +27,8 @@
         "drill_h.h": "c",
         "level.ba0.h": "c",
         "warning_cargo.h": "c",
-        "game_over.h": "c"
+        "game_over.h": "c",
+        "metasprites.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

@@ -21,7 +21,7 @@
 
 #include "../assets/rover.h"
 #include "../assets/nav.h"
-#include "../assets/tile.h"
+#include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
 
 #include "bankref.h"

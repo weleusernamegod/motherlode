@@ -35,12 +35,6 @@ void init_attributes(void){
     player.drill.upgrade_name[3] = "titanium drill";
     player.drill.upgrade_name[4] = "diamond drill";
     player.drill.upgrade_name[5] = "platinum drill";
-    player.drill.color_palette[0] = palette_default;
-    player.drill.color_palette[1] = palette_default;
-    player.drill.color_palette[2] = palette_default;
-    player.drill.color_palette[3] = palette_default;
-    player.drill.color_palette[4] = palette_default;
-    player.drill.color_palette[5] = palette_default;
 
     player.hull.attribute_name = "hull";
     player.hull.attribute_unit = "PT";
@@ -63,12 +57,6 @@ void init_attributes(void){
     player.hull.upgrade_name[3] = "steel hull";
     player.hull.upgrade_name[4] = "platinum hull";
     player.hull.upgrade_name[5] = "enegry shield";
-    player.hull.color_palette[0] = palette_default;
-    player.hull.color_palette[1] = palette_default;
-    player.hull.color_palette[2] = palette_default;
-    player.hull.color_palette[3] = palette_default;
-    player.hull.color_palette[4] = palette_default;
-    player.hull.color_palette[5] = palette_default;
 
     player.engine.attribute_name = "engine";
     player.engine.attribute_unit = "HP";
@@ -91,12 +79,6 @@ void init_attributes(void){
     player.engine.upgrade_name[3] = "v6 3.8 ltr";
     player.engine.upgrade_name[4] = "v8 5.0 ltr turbo";
     player.engine.upgrade_name[5] = "v16 jaguar";
-    player.engine.color_palette[0] = palette_default;
-    player.engine.color_palette[1] = palette_default;
-    player.engine.color_palette[2] = palette_default;
-    player.engine.color_palette[3] = palette_default;
-    player.engine.color_palette[4] = palette_default;
-    player.engine.color_palette[5] = palette_default;
 
     player.fuel.attribute_name = "fueltank";
     player.fuel.attribute_unit = "LTR";
@@ -119,12 +101,6 @@ void init_attributes(void){
     player.fuel.upgrade_name[3] = "titanic tank";
     player.fuel.upgrade_name[4] = "leviathan tank";
     player.fuel.upgrade_name[5] = "liquid gas";
-    player.fuel.color_palette[0] = palette_default;
-    player.fuel.color_palette[1] = palette_default;
-    player.fuel.color_palette[2] = palette_default;
-    player.fuel.color_palette[3] = palette_default;
-    player.fuel.color_palette[4] = palette_default;
-    player.fuel.color_palette[5] = palette_default;
 
     player.radiator.attribute_name = "radiator";
     player.radiator.attribute_unit = "%";
@@ -147,12 +123,6 @@ void init_attributes(void){
     player.radiator.upgrade_name[3] = "dual turbines";
     player.radiator.upgrade_name[4] = "puron cooling";
     player.radiator.upgrade_name[5] = "tri-turbine";
-    player.radiator.color_palette[0] = palette_default;
-    player.radiator.color_palette[1] = palette_default;
-    player.radiator.color_palette[2] = palette_default;
-    player.radiator.color_palette[3] = palette_default;
-    player.radiator.color_palette[4] = palette_default;
-    player.radiator.color_palette[5] = palette_default;
 
     player.cargo.attribute_name = "cargo bay";
     player.cargo.attribute_unit = "M&";
@@ -175,14 +145,9 @@ void init_attributes(void){
     player.cargo.upgrade_name[3] = "gigantic bay";
     player.cargo.upgrade_name[4] = "titanic bay";
     player.cargo.upgrade_name[5] = "leviathan bay";
-    player.cargo.color_palette[0] = palette_default;
-    player.cargo.color_palette[1] = palette_default;
-    player.cargo.color_palette[2] = palette_default;
-    player.cargo.color_palette[3] = palette_default;
-    player.cargo.color_palette[4] = palette_default;
-    player.cargo.color_palette[5] = palette_default;
 
-    player.money = 0;
+
+    player.money = 14000;
     player.speed.l = 0;
     player.speed.h = 16;
     player.prev_speed.w = player.speed.w;

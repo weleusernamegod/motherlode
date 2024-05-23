@@ -9,9 +9,7 @@
 #define MENU_ITEMS 3
 
 // shop
-#define SHOP_FRAME_START 151
-#define upgrade_tiles_START 160
-#define UPGRADE_TICK_TILE 12
+#define UPGRADE_TICK_TILE 39
 
 #define STATION_Y 5
 #define STATION_FUEL_X 0
@@ -32,30 +30,53 @@
 
 // color palettes
 #define PALETTE_DEFAULT 0
-#define PALETTE_DIRT 1
-#define PALETTE_GRAS 5
-#define PALETTE_STONE 1
+#define PALETTE_DIRT 2
+
+// group 1
+// default 0
+#define PALETTE_GRAS 1
 #define PALETTE_COAL 2
 #define PALETTE_IRON 3
+// palette sky 4
+// palette station 5
+// palette station 6
+// palette station 7
+
+// group 2
+// default 0
+#define PALETTE_STONE 1
+// coal 2
+// iron 3
 #define PALETTE_COPPER 4
 #define PALETTE_TIN 5
 #define PALETTE_SILVER 6
 #define PALETTE_GOLD 7
+
+// group 3
 #define PALETTE_MITHRIL 2
 #define PALETTE_PLATINUM 3
 #define PALETTE_TITANIUM 4
 #define PALETTE_OBSIDIUM 5
 #define PALETTE_ELEMENTIUM 6
 #define PALETTE_ADAMANTITE 7
+
+// group 4
 #define PALETTE_EMERALD 2
 #define PALETTE_RUBY 3
 #define PALETTE_DIAMOND 4
-#define PALETTE_AQUAMARINE 5
+//
 #define PALETTE_LAVA 6
 #define PALETTE_GAS 7
+
+
+// group 5
 #define PALETTE_BONES 2
 #define PALETTE_SKULL 3
 #define PALETTE_ARTEFACT 4
+#define PALETTE_AQUAMARINE 5
+// lava 6
+// gas 7
+
 
 // general
 #define ROWS 256

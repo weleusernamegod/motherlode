@@ -30,17 +30,21 @@ BANKREF(bank_shop)
 
 
 const metasprite_t metasprite_shop_highlight_frame[] = {
-    {.dy=16, .dx=8, .dtile=1, .props=0},
+    {.dy=15, .dx=7, .dtile=1, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
+    {.dy=0, .dx=2, .dtile=2, .props=0},
     {.dy=0, .dx=8, .dtile=1, .props=0b00100000},
     {.dy=8, .dx=0, .dtile=3, .props=0},
     {.dy=8, .dx=0, .dtile=3, .props=0},
+    {.dy=2, .dx=0, .dtile=3, .props=0},
     {.dy=8, .dx=0, .dtile=1, .props=0b01100000},
     {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
+    {.dy=0, .dx=-2, .dtile=2, .props=0b01000000},
     {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
     {.dy=0, .dx=-8, .dtile=1, .props=0b01000000},
     {.dy=-8, .dx=0, .dtile=3, .props=0b00100000},
+    {.dy=-2, .dx=0, .dtile=3, .props=0b00100000},
     {.dy=-8, .dx=0, .dtile=3, .props=0b00100000},
 	METASPR_TERM
 };
@@ -70,20 +74,14 @@ void init_shop(void) {
     set_sprite_palette(0, 1, palette_default);
     set_sprite_palette(1, 1, palette_light_grey);
 
-    set_win_data(SHOP_FRAME_START, shop_frame_TILE_COUNT, shop_frame_tiles);
+    set_win_data(shop_frame_TILE_ORIGIN, shop_frame_TILE_COUNT, shop_frame_tiles);
     set_win_tiles(0, 0, 20, 18, shop_frame_map);
 
     set_bkg_palette(0, 1, palette_default);
     set_bkg_palette(1, 1, palette_light_grey);
-    set_bkg_palette(2, 1, palette_copper);
-    set_bkg_palette(3, 1, palette_copper);
-    set_bkg_palette(4, 1, palette_copper);
-    set_bkg_palette(5, 1, palette_copper);
-    set_bkg_palette(6, 1, palette_copper);
-    set_bkg_palette(7, 1, palette_copper);
 
     set_sprite_data(1, shop_highlight_frame_TILE_COUNT, shop_highlight_frame_tiles); // blank tile in the end
-    set_sprite_tile(12, 4); // the tick for the upgrades
+    set_sprite_tile(UPGRADE_TICK_TILE, 4); // the tick for the upgrades
     move_metasprite_ex(metasprite_shop_highlight_frame, 0, 0, 0, 24, 40);
 
     update_menu = TRUE; // always update the menu the first time the player enters the shop
@@ -147,12 +145,12 @@ void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t posit
 
 void load_sub_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_shop_single_tile(upgrade_tiles_START + 16 * i, i, i, currentState);
+        load_shop_single_tile(upgrade_tiles_TILE_ORIGIN + 16 * i, i, i, currentState);
     }
 }
 void load_main_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_shop_single_tile(upgrade_tiles_START + i * 16, attributes_numbers[i]->upgrade_level, i, i);
+        load_shop_single_tile(upgrade_tiles_TILE_ORIGIN + i * 16, attributes_numbers[i]->upgrade_level, i, i);
     }
 }
 
@@ -199,14 +197,16 @@ void change_sub_shop_tile_palettes (void) {
         if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
             set_bkg_palette(2 + i, 1, palette_light_grey);
         } else {
-            set_bkg_palette(2 + i, 1, attributes_numbers[currentState]->color_palette[i]);
+            set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(currentState * 6 + i) * 4]);
+            // set_bkg_palette(2 + i, 1, attributes_numbers[currentState]->color_palette[i]);
         }
     }
 }
 
 void change_main_shop_tile_palettes (void) {
     for (uint8_t i = 0; i < 6; i++) {
-        set_bkg_palette(2 + i, 1, attributes_numbers[i]->color_palette[attributes_numbers[i]->upgrade_level]);
+        set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(6 * i + attributes_numbers[i]->upgrade_level) * 4]);
+        // set_bkg_palette(2 + i, 1, attributes_numbers[i]->color_palette[attributes_numbers[i]->upgrade_level]);
     }
 }
 

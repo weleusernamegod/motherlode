@@ -8,7 +8,7 @@
 
 BANKREF(upgrade_tiles)
 
-const palette_color_t upgrade_tiles_palettes[128] = {
+const palette_color_t upgrade_tiles_palettes[144] = {
 	RGB8(255,255,255), RGB8(207,207,207), RGB8(159,159,159), RGB8( 67, 67, 67)
 	,
 	RGB8(255,255,255), RGB8(110,120,120), RGB8( 63, 76, 76), RGB8( 67, 67, 67)
@@ -72,6 +72,14 @@ const palette_color_t upgrade_tiles_palettes[128] = {
 	RGB8(255,255,255), RGB8(173,188,168), RGB8(150,168,144), RGB8( 67, 67, 67)
 	,
 	RGB8(255,255,255), RGB8(224,215,190), RGB8(145,137,113), RGB8( 67, 67, 67)
+	,
+	RGB8(255,255,255), RGB8(200,178,174), RGB8(176,151,147), RGB8( 67, 67, 67)
+	,
+	RGB8(255,255,255), RGB8(197,141,132), RGB8(164,121,114), RGB8( 67, 67, 67)
+	,
+	RGB8(255,255,255), RGB8(122,145,114), RGB8( 95,110,107), RGB8( 67, 67, 67)
+	,
+	RGB8(255,255,255), RGB8(152,119,164), RGB8(106, 93,111), RGB8( 67, 67, 67)
 	
 };
 

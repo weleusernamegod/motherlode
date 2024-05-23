@@ -26,7 +26,7 @@
 #include "../assets/drill_v.h"
 #include "../assets/prop.h"
 #include "../assets/nav.h"
-#include "../assets/tile.h"
+#include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
 
 #include "../assets/station_fuel.h"
@@ -178,9 +178,50 @@ void update_progressbar_palette(player_attributes *attribute, uint8_t palette_in
 }
 
 const Palette_group palette_groups[] = {
-    { {palette_background, palette_stone, palette_coal, palette_iron, palette_copper, palette_gras, palette_sky, palette_station}, 0},
-    { {palette_background, palette_stone, palette_coal, palette_iron, palette_copper, palette_tin, palette_silver, palette_gold}, 9},
+    { 
+        {
+            palette_background,
+            &ore_tiles_palettes[(GRAS - 1) * 4],
+            &ore_tiles_palettes[(COAL - 1) * 4],
+            &ore_tiles_palettes[(IRON - 1) * 4],
+
+            palette_sky,
+            palette_station,
+            palette_station,
+            palette_station,
+            },
+        0},
+
+    { 
+        {
+            palette_background,
+            &ore_tiles_palettes[(STONE - 1) * 4],
+            &ore_tiles_palettes[(COAL - 1) * 4],
+            &ore_tiles_palettes[(IRON - 1) * 4],
+            &ore_tiles_palettes[(COPPER - 1) * 4],
+            &ore_tiles_palettes[(TIN - 1) * 4],
+            &ore_tiles_palettes[(SILVER - 1) * 4],
+            &ore_tiles_palettes[(GOLD - 1) * 4],
+        },
+        9 // below depth 9 change to this palette
+    },
+    { 
+        {
+            palette_background,
+            &ore_tiles_palettes[(STONE - 1) * 4],
+            &ore_tiles_palettes[(MITHRIL - 1) * 4],
+            &ore_tiles_palettes[(PLATINUM - 1) * 4],
+            &ore_tiles_palettes[(COPPER - 1) * 4],
+            &ore_tiles_palettes[(SILVER - 1) * 4],
+            &ore_tiles_palettes[(GOLD - 1) * 4],
+        },
+        30 // below depth 30 change to this palette
+    },
+
+
+
 };
+
 const int palette_groups_count = sizeof(palette_groups) / sizeof(palette_groups[0]);
 const Palette_group* last_used_palette_group = NULL;  // Initialize to NULL
 
@@ -458,7 +499,7 @@ void init_progressbar(void){
 }
 
 void init_tiles(void){
-    set_bkg_data(TILE_START, tile_TILE_COUNT, tile_tiles);
+    set_bkg_data(TILE_START, ore_tiles_TILE_COUNT, ore_tiles_tiles);
 }
 void draw_tiles(void){
     set_4bkg_tiles(level_array, 0, 0, 16, 16);

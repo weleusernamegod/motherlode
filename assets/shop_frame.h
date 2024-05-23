@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define shop_frame_TILE_ORIGIN 151
+#define shop_frame_TILE_ORIGIN 144
 #define shop_frame_TILE_W 8
 #define shop_frame_TILE_H 8
 #define shop_frame_WIDTH 160

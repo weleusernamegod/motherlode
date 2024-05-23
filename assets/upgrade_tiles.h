@@ -6,15 +6,15 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define upgrade_tiles_TILE_ORIGIN 0
+#define upgrade_tiles_TILE_ORIGIN 160
 #define upgrade_tiles_TILE_W 8
 #define upgrade_tiles_TILE_H 8
 #define upgrade_tiles_WIDTH 32
 #define upgrade_tiles_HEIGHT 1152
 #define upgrade_tiles_TILE_COUNT 576
-#define upgrade_tiles_PALETTE_COUNT 32
+#define upgrade_tiles_PALETTE_COUNT 36
 #define upgrade_tiles_COLORS_PER_PALETTE 4
-#define upgrade_tiles_TOTAL_COLORS 128
+#define upgrade_tiles_TOTAL_COLORS 144
 #define upgrade_tiles_PIVOT_X 16
 #define upgrade_tiles_PIVOT_Y 576
 #define upgrade_tiles_PIVOT_W 32
@@ -22,7 +22,7 @@
 
 BANKREF_EXTERN(upgrade_tiles)
 
-extern const palette_color_t upgrade_tiles_palettes[128];
+extern const palette_color_t upgrade_tiles_palettes[144];
 extern const uint8_t upgrade_tiles_tiles[9216];
 
 extern const metasprite_t* const upgrade_tiles_metasprites[1];
