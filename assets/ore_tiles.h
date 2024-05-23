@@ -15,16 +15,11 @@
 #define ore_tiles_PALETTE_COUNT 24
 #define ore_tiles_COLORS_PER_PALETTE 4
 #define ore_tiles_TOTAL_COLORS 96
-#define ore_tiles_PIVOT_X 8
-#define ore_tiles_PIVOT_Y 192
-#define ore_tiles_PIVOT_W 16
-#define ore_tiles_PIVOT_H 384
 
 BANKREF_EXTERN(ore_tiles)
 
 extern const palette_color_t ore_tiles_palettes[96];
 extern const uint8_t ore_tiles_tiles[1536];
 
-extern const metasprite_t* const ore_tiles_metasprites[1];
 
 #endif

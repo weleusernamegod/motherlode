@@ -11,7 +11,10 @@
 #define rover_TILE_H 8
 #define rover_WIDTH 16
 #define rover_HEIGHT 16
-#define rover_TILE_COUNT 8
+#define rover_TILE_COUNT 4
+#define rover_PALETTE_COUNT 2
+#define rover_COLORS_PER_PALETTE 4
+#define rover_TOTAL_COLORS 8
 #define rover_PIVOT_X 8
 #define rover_PIVOT_Y 8
 #define rover_PIVOT_W 16
@@ -19,8 +22,9 @@
 
 BANKREF_EXTERN(rover)
 
-extern const uint8_t rover_tiles[128];
+extern const palette_color_t rover_palettes[8];
+extern const uint8_t rover_tiles[64];
 
-extern const metasprite_t* const rover_metasprites[3];
+extern const metasprite_t* const rover_metasprites[1];
 
 #endif

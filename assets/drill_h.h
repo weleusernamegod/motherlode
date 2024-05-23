@@ -6,12 +6,15 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define drill_h_TILE_ORIGIN 9
+#define drill_h_TILE_ORIGIN 11
 #define drill_h_TILE_W 8
 #define drill_h_TILE_H 8
 #define drill_h_WIDTH 8
 #define drill_h_HEIGHT 16
 #define drill_h_TILE_COUNT 4
+#define drill_h_PALETTE_COUNT 6
+#define drill_h_COLORS_PER_PALETTE 4
+#define drill_h_TOTAL_COLORS 24
 #define drill_h_PIVOT_X 4
 #define drill_h_PIVOT_Y 8
 #define drill_h_PIVOT_W 8
@@ -19,6 +22,7 @@
 
 BANKREF_EXTERN(drill_h)
 
+extern const palette_color_t drill_h_palettes[24];
 extern const uint8_t drill_h_tiles[64];
 
 extern const metasprite_t* const drill_h_metasprites[2];

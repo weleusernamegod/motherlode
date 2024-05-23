@@ -12,17 +12,21 @@
 #define station_sell_WIDTH 64
 #define station_sell_HEIGHT 40
 #define station_sell_TILE_COUNT 36
-#define station_sell_PALETTE_COUNT 1
+#define station_sell_PALETTE_COUNT 8
 #define station_sell_COLORS_PER_PALETTE 4
-#define station_sell_TOTAL_COLORS 4
-#define station_sell_MAP_ATTRIBUTES 0
+#define station_sell_TOTAL_COLORS 32
+#define station_sell_MAP_ATTRIBUTES station_sell_map_attributes
+#define station_sell_MAP_ATTRIBUTES_WIDTH 8
+#define station_sell_MAP_ATTRIBUTES_HEIGHT 5
+#define station_sell_MAP_ATTRIBUTES_PACKED_WIDTH 8
+#define station_sell_MAP_ATTRIBUTES_PACKED_HEIGHT 5
 
 BANKREF_EXTERN(station_sell)
 
-extern const palette_color_t station_sell_palettes[4];
+extern const palette_color_t station_sell_palettes[32];
 extern const uint8_t station_sell_tiles[576];
 
 extern const unsigned char station_sell_map[40];
-#define station_sell_map_attributes station_sell_map
+extern const unsigned char station_sell_map_attributes[40];
 
 #endif

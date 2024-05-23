@@ -20,11 +20,14 @@
 #define STATION_UPGRADE_DOOR_OFFSET 1
 
 // sprite palettes
-#define ROVER_PALETTE 0
-#define DRILL_PALETTE 1
-#define HULL_BAR_PALETTE 2
-#define FUEL_BAR_PALETTE 3
-#define WARNING_PALETTE 4
+#define ROVER_PALETTE_0 0
+#define ROVER_PALETTE_1 1
+#define TRACKS_PALETTE 2
+#define DRILL_PALETTE 3
+#define HULL_BAR_PALETTE 4
+#define FUEL_BAR_PALETTE 5
+#define WARNING_PALETTE 6
+#define RESERVE_PALETTE 7
 
 #define COLOR_TO_CHANGE 1 // what color of bkg palette 0 is changing with depth
 
@@ -94,7 +97,7 @@
 #define UNDERGROUND (GROUND + 1)
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen
-#define TOP 1    // Offset from the top edge of the screen, to account for the nav/window element
+#define TOP 0    // Offset from the top edge of the screen, to account for the nav/window element
 #define LEFT 1
 #define RIGHT 2
 #define UP 3
@@ -111,9 +114,10 @@
 
 // sprites
 #define ROVER_START 0
-#define DRILL_H_START 4
-#define DRILL_V_START 6
-#define PROP_START 8
+#define TRACKS_START 4
+#define DRILL_H_START 6
+#define DRILL_V_START 8
+#define PROP_START 10
 #define GAME_OVER_START 8
 #define A_BUTTON_START 19
 #define WARNING_CARGO_START 23

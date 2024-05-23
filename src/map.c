@@ -22,6 +22,7 @@
 #include "player.h"
 
 #include "../assets/rover.h"
+#include "../assets/tracks.h"
 #include "../assets/drill_h.h"
 #include "../assets/drill_v.h"
 #include "../assets/prop.h"
@@ -59,13 +60,13 @@ void generate_map(uint16_t rows) {
                 uint8_t randValue = rand() % 100;  // Random value from 0 to 99
 
                 // Determine ore distribution based on depth
-                if (i < 30 && randValue >= 80) {
-                    // Rows 7 to 19: Ores 4 to 6
-                    tileType = rand() % 3 + 4;
-                } else if (i >= 30 && i < 50 && randValue >= 80) {
+                if (i < 20 && randValue >= 80) {
+                    // Rows 7 to 19: Ores 4 to 5
+                    tileType = rand() % 2 + 4;
+                } else if (i >= 20 && i < 40 && randValue >= 80) {
                     // Rows 20 to 39: Ores 5 to 7
                     tileType = rand() % 3 + 5;
-                } else if (i >= 50 && i < 80 && randValue >= 80) {
+                } else if (i >= 40 && i < 80 && randValue >= 80) {
                     // Rows 20 to 39: Ores 7 to 9
                     tileType = rand() % 3 + 7;
                 } else if (i >= 80 && i < 120 && randValue >= 80) {
@@ -78,7 +79,7 @@ void generate_map(uint16_t rows) {
                         // Rows 40 to 79: Ores 7 to 9
                         tileType = rand() % 3 + 7;
                     }
-                } else if (i >= 180 && randValue >= 70) {
+                } else if (i >= 120 && randValue >= 70) {
                     // Rows 80 and deeper: Rarest ores 13 and 14
                     if (randValue >= 95) {
                         tileType = 14; // Rarest ore 14
@@ -186,9 +187,9 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(IRON - 1) * 4],
 
             palette_sky,
-            palette_station,
-            palette_station,
-            palette_station,
+            &station_fuel_palettes[5*4],
+            &station_fuel_palettes[6*4],
+            &station_fuel_palettes[7*4],
             },
         0},
 
@@ -432,7 +433,7 @@ void init_a_button(void){
 
 void draw_a_button(void){
     if (animation_frames_left == 0 && (frame_counter % (60 / (sizeof(a_button_metasprites) >> 1)) == 0)) {
-            move_metasprite_ex(a_button_metasprites[(frame_counter / (60 / (sizeof(a_button_metasprites) >> 1))) % (sizeof(a_button_metasprites) >> 1)], a_button_TILE_ORIGIN, PALETTE_DEFAULT, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
+            move_metasprite_ex(a_button_metasprites[(frame_counter / (60 / (sizeof(a_button_metasprites) >> 1))) % (sizeof(a_button_metasprites) >> 1)], a_button_TILE_ORIGIN, RESERVE_PALETTE, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
     }
 }
 
@@ -478,6 +479,7 @@ void draw_hull(void){
 
 void init_character(void){
     set_sprite_data(rover_TILE_ORIGIN, rover_TILE_COUNT, rover_tiles);
+    set_sprite_data(tracks_TILE_ORIGIN, tracks_TILE_COUNT, tracks_tiles);
     set_sprite_data(drill_h_TILE_ORIGIN, drill_h_TILE_COUNT, drill_h_tiles);
     set_sprite_data(drill_v_TILE_ORIGIN, drill_v_TILE_COUNT, drill_v_tiles);
     set_sprite_data(prop_TILE_ORIGIN, prop_TILE_COUNT, prop_tiles);
@@ -511,9 +513,17 @@ void init_buildings(void){
     set_bkg_data(station_upgrade_TILE_ORIGIN, station_upgrade_TILE_COUNT, station_upgrade_tiles);
 }
 void draw_buildings(void){
+
+    VBK_REG = 0;
     set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (station_fuel_HEIGHT/station_fuel_TILE_H)), (station_fuel_WIDTH/station_fuel_TILE_W), (station_fuel_HEIGHT/station_fuel_TILE_H), station_fuel_map);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map);
+    VBK_REG = 1;
+    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (station_fuel_HEIGHT/station_fuel_TILE_H)), (station_fuel_WIDTH/station_fuel_TILE_W), (station_fuel_HEIGHT/station_fuel_TILE_H), station_fuel_map_attributes);
+    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map_attributes);
+    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map_attributes);
+    VBK_REG = 0;
+
 }
 
 void draw_sky(void){

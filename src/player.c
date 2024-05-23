@@ -16,6 +16,7 @@
 #include "map.h"
 
 #include "../assets/rover.h"
+#include "../assets/tracks.h"
 #include "../assets/drill_h.h"
 #include "../assets/drill_v.h"
 #include "../assets/prop.h"
@@ -84,7 +85,7 @@ void metasprite_prop(void){
     if (velocity != 0) move_metasprite_ex(
         prop_metasprites[absolute_movement % (sizeof(prop_metasprites) >> 1)],
         prop_TILE_ORIGIN,
-        ROVER_PALETTE,
+        ROVER_PALETTE_0,
         PROP_START,
         width_pixel.h,
         depth_pixel.h - PIXEL_FROM_CENTER);
@@ -95,20 +96,43 @@ void metasprite_rover(char direction, BOOLEAN animate){
     hide_metasprite(drill_v_metasprites[0], DRILL_V_START);
     hide_metasprite(prop_metasprites[0], PROP_START);
 
-    if (direction == LEFT) move_metasprite_ex(
-        rover_metasprites[animate * (absolute_movement % (sizeof(rover_metasprites) >> 1))],
+    if (direction == LEFT) {
+        // rover
+        move_metasprite_ex(
+        tracks_metasprites[animate * (absolute_movement % (sizeof(tracks_metasprites) >> 1))],
+        tracks_TILE_ORIGIN,
+        TRACKS_PALETTE,
+        TRACKS_START,
+        width_pixel.h,
+        depth_pixel.h + tracks_PIVOT_Y); // offset because the metasprite is centered
+
+        // tracks
+        move_metasprite_ex(
+        rover_metasprites[0],
         rover_TILE_ORIGIN,
-        ROVER_PALETTE,
+        ROVER_PALETTE_0,
         ROVER_START,
         width_pixel.h,
-        depth_pixel.h);
-    else if (direction == RIGHT) move_metasprite_flipx(
-        rover_metasprites[animate * (absolute_movement % (sizeof(rover_metasprites) >> 1))],
+        depth_pixel.h - is_drilling * absolute_movement / 2 % 2); // add some wiggle if drilling
+    } else if (direction == RIGHT) {
+        // rover
+        move_metasprite_flipx(
+        tracks_metasprites[animate * (absolute_movement % (sizeof(tracks_metasprites) >> 1))],
+        tracks_TILE_ORIGIN,
+        TRACKS_PALETTE,
+        TRACKS_START,
+        width_pixel.h,
+        depth_pixel.h + tracks_PIVOT_Y); // offset because the metasprite is centered
+
+        // tracks
+        move_metasprite_flipx(
+        rover_metasprites[0],
         rover_TILE_ORIGIN,
-        ROVER_PALETTE,
+        ROVER_PALETTE_0,
         ROVER_START,
         width_pixel.h,
-        depth_pixel.h);
+        depth_pixel.h - is_drilling * absolute_movement / 2 % 2); // add some wiggle
+    }
 }
 
 void draw_metasprite(char direction){

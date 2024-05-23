@@ -6,9 +6,15 @@
 
 
 #include "palettes.h"
+#include "attributes.h"
 #include "globals.h"
 #include "constants.h"
+
 #include "../assets/font.h"
+#include "../assets/drill_h.h"
+#include "../assets/rover.h"
+#include "../assets/tracks.h"
+#include "../assets/prop.h"
 
 void init_font(void){
     set_bkg_data(1, font_TILE_COUNT, font_tiles);
@@ -112,13 +118,13 @@ void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN l
 }
 
 void init_sprite_palettes(void){
-    set_sprite_palette(0, 1, palette_rover); // Rover
-    set_sprite_palette(1, 1, palette_drill); // Drill
-    set_sprite_palette(2, 1, palette_hull_bar); // Hull Bar
-    set_sprite_palette(3, 1, palette_fuel_bar); // Fuel Bar
-    set_sprite_palette(4, 1, palette_warnings); // Warnings
-    set_sprite_palette(5, 1, palette_default);
-    set_sprite_palette(6, 1, palette_default);
+    set_sprite_palette(0, 1, &rover_palettes[0]); // Rover
+    set_sprite_palette(1, 1, &rover_palettes[4]); // Rover
+    set_sprite_palette(2, 1, tracks_palettes); // Tracks
+    set_sprite_palette(3, 1, &drill_h_palettes[(player.drill.upgrade_level) * 4]); // Drill
+    set_sprite_palette(4, 1, palette_hull_bar); // Hull Bar
+    set_sprite_palette(5, 1, palette_fuel_bar); // Fuel Bar
+    set_sprite_palette(6, 1, palette_warnings); // Warnings
     set_sprite_palette(7, 1, palette_default);
 }
 

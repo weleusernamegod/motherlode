@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define prop_TILE_ORIGIN 17
+#define prop_TILE_ORIGIN 19
 #define prop_TILE_W 8
 #define prop_TILE_H 8
 #define prop_WIDTH 16
