@@ -29,7 +29,8 @@
 #define WARNING_PALETTE 6
 #define RESERVE_PALETTE 7
 
-#define COLOR_TO_CHANGE 1 // what color of bkg palette 0 is changing with depth
+#define COLOR_TO_CHANGE_BKG 1 // what color of bkg palette 0 is changing with depth
+#define COLOR_TO_CHANGE_SKY 0 // what color of sky to change
 
 // color palettes
 #define PALETTE_DEFAULT 0

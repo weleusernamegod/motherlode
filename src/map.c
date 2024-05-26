@@ -143,17 +143,33 @@ void interpolate_color(Background_color* result, Background_color start, Backgro
 }
 
 void change_background_color(void) {
-    int num_colors = sizeof(colors) / sizeof(colors[0]);
-    int phase_per_color = ROWS / (num_colors - 1);
+    uint8_t num_colors = sizeof(colors) / sizeof(colors[0]);
+    uint8_t phase_per_color = ROWS / (num_colors - 1);
 
-    int color_phase = depth % ROWS;
-    int index = color_phase / phase_per_color;
-    int progress = color_phase % phase_per_color;
+    uint8_t color_phase = depth % ROWS;
+    uint8_t index = color_phase / phase_per_color;
+    uint8_t progress = color_phase % phase_per_color;
 
     Background_color current_color;
     interpolate_color(&current_color, colors[index], colors[index + 1], progress, phase_per_color);
 
-    set_bkg_palette_entry(0, COLOR_TO_CHANGE, RGB8(current_color.r, current_color.g, current_color.b));
+    set_bkg_palette_entry(0, COLOR_TO_CHANGE_BKG, RGB8(current_color.r, current_color.g, current_color.b));
+}
+
+void change_sky_color(void) {
+    uint8_t r, g, b;
+
+    if (minute_counter % 2 == 0) sky_color_value += 2;
+    else sky_color_value -= 2;
+
+    r = 180 - sky_color_value;
+    g = 222 - sky_color_value;
+    b = 255 - sky_color_value;
+
+    set_bkg_palette_entry(4, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
+    set_bkg_palette_entry(5, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
+    set_bkg_palette_entry(6, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
+    set_bkg_palette_entry(7, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
 }
 
 void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index) {
@@ -185,7 +201,7 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(GRAS - 1) * 4],
             &ore_tiles_palettes[(COAL - 1) * 4],
             &ore_tiles_palettes[(IRON - 1) * 4],
-            palette_default,
+            &station_fuel_palettes[4*4],
             &station_fuel_palettes[5*4],
             &station_fuel_palettes[6*4],
             &station_fuel_palettes[7*4],
@@ -269,7 +285,7 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uin
             uint8_t palette_array[4];
 
             if (array[y][x] == EMPTY) {
-                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_TO_CHANGE;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_TO_CHANGE_BKG;
             } else if (array[y][x] == GRAS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);

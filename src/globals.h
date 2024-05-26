@@ -6,6 +6,8 @@ extern uint8_t current_menu_index;
 
 // framecounter
 extern volatile uint8_t frame_counter;
+extern volatile uint8_t second_counter;
+extern volatile uint8_t minute_counter;
 
 // bank switching
 extern uint8_t saved_bank;
@@ -71,7 +73,8 @@ extern uint8_t next_tile_down;
 extern uint8_t next_tile_left;
 extern uint8_t next_tile_right; 
 
-// shop
-extern uint8_t shop_selection;
+// graphics
+extern uint8_t sky_color_value;
+
 
 #endif // GLOBALS_H

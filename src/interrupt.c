@@ -15,7 +15,17 @@ void interrupt_VBL_window(void) {
 
 void interrupt_VBL_framecounter(void) {
     frame_counter++;  // Increment the frame counter every VBlank
-    if (frame_counter >= 60) frame_counter = 0;
+    if (frame_counter >= 60) {
+        frame_counter = 0;
+        second_counter ++;
+        if (second_counter >= 60) {
+            second_counter = 0;
+            minute_counter ++;
+            if (minute_counter >= 60) {
+            minute_counter = 0;
+            }
+        }
+    }
 }
 
 void init_framecounter(void) {

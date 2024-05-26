@@ -32,7 +32,7 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
-    currentGameState = GAME_STATE_MAIN_MENU;
+    currentGameState = GAME_STATE_NEW_GAME;
 
     while (1) {
         switch (currentGameState) {
@@ -54,7 +54,7 @@ void main(void) {
 
             case GAME_STATE_NEW_GAME:
                 SWITCH_ROM(1);
-                generate_map(ROWS);
+                generate_map(32);
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();

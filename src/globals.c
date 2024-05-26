@@ -7,6 +7,8 @@
 
 // framecounter
 volatile uint8_t frame_counter = 0;
+volatile uint8_t second_counter = 0;
+volatile uint8_t minute_counter = 0;
 
 // main menu
 uint8_t current_menu_index = 0;
@@ -63,3 +65,6 @@ uint8_t next_tile_up;
 uint8_t next_tile_down;
 uint8_t next_tile_left;
 uint8_t next_tile_right; 
+
+// graphics
+uint8_t sky_color_value;

@@ -44,6 +44,8 @@ void game_loop(void) {
         calculate_upward_velocity();
     }
 
+    if (depth <= 9 && frame_counter == 1) change_sky_color();
+
     handle_fuel();
     handle_hull();
 
