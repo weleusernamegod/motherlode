@@ -34,6 +34,7 @@
 // color palettes
 #define PALETTE_DEFAULT 0
 #define PALETTE_DIRT 2
+#define PALETTE_SKY 7
 
 // group 1
 // default 0

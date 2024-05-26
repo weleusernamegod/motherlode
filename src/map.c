@@ -185,8 +185,7 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(GRAS - 1) * 4],
             &ore_tiles_palettes[(COAL - 1) * 4],
             &ore_tiles_palettes[(IRON - 1) * 4],
-
-            palette_sky,
+            palette_default,
             &station_fuel_palettes[5*4],
             &station_fuel_palettes[6*4],
             &station_fuel_palettes[7*4],
@@ -534,7 +533,7 @@ void draw_sky(void){
     memset(sky_map, 0, sizeof(sky_map));
 
     // Initialize sky_palette array using memset
-    memset(sky_palette, 6, sizeof(sky_palette));
+    memset(sky_palette, PALETTE_SKY, sizeof(sky_palette));
 
     VBK_REG = 0;
     set_bkg_tiles(0, 0, 32, UNDERGROUND * 2, sky_map);

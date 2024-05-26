@@ -47,14 +47,6 @@ palette_color_t palette_hull_bar[4] = {
 };
 
 
-
-const palette_color_t palette_sky[4] = {
-	RGB_LIGHT_BLUE,
-	RGB_LIGHT_GREY,
-	RGB_DARK_GREY,
-	RGB_BLACK
-};
-
 const palette_color_t palette_station[4] = {
 	RGB_LIGHT_BLUE,
 	RGB_LIGHT_GREY,
