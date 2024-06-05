@@ -2,7 +2,6 @@
 #define INVENTORY_H
 
 #include <gb/gb.h>
-
 // empty
 #define EMPTY 0
 // normal
@@ -35,9 +34,11 @@
 #define SKULL 23
 #define ARTEFACT 24
 
+#define LOWEST_ORE COAL
+#define HIGHEST_ORE AQUAMARINE
+
 void update_inventory(void);
 void calculate_cargo(void);
-void sell_all_ores(void);
 void fuel_up(void);
 
 typedef struct Material {
@@ -45,7 +46,7 @@ typedef struct Material {
     uint8_t tile_number;            // Corresponding tile number for display
     uint8_t ore_resistance;         // Resistance value for mining or interaction
     uint8_t weight;                 // Weight of the material
-    uint16_t value;                  // Value of the material per piece
+    uint32_t value;                  // Value of the material per piece
     uint8_t inventory;              // How many of that type in inventory
     uint8_t color_palette;
     } Material;

@@ -9,13 +9,13 @@
 #define progressbar_TILE_ORIGIN 0
 #define progressbar_TILE_W 8
 #define progressbar_TILE_H 8
-#define progressbar_WIDTH 72
+#define progressbar_WIDTH 80
 #define progressbar_HEIGHT 8
-#define progressbar_TILE_COUNT 9
+#define progressbar_TILE_COUNT 10
 
 BANKREF_EXTERN(progressbar)
 
-extern const uint8_t progressbar_tiles[144];
+extern const uint8_t progressbar_tiles[160];
 
 
 #endif

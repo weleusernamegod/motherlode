@@ -147,7 +147,7 @@ void init_attributes(void){
     player.cargo.upgrade_name[5] = "leviathan bay";
 
 
-    player.money = 0;
+    player.money = 215000;
     player.speed.l = 0;
     player.speed.h = 16;
     player.prev_speed.w = player.speed.w;

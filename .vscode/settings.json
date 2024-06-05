@@ -4,7 +4,7 @@
         "inventory.h": "c",
         "globals.h": "c",
         "attributes.h": "c",
-        "shop.h": "c",
+        "upgrade.h": "c",
         "constants.h": "c",
         "gb.h": "c",
         "progressbar.h": "c",
@@ -21,7 +21,7 @@
         "stddef.h": "c",
         "stationrepair.h": "c",
         "station_sell.h": "c",
-        "station_upgrade.h": "c",
+        "shop.h": "c",
         "warning_fuel.h": "c",
         "map.h": "c",
         "drill_h.h": "c",
@@ -30,7 +30,8 @@
         "game_over.h": "c",
         "metasprites.h": "c",
         "font.h": "c",
-        "palettes.h": "c"
+        "palettes.h": "c",
+        "bankref.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

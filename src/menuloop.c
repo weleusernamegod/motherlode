@@ -4,7 +4,7 @@
 #include "globals.h"
 #include "general.h"
 
-#include "shop.h"
+#include "upgrade.h"
 
 void shop_menu_loop(void) {
 

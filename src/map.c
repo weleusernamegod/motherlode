@@ -384,12 +384,18 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
             case 5: tile_index = PROGRESSBAR_TILE_5_8; break;
             case 6: tile_index = PROGRESSBAR_TILE_6_8; break;
             case 7: tile_index = PROGRESSBAR_TILE_7_8; break;
-            case 8: tile_index = PROGRESSBAR_TILE_8_8; break;
+            case 8: 
+                if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
+                    tile_index = PROGRESSBAR_TILE_8_8;
+                } else {
+                    tile_index = PROGRESSBAR_TILE_END;
+                }
+                break;
         }
 
         // Set the sprite tile and move it into position
         set_sprite_tile(tilestart + i, tile_index);
-        set_sprite_prop(tilestart + i, palette);
+        set_sprite_prop(tilestart + i, 0b10000000 | palette); // set it to background and OR it with palette
         move_sprite(tilestart + i, x + i * 8, y);
     }
 }
@@ -399,26 +405,25 @@ void draw_test(void) {
     char string2[10];
     itoa(absolute_movement, string1, 10);
     itoa(abs(velocity), string2, 10);
-    draw_text(2,2,string1,5,FALSE,0);
-    draw_text(10,2,string2,5,FALSE,0);
+    draw_text(2,4,string1,5,FALSE,0);
+    draw_text(10,4,string2,5,FALSE,0);
 }
 
 void draw_depth(void){
     char string[10];
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     strcat(string, "M");
-    //draw_text(15,0,"DEPTH",5,TRUE,0);
     draw_text(15,1,string,5,FALSE,0);
 }
 
 void draw_cargo(void){
     char string[10];
     char string_max[10];
-    itoa(player.cargo.current_value, string, 10);
-    itoa(player.cargo.max_value, string_max, 10);
+    if (player.cargo.current_value > player.cargo.max_value) player.cargo.current_value = player.cargo.max_value; // make sure even if the cargo is more than full, to only display just full (15/15 for example not 16/15)
+    uitoa(player.cargo.current_value, string, 10);
+    uitoa(player.cargo.max_value, string_max, 10);
     strcat(string, "/");
     strcat(string, string_max);
-    //draw_text(9,0,"CARGO",5,TRUE,0);
     draw_text(10,1,string,5,FALSE,0);
 }
 

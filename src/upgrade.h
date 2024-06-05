@@ -1,14 +1,14 @@
-#ifndef SHOP_H
-#define SHOP_H
+#ifndef UPGRADE_H
+#define UPGRADE_H
 
-BANKREF_EXTERN(bank_shop)
+BANKREF_EXTERN(bank_upgrade)
 
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #include <gb/metasprites.h>
 #include <stdio.h>
 
-extern const metasprite_t metasprite_shop_highlight_frame[];
+extern const metasprite_t metasprite_upgrade_highlight_frame[];
 
 typedef struct {
     uint8_t currentSelection;
@@ -39,9 +39,9 @@ extern Menu main_menu;
 extern MenuState currentState;
 extern Menu *currentMenu;
 
-void init_shop(void);
+void init_upgrade(void);
 void init_upgrade_tiles_palettes(void);
-void updateMetaSpritePosition(uint8_t currentSelection);
+void update_metasprite_position(uint8_t currentSelection);
 void update_upgrade_tick(MenuState currentState);
 void display_menu(Menu *menu);
 void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type);
@@ -54,4 +54,4 @@ void change_main_shop_tile_palettes (void);
 void attempt_purchase(MenuState currentState, Menu *currentMenu);
 void handle_input(MenuState *currentState, Menu *currentMenu); 
 
-#endif // SHOP_H
+#endif // UPGRADE_H

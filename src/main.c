@@ -17,7 +17,8 @@
 #include "gameloop.h"
 #include "menuloop.h"
 #include "mainmenu.h"
-#include "shop.h"
+#include "upgrade.h"
+#include "sell.h"
 
 #include "../assets/rover.h"
 #include "../assets/tracks.h"
@@ -92,7 +93,6 @@ void main(void) {
                 draw_sky();
                 init_buildings();
                 draw_buildings();
-
                 change_background_color();
                 turn_screen_on();
                 currentGameState = GAME_STATE_CONTINUE;
@@ -112,7 +112,7 @@ void main(void) {
                 SWITCH_ROM(2);
                 init_clear_screen();
                 init_font();
-                init_shop();
+                init_upgrade();
                 init_upgrade_tiles_palettes();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
@@ -122,11 +122,17 @@ void main(void) {
                 turn_screen_off();
                 break;
             case GAME_STATE_SELL_MENU:
+                SWITCH_ROM(3);
+                init_clear_screen();
+                init_font();
+                init_sell();
+                draw_sell_menu();
                 turn_screen_on();
+                waitpad(J_START);
                 sell_all_ores();
                 display_warning_cargo = FALSE;
-                handle_cargo();
-                currentGameState = GAME_STATE_CONTINUE;
+                turn_screen_off();
+                currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
             case GAME_STATE_FUEL_MENU:
                 turn_screen_on();

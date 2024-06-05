@@ -12,7 +12,7 @@
 #include "../assets/main_menu_buttons.h"
 #include "../assets/splashscreen.h"
 
-#pragma bank 3
+#pragma bank 4
 #ifndef __INTELLISENSE__
 BANKREF(bank_main_menu)
 #endif

@@ -9,27 +9,26 @@
 #include "interrupt.h"
 #include "inventory.h"
 #include "attributes.h"
-
-#include "../assets/shop_highlight_frame.h"
-#include "../assets/main_menu_buttons.h"
-#include "../assets/shop_frame.h"
-#include "../assets/upgrade_tiles.h"
-
 #include "globals.h"
 #include "constants.h"
-#include "attributes.h"
-#include "inventory.h"
 #include "palettes.h"
 
-#include "shop.h"
+#include "../assets/upgrade_highlight_frame.h"
+#include "../assets/main_menu_buttons.h"
+#include "../assets/upgrade_frame.h"
+#include "../assets/upgrade_tiles.h"
+
+
+
+#include "upgrade.h"
 
 #pragma bank 2
 #ifndef __INTELLISENSE__
-BANKREF(bank_shop)
+BANKREF(bank_upgrade)
 #endif
 
 
-const metasprite_t metasprite_shop_highlight_frame[] = {
+const metasprite_t metasprite_upgrade_highlight_frame[] = {
     {.dy=15, .dx=7, .dtile=1, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
@@ -70,19 +69,19 @@ Menu main_menu = {0};
 MenuState currentState = MAIN_MENU;
 Menu *currentMenu = &main_menu;
 
-void init_shop(void) {
+void init_upgrade(void) {
     set_sprite_palette(0, 1, palette_default);
     set_sprite_palette(1, 1, palette_light_grey);
 
-    set_win_data(shop_frame_TILE_ORIGIN, shop_frame_TILE_COUNT, shop_frame_tiles);
-    set_win_tiles(0, 0, 20, 18, shop_frame_map);
+    set_win_data(upgrade_frame_TILE_ORIGIN, upgrade_frame_TILE_COUNT, upgrade_frame_tiles);
+    set_win_tiles(0, 0, 20, 18, upgrade_frame_map);
 
     set_bkg_palette(0, 1, palette_default);
     set_bkg_palette(1, 1, palette_light_grey);
 
-    set_sprite_data(1, shop_highlight_frame_TILE_COUNT, shop_highlight_frame_tiles); // blank tile in the end
+    set_sprite_data(1, upgrade_highlight_frame_TILE_COUNT, upgrade_highlight_frame_tiles); // blank tile in the end
     set_sprite_tile(UPGRADE_TICK_TILE, 4); // the tick for the upgrades
-    move_metasprite_ex(metasprite_shop_highlight_frame, 0, 0, 0, 24, 40);
+    move_metasprite_ex(metasprite_upgrade_highlight_frame, 0, 0, 0, 24, 40);
 
     update_menu = TRUE; // always update the menu the first time the player enters the shop
 }
@@ -104,11 +103,11 @@ void init_upgrade_tiles_palettes(void) {
     VBK_REG = 0;
 }
 
-void updateMetaSpritePosition(uint8_t currentSelection) {
+void update_metasprite_position(uint8_t currentSelection) {
     uint8_t x, y;
     x = 24 + (40 * (currentSelection % 3));
     y = 40 + (40 * (currentSelection / 3));
-    move_metasprite_ex(metasprite_shop_highlight_frame, 0, 0, 0, x, y);
+    move_metasprite_ex(metasprite_upgrade_highlight_frame, 0, 0, 0, x, y);
 }
 
 void update_upgrade_tick(MenuState state) {
@@ -126,7 +125,7 @@ void update_upgrade_tick(MenuState state) {
 
 
 void display_menu(Menu *menu) {
-    updateMetaSpritePosition(menu->currentSelection);
+    update_metasprite_position(menu->currentSelection);
 }
 
 void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
@@ -155,9 +154,10 @@ void load_main_upgrade_tiles(void) {
 }
 
 void write_main_shop_text(void) {
-    char money_string[10];
+    char money_string[16];
 
-    itoa(player.money, money_string, 10);
+    ultoa(player.money, money_string, 10);
+    strcat(money_string, "$");
     // line 1
     draw_text(3, 2, "UPGRADE STORE", 14, TRUE, 0);
     // line 2
@@ -165,18 +165,19 @@ void write_main_shop_text(void) {
     //draw_text(3, 3, attributes_numbers[selection]->upgrade_name[attributes_numbers[selection]->upgrade_level], 14, TRUE, 0);
     // line 3
     draw_text(3, 15, "MONEY", 5, TRUE, 0);
-    draw_text(11, 15, money_string, 5, FALSE, 0);
-    draw_text(16, 15, "$", 1, TRUE, 0);
+    draw_text(8, 15, money_string, 9, FALSE, 0);
 }
 
 void write_sub_shop_text(void) {
     char upgrade_string[8];
-    char cost_string[10];
-    char money_string[10];
+    char cost_string[16];
+    char money_string[16];
 
-    itoa(attributes_numbers[currentState]->upgrade_value[currentMenu->currentSelection], upgrade_string, 10);
-    itoa(attributes_numbers[currentState]->upgrade_cost[currentMenu->currentSelection], cost_string, 10);
-    itoa(player.money, money_string, 10);
+    uitoa(attributes_numbers[currentState]->upgrade_value[currentMenu->currentSelection], upgrade_string, 10);
+    ultoa(attributes_numbers[currentState]->upgrade_cost[currentMenu->currentSelection], cost_string, 10);
+
+    ultoa(player.money, money_string, 10);
+    strcat(money_string, "$");
     strcat(upgrade_string, attributes_numbers[currentState]->attribute_unit);
     
     // line 1
@@ -187,8 +188,7 @@ void write_sub_shop_text(void) {
     draw_text(3, 3, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
     // line 3
     draw_text(3, 15, "MONEY", 5, TRUE, 0);
-    draw_text(11, 15, money_string, 5, FALSE, 0);
-    draw_text(16, 15, "$", 1, TRUE, 0);
+    draw_text(8, 15, money_string, 9, FALSE, 0);
 }
 
 

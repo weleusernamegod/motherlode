@@ -11,7 +11,7 @@ endif
 
 LCC = $(GBDK_HOME)bin/lcc 
 
-LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo4 -Wm-ya4 -Wb-ext=.rel -Wm-yc
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc
 
 
 # You can set the name of the .gbc ROM file here
@@ -49,11 +49,13 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/a_button.png -c assets/a_button.c -spr8x8 -no_palettes -noflip -sh 16 -tile_origin 96 -b 1
 
 	/usr/local/opt/gbdk/bin/png2asset png/upgrade_tiles.png -c assets/upgrade_tiles.c -spr8x8 -noflip -keep_palette_order -max_palettes 36 -keep_duplicate_tiles -tile_origin 160 -b 2
-	/usr/local/opt/gbdk/bin/png2asset png/shop_frame.png -c assets/shop_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 2
-	/usr/local/opt/gbdk/bin/png2asset png/shop_highlight_frame.png -c assets/shop_highlight_frame.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
+	/usr/local/opt/gbdk/bin/png2asset png/upgrade_frame.png -c assets/upgrade_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 2
+	/usr/local/opt/gbdk/bin/png2asset png/upgrade_highlight_frame.png -c assets/upgrade_highlight_frame.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
 
-	/usr/local/opt/gbdk/bin/png2asset png/main_menu_buttons.png -c assets/main_menu_buttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 3
-	/usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 3
+	/usr/local/opt/gbdk/bin/png2asset png/sell_frame.png -c assets/sell_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 3
+
+	/usr/local/opt/gbdk/bin/png2asset png/main_menu_buttons.png -c assets/main_menu_buttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 4
+	/usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 4
 
 all:	clean prepare png2asset $(BINS) copy-rom
 

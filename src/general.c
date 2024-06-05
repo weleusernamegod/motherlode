@@ -73,7 +73,7 @@ unsigned char convert_char_to_tile(char c) {
         case '%': return 22;
         case '&': return 23;
         case '*': return 24;
-        case ')': return 25;
+        case '=': return 25;
 
         default: return 0;  // Default to space if character is not handled
     }
