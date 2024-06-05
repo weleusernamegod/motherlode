@@ -95,19 +95,3 @@ void calculate_cargo(void) {
     }
     player.cargo.current_value = total_weight;
 }
-
-void fuel_up(void) {
-    uint16_t fuel_needed = player.fuel.max_value - player.fuel.current_value;
-    uint16_t fuel_cost = fuel_needed / 3; // 1 dineros per liter, good price
-
-    if (player.money >= fuel_cost) {
-        // Player has enough money to fully fuel up
-        player.money -= fuel_cost;
-        player.fuel.current_value = player.fuel.max_value;
-    } else {
-        // Player doesn't have enough money to fully fuel up
-        uint16_t affordable_fuel = player.money * 3; // calculate how much fuel they can afford
-        player.fuel.current_value += affordable_fuel;
-        player.money = 0;
-    }
-}

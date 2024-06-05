@@ -31,7 +31,8 @@
         "metasprites.h": "c",
         "font.h": "c",
         "palettes.h": "c",
-        "bankref.h": "c"
+        "bankref.h": "c",
+        "sell.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

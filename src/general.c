@@ -140,3 +140,15 @@ void turn_screen_off(void) {
 void turn_screen_on(void) {
     DISPLAY_ON;
 }
+
+void wait_for_input(void) {
+    while (1) {
+        uint8_t key = joypad();  // Get the current state of the joypad
+
+        if (key & J_START || key & J_A || key & J_B) {
+            break;  // Break the loop if START, A, or B is pressed
+        }
+
+        vsync();  // Wait for the vertical blank to reduce CPU usage
+    }
+}

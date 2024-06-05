@@ -19,6 +19,7 @@
 #include "mainmenu.h"
 #include "upgrade.h"
 #include "sell.h"
+#include "fuel.h"
 
 #include "../assets/rover.h"
 #include "../assets/tracks.h"
@@ -89,6 +90,7 @@ void main(void) {
                 init_warning();
                 calculate_cargo();
                 draw_cargo();
+                handle_fuel();
                 draw_depth();
                 draw_sky();
                 init_buildings();
@@ -128,19 +130,25 @@ void main(void) {
                 init_sell();
                 draw_sell_menu();
                 turn_screen_on();
-                waitpad(J_START);
+                wait_for_input(); // only break if player presses A, B or Start
                 sell_all_ores();
                 display_warning_cargo = FALSE;
                 turn_screen_off();
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
             case GAME_STATE_FUEL_MENU:
+                SWITCH_ROM(3);
+                init_clear_screen();
+                init_font();
+                init_fuel();
+                draw_fuel_menu();
                 turn_screen_on();
+                wait_for_input(); // only break if player presses A, B or Start
                 fuel_up();
-                handle_fuel();
-                currentGameState = GAME_STATE_CONTINUE;
+                display_warning_cargo = FALSE;
+                turn_screen_off();
+                currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
-
             case GAME_STATE_GAME_OVER:
                 turn_screen_on();
                 move_win(7, 144);

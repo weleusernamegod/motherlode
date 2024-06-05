@@ -14,4 +14,5 @@ void init_sprite_palettes(void);
 void init_palette_0(void);
 void turn_screen_off(void);
 void turn_screen_on(void);
+void wait_for_input(void);
 #endif // GENERAL_H
