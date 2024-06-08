@@ -32,7 +32,9 @@
         "font.h": "c",
         "palettes.h": "c",
         "bankref.h": "c",
-        "sell.h": "c"
+        "sell.h": "c",
+        "fuel_highlight_frame.h": "c",
+        "general.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

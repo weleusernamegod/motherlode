@@ -11,7 +11,7 @@
 #define sell_frame_TILE_H 8
 #define sell_frame_WIDTH 160
 #define sell_frame_HEIGHT 144
-#define sell_frame_TILE_COUNT 12
+#define sell_frame_TILE_COUNT 11
 #define sell_frame_PALETTE_COUNT 1
 #define sell_frame_COLORS_PER_PALETTE 4
 #define sell_frame_TOTAL_COLORS 4
@@ -20,7 +20,7 @@
 BANKREF_EXTERN(sell_frame)
 
 extern const palette_color_t sell_frame_palettes[4];
-extern const uint8_t sell_frame_tiles[192];
+extern const uint8_t sell_frame_tiles[176];
 
 extern const unsigned char sell_frame_map[360];
 #define sell_frame_map_attributes sell_frame_map

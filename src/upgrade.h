@@ -11,8 +11,8 @@ BANKREF_EXTERN(bank_upgrade)
 extern const metasprite_t metasprite_upgrade_highlight_frame[];
 
 typedef struct {
-    uint8_t currentSelection;
-} Menu;
+    uint8_t currentUpgradeSelection;
+} UpgradeMenu;
 
     // Define menu states
 typedef enum {
@@ -24,34 +24,35 @@ typedef enum {
     CARGO_MENU,
     MAIN_MENU
     // Add additional submenus as necessary
-} MenuState;
+} UpgradeMenuState;
 
-extern Menu *menu_numbers[];
+extern UpgradeMenu *upgrade_menu_numbers[];
 
-extern Menu drill_menu;
-extern Menu hull_menu;
-extern Menu engine_menu;
-extern Menu fuel_menu;
-extern Menu radiator_menu;
-extern Menu cargo_menu;
-extern Menu main_menu;
+extern UpgradeMenu drill_menu;
+extern UpgradeMenu hull_menu;
+extern UpgradeMenu engine_menu;
+extern UpgradeMenu fuel_menu;
+extern UpgradeMenu radiator_menu;
+extern UpgradeMenu cargo_menu;
+extern UpgradeMenu main_menu;
 
-extern MenuState currentState;
-extern Menu *currentMenu;
+extern UpgradeMenuState currentUpgradeState;
+extern UpgradeMenu *currentUpgradeMenu;
 
 void init_upgrade(void);
 void init_upgrade_tiles_palettes(void);
-void update_metasprite_position(uint8_t currentSelection);
-void update_upgrade_tick(MenuState currentState);
-void display_menu(Menu *menu);
-void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type);
+void update_upgrade_highlight_frame_position(uint8_t currentUpgradeSelection);
+void update_upgrade_tick(UpgradeMenuState currentUpgradeState);
+void display_upgrade_menu(UpgradeMenu *menu);
+void load_upgrade_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type);
 void load_sub_upgrade_tiles(void);
 void load_main_upgrade_tiles(void);
-void write_main_shop_text(void);
-void write_sub_shop_text(void);
-void change_sub_shop_tile_palettes (void);
-void change_main_shop_tile_palettes (void);
-void attempt_purchase(MenuState currentState, Menu *currentMenu);
-void handle_input(MenuState *currentState, Menu *currentMenu); 
+void write_main_upgrade_text(void);
+void write_sub_upgrade_text(void);
+void change_sub_upgrade_tile_palettes (void);
+void change_main_upgrade_tile_palettes (void);
+void attempt_upgrade_purchase(UpgradeMenuState currentUpgradeState, UpgradeMenu *currentUpgradeMenu);
+void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *currentUpgradeMenu); 
+void upgrade_menu_loop(void);
 
 #endif // UPGRADE_H

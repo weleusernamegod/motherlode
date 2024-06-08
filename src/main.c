@@ -15,7 +15,6 @@
 #include "general.h"
 #include "interrupt.h"
 #include "gameloop.h"
-#include "menuloop.h"
 #include "mainmenu.h"
 #include "upgrade.h"
 #include "sell.h"
@@ -56,7 +55,7 @@ void main(void) {
 
             case GAME_STATE_NEW_GAME:
                 SWITCH_ROM(1);
-                generate_map(32);
+                generate_map(16);
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();
@@ -118,7 +117,7 @@ void main(void) {
                 init_upgrade_tiles_palettes();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
-                    shop_menu_loop();
+                    upgrade_menu_loop();
                     if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
                 }
                 turn_screen_off();
@@ -143,11 +142,13 @@ void main(void) {
                 init_fuel();
                 draw_fuel_menu();
                 turn_screen_on();
-                wait_for_input(); // only break if player presses A, B or Start
+                while (currentGameState == GAME_STATE_FUEL_MENU){
+                    fuel_menu_loop();
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
+                }
                 fuel_up();
                 display_warning_cargo = FALSE;
                 turn_screen_off();
-                currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
             case GAME_STATE_GAME_OVER:
                 turn_screen_on();

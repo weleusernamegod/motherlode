@@ -14,7 +14,6 @@
 #include "palettes.h"
 
 #include "../assets/upgrade_highlight_frame.h"
-#include "../assets/main_menu_buttons.h"
 #include "../assets/upgrade_frame.h"
 #include "../assets/upgrade_tiles.h"
 
@@ -48,7 +47,7 @@ const metasprite_t metasprite_upgrade_highlight_frame[] = {
 	METASPR_TERM
 };
 
-Menu *menu_numbers[] = {
+UpgradeMenu *upgrade_menu_numbers[] = {
     &drill_menu,
     &hull_menu,
     &engine_menu,
@@ -58,16 +57,16 @@ Menu *menu_numbers[] = {
     &main_menu
 };
 
-Menu drill_menu = {0};
-Menu hull_menu = {0};
-Menu engine_menu = {0};
-Menu fuel_menu = {0};
-Menu radiator_menu = {0};
-Menu cargo_menu = {0};
-Menu main_menu = {0};
+UpgradeMenu drill_menu = {0};
+UpgradeMenu hull_menu = {0};
+UpgradeMenu engine_menu = {0};
+UpgradeMenu fuel_menu = {0};
+UpgradeMenu radiator_menu = {0};
+UpgradeMenu cargo_menu = {0};
+UpgradeMenu main_menu = {0};
 
-MenuState currentState = MAIN_MENU;
-Menu *currentMenu = &main_menu;
+UpgradeMenuState currentUpgradeState = MAIN_MENU;
+UpgradeMenu *currentUpgradeMenu = &main_menu;
 
 void init_upgrade(void) {
     set_sprite_palette(0, 1, palette_default);
@@ -103,14 +102,14 @@ void init_upgrade_tiles_palettes(void) {
     VBK_REG = 0;
 }
 
-void update_metasprite_position(uint8_t currentSelection) {
+void update_upgrade_highlight_frame_position(uint8_t currentUpgradeSelection) {
     uint8_t x, y;
-    x = 24 + (40 * (currentSelection % 3));
-    y = 40 + (40 * (currentSelection / 3));
+    x = 24 + (40 * (currentUpgradeSelection % 3));
+    y = 40 + (40 * (currentUpgradeSelection / 3));
     move_metasprite_ex(metasprite_upgrade_highlight_frame, 0, 0, 0, x, y);
 }
 
-void update_upgrade_tick(MenuState state) {
+void update_upgrade_tick(UpgradeMenuState state) {
     // Additional code for other states would go here
     // For example, setting the sprite position based on the current upgrade level
     if (state != MAIN_MENU) {
@@ -124,11 +123,11 @@ void update_upgrade_tick(MenuState state) {
 }
 
 
-void display_menu(Menu *menu) {
-    update_metasprite_position(menu->currentSelection);
+void display_upgrade_menu(UpgradeMenu *menu) {
+    update_upgrade_highlight_frame_position(menu->currentUpgradeSelection);
 }
 
-void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
+void load_upgrade_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
     uint8_t array[16];
     for (uint8_t i = 0; i < 16; i++){
         array[i] = tilestart+i;
@@ -144,16 +143,16 @@ void load_shop_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t posit
 
 void load_sub_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_shop_single_tile(upgrade_tiles_TILE_ORIGIN + 16 * i, i, i, currentState);
+        load_upgrade_single_tile(upgrade_tiles_TILE_ORIGIN + 16 * i, i, i, currentUpgradeState);
     }
 }
 void load_main_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_shop_single_tile(upgrade_tiles_TILE_ORIGIN + i * 16, attributes_numbers[i]->upgrade_level, i, i);
+        load_upgrade_single_tile(upgrade_tiles_TILE_ORIGIN + i * 16, attributes_numbers[i]->upgrade_level, i, i);
     }
 }
 
-void write_main_shop_text(void) {
+void write_main_upgrade_text(void) {
     char money_string[16];
 
     ultoa(player.money, money_string, 10);
@@ -161,49 +160,49 @@ void write_main_shop_text(void) {
     // line 1
     draw_text(3, 2, "UPGRADE STORE", 14, TRUE, 0);
     // line 2
-    draw_text(3, 3, attributes_numbers[currentMenu->currentSelection]->attribute_name, 14, TRUE, 0);
+    draw_text(3, 3, attributes_numbers[currentUpgradeMenu->currentUpgradeSelection]->attribute_name, 14, TRUE, 0);
     //draw_text(3, 3, attributes_numbers[selection]->upgrade_name[attributes_numbers[selection]->upgrade_level], 14, TRUE, 0);
     // line 3
-    draw_text(3, 15, "MONEY", 5, TRUE, 0);
+    draw_text(3, 15, "CASH", 5, TRUE, 0);
     draw_text(8, 15, money_string, 9, FALSE, 0);
 }
 
-void write_sub_shop_text(void) {
+void write_sub_upgrade_text(void) {
     char upgrade_string[8];
     char cost_string[16];
     char money_string[16];
 
-    uitoa(attributes_numbers[currentState]->upgrade_value[currentMenu->currentSelection], upgrade_string, 10);
-    ultoa(attributes_numbers[currentState]->upgrade_cost[currentMenu->currentSelection], cost_string, 10);
+    uitoa(attributes_numbers[currentUpgradeState]->upgrade_value[currentUpgradeMenu->currentUpgradeSelection], upgrade_string, 10);
+    ultoa(attributes_numbers[currentUpgradeState]->upgrade_cost[currentUpgradeMenu->currentUpgradeSelection], cost_string, 10);
 
     ultoa(player.money, money_string, 10);
     strcat(money_string, "$");
-    strcat(upgrade_string, attributes_numbers[currentState]->attribute_unit);
+    strcat(upgrade_string, attributes_numbers[currentUpgradeState]->attribute_unit);
     
     // line 1
     draw_text(3, 2, upgrade_string, 8, TRUE, 0);
     draw_text(11, 2, cost_string, 5, FALSE, 0);
     draw_text(16, 2, "$", 1, TRUE, 0);
     // line 2
-    draw_text(3, 3, attributes_numbers[currentState]->upgrade_name[currentMenu->currentSelection], 14, TRUE, 0);
+    draw_text(3, 3, attributes_numbers[currentUpgradeState]->upgrade_name[currentUpgradeMenu->currentUpgradeSelection], 14, TRUE, 0);
     // line 3
-    draw_text(3, 15, "MONEY", 5, TRUE, 0);
+    draw_text(3, 15, "CASH", 5, TRUE, 0);
     draw_text(8, 15, money_string, 9, FALSE, 0);
 }
 
 
-void change_sub_shop_tile_palettes (void) {
+void change_sub_upgrade_tile_palettes (void) {
     for (uint8_t i = 0; i < 6; i++) {
-        if (attributes_numbers[currentState]->upgrade_level < i && player.money < attributes_numbers[currentState]->upgrade_cost[i]) {
+        if (attributes_numbers[currentUpgradeState]->upgrade_level < i && player.money < attributes_numbers[currentUpgradeState]->upgrade_cost[i]) {
             set_bkg_palette(2 + i, 1, palette_light_grey);
         } else {
-            set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(currentState * 6 + i) * 4]);
-            // set_bkg_palette(2 + i, 1, attributes_numbers[currentState]->color_palette[i]);
+            set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(currentUpgradeState * 6 + i) * 4]);
+            // set_bkg_palette(2 + i, 1, attributes_numbers[currentUpgradeState]->color_palette[i]);
         }
     }
 }
 
-void change_main_shop_tile_palettes (void) {
+void change_main_upgrade_tile_palettes (void) {
     for (uint8_t i = 0; i < 6; i++) {
         set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(6 * i + attributes_numbers[i]->upgrade_level) * 4]);
         // set_bkg_palette(2 + i, 1, attributes_numbers[i]->color_palette[attributes_numbers[i]->upgrade_level]);
@@ -211,11 +210,11 @@ void change_main_shop_tile_palettes (void) {
 }
 
 
-void attempt_purchase(MenuState currentState, Menu *currentMenu) {
-    // Using currentState to index directly into the attributes array
-    player_attributes *currentAttributes = attributes_numbers[currentState];
-    uint16_t cost = currentAttributes->upgrade_cost[currentMenu->currentSelection];
-    uint8_t upgrade_to = currentMenu->currentSelection;
+void attempt_upgrade_purchase(UpgradeMenuState currentUpgradeState, UpgradeMenu *currentUpgradeMenu) {
+    // Using currentUpgradeState to index directly into the attributes array
+    player_attributes *currentAttributes = attributes_numbers[currentUpgradeState];
+    uint16_t cost = currentAttributes->upgrade_cost[currentUpgradeMenu->currentUpgradeSelection];
+    uint8_t upgrade_to = currentUpgradeMenu->currentUpgradeSelection;
 
     // Check if the upgrade level is already too high or matches the selection
     if (currentAttributes->upgrade_level >= upgrade_to) {
@@ -237,29 +236,29 @@ void attempt_purchase(MenuState currentState, Menu *currentMenu) {
 }
 
 
-void handle_input(MenuState *currentState, Menu *currentMenu) {
+void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *currentUpgradeMenu) {
         if (prev_buttons != buttons) {
         if (buttons & J_UP) {
-            if (currentMenu->currentSelection > 2) currentMenu->currentSelection -= 3;
+            if (currentUpgradeMenu->currentUpgradeSelection > 2) currentUpgradeMenu->currentUpgradeSelection -= 3;
         } else if (buttons & J_DOWN) {
-            if (currentMenu->currentSelection < 3) currentMenu->currentSelection += 3;
+            if (currentUpgradeMenu->currentUpgradeSelection < 3) currentUpgradeMenu->currentUpgradeSelection += 3;
         } else if (buttons & J_LEFT) {
-            if (currentMenu->currentSelection % 3 != 0) currentMenu->currentSelection--;
+            if (currentUpgradeMenu->currentUpgradeSelection % 3 != 0) currentUpgradeMenu->currentUpgradeSelection--;
         } else if (buttons & J_RIGHT) {
-            if ((currentMenu->currentSelection % 3) != 2) currentMenu->currentSelection++;
+            if ((currentUpgradeMenu->currentUpgradeSelection % 3) != 2) currentUpgradeMenu->currentUpgradeSelection++;
         }
 
             // Selecting an option with 'A'
         if (buttons & J_A) {
-            switch (*currentState) {
+            switch (*currentUpgradeState) {
                 case MAIN_MENU:
                     // Assuming main menu has two submenus and four other options
-                    if (currentMenu->currentSelection == 0) *currentState = DRILL_MENU;
-                    else if (currentMenu->currentSelection == 1) *currentState = HULL_MENU;
-                    else if (currentMenu->currentSelection == 2) *currentState = ENGINE_MENU;
-                    else if (currentMenu->currentSelection == 3) *currentState = FUEL_MENU;
-                    else if (currentMenu->currentSelection == 4) *currentState = RADIATOR_MENU;
-                    else if (currentMenu->currentSelection == 5) *currentState = CARGO_MENU;
+                    if (currentUpgradeMenu->currentUpgradeSelection == 0) *currentUpgradeState = DRILL_MENU;
+                    else if (currentUpgradeMenu->currentUpgradeSelection == 1) *currentUpgradeState = HULL_MENU;
+                    else if (currentUpgradeMenu->currentUpgradeSelection == 2) *currentUpgradeState = ENGINE_MENU;
+                    else if (currentUpgradeMenu->currentUpgradeSelection == 3) *currentUpgradeState = FUEL_MENU;
+                    else if (currentUpgradeMenu->currentUpgradeSelection == 4) *currentUpgradeState = RADIATOR_MENU;
+                    else if (currentUpgradeMenu->currentUpgradeSelection == 5) *currentUpgradeState = CARGO_MENU;
                     break;
                 case DRILL_MENU:
                 case HULL_MENU:
@@ -267,7 +266,7 @@ void handle_input(MenuState *currentState, Menu *currentMenu) {
                 case FUEL_MENU:
                 case RADIATOR_MENU:
                 case CARGO_MENU:
-                    attempt_purchase(*currentState, currentMenu);
+                    attempt_upgrade_purchase(*currentUpgradeState, currentUpgradeMenu);
                     break;
                 default:
                 break; // Other menus may not have purchasable items
@@ -276,16 +275,16 @@ void handle_input(MenuState *currentState, Menu *currentMenu) {
 
         // Going back with 'B'
         if (buttons & J_B) {
-            switch (*currentState) {
+            switch (*currentUpgradeState) {
                 case MAIN_MENU:
                     leave_station = TRUE;
-                    main_menu.currentSelection = 0;
-                    drill_menu.currentSelection = 0;
-                    hull_menu.currentSelection = 0;
-                    engine_menu.currentSelection = 0;
-                    fuel_menu.currentSelection = 0;
-                    radiator_menu.currentSelection = 0;
-                    cargo_menu.currentSelection = 0;
+                    main_menu.currentUpgradeSelection = 0;
+                    drill_menu.currentUpgradeSelection = 0;
+                    hull_menu.currentUpgradeSelection = 0;
+                    engine_menu.currentUpgradeSelection = 0;
+                    fuel_menu.currentUpgradeSelection = 0;
+                    radiator_menu.currentUpgradeSelection = 0;
+                    cargo_menu.currentUpgradeSelection = 0;
                     break;
                 case DRILL_MENU:
                 case HULL_MENU:
@@ -293,9 +292,43 @@ void handle_input(MenuState *currentState, Menu *currentMenu) {
                 case FUEL_MENU:
                 case RADIATOR_MENU:
                 case CARGO_MENU:
-                    *currentState = MAIN_MENU; // Go back to the main menu
+                    *currentUpgradeState = MAIN_MENU; // Go back to the main menu
                     break;
             }
         }
     }
+}
+
+void upgrade_menu_loop(void) {
+
+    read_buttons();
+
+    // Check if input has changed the state or selection
+    if (prev_buttons != buttons) {
+        handle_upgrade_input(&currentUpgradeState, currentUpgradeMenu);
+        update_menu = TRUE;  // Set the update flag
+    }
+
+    if (update_menu) {
+        display_upgrade_menu(currentUpgradeMenu);
+        update_upgrade_tick(currentUpgradeState);
+
+        // Update the display and functionality based on the current state
+        if (currentUpgradeState == MAIN_MENU) {
+            currentUpgradeMenu = &main_menu;
+            change_main_upgrade_tile_palettes();
+            write_main_upgrade_text();
+            load_main_upgrade_tiles();
+        } else {
+            currentUpgradeMenu = upgrade_menu_numbers[currentUpgradeState];
+            change_sub_upgrade_tile_palettes();
+            write_sub_upgrade_text();
+            load_sub_upgrade_tiles();
+        }
+
+        update_menu = FALSE;  // Reset the update flag after updating the screen
+    }
+
+    prev_buttons = buttons;
+    vsync();
 }
