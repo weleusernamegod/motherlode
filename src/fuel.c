@@ -13,6 +13,7 @@
 #include "palettes.h"
 
 #include "../assets/fuel_frame.h"
+#include "../assets/fuel_display.h"
 #include "../assets/fuel_highlight_frame.h"
 
 #include "fuel.h"
@@ -25,64 +26,139 @@ BANKREF(bank_fuel)
 #endif
 
 metasprite_t metasprite_fuel_highlight_frame[] = {
-    {.dy=15, .dx=7, .dtile=1, .props=0},
+    {.dy=15, .dx=7, .dtile=0, .props=0},
+    {.dy=0, .dx=8, .dtile=1, .props=0},
+    {.dy=0, .dx=8, .dtile=1, .props=0},
+    {.dy=0, .dx=8, .dtile=1, .props=0},
+    {.dy=0, .dx=2, .dtile=1, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=0, .dx=2, .dtile=2, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0b00100000},
-    {.dy=2, .dx=0, .dtile=3, .props=0},
-    {.dy=8, .dx=0, .dtile=1, .props=0b01100000},
-    {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-2, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-8, .dtile=1, .props=0b01000000},
-    {.dy=-2, .dx=0, .dtile=3, .props=0b00100000},
+    {.dy=2, .dx=0, .dtile=5, .props=0},
+    {.dy=8, .dx=0, .dtile=8, .props=0},
+    {.dy=0, .dx=-8, .dtile=7, .props=0},
+    {.dy=0, .dx=-8, .dtile=7, .props=0},
+    {.dy=0, .dx=-8, .dtile=7, .props=0},
+    {.dy=0, .dx=-2, .dtile=7, .props=0},
+    {.dy=0, .dx=-8, .dtile=6, .props=0},
+    {.dy=-2, .dx=0, .dtile=3, .props=0},
 	METASPR_TERM
 };
 
-FuelMenu *fuel_menu_numbers[] = {
-    &option_fuel_up,
-    &option_repair,
-    &option_reserve_tank,
-    &option_dynamite,
-    &option_repair_kit,
-    &option_teleporter,
-};
-
-FuelMenu option_fuel_up = {0};
-FuelMenu option_repair = {0};
-FuelMenu option_reserve_tank = {0};
-FuelMenu option_dynamite = {0};
-FuelMenu option_repair_kit = {0};
-FuelMenu option_teleporter = {0};
-
-FuelMenuState currentFuelState = OPTION_DYNAMITE;
-FuelMenu *currentFuelMenu = &option_repair;
-
 void init_fuel(void) {
-    set_sprite_palette(0, 1, palette_default);
-    set_sprite_palette(1, 1, palette_light_grey);
-
     set_win_data(fuel_frame_TILE_ORIGIN, fuel_frame_TILE_COUNT, fuel_frame_tiles);
     set_win_tiles(0, 0, 20, 18, fuel_frame_map);
+    VBK_REG = 1;
+    set_win_tiles(0, 0, 20, 18, fuel_frame_map_attributes);    
+    VBK_REG = 0;
 
-    set_bkg_palette(0, 1, palette_default);
-    set_bkg_palette(1, 1, palette_light_grey);
 
-    set_sprite_data(1, fuel_highlight_frame_TILE_COUNT, fuel_highlight_frame_tiles); // blank tile in the end
+    set_bkg_palette(0, 7, fuel_frame_palettes); 
+    set_bkg_palette(0, 1, palette_default); // overwrite the palette 0 again
+
+    set_sprite_data(fuel_display_TILE_ORIGIN, fuel_display_TILE_COUNT, fuel_display_tiles);
+    set_sprite_palette(FUEL_DISPLAY_PALETTE, 1, fuel_display_palettes);
+
+    set_sprite_data(0, fuel_highlight_frame_TILE_COUNT, fuel_highlight_frame_tiles); // blank tile in the end
     move_metasprite_ex(metasprite_fuel_highlight_frame, 0, 0, 0, 24, 40);
 }
 
+void draw_fuel_display(void) {
+    move_metasprite_ex(fuel_display_metasprites[0], fuel_display_TILE_ORIGIN, 0b10000000 | FUEL_DISPLAY_PALETTE, FUEL_DISPLAY_START, 40, 50 + fuel_display_y);
+}
+
+void hide_fuel_display(void) {
+    hide_metasprite(fuel_display_metasprites[0], FUEL_DISPLAY_START);
+}
+
 void draw_fuel_menu(void) {
-    draw_text(2, 2, "FUEL/REPAIR/SHOP", 16, TRUE, 0);
+    // Title
+    draw_text(2, 2, "GAS STATION", 16, TRUE, 0);
+
+    char money_string[16];
+    char cost_string[8];
+    char inventory_string[6];
+    char max_value_string[10];
+    char current_value_string[10];
+    char missing_value_string[10];
+
+    ultoa(player.money, money_string, 10);
+    strcat(money_string, "$");
+    // Line 1
+    draw_text(7, 10, powerup[current_powerup_selection].name, 11, TRUE, 0);
+
+    if (current_powerup_selection > OPTION_REPAIR){
+        powerup_cost = powerup[current_powerup_selection].cost;
+        ultoa(powerup_cost, cost_string, 10);
+        strcat("-", cost_string);
+        strcat(cost_string, "$");
+
+        ultoa(powerup[current_powerup_selection].inventory, inventory_string, 10);
+        strcat(inventory_string, "*");
+        
+        // Line 2
+        //draw_text(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
+
+        // Line 3
+        draw_text(7, 12, inventory_string, 6, TRUE, 0);
+        draw_text(12, 12, "in bag", 6, FALSE, 0);
+
+        // Line 4
+        draw_text(7, 13, "1*", 5, TRUE, 0);
+    } else {
+        uint8_t current_attribute = 0;
+        if (current_powerup_selection == OPTION_FUEL_UP) {
+            current_attribute = ATTRIBUTE_FUEL;
+            powerup_cost = calculate_fuel_cost();
+            ultoa(powerup_cost, cost_string, 10);
+        }
+        else if (current_powerup_selection == OPTION_REPAIR) {
+            current_attribute = ATTRIBUTE_HULL;
+            powerup_cost = calculate_hull_cost();
+            ultoa(powerup_cost, cost_string, 10);
+        }
+        strcat(cost_string, "$");
+
+        ultoa(attributes_numbers[current_attribute]->max_value, max_value_string, 10);
+        ultoa(attributes_numbers[current_attribute]->current_value, current_value_string, 10);
+        ultoa(attributes_numbers[current_attribute]->max_value - attributes_numbers[current_attribute]->current_value, missing_value_string, 10);
+
+        // Line 2
+        // draw_text(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
+        // Line 3
+        draw_text(7, 12, current_value_string, 3, FALSE, 0);
+        draw_text(10, 12, attributes_numbers[current_attribute]->attribute_unit, 1, TRUE, 0);
+        draw_text(11, 12, " / ", 3, TRUE, 0);
+        draw_text(14, 12, max_value_string, 3, FALSE, 0);
+        draw_text(17, 12, attributes_numbers[current_attribute]->attribute_unit, 1, TRUE, 0);
+
+        // Line 4
+        draw_text(7, 13, missing_value_string, 3, FALSE, 0);
+        draw_text(10, 13, attributes_numbers[current_attribute]->attribute_unit, 1, TRUE, 0);
+
+        // Line 7
+        draw_text(12, 13, cost_string, 6, FALSE, 0);
+    }
+
+    draw_text(12, 13, cost_string, 6, FALSE, 0);
+    draw_text(7, 15, "CASH", 4, TRUE, 0);
+    draw_text(11, 15, money_string, 7, FALSE, 0);
+}
+
+uint16_t calculate_fuel_cost(void) {
+    uint16_t fuel_needed = player.fuel.max_value - player.fuel.current_value;
+    uint16_t fuel_cost = fuel_needed / FUEL_PRICE; // 1 dineros per liter, good price
+    return fuel_cost;
+}
+void set_fuel_display_y(void) {
+    fuel_display_y = (80 - (player.fuel.current_value * 80 / player.fuel.max_value));
+}
+
+uint8_t check_fuel_display_y(void) {
+    return (80 - (player.fuel.current_value * 80 / player.fuel.max_value));
 }
 
 void fuel_up(void) {
-    uint16_t fuel_needed = player.fuel.max_value - player.fuel.current_value;
-    uint16_t fuel_cost = fuel_needed / 3; // 1 dineros per liter, good price
-
+    uint16_t fuel_cost = calculate_fuel_cost();
+    // 80 is the length of the bar, so if the fuel is full, it should be at the top
     if (player.money >= fuel_cost) {
         // Player has enough money to fully fuel up
         player.money -= fuel_cost;
@@ -95,11 +171,41 @@ void fuel_up(void) {
     }
 }
 
-void update_fuel_highlight_frame_position(uint8_t selection) {
+uint16_t calculate_hull_cost(void) {
+    uint16_t hull_needed = player.hull.max_value - player.hull.current_value;
+    uint16_t hull_cost = hull_needed * REPAIR_PRICE;
+    return hull_cost;
+}
+
+void repair_hull(void) {
+    uint16_t hull_cost = calculate_hull_cost();
+    if (player.money >= hull_cost) {
+        // Player has enough money to fully fuel up
+        player.money -= hull_cost;
+        player.hull.current_value = player.hull.max_value;
+    } else {
+        // Player doesn't have enough money to fully fuel up
+        uint16_t affordable_hull = player.money * 3; // calculate how much fuel they can afford
+        player.hull.current_value += affordable_hull;
+        player.money = 0;
+    }
+}
+
+
+void purchase_powerup(void) {
+    uint16_t powerup_cost = powerup[current_powerup_selection].cost;
+    if (player.money >= powerup_cost) {
+        // Player has enough money to fully fuel up
+        player.money -= powerup_cost;
+        powerup[current_powerup_selection].inventory ++;
+    }
+}
+
+void update_fuel_highlight_frame_position(void) {
     uint8_t x, y;
-    if (selection < 2) {
+    if (current_powerup_selection < 2) {
         // First row (0 and 1)
-        x = 56 + (selection * 6 * 8);
+        x = 56 + (current_powerup_selection * 6 * 8);
         y = 32;
         metasprite_fuel_highlight_frame[1].dx = 8;
         metasprite_fuel_highlight_frame[2].dx = 8;
@@ -109,7 +215,7 @@ void update_fuel_highlight_frame_position(uint8_t selection) {
         metasprite_fuel_highlight_frame[10].dx = -8;
     } else {
         // Second row (2 to 5), closer spacing
-        x = 56 + ((selection - 2) * 3 * 8);  // Adjusted horizontal spacing
+        x = 56 + ((current_powerup_selection - 2) * 3 * 8);  // Adjusted horizontal spacing
         y = 56;
         metasprite_fuel_highlight_frame[1].dx = 0;
         metasprite_fuel_highlight_frame[2].dx = 0;
@@ -121,44 +227,46 @@ void update_fuel_highlight_frame_position(uint8_t selection) {
     move_metasprite_ex(metasprite_fuel_highlight_frame, 0, 0, 0, x, y);
 }
 
-void display_fuel_menu(FuelMenu *menu) {
-    update_fuel_highlight_frame_position(menu->currentFuelSelection);
-}
-
-void handle_fuel_input(FuelMenuState *currentFuelState, FuelMenu *currentFuelMenu) {
+void handle_fuel_input(void) {
     if (prev_buttons != buttons) {
         if (buttons & J_UP) {
-            if (currentFuelMenu->currentFuelSelection >= 2 && currentFuelMenu->currentFuelSelection <= 3) {
-                currentFuelMenu->currentFuelSelection = 0;
-            } else if (currentFuelMenu->currentFuelSelection >= 4) {
-                currentFuelMenu->currentFuelSelection = 1;
+            if (current_powerup_selection >= 2 && current_powerup_selection <= 3) {
+                current_powerup_selection = 0;
+            } else if (current_powerup_selection >= 4) {
+                current_powerup_selection = 1;
             }
         } else if (buttons & J_DOWN) {
-            if (currentFuelMenu->currentFuelSelection == 0) {
-                currentFuelMenu->currentFuelSelection = 2;
-            } else if (currentFuelMenu->currentFuelSelection == 1) {
-                currentFuelMenu->currentFuelSelection = 4;
+            if (current_powerup_selection == 0) {
+                current_powerup_selection = 2;
+            } else if (current_powerup_selection == 1) {
+                current_powerup_selection = 4;
             }
         } else if (buttons & J_LEFT) {
-            if (currentFuelMenu->currentFuelSelection > 0 && currentFuelMenu->currentFuelSelection != 2) {
-                currentFuelMenu->currentFuelSelection--;
+            if (current_powerup_selection > 0 && current_powerup_selection != 2) {
+                current_powerup_selection--;
             }
         } else if (buttons & J_RIGHT) {
-            if (currentFuelMenu->currentFuelSelection < 5 && currentFuelMenu->currentFuelSelection != 1) {
-                currentFuelMenu->currentFuelSelection++;
+            if (current_powerup_selection < 5 && current_powerup_selection != 1) {
+                current_powerup_selection++;
             }
         }
 
 
             // Selecting an option with 'A'
         if (buttons & J_A) {
-            switch (*currentFuelState) {
+            switch (current_powerup_selection) {
                 case OPTION_FUEL_UP:
+                    fuel_up();
+                    display_warning_cargo = FALSE;
+                    break;
                 case OPTION_REPAIR:
-                case OPTRION_RESERVE_TANK:
-                case OPTION_DYNAMITE:
+                    repair_hull();
+                    break;
+                case OPTION_EXTRA_TANK:
                 case OPTION_REPAIR_KIT:
+                case OPTION_DYNAMITE:
                 case OPTION_TELEPORTER:
+                    purchase_powerup();
                     break;
                 default:
                 break; // Other menus may not have purchasable items
@@ -177,26 +285,13 @@ void fuel_menu_loop(void) {
 
     // Check if input has changed the state or selection
     if (prev_buttons != buttons) {
-        handle_fuel_input(&currentFuelState, currentFuelMenu);
+        handle_fuel_input();
         update_menu = TRUE;  // Set the update flag
     }
 
     if (update_menu) {
-        display_fuel_menu(currentFuelMenu);
-
-        // Update the display and functionality based on the current state
-        // if (currentFuelState == MAIN_MENU) {
-        //     currentFuelMenu = &main_menu;
-        //     change_main_fuel_tile_palettes();
-        //     write_main_fuel_text();
-        //     load_main_fuel_tiles();
-        // } else {
-        //     currentFuelMenu = fuel_menu_numbers[currentFuelState];
-        //     change_sub_fuel_tile_palettes();
-        //     write_sub_fuel_text();
-        //     load_sub_fuel_tiles();
-        // }
-
+        update_fuel_highlight_frame_position();
+        draw_fuel_menu();
         update_menu = FALSE;  // Reset the update flag after updating the screen
     }
 

@@ -11,40 +11,19 @@ BANKREF_EXTERN(bank_fuel)
 
 extern metasprite_t metasprite_fuel_highlight_frame[];
 
-typedef struct {
-    uint8_t currentFuelSelection;
-} FuelMenu;
-
-    // Define menu states
-typedef enum {
-    OPTION_FUEL_UP,
-    OPTION_REPAIR,
-    OPTRION_RESERVE_TANK,
-    OPTION_DYNAMITE,
-    OPTION_REPAIR_KIT,
-    OPTION_TELEPORTER,
-    // Add additional submenus as necessary
-} FuelMenuState;
-
-extern FuelMenu *fuel_menu_numbers[];
-
-extern FuelMenu option_fuel_up;
-extern FuelMenu option_repair;
-extern FuelMenu option_reserve_tank;
-extern FuelMenu option_dynamite;
-extern FuelMenu option_repair_kit;
-extern FuelMenu option_teleporter;
-
-extern FuelMenuState currentFuelState;
-extern FuelMenu *currentFuelMenu;
-
 void init_fuel(void);
+void draw_fuel_display(void);
+void hide_fuel_display(void);
 void draw_fuel_menu(void);
+uint16_t calculate_fuel_cost(void);
+void set_fuel_display_y(void);
+uint8_t check_fuel_display_y(void);
 void fuel_up(void);
-
-void update_fuel_highlight_frame_position(uint8_t selection);
-void display_fuel_menu(FuelMenu *menu);
-void handle_fuel_input(FuelMenuState *currentFuelState, FuelMenu *currentFuelMenu);
+uint16_t calculate_hull_cost(void);
+void repair_hull(void);
+void purchase_powerup(void);
+void update_fuel_highlight_frame_position(void);
+void handle_fuel_input(void);
 void fuel_menu_loop(void);
 
 #endif // FUEL_H

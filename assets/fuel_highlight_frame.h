@@ -9,13 +9,13 @@
 #define fuel_highlight_frame_TILE_ORIGIN 0
 #define fuel_highlight_frame_TILE_W 8
 #define fuel_highlight_frame_TILE_H 8
-#define fuel_highlight_frame_WIDTH 32
-#define fuel_highlight_frame_HEIGHT 8
-#define fuel_highlight_frame_TILE_COUNT 4
+#define fuel_highlight_frame_WIDTH 24
+#define fuel_highlight_frame_HEIGHT 24
+#define fuel_highlight_frame_TILE_COUNT 9
 
 BANKREF_EXTERN(fuel_highlight_frame)
 
-extern const uint8_t fuel_highlight_frame_tiles[64];
+extern const uint8_t fuel_highlight_frame_tiles[144];
 
 
 #endif

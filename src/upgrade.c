@@ -65,8 +65,8 @@ UpgradeMenu radiator_menu = {0};
 UpgradeMenu cargo_menu = {0};
 UpgradeMenu main_menu = {0};
 
-UpgradeMenuState currentUpgradeState = MAIN_MENU;
-UpgradeMenu *currentUpgradeMenu = &main_menu;
+UpgradeMenuState current_upgrade_state = MAIN_MENU;
+UpgradeMenu *current_upgrade_menu = &main_menu;
 
 void init_upgrade(void) {
     set_sprite_palette(0, 1, palette_default);
@@ -102,10 +102,10 @@ void init_upgrade_tiles_palettes(void) {
     VBK_REG = 0;
 }
 
-void update_upgrade_highlight_frame_position(uint8_t currentUpgradeSelection) {
+void update_upgrade_highlight_frame_position(uint8_t current_upgrade_selection) {
     uint8_t x, y;
-    x = 24 + (40 * (currentUpgradeSelection % 3));
-    y = 40 + (40 * (currentUpgradeSelection / 3));
+    x = 24 + (40 * (current_upgrade_selection % 3));
+    y = 40 + (40 * (current_upgrade_selection / 3));
     move_metasprite_ex(metasprite_upgrade_highlight_frame, 0, 0, 0, x, y);
 }
 
@@ -124,7 +124,7 @@ void update_upgrade_tick(UpgradeMenuState state) {
 
 
 void display_upgrade_menu(UpgradeMenu *menu) {
-    update_upgrade_highlight_frame_position(menu->currentUpgradeSelection);
+    update_upgrade_highlight_frame_position(menu->current_upgrade_selection);
 }
 
 void load_upgrade_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type) {
@@ -143,7 +143,7 @@ void load_upgrade_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t po
 
 void load_sub_upgrade_tiles(void) {
     for (uint8_t i = 0; i < 6; i++) {
-        load_upgrade_single_tile(upgrade_tiles_TILE_ORIGIN + 16 * i, i, i, currentUpgradeState);
+        load_upgrade_single_tile(upgrade_tiles_TILE_ORIGIN + 16 * i, i, i, current_upgrade_state);
     }
 }
 void load_main_upgrade_tiles(void) {
@@ -160,7 +160,7 @@ void write_main_upgrade_text(void) {
     // line 1
     draw_text(3, 2, "UPGRADE STORE", 14, TRUE, 0);
     // line 2
-    draw_text(3, 3, attributes_numbers[currentUpgradeMenu->currentUpgradeSelection]->attribute_name, 14, TRUE, 0);
+    draw_text(3, 3, attributes_numbers[current_upgrade_menu->current_upgrade_selection]->attribute_name, 14, TRUE, 0);
     //draw_text(3, 3, attributes_numbers[selection]->upgrade_name[attributes_numbers[selection]->upgrade_level], 14, TRUE, 0);
     // line 3
     draw_text(3, 15, "CASH", 5, TRUE, 0);
@@ -172,19 +172,19 @@ void write_sub_upgrade_text(void) {
     char cost_string[16];
     char money_string[16];
 
-    uitoa(attributes_numbers[currentUpgradeState]->upgrade_value[currentUpgradeMenu->currentUpgradeSelection], upgrade_string, 10);
-    ultoa(attributes_numbers[currentUpgradeState]->upgrade_cost[currentUpgradeMenu->currentUpgradeSelection], cost_string, 10);
+    uitoa(attributes_numbers[current_upgrade_state]->upgrade_value[current_upgrade_menu->current_upgrade_selection], upgrade_string, 10);
+    ultoa(attributes_numbers[current_upgrade_state]->upgrade_cost[current_upgrade_menu->current_upgrade_selection], cost_string, 10);
 
     ultoa(player.money, money_string, 10);
     strcat(money_string, "$");
-    strcat(upgrade_string, attributes_numbers[currentUpgradeState]->attribute_unit);
+    strcat(upgrade_string, attributes_numbers[current_upgrade_state]->attribute_unit);
     
     // line 1
     draw_text(3, 2, upgrade_string, 8, TRUE, 0);
     draw_text(11, 2, cost_string, 5, FALSE, 0);
     draw_text(16, 2, "$", 1, TRUE, 0);
     // line 2
-    draw_text(3, 3, attributes_numbers[currentUpgradeState]->upgrade_name[currentUpgradeMenu->currentUpgradeSelection], 14, TRUE, 0);
+    draw_text(3, 3, attributes_numbers[current_upgrade_state]->upgrade_name[current_upgrade_menu->current_upgrade_selection], 14, TRUE, 0);
     // line 3
     draw_text(3, 15, "CASH", 5, TRUE, 0);
     draw_text(8, 15, money_string, 9, FALSE, 0);
@@ -193,11 +193,11 @@ void write_sub_upgrade_text(void) {
 
 void change_sub_upgrade_tile_palettes (void) {
     for (uint8_t i = 0; i < 6; i++) {
-        if (attributes_numbers[currentUpgradeState]->upgrade_level < i && player.money < attributes_numbers[currentUpgradeState]->upgrade_cost[i]) {
+        if (attributes_numbers[current_upgrade_state]->upgrade_level < i && player.money < attributes_numbers[current_upgrade_state]->upgrade_cost[i]) {
             set_bkg_palette(2 + i, 1, palette_light_grey);
         } else {
-            set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(currentUpgradeState * 6 + i) * 4]);
-            // set_bkg_palette(2 + i, 1, attributes_numbers[currentUpgradeState]->color_palette[i]);
+            set_bkg_palette(2 + i, 1, &upgrade_tiles_palettes[(current_upgrade_state * 6 + i) * 4]);
+            // set_bkg_palette(2 + i, 1, attributes_numbers[current_upgrade_state]->color_palette[i]);
         }
     }
 }
@@ -210,11 +210,11 @@ void change_main_upgrade_tile_palettes (void) {
 }
 
 
-void attempt_upgrade_purchase(UpgradeMenuState currentUpgradeState, UpgradeMenu *currentUpgradeMenu) {
-    // Using currentUpgradeState to index directly into the attributes array
-    player_attributes *currentAttributes = attributes_numbers[currentUpgradeState];
-    uint16_t cost = currentAttributes->upgrade_cost[currentUpgradeMenu->currentUpgradeSelection];
-    uint8_t upgrade_to = currentUpgradeMenu->currentUpgradeSelection;
+void attempt_upgrade_purchase(UpgradeMenuState current_upgrade_state, UpgradeMenu *current_upgrade_menu) {
+    // Using current_upgrade_state to index directly into the attributes array
+    player_attributes *currentAttributes = attributes_numbers[current_upgrade_state];
+    uint16_t cost = currentAttributes->upgrade_cost[current_upgrade_menu->current_upgrade_selection];
+    uint8_t upgrade_to = current_upgrade_menu->current_upgrade_selection;
 
     // Check if the upgrade level is already too high or matches the selection
     if (currentAttributes->upgrade_level >= upgrade_to) {
@@ -236,29 +236,29 @@ void attempt_upgrade_purchase(UpgradeMenuState currentUpgradeState, UpgradeMenu 
 }
 
 
-void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *currentUpgradeMenu) {
+void handle_upgrade_input(UpgradeMenuState *current_upgrade_state, UpgradeMenu *current_upgrade_menu) {
         if (prev_buttons != buttons) {
         if (buttons & J_UP) {
-            if (currentUpgradeMenu->currentUpgradeSelection > 2) currentUpgradeMenu->currentUpgradeSelection -= 3;
+            if (current_upgrade_menu->current_upgrade_selection > 2) current_upgrade_menu->current_upgrade_selection -= 3;
         } else if (buttons & J_DOWN) {
-            if (currentUpgradeMenu->currentUpgradeSelection < 3) currentUpgradeMenu->currentUpgradeSelection += 3;
+            if (current_upgrade_menu->current_upgrade_selection < 3) current_upgrade_menu->current_upgrade_selection += 3;
         } else if (buttons & J_LEFT) {
-            if (currentUpgradeMenu->currentUpgradeSelection % 3 != 0) currentUpgradeMenu->currentUpgradeSelection--;
+            if (current_upgrade_menu->current_upgrade_selection % 3 != 0) current_upgrade_menu->current_upgrade_selection--;
         } else if (buttons & J_RIGHT) {
-            if ((currentUpgradeMenu->currentUpgradeSelection % 3) != 2) currentUpgradeMenu->currentUpgradeSelection++;
+            if ((current_upgrade_menu->current_upgrade_selection % 3) != 2) current_upgrade_menu->current_upgrade_selection++;
         }
 
             // Selecting an option with 'A'
         if (buttons & J_A) {
-            switch (*currentUpgradeState) {
+            switch (*current_upgrade_state) {
                 case MAIN_MENU:
                     // Assuming main menu has two submenus and four other options
-                    if (currentUpgradeMenu->currentUpgradeSelection == 0) *currentUpgradeState = DRILL_MENU;
-                    else if (currentUpgradeMenu->currentUpgradeSelection == 1) *currentUpgradeState = HULL_MENU;
-                    else if (currentUpgradeMenu->currentUpgradeSelection == 2) *currentUpgradeState = ENGINE_MENU;
-                    else if (currentUpgradeMenu->currentUpgradeSelection == 3) *currentUpgradeState = FUEL_MENU;
-                    else if (currentUpgradeMenu->currentUpgradeSelection == 4) *currentUpgradeState = RADIATOR_MENU;
-                    else if (currentUpgradeMenu->currentUpgradeSelection == 5) *currentUpgradeState = CARGO_MENU;
+                    if (current_upgrade_menu->current_upgrade_selection == 0) *current_upgrade_state = DRILL_MENU;
+                    else if (current_upgrade_menu->current_upgrade_selection == 1) *current_upgrade_state = HULL_MENU;
+                    else if (current_upgrade_menu->current_upgrade_selection == 2) *current_upgrade_state = ENGINE_MENU;
+                    else if (current_upgrade_menu->current_upgrade_selection == 3) *current_upgrade_state = FUEL_MENU;
+                    else if (current_upgrade_menu->current_upgrade_selection == 4) *current_upgrade_state = RADIATOR_MENU;
+                    else if (current_upgrade_menu->current_upgrade_selection == 5) *current_upgrade_state = CARGO_MENU;
                     break;
                 case DRILL_MENU:
                 case HULL_MENU:
@@ -266,7 +266,7 @@ void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *cu
                 case FUEL_MENU:
                 case RADIATOR_MENU:
                 case CARGO_MENU:
-                    attempt_upgrade_purchase(*currentUpgradeState, currentUpgradeMenu);
+                    attempt_upgrade_purchase(*current_upgrade_state, current_upgrade_menu);
                     break;
                 default:
                 break; // Other menus may not have purchasable items
@@ -275,16 +275,16 @@ void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *cu
 
         // Going back with 'B'
         if (buttons & J_B) {
-            switch (*currentUpgradeState) {
+            switch (*current_upgrade_state) {
                 case MAIN_MENU:
                     leave_station = TRUE;
-                    main_menu.currentUpgradeSelection = 0;
-                    drill_menu.currentUpgradeSelection = 0;
-                    hull_menu.currentUpgradeSelection = 0;
-                    engine_menu.currentUpgradeSelection = 0;
-                    fuel_menu.currentUpgradeSelection = 0;
-                    radiator_menu.currentUpgradeSelection = 0;
-                    cargo_menu.currentUpgradeSelection = 0;
+                    main_menu.current_upgrade_selection = 0;
+                    drill_menu.current_upgrade_selection = 0;
+                    hull_menu.current_upgrade_selection = 0;
+                    engine_menu.current_upgrade_selection = 0;
+                    fuel_menu.current_upgrade_selection = 0;
+                    radiator_menu.current_upgrade_selection = 0;
+                    cargo_menu.current_upgrade_selection = 0;
                     break;
                 case DRILL_MENU:
                 case HULL_MENU:
@@ -292,7 +292,7 @@ void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *cu
                 case FUEL_MENU:
                 case RADIATOR_MENU:
                 case CARGO_MENU:
-                    *currentUpgradeState = MAIN_MENU; // Go back to the main menu
+                    *current_upgrade_state = MAIN_MENU; // Go back to the main menu
                     break;
             }
         }
@@ -305,22 +305,22 @@ void upgrade_menu_loop(void) {
 
     // Check if input has changed the state or selection
     if (prev_buttons != buttons) {
-        handle_upgrade_input(&currentUpgradeState, currentUpgradeMenu);
+        handle_upgrade_input(&current_upgrade_state, current_upgrade_menu);
         update_menu = TRUE;  // Set the update flag
     }
 
     if (update_menu) {
-        display_upgrade_menu(currentUpgradeMenu);
-        update_upgrade_tick(currentUpgradeState);
+        display_upgrade_menu(current_upgrade_menu);
+        update_upgrade_tick(current_upgrade_state);
 
         // Update the display and functionality based on the current state
-        if (currentUpgradeState == MAIN_MENU) {
-            currentUpgradeMenu = &main_menu;
+        if (current_upgrade_state == MAIN_MENU) {
+            current_upgrade_menu = &main_menu;
             change_main_upgrade_tile_palettes();
             write_main_upgrade_text();
             load_main_upgrade_tiles();
         } else {
-            currentUpgradeMenu = upgrade_menu_numbers[currentUpgradeState];
+            current_upgrade_menu = upgrade_menu_numbers[current_upgrade_state];
             change_sub_upgrade_tile_palettes();
             write_sub_upgrade_text();
             load_sub_upgrade_tiles();

@@ -42,7 +42,14 @@ Material materials[] = {
 {"artefact", ARTEFACT, 64, 0, 0, 0, PALETTE_ARTEFACT},
 };
 
-
+PowerUp powerup[] = {
+{"REFUEL SHIP", "", "", 0, 0},
+{"REPAIR SHIP", "", "", 0, 0},
+{"EXTRA TANK", "press A to", "refuel ship", 0, 2000},
+{"REPAIR KIT", "press B to", "repair ship", 0, 7500},
+{"DYNAMITE", "press start", "to use item", 0, 2000},
+{"TELEPORTER", "press select", "to use item", 0, 10000}
+};
 
 void update_inventory(void) {
     uint8_t material_index = level_array[depth][width];

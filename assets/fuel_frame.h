@@ -11,18 +11,22 @@
 #define fuel_frame_TILE_H 8
 #define fuel_frame_WIDTH 160
 #define fuel_frame_HEIGHT 144
-#define fuel_frame_TILE_COUNT 76
-#define fuel_frame_PALETTE_COUNT 1
+#define fuel_frame_TILE_COUNT 60
+#define fuel_frame_PALETTE_COUNT 7
 #define fuel_frame_COLORS_PER_PALETTE 4
-#define fuel_frame_TOTAL_COLORS 4
-#define fuel_frame_MAP_ATTRIBUTES 0
+#define fuel_frame_TOTAL_COLORS 28
+#define fuel_frame_MAP_ATTRIBUTES fuel_frame_map_attributes
+#define fuel_frame_MAP_ATTRIBUTES_WIDTH 20
+#define fuel_frame_MAP_ATTRIBUTES_HEIGHT 18
+#define fuel_frame_MAP_ATTRIBUTES_PACKED_WIDTH 20
+#define fuel_frame_MAP_ATTRIBUTES_PACKED_HEIGHT 18
 
 BANKREF_EXTERN(fuel_frame)
 
-extern const palette_color_t fuel_frame_palettes[4];
-extern const uint8_t fuel_frame_tiles[1216];
+extern const palette_color_t fuel_frame_palettes[28];
+extern const uint8_t fuel_frame_tiles[960];
 
 extern const unsigned char fuel_frame_map[360];
-#define fuel_frame_map_attributes fuel_frame_map
+extern const unsigned char fuel_frame_map_attributes[360];
 
 #endif

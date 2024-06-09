@@ -38,7 +38,7 @@ void main(void) {
     while (1) {
         switch (currentGameState) {
             case GAME_STATE_MAIN_MENU:
-                SWITCH_ROM(3);
+                SWITCH_ROM(4);
                 init_clear_screen();
                 init_main_menu();
                 while (currentGameState == GAME_STATE_MAIN_MENU){
@@ -140,14 +140,15 @@ void main(void) {
                 init_clear_screen();
                 init_font();
                 init_fuel();
+                set_fuel_display_y();
                 draw_fuel_menu();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_FUEL_MENU){
+                    if (check_fuel_display_y() <= fuel_display_y && fuel_display_y > 0) fuel_display_y --;
+                    draw_fuel_display();
                     fuel_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; hide_fuel_display();
                 }
-                fuel_up();
-                display_warning_cargo = FALSE;
                 turn_screen_off();
                 break;
             case GAME_STATE_GAME_OVER:

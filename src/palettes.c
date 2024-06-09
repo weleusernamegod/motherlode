@@ -20,7 +20,7 @@
 #define RGB_LIGHT_BLUE				RGB8(232, 252, 255)
 #define RGB_VERY_DARK_BLUE			RGB8(0, 1, 11)
 #define RGB_MEDIUM_GREY				RGB8(127, 120, 120)
-#define RGB_DARK_GREY				RGB8(99, 93, 96)
+#define RGB_DARK_GREY				RGB8(96, 96, 96)
 #define RGB_DEEP_RED				RGB8(185, 40, 26)
 
 

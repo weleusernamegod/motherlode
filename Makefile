@@ -53,8 +53,9 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/upgrade_highlight_frame.png -c assets/upgrade_highlight_frame.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 2
 
 	/usr/local/opt/gbdk/bin/png2asset png/sell_frame.png -c assets/sell_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 3
-	/usr/local/opt/gbdk/bin/png2asset png/fuel_frame.png -c assets/fuel_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 3
+	/usr/local/opt/gbdk/bin/png2asset png/fuel_frame.png -c assets/fuel_frame.c -spr8x8 -repair_indexed_pal -keep_palette_order -map -use_map_attributes -noflip -tile_origin 144 -b 3
 	/usr/local/opt/gbdk/bin/png2asset png/fuel_highlight_frame.png -c assets/fuel_highlight_frame.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -tiles_only -b 3
+	/usr/local/opt/gbdk/bin/png2asset png/fuel_display.png -c assets/fuel_display.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 16 -py 0 -b 3
 
 	/usr/local/opt/gbdk/bin/png2asset png/main_menu_buttons.png -c assets/main_menu_buttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 4
 	/usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 4

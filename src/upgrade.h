@@ -11,7 +11,7 @@ BANKREF_EXTERN(bank_upgrade)
 extern const metasprite_t metasprite_upgrade_highlight_frame[];
 
 typedef struct {
-    uint8_t currentUpgradeSelection;
+    uint8_t current_upgrade_selection;
 } UpgradeMenu;
 
     // Define menu states
@@ -36,13 +36,13 @@ extern UpgradeMenu radiator_menu;
 extern UpgradeMenu cargo_menu;
 extern UpgradeMenu main_menu;
 
-extern UpgradeMenuState currentUpgradeState;
-extern UpgradeMenu *currentUpgradeMenu;
+extern UpgradeMenuState current_upgrade_state;
+extern UpgradeMenu *current_upgrade_menu;
 
 void init_upgrade(void);
 void init_upgrade_tiles_palettes(void);
-void update_upgrade_highlight_frame_position(uint8_t currentUpgradeSelection);
-void update_upgrade_tick(UpgradeMenuState currentUpgradeState);
+void update_upgrade_highlight_frame_position(uint8_t current_upgrade_selection);
+void update_upgrade_tick(UpgradeMenuState current_upgrade_state);
 void display_upgrade_menu(UpgradeMenu *menu);
 void load_upgrade_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t position, uint8_t upgrade_type);
 void load_sub_upgrade_tiles(void);
@@ -51,8 +51,8 @@ void write_main_upgrade_text(void);
 void write_sub_upgrade_text(void);
 void change_sub_upgrade_tile_palettes (void);
 void change_main_upgrade_tile_palettes (void);
-void attempt_upgrade_purchase(UpgradeMenuState currentUpgradeState, UpgradeMenu *currentUpgradeMenu);
-void handle_upgrade_input(UpgradeMenuState *currentUpgradeState, UpgradeMenu *currentUpgradeMenu); 
+void attempt_upgrade_purchase(UpgradeMenuState current_upgrade_state, UpgradeMenu *current_upgrade_menu);
+void handle_upgrade_input(UpgradeMenuState *current_upgrade_state, UpgradeMenu *current_upgrade_menu); 
 void upgrade_menu_loop(void);
 
 #endif // UPGRADE_H

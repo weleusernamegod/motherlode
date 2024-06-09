@@ -32,6 +32,10 @@
 #define COLOR_TO_CHANGE_BKG 1 // what color of bkg palette 0 is changing with depth
 #define COLOR_TO_CHANGE_SKY 0 // what color of sky to change
 
+#define FUEL_DISPLAY_PALETTE 1
+
+
+
 // color palettes
 #define PALETTE_DEFAULT 0
 #define PALETTE_DIRT 2
@@ -114,6 +118,16 @@
 #define ACCELERATE 3
 #define PIXEL_FROM_CENTER 12
 
+#define FUEL_PRICE 3
+#define REPAIR_PRICE 20
+
+#define ATTRIBUTE_DRILL 0
+#define ATTRIBUTE_HULL 1
+#define ATTRIBUTE_ENGINE 2
+#define ATTRIBUTE_FUEL 3
+#define ATTRIBUTE_RADIATOR 4
+#define ATTRIBUTE_CARGO 5
+
 // sprites
 #define ROVER_START 0
 #define TRACKS_START 4
@@ -126,6 +140,7 @@
 #define WARNING_FUEL_START 30
 #define PROGRESSBAR_HULL_START 35
 #define PROGRESSBAR_FUEL_START 37
+#define FUEL_DISPLAY_START 14
 
 // tiles
 #define TILE_START 96

@@ -37,6 +37,13 @@
 #define LOWEST_ORE COAL
 #define HIGHEST_ORE AQUAMARINE
 
+#define OPTION_FUEL_UP 0
+#define OPTION_REPAIR 1
+#define OPTION_EXTRA_TANK 2
+#define OPTION_REPAIR_KIT 3
+#define OPTION_DYNAMITE 4
+#define OPTION_TELEPORTER 5
+
 void update_inventory(void);
 void calculate_cargo(void);
 
@@ -51,5 +58,13 @@ typedef struct Material {
     } Material;
 extern Material materials[];
 
+typedef struct PowerUp {
+    const char *name;
+    const char *description;
+    const char *description_extended;
+    uint8_t inventory;              // How many of that type in inventory
+    int16_t cost;                   // How much does it cost to buy 1x
+} PowerUp;
+extern PowerUp powerup[];
 
 #endif // INVENTORY_H

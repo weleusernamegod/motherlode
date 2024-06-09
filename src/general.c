@@ -97,21 +97,30 @@ void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN l
     // Fill in the padding space with empty tiles if the text is shorter than the length
     if (!left_aligned) {
         for (uint8_t i = 0; i < length - textLength; i++) {
+            VBK_REG = 1;
             set_win_tile_xy(x - length + textLength + i, y, palette);
+            VBK_REG = 0;
+            set_win_tile_xy(x - length + textLength + i, y, 0);
             set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
     }
 
     // Draw the text
     for (uint8_t i = 0; i < textLength; i++) {
+        VBK_REG = 1;
         set_win_tile_xy(x + i, y, palette);
+        VBK_REG = 0;
+        set_win_tile_xy(x + i, y, 0);
         set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
     }
 
     // If left-aligned and needs padding after text
     if (left_aligned) {
         for (uint8_t i = textLength; i < length; i++) {
+            VBK_REG = 1;
             set_win_tile_xy(x + i, y, palette);
+            VBK_REG = 0;
+            set_win_tile_xy(x + i, y, 0);
             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
     }
