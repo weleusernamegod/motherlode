@@ -22,6 +22,7 @@ typedef struct player_attributes {
     const char *upgrade_name[6];
     const char *attribute_name;
     const char *attribute_unit;
+    const char *attribute_unit_short;
     int16_t current_value;
     int16_t max_value;
     uint8_t upgrade_level;

@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define fuel_display_TILE_ORIGIN 16
+#define fuel_display_TILE_ORIGIN 0
 #define fuel_display_TILE_W 8
 #define fuel_display_TILE_H 8
 #define fuel_display_WIDTH 16

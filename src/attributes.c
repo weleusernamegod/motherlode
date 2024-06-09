@@ -37,7 +37,8 @@ void init_attributes(void){
     player.drill.upgrade_name[5] = "platinum drill";
 
     player.hull.attribute_name = "hull";
-    player.hull.attribute_unit = "HEALTH";
+    player.hull.attribute_unit = "PT";
+    player.hull.attribute_unit_short = "?";
     player.hull.upgrade_level = 0;
     player.hull.upgrade_value[0] = 17;
     player.hull.upgrade_value[1] = 30;
@@ -81,7 +82,8 @@ void init_attributes(void){
     player.engine.upgrade_name[5] = "v16 jaguar";
 
     player.fuel.attribute_name = "fueltank";
-    player.fuel.attribute_unit = "!";
+    player.fuel.attribute_unit = "LTR";
+    player.fuel.attribute_unit_short = "!";
     player.fuel.upgrade_level = 0;
     player.fuel.upgrade_value[0] = 120;
     player.fuel.upgrade_value[1] = 200;

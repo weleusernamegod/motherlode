@@ -6,16 +6,21 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define fuel_highlight_frame_TILE_ORIGIN 0
+#define fuel_highlight_frame_TILE_ORIGIN 4
 #define fuel_highlight_frame_TILE_W 8
 #define fuel_highlight_frame_TILE_H 8
-#define fuel_highlight_frame_WIDTH 24
+#define fuel_highlight_frame_WIDTH 48
 #define fuel_highlight_frame_HEIGHT 24
-#define fuel_highlight_frame_TILE_COUNT 9
+#define fuel_highlight_frame_TILE_COUNT 20
+#define fuel_highlight_frame_PIVOT_X -8
+#define fuel_highlight_frame_PIVOT_Y -16
+#define fuel_highlight_frame_PIVOT_W 48
+#define fuel_highlight_frame_PIVOT_H 24
 
 BANKREF_EXTERN(fuel_highlight_frame)
 
-extern const uint8_t fuel_highlight_frame_tiles[144];
+extern const uint8_t fuel_highlight_frame_tiles[320];
 
+extern const metasprite_t* const fuel_highlight_frame_metasprites[4];
 
 #endif

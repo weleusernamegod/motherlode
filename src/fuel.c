@@ -27,17 +27,17 @@ BANKREF(bank_fuel)
 
 metasprite_t metasprite_fuel_highlight_frame[] = {
     {.dy=15, .dx=7, .dtile=0, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
     {.dy=0, .dx=2, .dtile=1, .props=0},
+    {.dy=0, .dx=8, .dtile=1, .props=0},
+    {.dy=0, .dx=8, .dtile=1, .props=0},
+    {.dy=0, .dx=8, .dtile=1, .props=0},
     {.dy=0, .dx=8, .dtile=2, .props=0},
     {.dy=2, .dx=0, .dtile=5, .props=0},
     {.dy=8, .dx=0, .dtile=8, .props=0},
-    {.dy=0, .dx=-8, .dtile=7, .props=0},
-    {.dy=0, .dx=-8, .dtile=7, .props=0},
-    {.dy=0, .dx=-8, .dtile=7, .props=0},
     {.dy=0, .dx=-2, .dtile=7, .props=0},
+    {.dy=0, .dx=-8, .dtile=7, .props=0},
+    {.dy=0, .dx=-8, .dtile=7, .props=0},
+    {.dy=0, .dx=-8, .dtile=7, .props=0},
     {.dy=0, .dx=-8, .dtile=6, .props=0},
     {.dy=-2, .dx=0, .dtile=3, .props=0},
 	METASPR_TERM
@@ -57,8 +57,7 @@ void init_fuel(void) {
     set_sprite_data(fuel_display_TILE_ORIGIN, fuel_display_TILE_COUNT, fuel_display_tiles);
     set_sprite_palette(FUEL_DISPLAY_PALETTE, 1, fuel_display_palettes);
 
-    set_sprite_data(0, fuel_highlight_frame_TILE_COUNT, fuel_highlight_frame_tiles); // blank tile in the end
-    move_metasprite_ex(metasprite_fuel_highlight_frame, 0, 0, 0, 24, 40);
+    set_sprite_data(fuel_highlight_frame_TILE_ORIGIN, fuel_highlight_frame_TILE_COUNT, fuel_highlight_frame_tiles); // blank tile in the end
 }
 
 void draw_fuel_display(void) {
@@ -71,7 +70,7 @@ void hide_fuel_display(void) {
 
 void draw_fuel_menu(void) {
     // Title
-    draw_text(2, 2, "GAS STATION", 16, TRUE, 0);
+    draw_text(2, 2, "SERVICE STATION", 16, TRUE, 0);
 
     char money_string[16];
     char cost_string[8];
@@ -103,6 +102,8 @@ void draw_fuel_menu(void) {
 
         // Line 4
         draw_text(7, 13, "1*", 5, TRUE, 0);
+        draw_text(12, 13, cost_string, 6, FALSE, 0);
+
     } else {
         uint8_t current_attribute = 0;
         if (current_powerup_selection == OPTION_FUEL_UP) {
@@ -125,20 +126,24 @@ void draw_fuel_menu(void) {
         // draw_text(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
         // Line 3
         draw_text(7, 12, current_value_string, 3, FALSE, 0);
-        draw_text(10, 12, attributes_numbers[current_attribute]->attribute_unit, 1, TRUE, 0);
+        draw_text(10, 12, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
         draw_text(11, 12, " / ", 3, TRUE, 0);
         draw_text(14, 12, max_value_string, 3, FALSE, 0);
-        draw_text(17, 12, attributes_numbers[current_attribute]->attribute_unit, 1, TRUE, 0);
+        draw_text(17, 12, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
 
         // Line 4
-        draw_text(7, 13, missing_value_string, 3, FALSE, 0);
-        draw_text(10, 13, attributes_numbers[current_attribute]->attribute_unit, 1, TRUE, 0);
+        if (attributes_numbers[current_attribute]->max_value - attributes_numbers[current_attribute]->current_value != 0) {
+            draw_text(7, 13, missing_value_string, 3, FALSE, 0);
+            draw_text(10, 13, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
+            // Line 7
+            draw_text(12, 13, cost_string, 6, FALSE, 0);
 
-        // Line 7
-        draw_text(12, 13, cost_string, 6, FALSE, 0);
+        } else {
+            draw_text(7, 13, "full", 11, FALSE, 0);
+        }
+
     }
 
-    draw_text(12, 13, cost_string, 6, FALSE, 0);
     draw_text(7, 15, "CASH", 4, TRUE, 0);
     draw_text(11, 15, money_string, 7, FALSE, 0);
 }
@@ -205,27 +210,32 @@ void update_fuel_highlight_frame_position(void) {
     uint8_t x, y;
     if (current_powerup_selection < 2) {
         // First row (0 and 1)
-        x = 56 + (current_powerup_selection * 6 * 8);
-        y = 32;
-        metasprite_fuel_highlight_frame[1].dx = 8;
-        metasprite_fuel_highlight_frame[2].dx = 8;
-        metasprite_fuel_highlight_frame[3].dx = 8;
-        metasprite_fuel_highlight_frame[8].dx = -8;
-        metasprite_fuel_highlight_frame[9].dx = -8;
-        metasprite_fuel_highlight_frame[10].dx = -8;
+        x = 56 + (current_powerup_selection * 6 * 8) -1;
+        y = 32 -1;
+        // metasprite_fuel_highlight_frame[2].dx = 8;
+        // metasprite_fuel_highlight_frame[3].dx = 8;
+        // metasprite_fuel_highlight_frame[4].dx = 8;
+        // metasprite_fuel_highlight_frame[9].dx = -8;
+        // metasprite_fuel_highlight_frame[10].dx = -8;
+        // metasprite_fuel_highlight_frame[11].dx = -8;
     } else {
         // Second row (2 to 5), closer spacing
-        x = 56 + ((current_powerup_selection - 2) * 3 * 8);  // Adjusted horizontal spacing
-        y = 56;
-        metasprite_fuel_highlight_frame[1].dx = 0;
-        metasprite_fuel_highlight_frame[2].dx = 0;
-        metasprite_fuel_highlight_frame[3].dx = 0;
-        metasprite_fuel_highlight_frame[8].dx = -0;
-        metasprite_fuel_highlight_frame[9].dx = -0;
-        metasprite_fuel_highlight_frame[10].dx = -0;
+        x = 56 + ((current_powerup_selection - 2) * 3 * 8) -1;  // Adjusted horizontal spacing
+        y = 56 -1;
+        // metasprite_fuel_highlight_frame[2].dx = 0;
+        // metasprite_fuel_highlight_frame[3].dx = 0;
+        // metasprite_fuel_highlight_frame[4].dx = 0;
+        // metasprite_fuel_highlight_frame[9].dx = -0;
+        // metasprite_fuel_highlight_frame[10].dx = -0;
+        // metasprite_fuel_highlight_frame[11].dx = -0;
     }
-    move_metasprite_ex(metasprite_fuel_highlight_frame, 0, 0, 0, x, y);
+    move_metasprite_ex(fuel_highlight_frame_metasprites[(frame_counter >> 2) % 4], fuel_highlight_frame_TILE_ORIGIN, 0, 0, x, y);
 }
+// void draw_a_button(void){
+//     if (animation_frames_left == 0 && (frame_counter % (60 / (sizeof(a_button_metasprites) >> 1)) == 0)) {
+//             move_metasprite_ex(a_button_metasprites[], a_button_TILE_ORIGIN, RESERVE_PALETTE, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
+//     }
+// }
 
 void handle_fuel_input(void) {
     if (prev_buttons != buttons) {
@@ -290,11 +300,11 @@ void fuel_menu_loop(void) {
     }
 
     if (update_menu) {
-        update_fuel_highlight_frame_position();
         draw_fuel_menu();
         update_menu = FALSE;  // Reset the update flag after updating the screen
     }
 
+    update_fuel_highlight_frame_position();
     prev_buttons = buttons;
     vsync();
 }
