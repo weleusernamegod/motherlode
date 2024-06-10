@@ -16,7 +16,7 @@ player_attributes *attributes_numbers[] = {
 void init_attributes(void){
     player.drill.attribute_name = "drill";
     player.drill.attribute_unit = "M/S";
-    player.drill.upgrade_level = 0;
+    player.drill.upgrade_level = 5;
     player.drill.upgrade_value[0] = 1;
     player.drill.upgrade_value[1] = 2;
     player.drill.upgrade_value[2] = 4;    
@@ -84,7 +84,7 @@ void init_attributes(void){
     player.fuel.attribute_name = "fueltank";
     player.fuel.attribute_unit = "LTR";
     player.fuel.attribute_unit_short = "!";
-    player.fuel.upgrade_level = 0;
+    player.fuel.upgrade_level = 5;
     player.fuel.upgrade_value[0] = 120;
     player.fuel.upgrade_value[1] = 200;
     player.fuel.upgrade_value[2] = 350;

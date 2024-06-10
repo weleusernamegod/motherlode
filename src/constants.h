@@ -88,7 +88,7 @@
 
 
 // general
-#define ROWS 256
+#define ROWS 1024
 #define COLS 16
 
 #define WIN_X 3

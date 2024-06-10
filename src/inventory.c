@@ -52,7 +52,7 @@ PowerUp powerup[] = {
 };
 
 void update_inventory(void) {
-    uint8_t material_index = level_array[depth][width];
+    uint8_t material_index = level_array[wrapped_depth][width];
     
     // Check if the material is minable and within the defined range
     if (material_index >= MIN_MINABLE_MATERIAL && material_index <= MAX_MINABLE_MATERIAL) {

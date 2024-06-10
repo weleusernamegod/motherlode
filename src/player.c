@@ -33,6 +33,7 @@ struct Player player;
 void init_depth(void){
     direction_prev = RIGHT;    // start with the rover facing right
     prev_depth = depth;
+    wrapped_depth = depth;
     width_pixel.h = 16 + ((width - width_offset) * 16);
     depth_pixel.h = 16 + 8 + ((depth - depth_offset) * 16);
     scroll_x.h = width_offset * 16;
@@ -48,11 +49,11 @@ void init_speed(void){
     scroll_y.w = 0;
 }
 
-void check_surroundings(void){
-    next_tile_down = level_array[depth + 1][width];
-    next_tile_up = level_array[depth - 1][width];
-    next_tile_right = level_array[depth][width + 1];
-    next_tile_left = level_array[depth][width - 1];
+void check_surroundings(void) {
+    next_tile_down = get_tile_from_array(depth + 1, width);
+    next_tile_up = get_tile_from_array(depth - 1, width);
+    if (width < 15) next_tile_right = get_tile_from_array(depth, width + 1);
+    if (width > 0) next_tile_left = get_tile_from_array(depth, width - 1);
 }
 
 void metasprite_drill_horizontal(char direction){
@@ -202,6 +203,7 @@ void update_movement(void) {
             scroll_y.h = depth_offset * 16, scroll_y.l = 0;  
 
             prev_depth = depth;
+            wrapped_depth = depth % 256;
             width_pixel.h = 16 + ((width - width_offset) * 16);
             depth_pixel.h = 16 + 8 + (depth - depth_offset) * 16;
             scroll_x.h = width_offset * 16;
@@ -210,8 +212,8 @@ void update_movement(void) {
             // animation has ended, so the rover has stopped drilling
             is_drilling = FALSE;
             // the player has cleared a tile, so set flag to update inventory
-            if (level_array[depth][width] != EMPTY && depth >= UNDERGROUND){
-                if (level_array[depth][width] >= MIN_MINABLE_MATERIAL){
+            if (level_array[wrapped_depth][width] != EMPTY && depth >= UNDERGROUND){
+                if (level_array[wrapped_depth][width] >= MIN_MINABLE_MATERIAL){
                     ore_mined = TRUE;
                 }
                 tile_mined = TRUE;

@@ -55,7 +55,7 @@ void main(void) {
 
             case GAME_STATE_NEW_GAME:
                 SWITCH_ROM(1);
-                generate_map(16);
+                generate_map(1024);
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();

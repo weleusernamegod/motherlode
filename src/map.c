@@ -44,59 +44,79 @@
 BANKREF(bank_map)
 #endif
 
+uint8_t get_tile_from_array(uint16_t depth, uint16_t width) {
+    switch_ram_bank_based_on_value(depth);
+    uint8_t tile = level_array[depth % 256][width];
+    switch_ram_bank_back_to_prev();
+    return tile;
+}
+
+void switch_ram_bank_back_to_prev(void) {
+    current_ram_bank = prev_ram_bank;
+    SWITCH_RAM(prev_ram_bank);
+}
+
+void switch_ram_bank_based_on_value(uint16_t value) {
+    prev_ram_bank = current_ram_bank;
+    current_ram_bank = value / 256; // Determine which bank to switch to
+    SWITCH_RAM(current_ram_bank); // Switch to the appropriate bank
+}
+
+
 void generate_map(uint16_t rows) {
     uint16_t i, j;
     for (i = 0; i < rows; i++) {
         for (j = 0; j < COLS; j++) {
-            if (i < 6) {
-                // First six rows are empty
-                level_array[i][j] = 0;
-            } else if (i == 6) {
-                // Seventh row is all '2'
-                level_array[i][j] = 2;
-            } else {
+            if (i > 6) {
                 // Start generating the map based on depth
-                uint8_t tileType = 1;  // Default to dirt
                 uint8_t randValue = rand() % 100;  // Random value from 0 to 99
+                uint8_t tileType = 1; // Default to dirt
 
                 // Determine ore distribution based on depth
                 if (i < 20 && randValue >= 80) {
                     // Rows 7 to 19: Ores 4 to 5
-                    tileType = rand() % 2 + 4;
-                } else if (i >= 20 && i < 40 && randValue >= 80) {
-                    // Rows 20 to 39: Ores 5 to 7
-                    tileType = rand() % 3 + 5;
-                } else if (i >= 40 && i < 80 && randValue >= 80) {
-                    // Rows 20 to 39: Ores 7 to 9
-                    tileType = rand() % 3 + 7;
-                } else if (i >= 80 && i < 120 && randValue >= 80) {
-                    // Rows 40 to 79: Introduce rare ores 10 to 12
-                    if (randValue >= 90) { // Very rare ore 12
-                        tileType = 12;
-                    } else if (randValue >= 85) { // Rare ores 10 to 11
-                        tileType = rand() % 2 + 10;
-                    } else {
-                        // Rows 40 to 79: Ores 7 to 9
-                        tileType = rand() % 3 + 7;
-                    }
-                } else if (i >= 120 && randValue >= 70) {
-                    // Rows 80 and deeper: Rarest ores 13 and 14
-                    if (randValue >= 95) {
-                        tileType = 14; // Rarest ore 14
-                    } else {
-                        tileType = 13; // Rarest ore 13
-                    }
+                    tileType = rand() % 2 + 4; // Ores 4 and 5
+                } else if (i >= 20 && i < 50 && randValue >= 80) {
+                    // Rows 20 to 49: Ores 4 to 7
+                    tileType = rand() % 4 + 4; // Ores 4 to 7
+                } else if (i >= 50 && i < 150 && randValue >= 75) {
+                    // Rows 50 to 149: Ores 8 to 11
+                    tileType = rand() % 4 + 8; // Ores 8 to 11
+                } else if (i >= 150 && i < 300 && randValue >= 70) {
+                    // Rows 150 to 299: Ores 12 to 14
+                    tileType = rand() % 3 + 12; // Ores 12 to 14
+                } else if (i >= 300 && i < 600 && randValue >= 65) {
+                    // Rows 300 to 599: Ores 15 to 17
+                    tileType = rand() % 3 + 15; // Ores 15 to 17
+                } else if (i >= 600 && randValue >= 60) {
+                    // Rows 600 and deeper: Ores 16 to 18
+                    tileType = rand() % 3 + 16; // Ores 16 to 18
                 }
 
                 // Introduce caves (empty spaces)
-                if (randValue < 20) {  // Increase to 10% chance for caves
+                if (randValue < 20) {  // Increase to 20% chance for caves
                     tileType = 0;
                 }
+                
+                // Mix ores a bit more in the deeper rows
+                if (i >= 300 && randValue >= 50) {
+                    tileType = rand() % 18 + 1;  // Mix all ores from 1 to 18
+                }
 
-                level_array[i][j] = tileType;
+                switch_ram_bank_based_on_value(i);
+                level_array[i % 256][j] = tileType;
+
+            } else if (i == 6) {
+                // Seventh row is all '2'
+                level_array[i][j] = 2;
+            } else if (i < 6) {
+                // First six rows are empty
+                level_array[i][j] = 0;
             }
         }
     }
+
+    SWITCH_RAM(0); // back to default RAM bank
 }
 
 void shuffle(uint8_t array[4]) {
@@ -277,8 +297,9 @@ void update_palette_based_on_depth(void) {
  * @param r Number of rows (height) to set, in tiles (1 - 16).
  * @param c Number of columns (width) to set, in tiles (1 - 16).
  */
-void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c) {
-    for (uint8_t y = y1; y < y1 + r; y++) {
+
+void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c) {
+    for (uint16_t y = y1; y < y1 + r; y++) {
         for (uint8_t x = x1; x < x1 + c; x++) {
             uint8_t temp = (array[y][x] * 4) + TILE_START - 4;
             uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
@@ -321,8 +342,14 @@ void set_4bkg_tiles(uint8_t array[][16], uint8_t x1, uint16_t y1, uint8_t r, uin
 
 void spawn_bkg_row(void) {
         if (depth >= METATILES_PER_SCREEN) { // just a guess, tested and found out it has to be 8
-            if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) set_4bkg_tiles(level_array, 0, depth + 4, 1, 16);
-            else if (depth - depth_offset == THRESHOLD) set_4bkg_tiles(level_array, 0, depth - 4, 1, 16);
+            if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) {
+                switch_ram_bank_based_on_value(depth + 4);
+                set_4bkg_tiles(level_array, 0, (depth + 4) % 256, 1, 16);
+            } else if (depth - depth_offset == THRESHOLD) {
+                switch_ram_bank_based_on_value(depth - 4);
+                set_4bkg_tiles(level_array, 0, (depth - 4) % 256, 1, 16);
+            }
+            switch_ram_bank_back_to_prev(); // ram bank back to where it was
         }
 }
 

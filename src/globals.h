@@ -10,7 +10,8 @@ extern volatile uint8_t second_counter;
 extern volatile uint8_t minute_counter;
 
 // bank switching
-extern uint8_t saved_bank;
+extern uint8_t current_ram_bank;
+extern uint8_t prev_ram_bank;
 
 // gamestates
 extern BOOLEAN player_alive;
@@ -35,6 +36,7 @@ extern GameState currentGameState;
 extern uint16_t depth, width;
 extern uint16_t depth_offset, width_offset;
 extern uint16_t prev_depth, prev_width;
+extern uint16_t wrapped_depth;
 extern uint16_t current_bkg_color;
 extern fixed depth_pixel, width_pixel;
 extern fixed scroll_x, scroll_y;

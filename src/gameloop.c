@@ -23,13 +23,14 @@ void game_loop(void) {
         initiate_movement();
     }
     update_movement();
-    //draw_test();
+    switch_ram_bank_based_on_value(depth);
+
     if (tile_mined == TRUE) {
         if (ore_mined == TRUE) {
         update_inventory();
         handle_cargo();
         }
-        clear_4bkg_tiles(width, depth);
+        clear_4bkg_tiles(width, wrapped_depth);
         tile_mined = FALSE;
         ore_mined = FALSE;
     }

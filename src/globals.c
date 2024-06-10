@@ -14,7 +14,8 @@ volatile uint8_t minute_counter = 0;
 uint8_t current_menu_index = 0;
 
 // bank switching
-uint8_t saved_bank;
+uint8_t current_ram_bank = 0;
+uint8_t prev_ram_bank = 0;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
@@ -28,6 +29,7 @@ BOOLEAN buildings_loaded = TRUE;  // for checks if buildings need to be loaded o
 uint16_t depth = 2, width = 4;
 uint16_t depth_offset = 0, width_offset = 0;
 uint16_t prev_depth, prev_width;
+uint16_t wrapped_depth;
 uint16_t current_bkg_color;
 fixed depth_pixel, width_pixel;
 fixed scroll_x, scroll_y;

@@ -22,6 +22,9 @@ extern const Palette_group palette_groups[];
 extern const Palette_group* last_used_palette_group;
 extern const int palette_groups_count;  // Declare the size of palette_groups explicitly
 
+uint8_t get_tile_from_array(uint16_t depth, uint16_t width);
+void switch_ram_bank_back_to_prev(void);
+void switch_ram_bank_based_on_value(uint16_t value);
 
 void generate_map(uint16_t rows);
 void shuffle(uint8_t array[4]);
@@ -31,6 +34,7 @@ void change_sky_color(void);
 void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index);
 void init_palette_based_on_depth(void);
 void update_palette_based_on_depth(void);
+void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c);
 void spawn_bkg_row(void);
 void clear_4bkg_tiles(uint8_t x, uint16_t y);
 void add_block(uint8_t x, uint16_t y, uint8_t type);
