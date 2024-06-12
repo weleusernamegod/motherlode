@@ -248,6 +248,7 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(MITHRIL - 1) * 4],
             &ore_tiles_palettes[(PLATINUM - 1) * 4],
             &ore_tiles_palettes[(COPPER - 1) * 4],
+            &ore_tiles_palettes[(TIN - 1) * 4],
             &ore_tiles_palettes[(SILVER - 1) * 4],
             &ore_tiles_palettes[(GOLD - 1) * 4],
         },
@@ -270,7 +271,7 @@ void update_palette_based_on_depth(void) {
     const Palette_group* selected_palette_group = NULL;
 
     // Use palette_groups_count instead of sizeof calculation
-    for (int i = 0; i < palette_groups_count; i++) {
+    for (uint8_t i = 0; i < palette_groups_count; i++) {
         if (depth_offset >= palette_groups[i].depth_threshold) {
             selected_palette_group = &palette_groups[i];
         } else {
@@ -301,7 +302,7 @@ void update_palette_based_on_depth(void) {
 void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c) {
     for (uint16_t y = y1; y < y1 + r; y++) {
         for (uint8_t x = x1; x < x1 + c; x++) {
-            uint8_t temp = (array[y][x] * 4) + TILE_START - 4;
+            uint8_t temp = (array[y][x] * 4) + ORE_TILE_START - 4;
             uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
             uint8_t palette_array[4];
 
@@ -320,7 +321,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
             if (array[y][x] == EMPTY) {
                 for (uint8_t i = 0; i < 4; i++) palette_array[i] = 0;
             } else {
-                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - TILE_START) / 4].color_palette;
+                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - ORE_TILE_START) / 4].color_palette;
             }
 
             // Set tiles first with VBK_REG = 0 (tile data)
@@ -548,7 +549,7 @@ void init_progressbar(void){
 }
 
 void init_tiles(void){
-    set_bkg_data(TILE_START, ore_tiles_TILE_COUNT, ore_tiles_tiles);
+    set_bkg_data(ORE_TILE_START, ore_tiles_TILE_COUNT, ore_tiles_tiles);
 }
 void draw_tiles(void){
     set_4bkg_tiles(level_array, 0, 0, 16, 16);

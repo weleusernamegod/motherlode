@@ -84,7 +84,7 @@ void metasprite_drill_vertical(char direction){
 }
 void metasprite_prop(void){
     if (velocity != 0) move_metasprite_ex(
-        prop_metasprites[absolute_movement % (sizeof(prop_metasprites) >> 1)],
+        prop_metasprites[frame_counter % (sizeof(prop_metasprites) >> 1)],
         prop_TILE_ORIGIN,
         ROVER_PALETTE_0,
         PROP_START,
@@ -142,7 +142,7 @@ void draw_metasprite(char direction){
         if (is_drilling == TRUE) metasprite_drill_horizontal(direction);
     } else if (direction == UP || direction == DOWN) {
         metasprite_rover(direction_prev, FALSE);
-        if (direction == UP) metasprite_prop();
+        //if (direction == UP) metasprite_prop();
         if (is_drilling == TRUE) metasprite_drill_vertical(direction);
     }
 }
@@ -350,14 +350,14 @@ void initiate_movement(void) {
             move(LEFT, DRIVE);
         } else direction_prev = LEFT;
     }
-    if (buttons & J_RIGHT) { 
+    else if (buttons & J_RIGHT) { 
         if (next_tile_right != EMPTY && next_tile_right != STONE && next_tile_down != EMPTY) {
             move(RIGHT, DRILL);
         } else if (next_tile_right == EMPTY) {
             move(RIGHT, DRIVE);
         } else direction_prev = RIGHT;
     }
-    if (buttons & J_DOWN) { 
+    else if (buttons & J_DOWN) { 
         if (next_tile_down != EMPTY && next_tile_down != STONE){
             move(DOWN, DRILL);
         }
@@ -365,7 +365,7 @@ void initiate_movement(void) {
     if (next_tile_up == EMPTY && (buttons & J_UP )) {
         move(UP, ACCELERATE);
     }
-    if (next_tile_down == EMPTY && !(buttons & J_UP)) {
+    else if (next_tile_down == EMPTY && !(buttons & J_UP)) {
         move(DOWN, ACCELERATE);
     }
 }

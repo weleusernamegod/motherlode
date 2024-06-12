@@ -47,6 +47,9 @@ void game_loop(void) {
 
     if (depth <= 9 && frame_counter == 1) change_sky_color();
 
+    if (buttons & J_UP) metasprite_prop(); // have prop moving even if the player is stuck but trying to get up
+
+
     handle_fuel();
     handle_hull();
 

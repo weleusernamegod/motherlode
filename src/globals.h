@@ -81,6 +81,6 @@ extern uint8_t sky_color_value;
 // fuel menu
 extern uint8_t current_powerup_selection;
 extern uint16_t powerup_cost;
-extern uint8_t fuel_display_y;
+extern uint16_t fuel_display_y;
 
 #endif // GLOBALS_H

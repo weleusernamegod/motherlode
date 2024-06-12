@@ -74,4 +74,4 @@ uint8_t sky_color_value;
 // fuel menu
 uint8_t current_powerup_selection = 0;
 uint16_t powerup_cost = 0;
-uint8_t fuel_display_y = 50;
+uint16_t fuel_display_y = 0;

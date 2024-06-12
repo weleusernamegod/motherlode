@@ -154,11 +154,12 @@ uint16_t calculate_fuel_cost(void) {
     return fuel_cost;
 }
 void set_fuel_display_y(void) {
-    fuel_display_y = (80 - (player.fuel.current_value * 80 / player.fuel.max_value));
+    fuel_display_y = check_fuel_display_y();
 }
 
 uint8_t check_fuel_display_y(void) {
-    return (80 - (player.fuel.current_value * 80 / player.fuel.max_value));
+    uint32_t current_value_32 = player.fuel.current_value;
+    return (80 - (current_value_32 * 80 / player.fuel.max_value));
 }
 
 void fuel_up(void) {

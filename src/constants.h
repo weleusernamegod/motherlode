@@ -143,7 +143,7 @@
 #define FUEL_DISPLAY_START 14
 
 // tiles
-#define TILE_START 96
+#define ORE_TILE_START 96
 #define NUMBERS_START 4
 #define LETTER_START 26
 #define SLETTER_START 52
