@@ -12,11 +12,11 @@
 #include "inventory.h"
 #include "palettes.h"
 
-#include "../assets/fuel_frame.h"
+#include "../assets/powerup_frame.h"
 #include "../assets/fuel_display.h"
-#include "../assets/fuel_highlight_frame.h"
+#include "../assets/powerup_highlight_frame.h"
 
-#include "fuel.h"
+#include "powerup.h"
 
 
 
@@ -25,7 +25,7 @@
 BANKREF(bank_fuel)
 #endif
 
-metasprite_t metasprite_fuel_highlight_frame[] = {
+metasprite_t metasprite_powerup_highlight_frame[] = {
     {.dy=15, .dx=7, .dtile=0, .props=0},
     {.dy=0, .dx=2, .dtile=1, .props=0},
     {.dy=0, .dx=8, .dtile=1, .props=0},
@@ -43,21 +43,21 @@ metasprite_t metasprite_fuel_highlight_frame[] = {
 	METASPR_TERM
 };
 
-void init_fuel(void) {
-    set_win_data(fuel_frame_TILE_ORIGIN, fuel_frame_TILE_COUNT, fuel_frame_tiles);
-    set_win_tiles(0, 0, 20, 18, fuel_frame_map);
+void init_powerup(void) {
+    set_win_data(powerup_frame_TILE_ORIGIN, powerup_frame_TILE_COUNT, powerup_frame_tiles);
+    set_win_tiles(0, 0, 20, 18, powerup_frame_map);
     VBK_REG = 1;
-    set_win_tiles(0, 0, 20, 18, fuel_frame_map_attributes);    
+    set_win_tiles(0, 0, 20, 18, powerup_frame_map_attributes);    
     VBK_REG = 0;
 
 
-    set_bkg_palette(0, 7, fuel_frame_palettes); 
+    set_bkg_palette(0, 7, powerup_frame_palettes); 
     set_bkg_palette(0, 1, palette_default); // overwrite the palette 0 again
 
     set_sprite_data(fuel_display_TILE_ORIGIN, fuel_display_TILE_COUNT, fuel_display_tiles);
     set_sprite_palette(FUEL_DISPLAY_PALETTE, 1, fuel_display_palettes);
 
-    set_sprite_data(fuel_highlight_frame_TILE_ORIGIN, fuel_highlight_frame_TILE_COUNT, fuel_highlight_frame_tiles); // blank tile in the end
+    set_sprite_data(powerup_highlight_frame_TILE_ORIGIN, powerup_highlight_frame_TILE_COUNT, powerup_highlight_frame_tiles); // blank tile in the end
 }
 
 void draw_fuel_display(void) {
@@ -68,7 +68,7 @@ void hide_fuel_display(void) {
     hide_metasprite(fuel_display_metasprites[0], FUEL_DISPLAY_START);
 }
 
-void draw_fuel_menu(void) {
+void draw_powerup_menu(void) {
     // Title
     draw_text(2, 2, "SERVICE STATION", 16, TRUE, 0);
 
@@ -150,9 +150,16 @@ void draw_fuel_menu(void) {
 
 uint16_t calculate_fuel_cost(void) {
     uint16_t fuel_needed = player.fuel.max_value - player.fuel.current_value;
-    uint16_t fuel_cost = fuel_needed / FUEL_PRICE; // 1 dineros per liter, good price
+    uint16_t fuel_cost = (fuel_needed + (FUEL_PRICE - 1)) / FUEL_PRICE; // Round up fuel cost
+    
+    // If the fuel is not full and the cost is 0, set the minimum cost to 1
+    if (player.fuel.current_value != player.fuel.max_value && fuel_cost == 0) {
+        fuel_cost = 1;
+    }
+
     return fuel_cost;
 }
+
 void set_fuel_display_y(void) {
     fuel_display_y = check_fuel_display_y();
 }
@@ -164,6 +171,7 @@ uint8_t check_fuel_display_y(void) {
 
 void fuel_up(void) {
     uint16_t fuel_cost = calculate_fuel_cost();
+
     // 80 is the length of the bar, so if the fuel is full, it should be at the top
     if (player.money >= fuel_cost) {
         // Player has enough money to fully fuel up
@@ -171,9 +179,14 @@ void fuel_up(void) {
         player.fuel.current_value = player.fuel.max_value;
     } else {
         // Player doesn't have enough money to fully fuel up
-        uint16_t affordable_fuel = player.money * 3; // calculate how much fuel they can afford
+        uint16_t affordable_fuel = player.money * FUEL_PRICE; // calculate how much fuel they can afford
         player.fuel.current_value += affordable_fuel;
         player.money = 0;
+    }
+    
+    // Ensure the fuel doesn't exceed max value
+    if (player.fuel.current_value > player.fuel.max_value) {
+        player.fuel.current_value = player.fuel.max_value;
     }
 }
 
@@ -207,30 +220,30 @@ void purchase_powerup(void) {
     }
 }
 
-void update_fuel_highlight_frame_position(void) {
+void update_powerup_highlight_frame_position(void) {
     uint8_t x, y;
     if (current_powerup_selection < 2) {
         // First row (0 and 1)
         x = 56 + (current_powerup_selection * 6 * 8) -1;
         y = 32 -1;
-        // metasprite_fuel_highlight_frame[2].dx = 8;
-        // metasprite_fuel_highlight_frame[3].dx = 8;
-        // metasprite_fuel_highlight_frame[4].dx = 8;
-        // metasprite_fuel_highlight_frame[9].dx = -8;
-        // metasprite_fuel_highlight_frame[10].dx = -8;
-        // metasprite_fuel_highlight_frame[11].dx = -8;
+        // metasprite_powerup_highlight_frame[2].dx = 8;
+        // metasprite_powerup_highlight_frame[3].dx = 8;
+        // metasprite_powerup_highlight_frame[4].dx = 8;
+        // metasprite_powerup_highlight_frame[9].dx = -8;
+        // metasprite_powerup_highlight_frame[10].dx = -8;
+        // metasprite_powerup_highlight_frame[11].dx = -8;
     } else {
         // Second row (2 to 5), closer spacing
         x = 56 + ((current_powerup_selection - 2) * 3 * 8) -1;  // Adjusted horizontal spacing
         y = 56 -1;
-        // metasprite_fuel_highlight_frame[2].dx = 0;
-        // metasprite_fuel_highlight_frame[3].dx = 0;
-        // metasprite_fuel_highlight_frame[4].dx = 0;
-        // metasprite_fuel_highlight_frame[9].dx = -0;
-        // metasprite_fuel_highlight_frame[10].dx = -0;
-        // metasprite_fuel_highlight_frame[11].dx = -0;
+        // metasprite_powerup_highlight_frame[2].dx = 0;
+        // metasprite_powerup_highlight_frame[3].dx = 0;
+        // metasprite_powerup_highlight_frame[4].dx = 0;
+        // metasprite_powerup_highlight_frame[9].dx = -0;
+        // metasprite_powerup_highlight_frame[10].dx = -0;
+        // metasprite_powerup_highlight_frame[11].dx = -0;
     }
-    move_metasprite_ex(fuel_highlight_frame_metasprites[(frame_counter >> 2) % 4], fuel_highlight_frame_TILE_ORIGIN, 0, 0, x, y);
+    move_metasprite_ex(powerup_highlight_frame_metasprites[(frame_counter >> 2) % 4], powerup_highlight_frame_TILE_ORIGIN, 0, 0, x, y);
 }
 // void draw_a_button(void){
 //     if (animation_frames_left == 0 && (frame_counter % (60 / (sizeof(a_button_metasprites) >> 1)) == 0)) {
@@ -238,7 +251,7 @@ void update_fuel_highlight_frame_position(void) {
 //     }
 // }
 
-void handle_fuel_input(void) {
+void handle_powerup_input(void) {
     if (prev_buttons != buttons) {
         if (buttons & J_UP) {
             if (current_powerup_selection >= 2 && current_powerup_selection <= 3) {
@@ -290,22 +303,21 @@ void handle_fuel_input(void) {
     }
 }
 
-void fuel_menu_loop(void) {
-
+void powerup_menu_loop(void) {
     read_buttons();
 
     // Check if input has changed the state or selection
     if (prev_buttons != buttons) {
-        handle_fuel_input();
+        handle_powerup_input();
         update_menu = TRUE;  // Set the update flag
     }
 
     if (update_menu) {
-        draw_fuel_menu();
+        draw_powerup_menu();
         update_menu = FALSE;  // Reset the update flag after updating the screen
     }
 
-    update_fuel_highlight_frame_position();
+    update_powerup_highlight_frame_position();
     prev_buttons = buttons;
     vsync();
 }

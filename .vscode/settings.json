@@ -17,12 +17,12 @@
         "stdint.h": "c",
         "gameloop.h": "c",
         "stdio.h": "c",
-        "station_fuel.h": "c",
+        "station_powerup.h": "c",
         "stddef.h": "c",
         "stationrepair.h": "c",
         "station_sell.h": "c",
         "shop.h": "c",
-        "warning_fuel.h": "c",
+        "warning_powerup.h": "c",
         "map.h": "c",
         "drill_h.h": "c",
         "level.ba0.h": "c",
@@ -33,8 +33,9 @@
         "palettes.h": "c",
         "bankref.h": "c",
         "sell.h": "c",
-        "fuel_highlight_frame.h": "c",
-        "general.h": "c"
+        "powerup_highlight_frame.h": "c",
+        "general.h": "c",
+        "rover_eye.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

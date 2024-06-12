@@ -16,6 +16,7 @@
 #include "map.h"
 
 #include "../assets/rover.h"
+#include "../assets/rover_eye.h"
 #include "../assets/tracks.h"
 #include "../assets/drill_h.h"
 #include "../assets/drill_v.h"
@@ -50,10 +51,10 @@ void init_speed(void){
 }
 
 void check_surroundings(void) {
-    next_tile_down = get_tile_from_array(depth + 1, width);
-    next_tile_up = get_tile_from_array(depth - 1, width);
-    if (width < 15) next_tile_right = get_tile_from_array(depth, width + 1);
-    if (width > 0) next_tile_left = get_tile_from_array(depth, width - 1);
+next_tile_down = (depth < ROWS - 1) ? get_tile_from_array(depth + 1, width) : STONE;
+next_tile_up = (depth > 0) ? get_tile_from_array(depth - 1, width) : STONE;
+next_tile_right = (width < 15) ? get_tile_from_array(depth, width + 1) : STONE;
+next_tile_left = (width > 0) ? get_tile_from_array(depth, width - 1) : STONE;
 }
 
 void metasprite_drill_horizontal(char direction){
@@ -97,26 +98,58 @@ void metasprite_rover(char direction, BOOLEAN animate){
     hide_metasprite(drill_v_metasprites[0], DRILL_V_START);
     hide_metasprite(prop_metasprites[0], PROP_START);
 
+    fixed drill_wiggle; // add some wiggle if drilling
+    drill_wiggle.h = depth_pixel.h - is_drilling * absolute_movement / 2 % 2;
+
+
     if (direction == LEFT) {
         // rover
         move_metasprite_ex(
-        tracks_metasprites[animate * (absolute_movement % (sizeof(tracks_metasprites) >> 1))],
-        tracks_TILE_ORIGIN,
-        TRACKS_PALETTE,
-        TRACKS_START,
+        rover_metasprites[0],
+        rover_TILE_ORIGIN,
+        ROVER_PALETTE_0,
+        ROVER_START,
         width_pixel.h,
-        depth_pixel.h + tracks_PIVOT_Y); // offset because the metasprite is centered
+        drill_wiggle.h); 
+
+        // eye
+        move_metasprite_ex(
+        rover_eye_metasprites[0],
+        rover_eye_TILE_ORIGIN,
+        ROVER_EYE_PALETTE,
+        EYE_START,
+        width_pixel.h,
+        drill_wiggle.h);
 
         // tracks
         move_metasprite_ex(
+        tracks_metasprites[animate * (absolute_movement % (sizeof(tracks_metasprites) >> 1))],
+        tracks_TILE_ORIGIN,
+        TRACKS_PALETTE,
+        TRACKS_START,
+        width_pixel.h,
+        depth_pixel.h + tracks_PIVOT_Y); // offset because the metasprite is centered
+    } else if (direction == RIGHT) {
+
+        // rover
+        move_metasprite_flipx(
         rover_metasprites[0],
         rover_TILE_ORIGIN,
         ROVER_PALETTE_0,
         ROVER_START,
         width_pixel.h,
-        depth_pixel.h - is_drilling * absolute_movement / 2 % 2); // add some wiggle if drilling
-    } else if (direction == RIGHT) {
-        // rover
+        drill_wiggle.h);
+
+        // eye
+        move_metasprite_flipx(
+        rover_eye_metasprites[0],
+        rover_eye_TILE_ORIGIN,
+        ROVER_EYE_PALETTE,
+        EYE_START,
+        width_pixel.h,
+        drill_wiggle.h);
+
+        // tracks
         move_metasprite_flipx(
         tracks_metasprites[animate * (absolute_movement % (sizeof(tracks_metasprites) >> 1))],
         tracks_TILE_ORIGIN,
@@ -124,15 +157,6 @@ void metasprite_rover(char direction, BOOLEAN animate){
         TRACKS_START,
         width_pixel.h,
         depth_pixel.h + tracks_PIVOT_Y); // offset because the metasprite is centered
-
-        // tracks
-        move_metasprite_flipx(
-        rover_metasprites[0],
-        rover_TILE_ORIGIN,
-        ROVER_PALETTE_0,
-        ROVER_START,
-        width_pixel.h,
-        depth_pixel.h - is_drilling * absolute_movement / 2 % 2); // add some wiggle
     }
 }
 
@@ -255,7 +279,7 @@ void move_left(uint8_t frames){
 
 void move_right(uint8_t frames){
     player.speed = calculate_speed(frames);
-    if (width - width_offset == (METATILES_PER_SCREEN - THRESHOLD) + 1 && width < (METATILES_PER_SCREEN - THRESHOLD) + 7) {
+    if (width - width_offset == (METATILES_VISIBLE - THRESHOLD) + 1 && width < (METATILES_VISIBLE - THRESHOLD) + 7) {
         width_offset++;
         width++;
         scroll_x_per_frame.w = player.speed.w;
@@ -281,7 +305,7 @@ void move_up(uint8_t frames){
 
 void move_down(uint8_t frames){
     player.speed = calculate_speed(frames);
-    if (depth - depth_offset == (METATILES_PER_SCREEN - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
+    if (depth - depth_offset == (METATILES_VISIBLE - THRESHOLD - BOTTOM) && depth < ROWS - THRESHOLD - BOTTOM - 1) {
         depth_offset++;
         depth++;
         scroll_y_per_frame.w = player.speed.w;
@@ -458,7 +482,7 @@ void proximity_check_station(void) {
     } else if (depth == STATION_Y && width == STATION_SELL_X + STATION_SELL_DOOR_OFFSET) {
         station_proximity = ENTER_SELL_STATION;
         draw_a_button();
-    } else if (depth == STATION_Y && width == STATION_FUEL_X + STATION_FUEL_DOOR_OFFSET) {
+    } else if (depth == STATION_Y && width == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET) {
         station_proximity = ENTER_FUEL_STATION;
         draw_a_button();
     } else {
@@ -477,6 +501,43 @@ void enter_station(void) {
             currentGameState = GAME_STATE_FUEL_MENU;
         }
         velocity = 0;
+    }
+}
+
+void powerup_dynamite(void) {
+    if (powerup[POWERUP_DYNAMITE].inventory > 0) {
+        // Clear one tile to the left, right, top, and bottom
+        clear_4bkg_tiles(width, wrapped_depth + 1);     // top
+        clear_4bkg_tiles(width+1, wrapped_depth + 1);     // top right
+        clear_4bkg_tiles(width-1, wrapped_depth + 1);     // top left
+        clear_4bkg_tiles(width, wrapped_depth - 1);     // bottom
+        clear_4bkg_tiles(width+1, wrapped_depth - 1);     // bottom right
+        clear_4bkg_tiles(width-1, wrapped_depth - 1);     // bottom left
+        clear_4bkg_tiles(width + 1, wrapped_depth);     // right
+        clear_4bkg_tiles(width - 1, wrapped_depth);     // left
+
+        // Subtract 1 from inventory
+        powerup[POWERUP_DYNAMITE].inventory -= 1;
+        
+    }
+}
+
+void handle_powerups(void) {
+    if (animation_frames_left <= 0 && prev_buttons != buttons && depth > UNDERGROUND + 1) {
+        switch (buttons) {
+            case J_A:
+                break;
+            case J_B:
+                break;
+            case J_START:
+                powerup_dynamite();
+                break;
+            case J_SELECT:
+
+                break;
+            default:
+                break;
+        }
     }
 }
 

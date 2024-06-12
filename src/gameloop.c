@@ -18,6 +18,8 @@
 void game_loop(void) {
 
     read_buttons();
+    handle_powerups();
+
     check_surroundings();
     if (animation_frames_left == 0) {
         initiate_movement();
@@ -45,7 +47,7 @@ void game_loop(void) {
         calculate_upward_velocity();
     }
 
-    if (depth <= 9 && frame_counter == 1) change_sky_color();
+    if (depth_offset <= CLOSE_TO_SURFACE && frame_counter == 1) change_sky_color();
 
     if (buttons & J_UP) metasprite_prop(); // have prop moving even if the player is stuck but trying to get up
 

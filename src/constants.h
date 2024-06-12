@@ -4,17 +4,25 @@
 #include <gb/gb.h>
 #include <stdio.h>
 
-// main menu
+// general
+#define ROWS 100
+#define COLS 16
 
+// main menu
 #define MENU_ITEMS 3
 
 // shop
 #define UPGRADE_TICK_TILE 39
 
+#define POWERUP_EXTRA_TANK 2
+#define POWERUP_REPAIR_KIT 3
+#define POWERUP_DYNAMITE 4
+#define POWERUP_TELEPORTER 5
+
 #define STATION_Y 5
-#define STATION_FUEL_X 0
-#define STATION_FUEL_DOOR_OFFSET 2
-#define STATION_SELL_X 6
+#define STATION_POWERUP_X 0
+#define STATION_POWERUP_DOOR_OFFSET 2
+#define STATION_SELL_X 5
 #define STATION_SELL_DOOR_OFFSET 1
 #define STATION_UPGRADE_X 11
 #define STATION_UPGRADE_DOOR_OFFSET 1
@@ -22,12 +30,12 @@
 // sprite palettes
 #define ROVER_PALETTE_0 0
 #define ROVER_PALETTE_1 1
-#define TRACKS_PALETTE 2
-#define DRILL_PALETTE 3
-#define HULL_BAR_PALETTE 4
-#define FUEL_BAR_PALETTE 5
-#define WARNING_PALETTE 6
-#define RESERVE_PALETTE 7
+#define ROVER_EYE_PALETTE 2
+#define TRACKS_PALETTE 3
+#define DRILL_PALETTE 4
+#define HULL_BAR_PALETTE 5
+#define FUEL_BAR_PALETTE 6
+#define WARNING_PALETTE 7
 
 #define COLOR_TO_CHANGE_BKG 1 // what color of bkg palette 0 is changing with depth
 #define COLOR_TO_CHANGE_SKY 0 // what color of sky to change
@@ -87,10 +95,6 @@
 // gas 7
 
 
-// general
-#define ROWS 1024
-#define COLS 16
-
 #define WIN_X 3
 #define WIN_Y 0
 
@@ -98,9 +102,18 @@
 #define MAX_MINABLE_MATERIAL DIAMOND
 
 // movement
-#define METATILES_PER_SCREEN 8
+#define METATILES_VISIBLE 8
+#define METATILES_TOTAL 10
 #define GROUND 5
 #define UNDERGROUND (GROUND + 1)
+#define CLOSE_TO_SURFACE 7 // use this together with depth_offset for start of mining mode
+
+#define DEPTH_LEVEL_1 30
+#define DEPTH_LEVEL_2 60
+#define DEPTH_LEVEL_3 100
+#define DEPTH_LEVEL_4 150
+#define DEPTH_LEVEL_5 300
+
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen
 #define TOP 0    // Offset from the top edge of the screen, to account for the nav/window element
@@ -134,6 +147,7 @@
 #define DRILL_H_START 6
 #define DRILL_V_START 8
 #define PROP_START 10
+#define EYE_START 12
 #define GAME_OVER_START 8
 #define A_BUTTON_START 19
 #define WARNING_CARGO_START 23

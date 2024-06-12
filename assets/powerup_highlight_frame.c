@@ -6,10 +6,10 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-BANKREF(fuel_highlight_frame)
+BANKREF(powerup_highlight_frame)
 
 
-const uint8_t fuel_highlight_frame_tiles[320] = {
+const uint8_t powerup_highlight_frame_tiles[320] = {
 	0x33,0xcc,0x33,0xcc,
 	0xc0,0x00,0xc0,0x00,
 	0x00,0xc0,0x00,0xc0,
@@ -112,7 +112,7 @@ const uint8_t fuel_highlight_frame_tiles[320] = {
 	
 };
 
-const metasprite_t fuel_highlight_frame_metasprite0[] = {
+const metasprite_t powerup_highlight_frame_metasprite0[] = {
 	METASPR_ITEM(16, 8, 0, S_PAL(0)),
 	METASPR_ITEM(0, 8, 1, S_PAL(0)),
 	METASPR_ITEM(0, 8, 1, S_PAL(0)),
@@ -130,7 +130,7 @@ const metasprite_t fuel_highlight_frame_metasprite0[] = {
 	METASPR_TERM
 };
 
-const metasprite_t fuel_highlight_frame_metasprite1[] = {
+const metasprite_t powerup_highlight_frame_metasprite1[] = {
 	METASPR_ITEM(16, 8, 4, S_PAL(0)),
 	METASPR_ITEM(0, 8, 5, S_PAL(0)),
 	METASPR_ITEM(0, 8, 5, S_PAL(0)),
@@ -148,7 +148,7 @@ const metasprite_t fuel_highlight_frame_metasprite1[] = {
 	METASPR_TERM
 };
 
-const metasprite_t fuel_highlight_frame_metasprite2[] = {
+const metasprite_t powerup_highlight_frame_metasprite2[] = {
 	METASPR_ITEM(16, 8, 12, S_PAL(0)),
 	METASPR_ITEM(0, 8, 13, S_PAL(0)),
 	METASPR_ITEM(0, 8, 13, S_PAL(0)),
@@ -166,7 +166,7 @@ const metasprite_t fuel_highlight_frame_metasprite2[] = {
 	METASPR_TERM
 };
 
-const metasprite_t fuel_highlight_frame_metasprite3[] = {
+const metasprite_t powerup_highlight_frame_metasprite3[] = {
 	METASPR_ITEM(16, 8, 16, S_PAL(0)),
 	METASPR_ITEM(0, 8, 10, S_PAL(0)),
 	METASPR_ITEM(0, 8, 10, S_PAL(0)),
@@ -184,6 +184,6 @@ const metasprite_t fuel_highlight_frame_metasprite3[] = {
 	METASPR_TERM
 };
 
-const metasprite_t* const fuel_highlight_frame_metasprites[4] = {
-	fuel_highlight_frame_metasprite0, fuel_highlight_frame_metasprite1, fuel_highlight_frame_metasprite2, fuel_highlight_frame_metasprite3
+const metasprite_t* const powerup_highlight_frame_metasprites[4] = {
+	powerup_highlight_frame_metasprite0, powerup_highlight_frame_metasprite1, powerup_highlight_frame_metasprite2, powerup_highlight_frame_metasprite3
 };

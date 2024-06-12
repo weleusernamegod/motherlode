@@ -22,6 +22,7 @@
 #include "player.h"
 
 #include "../assets/rover.h"
+#include "../assets/rover_eye.h"
 #include "../assets/tracks.h"
 #include "../assets/drill_h.h"
 #include "../assets/drill_v.h"
@@ -30,7 +31,7 @@
 #include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
 
-#include "../assets/station_fuel.h"
+#include "../assets/station_powerup.h"
 #include "../assets/station_sell.h"
 #include "../assets/station_upgrade.h"
 
@@ -73,22 +74,22 @@ void generate_map(uint16_t rows) {
                 uint8_t tileType = 1; // Default to dirt
 
                 // Determine ore distribution based on depth
-                if (i < 20 && randValue >= 80) {
+                if (i < DEPTH_LEVEL_1 && randValue >= 80) {
                     // Rows 7 to 19: Ores 4 to 5
-                    tileType = rand() % 2 + 4; // Ores 4 and 5
-                } else if (i >= 20 && i < 50 && randValue >= 80) {
+                    tileType = rand() % 2 + COAL; // Ores 4 and 5
+                } else if (i >= DEPTH_LEVEL_1 && i < DEPTH_LEVEL_2 && randValue >= 80) {
                     // Rows 20 to 49: Ores 4 to 7
-                    tileType = rand() % 4 + 4; // Ores 4 to 7
-                } else if (i >= 50 && i < 150 && randValue >= 75) {
+                    tileType = rand() % 4 + STONE; // Ores 4 to 7
+                } else if (i >= DEPTH_LEVEL_2 && i < DEPTH_LEVEL_3 && randValue >= 75) {
                     // Rows 50 to 149: Ores 8 to 11
                     tileType = rand() % 4 + 8; // Ores 8 to 11
-                } else if (i >= 150 && i < 300 && randValue >= 70) {
+                } else if (i >= DEPTH_LEVEL_3 && i < DEPTH_LEVEL_4 && randValue >= 70) {
                     // Rows 150 to 299: Ores 12 to 14
                     tileType = rand() % 3 + 12; // Ores 12 to 14
-                } else if (i >= 300 && i < 600 && randValue >= 65) {
+                } else if (i >= DEPTH_LEVEL_4 && i < DEPTH_LEVEL_5 && randValue >= 65) {
                     // Rows 300 to 599: Ores 15 to 17
                     tileType = rand() % 3 + 15; // Ores 15 to 17
-                } else if (i >= 600 && randValue >= 60) {
+                } else if (i >= DEPTH_LEVEL_5 && randValue >= 60) {
                     // Rows 600 and deeper: Ores 16 to 18
                     tileType = rand() % 3 + 16; // Ores 16 to 18
                 }
@@ -107,11 +108,16 @@ void generate_map(uint16_t rows) {
                 level_array[i % 256][j] = tileType;
 
             } else if (i == 6) {
-                // Seventh row is all '2'
-                level_array[i][j] = 2;
+                // Seventh row is all gras
+                level_array[i][j] = GRAS;
+
+                if (j == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET || j == STATION_SELL_X + STATION_SELL_DOOR_OFFSET || j == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET){
+                  level_array[i][j] = STONE;  
+                }
+
             } else if (i < 6) {
                 // First six rows are empty
-                level_array[i][j] = 0;
+                level_array[i][j] = EMPTY;
             }
         }
     }
@@ -221,10 +227,10 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(GRAS - 1) * 4],
             &ore_tiles_palettes[(COAL - 1) * 4],
             &ore_tiles_palettes[(IRON - 1) * 4],
-            &station_fuel_palettes[4*4],
-            &station_fuel_palettes[5*4],
-            &station_fuel_palettes[6*4],
-            &station_fuel_palettes[7*4],
+            &station_powerup_palettes[4*4],
+            &station_powerup_palettes[5*4],
+            &station_powerup_palettes[6*4],
+            &station_powerup_palettes[7*4],
             },
         0},
 
@@ -239,7 +245,7 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(SILVER - 1) * 4],
             &ore_tiles_palettes[(GOLD - 1) * 4],
         },
-        9 // below depth 9 change to this palette
+        DEPTH_LEVEL_1 - METATILES_TOTAL // below depth change to this palette
     },
     { 
         {
@@ -252,7 +258,7 @@ const Palette_group palette_groups[] = {
             &ore_tiles_palettes[(SILVER - 1) * 4],
             &ore_tiles_palettes[(GOLD - 1) * 4],
         },
-        30 // below depth 30 change to this palette
+        DEPTH_LEVEL_2 - METATILES_TOTAL // below depth 30 change to this palette
     },
 
 
@@ -308,14 +314,21 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
 
             if (array[y][x] == EMPTY) {
                 for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_TO_CHANGE_BKG;
-            } else if (array[y][x] == GRAS) {
+            } else if (array[y][x] == DIRT) {
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = temp + i;
+                shuffle(tile_array);
+            } else if (y == UNDERGROUND) { // make stones look like gras
+                if (array[y][x] == GRAS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);
                 tile_array[2] = temp - 1;
                 tile_array[3] = temp - 2;
-            } else if (array[y][x] == DIRT) {
-                for (uint8_t i = 0; i < 4; i++) tile_array[i] = temp + i;
-                shuffle(tile_array);
+                } else if (array[y][x] == STONE) {
+                tile_array[0] = temp - 4 + (rand() % 4);
+                tile_array[1] = temp - 4 + (rand() % 4);
+                tile_array[2] = temp - 4 - 1;
+                tile_array[3] = temp - 4 - 2;
+                }
             }
 
             if (array[y][x] == EMPTY) {
@@ -342,7 +355,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
 
 
 void spawn_bkg_row(void) {
-        if (depth >= METATILES_PER_SCREEN) { // just a guess, tested and found out it has to be 8
+        if (depth >= METATILES_VISIBLE) { // just a guess, tested and found out it has to be 8
             if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) {
                 switch_ram_bank_based_on_value(depth + 4);
                 set_4bkg_tiles(level_array, 0, (depth + 4) % 256, 1, 16);
@@ -362,8 +375,10 @@ void spawn_bkg_row(void) {
  * @param y Y position in 16x16 tile coordinates (0 - 15).
  */
 void clear_4bkg_tiles(uint8_t x, uint16_t y) {
-    level_array[y][x] = 0; // Clear the tile in the array
-    set_4bkg_tiles(level_array, x, y, 1, 1); // Update the background
+    if (y < ROWS && x < COLS){
+        level_array[y][x] = EMPTY; // Clear the tile in the array
+        set_4bkg_tiles(level_array, x, y, 1, 1); // Update the background
+    }
 }
 
 /**
@@ -481,7 +496,7 @@ void init_a_button(void){
 
 void draw_a_button(void){
     if (animation_frames_left == 0 && (frame_counter % (60 / (sizeof(a_button_metasprites) >> 1)) == 0)) {
-            move_metasprite_ex(a_button_metasprites[(frame_counter / (60 / (sizeof(a_button_metasprites) >> 1))) % (sizeof(a_button_metasprites) >> 1)], a_button_TILE_ORIGIN, RESERVE_PALETTE, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
+            move_metasprite_ex(a_button_metasprites[(frame_counter / (60 / (sizeof(a_button_metasprites) >> 1))) % (sizeof(a_button_metasprites) >> 1)], a_button_TILE_ORIGIN, TRACKS_PALETTE, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
     }
 }
 
@@ -527,6 +542,7 @@ void draw_hull(void){
 
 void init_character(void){
     set_sprite_data(rover_TILE_ORIGIN, rover_TILE_COUNT, rover_tiles);
+    set_sprite_data(rover_eye_TILE_ORIGIN, rover_eye_TILE_COUNT, rover_eye_tiles);
     set_sprite_data(tracks_TILE_ORIGIN, tracks_TILE_COUNT, tracks_tiles);
     set_sprite_data(drill_h_TILE_ORIGIN, drill_h_TILE_COUNT, drill_h_tiles);
     set_sprite_data(drill_v_TILE_ORIGIN, drill_v_TILE_COUNT, drill_v_tiles);
@@ -556,18 +572,18 @@ void draw_tiles(void){
 }
 
 void init_buildings(void){
-    set_bkg_data(station_fuel_TILE_ORIGIN, station_fuel_TILE_COUNT, station_fuel_tiles);
+    set_bkg_data(station_powerup_TILE_ORIGIN, station_powerup_TILE_COUNT, station_powerup_tiles);
     set_bkg_data(station_sell_TILE_ORIGIN, station_sell_TILE_COUNT, station_sell_tiles);
     set_bkg_data(station_upgrade_TILE_ORIGIN, station_upgrade_TILE_COUNT, station_upgrade_tiles);
 }
 void draw_buildings(void){
 
     VBK_REG = 0;
-    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (station_fuel_HEIGHT/station_fuel_TILE_H)), (station_fuel_WIDTH/station_fuel_TILE_W), (station_fuel_HEIGHT/station_fuel_TILE_H), station_fuel_map);
+    set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map);
     VBK_REG = 1;
-    set_bkg_tiles(STATION_FUEL_X * 2, (((STATION_Y + 1)* 2) - (station_fuel_HEIGHT/station_fuel_TILE_H)), (station_fuel_WIDTH/station_fuel_TILE_W), (station_fuel_HEIGHT/station_fuel_TILE_H), station_fuel_map_attributes);
+    set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map_attributes);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map_attributes);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map_attributes);
     VBK_REG = 0;
@@ -592,15 +608,13 @@ void draw_sky(void){
 }
 
 void swap_tiles_sky_buildings(void) {
-    const uint8_t depth_threshold = UNDERGROUND;
-
-    if (depth_offset < depth_threshold && !buildings_loaded) {
+    if (depth_offset < CLOSE_TO_SURFACE && !buildings_loaded) {
         // Load and draw buildings if the player is deeper than the threshold and buildings are not loaded
         init_buildings();
         draw_sky();
         draw_buildings();
         buildings_loaded = TRUE;  // Mark buildings as loaded
-    } else if (depth_offset >= depth_threshold && buildings_loaded) {
+    } else if (depth_offset >= CLOSE_TO_SURFACE && buildings_loaded) {
         // Load tiles if the player is shallower than the threshold and tiles are not loaded
         init_tiles();
         buildings_loaded = FALSE;  // Mark tiles as loaded (buildings are not loaded)

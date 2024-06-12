@@ -18,9 +18,10 @@
 #include "mainmenu.h"
 #include "upgrade.h"
 #include "sell.h"
-#include "fuel.h"
+#include "powerup.h"
 
 #include "../assets/rover.h"
+#include "../assets/rover_eye.h"
 #include "../assets/tracks.h"
 #include "../assets/nav.h"
 #include "../assets/ore_tiles.h"
@@ -55,7 +56,7 @@ void main(void) {
 
             case GAME_STATE_NEW_GAME:
                 SWITCH_ROM(1);
-                generate_map(100);
+                generate_map(ROWS);
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();
@@ -129,8 +130,10 @@ void main(void) {
                 init_sell();
                 draw_sell_menu();
                 turn_screen_on();
-                wait_for_input(); // only break if player presses A, B or Start
-                sell_all_ores();
+                while (currentGameState == GAME_STATE_SELL_MENU){
+                    sell_menu_loop();
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
+                }
                 display_warning_cargo = FALSE;
                 turn_screen_off();
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
@@ -139,14 +142,14 @@ void main(void) {
                 SWITCH_ROM(3);
                 init_clear_screen();
                 init_font();
-                init_fuel();
+                init_powerup();
                 set_fuel_display_y();
-                draw_fuel_menu();
+                draw_powerup_menu();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_FUEL_MENU){
                     if (check_fuel_display_y() <= fuel_display_y && fuel_display_y > 0) fuel_display_y --;
                     draw_fuel_display();
-                    fuel_menu_loop();
+                    powerup_menu_loop();
                     if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; hide_fuel_display();
                 }
                 turn_screen_off();

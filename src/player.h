@@ -43,6 +43,8 @@ void handle_hull (void);
 void handle_cargo (void);
 void proximity_check_station(void);
 void enter_station(void);
+void powerup_dynamite(void);
+void handle_powerups(void);
 void check_game_over(void);
 void reset_player(void);
 
