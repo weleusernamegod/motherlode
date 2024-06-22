@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // general
-#define ROWS 100
+#define ROWS 32
 #define COLS 16
 
 // main menu

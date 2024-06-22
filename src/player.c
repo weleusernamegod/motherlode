@@ -22,7 +22,7 @@
 #include "../assets/drill_v.h"
 #include "../assets/prop.h"
 
-#include "level.ba0.h"
+#include "level.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__

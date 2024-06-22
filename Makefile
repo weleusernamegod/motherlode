@@ -63,15 +63,15 @@ png2asset:
 
 all:	clean prepare png2asset $(BINS) copy-rom
 
-# Compile .c files in "src/" to .o object files with specific flags for bank files
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c
-	$(eval EXTRA_FLAGS :=)
-	$(if $(findstring level.ba0,$<), $(eval EXTRA_FLAGS := -Wf-ba0))
-	$(LCC) $(LCCFLAGS) $(EXTRA_FLAGS) -c -o $@ $<
-
 # Compile .c files in "res/" to .o object files
 $(OBJDIR)/%.o:	$(ASSETDIR)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in "src/" to .o object files with specific flags for bank files
+$(OBJDIR)/%.o:	$(SRCDIR)/%.c
+	$(eval EXTRA_FLAGS :=)
+	$(if $(findstring level,$<), $(eval EXTRA_FLAGS := -Wf-ba0))
+	$(LCC) $(LCCFLAGS) $(EXTRA_FLAGS) -c -o $@ $<
 
 # Link the compiled object files into a .gb ROM file
 $(BINS):	$(OBJS)

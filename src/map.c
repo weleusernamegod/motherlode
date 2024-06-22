@@ -18,7 +18,7 @@
 #include "palettes.h"
 #include "map.h"
 
-#include "level.ba0.h"
+#include "level.h"
 #include "player.h"
 
 #include "../assets/rover.h"

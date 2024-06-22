@@ -5,7 +5,7 @@
 #include "inventory.h"
 #include "palettes.h"
 
-#include "level.ba0.h"
+#include "level.h"
 #include "attributes.h"
 
 Material materials[] = {
@@ -47,7 +47,7 @@ PowerUp powerup[] = {
 {"REPAIR SHIP", "", "", 0, 0},
 {"EXTRA TANK", "press A to", "refuel ship", 0, 2000},
 {"REPAIR KIT", "press B to", "repair ship", 0, 7500},
-{"DYNAMITE", "press start", "to use item", 20, 2000},
+{"DYNAMITE", "press start", "to use item", 0, 2000},
 {"TELEPORTER", "press select", "to use item", 0, 10000}
 };
 

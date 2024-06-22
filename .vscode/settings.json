@@ -25,7 +25,7 @@
         "warning_powerup.h": "c",
         "map.h": "c",
         "drill_h.h": "c",
-        "level.ba0.h": "c",
+        "level.h": "c",
         "warning_cargo.h": "c",
         "game_over.h": "c",
         "metasprites.h": "c",
