@@ -35,7 +35,8 @@
         "sell.h": "c",
         "powerup_highlight_frame.h": "c",
         "general.h": "c",
-        "rover_eye.h": "c"
+        "rover_eye.h": "c",
+        "platform.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

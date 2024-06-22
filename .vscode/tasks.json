@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "make all",
+            "label": "make",
             "type": "shell",
-            "command": "make all",
+            "command": "make prepare && make png2asset && make png2asset && make all",
             "group": {
                 "kind": "build",
                 "isDefault": true

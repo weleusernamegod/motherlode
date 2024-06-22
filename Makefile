@@ -1,18 +1,13 @@
-#
-# A Makefile that compiles all .c and .s files in "src" and "res" 
-# subdirectories and places the output in a "obj" subdirectory
-#
-
 # If you move this project you can change the directory 
 # to match your GBDK root directory (ex: GBDK_HOME = "C:/GBDK/"
 ifndef GBDK_HOME
 	GBDK_HOME = /usr/local/opt/gbdk/
 endif
 
-LCC = $(GBDK_HOME)bin/lcc 
+LCC = $(GBDK_HOME)bin/lcc
 
 LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc
-
+CFLAGS += -I$(ASSETDIR)
 
 # You can set the name of the .gbc ROM file here
 PROJECTNAME    = Motherlode
@@ -23,15 +18,18 @@ ASSETDIR    = assets
 BINDIR      = build
 MKDIRS      = $(OBJDIR) $(BINDIR)
 
-BINS	    = $(OBJDIR)/$(PROJECTNAME).gbc
-CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(ASSETDIR),$(notdir $(wildcard $(dir)/*.c)))
-ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
-OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o)
+BINS	    = $(BINDIR)/$(PROJECTNAME).gbc
+CSOURCES    = $(wildcard $(SRCDIR)/*.c)
+ASSETSOURCES = $(wildcard $(ASSETDIR)/*.c)
+OBJS        = $(CSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
 
-.PHONY: png2asset
+.PHONY: all prepare png2asset copy-rom clean
+
+all: $(BINS) copy-rom clean
+
+# Generate asset files
 png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles
-
 	/usr/local/opt/gbdk/bin/png2asset png/rover.png -c assets/rover.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 1 -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/rover_eye.png -c assets/rover_eye.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 0 -px 8 -py 8 -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/tracks.png -c assets/tracks.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -sh 8 -tile_origin 5 -b 1
@@ -48,44 +46,41 @@ png2asset:
 	/usr/local/opt/gbdk/bin/png2asset png/warning_fuel.png -c assets/warning_fuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/game_over.png -c assets/game_over.c -spr8x8 -no_palettes -noflip -tile_origin 64 -b 1
 	/usr/local/opt/gbdk/bin/png2asset png/a_button.png -c assets/a_button.c -spr8x8 -no_palettes -noflip -sh 16 -tile_origin 96 -b 1
-
 	/usr/local/opt/gbdk/bin/png2asset png/upgrade_tiles.png -c assets/upgrade_tiles.c -spr8x8 -noflip -keep_palette_order -max_palettes 36 -keep_duplicate_tiles -tile_origin 160 -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/upgrade_frame.png -c assets/upgrade_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 2
 	/usr/local/opt/gbdk/bin/png2asset png/upgrade_highlight_frame.png -c assets/upgrade_highlight_frame.c -spr8x8 -keep_duplicate_tiles -tiles_only -no_palettes -noflip -b 2
-
 	/usr/local/opt/gbdk/bin/png2asset png/sell_frame.png -c assets/sell_frame.c -spr8x8 -map -noflip -tile_origin 144 -b 3
 	/usr/local/opt/gbdk/bin/png2asset png/powerup_frame.png -c assets/powerup_frame.c -spr8x8 -map -repair_indexed_pal -keep_palette_order -use_map_attributes -tile_origin 144 -noflip -b 3
 	/usr/local/opt/gbdk/bin/png2asset png/powerup_highlight_frame.png -c assets/powerup_highlight_frame.c -spr8x8 -sh 24 -no_palettes -noflip -px -8 -py -16 -tile_origin 4 -b 3
 	/usr/local/opt/gbdk/bin/png2asset png/fuel_display.png -c assets/fuel_display.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -py 0 -b 3
-
 	/usr/local/opt/gbdk/bin/png2asset png/main_menu_buttons.png -c assets/main_menu_buttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 4
 	/usr/local/opt/gbdk/bin/png2asset png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 4
 
-all:	clean prepare png2asset $(BINS) copy-rom
-
-# Compile .c files in "res/" to .o object files
-$(OBJDIR)/%.o:	$(ASSETDIR)/%.c
-	$(LCC) $(LCCFLAGS) -c -o $@ $<
+# Compile .c files in "assets/" to .o object files
+$(OBJDIR)/%.o: $(ASSETDIR)/%.c
+	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
 
 # Compile .c files in "src/" to .o object files with specific flags for bank files
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(eval EXTRA_FLAGS :=)
 	$(if $(findstring level,$<), $(eval EXTRA_FLAGS := -Wf-ba0))
-	$(LCC) $(LCCFLAGS) $(EXTRA_FLAGS) -c -o $@ $<
+	$(LCC) $(LCCFLAGS) $(CFLAGS) $(EXTRA_FLAGS) -c -o $@ $<
 
-# Link the compiled object files into a .gb ROM file
-$(BINS):	$(OBJS)
-	$(LCC) $(LCCFLAGS) -o $(BINDIR)/$(PROJECTNAME).gbc $(OBJS)
+# Link the compiled object files into a .gbc ROM file
+$(BINS): $(OBJS)
+	$(LCC) $(LCCFLAGS) $(CFLAGS) -o $(BINS) $(OBJS)
 
 prepare:
+	rm -rf $(OBJDIR) $(ASSETDIR) $(BINDIR)
 	mkdir -p $(OBJDIR)
 	mkdir -p $(ASSETDIR)
-
-clean:
-	rm -f  $(OBJDIR)/*.* $(BINDIR)/*.*
+	mkdir -p $(BINDIR)
 
 copy-rom:
-	cp $(BINDIR)/$(PROJECTNAME).gbc .
+	cp $(BINS) .
+
+clean:
+	rm -rf $(OBJDIR) $(BINDIR)
 
 # create necessary directories after Makefile is parsed but before build
 # info prevents the command from being pasted into the makefile
