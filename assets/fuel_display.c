@@ -59,8 +59,6 @@ const metasprite_t fuel_display_metasprite0[] = {
 	METASPR_ITEM(0, 8, 3, S_PAL(0)),
 	METASPR_ITEM(8, -8, 2, S_PAL(0)),
 	METASPR_ITEM(0, 8, 3, S_PAL(0)),
-	METASPR_ITEM(8, -8, 2, S_PAL(0)),
-	METASPR_ITEM(0, 8, 3, S_PAL(0)),
 	METASPR_TERM
 };
 

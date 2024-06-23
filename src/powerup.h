@@ -1,15 +1,13 @@
-#ifndef FUEL_H
-#define FUEL_H
+#ifndef POWERUP_H
+#define POWERUP_H
 
-BANKREF_EXTERN(bank_fuel)
+BANKREF_EXTERN(bank_powerup)
 
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #include <gb/metasprites.h>
 #include <stdio.h>
 #include "inventory.h"
-
-extern metasprite_t metasprite_powerup_highlight_frame[];
 
 void init_powerup(void);
 void draw_fuel_display(void);
@@ -26,4 +24,4 @@ void update_powerup_highlight_frame_position(void);
 void handle_powerup_input(void);
 void powerup_menu_loop(void);
 
-#endif // FUEL_H
+#endif // POWERUP_H

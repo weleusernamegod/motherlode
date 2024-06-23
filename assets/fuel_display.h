@@ -6,11 +6,11 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define fuel_display_TILE_ORIGIN 0
+#define fuel_display_TILE_ORIGIN 32
 #define fuel_display_TILE_W 8
 #define fuel_display_TILE_H 8
 #define fuel_display_WIDTH 16
-#define fuel_display_HEIGHT 96
+#define fuel_display_HEIGHT 88
 #define fuel_display_TILE_COUNT 4
 #define fuel_display_PALETTE_COUNT 1
 #define fuel_display_COLORS_PER_PALETTE 4
@@ -18,7 +18,7 @@
 #define fuel_display_PIVOT_X 8
 #define fuel_display_PIVOT_Y 0
 #define fuel_display_PIVOT_W 16
-#define fuel_display_PIVOT_H 96
+#define fuel_display_PIVOT_H 88
 
 BANKREF_EXTERN(fuel_display)
 

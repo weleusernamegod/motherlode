@@ -33,10 +33,11 @@
         "palettes.h": "c",
         "bankref.h": "c",
         "sell.h": "c",
-        "powerup_highlight_frame.h": "c",
+        "highlight_frame.h": "c",
         "general.h": "c",
         "rover_eye.h": "c",
-        "platform.h": "c"
+        "platform.h": "c",
+        "upgrade_tiles.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

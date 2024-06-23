@@ -14,34 +14,15 @@
 
 #include "../assets/powerup_frame.h"
 #include "../assets/fuel_display.h"
-#include "../assets/powerup_highlight_frame.h"
+#include "../assets/highlight_frame.h"
 
 #include "powerup.h"
-
-
+#include "selection.h"
 
 #pragma bank 3
 #ifndef __INTELLISENSE__
-BANKREF(bank_fuel)
+BANKREF(bank_powerup)
 #endif
-
-metasprite_t metasprite_powerup_highlight_frame[] = {
-    {.dy=15, .dx=7, .dtile=0, .props=0},
-    {.dy=0, .dx=2, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=2, .dx=0, .dtile=5, .props=0},
-    {.dy=8, .dx=0, .dtile=8, .props=0},
-    {.dy=0, .dx=-2, .dtile=7, .props=0},
-    {.dy=0, .dx=-8, .dtile=7, .props=0},
-    {.dy=0, .dx=-8, .dtile=7, .props=0},
-    {.dy=0, .dx=-8, .dtile=7, .props=0},
-    {.dy=0, .dx=-8, .dtile=6, .props=0},
-    {.dy=-2, .dx=0, .dtile=3, .props=0},
-	METASPR_TERM
-};
 
 void init_powerup(void) {
     set_win_data(powerup_frame_TILE_ORIGIN, powerup_frame_TILE_COUNT, powerup_frame_tiles);
@@ -50,14 +31,13 @@ void init_powerup(void) {
     set_win_tiles(0, 0, 20, 18, powerup_frame_map_attributes);    
     VBK_REG = 0;
 
-
     set_bkg_palette(0, 7, powerup_frame_palettes); 
     set_bkg_palette(0, 1, palette_default); // overwrite the palette 0 again
 
     set_sprite_data(fuel_display_TILE_ORIGIN, fuel_display_TILE_COUNT, fuel_display_tiles);
     set_sprite_palette(FUEL_DISPLAY_PALETTE, 1, fuel_display_palettes);
 
-    set_sprite_data(powerup_highlight_frame_TILE_ORIGIN, powerup_highlight_frame_TILE_COUNT, powerup_highlight_frame_tiles); // blank tile in the end
+    init_highlight_frame();
 }
 
 void draw_fuel_display(void) {
@@ -222,34 +202,59 @@ void purchase_powerup(void) {
 
 void update_powerup_highlight_frame_position(void) {
     uint8_t x, y;
+    uint8_t current_animation_frame = (frame_counter >> 2) % 4;
+    metasprite_t* frame_metasprite = dynamic_highlight_frame_metasprites[current_animation_frame];
+
     if (current_powerup_selection < 2) {
         // First row (0 and 1)
-        x = 56 + (current_powerup_selection * 6 * 8) -1;
-        y = 32 -1;
-        // metasprite_powerup_highlight_frame[2].dx = 8;
-        // metasprite_powerup_highlight_frame[3].dx = 8;
-        // metasprite_powerup_highlight_frame[4].dx = 8;
-        // metasprite_powerup_highlight_frame[9].dx = -8;
-        // metasprite_powerup_highlight_frame[10].dx = -8;
-        // metasprite_powerup_highlight_frame[11].dx = -8;
+        x = 56 + (current_powerup_selection * 6 * 8) - 1;
+        y = 32 - 1;
+
+        // Expand metasprite
+        frame_metasprite[1].dx = 8;
+        frame_metasprite[2].dx = 8;
+        frame_metasprite[3].dx = 8;
+        frame_metasprite[4].dx = 8;
+
+        frame_metasprite[6].dy = 8;
+        frame_metasprite[7].dy = 0;
+        frame_metasprite[8].dy = 0;
+
+        frame_metasprite[10].dx = -8;
+        frame_metasprite[11].dx = -8;
+        frame_metasprite[12].dx = -8;
+        frame_metasprite[13].dx = -8;
+
+        frame_metasprite[15].dy = -8;
+        frame_metasprite[16].dy = 0;
+        frame_metasprite[17].dy = 0;
     } else {
         // Second row (2 to 5), closer spacing
-        x = 56 + ((current_powerup_selection - 2) * 3 * 8) -1;  // Adjusted horizontal spacing
-        y = 56 -1;
-        // metasprite_powerup_highlight_frame[2].dx = 0;
-        // metasprite_powerup_highlight_frame[3].dx = 0;
-        // metasprite_powerup_highlight_frame[4].dx = 0;
-        // metasprite_powerup_highlight_frame[9].dx = -0;
-        // metasprite_powerup_highlight_frame[10].dx = -0;
-        // metasprite_powerup_highlight_frame[11].dx = -0;
+        x = 56 + ((current_powerup_selection - 2) * 3 * 8) - 1;  // Adjusted horizontal spacing
+        y = 56 - 1;
+
+        // Shrink metasprite
+        frame_metasprite[1].dx = 8;
+        frame_metasprite[2].dx = 0;
+        frame_metasprite[3].dx = 0;
+        frame_metasprite[4].dx = 0;
+
+        frame_metasprite[6].dy = 8;
+        frame_metasprite[7].dy = 0;
+        frame_metasprite[8].dy = 0;
+
+        frame_metasprite[10].dx = -8;
+        frame_metasprite[11].dx = 0;
+        frame_metasprite[12].dx = 0;
+        frame_metasprite[13].dx = 0;
+
+        frame_metasprite[15].dy = -8;
+        frame_metasprite[16].dy = 0;
+        frame_metasprite[17].dy = 0;
     }
-    move_metasprite_ex(powerup_highlight_frame_metasprites[(frame_counter >> 2) % 4], powerup_highlight_frame_TILE_ORIGIN, 0, 0, x, y);
+
+    move_metasprite_ex(dynamic_highlight_frame_metasprites[current_animation_frame], highlight_frame_TILE_ORIGIN, HIGHLIGHT_FRAME_PALETTE, 0, x, y);
 }
-// void draw_a_button(void){
-//     if (animation_frames_left == 0 && (frame_counter % (60 / (sizeof(a_button_metasprites) >> 1)) == 0)) {
-//             move_metasprite_ex(a_button_metasprites[], a_button_TILE_ORIGIN, RESERVE_PALETTE, A_BUTTON_START, width_pixel.h, depth_pixel.h + 16);
-//     }
-// }
 
 void handle_powerup_input(void) {
     if (prev_buttons != buttons) {

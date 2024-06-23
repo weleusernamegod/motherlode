@@ -1,6 +1,6 @@
-
 #include <gb/gb.h>
-#include <stdio.h>
+#include <gb/cgb.h>
+#include <gb/metasprites.h>
 #include <gbdk/font.h>
 #include <string.h>
 
@@ -145,6 +145,7 @@ void init_palette_0(void) {
 
 void turn_screen_off(void) {
     DISPLAY_OFF;
+    hide_sprites_range(0, MAX_HARDWARE_SPRITES);
 }
 
 void turn_screen_on(void) {

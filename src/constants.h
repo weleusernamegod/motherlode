@@ -40,9 +40,9 @@
 #define COLOR_TO_CHANGE_BKG 1 // what color of bkg palette 0 is changing with depth
 #define COLOR_TO_CHANGE_SKY 0 // what color of sky to change
 
-#define FUEL_DISPLAY_PALETTE 1
-
-
+#define HIGHLIGHT_FRAME_PALETTE 1
+#define FUEL_DISPLAY_PALETTE 2
+#define TICK_PALETTE 2
 
 // color palettes
 #define PALETTE_DEFAULT 0
@@ -154,7 +154,7 @@
 #define WARNING_FUEL_START 30
 #define PROGRESSBAR_HULL_START 35
 #define PROGRESSBAR_FUEL_START 37
-#define FUEL_DISPLAY_START 14
+#define FUEL_DISPLAY_START 18
 
 // tiles
 #define ORE_TILE_START 96

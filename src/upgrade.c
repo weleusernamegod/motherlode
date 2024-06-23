@@ -13,39 +13,18 @@
 #include "constants.h"
 #include "palettes.h"
 
-#include "../assets/upgrade_highlight_frame.h"
+#include "../assets/highlight_frame.h"
 #include "../assets/upgrade_frame.h"
 #include "../assets/upgrade_tiles.h"
-
-
+#include "../assets/upgrade_tick.h"
 
 #include "upgrade.h"
+#include "selection.h"
 
 #pragma bank 2
 #ifndef __INTELLISENSE__
 BANKREF(bank_upgrade)
 #endif
-
-
-const metasprite_t metasprite_upgrade_highlight_frame[] = {
-    {.dy=15, .dx=7, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=0, .dx=2, .dtile=2, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0b00100000},
-    {.dy=8, .dx=0, .dtile=3, .props=0},
-    {.dy=8, .dx=0, .dtile=3, .props=0},
-    {.dy=2, .dx=0, .dtile=3, .props=0},
-    {.dy=8, .dx=0, .dtile=1, .props=0b01100000},
-    {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-2, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-8, .dtile=2, .props=0b01000000},
-    {.dy=0, .dx=-8, .dtile=1, .props=0b01000000},
-    {.dy=-8, .dx=0, .dtile=3, .props=0b00100000},
-    {.dy=-2, .dx=0, .dtile=3, .props=0b00100000},
-    {.dy=-8, .dx=0, .dtile=3, .props=0b00100000},
-	METASPR_TERM
-};
 
 UpgradeMenu *upgrade_menu_numbers[] = {
     &drill_menu,
@@ -70,7 +49,7 @@ UpgradeMenu *current_upgrade_menu = &main_menu;
 
 void init_upgrade(void) {
     set_sprite_palette(0, 1, palette_default);
-    set_sprite_palette(1, 1, palette_light_grey);
+    set_sprite_palette(TICK_PALETTE, 1, upgrade_tick_palettes);
 
     set_win_data(upgrade_frame_TILE_ORIGIN, upgrade_frame_TILE_COUNT, upgrade_frame_tiles);
     set_win_tiles(0, 0, 20, 18, upgrade_frame_map);
@@ -78,11 +57,39 @@ void init_upgrade(void) {
     set_bkg_palette(0, 1, palette_default);
     set_bkg_palette(1, 1, palette_light_grey);
 
-    set_sprite_data(1, upgrade_highlight_frame_TILE_COUNT, upgrade_highlight_frame_tiles); // blank tile in the end
-    set_sprite_tile(UPGRADE_TICK_TILE, 4); // the tick for the upgrades
-    move_metasprite_ex(metasprite_upgrade_highlight_frame, 0, 0, 0, 24, 40);
+    set_sprite_data(upgrade_tick_TILE_ORIGIN, upgrade_tick_TILE_COUNT, upgrade_tick_tiles);
+    set_sprite_tile(UPGRADE_TICK_TILE, upgrade_tick_TILE_ORIGIN); // the tick for the upgrades
+    set_sprite_prop(UPGRADE_TICK_TILE, TICK_PALETTE);
+    
+    init_highlight_frame();
+    set_upgrade_highlight_frame_position();
 
     update_menu = TRUE; // always update the menu the first time the player enters the shop
+}
+
+void set_upgrade_highlight_frame_position(void) {
+    
+    for (uint8_t i = 0; i < 4; i++){
+        metasprite_t* frame_metasprite = dynamic_highlight_frame_metasprites[i];
+
+        frame_metasprite[1].dx = 0;
+        frame_metasprite[2].dx = 8;
+        frame_metasprite[3].dx = 8;
+        frame_metasprite[4].dx = 8;
+
+        frame_metasprite[6].dy = 8;
+        frame_metasprite[7].dy = 8;
+        frame_metasprite[8].dy = 8;
+
+        frame_metasprite[10].dx = -8;
+        frame_metasprite[11].dx = -8;
+        frame_metasprite[12].dx = -8;
+        frame_metasprite[13].dx = 0;
+
+        frame_metasprite[15].dy = -8;
+        frame_metasprite[16].dy = -8;
+        frame_metasprite[17].dy = -8;
+    }
 }
 
 void init_upgrade_tiles_palettes(void) {
@@ -104,9 +111,13 @@ void init_upgrade_tiles_palettes(void) {
 
 void update_upgrade_highlight_frame_position(uint8_t current_upgrade_selection) {
     uint8_t x, y;
-    x = 24 + (40 * (current_upgrade_selection % 3));
-    y = 40 + (40 * (current_upgrade_selection / 3));
-    move_metasprite_ex(metasprite_upgrade_highlight_frame, 0, 0, 0, x, y);
+    uint8_t current_animation_frame = (frame_counter >> 2) % 4;
+    metasprite_t* frame_metasprite = dynamic_highlight_frame_metasprites[current_animation_frame];
+
+    x = 24 + (40 * (current_upgrade_selection % 3)) - 1;
+    y = 40 + (40 * (current_upgrade_selection / 3)) - 1;
+
+    move_metasprite_ex(dynamic_highlight_frame_metasprites[current_animation_frame], highlight_frame_TILE_ORIGIN, HIGHLIGHT_FRAME_PALETTE, 0, x, y);
 }
 
 void update_upgrade_tick(UpgradeMenuState state) {
@@ -310,7 +321,6 @@ void upgrade_menu_loop(void) {
     }
 
     if (update_menu) {
-        display_upgrade_menu(current_upgrade_menu);
         update_upgrade_tick(current_upgrade_state);
 
         // Update the display and functionality based on the current state
@@ -328,7 +338,8 @@ void upgrade_menu_loop(void) {
 
         update_menu = FALSE;  // Reset the update flag after updating the screen
     }
-
+    
+    display_upgrade_menu(current_upgrade_menu);
     prev_buttons = buttons;
     vsync();
 }

@@ -8,8 +8,6 @@ BANKREF_EXTERN(bank_upgrade)
 #include <gb/metasprites.h>
 #include <stdio.h>
 
-extern const metasprite_t metasprite_upgrade_highlight_frame[];
-
 typedef struct {
     uint8_t current_upgrade_selection;
 } UpgradeMenu;
@@ -40,6 +38,7 @@ extern UpgradeMenuState current_upgrade_state;
 extern UpgradeMenu *current_upgrade_menu;
 
 void init_upgrade(void);
+void set_upgrade_highlight_frame_position(void);
 void init_upgrade_tiles_palettes(void);
 void update_upgrade_highlight_frame_position(uint8_t current_upgrade_selection);
 void update_upgrade_tick(UpgradeMenuState current_upgrade_state);
