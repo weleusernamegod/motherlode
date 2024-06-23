@@ -10,6 +10,7 @@ void init_clear_screen(void);
 void read_buttons(void);
 unsigned char convert_char_to_tile(char c);
 void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette);
+void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette);
 void init_sprite_palettes(void);
 void init_palette_0(void);
 void turn_screen_off(void);

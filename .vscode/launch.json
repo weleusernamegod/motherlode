@@ -6,7 +6,7 @@
             "type": "emulicious-debugger",
             "request": "launch",
             "name": "Launch in Emulicious",
-            "program": "${workspaceFolder}/Motherlode.gbc",
+            "program": "${workspaceFolder}/build/Motherlode.gbc",
             "port": 58870,
             "stopOnEntry": false,
             "preLaunchTask": "make",

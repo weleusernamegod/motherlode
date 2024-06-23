@@ -37,7 +37,9 @@
         "general.h": "c",
         "rover_eye.h": "c",
         "platform.h": "c",
-        "upgrade_tiles.h": "c"
+        "upgrade_tiles.h": "c",
+        "prop.h": "c",
+        "tracks.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

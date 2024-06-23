@@ -39,6 +39,7 @@
 #include "../assets/a_button.h"
 #include "../assets/warning_cargo.h"
 #include "../assets/warning_fuel.h"
+#include "../assets/loading_screen.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
@@ -62,34 +63,69 @@ void switch_ram_bank_based_on_value(uint16_t value) {
     current_ram_bank = value / 256; // Determine which bank to switch to
     SWITCH_RAM(current_ram_bank); // Switch to the appropriate bank
 }
+void init_loading_screen(void) {
+    set_bkg_palette(0, 1, loading_screen_palettes);
+    set_sprite_palette(0, 1, loading_screen_palettes);
+    set_bkg_data(loading_screen_TILE_ORIGIN, loading_screen_TILE_COUNT, loading_screen_tiles);
+    set_bkg_tiles(0,0,loading_screen_MAP_ATTRIBUTES_WIDTH, loading_screen_MAP_ATTRIBUTES_HEIGHT, loading_screen_map);
+    VBK_REG = 1;
+    set_bkg_tiles(0,0,loading_screen_MAP_ATTRIBUTES_WIDTH, loading_screen_MAP_ATTRIBUTES_HEIGHT, loading_screen_map_attributes);
+    VBK_REG = 0;
+    hide_sprites_range(0, MAX_HARDWARE_SPRITES);
+    HIDE_WIN;
+}
 
+void draw_loading_screen(uint16_t rows, uint16_t desired_rows) {
+    progressbar(rows, desired_rows, 10, 0, 0, 40+8, 72+16);
 
-void generate_map(uint16_t rows) {
-    uint16_t i, j;
-    for (i = 0; i < rows; i++) {
-        for (j = 0; j < COLS; j++) {
-            if (i > 6) {
+    if (rows % 8 == 0) {
+        char rows_buffer[5];
+        uitoa(rows, rows_buffer, 10);
+        draw_text_bkg(5,11,rows_buffer,4,FALSE,0);
+    }
+
+    if (rows == 0) {
+        char desired_rows_buffer[5];
+        uitoa(desired_rows, desired_rows_buffer, 10);
+        draw_text_bkg(11,11,desired_rows_buffer,4,FALSE,0);
+    }
+}
+
+void done_loading(void){
+    draw_text_bkg(5,11,"   DONE   ",10,TRUE,0);
+    delay(1000);
+}
+
+void generate_map(uint16_t desired_rows) {
+    uint16_t rows;
+    uint8_t cols = COLS;
+    for (rows = 0; rows < desired_rows; rows++) {
+        for (cols = 0; cols < COLS; cols++) {
+
+            draw_loading_screen(rows, desired_rows);
+
+            if (rows > 6) {
                 // Start generating the map based on depth
                 uint8_t randValue = rand() % 100;  // Random value from 0 to 99
                 uint8_t tileType = 1; // Default to dirt
 
                 // Determine ore distribution based on depth
-                if (i < DEPTH_LEVEL_1 && randValue >= 80) {
+                if (rows < DEPTH_LEVEL_1 && randValue >= 80) {
                     // Rows 7 to 19: Ores 4 to 5
                     tileType = rand() % 2 + COAL; // Ores 4 and 5
-                } else if (i >= DEPTH_LEVEL_1 && i < DEPTH_LEVEL_2 && randValue >= 80) {
+                } else if (rows >= DEPTH_LEVEL_1 && rows < DEPTH_LEVEL_2 && randValue >= 80) {
                     // Rows 20 to 49: Ores 4 to 7
                     tileType = rand() % 4 + STONE; // Ores 4 to 7
-                } else if (i >= DEPTH_LEVEL_2 && i < DEPTH_LEVEL_3 && randValue >= 75) {
+                } else if (rows >= DEPTH_LEVEL_2 && rows < DEPTH_LEVEL_3 && randValue >= 75) {
                     // Rows 50 to 149: Ores 8 to 11
                     tileType = rand() % 4 + 8; // Ores 8 to 11
-                } else if (i >= DEPTH_LEVEL_3 && i < DEPTH_LEVEL_4 && randValue >= 70) {
+                } else if (rows >= DEPTH_LEVEL_3 && rows < DEPTH_LEVEL_4 && randValue >= 70) {
                     // Rows 150 to 299: Ores 12 to 14
                     tileType = rand() % 3 + 12; // Ores 12 to 14
-                } else if (i >= DEPTH_LEVEL_4 && i < DEPTH_LEVEL_5 && randValue >= 65) {
+                } else if (rows >= DEPTH_LEVEL_4 && rows < DEPTH_LEVEL_5 && randValue >= 65) {
                     // Rows 300 to 599: Ores 15 to 17
                     tileType = rand() % 3 + 15; // Ores 15 to 17
-                } else if (i >= DEPTH_LEVEL_5 && randValue >= 60) {
+                } else if (rows >= DEPTH_LEVEL_5 && randValue >= 60) {
                     // Rows 600 and deeper: Ores 16 to 18
                     tileType = rand() % 3 + 16; // Ores 16 to 18
                 }
@@ -100,27 +136,29 @@ void generate_map(uint16_t rows) {
                 }
                 
                 // Mix ores a bit more in the deeper rows
-                if (i >= 300 && randValue >= 50) {
+                if (rows >= 300 && randValue >= 50) {
                     tileType = rand() % 18 + 1;  // Mix all ores from 1 to 18
                 }
 
-                switch_ram_bank_based_on_value(i);
-                level_array[i % 256][j] = tileType;
+                switch_ram_bank_based_on_value(rows);
+                level_array[rows % 256][cols] = tileType;
 
-            } else if (i == 6) {
+            } else if (rows == 6) {
                 // Seventh row is all gras
-                level_array[i][j] = GRAS;
+                level_array[rows][cols] = GRAS;
 
-                if (j == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET || j == STATION_SELL_X + STATION_SELL_DOOR_OFFSET || j == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET){
-                  level_array[i][j] = STONE;  
+                if (cols == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET || cols == STATION_SELL_X + STATION_SELL_DOOR_OFFSET || cols == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET){
+                  level_array[rows][cols] = STONE;  
                 }
 
-            } else if (i < 6) {
+            } else if (rows < 6) {
                 // First six rows are empty
-                level_array[i][j] = EMPTY;
+                level_array[rows][cols] = EMPTY;
             }
         }
     }
+
+    draw_loading_screen(rows, desired_rows); // draw it once again when finished
 
     SWITCH_RAM(0); // back to default RAM bank
 }
@@ -415,13 +453,22 @@ void add_block(uint8_t x, uint16_t y, uint8_t type) {
  * @param max_value the max value / range of the bar
  * @param digits how many 8x8 sprites the bar should be long
  * @param tilestart what hardware sprite to use
+ * @param palette what palette to use
  * @param x x-coordinate of first tile
  * @param y y-coordinate of first tile
  */
 void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t palette, uint8_t x, uint8_t y) {
     // Calculate percentage of progress in terms of total available width in pixels (digits * 8)
     uint8_t total_pixels = digits * 8;
-    uint16_t pixels_to_fill = (current_value * total_pixels) / max_value;
+    uint16_t pixels_to_fill;
+    // for large values use 32 bit value
+    if (digits > 3) {
+        uint32_t scaled_value = (uint32_t)current_value * total_pixels; // Use uint32_t for the intermediate result
+        pixels_to_fill = scaled_value / max_value;
+    } else {
+        pixels_to_fill = (current_value * total_pixels) / max_value;
+    }
+
 
     for (uint8_t i = 0; i < digits; i++) {
         uint8_t tile_index = PROGRESSBAR_TILE_0_8; // Default to empty

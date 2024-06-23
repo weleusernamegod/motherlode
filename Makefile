@@ -31,6 +31,7 @@ all: $(BINS) copy-rom clean
 # Generate asset files
 png2asset:
 	$(PNG2ASSET) png/highlight_frame.png -c assets/highlight_frame.c -spr8x8 -sh 24 -keep_duplicate_tiles -noflip -px -8 -py -16 -tile_origin 0
+	$(PNG2ASSET) png/loading_screen.png -c assets/loading_screen.c -spr8x8 -map -repair_indexed_pal -keep_palette_order -use_map_attributes -tile_origin 128 -noflip -b 1
 	$(PNG2ASSET) png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles
 	$(PNG2ASSET) png/rover.png -c assets/rover.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 1 -b 1
 	$(PNG2ASSET) png/rover_eye.png -c assets/rover_eye.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 0 -px 8 -py 8 -b 1
@@ -72,7 +73,7 @@ $(BINS): $(OBJS)
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -o $(BINS) $(OBJS)
 
 prepare:
-	rm -rf $(OBJDIR) $(ASSETDIR) $(BINDIR)
+	rm -rf $(OBJDIR) $(ASSETDIR)
 	mkdir -p $(OBJDIR)
 	mkdir -p $(ASSETDIR)
 	mkdir -p $(BINDIR)
@@ -81,7 +82,7 @@ copy-rom:
 	cp $(BINS) .
 
 clean:
-	rm -rf $(OBJDIR) $(BINDIR)
+	rm -rf $(OBJDIR)
 
 # create necessary directories after Makefile is parsed but before build
 # info prevents the command from being pasted into the makefile

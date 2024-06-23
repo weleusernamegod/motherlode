@@ -26,7 +26,10 @@ uint8_t get_tile_from_array(uint16_t depth, uint16_t width);
 void switch_ram_bank_back_to_prev(void);
 void switch_ram_bank_based_on_value(uint16_t value);
 
-void generate_map(uint16_t rows);
+void init_loading_screen(void);
+void draw_loading_screen(uint16_t rows, uint16_t desired_rows);
+void done_loading(void);
+void generate_map(uint16_t desired_rows);
 void shuffle(uint8_t array[4]);
 void interpolate_color(Background_color* result, Background_color start, Background_color end, uint16_t progress, uint16_t max_progress);
 void change_background_color(void);

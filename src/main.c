@@ -34,7 +34,7 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
-    currentGameState = GAME_STATE_NEW_GAME;
+    currentGameState = GAME_STATE_MAIN_MENU;
 
     while (1) {
         switch (currentGameState) {
@@ -56,7 +56,13 @@ void main(void) {
 
             case GAME_STATE_NEW_GAME:
                 SWITCH_ROM(1);
+                init_screen();
+                init_progressbar();
+                init_font();
+                init_loading_screen();
                 generate_map(ROWS);
+                done_loading();
+                turn_screen_off();
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();

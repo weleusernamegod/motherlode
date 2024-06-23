@@ -60,14 +60,14 @@ next_tile_left = (width > 0) ? get_tile_from_array(depth, width - 1) : STONE;
 
 void metasprite_drill_horizontal(char direction){
     if (direction == LEFT) move_metasprite_ex (
-        drill_h_metasprites[absolute_movement % (sizeof(drill_h_metasprites) >> 1)],
+        drill_h_metasprites[(absolute_movement / 3) % (sizeof(drill_h_metasprites) >> 1)],
         drill_h_TILE_ORIGIN,
         DRILL_PALETTE,
         DRILL_H_START,
         width_pixel.h - PIXEL_FROM_CENTER,
         depth_pixel.h);
     else if (direction == RIGHT) move_metasprite_flipx (
-        drill_h_metasprites[absolute_movement % (sizeof(drill_h_metasprites) >> 1)],
+        drill_h_metasprites[(absolute_movement / 3) % (sizeof(drill_h_metasprites) >> 1)],
         drill_h_TILE_ORIGIN,
         DRILL_PALETTE,
         DRILL_H_START,
@@ -76,7 +76,7 @@ void metasprite_drill_horizontal(char direction){
 }
 void metasprite_drill_vertical(char direction){
     if (direction == DOWN) move_metasprite_ex(
-        drill_v_metasprites[absolute_movement % (sizeof(drill_v_metasprites) >> 1)],
+        drill_v_metasprites[(absolute_movement / 3) % (sizeof(drill_v_metasprites) >> 1)],
         drill_v_TILE_ORIGIN,
         DRILL_PALETTE,
         DRILL_V_START,

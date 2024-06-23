@@ -23,7 +23,6 @@
 #define RGB_DARK_GREY				RGB8(96, 96, 96)
 #define RGB_DEEP_RED				RGB8(185, 40, 26)
 
-
 palette_color_t palette_background[4] = {
 	RGB_MEDIUM_DARK_GREY,
 	RGB_WHITE,

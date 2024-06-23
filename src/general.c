@@ -18,6 +18,9 @@
 #include "../assets/prop.h"
 
 void init_font(void){
+    const uint8_t empty_tile[16];
+    memset(empty_tile, 0x00, 16);
+    set_bkg_data(0, 1, empty_tile);
     set_bkg_data(1, font_TILE_COUNT, font_tiles);
 }
 
@@ -122,6 +125,53 @@ void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN l
             set_win_tile_xy(x + i, y, palette);
             VBK_REG = 0;
             set_win_tile_xy(x + i, y, 0);
+            set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+        }
+    }
+}
+
+void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
+    uint8_t textLength = strlen(text);
+    uint8_t *vramAddr = get_bkg_xy_addr(x, y);
+
+    if (textLength > length) {
+        textLength = length;  // Cap the text length at the defined maximum
+    }
+
+    // Calculate starting index for drabkgg text
+    if (!left_aligned) {
+        // If right-aligned, calculate starting position based on text length
+        vramAddr += length - textLength;
+        x += length - textLength;
+    }
+
+    // Fill in the padding space with empty tiles if the text is shorter than the length
+    if (!left_aligned) {
+        for (uint8_t i = 0; i < length - textLength; i++) {
+            VBK_REG = 1;
+            set_bkg_tile_xy(x - length + textLength + i, y, palette);
+            VBK_REG = 0;
+            set_bkg_tile_xy(x - length + textLength + i, y, 0);
+            set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+        }
+    }
+
+    // Draw the text
+    for (uint8_t i = 0; i < textLength; i++) {
+        VBK_REG = 1;
+        set_bkg_tile_xy(x + i, y, palette);
+        VBK_REG = 0;
+        set_bkg_tile_xy(x + i, y, 0);
+        set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
+    }
+
+    // If left-aligned and needs padding after text
+    if (left_aligned) {
+        for (uint8_t i = textLength; i < length; i++) {
+            VBK_REG = 1;
+            set_bkg_tile_xy(x + i, y, palette);
+            VBK_REG = 0;
+            set_bkg_tile_xy(x + i, y, 0);
             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
     }
