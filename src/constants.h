@@ -5,8 +5,11 @@
 #include <stdio.h>
 
 // general
-#define ROWS 32
+#define ROWS 64
 #define COLS 16
+
+#define START_DEPTH 2
+#define START_WIDTH 4
 
 // main menu
 #define MENU_ITEMS 3
@@ -49,50 +52,72 @@
 #define PALETTE_DIRT 2
 #define PALETTE_SKY 7
 
-// group 1
+// DEPTH_LEVEL_0
 // default 0
 #define PALETTE_GRAS 1
 #define PALETTE_COAL 2
 #define PALETTE_IRON 3
-// palette sky 4
+// palette station 4
 // palette station 5
 // palette station 6
 // palette station 7
 
-// group 2
+// DEPTH_LEVEL_1
 // default 0
 #define PALETTE_STONE 1
 // coal 2
 // iron 3
-#define PALETTE_COPPER 4
-#define PALETTE_TIN 5
+#define PALETTE_TIN 4
+#define PALETTE_COPPER 5
 #define PALETTE_SILVER 6
 #define PALETTE_GOLD 7
 
-// group 3
+// DEPTH_LEVEL_2
+// default 0
+// stone 1
 #define PALETTE_MITHRIL 2
 #define PALETTE_PLATINUM 3
-#define PALETTE_TITANIUM 4
-#define PALETTE_OBSIDIUM 5
-#define PALETTE_ELEMENTIUM 6
-#define PALETTE_ADAMANTITE 7
+// tin 4
+// copper 5
+// silver 6
+// gold 7
 
-// group 4
-#define PALETTE_EMERALD 2
-#define PALETTE_RUBY 3
-#define PALETTE_DIAMOND 4
-//
+// DEPTH_LEVEL_3
+// default 0
+// stone 1
+// mithril 2
+// platinum 3
+#define PALETTE_EMERALD 4
+#define PALETTE_BONES 5
+// silver 6
+// gold 7
+
+// DEPTH_LEVEL_4
+// default 0
+// stone 1
+#define PALETTE_TITANIUM 2
+#define PALETTE_OBSIDIUM 3
+// emerald 4
+// bones 5
 #define PALETTE_LAVA 6
+// gold 7
+
+// DEPTH_LEVEL_5
+// default 0
+// stone 1
+// titanium 2
+// obsidium 3
+#define PALETTE_RUBY 4
+// bones 5
+// lava 6
 #define PALETTE_GAS 7
 
-
-// group 5
-#define PALETTE_BONES 2
-#define PALETTE_SKULL 3
-#define PALETTE_ARTEFACT 4
-#define PALETTE_AQUAMARINE 5
-// lava 6
-// gas 7
+#define PALETTE_ELEMENTIUM 0
+#define PALETTE_ADAMANTITE 0
+#define PALETTE_DIAMOND 0
+#define PALETTE_AQUAMARINE 0
+#define PALETTE_SKULL 0
+#define PALETTE_ARTEFACT 0
 
 
 #define WIN_X 3

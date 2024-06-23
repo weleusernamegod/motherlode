@@ -18,8 +18,8 @@ Material materials[] = {
 // ore
 {"coal", COAL, 32, 1, 30, 0, PALETTE_COAL},
 {"iron", IRON, 32, 1, 50, 0, PALETTE_IRON},
-{"copper", COPPER, 40, 2, 100, 0, PALETTE_COPPER},
-{"tin", TIN, 45, 2, 200, 0, PALETTE_TIN},
+{"tin", TIN, 40, 2, 200, 0, PALETTE_TIN},
+{"copper", COPPER, 45, 2, 100, 0, PALETTE_COPPER},
 {"silver", SILVER, 50, 3, 500, 0, PALETTE_SILVER},
 {"gold", GOLD, 64, 3, 750, 0, PALETTE_GOLD},
 {"mithril", MITHRIL, 80, 4, 1000, 0, PALETTE_MITHRIL},

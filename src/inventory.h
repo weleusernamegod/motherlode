@@ -11,8 +11,8 @@
 // ores
 #define COAL 4
 #define IRON 5
-#define COPPER 6
-#define TIN 7
+#define TIN 6
+#define COPPER 7
 #define SILVER 8
 #define GOLD 9
 #define MITHRIL 10

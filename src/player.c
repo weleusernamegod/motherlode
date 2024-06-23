@@ -31,10 +31,11 @@ BANKREF(bank_player)
 
 struct Player player;
 
-void init_depth(void){
+void init_depth(uint16_t start_width, uint16_t start_depth){
     direction_prev = RIGHT;    // start with the rover facing right
-    prev_depth = depth;
-    wrapped_depth = depth;
+    width = prev_width = start_width;
+    depth = prev_depth = wrapped_depth = start_depth;
+    width_offset = depth_offset = 0;
     width_pixel.h = 16 + ((width - width_offset) * 16);
     depth_pixel.h = 16 + 8 + ((depth - depth_offset) * 16);
     scroll_x.h = width_offset * 16;
@@ -413,7 +414,7 @@ void calculate_falldamage(void){
 void calculate_upward_velocity(void){
     // divide both by 8 and subtract, the cap at 8
     upward_velocity = (player.engine.max_value >> 3) - (player.cargo.current_value >> 3);
-    if (upward_velocity >= 8) upward_velocity = 8;
+    if (upward_velocity >= 12) upward_velocity = 12;
 }
 
 void check_hull(void){
@@ -504,6 +505,32 @@ void enter_station(void) {
     }
 }
 
+void powerup_extra_tank(void) {
+    uint16_t extra_tank_volume = 500;
+    if (powerup[POWERUP_EXTRA_TANK].inventory > 0) {
+
+        player.fuel.current_value += extra_tank_volume; // add to tank
+        if (player.fuel.current_value > player.fuel.max_value) {
+            player.fuel.current_value = player.fuel.max_value;  // check if the tank is now more than full and cap it at max
+        }
+        // Subtract 1 from inventory
+        powerup[POWERUP_EXTRA_TANK].inventory -= 1;
+    }
+}
+
+void powerup_repair_kit(void) {
+    uint16_t repair_kit_amount = 50;
+    if (powerup[POWERUP_REPAIR_KIT].inventory > 0) {
+
+        player.hull.current_value += repair_kit_amount; // add to tank
+        if (player.hull.current_value > player.hull.max_value) {
+            player.hull.current_value = player.hull.max_value;  // check if the tank is now more than full and cap it at max
+        }
+        // Subtract 1 from inventory
+        powerup[POWERUP_REPAIR_KIT].inventory -= 1;
+    }
+}
+
 void powerup_dynamite(void) {
     if (powerup[POWERUP_DYNAMITE].inventory > 0) {
         // Clear one tile to the left, right, top, and bottom
@@ -522,18 +549,33 @@ void powerup_dynamite(void) {
     }
 }
 
+void powerup_teleporter(void) {
+    if (powerup[POWERUP_TELEPORTER].inventory > 0) {
+        init_speed();
+        init_depth(STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET, GROUND);
+        currentGameState = GAME_STATE_CONTINUE_RELOAD;
+        
+        // Subtract 1 from inventory
+        powerup[POWERUP_TELEPORTER].inventory -= 1;
+    }
+}
+
+
+
 void handle_powerups(void) {
     if (animation_frames_left <= 0 && prev_buttons != buttons && depth > UNDERGROUND + 1) {
         switch (buttons) {
             case J_A:
+                powerup_extra_tank();
                 break;
             case J_B:
+                powerup_repair_kit();
                 break;
             case J_START:
                 powerup_dynamite();
                 break;
             case J_SELECT:
-
+                powerup_teleporter();
                 break;
             default:
                 break;

@@ -7,7 +7,7 @@
 BANKREF(highlight_frame)
 
 const palette_color_t highlight_frame_palettes[4] = {
-	RGB8(255,255,255), RGB8(145,250,196), RGB8( 92,171,130), RGB8(  0,  0,  0)
+	RGB8(255,255,255), RGB8(110,189, 23), RGB8( 72,106,  0), RGB8(  0,  0,  0)
 	
 };
 

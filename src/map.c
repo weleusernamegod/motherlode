@@ -170,11 +170,11 @@ void interpolate_color(Background_color* result, Background_color start, Backgro
 
 void change_background_color(void) {
     uint8_t num_colors = sizeof(colors) / sizeof(colors[0]);
-    uint8_t phase_per_color = ROWS / (num_colors - 1);
+    uint16_t phase_per_color = ROWS / (num_colors - 1);
 
-    uint8_t color_phase = depth % ROWS;
+    uint16_t color_phase = depth % ROWS;
     uint8_t index = color_phase / phase_per_color;
-    uint8_t progress = color_phase % phase_per_color;
+    uint16_t progress = color_phase % phase_per_color;
 
     Background_color current_color;
     interpolate_color(&current_color, colors[index], colors[index + 1], progress, phase_per_color);
@@ -184,18 +184,32 @@ void change_background_color(void) {
 
 void change_sky_color(void) {
     uint8_t r, g, b;
+    const uint8_t color_threshold = 20; // Define the maximum value for sky_color_value
 
-    if (minute_counter % 2 == 0) sky_color_value += 2;
-    else sky_color_value -= 2;
+    // Change color every x seconds
+    if (second_counter % 10 == 0) {
+        sky_color_value += sky_color_direction;
 
-    r = 180 - sky_color_value;
-    g = 222 - sky_color_value;
-    b = 255 - sky_color_value;
+        // Check if sky_color_value has reached the thresholds
+        if (sky_color_value >= color_threshold) {
+            sky_color_value = color_threshold;
+            sky_color_direction = -1; // Change direction to decreasing
+        } else if (sky_color_value <= 0) {
+            sky_color_value = 0;
+            sky_color_direction = 1; // Change direction to increasing
+        }
+    }
 
-    set_bkg_palette_entry(4, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
-    set_bkg_palette_entry(5, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
-    set_bkg_palette_entry(6, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
-    set_bkg_palette_entry(7, COLOR_TO_CHANGE_SKY, RGB8(r, g, b));
+    // Adjust the RGB values to become darker at lower sky_color_value
+    r = 22 - sky_color_value;
+    g = 28 - sky_color_value;
+    b = 31 - sky_color_value;
+
+    // Update the background color
+    set_bkg_palette_entry(4, COLOR_TO_CHANGE_SKY, RGB(r, g, b));
+    set_bkg_palette_entry(5, COLOR_TO_CHANGE_SKY, RGB(r, g, b));
+    set_bkg_palette_entry(6, COLOR_TO_CHANGE_SKY, RGB(r, g, b));
+    set_bkg_palette_entry(7, COLOR_TO_CHANGE_SKY, RGB(r, g, b));
 }
 
 void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index) {
@@ -355,7 +369,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
 
 
 void spawn_bkg_row(void) {
-        if (depth >= METATILES_VISIBLE) { // just a guess, tested and found out it has to be 8
+        if (depth > METATILES_TOTAL - 1) {
             if (depth - depth_offset == (8 - THRESHOLD - BOTTOM)) {
                 switch_ram_bank_based_on_value(depth + 4);
                 set_4bkg_tiles(level_array, 0, (depth + 4) % 256, 1, 16);
@@ -608,13 +622,13 @@ void draw_sky(void){
 }
 
 void swap_tiles_sky_buildings(void) {
-    if (depth_offset < CLOSE_TO_SURFACE && !buildings_loaded) {
+    if (depth_offset < UNDERGROUND && !buildings_loaded) {
         // Load and draw buildings if the player is deeper than the threshold and buildings are not loaded
         init_buildings();
         draw_sky();
         draw_buildings();
         buildings_loaded = TRUE;  // Mark buildings as loaded
-    } else if (depth_offset >= CLOSE_TO_SURFACE && buildings_loaded) {
+    } else if (depth_offset >= UNDERGROUND && buildings_loaded) {
         // Load tiles if the player is shallower than the threshold and tiles are not loaded
         init_tiles();
         buildings_loaded = FALSE;  // Mark tiles as loaded (buildings are not loaded)

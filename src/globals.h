@@ -77,6 +77,7 @@ extern uint8_t next_tile_right;
 
 // graphics
 extern uint8_t sky_color_value;
+extern int8_t sky_color_direction;
 
 // fuel menu
 extern uint8_t current_powerup_selection;

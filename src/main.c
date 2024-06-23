@@ -60,7 +60,7 @@ void main(void) {
                 init_attributes();
                 init_speed();
                 calculate_upward_velocity();
-                init_depth();
+                init_depth(START_WIDTH, START_DEPTH);
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
 

@@ -14,7 +14,7 @@ extern struct Station_proximity station_proximity;
 
 
 // Function declarations
-void init_depth(void);
+void init_depth(uint16_t start_width, uint16_t start_depth);
 void init_speed(void);
 void check_surroundings(void);
 void metasprite_drill_horizontal(char direction);
@@ -43,7 +43,10 @@ void handle_hull (void);
 void handle_cargo (void);
 void proximity_check_station(void);
 void enter_station(void);
+void powerup_extra_tank(void);
+void powerup_repair_kit(void);
 void powerup_dynamite(void);
+void powerup_teleporter(void);
 void handle_powerups(void);
 void check_game_over(void);
 void reset_player(void);

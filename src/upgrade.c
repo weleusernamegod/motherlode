@@ -59,7 +59,7 @@ void init_upgrade(void) {
 
     set_sprite_data(upgrade_tick_TILE_ORIGIN, upgrade_tick_TILE_COUNT, upgrade_tick_tiles);
     set_sprite_tile(UPGRADE_TICK_TILE, upgrade_tick_TILE_ORIGIN); // the tick for the upgrades
-    set_sprite_prop(UPGRADE_TICK_TILE, TICK_PALETTE);
+    set_sprite_prop(UPGRADE_TICK_TILE, 0b00000000 | TICK_PALETTE); // set it to foreground and OR with palette
     
     init_highlight_frame();
     set_upgrade_highlight_frame_position();

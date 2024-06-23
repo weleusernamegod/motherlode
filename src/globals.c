@@ -26,7 +26,7 @@ BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first
 BOOLEAN buildings_loaded = TRUE;  // for checks if buildings need to be loaded or not
 
 // movement
-uint16_t depth = 2, width = 4;
+uint16_t depth = 0, width = 0;
 uint16_t depth_offset = 0, width_offset = 0;
 uint16_t prev_depth, prev_width;
 uint16_t wrapped_depth;
@@ -70,6 +70,7 @@ uint8_t next_tile_right;
 
 // graphics
 uint8_t sky_color_value;
+int8_t sky_color_direction = 1;
 
 // fuel menu
 uint8_t current_powerup_selection = 0;
