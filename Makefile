@@ -32,7 +32,7 @@ all: $(BINS) copy-rom clean
 png2asset:
 	$(PNG2ASSET) png/highlight_frame.png -c assets/highlight_frame.c -spr8x8 -sh 24 -keep_duplicate_tiles -noflip -px -8 -py -16 -tile_origin 0
 	$(PNG2ASSET) png/loading_screen.png -c assets/loading_screen.c -spr8x8 -map -repair_indexed_pal -keep_palette_order -use_map_attributes -tile_origin 128 -noflip -b 1
-	$(PNG2ASSET) png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles
+	$(PNG2ASSET) png/font.png -c assets/font.c -spr8x8 -tiles_only -no_palettes -noflip -repair_indexed_pal -keep_palette_order -keep_duplicate_tiles -tile_origin 176
 	$(PNG2ASSET) png/rover.png -c assets/rover.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 1 -b 1
 	$(PNG2ASSET) png/rover_eye.png -c assets/rover_eye.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -tile_origin 0 -px 8 -py 8 -b 1
 	$(PNG2ASSET) png/tracks.png -c assets/tracks.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -sh 8 -tile_origin 5 -b 1
@@ -40,11 +40,11 @@ png2asset:
 	$(PNG2ASSET) png/drill_v.png -c assets/drill_v.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -sh 8 -tile_origin 15 -b 1
 	$(PNG2ASSET) png/prop.png -c assets/prop.c -spr8x8 -no_palettes -noflip -sh 8 -tile_origin 19 -b 1
 	$(PNG2ASSET) png/nav.png -c assets/nav.c -spr8x8 -map -tile_origin 80 -noflip -b 1
-	$(PNG2ASSET) png/ore_tiles.png -c assets/ore_tiles.c -spr8x8 -tiles_only -keep_palette_order -max_palettes 24 -noflip -b 1
+	$(PNG2ASSET) png/ore_tiles.png -c assets/ore_tiles.c -spr8x8 -tiles_only -keep_palette_order -max_palettes 24 -noflip -tile_origin 0 -b 1
 	$(PNG2ASSET) png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
 	$(PNG2ASSET) png/station_powerup.png -c assets/station_powerup.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 128 -noflip -b 1
 	$(PNG2ASSET) png/station_sell.png -c assets/station_sell.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 151 -noflip -b 1
-	$(PNG2ASSET) png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 187 -noflip -b 1
+	$(PNG2ASSET) png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 185 -noflip -b 1
 	$(PNG2ASSET) png/warning_cargo.png -c assets/warning_cargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
 	$(PNG2ASSET) png/warning_fuel.png -c assets/warning_fuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
 	$(PNG2ASSET) png/game_over.png -c assets/game_over.c -spr8x8 -no_palettes -noflip -tile_origin 64 -b 1

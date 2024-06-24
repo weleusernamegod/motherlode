@@ -78,11 +78,10 @@ void init_loading_screen(void) {
 void draw_loading_screen(uint16_t rows, uint16_t desired_rows) {
     progressbar(rows, desired_rows, 10, 0, 0, 40+8, 72+16);
 
-    if (rows % 8 == 0) {
-        char rows_buffer[5];
-        uitoa(rows, rows_buffer, 10);
-        draw_text_bkg(5,11,rows_buffer,4,FALSE,0);
-    }
+    char rows_buffer[5];
+    uitoa(rows, rows_buffer, 10);
+    draw_text_bkg(5,11,rows_buffer,4,FALSE,0);
+
 
     if (rows == 0) {
         char desired_rows_buffer[5];
@@ -102,7 +101,7 @@ void generate_map(uint16_t desired_rows) {
     for (rows = 0; rows < desired_rows; rows++) {
         for (cols = 0; cols < COLS; cols++) {
 
-            draw_loading_screen(rows, desired_rows);
+            if (rows % 32 == 0) draw_loading_screen(rows, desired_rows);
 
             if (rows > 6) {
                 // Start generating the map based on depth
@@ -514,21 +513,27 @@ void draw_test(void) {
 }
 
 void draw_depth(void){
-    char string[10];
+    char string[5];
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
-    strcat(string, "M");
+    strcat(string, "^");
     draw_text(15,1,string,5,FALSE,0);
 }
 
 void draw_cargo(void){
-    char string[10];
-    char string_max[10];
+    char string[5];
     if (player.cargo.current_value > player.cargo.max_value) player.cargo.current_value = player.cargo.max_value; // make sure even if the cargo is more than full, to only display just full (15/15 for example not 16/15)
-    uitoa(player.cargo.current_value, string, 10);
-    uitoa(player.cargo.max_value, string_max, 10);
-    strcat(string, "/");
-    strcat(string, string_max);
-    draw_text(10,1,string,5,FALSE,0);
+    itoa(player.cargo.current_value, string, 10);
+    strcat(string, "#");
+    draw_text(11,1,string,3,FALSE,0);
+
+    // char string[10];
+    // char string_max[10];
+    // if (player.cargo.current_value > player.cargo.max_value) player.cargo.current_value = player.cargo.max_value; // make sure even if the cargo is more than full, to only display just full (15/15 for example not 16/15)
+    // uitoa(player.cargo.current_value, string, 10);
+    // uitoa(player.cargo.max_value, string_max, 10);
+    // strcat(string, "/");
+    // strcat(string, string_max);
+    // draw_text(10,1,string,5,FALSE,0);
 }
 
 const metasprite_t warning_cargo_metasprite[] = {

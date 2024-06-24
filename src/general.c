@@ -66,18 +66,20 @@ unsigned char convert_char_to_tile(char c) {
     if (c >= 'a' && c <= 'z') return SLETTER_START + (c - 'a');
     if (c >= '0' && c <= '9') return NUMBERS_START + (c - '0');
     switch (c) {
-        case ':': return 14;
-        case '?': return 15;
-        case '!': return 16;
-        case '.': return 17;
-        case '/': return 18;
-        case '+': return 19;
-        case '-': return 20;
-        case '$': return 21;
-        case '%': return 22;
-        case '&': return 23;
-        case '*': return 24;
-        case '=': return 25;
+        case '#': return CHAR_START + 0;
+        case '^': return CHAR_START + 1;
+        case '(': return CHAR_START + 2;
+        case ')': return CHAR_START + 3;
+        case '?': return CHAR_START + 4;
+        case '!': return CHAR_START + 5;
+        case '.': return CHAR_START + 6;
+        case '/': return CHAR_START + 7;
+        case '-': return CHAR_START + 8;
+        case '$': return CHAR_START + 9;
+        case '%': return CHAR_START + 10;
+        case '&': return CHAR_START + 11;
+        case '*': return CHAR_START + 13;
+        case '=': return CHAR_START + 14;
 
         default: return 0;  // Default to space if character is not handled
     }

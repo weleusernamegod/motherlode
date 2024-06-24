@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // general
-#define ROWS 1024
+#define ROWS 128
 #define COLS 16
 
 #define START_DEPTH 2
@@ -183,7 +183,8 @@
 
 // tiles
 #define ORE_TILE_START 96
-#define NUMBERS_START 4
+#define CHAR_START 12
+#define NUMBERS_START 2
 #define LETTER_START 26
 #define SLETTER_START 52
 

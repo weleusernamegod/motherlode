@@ -38,7 +38,7 @@ void init_attributes(void){
 
     player.hull.attribute_name = "hull";
     player.hull.attribute_unit = "PT";
-    player.hull.attribute_unit_short = "?";
+    player.hull.attribute_unit_short = "())";
     player.hull.upgrade_level = 0;
     player.hull.upgrade_value[0] = 17;
     player.hull.upgrade_value[1] = 30;

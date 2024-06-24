@@ -34,7 +34,7 @@ void main(void) {
     SWITCH_RAM(0);
     init_framecounter();
     initrand(DIV_REG);
-    currentGameState = GAME_STATE_MAIN_MENU;
+    currentGameState = GAME_STATE_NEW_GAME;
 
     while (1) {
         switch (currentGameState) {
