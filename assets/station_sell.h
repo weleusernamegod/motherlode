@@ -11,7 +11,7 @@
 #define station_sell_TILE_H 8
 #define station_sell_WIDTH 64
 #define station_sell_HEIGHT 40
-#define station_sell_TILE_COUNT 34
+#define station_sell_TILE_COUNT 33
 #define station_sell_PALETTE_COUNT 8
 #define station_sell_COLORS_PER_PALETTE 4
 #define station_sell_TOTAL_COLORS 32
@@ -24,7 +24,7 @@
 BANKREF_EXTERN(station_sell)
 
 extern const palette_color_t station_sell_palettes[32];
-extern const uint8_t station_sell_tiles[544];
+extern const uint8_t station_sell_tiles[528];
 
 extern const unsigned char station_sell_map[40];
 extern const unsigned char station_sell_map_attributes[40];

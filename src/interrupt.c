@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "constants.h"
+#include "cbtfx.h"
 
 
 void interrupt_LCD(void) {
@@ -12,6 +13,10 @@ void interrupt_VBL_window(void) {
     move_win(WIN_X, 0);
 }
 
+
+void interrupt_VBL_fx(void) {
+    CBTFX_update();
+}
 
 void interrupt_VBL_framecounter(void) {
     frame_counter++;  // Increment the frame counter every VBlank
@@ -28,9 +33,10 @@ void interrupt_VBL_framecounter(void) {
     }
 }
 
-void init_framecounter(void) {
+void init_VBL_interrupts(void) {
     CRITICAL{
     add_VBL(interrupt_VBL_framecounter);  // Add the VBL interrupt handler
+    add_VBL(interrupt_VBL_fx);
     }
 }
 

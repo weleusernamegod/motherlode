@@ -4,7 +4,7 @@
         {
             "label": "make",
             "type": "shell",
-            "command": "make prepare && make png2asset && make all",
+            "command": "make prepare && make hammer && make png2asset && make all",
             "group": {
                 "kind": "build",
                 "isDefault": true

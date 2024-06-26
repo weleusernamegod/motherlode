@@ -31,6 +31,12 @@ void init_screen(void){
     DISPLAY_ON;
 }
 
+void init_sound(void){
+    NR52_REG = 0x80;
+    NR51_REG = 0xFF;
+    NR50_REG = 0x77;
+}
+
 void init_clear_screen(void) {
     // set all palettes to 0
     move_win(7,0);

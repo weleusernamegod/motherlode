@@ -1,5 +1,6 @@
 .DS_Store
 build
 obj
+hammer
 *.aseprite
 *.sav

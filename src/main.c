@@ -32,10 +32,10 @@
 void main(void) {
     ENABLE_RAM;
     SWITCH_RAM(0);
-    init_framecounter();
+    init_VBL_interrupts();
+    init_sound();
     initrand(DIV_REG);
     currentGameState = GAME_STATE_NEW_GAME;
-
     while (1) {
         switch (currentGameState) {
             case GAME_STATE_MAIN_MENU:

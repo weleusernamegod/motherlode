@@ -1,0 +1,13 @@
+#include "cbtfx.h"
+#include "hUGEDriver.h"
+
+#include "../sfx/SFX_down.h"
+#include "../sfx/SFX_up.h"
+#include "../sfx/SFX_level_up.h"
+#include "../sfx/SFX_exp_up.h"
+#include "../sfx/SFX_blep.h"
+#include "../sfx/SFX_explosion.h"
+#include "../sfx/SFX_hit.h"
+#include "../sfx/SFX_secret.h"
+#include "../sfx/SFX_soft_hit.h"
+#include "../sfx/SFX_glitch.h"

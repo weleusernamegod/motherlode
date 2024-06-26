@@ -1,30 +1,32 @@
 # If you move this project you can change the directory 
 # to match your GBDK root directory (ex: GBDK_HOME = "C:/GBDK/"
 ifndef GBDK_HOME
-	GBDK_HOME = /usr/local/opt/gbdk/
+GBDK_HOME = /usr/local/opt/gbdk/
 endif
 
 LCC = $(GBDK_HOME)bin/lcc
 PNG2ASSET = $(GBDK_HOME)bin/png2asset
 
-LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc -Wl-lhUGEDriver.lib
 CFLAGS += -I$(ASSETDIR)
 
 # You can set the name of the .gbc ROM file here
 PROJECTNAME    = Motherlode
 
 SRCDIR      = src
+SFXDIR      = sfx
 OBJDIR      = obj
 ASSETDIR    = assets
 BINDIR      = build
 MKDIRS      = $(OBJDIR) $(BINDIR)
 
 BINS	    = $(BINDIR)/$(PROJECTNAME).gbc
-CSOURCES    = $(wildcard $(SRCDIR)/*.c)
+SRCSOURCES    = $(wildcard $(SRCDIR)/*.c)
+SFXSOURCES    = $(wildcard $(SFXDIR)/*.c)
 ASSETSOURCES = $(wildcard $(ASSETDIR)/*.c)
-OBJS        = $(CSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
+OBJS        = $(SRCSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(SFXSOURCES:$(SFXDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
 
-.PHONY: all prepare png2asset copy-rom clean
+.PHONY: all prepare hammer png2asset copy-rom clean
 
 all: $(BINS) copy-rom clean
 
@@ -44,7 +46,7 @@ png2asset:
 	$(PNG2ASSET) png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
 	$(PNG2ASSET) png/station_powerup.png -c assets/station_powerup.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 128 -noflip -b 1
 	$(PNG2ASSET) png/station_sell.png -c assets/station_sell.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 151 -noflip -b 1
-	$(PNG2ASSET) png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 185 -noflip -b 1
+	$(PNG2ASSET) png/station_upgrade.png -c assets/station_upgrade.c -spr8x8 -map -repair_indexed_pal -use_map_attributes -keep_palette_order -tile_origin 184 -noflip -b 1
 	$(PNG2ASSET) png/warning_cargo.png -c assets/warning_cargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
 	$(PNG2ASSET) png/warning_fuel.png -c assets/warning_fuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
 	$(PNG2ASSET) png/game_over.png -c assets/game_over.c -spr8x8 -no_palettes -noflip -tile_origin 64 -b 1
@@ -62,6 +64,10 @@ png2asset:
 $(OBJDIR)/%.o: $(ASSETDIR)/%.c
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
 
+# Compile .c files in "sfx/" to .o object files
+$(OBJDIR)/%.o: $(SFXDIR)/%.c
+	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
+
 # Compile .c files in "src/" to .o object files with specific flags for bank files
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(eval EXTRA_FLAGS :=)
@@ -73,8 +79,9 @@ $(BINS): $(OBJS)
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -o $(BINS) $(OBJS)
 
 prepare:
-	rm -rf $(OBJDIR) $(ASSETDIR)
+	rm -rf $(OBJDIR) $(SFXDIR) $(ASSETDIR)
 	mkdir -p $(OBJDIR)
+	mkdir -p $(SFXDIR)
 	mkdir -p $(ASSETDIR)
 	mkdir -p $(BINDIR)
 
@@ -83,6 +90,9 @@ copy-rom:
 
 clean:
 	rm -rf $(OBJDIR)
+
+hammer:
+	@cd hammer && python3 hammer2cbt.py --fxammo 10 --fxnamelist FXNAMELIST.txt hammered.sav 0 ../sfx/
 
 # create necessary directories after Makefile is parsed but before build
 # info prevents the command from being pasted into the makefile

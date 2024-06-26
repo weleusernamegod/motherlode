@@ -23,6 +23,7 @@
 #include "../assets/prop.h"
 
 #include "level.h"
+#include "sfx.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
@@ -371,20 +372,25 @@ void initiate_movement(void) {
     if (buttons & J_LEFT) {
         if (next_tile_left != EMPTY && next_tile_left != STONE && next_tile_down != EMPTY) {
             move(LEFT, DRILL);
+            PLAY_SFX_down;
         } else if (next_tile_left == EMPTY) {
             move(LEFT, DRIVE);
+            PLAY_SFX_soft_hit;
         } else direction_prev = LEFT;
     }
     else if (buttons & J_RIGHT) { 
         if (next_tile_right != EMPTY && next_tile_right != STONE && next_tile_down != EMPTY) {
             move(RIGHT, DRILL);
+            PLAY_SFX_down;
         } else if (next_tile_right == EMPTY) {
             move(RIGHT, DRIVE);
+            PLAY_SFX_soft_hit;
         } else direction_prev = RIGHT;
     }
     else if (buttons & J_DOWN) { 
         if (next_tile_down != EMPTY && next_tile_down != STONE){
             move(DOWN, DRILL);
+            PLAY_SFX_down;
         }
     }
     if (next_tile_up == EMPTY && (buttons & J_UP )) {
@@ -397,6 +403,7 @@ void initiate_movement(void) {
 void calculate_damage(void){
     uint8_t damage = ((prev_velocity - FALL_DAMAGE_THRESHOLD) * 2) + 1;
     player.hull.current_value -= damage;
+    PLAY_SFX_hit;
 }
 
 void calculate_falldamage(void){
@@ -545,7 +552,9 @@ void powerup_dynamite(void) {
 
         // Subtract 1 from inventory
         powerup[POWERUP_DYNAMITE].inventory -= 1;
-        
+
+        // play SFX
+        PLAY_SFX_explosion;
     }
 }
 

@@ -12,6 +12,7 @@
 #include "map.h"
 
 #include "level.h"
+#include "sfx.h"
 
 
 
