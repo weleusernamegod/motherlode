@@ -7,7 +7,7 @@ endif
 LCC = $(GBDK_HOME)bin/lcc
 PNG2ASSET = $(GBDK_HOME)bin/png2asset
 
-LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc -Wl-lhUGEDriver.lib
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc -Wl-lhammer/hUGEDriver.lib
 CFLAGS += -I$(ASSETDIR)
 
 # You can set the name of the .gbc ROM file here
