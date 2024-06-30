@@ -6,12 +6,12 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define station_upgrade_TILE_ORIGIN 184
+#define station_upgrade_TILE_ORIGIN 64
 #define station_upgrade_TILE_W 8
 #define station_upgrade_TILE_H 8
 #define station_upgrade_WIDTH 72
 #define station_upgrade_HEIGHT 40
-#define station_upgrade_TILE_COUNT 43
+#define station_upgrade_TILE_COUNT 1
 #define station_upgrade_PALETTE_COUNT 8
 #define station_upgrade_COLORS_PER_PALETTE 4
 #define station_upgrade_TOTAL_COLORS 32
@@ -24,7 +24,7 @@
 BANKREF_EXTERN(station_upgrade)
 
 extern const palette_color_t station_upgrade_palettes[32];
-extern const uint8_t station_upgrade_tiles[688];
+extern const uint8_t station_upgrade_tiles[16];
 
 extern const unsigned char station_upgrade_map[45];
 extern const unsigned char station_upgrade_map_attributes[45];

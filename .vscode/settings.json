@@ -40,7 +40,9 @@
         "upgrade_tiles.h": "c",
         "prop.h": "c",
         "tracks.h": "c",
-        "sfx.h": "c"
+        "sfx.h": "c",
+        "station_upgrade.h": "c",
+        "game_over_skull.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define upgrade_tiles_TILE_ORIGIN 160
+#define upgrade_tiles_TILE_ORIGIN 0
 #define upgrade_tiles_TILE_W 8
 #define upgrade_tiles_TILE_H 8
 #define upgrade_tiles_WIDTH 32

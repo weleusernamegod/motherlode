@@ -6,7 +6,7 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define upgrade_frame_TILE_ORIGIN 144
+#define upgrade_frame_TILE_ORIGIN 170
 #define upgrade_frame_TILE_W 8
 #define upgrade_frame_TILE_H 8
 #define upgrade_frame_WIDTH 160

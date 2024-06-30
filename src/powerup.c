@@ -50,7 +50,7 @@ void hide_fuel_display(void) {
 
 void draw_powerup_menu(void) {
     // Title
-    draw_text(2, 2, "SERVICE STATION", 16, TRUE, 0);
+    draw_text_win(2, 2, "SERVICE STATION", 16, TRUE, 0);
 
     char money_string[16];
     char cost_string[8];
@@ -62,7 +62,7 @@ void draw_powerup_menu(void) {
     ultoa(player.money, money_string, 10);
     strcat(money_string, "$");
     // Line 1
-    draw_text(7, 10, powerup[current_powerup_selection].name, 11, TRUE, 0);
+    draw_text_win(7, 10, powerup[current_powerup_selection].name, 11, TRUE, 0);
 
     if (current_powerup_selection > OPTION_REPAIR){
         powerup_cost = powerup[current_powerup_selection].cost;
@@ -74,15 +74,15 @@ void draw_powerup_menu(void) {
         strcat(inventory_string, "*");
         
         // Line 2
-        //draw_text(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
+        //draw_text_win(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
 
         // Line 3
-        draw_text(7, 12, inventory_string, 6, TRUE, 0);
-        draw_text(12, 12, "in bag", 6, FALSE, 0);
+        draw_text_win(7, 12, inventory_string, 6, TRUE, 0);
+        draw_text_win(12, 12, "in bag", 6, FALSE, 0);
 
         // Line 4
-        draw_text(7, 13, "1*", 5, TRUE, 0);
-        draw_text(12, 13, cost_string, 6, FALSE, 0);
+        draw_text_win(7, 13, "1*", 5, TRUE, 0);
+        draw_text_win(12, 13, cost_string, 6, FALSE, 0);
 
     } else {
         uint8_t current_attribute = 0;
@@ -103,29 +103,29 @@ void draw_powerup_menu(void) {
         ultoa(attributes_numbers[current_attribute]->max_value - attributes_numbers[current_attribute]->current_value, missing_value_string, 10);
 
         // Line 2
-        // draw_text(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
+        // draw_text_win(7, 11, powerup[current_powerup_selection].description, 11, TRUE, 0);
         // Line 3
-        draw_text(7, 12, current_value_string, 3, FALSE, 0);
-        draw_text(10, 12, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
-        draw_text(11, 12, " / ", 3, TRUE, 0);
-        draw_text(14, 12, max_value_string, 3, FALSE, 0);
-        draw_text(17, 12, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
+        draw_text_win(7, 12, current_value_string, 3, FALSE, 0);
+        draw_text_win(10, 12, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
+        draw_text_win(11, 12, " / ", 3, TRUE, 0);
+        draw_text_win(14, 12, max_value_string, 3, FALSE, 0);
+        draw_text_win(17, 12, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
 
         // Line 4
         if (attributes_numbers[current_attribute]->max_value - attributes_numbers[current_attribute]->current_value != 0) {
-            draw_text(7, 13, missing_value_string, 3, FALSE, 0);
-            draw_text(10, 13, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
+            draw_text_win(7, 13, missing_value_string, 3, FALSE, 0);
+            draw_text_win(10, 13, attributes_numbers[current_attribute]->attribute_unit_short, 1, TRUE, 0);
             // Line 7
-            draw_text(12, 13, cost_string, 6, FALSE, 0);
+            draw_text_win(12, 13, cost_string, 6, FALSE, 0);
 
         } else {
-            draw_text(7, 13, "full", 11, FALSE, 0);
+            draw_text_win(7, 13, "full", 11, FALSE, 0);
         }
 
     }
 
-    draw_text(7, 15, "CASH", 4, TRUE, 0);
-    draw_text(11, 15, money_string, 7, FALSE, 0);
+    draw_text_win(7, 15, "CASH", 4, TRUE, 0);
+    draw_text_win(11, 15, money_string, 7, FALSE, 0);
 }
 
 uint16_t calculate_fuel_cost(void) {
@@ -286,10 +286,11 @@ void handle_powerup_input(void) {
             switch (current_powerup_selection) {
                 case OPTION_FUEL_UP:
                     fuel_up();
-                    display_warning_cargo = FALSE;
+                    display_warning_fuel_normal = FALSE;
                     break;
                 case OPTION_REPAIR:
                     repair_hull();
+                    display_warning_hull_normal = FALSE;
                     break;
                 case OPTION_EXTRA_TANK:
                 case OPTION_REPAIR_KIT:

@@ -13,7 +13,7 @@ Material materials[] = {
 {"empty", EMPTY, 0, 0, 0, 0, PALETTE_DEFAULT},
 // normal
 {"dirt", DIRT, 16, 1, 0, 0, PALETTE_DIRT},
-{"grass", GRAS, 16, 1, 0, 0, PALETTE_GRAS},
+{"grass", GRASS, 16, 1, 0, 0, PALETTE_GRASS},
 {"stone", STONE, 0, 0, 0, 0, PALETTE_STONE},
 // ore
 {"coal", COAL, 32, 1, 30, 0, PALETTE_COAL},
@@ -62,7 +62,7 @@ void update_inventory(void) {
         // If adding this material would exceed cargo capacity and already is beyond or at capacity, show warning
         if (player.cargo.current_value >= player.cargo.max_value) {
             // Since the cargo is already full or over, do not add more and warn the player
-            display_warning_cargo = TRUE;
+            display_warning_cargo_normal = TRUE;
         } else {
             // Increment the inventory since there's enough space or allow exceeding max once
             materials[material_index].inventory++;
@@ -71,10 +71,10 @@ void update_inventory(void) {
 
             // If after adding the item, the cargo goes beyond the max, set warning
             if (player.cargo.current_value >= player.cargo.max_value) {
-                display_warning_cargo = TRUE;
+                display_warning_cargo_normal = TRUE;
             } else {
                 // Reset the warning flag as cargo is not exceeded and not full
-                display_warning_cargo = FALSE;
+                display_warning_cargo_normal = FALSE;
             }
         }
     }

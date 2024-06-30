@@ -6,12 +6,12 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define station_powerup_TILE_ORIGIN 128
+#define station_powerup_TILE_ORIGIN 64
 #define station_powerup_TILE_W 8
 #define station_powerup_TILE_H 8
 #define station_powerup_WIDTH 56
 #define station_powerup_HEIGHT 32
-#define station_powerup_TILE_COUNT 23
+#define station_powerup_TILE_COUNT 1
 #define station_powerup_PALETTE_COUNT 8
 #define station_powerup_COLORS_PER_PALETTE 4
 #define station_powerup_TOTAL_COLORS 32
@@ -24,7 +24,7 @@
 BANKREF_EXTERN(station_powerup)
 
 extern const palette_color_t station_powerup_palettes[32];
-extern const uint8_t station_powerup_tiles[368];
+extern const uint8_t station_powerup_tiles[16];
 
 extern const unsigned char station_powerup_map[28];
 extern const unsigned char station_powerup_map_attributes[28];

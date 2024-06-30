@@ -9,11 +9,10 @@
 extern palette_color_t palette_background[4];
 extern palette_color_t palette_fuel_bar[4];
 extern palette_color_t palette_hull_bar[4];
-extern const palette_color_t palette_station[4];
 extern const palette_color_t palette_default[4];
-extern const palette_color_t palette_rover[4];
-extern const palette_color_t palette_drill[4];
-extern const palette_color_t palette_warnings[4];
+extern const palette_color_t palette_icon[4];
+extern const palette_color_t palette_warning[4];
+extern const palette_color_t palette_game_over[4];
 extern const palette_color_t palette_grey[4];
 extern const palette_color_t palette_light_grey[4];
 extern const palette_color_t palette_button_active[4];

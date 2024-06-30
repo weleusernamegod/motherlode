@@ -30,8 +30,9 @@ void game_loop(void) {
 
     if (tile_mined == TRUE) {
         if (ore_mined == TRUE) {
-        update_inventory();
-        handle_cargo();
+            update_inventory();
+            handle_cargo();
+            if (display_warning_cargo_normal == FALSE) PLAY_SFX_level_up; else PLAY_SFX_hit;
         }
         clear_4bkg_tiles(width, wrapped_depth);
         tile_mined = FALSE;

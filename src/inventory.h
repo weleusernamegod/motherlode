@@ -6,7 +6,7 @@
 #define EMPTY 0
 // normal
 #define DIRT 1
-#define GRAS 2
+#define GRASS 2
 #define STONE 3
 // ores
 #define COAL 4

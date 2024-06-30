@@ -118,7 +118,7 @@ void metasprite_rover(char direction, BOOLEAN animate){
         move_metasprite_ex(
         rover_eye_metasprites[0],
         rover_eye_TILE_ORIGIN,
-        ROVER_EYE_PALETTE,
+        ICON_PALETTE,
         EYE_START,
         width_pixel.h,
         drill_wiggle.h);
@@ -146,7 +146,7 @@ void metasprite_rover(char direction, BOOLEAN animate){
         move_metasprite_flipx(
         rover_eye_metasprites[0],
         rover_eye_TILE_ORIGIN,
-        ROVER_EYE_PALETTE,
+        ICON_PALETTE,
         EYE_START,
         width_pixel.h,
         drill_wiggle.h);
@@ -429,6 +429,12 @@ void check_hull(void){
         player_alive = FALSE;
         player.hull.current_value = 0;
     }
+    // warn if hull very low
+    if (player.hull.current_value * (100 / PERCENTAGE_NORMAL) <= player.hull.max_value) {
+        display_warning_hull_normal = TRUE;
+    } else {
+        display_warning_hull_normal = FALSE;
+    }
 }
 
 void check_fuel(void){
@@ -436,39 +442,46 @@ void check_fuel(void){
         player_alive = FALSE;
         player.fuel.current_value = 0;
     }
-    // warn if fuel under 25%
-    if (player.fuel.current_value * 4 <= player.fuel.max_value) {
-        display_warning_fuel = TRUE;
+    // warn if fuel is very low
+    if (player.fuel.current_value * (100 / PERCENTAGE_CRITICAL) <= player.fuel.max_value) {
+        display_warning_fuel_critical = TRUE;
+        display_warning_fuel_normal = TRUE;
+    // warn if fuel low
+    } else if (player.fuel.current_value * (100 / PERCENTAGE_NORMAL) <= player.fuel.max_value) {
+        display_warning_fuel_critical = FALSE;
+       display_warning_fuel_normal = TRUE;
+    // clear warnings
     } else {
-        display_warning_fuel = FALSE;
+        display_warning_fuel_critical = FALSE;
+        display_warning_fuel_normal = FALSE;
     }
 }
 void update_fuel(void){
     if (frame_counter == 0) {
         player.fuel.current_value --;   // only once every 60 frames
     }
-    //if (depth < UNDERGROUND) player.fuel.current_value = player.fuel.max_value;
 }
 
 void handle_fuel(void) {
     check_fuel();
     update_fuel();
     update_progressbar_palette(&player.fuel, FUEL_BAR_PALETTE);
-    draw_fuel();
-    draw_warning_fuel();
+    draw_fuel_bar();
+    update_icon_fuel();
 }
 
 void handle_hull (void) {
     check_hull();
     calculate_falldamage();
     update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
-    draw_hull();
+    draw_hull_bar();
+    update_icon_hull();
 }
 
 void handle_cargo (void) {
     calculate_cargo();
     draw_cargo();
-    draw_warning_cargo();
+    update_icon_cargo();
 }
 
 

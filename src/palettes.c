@@ -45,14 +45,6 @@ palette_color_t palette_hull_bar[4] = {
 	RGB_BLACK
 };
 
-
-const palette_color_t palette_station[4] = {
-	RGB_LIGHT_BLUE,
-	RGB_LIGHT_GREY,
-	RGB_MEDIUM_DARK_GREY,
-	RGB_BLACK
-};
-
 const palette_color_t palette_default[4] = {
 	RGB_WHITE,
 	RGB_LIGHT_GREY,
@@ -60,27 +52,26 @@ const palette_color_t palette_default[4] = {
 	RGB_BLACK
 };
 
-const palette_color_t palette_rover[4] = {
+const palette_color_t palette_icon[4] = {
 	RGB_WHITE,
-	RGB_LIGHT_GREY,
-	RGB_DARK_GREY,
-	RGB_BLACK
+	RGB_WHITE,
+	RGB_BLACK,
+	RGB_VERY_LIGHT_GREY
 };
 
-const palette_color_t palette_drill[4] = {
+const palette_color_t palette_warning[4] = {
 	RGB_WHITE,
-	RGB_LIGHT_GREY,
-	RGB_DARK_GREY,
-	RGB_BLACK
-};
-
-const palette_color_t palette_warnings[4] = {
-	RGB_WHITE,
-	RGB_RED,
 	RGB_DEEP_RED,
-	RGB_BLACK
+	RGB_BLACK,
+	RGB_DEEP_RED
 };
 
+const palette_color_t palette_game_over[4] = {
+	RGB_WHITE,
+	RGB_WHITE,
+	RGB_WHITE,
+	RGB_WHITE
+};
 
 // Define a uniform grey palette
 const palette_color_t palette_grey[4] = {

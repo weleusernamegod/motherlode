@@ -169,13 +169,13 @@ void write_main_upgrade_text(void) {
     ultoa(player.money, money_string, 10);
     strcat(money_string, "$");
     // line 1
-    draw_text(3, 2, "UPGRADE STORE", 14, TRUE, 0);
+    draw_text_win(3, 2, "UPGRADE STORE", 14, TRUE, 0);
     // line 2
-    draw_text(3, 3, attributes_numbers[current_upgrade_menu->current_upgrade_selection]->attribute_name, 14, TRUE, 0);
-    //draw_text(3, 3, attributes_numbers[selection]->upgrade_name[attributes_numbers[selection]->upgrade_level], 14, TRUE, 0);
+    draw_text_win(3, 3, attributes_numbers[current_upgrade_menu->current_upgrade_selection]->attribute_name, 14, TRUE, 0);
+    //draw_text_win(3, 3, attributes_numbers[selection]->upgrade_name[attributes_numbers[selection]->upgrade_level], 14, TRUE, 0);
     // line 3
-    draw_text(3, 15, "CASH", 5, TRUE, 0);
-    draw_text(8, 15, money_string, 9, FALSE, 0);
+    draw_text_win(3, 15, "CASH", 5, TRUE, 0);
+    draw_text_win(8, 15, money_string, 9, FALSE, 0);
 }
 
 void write_sub_upgrade_text(void) {
@@ -191,14 +191,14 @@ void write_sub_upgrade_text(void) {
     strcat(upgrade_string, attributes_numbers[current_upgrade_state]->attribute_unit);
     
     // line 1
-    draw_text(3, 2, upgrade_string, 8, TRUE, 0);
-    draw_text(11, 2, cost_string, 5, FALSE, 0);
-    draw_text(16, 2, "$", 1, TRUE, 0);
+    draw_text_win(3, 2, upgrade_string, 8, TRUE, 0);
+    draw_text_win(11, 2, cost_string, 5, FALSE, 0);
+    draw_text_win(16, 2, "$", 1, TRUE, 0);
     // line 2
-    draw_text(3, 3, attributes_numbers[current_upgrade_state]->upgrade_name[current_upgrade_menu->current_upgrade_selection], 14, TRUE, 0);
+    draw_text_win(3, 3, attributes_numbers[current_upgrade_state]->upgrade_name[current_upgrade_menu->current_upgrade_selection], 14, TRUE, 0);
     // line 3
-    draw_text(3, 15, "CASH", 5, TRUE, 0);
-    draw_text(8, 15, money_string, 9, FALSE, 0);
+    draw_text_win(3, 15, "CASH", 5, TRUE, 0);
+    draw_text_win(8, 15, money_string, 9, FALSE, 0);
 }
 
 

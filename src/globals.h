@@ -61,8 +61,10 @@ extern BOOLEAN is_drilling;
 extern uint8_t base_drilltime;
 extern BOOLEAN tile_mined;
 extern BOOLEAN ore_mined;
-extern BOOLEAN display_warning_cargo;
-extern BOOLEAN display_warning_fuel;
+extern BOOLEAN display_warning_hull_normal;
+extern BOOLEAN display_warning_fuel_normal;
+extern BOOLEAN display_warning_fuel_critical;
+extern BOOLEAN display_warning_cargo_normal;
 
 // controlls
 extern uint8_t buttons;
@@ -83,5 +85,12 @@ extern int8_t sky_color_direction;
 extern uint8_t current_powerup_selection;
 extern uint16_t powerup_cost;
 extern uint16_t fuel_display_y;
+
+// game over screen
+extern uint8_t game_over_animation_frame;
+extern uint8_t game_over_animation_cycle;
+extern BOOLEAN game_over_animation_active;
+
+
 
 #endif // GLOBALS_H

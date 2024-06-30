@@ -6,16 +6,25 @@
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
 
-#define font_TILE_ORIGIN 176
+#define font_TILE_ORIGIN 194
 #define font_TILE_W 8
 #define font_TILE_H 8
-#define font_WIDTH 208
-#define font_HEIGHT 24
-#define font_TILE_COUNT 77
+#define font_WIDTH 128
+#define font_HEIGHT 32
+#define font_TILE_COUNT 62
+#define font_PALETTE_COUNT 1
+#define font_COLORS_PER_PALETTE 4
+#define font_TOTAL_COLORS 4
+#define font_PIVOT_X 64
+#define font_PIVOT_Y 16
+#define font_PIVOT_W 128
+#define font_PIVOT_H 32
 
 BANKREF_EXTERN(font)
 
-extern const uint8_t font_tiles[1232];
+extern const palette_color_t font_palettes[4];
+extern const uint8_t font_tiles[992];
 
+extern const metasprite_t* const font_metasprites[1];
 
 #endif

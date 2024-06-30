@@ -84,15 +84,15 @@ void main(void) {
                 init_tiles();
                 draw_tiles();
                 init_progressbar();
-                draw_fuel();
-                draw_hull();
+                draw_fuel_bar();
+                draw_hull_bar();
                 init_nav();
                 draw_nav();
+                init_icon();
                 init_character();
                 draw_character();
                 move_or_scroll_character();
                 init_a_button();
-                init_game_over();
                 init_warning();
                 calculate_cargo();
                 draw_cargo();
@@ -140,7 +140,7 @@ void main(void) {
                     sell_menu_loop();
                     if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
                 }
-                display_warning_cargo = FALSE;
+                display_warning_cargo_normal = FALSE;
                 turn_screen_off();
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
@@ -163,10 +163,16 @@ void main(void) {
             case GAME_STATE_GAME_OVER:
                 turn_screen_on();
                 move_win(7, 144);
-                draw_game_over();
-                waitpad(J_START);
-                hide_sprites_range(GAME_OVER_START, MAX_HARDWARE_SPRITES);
+                init_game_over();
+                while (buttons != J_START) {
+                    draw_game_over();
+                    read_buttons();
+                    vsync();
+                }
+                hide_sprites_range(0, MAX_HARDWARE_SPRITES);
+                buttons = 0;
                 reset_player();
+                init_icon();
                 currentGameState = GAME_STATE_CONTINUE;
                 break;
         }

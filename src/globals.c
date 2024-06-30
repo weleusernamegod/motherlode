@@ -54,8 +54,10 @@ BOOLEAN is_drilling;
 uint8_t base_drilltime = 16;
 BOOLEAN tile_mined = FALSE;
 BOOLEAN ore_mined = FALSE;
-BOOLEAN display_warning_cargo = FALSE;
-BOOLEAN display_warning_fuel = FALSE;
+BOOLEAN display_warning_hull_normal = FALSE;
+BOOLEAN display_warning_fuel_normal = FALSE;
+BOOLEAN display_warning_fuel_critical = FALSE;
+BOOLEAN display_warning_cargo_normal = FALSE;
 
 // controlls
 uint8_t buttons;
@@ -76,3 +78,9 @@ int8_t sky_color_direction = 1;
 uint8_t current_powerup_selection = 0;
 uint16_t powerup_cost = 0;
 uint16_t fuel_display_y = 0;
+
+// game over screen
+uint8_t game_over_animation_frame = 0;
+uint8_t game_over_animation_cycle = 0;
+BOOLEAN game_over_animation_active = TRUE;
+

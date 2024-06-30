@@ -6,7 +6,7 @@
 	
 	Info:
 		Length			:	24
-		Priority		:	0
+		Priority		:	2
 		Channels used	:	Noise channel
 		SGB Support		:	No
 */

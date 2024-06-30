@@ -11,6 +11,7 @@
 #include "constants.h"
 
 #include "../assets/font.h"
+#include "../assets/character.h"
 #include "../assets/drill_h.h"
 #include "../assets/rover.h"
 #include "../assets/rover_eye.h"
@@ -18,10 +19,9 @@
 #include "../assets/prop.h"
 
 void init_font(void){
-    const uint8_t empty_tile[16];
-    memset(empty_tile, 0x00, 16);
-    set_bkg_data(0, 1, empty_tile);
-    set_bkg_data(1, font_TILE_COUNT, font_tiles);
+
+    set_bkg_data(font_TILE_ORIGIN, font_TILE_COUNT, font_tiles);
+    set_bkg_data(character_TILE_ORIGIN, character_TILE_COUNT, character_tiles);
 }
 
 void init_screen(void){
@@ -43,12 +43,11 @@ void init_clear_screen(void) {
     move_bkg(0,0);
 
     uint16_t temparray[2048];
-    for (uint16_t i = 0; i < 2048; i++){
-        temparray[i] = 0;
-    }
+    memset(temparray, COLOR_0, sizeof(temparray)); // color 0 tile
     set_bkg_tiles(0,0,20, 18, temparray);
     set_win_tiles(0,0,20, 18, temparray);
     VBK_REG = 1;
+    memset(temparray, 0, sizeof(temparray)); // default palette 0
     set_bkg_tiles(0,0,20, 18, temparray);
     set_win_tiles(0,0,20, 18, temparray);
     VBK_REG = 0;
@@ -68,30 +67,30 @@ void read_buttons(void) {
 }
 
 unsigned char convert_char_to_tile(char c) {
-    if (c >= 'A' && c <= 'Z') return LETTER_START + (c - 'A');
+
+
+
     if (c >= 'a' && c <= 'z') return SLETTER_START + (c - 'a');
+    if (c >= 'A' && c <= 'Z') return LETTER_START + (c - 'A');
     if (c >= '0' && c <= '9') return NUMBERS_START + (c - '0');
     switch (c) {
-        case '#': return CHAR_START + 0;
-        case '^': return CHAR_START + 1;
-        case '(': return CHAR_START + 2;
-        case ')': return CHAR_START + 3;
-        case '?': return CHAR_START + 4;
-        case '!': return CHAR_START + 5;
-        case '.': return CHAR_START + 6;
-        case '/': return CHAR_START + 7;
-        case '-': return CHAR_START + 8;
-        case '$': return CHAR_START + 9;
-        case '%': return CHAR_START + 10;
-        case '&': return CHAR_START + 11;
-        case '*': return CHAR_START + 13;
-        case '=': return CHAR_START + 14;
 
-        default: return 0;  // Default to space if character is not handled
+        case '?': return CHAR_START + 0;
+        case '.': return CHAR_START + 1;
+        case '/': return CHAR_START + 2;
+        case '-': return CHAR_START + 3;
+        case '$': return CHAR_START + 4;
+        case '%': return CHAR_START + 5;
+        case '&': return CHAR_START + 6;
+        case '*': return CHAR_START + 7;
+        case '#': return CHAR_START + 8;
+        case '^': return CHAR_START + 9;
+
+        default: return COLOR_0;  // Default to space if character is not handled
     }
 }
 
-void draw_text(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
+void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
     uint8_t textLength = strlen(text);
     uint8_t *vramAddr = get_win_xy_addr(x, y);
 
@@ -185,15 +184,39 @@ void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
     }
 }
 
+void draw_text_sprite(uint8_t x, uint8_t y, uint8_t hardware_sprite, char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {    uint8_t textLength = strlen(text);
+
+    if (length >= 10) length = 10;
+
+    if (textLength > length) {
+        textLength = length;  // Cap the text length at the defined maximum
+    }
+
+    // Calculate starting position if right-aligned
+    if (!left_aligned) {
+        x -= (textLength - 1) * 8;  // Assuming each character sprite is 8 pixels wide
+    }
+
+    // Draw each character as a sprite
+    for (uint8_t i = 0; i < textLength; i++) {
+        uint8_t tileIndex = convert_char_to_tile(text[i]);
+
+        // Set sprite tile and position
+        set_sprite_tile(hardware_sprite + i, tileIndex);
+        move_sprite(hardware_sprite + i, x + i * 8, y);
+        set_sprite_prop(hardware_sprite + i, palette);
+    }
+}
+
 void init_sprite_palettes(void){
-    set_sprite_palette(0, 1, &rover_palettes[0]); // Rover
-    set_sprite_palette(1, 1, &rover_palettes[4]); // Rover
-    set_sprite_palette(2, 1, &rover_eye_palettes[0]); // Eye
-    set_sprite_palette(3, 1, &tracks_palettes[0]); // Tracks
-    set_sprite_palette(4, 1, &drill_h_palettes[(player.drill.upgrade_level) * 4]); // Drill
-    set_sprite_palette(5, 1, palette_hull_bar); // Hull Bar
-    set_sprite_palette(6, 1, palette_fuel_bar); // Fuel Bar
-    set_sprite_palette(7, 1, palette_warnings); // Warnings
+    set_sprite_palette(ROVER_PALETTE_0, 1, &rover_palettes[0]); // Rover
+    set_sprite_palette(ROVER_PALETTE_1, 1, &rover_palettes[4]); // Rover
+    set_sprite_palette(TRACKS_PALETTE, 1, &tracks_palettes[0]); // Tracks
+    set_sprite_palette(DRILL_PALETTE, 1, &drill_h_palettes[(player.drill.upgrade_level) * 4]); // Drill
+    set_sprite_palette(HULL_BAR_PALETTE, 1, palette_hull_bar); // Hull Bar
+    set_sprite_palette(FUEL_BAR_PALETTE, 1, palette_fuel_bar); // Fuel Bar
+    set_sprite_palette(ICON_PALETTE, 1, palette_icon); // Eye
+    set_sprite_palette(WARNING_PALETTE, 1, palette_warning); // Warning
 }
 
 void init_palette_0(void) {

@@ -29,16 +29,36 @@
 #define STATION_SELL_DOOR_OFFSET 1
 #define STATION_UPGRADE_X 11
 #define STATION_UPGRADE_DOOR_OFFSET 1
+#define STATION_SAVE_X 8.5
+#define STATION_SAVE_Y 3
+#define STATION_SAVE_DOOR_OFFSET 0
+
+// nav
+#define FUEL_ICON ((uint8_t)(LETTER_START + 5))
+#define HULL_ICON ((uint8_t)(LETTER_START + 7))
+#define CARGO_ICON ((uint8_t)(NUMBERS_START - 2))
+#define DEPTH_ICON ((uint8_t)(NUMBERS_START - 1))
+
+#define ICON_Y 24
+#define ICON_HULL_X 31
+#define ICON_FUEL_X 71
+#define ICON_CARGO_X 110
+#define ICON_DEPTH_X 158
+
+#define PERCENTAGE_NORMAL 30
+#define PERCENTAGE_CRITICAL 10
+
 
 // sprite palettes
 #define ROVER_PALETTE_0 0
 #define ROVER_PALETTE_1 1
-#define ROVER_EYE_PALETTE 2
-#define TRACKS_PALETTE 3
-#define DRILL_PALETTE 4
-#define HULL_BAR_PALETTE 5
-#define FUEL_BAR_PALETTE 6
+#define TRACKS_PALETTE 2
+#define DRILL_PALETTE 3
+#define HULL_BAR_PALETTE 4
+#define FUEL_BAR_PALETTE 5
+#define ICON_PALETTE 6
 #define WARNING_PALETTE 7
+#define GAME_OVER_PALETTE 7
 
 #define COLOR_TO_CHANGE_BKG 1 // what color of bkg palette 0 is changing with depth
 #define COLOR_TO_CHANGE_SKY 0 // what color of sky to change
@@ -54,7 +74,7 @@
 
 // DEPTH_LEVEL_0
 // default 0
-#define PALETTE_GRAS 1
+#define PALETTE_GRASS 1
 #define PALETTE_COAL 2
 #define PALETTE_IRON 3
 // palette station 4
@@ -120,7 +140,7 @@
 #define PALETTE_ARTEFACT 0
 
 
-#define WIN_X 3
+#define WIN_X 4
 #define WIN_Y 0
 
 #define MIN_MINABLE_MATERIAL COAL
@@ -173,20 +193,23 @@
 #define DRILL_V_START 8
 #define PROP_START 10
 #define EYE_START 12
-#define GAME_OVER_START 8
+#define SKULL_START 10
+#define GAME_OVER_START 30
 #define A_BUTTON_START 19
-#define WARNING_CARGO_START 23
-#define WARNING_FUEL_START 30
+#define ICON_HULL_START 13
+#define ICON_FUEL_START ((uint8_t)(ICON_HULL_START + 1))
+#define ICON_CARGO_START ((uint8_t)(ICON_HULL_START + 2))
+#define ICON_DEPTH_START ((uint8_t)(ICON_HULL_START + 3))
 #define PROGRESSBAR_HULL_START 35
 #define PROGRESSBAR_FUEL_START 37
 #define FUEL_DISPLAY_START 18
 
-// tiles
-#define ORE_TILE_START 96
-#define CHAR_START 12
-#define NUMBERS_START 2
-#define LETTER_START 26
-#define SLETTER_START 52
+#define NUMBERS_START font_TILE_ORIGIN
+#define LETTER_START ((uint8_t)(font_TILE_ORIGIN + 10))
+#define SLETTER_START ((uint8_t)(font_TILE_ORIGIN + 10 + 26))
+#define CHAR_START ((uint8_t)(character_TILE_ORIGIN + 10))
+#define COLOR_0 ((uint8_t)(character_TILE_ORIGIN))
+#define COLOR_1 ((uint8_t)(character_TILE_ORIGIN + 1))
 
 // progressbar and warnings
 #define GAME_OVER_Y (SCREENHEIGHT/2)
@@ -202,5 +225,10 @@
 #define PROGRESSBAR_TILE_7_8   (PROGRESSBAR_TILE_0_8 + 7)
 #define PROGRESSBAR_TILE_8_8   (PROGRESSBAR_TILE_0_8 + 8)
 #define PROGRESSBAR_TILE_END   (PROGRESSBAR_TILE_0_8 + 9)
+
+// game over screen
+
+#define GAME_OVER_ANIMATION_CYCLES 3
+#define GAME_OVER_ANIMATION_DURATION 8
 
 #endif // CONSTANTS_H

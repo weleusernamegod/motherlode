@@ -49,14 +49,14 @@ void draw_total_value(uint8_t line) {
 
 
     if (total_value > 0) {
-        draw_text(2, line, "TOTAL", 6, TRUE, 0);
-        draw_text(10, line, total_value_buffer, 8, FALSE, 0);
+        draw_text_win(2, line, "TOTAL", 6, TRUE, 0);
+        draw_text_win(10, line, total_value_buffer, 8, FALSE, 0);
         // this prints the underscores under the total
         // for (uint8_t i = 0; i < strlen(total_value_buffer); i++) {
         //     set_win_tile_xy(17 - i, line + 1, 25);
         // }
     } else {
-        // draw_text(2, line, "nothing to sell!", 16, TRUE, 0);
+        // draw_text_win(2, line, "nothing to sell!", 16, TRUE, 0);
     }
 }
 
@@ -75,8 +75,8 @@ void draw_one_ore_line(const Material *material, uint8_t counter, uint8_t line) 
     ultoa(value, value_buffer, 10);
     strcat(value_buffer, "$");
 
-    draw_text(2, line + counter, text_buffer, 14, TRUE, 0);
-    draw_text(12, line + counter, value_buffer, 6, FALSE, 0);
+    draw_text_win(2, line + counter, text_buffer, 14, TRUE, 0);
+    draw_text_win(12, line + counter, value_buffer, 6, FALSE, 0);
 }
 
 // Function to display ores collected by the player, from most valuable to least
@@ -98,14 +98,14 @@ void draw_sell_menu(void) {
     ultoa(player.money, money_string, 10);
     strcat(money_string, "$");
 
-    draw_text(2, 2, "MINERAL EXCHANGE", 16, TRUE, 0);
+    draw_text_win(2, 2, "MINERAL EXCHANGE", 16, TRUE, 0);
 
     draw_collected_ores(4);
 
     draw_total_value(13);
 
-    draw_text(2, 15, "CASH", 4, TRUE, 0);
-    draw_text(11, 15, money_string, 7, FALSE, 0);
+    draw_text_win(2, 15, "CASH", 4, TRUE, 0);
+    draw_text_win(11, 15, money_string, 7, FALSE, 0);
 }
 
 void sell_all_ores(void) {

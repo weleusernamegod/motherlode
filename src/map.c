@@ -30,16 +30,22 @@
 #include "../assets/nav.h"
 #include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
+#include "../assets/font.h"
+#include "../assets/character.h"
 
+#include "../assets/station.h"
 #include "../assets/station_powerup.h"
 #include "../assets/station_sell.h"
 #include "../assets/station_upgrade.h"
+#include "../assets/station_save.h"
 
-#include "../assets/game_over.h"
+#include "../assets/game_over_skull.h"
 #include "../assets/a_button.h"
 #include "../assets/warning_cargo.h"
 #include "../assets/warning_fuel.h"
 #include "../assets/loading_screen.h"
+
+#include "sfx.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
@@ -144,7 +150,7 @@ void generate_map(uint16_t desired_rows) {
 
             } else if (rows == 6) {
                 // Seventh row is all gras
-                level_array[rows][cols] = GRAS;
+                level_array[rows][cols] = GRASS;
 
                 if (cols == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET || cols == STATION_SELL_X + STATION_SELL_DOOR_OFFSET || cols == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET){
                   level_array[rows][cols] = STONE;  
@@ -275,13 +281,13 @@ const Palette_group palette_groups[] = {
     { 
         {
             palette_background,
-            &ore_tiles_palettes[(GRAS - 1) * 4],
+            &ore_tiles_palettes[(GRASS - 1) * 4],
             &ore_tiles_palettes[(COAL - 1) * 4],
             &ore_tiles_palettes[(IRON - 1) * 4],
-            &station_powerup_palettes[4*4],
-            &station_powerup_palettes[5*4],
-            &station_powerup_palettes[6*4],
-            &station_powerup_palettes[7*4],
+            &station_palettes[4*4],
+            &station_palettes[5*4],
+            &station_palettes[6*4],
+            &station_palettes[7*4],
             },
         0},
 
@@ -359,17 +365,17 @@ void update_palette_based_on_depth(void) {
 void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c) {
     for (uint16_t y = y1; y < y1 + r; y++) {
         for (uint8_t x = x1; x < x1 + c; x++) {
-            uint8_t temp = (array[y][x] * 4) + ORE_TILE_START - 4;
+            uint8_t temp = (array[y][x] * 4) + ore_tiles_TILE_ORIGIN - 4;
             uint8_t tile_array[4] = {temp, temp + 1, temp + 2, temp + 3};
             uint8_t palette_array[4];
 
             if (array[y][x] == EMPTY) {
-                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_TO_CHANGE_BKG;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_1;
             } else if (array[y][x] == DIRT) {
                 for (uint8_t i = 0; i < 4; i++) tile_array[i] = temp + i;
                 shuffle(tile_array);
             } else if (y == UNDERGROUND) { // make stones look like gras
-                if (array[y][x] == GRAS) {
+                if (array[y][x] == GRASS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);
                 tile_array[2] = temp - 1;
@@ -385,7 +391,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
             if (array[y][x] == EMPTY) {
                 for (uint8_t i = 0; i < 4; i++) palette_array[i] = 0;
             } else {
-                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] + 4 - ORE_TILE_START) / 4].color_palette;
+                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] - ore_tiles_TILE_ORIGIN + 4) >> 2].color_palette;
             }
 
             // Set tiles first with VBK_REG = 0 (tile data)
@@ -508,32 +514,23 @@ void draw_test(void) {
     char string2[10];
     itoa(absolute_movement, string1, 10);
     itoa(abs(velocity), string2, 10);
-    draw_text(2,4,string1,5,FALSE,0);
-    draw_text(10,4,string2,5,FALSE,0);
+    draw_text_win(2,4,string1,5,FALSE,0);
+    draw_text_win(10,4,string2,5,FALSE,0);
 }
 
 void draw_depth(void){
     char string[5];
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
-    strcat(string, "^");
-    draw_text(15,1,string,5,FALSE,0);
+    // strcat(string, "^");
+    draw_text_win(14,1,string,5,FALSE,0);
 }
 
 void draw_cargo(void){
     char string[5];
     if (player.cargo.current_value > player.cargo.max_value) player.cargo.current_value = player.cargo.max_value; // make sure even if the cargo is more than full, to only display just full (15/15 for example not 16/15)
     itoa(player.cargo.current_value, string, 10);
-    strcat(string, "#");
-    draw_text(11,1,string,3,FALSE,0);
-
-    // char string[10];
-    // char string_max[10];
-    // if (player.cargo.current_value > player.cargo.max_value) player.cargo.current_value = player.cargo.max_value; // make sure even if the cargo is more than full, to only display just full (15/15 for example not 16/15)
-    // uitoa(player.cargo.current_value, string, 10);
-    // uitoa(player.cargo.max_value, string_max, 10);
-    // strcat(string, "/");
-    // strcat(string, string_max);
-    // draw_text(10,1,string,5,FALSE,0);
+    // strcat(string, "#");
+    draw_text_win(10,1,string,3,FALSE,0);
 }
 
 const metasprite_t warning_cargo_metasprite[] = {
@@ -571,11 +568,41 @@ void hide_a_button(void){
 }
 
 void init_game_over(void){
-    set_sprite_data(game_over_TILE_ORIGIN, game_over_TILE_COUNT, game_over_tiles);
+    set_sprite_data(game_over_skull_TILE_ORIGIN, game_over_skull_TILE_COUNT, game_over_skull_tiles);
+    set_sprite_palette(GAME_OVER_PALETTE, 1, palette_game_over);
+    game_over_animation_active = TRUE;
+    game_over_animation_cycle = 0;
+    game_over_animation_frame = 0;
 }
 
-void draw_game_over(void){
-    move_metasprite_ex(game_over_metasprites[0], game_over_TILE_ORIGIN, WARNING_PALETTE, GAME_OVER_START, SCREENWIDTH/2+8, GAME_OVER_Y+16);
+void draw_game_over(void) {
+    // Play skull laughing sound at the start of the animation
+    if (game_over_animation_cycle == 0 && game_over_animation_frame == 0 && game_over_animation_active) {
+        PLAY_SFX_explosion;
+    }
+
+    // Animate the skull if animation is active
+    if (game_over_animation_active) {
+        // Move metasprite with the calculated animation frame
+        game_over_animation_frame ++;
+        move_metasprite_ex(game_over_skull_metasprites[game_over_animation_frame / GAME_OVER_ANIMATION_DURATION % (sizeof(game_over_skull_metasprites) >> 1)], game_over_skull_TILE_ORIGIN, GAME_OVER_PALETTE, SKULL_START, SCREENWIDTH/2+8, GAME_OVER_Y+16);
+
+        // Check if one cycle of animation is complete
+        if (game_over_animation_frame == (sizeof(game_over_skull_metasprites) >> 1) * GAME_OVER_ANIMATION_DURATION) {
+            game_over_animation_frame = 0;
+            game_over_animation_cycle++;
+            
+            // Check if desired animation cycles are complete
+            if (game_over_animation_cycle >= GAME_OVER_ANIMATION_CYCLES) {
+                game_over_animation_active = FALSE;  // Stop animating after completing desired cycles
+
+                // After animation completes, display "GAME OVER"
+                draw_text_sprite(72, 116, GAME_OVER_START, "GAME", 4, TRUE, GAME_OVER_PALETTE);
+                draw_text_sprite(72, 116 + 10, GAME_OVER_START + 4, "OVER", 4, TRUE, GAME_OVER_PALETTE);
+                scroll_sprite(GAME_OVER_START + 3, 1, 0); // move letter E one over, because it looks more nice
+            }
+        }
+    }
 }
 
 void init_warning(void){
@@ -583,26 +610,69 @@ void init_warning(void){
     set_sprite_data(warning_fuel_TILE_ORIGIN, warning_fuel_TILE_COUNT, warning_fuel_tiles);
 }
 
-void draw_warning_cargo(void){
-    if (display_warning_cargo == TRUE) {
-        move_metasprite_ex(warning_cargo_metasprite, 0, WARNING_PALETTE, WARNING_CARGO_START, (SCREENWIDTH - warning_cargo_WIDTH)/2, WARNING_CARGO_Y);
+void init_icon(void) {
+    set_sprite_tile(ICON_HULL_START, HULL_ICON);
+    set_sprite_tile(ICON_FUEL_START, FUEL_ICON);
+    set_sprite_tile(ICON_CARGO_START, CARGO_ICON);
+    set_sprite_tile(ICON_DEPTH_START, DEPTH_ICON);
+    move_sprite(ICON_HULL_START, ICON_HULL_X, ICON_Y);
+    move_sprite(ICON_FUEL_START, ICON_FUEL_X, ICON_Y);
+    move_sprite(ICON_CARGO_START, ICON_CARGO_X, ICON_Y);
+    move_sprite(ICON_DEPTH_START, ICON_DEPTH_X, ICON_Y);
+    set_sprite_prop(ICON_HULL_START, ICON_PALETTE);
+    set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
+    set_sprite_prop(ICON_CARGO_START, ICON_PALETTE);
+    set_sprite_prop(ICON_DEPTH_START, ICON_PALETTE);
+}
+
+void update_icon_hull(void){
+
+    if (display_warning_hull_normal) {
+        if (frame_counter % PERCENTAGE_NORMAL == 0) {
+            set_sprite_prop(ICON_HULL_START, WARNING_PALETTE);
+            PLAY_SFX_up;
+        } else if (frame_counter % (PERCENTAGE_NORMAL / 2) == 0) {
+            set_sprite_prop(ICON_HULL_START, ICON_PALETTE);
+        }
     } else {
-        hide_metasprite(warning_cargo_metasprite, WARNING_CARGO_START);
+        set_sprite_prop(ICON_HULL_START, ICON_PALETTE);
     }
 }
 
-void draw_warning_fuel(void){
-    if (display_warning_fuel == TRUE) {
-        move_metasprite_ex(warning_fuel_metasprite, 0, WARNING_PALETTE, WARNING_FUEL_START, (SCREENWIDTH - warning_fuel_WIDTH)/2, WARNING_FUEL_Y);
-    } else {
-        hide_metasprite(warning_fuel_metasprite, WARNING_FUEL_START);
+void update_icon_fuel(void){
+    if (display_warning_fuel_normal && !display_warning_fuel_critical) {
+        if (frame_counter % PERCENTAGE_NORMAL == 0) {
+            set_sprite_prop(ICON_FUEL_START, WARNING_PALETTE);
+            PLAY_SFX_up;
+        } else if (frame_counter % (PERCENTAGE_NORMAL / 2) == 0) {
+            set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
+        }
+    } else if (display_warning_fuel_normal && display_warning_fuel_critical) {
+        if (frame_counter % PERCENTAGE_CRITICAL == 0) {
+            set_sprite_prop(ICON_FUEL_START, WARNING_PALETTE);
+            PLAY_SFX_up;
+        } else if (frame_counter % (PERCENTAGE_CRITICAL / 2) == 0) {
+            set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
+        }
+    }
+    if (!display_warning_fuel_critical && !display_warning_fuel_normal) {
+        set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
     }
 }
 
-void draw_fuel(void){
+void update_icon_cargo(void){
+    if (display_warning_cargo_normal) {
+            set_sprite_prop(ICON_CARGO_START, WARNING_PALETTE);
+            PLAY_SFX_exp_up;
+    } else {
+        set_sprite_prop(ICON_CARGO_START, ICON_PALETTE);
+    }
+}
+
+void draw_fuel_bar(void){
     progressbar(player.fuel.current_value, player.fuel.max_value, 3,  PROGRESSBAR_FUEL_START, FUEL_BAR_PALETTE, 45, 24);
 }
-void draw_hull(void){
+void draw_hull_bar(void){
     progressbar(player.hull.current_value, player.hull.max_value, 2, PROGRESSBAR_HULL_START, HULL_BAR_PALETTE, 13, 24);
 }
 
@@ -619,7 +689,7 @@ void draw_character(void){
 }
 
 void init_nav(void){
-    set_bkg_data(nav_TILE_ORIGIN, nav_TILE_COUNT, nav_tiles);
+
 }
 void draw_nav(void){
     set_win_tiles(0,0,nav_WIDTH / nav_TILE_W,nav_HEIGHT / nav_TILE_H,nav_map);
@@ -631,16 +701,14 @@ void init_progressbar(void){
 }
 
 void init_tiles(void){
-    set_bkg_data(ORE_TILE_START, ore_tiles_TILE_COUNT, ore_tiles_tiles);
+    set_bkg_data(ore_tiles_TILE_ORIGIN, ore_tiles_TILE_COUNT, ore_tiles_tiles);
 }
 void draw_tiles(void){
     set_4bkg_tiles(level_array, 0, 0, 16, 16);
 }
 
 void init_buildings(void){
-    set_bkg_data(station_powerup_TILE_ORIGIN, station_powerup_TILE_COUNT, station_powerup_tiles);
-    set_bkg_data(station_sell_TILE_ORIGIN, station_sell_TILE_COUNT, station_sell_tiles);
-    set_bkg_data(station_upgrade_TILE_ORIGIN, station_upgrade_TILE_COUNT, station_upgrade_tiles);
+    set_bkg_data(station_TILE_ORIGIN, station_TILE_COUNT, station_tiles);
 }
 void draw_buildings(void){
 
@@ -648,10 +716,12 @@ void draw_buildings(void){
     set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map);
+    set_bkg_tiles(STATION_SAVE_X * 2, (((STATION_SAVE_Y + 1)* 2) - (station_save_HEIGHT/station_save_TILE_H)), (station_save_WIDTH/station_save_TILE_W), (station_save_HEIGHT/station_save_TILE_H), station_save_map);
     VBK_REG = 1;
     set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map_attributes);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map_attributes);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map_attributes);
+    set_bkg_tiles(STATION_SAVE_X * 2, (((STATION_SAVE_Y + 1)* 2) - (station_save_HEIGHT/station_save_TILE_H)), (station_save_WIDTH/station_save_TILE_W), (station_save_HEIGHT/station_save_TILE_H), station_save_map_attributes);
     VBK_REG = 0;
 
 }
@@ -661,7 +731,7 @@ void draw_sky(void){
     unsigned char sky_palette[32 * UNDERGROUND * 2];
 
     // Initialize sky_map array using memset
-    memset(sky_map, 0, sizeof(sky_map));
+    memset(sky_map, COLOR_0, sizeof(sky_map));
 
     // Initialize sky_palette array using memset
     memset(sky_palette, PALETTE_SKY, sizeof(sky_palette));
