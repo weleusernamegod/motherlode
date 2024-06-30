@@ -63,7 +63,7 @@ png2asset:
 	$(PNG2ASSET) png/sell_frame.png -c assets/sell_frame.c -spr8x8 -map -noflip -tile_origin 0 -b 3
 	$(PNG2ASSET) png/powerup_frame.png -c assets/powerup_frame.c -spr8x8 -map -repair_indexed_pal -keep_palette_order -use_map_attributes -tile_origin 0 -noflip -b 3
 	$(PNG2ASSET) png/fuel_display.png -c assets/fuel_display.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -py 0 -tile_origin 32 -b 3
-	$(PNG2ASSET) png/main_menu_buttons.png -c assets/main_menu_buttons.c -spr8x8 -keep_duplicate_tiles -no_palettes -noflip -b 4
+	$(PNG2ASSET) png/splashscreen_screen.png -c assets/splashscreen_screen.c -spr8x8 -repair_indexed_pal -keep_duplicate_tiles -noflip -b 4
 	$(PNG2ASSET) png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -use_map_attributes -b 4
 
 # Compile .c files in "assets/" to .o object files

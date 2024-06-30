@@ -42,7 +42,9 @@
         "tracks.h": "c",
         "sfx.h": "c",
         "station_upgrade.h": "c",
-        "game_over_skull.h": "c"
+        "game_over_skull.h": "c",
+        "main_menu_buttons.h": "c",
+        "splashscreen_screen.h": "c"
     },
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
 }

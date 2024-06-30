@@ -35,7 +35,7 @@ void main(void) {
     init_VBL_interrupts();
     init_sound();
     initrand(DIV_REG);
-    currentGameState = GAME_STATE_NEW_GAME;
+    currentGameState = GAME_STATE_MAIN_MENU;
     while (1) {
         switch (currentGameState) {
             case GAME_STATE_MAIN_MENU:
@@ -169,10 +169,10 @@ void main(void) {
                     read_buttons();
                     vsync();
                 }
-                hide_sprites_range(0, MAX_HARDWARE_SPRITES);
-                buttons = 0;
+                hide_sprites_range(SKULL_START, MAX_HARDWARE_SPRITES);
                 reset_player();
                 init_icon();
+                prev_buttons = buttons;
                 currentGameState = GAME_STATE_CONTINUE;
                 break;
         }

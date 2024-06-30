@@ -7,8 +7,8 @@
 
 BANKREF_EXTERN(bank_main_menu)
 
-void draw_menu_buttons(void);
 void draw_main_menu(void);
+void hide_main_menu(void);
 void init_main_menu(void);
 
 

@@ -9,7 +9,7 @@
 #include "globals.h"
 #include "palettes.h"
 
-#include "../assets/main_menu_buttons.h"
+#include "../assets/splashscreen_screen.h"
 #include "../assets/splashscreen.h"
 
 #pragma bank 4
@@ -17,28 +17,14 @@
 BANKREF(bank_main_menu)
 #endif
 
-const metasprite_t metasprite_menu_button[] = {
-    {.dy=0, .dx=0, .dtile=0, .props=0},
-    {.dy=0, .dx=8, .dtile=1, .props=0},
-    {.dy=0, .dx=8, .dtile=2, .props=0},
-    {.dy=0, .dx=8, .dtile=3, .props=0},
-    {.dy=0, .dx=8, .dtile=4, .props=0},
-    {.dy=0, .dx=8, .dtile=5, .props=0},
-    {.dy=0, .dx=8, .dtile=6, .props=0},
-    METASPR_TERM
-};
-
 void draw_menu_buttons(void) {
-    uint8_t i;
-    VBK_REG = 1;
-    for (i = 0; i < MENU_ITEMS; i++) {
+    for (uint8_t i = 0; i < MENU_ITEMS; i++) {
         if (i == current_menu_index) {
-            set_sprite_palette(i, 1, palette_button_active);
+            set_sprite_palette(i, 1, &splashscreen_screen_palettes[0 * 4]); // Access first palette set
         } else {
-            set_sprite_palette(i, 1, palette_button_passive);
+            set_sprite_palette(i, 1, &splashscreen_screen_palettes[1 * 4]); // Access second palette set
         }
     }
-    VBK_REG = 0;
 }
 
 void draw_main_menu(void){
@@ -57,17 +43,24 @@ void draw_main_menu(void){
     }
 }
 
+void hide_main_menu(void){
+    hide_metasprite(splashscreen_screen_metasprites[0], 0);
+}
+
 void init_main_menu(void) {
     uint8_t x = 20, y = 117;
     uint8_t distance_between_buttons = 1;
 
     // load sprites
     set_bkg_data(0, splashscreen_TILE_COUNT, splashscreen_tiles);
+    set_sprite_data(0, splashscreen_screen_TILE_COUNT, splashscreen_screen_tiles);
+    
+    // palettes
     set_bkg_palette(0, splashscreen_PALETTE_COUNT, splashscreen_palettes);
-    set_sprite_data(0, main_menu_buttons_TILE_COUNT, main_menu_buttons_tiles);
+    set_sprite_palette(0, splashscreen_screen_PALETTE_COUNT, splashscreen_screen_palettes);
 
     // set hardwaretiles
-    for (uint8_t i = 0; i <= main_menu_buttons_TILE_COUNT; i++){
+    for (uint8_t i = 0; i <= splashscreen_screen_TILE_COUNT; i++){
         set_sprite_tile(i, i);
     }
 
@@ -78,15 +71,8 @@ void init_main_menu(void) {
     set_bkg_tiles(0,0,20, 18, splashscreen_map);
 
     current_menu_index = 0;
-
-    // draw the buttons as metasprites
-    for (uint8_t i = 0; i < MENU_ITEMS; i++) {
-        move_metasprite_ex(metasprite_menu_button, i * (main_menu_buttons_TILE_COUNT / MENU_ITEMS), i, i * (main_menu_buttons_TILE_COUNT / MENU_ITEMS), x, (y + i * distance_between_buttons + i * main_menu_buttons_TILE_H));
-    }
-
-    // initialize button palettes
-
-    draw_menu_buttons();
+    move_metasprite_ex(splashscreen_screen_metasprites[0], splashscreen_screen_TILE_ORIGIN, 0, 0, 49, 133);
+    draw_menu_buttons(); // initialise palettes
 
     SHOW_BKG;
     SHOW_SPRITES;

@@ -27,3 +27,5 @@ BANKREF_EXTERN(upgrade_tick)
 BANKREF_EXTERN(upgrade_tiles)
 BANKREF_EXTERN(warning_cargo)
 BANKREF_EXTERN(warning_fuel)
+BANKREF_EXTERN(splashscreen_screen)
+
