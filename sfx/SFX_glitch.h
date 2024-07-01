@@ -11,6 +11,7 @@
 		SGB Support		:	No
 */
 
+
 #ifndef __SFX_glitch_h_INCLUDE
 #define __SFX_glitch_h_INCLUDE
 #define PLAY_SFX_glitch CBTFX_init(&SFX_glitch[0])

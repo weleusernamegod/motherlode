@@ -18,7 +18,7 @@ BANKREF(bank_main_menu)
 #endif
 
 void draw_menu_buttons(void) {
-    for (uint8_t i = 0; i < MENU_ITEMS; i++) {
+    for (uint8_t i = 0; i < MAIN_MENU_ITEMS; i++) {
         if (i == current_menu_index) {
             set_sprite_palette(i, 1, &splashscreen_screen_palettes[0 * 4]); // Access first palette set
         } else {
@@ -28,6 +28,7 @@ void draw_menu_buttons(void) {
 }
 
 void draw_main_menu(void){
+    draw_menu_buttons();
     if (joypad() & J_UP) {
         if (current_menu_index > 0) {
             current_menu_index--;
@@ -35,7 +36,7 @@ void draw_main_menu(void){
             delay(200);  // Debounce delay
         }
     } else if (joypad() & J_DOWN) {
-        if (current_menu_index < MENU_ITEMS - 1) {
+        if (current_menu_index < MAIN_MENU_ITEMS - 1) {
             current_menu_index++;
             draw_menu_buttons();
             delay(200);  // Debounce delay
@@ -43,8 +44,10 @@ void draw_main_menu(void){
     }
 }
 
-void hide_main_menu(void){
-    hide_metasprite(splashscreen_screen_metasprites[0], 0);
+void show_main_menu(void){
+    if (main_menu_current_y > MAIN_MENU_Y) main_menu_current_y --; // decrement and bring it slowly into position
+    if (main_menu_current_y == MAIN_MENU_Y) main_menu_animation_finished = TRUE;
+    move_metasprite_ex(splashscreen_screen_metasprites[0], splashscreen_screen_TILE_ORIGIN, 0, 0, MAIN_MENU_X, main_menu_current_y);
 }
 
 void init_main_menu(void) {
@@ -71,8 +74,13 @@ void init_main_menu(void) {
     set_bkg_tiles(0,0,20, 18, splashscreen_map);
 
     current_menu_index = 0;
-    move_metasprite_ex(splashscreen_screen_metasprites[0], splashscreen_screen_TILE_ORIGIN, 0, 0, 49, 133);
-    draw_menu_buttons(); // initialise palettes
+
+    // set palettes
+    for (uint8_t i = 0; i < MAIN_MENU_ITEMS; i++) {
+        set_sprite_palette(i, 1, &splashscreen_screen_palettes[1 * 4]);
+    }
+    main_menu_current_y = (uint8_t)(MAIN_MENU_Y + 60); // move it off screen
+    move_metasprite_ex(splashscreen_screen_metasprites[0], splashscreen_screen_TILE_ORIGIN, 0, 0, MAIN_MENU_X, main_menu_current_y);
 
     SHOW_BKG;
     SHOW_SPRITES;

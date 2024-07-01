@@ -41,17 +41,22 @@ void main(void) {
             case GAME_STATE_MAIN_MENU:
                 SWITCH_ROM(4);
                 init_clear_screen();
+                init_sound();
                 init_main_menu();
                 while (currentGameState == GAME_STATE_MAIN_MENU){
-                    draw_main_menu();
-                    if (joypad() & J_START || joypad() & J_A) {
-                        if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
-                        else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
-                        else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
+                    if (frame_counter % 3 == 0) show_main_menu(); // animate the menu in frame
+                    if (main_menu_animation_finished) {
+                    draw_main_menu(); // wait untill the animation has finished, then draw menu
+                        if (joypad() & J_START || joypad() & J_A) {
+                            if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
+                            else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
+                            else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
+                        }
                     }
-                    
                     vsync();
                 }
+                mute_sound();
+                turn_screen_off();
                 break;
 
             case GAME_STATE_NEW_GAME:
@@ -108,10 +113,13 @@ void main(void) {
 
             case GAME_STATE_CONTINUE:
                 SWITCH_ROM(1);
+                init_sound();
                 init_enable_lcd_interrupt();
+                change_sky_color();
                 while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE) {
                     game_loop();
                 }
+                mute_sound();
                 turn_screen_off();
                 init_disable_lcd_interrupt();
                 break;
@@ -123,10 +131,12 @@ void main(void) {
                 init_upgrade();
                 init_upgrade_tiles_palettes();
                 turn_screen_on();
+                init_sound();
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     upgrade_menu_loop();
                     if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
                 }
+                mute_sound();
                 turn_screen_off();
                 break;
             case GAME_STATE_SELL_MENU:
@@ -135,12 +145,14 @@ void main(void) {
                 init_font();
                 init_sell();
                 draw_sell_menu();
+                init_sound();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_SELL_MENU){
                     sell_menu_loop();
                     if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
                 }
                 display_warning_cargo_normal = FALSE;
+                mute_sound();
                 turn_screen_off();
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
@@ -151,6 +163,7 @@ void main(void) {
                 init_powerup();
                 set_fuel_display_y();
                 draw_powerup_menu();
+                init_sound();
                 turn_screen_on();
                 while (currentGameState == GAME_STATE_FUEL_MENU){
                     if (check_fuel_display_y() <= fuel_display_y && fuel_display_y > 0) fuel_display_y --;
@@ -158,10 +171,12 @@ void main(void) {
                     powerup_menu_loop();
                     if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; hide_fuel_display();
                 }
+                mute_sound();
                 turn_screen_off();
                 break;
             case GAME_STATE_GAME_OVER:
                 turn_screen_on();
+                init_sound();
                 move_win(7, 144);
                 init_game_over();
                 while (buttons != J_START) {

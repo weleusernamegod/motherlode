@@ -8,6 +8,7 @@ void init_font(void);
 void init_screen(void);
 void init_clear_screen(void);
 void init_sound(void);
+void mute_sound(void);
 void read_buttons(void);
 unsigned char convert_char_to_tile(char c);
 void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette);

@@ -3,6 +3,8 @@
 
 // main menu
 extern uint8_t current_menu_index;
+extern uint8_t main_menu_current_y;
+extern uint8_t main_menu_animation_finished;
 
 // framecounter
 extern volatile uint8_t frame_counter;

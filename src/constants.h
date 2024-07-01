@@ -12,7 +12,9 @@
 #define START_WIDTH 4
 
 // main menu
-#define MENU_ITEMS 3
+#define MAIN_MENU_ITEMS 3
+#define MAIN_MENU_X 49
+#define MAIN_MENU_Y 133
 
 // shop
 #define UPGRADE_TICK_TILE 39

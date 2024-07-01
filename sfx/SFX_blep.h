@@ -11,6 +11,7 @@
 		SGB Support		:	No
 */
 
+
 #ifndef __SFX_blep_h_INCLUDE
 #define __SFX_blep_h_INCLUDE
 #define PLAY_SFX_blep CBTFX_init(&SFX_blep[0])

@@ -11,6 +11,7 @@
 		SGB Support		:	No
 */
 
+
 #ifndef __SFX_secret_h_INCLUDE
 #define __SFX_secret_h_INCLUDE
 #define PLAY_SFX_secret CBTFX_init(&SFX_secret[0])

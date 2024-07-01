@@ -10,8 +10,11 @@ volatile uint8_t frame_counter = 0;
 volatile uint8_t second_counter = 0;
 volatile uint8_t minute_counter = 0;
 
+
 // main menu
 uint8_t current_menu_index = 0;
+uint8_t main_menu_current_y = 0;
+uint8_t main_menu_animation_finished = FALSE;
 
 // bank switching
 uint8_t current_ram_bank = 0;

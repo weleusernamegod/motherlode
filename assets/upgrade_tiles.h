@@ -15,16 +15,11 @@
 #define upgrade_tiles_PALETTE_COUNT 36
 #define upgrade_tiles_COLORS_PER_PALETTE 4
 #define upgrade_tiles_TOTAL_COLORS 144
-#define upgrade_tiles_PIVOT_X 16
-#define upgrade_tiles_PIVOT_Y 576
-#define upgrade_tiles_PIVOT_W 32
-#define upgrade_tiles_PIVOT_H 1152
 
 BANKREF_EXTERN(upgrade_tiles)
 
 extern const palette_color_t upgrade_tiles_palettes[144];
 extern const uint8_t upgrade_tiles_tiles[9216];
 
-extern const metasprite_t* const upgrade_tiles_metasprites[1];
 
 #endif
