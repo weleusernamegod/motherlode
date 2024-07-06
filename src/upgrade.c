@@ -143,7 +143,13 @@ void load_upgrade_single_tile(uint16_t tilestart, uint8_t tilenumber, uint8_t po
     for (uint8_t i = 0; i < 16; i++){
         array[i] = tilestart+i;
     }
-    set_win_data(tilestart, 16, &upgrade_tiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
+
+    // set_win_data(tilestart, 16, &upgrade_tiles_tiles[(tilenumber * 16 * 16) + (upgrade_type * 16 * 16 * 6)]);
+
+    for (uint8_t i = 0; i < 4; i++){
+        set_win_data(tilestart + 4 * i, 4, &upgrade_tiles_tiles[(4 * 16 * tilenumber + 6 * 4 * 16 * i) + (upgrade_type * 256 * 6)]);
+    }
+
     if (position == 0) set_win_tiles(3, 5, 4, 4, array);
     else if (position == 1) set_win_tiles(8, 5, 4, 4, array);
     else if (position == 2) set_win_tiles(13, 5, 4, 4, array);

@@ -29,8 +29,8 @@ void init_attributes(void){
     player.drill.upgrade_cost[3] = 8000;
     player.drill.upgrade_cost[4] = 10000;
     player.drill.upgrade_cost[5] = 30000;
-    player.drill.upgrade_name[0] = "stock drill";
-    player.drill.upgrade_name[1] = "iron drill";
+    player.drill.upgrade_name[0] = "iron drill";
+    player.drill.upgrade_name[1] = "bronze drill";
     player.drill.upgrade_name[2] = "steel drill";
     player.drill.upgrade_name[3] = "titanium drill";
     player.drill.upgrade_name[4] = "diamond drill";
@@ -52,10 +52,10 @@ void init_attributes(void){
     player.hull.upgrade_cost[3] = 5000;
     player.hull.upgrade_cost[4] = 15000;
     player.hull.upgrade_cost[5] = 30000;
-    player.hull.upgrade_name[0] = "stock hull";
-    player.hull.upgrade_name[1] = "iron hull";
-    player.hull.upgrade_name[2] = "bronze hull";
-    player.hull.upgrade_name[3] = "steel hull";
+    player.hull.upgrade_name[0] = "iron hull";
+    player.hull.upgrade_name[1] = "bronze hull";
+    player.hull.upgrade_name[2] = "steel hull";
+    player.hull.upgrade_name[3] = "carbon hull";
     player.hull.upgrade_name[4] = "platinum hull";
     player.hull.upgrade_name[5] = "enegry shield";
 
@@ -75,11 +75,11 @@ void init_attributes(void){
     player.engine.upgrade_cost[4] = 20000;
     player.engine.upgrade_cost[5] = 30000;
     player.engine.upgrade_name[0] = "stock engine";
-    player.engine.upgrade_name[1] = "v4 1.6 ltr";
-    player.engine.upgrade_name[2] = "v4 2.0 ltr turbo";
+    player.engine.upgrade_name[1] = "125cc";
+    player.engine.upgrade_name[2] = "v2 1.0 ltr";
     player.engine.upgrade_name[3] = "v6 3.8 ltr";
-    player.engine.upgrade_name[4] = "v8 5.0 ltr turbo";
-    player.engine.upgrade_name[5] = "v16 jaguar";
+    player.engine.upgrade_name[4] = "v6 5.0 ltr turbo";
+    player.engine.upgrade_name[5] = "v8 jaguar";
 
     player.fuel.attribute_name = "fueltank";
     player.fuel.attribute_unit = "LTR";
@@ -97,12 +97,12 @@ void init_attributes(void){
     player.fuel.upgrade_cost[3] = 8000;
     player.fuel.upgrade_cost[4] = 10000;
     player.fuel.upgrade_cost[5] = 30000;
-    player.fuel.upgrade_name[0] = "micro tank";
-    player.fuel.upgrade_name[1] = "medium tank";
-    player.fuel.upgrade_name[2] = "huge tank";
-    player.fuel.upgrade_name[3] = "titanic tank";
-    player.fuel.upgrade_name[4] = "leviathan tank";
-    player.fuel.upgrade_name[5] = "liquid gas";
+    player.fuel.upgrade_name[0] = "jerry can";
+    player.fuel.upgrade_name[1] = "gas cylinder";
+    player.fuel.upgrade_name[2] = "stainless tank";
+    player.fuel.upgrade_name[3] = "dual cylinder";
+    player.fuel.upgrade_name[4] = "pressure tank";
+    player.fuel.upgrade_name[5] = "lithium pack";
 
     player.radiator.attribute_name = "radiator";
     player.radiator.attribute_unit = "%";
@@ -119,12 +119,12 @@ void init_attributes(void){
     player.radiator.upgrade_cost[3] = 8000;
     player.radiator.upgrade_cost[4] = 10000;
     player.radiator.upgrade_cost[5] = 30000;
-    player.radiator.upgrade_name[0] = "stock fan";
-    player.radiator.upgrade_name[1] = "dual fans";
-    player.radiator.upgrade_name[2] = "single turbine";
-    player.radiator.upgrade_name[3] = "dual turbines";
-    player.radiator.upgrade_name[4] = "puron cooling";
-    player.radiator.upgrade_name[5] = "tri-turbine";
+    player.radiator.upgrade_name[0] = "air condition";
+    player.radiator.upgrade_name[1] = "single fan";
+    player.radiator.upgrade_name[2] = "dual fans";
+    player.radiator.upgrade_name[3] = "propeller";
+    player.radiator.upgrade_name[4] = "single turbine";
+    player.radiator.upgrade_name[5] = "jet turbine";
 
     player.cargo.attribute_name = "cargo bay";
     player.cargo.attribute_unit = "M&";
@@ -146,7 +146,7 @@ void init_attributes(void){
     player.cargo.upgrade_name[2] = "huge bay";
     player.cargo.upgrade_name[3] = "gigantic bay";
     player.cargo.upgrade_name[4] = "titanic bay";
-    player.cargo.upgrade_name[5] = "leviathan bay";
+    player.cargo.upgrade_name[5] = "dimention void";
 
 
     player.money = 50000;
