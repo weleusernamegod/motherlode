@@ -1,0 +1,10 @@
+SFX_down
+SFX_up
+SFX_level_up
+SFX_exp_up
+SFX_blep
+SFX_explosion
+SFX_hit
+SFX_secret
+SFX_soft_hit
+SFX_glitch

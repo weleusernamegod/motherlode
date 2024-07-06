@@ -9,9 +9,9 @@
 #define upgrade_tiles_TILE_ORIGIN 0
 #define upgrade_tiles_TILE_W 8
 #define upgrade_tiles_TILE_H 8
-#define upgrade_tiles_WIDTH 32
-#define upgrade_tiles_HEIGHT 1152
-#define upgrade_tiles_TILE_COUNT 576
+#define upgrade_tiles_WIDTH 192
+#define upgrade_tiles_HEIGHT 192
+#define upgrade_tiles_TILE_COUNT 512
 #define upgrade_tiles_PALETTE_COUNT 36
 #define upgrade_tiles_COLORS_PER_PALETTE 4
 #define upgrade_tiles_TOTAL_COLORS 144
@@ -19,7 +19,7 @@
 BANKREF_EXTERN(upgrade_tiles)
 
 extern const palette_color_t upgrade_tiles_palettes[144];
-extern const uint8_t upgrade_tiles_tiles[9216];
+extern const uint8_t upgrade_tiles_tiles[8192];
 
 
 #endif
