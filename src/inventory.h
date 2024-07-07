@@ -48,13 +48,14 @@ void update_inventory(void);
 void calculate_cargo(void);
 
 typedef struct Material {
-    const char* name;            // Name of the material
+    const char* name;               // Name of the material
     uint8_t tile_number;            // Corresponding tile number for display
     uint8_t ore_resistance;         // Resistance value for mining or interaction
     uint8_t weight;                 // Weight of the material
-    uint32_t value;                  // Value of the material per piece
+    uint32_t value;                 // Value of the material per piece
     uint8_t inventory;              // How many of that type in inventory
-    uint8_t color_palette;
+    uint8_t palette_number;         // In what color palette to load the color
+    uint8_t depth_threshold;        // At what depth to load that ore
     } Material;
 extern Material materials[];
 

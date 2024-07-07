@@ -84,7 +84,7 @@ void init_attributes(void){
     player.fuel.attribute_name = "fueltank";
     player.fuel.attribute_unit = "LTR";
     player.fuel.attribute_unit_short = "?";
-    player.fuel.upgrade_level = 0;
+    player.fuel.upgrade_level = 5;
     player.fuel.upgrade_value[0] = 120;
     player.fuel.upgrade_value[1] = 200;
     player.fuel.upgrade_value[2] = 350;

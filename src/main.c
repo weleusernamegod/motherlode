@@ -79,18 +79,13 @@ void main(void) {
                 SWITCH_ROM(1);
                 init_screen();
                 init_clear_screen();
-
                 init_sprite_palettes();
                 init_palette_0();
                 init_palette_based_on_depth();
-                update_palette_based_on_depth();
-
                 init_font();
                 init_tiles();
                 draw_tiles();
                 init_progressbar();
-                draw_fuel_bar();
-                draw_hull_bar();
                 init_nav();
                 draw_nav();
                 init_icon();
@@ -101,7 +96,6 @@ void main(void) {
                 init_warning();
                 calculate_cargo();
                 draw_cargo();
-                handle_fuel();
                 draw_depth();
                 draw_sky();
                 init_buildings();
@@ -113,9 +107,10 @@ void main(void) {
 
             case GAME_STATE_CONTINUE:
                 SWITCH_ROM(1);
+                handle_fuel(FALSE);
+                handle_hull(FALSE);
                 init_sound();
                 init_enable_lcd_interrupt();
-                change_sky_color();
                 while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE) {
                     game_loop();
                 }

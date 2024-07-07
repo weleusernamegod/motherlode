@@ -462,23 +462,29 @@ void update_fuel(void){
     }
 }
 
-void handle_fuel(void) {
-    check_fuel();
-    update_fuel();
-    update_progressbar_palette(&player.fuel, FUEL_BAR_PALETTE);
-    draw_fuel_bar();
-    update_icon_fuel();
+void handle_fuel(BOOLEAN optimise) {
+    // total CPU usage around 22-24%
+    check_fuel(); // 2% CPU
+    update_fuel(); // 0% CPU
+    if (frame_counter == TICK_FUEL || optimise == FALSE){ // reduce CPU work by 59/60%
+        update_progressbar_palette(&player.fuel, FUEL_BAR_PALETTE); // 11% CPU
+        draw_fuel_bar(); // 10% CPU
+    }
+    update_icon_fuel(); // 1% CPU
 }
 
-void handle_hull (void) {
+void handle_hull(BOOLEAN optimise) {
+    // total CPU usage around 19-20%
     check_hull();
     calculate_falldamage();
-    update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
-    draw_hull_bar();
+    if (frame_counter == TICK_HULL || optimise == FALSE){ // reduce CPU work
+        update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
+        draw_hull_bar();
+    }
     update_icon_hull();
 }
 
-void handle_cargo (void) {
+void handle_cargo(void) {
     calculate_cargo();
     draw_cargo();
     update_icon_cargo();

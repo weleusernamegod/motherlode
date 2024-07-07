@@ -44,21 +44,29 @@ void game_loop(void) {
 
     // player has moved one block
     if (prev_depth != depth) {
-        spawn_bkg_row();
-        draw_depth();
-        change_background_color();
-        update_palette_based_on_depth();
-        swap_tiles_sky_buildings();
         calculate_upward_velocity();
+        draw_depth();
     }
 
-    if (depth_offset < UNDERGROUND && frame_counter == 30) change_sky_color();
+    // screen has moved one block
+    if (prev_depth_offset != depth_offset || reload_palettes == TRUE) {
+        spawn_bkg_row();
+        swap_tiles_sky_buildings();
+        update_palette_based_on_depth();
+
+        if (depth_offset < DEPTH_LEVEL_1){
+            change_sky_color();
+            change_background_color();
+        }
+        reload_palettes = FALSE;
+    }
+
+
 
     if (buttons & J_UP) metasprite_prop(); // have prop moving even if the player is stuck but trying to get up
-
-
-    handle_fuel();
-    handle_hull();
+    
+    handle_fuel(TRUE); // reduce CPU work by 59/60% by using optimisation
+    handle_hull(TRUE);
 
     // check if player enters a station
     proximity_check_station();
@@ -71,6 +79,7 @@ void game_loop(void) {
     prev_buttons = buttons;
     prev_depth = depth;
     prev_width = width;
+    prev_depth_offset = depth_offset;
     prev_velocity = velocity;
 
     vsync();

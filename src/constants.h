@@ -5,11 +5,14 @@
 #include <stdio.h>
 
 // general
-#define ROWS 128
+#define ROWS 1024
 #define COLS 16
 
 #define START_DEPTH 2
 #define START_WIDTH 4
+
+#define MAX_PALETTES 8
+#define BYTE_PER_PALETTE 4
 
 // main menu
 #define MAIN_MENU_ITEMS 3
@@ -134,19 +137,24 @@
 // lava 6
 #define PALETTE_GAS 7
 
-#define PALETTE_ELEMENTIUM 0
-#define PALETTE_ADAMANTITE 0
-#define PALETTE_DIAMOND 0
-#define PALETTE_AQUAMARINE 0
-#define PALETTE_SKULL 0
-#define PALETTE_ARTEFACT 0
+#define PALETTE_ELEMENTIUM 7
+#define PALETTE_ADAMANTITE 7
+#define PALETTE_DIAMOND 7
+#define PALETTE_AQUAMARINE 7
+#define PALETTE_SKULL 7
+#define PALETTE_ARTEFACT 7
 
-
+#define MAX_PALETTE_GROUPS 25
 #define WIN_X 4
 #define WIN_Y 0
 
 #define MIN_MINABLE_MATERIAL COAL
 #define MAX_MINABLE_MATERIAL DIAMOND
+
+// optimises, at what framecounter to do what task
+#define TICK_FUEL 15
+#define TICK_HULL 45
+
 
 // movement
 #define METATILES_VISIBLE 8
@@ -155,7 +163,7 @@
 #define UNDERGROUND (GROUND + 1)
 #define CLOSE_TO_SURFACE 7 // use this together with depth_offset for start of mining mode
 
-#define DEPTH_LEVEL_1 30
+#define DEPTH_LEVEL_1 12
 #define DEPTH_LEVEL_2 60
 #define DEPTH_LEVEL_3 100
 #define DEPTH_LEVEL_4 150

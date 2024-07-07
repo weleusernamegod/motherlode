@@ -214,8 +214,7 @@ void interpolate_color(Background_color* result, Background_color start, Backgro
 void change_background_color(void) {
     uint8_t num_colors = sizeof(colors) / sizeof(colors[0]);
     uint16_t phase_per_color = ROWS / (num_colors - 1);
-
-    uint16_t color_phase = depth % ROWS;
+    uint16_t color_phase = ((depth < DEPTH_LEVEL_1) ? 0 : depth - DEPTH_LEVEL_1) % ROWS;
     uint8_t index = color_phase / phase_per_color;
     uint16_t progress = color_phase % phase_per_color;
 
@@ -277,77 +276,77 @@ void update_progressbar_palette(player_attributes *attribute, uint8_t palette_in
     set_sprite_palette_entry(palette_index, 2, RGB8(red, green, blue)); // Update the palette in the background
 }
 
-const Palette_group palette_groups[] = {
-    { 
-        {
-            palette_background,
-            &ore_tiles_palettes[(GRASS - 1) * 4],
-            &ore_tiles_palettes[(COAL - 1) * 4],
-            &ore_tiles_palettes[(IRON - 1) * 4],
-            &station_palettes[4*4],
-            &station_palettes[5*4],
-            &station_palettes[6*4],
-            &station_palettes[7*4],
-            },
-        0},
-
-    { 
-        {
-            palette_background,
-            &ore_tiles_palettes[(STONE - 1) * 4],
-            &ore_tiles_palettes[(COAL - 1) * 4],
-            &ore_tiles_palettes[(IRON - 1) * 4],
-            &ore_tiles_palettes[(COPPER - 1) * 4],
-            &ore_tiles_palettes[(TIN - 1) * 4],
-            &ore_tiles_palettes[(SILVER - 1) * 4],
-            &ore_tiles_palettes[(GOLD - 1) * 4],
-        },
-        DEPTH_LEVEL_1 - METATILES_TOTAL // below depth change to this palette
-    },
-    { 
-        {
-            palette_background,
-            &ore_tiles_palettes[(STONE - 1) * 4],
-            &ore_tiles_palettes[(MITHRIL - 1) * 4],
-            &ore_tiles_palettes[(PLATINUM - 1) * 4],
-            &ore_tiles_palettes[(COPPER - 1) * 4],
-            &ore_tiles_palettes[(TIN - 1) * 4],
-            &ore_tiles_palettes[(SILVER - 1) * 4],
-            &ore_tiles_palettes[(GOLD - 1) * 4],
-        },
-        DEPTH_LEVEL_2 - METATILES_TOTAL // below depth 30 change to this palette
-    },
 
 
-
+const Palette_group palette_group_close_to_ground[] = {
+    {palette_background, 0, 0},
+    {&ore_tiles_palettes[GRASS * BYTE_PER_PALETTE], 1, 0},
+    {&ore_tiles_palettes[COAL * BYTE_PER_PALETTE], 2, 0},
+    {&ore_tiles_palettes[IRON * BYTE_PER_PALETTE], 3, 0},
+    {&station_palettes[4 * BYTE_PER_PALETTE], 4, 0},
+    {&station_palettes[5 * BYTE_PER_PALETTE], 5, 0},
+    {&station_palettes[6 * BYTE_PER_PALETTE], 6, 0},
+    {&station_palettes[7 * BYTE_PER_PALETTE], 7, 0},
 };
 
-const int palette_groups_count = sizeof(palette_groups) / sizeof(palette_groups[0]);
-const Palette_group* last_used_palette_group = NULL;  // Initialize to NULL
 
+const Palette_group* last_used_palette_group[8] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};  // Initialize to NULL
 
 void init_palette_based_on_depth(void) {
-    last_used_palette_group = NULL;
+    memset(last_used_palette_group, NULL, 8);
+    reload_palettes = TRUE;
+}
+
+void generate_palette_groups(Palette_group* palette_groups, uint8_t* count) {
+    uint8_t index = 0;
+    
+    // Choose the appropriate palette group based on depth_offset
+    if (depth_offset < DEPTH_LEVEL_1) {
+        for (uint8_t i = 0; i < 8; i++) {
+            palette_groups[index++] = palette_group_close_to_ground[i];
+        }
+    } else {
+        // Add other palette group generation logic here for depths 10 and above
+        // Example:
+        for (uint8_t i = 0; i < MAX_PALETTE_GROUPS; i++) {
+            if (index >= MAX_PALETTE_GROUPS) break;  // Prevent overflow
+            
+            palette_groups[index].palettes = &ore_tiles_palettes[materials[i].tile_number * BYTE_PER_PALETTE];
+            palette_groups[index].palette_number = materials[i].palette_number;
+            palette_groups[index].depth_threshold = materials[i].depth_threshold;
+            index++;
+        }
+    }
+    
+    *count = index;  // Return the number of palette groups generated
 }
 
 void update_palette_based_on_depth(void) {
-    const Palette_group* selected_palette_group = NULL;
+    Palette_group palette_groups[MAX_PALETTE_GROUPS];
+    uint8_t palette_groups_count;
+    generate_palette_groups(palette_groups, &palette_groups_count);
 
-    // Use palette_groups_count instead of sizeof calculation
+    // Initialize selected_palette_group array to NULL pointers
+    const Palette_group* selected_palette_group[MAX_PALETTES] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+
+    // Iterate through the palette groups
     for (uint8_t i = 0; i < palette_groups_count; i++) {
+        // Select the appropriate palette group based on depth_offset
         if (depth_offset >= palette_groups[i].depth_threshold) {
-            selected_palette_group = &palette_groups[i];
+            selected_palette_group[palette_groups[i].palette_number] = &palette_groups[i];
         } else {
             break;  // Assumes palette_groups are sorted by depth_threshold
         }
     }
 
     // Update the palette if it has changed
-    if (selected_palette_group != last_used_palette_group) {
-        for (uint8_t i = 1; i < 8; i++) {  // Assuming each group has 8 palettes
-            set_bkg_palette(i, 1, selected_palette_group->palettes[i]);
+    for (uint8_t i = 0; i < MAX_PALETTES; i++) {
+        if (selected_palette_group[i] != last_used_palette_group[i]) {
+            if (selected_palette_group[i] != NULL) {
+                set_bkg_palette(selected_palette_group[i]->palette_number, 1, selected_palette_group[i]->palettes);
+            }
+            last_used_palette_group[i] = selected_palette_group[i];
         }
-        last_used_palette_group = selected_palette_group;
     }
 }
 
@@ -391,7 +390,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
             if (array[y][x] == EMPTY) {
                 for (uint8_t i = 0; i < 4; i++) palette_array[i] = 0;
             } else {
-                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] - ore_tiles_TILE_ORIGIN + 4) >> 2].color_palette;
+                for (uint8_t i = 0; i < 4; i++) palette_array[i] = materials[(tile_array[i] - ore_tiles_TILE_ORIGIN + 4) >> 2].palette_number;
             }
 
             // Set tiles first with VBK_REG = 0 (tile data)
@@ -520,7 +519,8 @@ void draw_test(void) {
 
 void draw_depth(void){
     char string[5];
-    itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
+    itoa(depth_offset, string, 10);
+    // itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     // strcat(string, "^");
     draw_text_win(14,1,string,5,FALSE,0);
 }
@@ -750,7 +750,7 @@ void swap_tiles_sky_buildings(void) {
         draw_sky();
         draw_buildings();
         buildings_loaded = TRUE;  // Mark buildings as loaded
-    } else if (depth_offset >= UNDERGROUND && buildings_loaded) {
+    } else if (depth_offset >= DEPTH_LEVEL_1 && buildings_loaded) {
         // Load tiles if the player is shallower than the threshold and tiles are not loaded
         init_tiles();
         buildings_loaded = FALSE;  // Mark tiles as loaded (buildings are not loaded)

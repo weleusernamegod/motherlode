@@ -27,11 +27,13 @@ BOOLEAN leave_station = FALSE;
 BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry
 BOOLEAN update_menu = TRUE;  // Initially set to TRUE to draw the menu the first time
 BOOLEAN buildings_loaded = TRUE;  // for checks if buildings need to be loaded or not
+BOOLEAN reload_palettes = TRUE;  // for checks if palettes need to be reloaded or not
 
 // movement
 uint16_t depth = 0, width = 0;
-uint16_t depth_offset = 0, width_offset = 0;
 uint16_t prev_depth, prev_width;
+uint16_t depth_offset = 0, width_offset = 0;
+uint16_t prev_depth_offset = 0, prev_width_offset = 0;
 uint16_t wrapped_depth;
 uint16_t current_bkg_color;
 fixed depth_pixel, width_pixel;

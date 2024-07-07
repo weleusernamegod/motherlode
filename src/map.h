@@ -14,13 +14,16 @@ typedef struct {
 extern Background_color colors[];
 
 typedef struct {
-    const palette_color_t* palettes[8];
+    const palette_color_t* palettes;
+    uint8_t palette_number;
     uint8_t depth_threshold;
 } Palette_group;
 
 extern const Palette_group palette_groups[];
-extern const Palette_group* last_used_palette_group;
-extern const int palette_groups_count;  // Declare the size of palette_groups explicitly
+extern const Palette_group palette_group_close_to_ground[];
+
+extern const Palette_group* last_used_palette_group[8];
+extern const uint8_t palette_groups_count;  // Declare the size of palette_groups explicitly
 
 uint8_t get_tile_from_array(uint16_t depth, uint16_t width);
 void switch_ram_bank_back_to_prev(void);
@@ -36,6 +39,7 @@ void change_background_color(void);
 void change_sky_color(void);
 void update_progressbar_palette(player_attributes *attribute, uint8_t palette_index);
 void init_palette_based_on_depth(void);
+void generate_palette_groups(Palette_group* palette_groups, uint8_t* count);
 void update_palette_based_on_depth(void);
 void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, uint8_t c);
 void spawn_bkg_row(void);

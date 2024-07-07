@@ -21,6 +21,7 @@ extern BOOLEAN leave_station;
 extern BOOLEAN left_shop_area;  // Initially true to allow first entry
 extern BOOLEAN update_menu;  // Initially set to TRUE to draw the menu the first time
 extern BOOLEAN buildings_loaded;  // for checks if buildings need to be loaded or not
+extern BOOLEAN reload_palettes;  // for checks if palettes need to be reloaded or not
 
 typedef enum {
     GAME_STATE_MAIN_MENU,
@@ -36,8 +37,9 @@ extern GameState currentGameState;
 
 // movement
 extern uint16_t depth, width;
-extern uint16_t depth_offset, width_offset;
 extern uint16_t prev_depth, prev_width;
+extern uint16_t depth_offset, width_offset;
+extern uint16_t prev_depth_offset, prev_width_offset;
 extern uint16_t wrapped_depth;
 extern uint16_t current_bkg_color;
 extern fixed depth_pixel, width_pixel;
