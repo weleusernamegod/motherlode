@@ -77,7 +77,7 @@
 #define PALETTE_DIRT 2
 #define PALETTE_SKY 7
 
-// DEPTH_LEVEL_0
+// DEPTH_THRESHOLD_0
 // default 0
 #define PALETTE_GRASS 1
 #define PALETTE_COAL 2
@@ -87,7 +87,7 @@
 // palette station 6
 // palette station 7
 
-// DEPTH_LEVEL_1
+// DEPTH_THRESHOLD_1
 // default 0
 #define PALETTE_STONE 1
 // coal 2
@@ -97,7 +97,7 @@
 #define PALETTE_SILVER 6
 #define PALETTE_GOLD 7
 
-// DEPTH_LEVEL_2
+// DEPTH_THRESHOLD_2
 // default 0
 // stone 1
 #define PALETTE_MITHRIL 2
@@ -107,7 +107,7 @@
 // silver 6
 // gold 7
 
-// DEPTH_LEVEL_3
+// DEPTH_THRESHOLD_3
 // default 0
 // stone 1
 // mithril 2
@@ -117,7 +117,7 @@
 // silver 6
 // gold 7
 
-// DEPTH_LEVEL_4
+// DEPTH_THRESHOLD_4
 // default 0
 // stone 1
 #define PALETTE_TITANIUM 2
@@ -127,7 +127,7 @@
 #define PALETTE_LAVA 6
 // gold 7
 
-// DEPTH_LEVEL_5
+// DEPTH_THRESHOLD_5
 // default 0
 // stone 1
 // titanium 2
@@ -163,11 +163,17 @@
 #define UNDERGROUND (GROUND + 1)
 #define CLOSE_TO_SURFACE 7 // use this together with depth_offset for start of mining mode
 
-#define DEPTH_LEVEL_1 12
-#define DEPTH_LEVEL_2 60
-#define DEPTH_LEVEL_3 100
-#define DEPTH_LEVEL_4 150
-#define DEPTH_LEVEL_5 300
+#define DEPTH_THRESHOLD_0 0
+#define DEPTH_THRESHOLD_1 12
+#define DEPTH_THRESHOLD_2 30
+#define DEPTH_THRESHOLD_3 60
+#define DEPTH_THRESHOLD_4 90
+#define DEPTH_THRESHOLD_5 120
+#define DEPTH_THRESHOLD_6 150
+#define DEPTH_THRESHOLD_7 200
+#define DEPTH_THRESHOLD_8 300
+#define DEPTH_THRESHOLD_9 500
+
 
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen

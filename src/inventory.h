@@ -55,7 +55,8 @@ typedef struct Material {
     uint32_t value;                 // Value of the material per piece
     uint8_t inventory;              // How many of that type in inventory
     uint8_t palette_number;         // In what color palette to load the color
-    uint8_t depth_threshold;        // At what depth to load that ore
+    uint16_t depth_threshold;       // At what depth to load that ore
+    uint8_t rarity;                 // How often to use that ore in the map
     } Material;
 extern Material materials[];
 

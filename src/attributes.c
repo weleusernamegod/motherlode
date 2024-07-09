@@ -78,7 +78,7 @@ void init_attributes(void){
     player.engine.upgrade_name[1] = "125cc";
     player.engine.upgrade_name[2] = "v2 1.0 ltr";
     player.engine.upgrade_name[3] = "v6 3.8 ltr";
-    player.engine.upgrade_name[4] = "v6 5.0 ltr turbo";
+    player.engine.upgrade_name[4] = "v8 5.0 ltr turbo";
     player.engine.upgrade_name[5] = "v8 jaguar";
 
     player.fuel.attribute_name = "fueltank";

@@ -115,22 +115,22 @@ void generate_map(uint16_t desired_rows) {
                 uint8_t tileType = 1; // Default to dirt
 
                 // Determine ore distribution based on depth
-                if (rows < DEPTH_LEVEL_1 && randValue >= 80) {
+                if (rows < DEPTH_THRESHOLD_1 && randValue >= 80) {
                     // Rows 7 to 19: Ores 4 to 5
                     tileType = rand() % 2 + COAL; // Ores 4 and 5
-                } else if (rows >= DEPTH_LEVEL_1 && rows < DEPTH_LEVEL_2 && randValue >= 80) {
+                } else if (rows >= DEPTH_THRESHOLD_1 && rows < DEPTH_THRESHOLD_2 && randValue >= 80) {
                     // Rows 20 to 49: Ores 4 to 7
                     tileType = rand() % 4 + STONE; // Ores 4 to 7
-                } else if (rows >= DEPTH_LEVEL_2 && rows < DEPTH_LEVEL_3 && randValue >= 75) {
+                } else if (rows >= DEPTH_THRESHOLD_2 && rows < DEPTH_THRESHOLD_3 && randValue >= 75) {
                     // Rows 50 to 149: Ores 8 to 11
                     tileType = rand() % 4 + 8; // Ores 8 to 11
-                } else if (rows >= DEPTH_LEVEL_3 && rows < DEPTH_LEVEL_4 && randValue >= 70) {
+                } else if (rows >= DEPTH_THRESHOLD_3 && rows < DEPTH_THRESHOLD_4 && randValue >= 70) {
                     // Rows 150 to 299: Ores 12 to 14
                     tileType = rand() % 3 + 12; // Ores 12 to 14
-                } else if (rows >= DEPTH_LEVEL_4 && rows < DEPTH_LEVEL_5 && randValue >= 65) {
+                } else if (rows >= DEPTH_THRESHOLD_4 && rows < DEPTH_THRESHOLD_5 && randValue >= 65) {
                     // Rows 300 to 599: Ores 15 to 17
                     tileType = rand() % 3 + 15; // Ores 15 to 17
-                } else if (rows >= DEPTH_LEVEL_5 && randValue >= 60) {
+                } else if (rows >= DEPTH_THRESHOLD_5 && randValue >= 60) {
                     // Rows 600 and deeper: Ores 16 to 18
                     tileType = rand() % 3 + 16; // Ores 16 to 18
                 }
@@ -214,7 +214,7 @@ void interpolate_color(Background_color* result, Background_color start, Backgro
 void change_background_color(void) {
     uint8_t num_colors = sizeof(colors) / sizeof(colors[0]);
     uint16_t phase_per_color = ROWS / (num_colors - 1);
-    uint16_t color_phase = ((depth < DEPTH_LEVEL_1) ? 0 : depth - DEPTH_LEVEL_1) % ROWS;
+    uint16_t color_phase = ((depth < DEPTH_THRESHOLD_1) ? 0 : depth - DEPTH_THRESHOLD_1) % ROWS;
     uint8_t index = color_phase / phase_per_color;
     uint16_t progress = color_phase % phase_per_color;
 
@@ -301,7 +301,7 @@ void generate_palette_groups(Palette_group* palette_groups, uint8_t* count) {
     uint8_t index = 0;
     
     // Choose the appropriate palette group based on depth_offset
-    if (depth_offset < DEPTH_LEVEL_1) {
+    if (depth_offset < DEPTH_THRESHOLD_1) {
         for (uint8_t i = 0; i < 8; i++) {
             palette_groups[index++] = palette_group_close_to_ground[i];
         }
@@ -750,7 +750,7 @@ void swap_tiles_sky_buildings(void) {
         draw_sky();
         draw_buildings();
         buildings_loaded = TRUE;  // Mark buildings as loaded
-    } else if (depth_offset >= DEPTH_LEVEL_1 && buildings_loaded) {
+    } else if (depth_offset >= DEPTH_THRESHOLD_1 && buildings_loaded) {
         // Load tiles if the player is shallower than the threshold and tiles are not loaded
         init_tiles();
         buildings_loaded = FALSE;  // Mark tiles as loaded (buildings are not loaded)
