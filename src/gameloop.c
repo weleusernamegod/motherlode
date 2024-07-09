@@ -54,7 +54,7 @@ void game_loop(void) {
         swap_tiles_sky_buildings();
         update_palette_based_on_depth();
 
-        if (depth_offset < DEPTH_THRESHOLD_1){
+        if (depth_offset < DEPTH_CHANGE){
             change_sky_color();
             change_background_color();
         }

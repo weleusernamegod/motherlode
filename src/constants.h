@@ -13,6 +13,7 @@
 
 #define MAX_PALETTES 8
 #define BYTE_PER_PALETTE 4
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 // main menu
 #define MAIN_MENU_ITEMS 3
@@ -163,17 +164,7 @@
 #define UNDERGROUND (GROUND + 1)
 #define CLOSE_TO_SURFACE 7 // use this together with depth_offset for start of mining mode
 
-#define DEPTH_THRESHOLD_0 0
-#define DEPTH_THRESHOLD_1 12
-#define DEPTH_THRESHOLD_2 30
-#define DEPTH_THRESHOLD_3 60
-#define DEPTH_THRESHOLD_4 90
-#define DEPTH_THRESHOLD_5 120
-#define DEPTH_THRESHOLD_6 150
-#define DEPTH_THRESHOLD_7 200
-#define DEPTH_THRESHOLD_8 300
-#define DEPTH_THRESHOLD_9 500
-
+#define DEPTH_CHANGE 12
 
 #define THRESHOLD 2  // How many metatiles away from the screenedge does scrolling start
 #define BOTTOM 0    // Offset from the bottom edge of the screen

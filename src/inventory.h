@@ -57,6 +57,7 @@ typedef struct Material {
     uint8_t palette_number;         // In what color palette to load the color
     uint16_t depth_threshold;       // At what depth to load that ore
     uint8_t rarity;                 // How often to use that ore in the map
+    uint16_t depth_range;           // The calculated depth range
     } Material;
 extern Material materials[];
 

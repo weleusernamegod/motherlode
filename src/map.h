@@ -16,7 +16,7 @@ extern Background_color colors[];
 typedef struct {
     const palette_color_t* palettes;
     uint8_t palette_number;
-    uint8_t depth_threshold;
+    uint16_t depth_threshold;
 } Palette_group;
 
 extern const Palette_group palette_groups[];

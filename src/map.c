@@ -101,59 +101,81 @@ void done_loading(void){
     delay(1000);
 }
 
+void calculate_depth_ranges(void) {
+    for (uint8_t i = 0; i < MAX_PALETTE_GROUPS; ++i) {
+        uint16_t depth_threshold = materials[i].depth_threshold;
+        uint8_t palette_number = materials[i].palette_number;
+
+        uint8_t j;
+        for (j = i + 1; j < MAX_PALETTE_GROUPS; ++j) {
+            if (materials[j].palette_number == palette_number) {
+                materials[i].depth_range = materials[j].depth_threshold - depth_threshold;
+                break;
+            }
+        }
+        if (j == MAX_PALETTE_GROUPS) {
+            // If no subsequent material with the same palette_number is found, set depth_range to the max row value
+            materials[i].depth_range = ROWS;
+        }
+    }
+}
+
 void generate_map(uint16_t desired_rows) {
     uint16_t rows;
     uint8_t cols = COLS;
+
+    calculate_depth_ranges();
+
+
     for (rows = 0; rows < desired_rows; rows++) {
         for (cols = 0; cols < COLS; cols++) {
 
             if (rows % 32 == 0) draw_loading_screen(rows, desired_rows);
 
             if (rows > 6) {
-                // Start generating the map based on depth
-                uint8_t randValue = rand() % 100;  // Random value from 0 to 99
+                uint8_t randValue = rand() % 256;  // Random value from 0 to 255
                 uint8_t tileType = 1; // Default to dirt
 
-                // Determine ore distribution based on depth
-                if (rows < DEPTH_THRESHOLD_1 && randValue >= 80) {
-                    // Rows 7 to 19: Ores 4 to 5
-                    tileType = rand() % 2 + COAL; // Ores 4 and 5
-                } else if (rows >= DEPTH_THRESHOLD_1 && rows < DEPTH_THRESHOLD_2 && randValue >= 80) {
-                    // Rows 20 to 49: Ores 4 to 7
-                    tileType = rand() % 4 + STONE; // Ores 4 to 7
-                } else if (rows >= DEPTH_THRESHOLD_2 && rows < DEPTH_THRESHOLD_3 && randValue >= 75) {
-                    // Rows 50 to 149: Ores 8 to 11
-                    tileType = rand() % 4 + 8; // Ores 8 to 11
-                } else if (rows >= DEPTH_THRESHOLD_3 && rows < DEPTH_THRESHOLD_4 && randValue >= 70) {
-                    // Rows 150 to 299: Ores 12 to 14
-                    tileType = rand() % 3 + 12; // Ores 12 to 14
-                } else if (rows >= DEPTH_THRESHOLD_4 && rows < DEPTH_THRESHOLD_5 && randValue >= 65) {
-                    // Rows 300 to 599: Ores 15 to 17
-                    tileType = rand() % 3 + 15; // Ores 15 to 17
-                } else if (rows >= DEPTH_THRESHOLD_5 && randValue >= 60) {
-                    // Rows 600 and deeper: Ores 16 to 18
-                    tileType = rand() % 3 + 16; // Ores 16 to 18
-                }
-
                 // Introduce caves (empty spaces)
-                if (randValue < 20) {  // Increase to 20% chance for caves
+                if (randValue < 20) {  // 20% chance for caves
                     tileType = 0;
-                }
-                
-                // Mix ores a bit more in the deeper rows
-                if (rows >= 300 && randValue >= 50) {
-                    tileType = rand() % 18 + 1;  // Mix all ores from 1 to 18
+                } else {
+                    uint16_t minDepth, maxDepth;
+                    for (uint8_t i = STONE; i < MAX_PALETTE_GROUPS; i++) {
+                        minDepth = materials[i].depth_threshold + METATILES_TOTAL;
+                        maxDepth = materials[i].depth_threshold + materials[i].depth_range - METATILES_TOTAL;
+                        
+                        if (rows >= minDepth) {
+                            if (rows < maxDepth) {
+                                randValue = rand();
+                                if (i == STONE) { // make stones appear more further down
+                                    uint16_t shifted_rows = ROWS >> 2;
+                                    if (randValue < depth_offset/shifted_rows) {
+                                        tileType = i;
+                                    }
+                                } else {
+                                    if (randValue < materials[i].rarity) {
+                                        tileType = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 switch_ram_bank_based_on_value(rows);
                 level_array[rows % 256][cols] = tileType;
 
+
             } else if (rows == 6) {
-                // Seventh row is all gras
+                // Seventh row is all grass
                 level_array[rows][cols] = GRASS;
 
-                if (cols == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET || cols == STATION_SELL_X + STATION_SELL_DOOR_OFFSET || cols == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET){
-                  level_array[rows][cols] = STONE;  
+                if (cols == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET ||
+                    cols == STATION_SELL_X + STATION_SELL_DOOR_OFFSET ||
+                    cols == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET) {
+                    level_array[rows][cols] = STONE;  
                 }
 
             } else if (rows < 6) {
@@ -214,7 +236,7 @@ void interpolate_color(Background_color* result, Background_color start, Backgro
 void change_background_color(void) {
     uint8_t num_colors = sizeof(colors) / sizeof(colors[0]);
     uint16_t phase_per_color = ROWS / (num_colors - 1);
-    uint16_t color_phase = ((depth < DEPTH_THRESHOLD_1) ? 0 : depth - DEPTH_THRESHOLD_1) % ROWS;
+    uint16_t color_phase = ((depth < DEPTH_CHANGE) ? 0 : depth - DEPTH_CHANGE) % ROWS;
     uint8_t index = color_phase / phase_per_color;
     uint16_t progress = color_phase % phase_per_color;
 
@@ -301,7 +323,7 @@ void generate_palette_groups(Palette_group* palette_groups, uint8_t* count) {
     uint8_t index = 0;
     
     // Choose the appropriate palette group based on depth_offset
-    if (depth_offset < DEPTH_THRESHOLD_1) {
+    if (depth_offset < materials[STONE].depth_threshold) { // stone is the first one to change the palettes
         for (uint8_t i = 0; i < 8; i++) {
             palette_groups[index++] = palette_group_close_to_ground[i];
         }
@@ -750,7 +772,7 @@ void swap_tiles_sky_buildings(void) {
         draw_sky();
         draw_buildings();
         buildings_loaded = TRUE;  // Mark buildings as loaded
-    } else if (depth_offset >= DEPTH_THRESHOLD_1 && buildings_loaded) {
+    } else if (depth_offset >= DEPTH_CHANGE && buildings_loaded) {
         // Load tiles if the player is shallower than the threshold and tiles are not loaded
         init_tiles();
         buildings_loaded = FALSE;  // Mark tiles as loaded (buildings are not loaded)
