@@ -592,21 +592,17 @@ void powerup_teleporter(void) {
 
 void handle_powerups(void) {
     if (animation_frames_left <= 0 && prev_buttons != buttons && depth > UNDERGROUND + 1) {
-        switch (buttons) {
-            case J_A:
-                powerup_extra_tank();
-                break;
-            case J_B:
-                powerup_repair_kit();
-                break;
-            case J_START:
-                powerup_dynamite();
-                break;
-            case J_SELECT:
-                powerup_teleporter();
-                break;
-            default:
-                break;
+        if (buttons & J_START) {
+            powerup_dynamite();
+        }
+        if (buttons & J_A) {
+            powerup_extra_tank();
+        }
+        if (buttons & J_B) {
+            powerup_repair_kit();
+        }
+        if (buttons & J_SELECT) {
+            powerup_teleporter();
         }
     }
 }

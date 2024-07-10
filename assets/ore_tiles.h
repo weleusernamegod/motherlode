@@ -12,13 +12,13 @@
 #define ore_tiles_WIDTH 16
 #define ore_tiles_HEIGHT 384
 #define ore_tiles_TILE_COUNT 96
-#define ore_tiles_PALETTE_COUNT 24
+#define ore_tiles_PALETTE_COUNT 25
 #define ore_tiles_COLORS_PER_PALETTE 4
-#define ore_tiles_TOTAL_COLORS 96
+#define ore_tiles_TOTAL_COLORS 100
 
 BANKREF_EXTERN(ore_tiles)
 
-extern const palette_color_t ore_tiles_palettes[96];
+extern const palette_color_t ore_tiles_palettes[100];
 extern const uint8_t ore_tiles_tiles[1536];
 
 

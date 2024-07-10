@@ -8,7 +8,7 @@
 
 BANKREF(ore_tiles)
 
-const palette_color_t ore_tiles_palettes[96] = {
+const palette_color_t ore_tiles_palettes[100] = {
 	RGB8( 76, 51, 42), RGB8( 51, 34, 25), RGB8(  0,  0,  0), RGB8(  0,  0,  0)
 	,
 	RGB8( 76, 51, 42), RGB8( 51, 34, 25), RGB8(  0,  0,  0), RGB8(  0,  0,  0)
@@ -56,6 +56,8 @@ const palette_color_t ore_tiles_palettes[96] = {
 	RGB8( 76, 51, 42), RGB8( 51, 34, 25), RGB8(172,149,126), RGB8(131, 90, 69)
 	,
 	RGB8( 76, 51, 42), RGB8( 51, 34, 25), RGB8(208,192,169), RGB8(115, 93, 83)
+	,
+	RGB8( 76, 51, 42), RGB8( 51, 34, 25), RGB8(224,209,185), RGB8(131,108, 85)
 	
 };
 

@@ -7,7 +7,7 @@ endif
 LCC = $(GBDK_HOME)bin/lcc
 PNG2ASSET = $(GBDK_HOME)bin/png2asset
 
-LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya4 -Wb-ext=.rel -Wm-yc -Wl-lhammer/hUGEDriver.lib
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya16 -Wb-ext=.rel -Wm-yc -Wl-lhammer/hUGEDriver.lib
 CFLAGS += -I$(ASSETDIR)
 
 # You can set the name of the .gbc ROM file here
@@ -40,7 +40,7 @@ png2asset:
 	$(PNG2ASSET) png/drill_h.png -c assets/drill_h.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -sh 16 -tile_origin 11 -b 1
 	$(PNG2ASSET) png/drill_v.png -c assets/drill_v.c -spr8x8 -repair_indexed_pal -keep_palette_order -noflip -sh 8 -tile_origin 15 -b 1
 	$(PNG2ASSET) png/prop.png -c assets/prop.c -spr8x8 -no_palettes -noflip -sh 8 -tile_origin 19 -b 1
-	$(PNG2ASSET) png/ore_tiles.png -c assets/ore_tiles.c -spr8x8 -tiles_only -keep_palette_order -max_palettes 24 -noflip -tile_origin 0 -b 1
+	$(PNG2ASSET) png/ore_tiles.png -c assets/ore_tiles.c -spr8x8 -tiles_only -keep_palette_order -max_palettes 25 -noflip -tile_origin 0 -b 1
 	$(PNG2ASSET) png/progressbar.png -c assets/progressbar.c -spr8x8 -tiles_only -no_palettes -keep_duplicate_tiles -noflip -b 1
 
 	$(PNG2ASSET) png/font.png -c assets/font.c -spr8x8 -repair_indexed_pal -noflip -keep_duplicate_tiles -tile_origin 194

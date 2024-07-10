@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // general
-#define ROWS 1024
+#define ROWS 512
 #define COLS 16
 
 #define START_DEPTH 2
@@ -73,79 +73,6 @@
 #define FUEL_DISPLAY_PALETTE 2
 #define TICK_PALETTE 2
 
-// color palettes
-#define PALETTE_DEFAULT 0
-#define PALETTE_DIRT 2
-#define PALETTE_SKY 7
-
-// DEPTH_THRESHOLD_0
-// default 0
-#define PALETTE_GRASS 1
-#define PALETTE_COAL 2
-#define PALETTE_IRON 3
-// palette station 4
-// palette station 5
-// palette station 6
-// palette station 7
-
-// DEPTH_THRESHOLD_1
-// default 0
-#define PALETTE_STONE 1
-// coal 2
-// iron 3
-#define PALETTE_TIN 4
-#define PALETTE_COPPER 5
-#define PALETTE_SILVER 6
-#define PALETTE_GOLD 7
-
-// DEPTH_THRESHOLD_2
-// default 0
-// stone 1
-#define PALETTE_MITHRIL 2
-#define PALETTE_PLATINUM 3
-// tin 4
-// copper 5
-// silver 6
-// gold 7
-
-// DEPTH_THRESHOLD_3
-// default 0
-// stone 1
-// mithril 2
-// platinum 3
-#define PALETTE_EMERALD 4
-#define PALETTE_BONES 5
-// silver 6
-// gold 7
-
-// DEPTH_THRESHOLD_4
-// default 0
-// stone 1
-#define PALETTE_TITANIUM 2
-#define PALETTE_OBSIDIUM 3
-// emerald 4
-// bones 5
-#define PALETTE_LAVA 6
-// gold 7
-
-// DEPTH_THRESHOLD_5
-// default 0
-// stone 1
-// titanium 2
-// obsidium 3
-#define PALETTE_RUBY 4
-// bones 5
-// lava 6
-#define PALETTE_GAS 7
-
-#define PALETTE_ELEMENTIUM 7
-#define PALETTE_ADAMANTITE 7
-#define PALETTE_DIAMOND 7
-#define PALETTE_AQUAMARINE 7
-#define PALETTE_SKULL 7
-#define PALETTE_ARTEFACT 7
-
-#define MAX_PALETTE_GROUPS 25
 #define WIN_X 4
 #define WIN_Y 0
 
@@ -156,6 +83,8 @@
 #define TICK_FUEL 15
 #define TICK_HULL 45
 
+// color palettes
+#define PALETTE_SKY 7
 
 // movement
 #define METATILES_VISIBLE 8

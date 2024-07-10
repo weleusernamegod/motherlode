@@ -181,7 +181,9 @@ void main(void) {
                 }
                 hide_sprites_range(SKULL_START, MAX_HARDWARE_SPRITES);
                 reset_player();
+                draw_character();
                 init_icon();
+                init_sprite_palettes();
                 prev_buttons = buttons;
                 currentGameState = GAME_STATE_CONTINUE;
                 break;
