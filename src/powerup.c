@@ -14,7 +14,7 @@
 
 #include "../assets/powerup_frame.h"
 #include "../assets/fuel_display.h"
-#include "../assets/highlight_frame.h"
+#include "../assets/highlight_frame_bank3.h"
 
 #include "powerup.h"
 #include "selection.h"
@@ -23,6 +23,11 @@
 #ifndef __INTELLISENSE__
 BANKREF(bank_powerup)
 #endif
+
+void init_highlight_frame_bank3(void) {
+    set_sprite_data(highlight_frame_bank3_TILE_ORIGIN, highlight_frame_bank3_TILE_COUNT, highlight_frame_bank3_tiles);
+    set_sprite_palette(HIGHLIGHT_FRAME_PALETTE, 1, highlight_frame_bank3_palettes);
+}
 
 void init_powerup(void) {
     set_win_data(powerup_frame_TILE_ORIGIN, powerup_frame_TILE_COUNT, powerup_frame_tiles);
@@ -37,7 +42,7 @@ void init_powerup(void) {
     set_sprite_data(fuel_display_TILE_ORIGIN, fuel_display_TILE_COUNT, fuel_display_tiles);
     set_sprite_palette(FUEL_DISPLAY_PALETTE, 1, fuel_display_palettes);
 
-    init_highlight_frame();
+    init_highlight_frame_bank3();
 }
 
 void draw_fuel_display(void) {
@@ -253,7 +258,7 @@ void update_powerup_highlight_frame_position(void) {
         frame_metasprite[17].dy = 0;
     }
 
-    move_metasprite_ex(dynamic_highlight_frame_metasprites[current_animation_frame], highlight_frame_TILE_ORIGIN, HIGHLIGHT_FRAME_PALETTE, 0, x, y);
+    move_metasprite_ex(dynamic_highlight_frame_metasprites[current_animation_frame], highlight_frame_bank3_TILE_ORIGIN, HIGHLIGHT_FRAME_PALETTE, 0, x, y);
 }
 
 void handle_powerup_input(void) {

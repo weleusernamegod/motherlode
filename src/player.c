@@ -10,6 +10,7 @@
 #include <string.h>
 
 #include "globals.h"
+#include "general.h"
 #include "constants.h"
 #include "attributes.h"
 #include "inventory.h"
@@ -339,6 +340,7 @@ void move(char direction, char mode){
     uint8_t frames = 0;
     if (animation_frames_left == 0){
         if (mode == DRILL) {
+            PLAY_SFX_down;
             is_drilling = TRUE;
             velocity = 0;
             if (direction == LEFT) next_tile = next_tile_left;
@@ -348,6 +350,7 @@ void move(char direction, char mode){
             frames = calculate_frames();
         } else if (mode == DRIVE) {
             // if (next_tile_down != EMPTY) velocity = 0; // attempt to keep velocity when flying
+            PLAY_SFX_soft_hit;
             velocity = 0;
             frames = 16;
         } else if (mode == ACCELERATE) {
@@ -386,25 +389,20 @@ void initiate_movement(void) {
     if (buttons & J_LEFT) {
         if (next_tile_left != EMPTY && next_tile_left != STONE && next_tile_down != EMPTY) {
             move(LEFT, DRILL);
-            PLAY_SFX_down;
         } else if (next_tile_left == EMPTY) {
             move(LEFT, DRIVE);
-            PLAY_SFX_soft_hit;
         } else direction_prev = LEFT;
     }
     else if (buttons & J_RIGHT) { 
         if (next_tile_right != EMPTY && next_tile_right != STONE && next_tile_down != EMPTY) {
             move(RIGHT, DRILL);
-            PLAY_SFX_down;
         } else if (next_tile_right == EMPTY) {
             move(RIGHT, DRIVE);
-            PLAY_SFX_soft_hit;
         } else direction_prev = RIGHT;
     }
     else if (buttons & J_DOWN) { 
         if (next_tile_down != EMPTY && next_tile_down != STONE){
             move(DOWN, DRILL);
-            PLAY_SFX_down;
         }
     }
     if (next_tile_up == EMPTY && (buttons & J_UP )) {
@@ -536,16 +534,16 @@ void proximity_check_station(void) {
     // Check for entering the upgrade station
     if (depth == STATION_Y && width == STATION_UPGRADE_X + STATION_UPGRADE_DOOR_OFFSET) {
         station_proximity = ENTER_UPGRADE_STATION;
-        draw_a_button();
+        // draw_a_button();
     } else if (depth == STATION_Y && width == STATION_SELL_X + STATION_SELL_DOOR_OFFSET) {
         station_proximity = ENTER_SELL_STATION;
-        draw_a_button();
+        // draw_a_button();
     } else if (depth == STATION_Y && width == STATION_POWERUP_X + STATION_POWERUP_DOOR_OFFSET) {
         station_proximity = ENTER_FUEL_STATION;
-        draw_a_button();
+        // draw_a_button();
     } else {
         station_proximity = ENTER_NO_STATION;
-        hide_a_button();
+        // hide_a_button();
     }
 }
 

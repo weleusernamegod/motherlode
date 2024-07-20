@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../assets/highlight_frame.h"
 #include "constants.h"
 
 #define INIT_METASPRITE_ARRAY(i) \
@@ -50,7 +49,3 @@ metasprite_t* dynamic_highlight_frame_metasprites[4] = {
     dynamic_highlight_frame_metasprite3
 };
 
-void init_highlight_frame(void) {
-    set_sprite_data(highlight_frame_TILE_ORIGIN, highlight_frame_TILE_COUNT, highlight_frame_tiles);
-    set_sprite_palette(HIGHLIGHT_FRAME_PALETTE, 1, highlight_frame_palettes);
-}

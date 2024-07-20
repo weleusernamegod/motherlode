@@ -47,6 +47,4 @@ typedef struct Player{
 extern struct Player player;
 extern player_attributes *attributes_numbers[];
 
-void init_attributes(void);
-
 #endif // ATTRIBUTES_H

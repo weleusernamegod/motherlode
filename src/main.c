@@ -20,6 +20,7 @@
 #include "sell.h"
 #include "powerup.h"
 #include "gameover.h"
+#include "loading.h"
 
 #include "../assets/rover.h"
 #include "../assets/rover_eye.h"
@@ -27,8 +28,6 @@
 #include "../assets/nav.h"
 #include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
-
-#include "bankref.h"
 
 void main(void) {
     ENABLE_RAM;
@@ -61,15 +60,17 @@ void main(void) {
                 break;
 
             case GAME_STATE_NEW_GAME:
-                SWITCH_ROM(1);
+                SWITCH_ROM(4);
                 init_screen();
                 init_progressbar();
+                init_loading_screen();
                 init_font();
                 init_loading_screen();
                 generate_map(ROWS);
                 done_loading();
                 turn_screen_off();
                 init_attributes();
+                SWITCH_ROM(1);
                 init_speed();
                 calculate_upward_velocity();
                 init_depth(START_WIDTH, START_DEPTH);
@@ -94,8 +95,7 @@ void main(void) {
                 init_character();
                 draw_character();
                 move_or_scroll_character();
-                init_a_button();
-                init_warning();
+                // init_a_button();
                 calculate_cargo();
                 draw_cargo();
                 draw_depth();

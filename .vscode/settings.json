@@ -2,6 +2,14 @@
     "emulicious-debugger.emuliciousPath": "/Applications/Emulicious/",
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
     "files.associations": {
-        "loading_screen.h": "c"
+        "loading_screen.h": "c",
+        "highlight_frame_bank3.h": "c",
+        "upgrade_tiles.h": "c",
+        "gameover.h": "c",
+        "metasprites.h": "c",
+        "rand.h": "c",
+        "constants.h": "c",
+        "globals.h": "c",
+        "prop.h": "c"
     },
 }

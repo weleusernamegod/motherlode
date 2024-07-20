@@ -37,6 +37,7 @@ extern UpgradeMenu main_menu;
 extern UpgradeMenuState current_upgrade_state;
 extern UpgradeMenu *current_upgrade_menu;
 
+void init_highlight_frame_bank2(void);
 void init_upgrade(void);
 void set_upgrade_highlight_frame_position(void);
 void init_upgrade_tiles_palettes(void);

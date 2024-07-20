@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 void init_font(void);
+void init_progressbar(void);
 void init_screen(void);
 void init_clear_screen(void);
 void init_sound(void);
@@ -19,4 +20,10 @@ void init_palette_0(void);
 void turn_screen_off(void);
 void turn_screen_on(void);
 void wait_for_input(void);
+void switch_ram_bank_back_to_prev(void);
+void switch_ram_bank_based_on_value(uint16_t value);
+uint8_t get_tile_from_array(uint16_t depth, uint16_t width);
+void shuffle(uint8_t array[4]);
+void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t palette, uint8_t x, uint8_t y);
+
 #endif // GENERAL_H

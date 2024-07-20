@@ -13,7 +13,7 @@
 #include "constants.h"
 #include "palettes.h"
 
-#include "../assets/highlight_frame.h"
+#include "../assets/highlight_frame_bank2.h"
 #include "../assets/upgrade_frame.h"
 #include "../assets/upgrade_tiles.h"
 #include "../assets/upgrade_tick.h"
@@ -47,6 +47,11 @@ UpgradeMenu main_menu = {0};
 UpgradeMenuState current_upgrade_state = MAIN_MENU;
 UpgradeMenu *current_upgrade_menu = &main_menu;
 
+void init_highlight_frame_bank2(void) {
+    set_sprite_data(highlight_frame_bank2_TILE_ORIGIN, highlight_frame_bank2_TILE_COUNT, highlight_frame_bank2_tiles);
+    set_sprite_palette(HIGHLIGHT_FRAME_PALETTE, 1, highlight_frame_bank2_palettes);
+}
+
 void init_upgrade(void) {
     set_sprite_palette(0, 1, palette_default);
     set_sprite_palette(TICK_PALETTE, 1, upgrade_tick_palettes);
@@ -61,7 +66,7 @@ void init_upgrade(void) {
     set_sprite_tile(UPGRADE_TICK_TILE, upgrade_tick_TILE_ORIGIN); // the tick for the upgrades
     set_sprite_prop(UPGRADE_TICK_TILE, 0b00000000 | TICK_PALETTE); // set it to foreground and OR with palette
     
-    init_highlight_frame();
+    init_highlight_frame_bank2();
     set_upgrade_highlight_frame_position();
 
     update_menu = TRUE; // always update the menu the first time the player enters the shop
@@ -117,7 +122,7 @@ void update_upgrade_highlight_frame_position(uint8_t current_upgrade_selection) 
     x = 24 + (40 * (current_upgrade_selection % 3)) - 1;
     y = 40 + (40 * (current_upgrade_selection / 3)) - 1;
 
-    move_metasprite_ex(dynamic_highlight_frame_metasprites[current_animation_frame], highlight_frame_TILE_ORIGIN, HIGHLIGHT_FRAME_PALETTE, 0, x, y);
+    move_metasprite_ex(dynamic_highlight_frame_metasprites[current_animation_frame], highlight_frame_bank2_TILE_ORIGIN, HIGHLIGHT_FRAME_PALETTE, 0, x, y);
 }
 
 void update_upgrade_tick(UpgradeMenuState state) {

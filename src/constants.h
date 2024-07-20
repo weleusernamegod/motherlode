@@ -78,6 +78,7 @@
 
 #define MIN_MINABLE_MATERIAL COAL
 #define MAX_MINABLE_MATERIAL DIAMOND
+#define MATERIAL_COUNT ARTEFACT + 1
 
 // optimises, at what framecounter to do what task
 #define TICK_FUEL 15
@@ -151,8 +152,6 @@
 
 // progressbar and warnings
 #define GAME_OVER_Y (SCREENHEIGHT/2)
-#define WARNING_CARGO_Y 45
-#define WARNING_FUEL_Y 55
 #define PROGRESSBAR_TILE_0_8 32    // Tile index for empty sprite
 #define PROGRESSBAR_TILE_1_8   (PROGRESSBAR_TILE_0_8 + 1)    // Tile index for 1/8 filled sprite
 #define PROGRESSBAR_TILE_2_8   (PROGRESSBAR_TILE_0_8 + 2)

@@ -9,6 +9,7 @@ BANKREF_EXTERN(bank_powerup)
 #include <stdio.h>
 #include "inventory.h"
 
+void init_highlight_frame_bank3(void);
 void init_powerup(void);
 void draw_fuel_display(void);
 void hide_fuel_display(void);

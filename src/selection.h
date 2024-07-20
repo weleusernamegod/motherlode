@@ -12,6 +12,4 @@ extern metasprite_t dynamic_highlight_frame_metasprite2[];
 extern metasprite_t dynamic_highlight_frame_metasprite3[];
 extern metasprite_t* dynamic_highlight_frame_metasprites[4];
 
-void init_highlight_frame(void);
-
 #endif // SELECTION_H

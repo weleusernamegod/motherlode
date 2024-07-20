@@ -3,12 +3,14 @@
 #include <gb/metasprites.h>
 #include <gbdk/font.h>
 #include <string.h>
+#include <rand.h>
 
 
 #include "palettes.h"
 #include "attributes.h"
 #include "globals.h"
 #include "constants.h"
+#include "level.h"
 
 #include "../assets/font.h"
 #include "../assets/character.h"
@@ -17,11 +19,16 @@
 #include "../assets/rover_eye.h"
 #include "../assets/tracks.h"
 #include "../assets/prop.h"
+#include "../assets/progressbar.h"
 
 void init_font(void){
 
     set_bkg_data(font_TILE_ORIGIN, font_TILE_COUNT, font_tiles);
     set_bkg_data(character_TILE_ORIGIN, character_TILE_COUNT, character_tiles);
+}
+
+void init_progressbar(void){
+    set_sprite_data(PROGRESSBAR_TILE_0_8, progressbar_TILE_COUNT, progressbar_tiles);
 }
 
 void init_screen(void){
@@ -246,5 +253,106 @@ void wait_for_input(void) {
         }
 
         vsync();  // Wait for the vertical blank to reduce CPU usage
+    }
+}
+
+void switch_ram_bank_back_to_prev(void) {
+    current_ram_bank = prev_ram_bank;
+    SWITCH_RAM(prev_ram_bank);
+}
+
+void switch_ram_bank_based_on_value(uint16_t value) {
+    prev_ram_bank = current_ram_bank;
+    current_ram_bank = value / 256; // Determine which bank to switch to
+    SWITCH_RAM(current_ram_bank); // Switch to the appropriate bank
+}
+
+uint8_t get_tile_from_array(uint16_t depth, uint16_t width) {
+    switch_ram_bank_based_on_value(depth);
+    uint8_t tile = level_array[depth % 256][width];
+    switch_ram_bank_back_to_prev();
+    return tile;
+}
+
+void shuffle(uint8_t array[4]) {
+    uint16_t seed = LY_REG;
+    seed |= (uint16_t)DIV_REG << 8;
+    initrand(seed);
+    // Get two random numbers for swapping
+    uint8_t firstSwapIndex = rand() % 4;
+    uint8_t secondSwapIndex;
+    do {
+        secondSwapIndex = rand() % 4;
+    } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
+
+    // Perform the first swap
+    uint8_t temp = array[firstSwapIndex];
+    array[firstSwapIndex] = array[secondSwapIndex];
+    array[secondSwapIndex] = temp;
+
+    // Optional: A second swap to increase randomness without full loop
+    firstSwapIndex = rand() % 4;
+    do {
+        secondSwapIndex = rand() % 4;
+    } while (firstSwapIndex == secondSwapIndex);  // Ensure it's a different index
+
+    temp = array[firstSwapIndex];
+    array[firstSwapIndex] = array[secondSwapIndex];
+    array[secondSwapIndex] = temp;
+}
+
+/**
+ * @param current_value the current value for the progressbar
+ * @param max_value the max value / range of the bar
+ * @param digits how many 8x8 sprites the bar should be long
+ * @param tilestart what hardware sprite to use
+ * @param palette what palette to use
+ * @param x x-coordinate of first tile
+ * @param y y-coordinate of first tile
+ */
+void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t palette, uint8_t x, uint8_t y) {
+    // Calculate percentage of progress in terms of total available width in pixels (digits * 8)
+    uint8_t total_pixels = digits * 8;
+    uint16_t pixels_to_fill;
+    // for large values use 32 bit value
+    if (digits > 3) {
+        uint32_t scaled_value = (uint32_t)current_value * total_pixels; // Use uint32_t for the intermediate result
+        pixels_to_fill = scaled_value / max_value;
+    } else {
+        pixels_to_fill = (current_value * total_pixels) / max_value;
+    }
+
+
+    for (uint8_t i = 0; i < digits; i++) {
+        uint8_t tile_index = PROGRESSBAR_TILE_0_8; // Default to empty
+        uint8_t sprite_pixels = 8; // Each sprite can show up to 8 pixels (full sprite width)
+        uint8_t effective_pixels = (pixels_to_fill > sprite_pixels) ? sprite_pixels : pixels_to_fill;
+
+        // Adjust pixel count for next sprite
+        pixels_to_fill -= effective_pixels;
+
+        // Map effective pixels to sprite tiles
+        switch (effective_pixels) {
+            case 0: tile_index = PROGRESSBAR_TILE_0_8; break;
+            case 1: tile_index = PROGRESSBAR_TILE_1_8; break;
+            case 2: tile_index = PROGRESSBAR_TILE_2_8; break;
+            case 3: tile_index = PROGRESSBAR_TILE_3_8; break;
+            case 4: tile_index = PROGRESSBAR_TILE_4_8; break;
+            case 5: tile_index = PROGRESSBAR_TILE_5_8; break;
+            case 6: tile_index = PROGRESSBAR_TILE_6_8; break;
+            case 7: tile_index = PROGRESSBAR_TILE_7_8; break;
+            case 8: 
+                if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
+                    tile_index = PROGRESSBAR_TILE_8_8;
+                } else {
+                    tile_index = PROGRESSBAR_TILE_END;
+                }
+                break;
+        }
+
+        // Set the sprite tile and move it into position
+        set_sprite_tile(tilestart + i, tile_index);
+        set_sprite_prop(tilestart + i, 0b10000000 | palette); // set it to background and OR it with palette
+        move_sprite(tilestart + i, x + i * 8, y);
     }
 }
