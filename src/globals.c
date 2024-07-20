@@ -58,6 +58,8 @@ BOOLEAN is_drilling;
 uint8_t base_drilltime = 16;
 BOOLEAN tile_mined = FALSE;
 BOOLEAN ore_mined = FALSE;
+BOOLEAN lava_mined = FALSE;
+BOOLEAN gas_mined = FALSE;
 BOOLEAN display_warning_hull_normal = FALSE;
 BOOLEAN display_warning_fuel_normal = FALSE;
 BOOLEAN display_warning_fuel_critical = FALSE;

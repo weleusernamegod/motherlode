@@ -13,32 +13,32 @@ Material materials[] = {
     {   "empty",      EMPTY,         0,     0,       0,    0,   0,            0,        255,     0  },
     {   "dirt",       DIRT,         16,     1,       0,    0,   2,            0,        255,     0  },
     {   "grass",      GRASS,        16,     1,       0,    0,   1,            0,        255,     0  },
-    {   "stone",      STONE,         0,     0,       0,    0,   1,           30,        100,     0  },
+    {   "stone",      STONE,         0,     0,       0,    0,   1,           16,        30,      0  },
     // ore         
-    {   "coal",       COAL,         32,     1,      30,    0,   2,            0,        50,      0  },
-    {   "iron",       IRON,         32,     1,      50,    0,   3,            0,        50,      0  },
-    {   "tin",        TIN,          40,     2,     200,    0,   4,           30,        50,      0  },
-    {   "copper",     COPPER,       45,     2,     100,    0,   5,           30,        20,      0  },
-    {   "silver",     SILVER,       50,     3,     500,    0,   6,           45,        20,      0  },
-    {   "gold",       GOLD,         64,     3,     750,    0,   7,           60,        10,      0  },
-    {   "mithril",    MITHRIL,      80,     4,    1000,    0,   2,           90,        10,      0  },
-    {   "platinum",   PLATINUM,    100,     5,    1500,    0,   5,          120,        10,      0  },
-    {   "titanium",   TITANIUM,    120,     8,    2500,    0,   2,          150,        10,      0  },
-    {   "obsidium",   OBSIDIUM,    150,    10,    5000,    0,   3,          180,        10,      0  },
-    {   "elementium", ELEMENTIUM,  200,    20,   10000,    0,   4,          210,        10,      0  },
-    {   "adamantite", ADAMANTITE,  250,    30,   15000,    0,   5,          240,        10,      0  },
+    {   "coal",       COAL,         32,     1,      30,    0,   2,            0,        30,      0  },
+    {   "iron",       IRON,         32,     1,      50,    0,   3,            0,        30,      0  },
+    {   "tin",        TIN,          40,     2,     80,    0,   5,           16,        30,      0  },
+    {   "copper",     COPPER,       45,     2,     150,    0,   6,           64,        15,      0  },
+    {   "silver",     SILVER,       50,     3,     200,    0,   4,          128,        10,      0  },
+    {   "gold",       GOLD,         64,     3,     500,    0,   3,          192,        5,       0  },
+    {   "mithril",    MITHRIL,      80,     4,    800,    0,   2,          384,        5,       0  },
+    {   "platinum",   PLATINUM,    100,     5,    1000,    0,   4,          768,        5,       0  },
+    {   "titanium",   TITANIUM,    120,     8,    1500,    0,   4,          1088,        5,       0  },
+    {   "obsidium",   OBSIDIUM,    150,     8,    2000,    0,   3,          1280,        5,       0  },
+    {   "elementium", ELEMENTIUM,  200,     8,   3000,    0,   4,          1600,        5,       0  },
+    {   "adamantite", ADAMANTITE,  250,    10,   5000,    0,   3,          1920,        5,       0  },
     // gems         
-    {   "emerald",    EMERALD,      80,    10,    2000,    0,   7,          400,         2,      0  },
-    {   "ruby",       RUBY,         80,    10,    5000,    0,   7,          500,         2,      0  },
-    {   "diamond",    DIAMOND,     160,    10,   10000,    0,   7,          900,         2,      0  },
-    {   "aquamarine", AQUAMARINE,  200,    10,   20000,    0,   7,         1000,         2,      0  },
+    {   "emerald",    EMERALD,      80,    10,    2000,    0,   2,          640,         2,      0  },
+    {   "ruby",       RUBY,         80,    10,    5000,    0,   2,          896,         2,      0  },
+    {   "diamond",    DIAMOND,     160,    10,   10000,    0,   2,         1408,         2,      0  },
+    {   "aquamarine", AQUAMARINE,  200,    10,   20000,    0,   2,         1664,         2,      0  },
     // hazards         
-    {   "lava",       LAVA,          0,     0,       0,    0,   5,         1000,         0,      0  },
-    {   "gas",        GAS,           0,     0,       0,    0,   5,         1000,         0,      0  },
+    {   "lava",       LAVA,          250,     0,       0,    0,   7,         512,         50,      0  },
+    {   "gas",        GAS,           80,     0,       0,    0,   6,         1024,        80,      0  },
     // special         
-    {   "bones",      BONES,        64,     0,       0,    0,   6,          300,         1,      0  },
-    {   "skull",      SKULL,        64,     0,       0,    0,   6,          500,         1,      0  },
-    {   "artefact",   ARTEFACT,     64,     0,       0,    0,   6,         1000,         1,      0  },
+    {   "bones",      BONES,        64,     5,       2500,    0,   5,          576,         1,      0  },
+    {   "skull",      SKULL,        64,    10,       8000,    0,   5,         1408,         1,      0  },
+    {   "artefact",   ARTEFACT,     64,    20,       15000,    0,   5,         1856,         1,      0  },
 };
 
 
@@ -47,7 +47,7 @@ PowerUp powerup[] = {
 {"REPAIR SHIP", "", "", 0, 0},
 {"EXTRA TANK", "press A to", "refuel ship", 0, 2000},
 {"REPAIR KIT", "press B to", "repair ship", 0, 7500},
-{"DYNAMITE", "press start", "to use item", 20, 2000},
+{"DYNAMITE", "press start", "to use item", 255, 2000},
 {"TELEPORTER", "press select", "to use item", 0, 10000}
 };
 
@@ -79,19 +79,31 @@ void update_inventory(void) {
         }
     }
 
-
-    // Handling special cases where materials directly translate into money
+    // Handling special cases where it hurts the player to mine that ore
     switch(material_index) {
-        case BONES:
-            player.money += 1000;
+        case LAVA:
+            player.hull.current_value -= 1000;
+            lava_mined = TRUE;
             break;
-        case ARTEFACT:
-            player.money += 5000;
-            break;
-        case SKULL:
-            player.money += 10000;
+        case GAS:
+            player.hull.current_value -= 1000;
+            gas_mined = TRUE;
             break;
     }
+
+
+    // Handling special cases where materials directly translate into money
+    // switch(material_index) {
+    //     case BONES:
+    //         player.money += 1000;
+    //         break;
+    //     case ARTEFACT:
+    //         player.money += 5000;
+    //         break;
+    //     case SKULL:
+    //         player.money += 10000;
+    //         break;
+    // }
 }
 
 

@@ -37,6 +37,9 @@ void game_loop(void) {
             handle_cargo();
             if (display_warning_cargo_normal == FALSE) PLAY_SFX_level_up; else PLAY_SFX_hit;
         }
+        if (lava_mined == TRUE) {
+            
+        }
         clear_4bkg_tiles(width, wrapped_depth);
         tile_mined = FALSE;
         ore_mined = FALSE;
@@ -56,6 +59,8 @@ void game_loop(void) {
 
         if (depth_offset < DEPTH_CHANGE){
             change_sky_color();
+            change_background_color();
+        } else {
             change_background_color();
         }
         reload_palettes = FALSE;

@@ -82,6 +82,7 @@ void main(void) {
                 init_sprite_palettes();
                 init_palette_0();
                 init_palette_based_on_depth();
+                update_palette_based_on_depth();
                 init_font();
                 init_tiles();
                 draw_tiles();

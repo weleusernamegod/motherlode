@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // general
-#define ROWS 512
+#define ROWS 256
 #define COLS 16
 
 #define START_DEPTH 2
@@ -106,6 +106,8 @@
 
 #define TERMINAL_VELOCITY 14
 #define FALL_DAMAGE_THRESHOLD 6
+#define LAVA_DAMAGE 100
+#define GAS_DAMAGE 100
 
 #define DRILL 1
 #define DRIVE 2

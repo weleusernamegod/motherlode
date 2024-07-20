@@ -238,11 +238,25 @@ void update_movement(void) {
             // animation has ended, so the rover has stopped drilling
             is_drilling = FALSE;
             // the player has cleared a tile, so set flag to update inventory
-            if (level_array[wrapped_depth][width] != EMPTY && depth >= UNDERGROUND){
-                if (level_array[wrapped_depth][width] >= MIN_MINABLE_MATERIAL){
-                    ore_mined = TRUE;
-                }
+            if (level_array[wrapped_depth][width] != EMPTY && depth >= UNDERGROUND) {
                 tile_mined = TRUE;
+                uint8_t tile = level_array[wrapped_depth][width];
+
+                switch (tile) {
+                    case LAVA:
+                        lava_mined = TRUE;
+                        break;
+
+                    case GAS:
+                        gas_mined = TRUE;
+                        break;
+
+                    default:
+                        if (tile >= MIN_MINABLE_MATERIAL && tile <= MAX_MINABLE_MATERIAL) {
+                            ore_mined = TRUE;
+                        }
+                        break;
+                }
             }
 
             // redraw character / scroll again to make sure the rounding errors are gone
@@ -400,18 +414,37 @@ void initiate_movement(void) {
         move(DOWN, ACCELERATE);
     }
 }
-void calculate_damage(void){
+void apply_lava_damage(void){
+    player.hull.current_value -= LAVA_DAMAGE;
+    PLAY_SFX_hit;
+}
+
+void apply_gas_damage(void){
+    player.hull.current_value -= GAS_DAMAGE;
+    PLAY_SFX_hit;
+}
+void apply_fall_damage(void){
     uint8_t damage = ((prev_velocity - FALL_DAMAGE_THRESHOLD) * 2) + 1;
     player.hull.current_value -= damage;
     PLAY_SFX_hit;
 }
 
-void calculate_falldamage(void){
+void calculate_hazard_damage(void){
+    if (lava_mined == TRUE) {
+        apply_lava_damage();
+        lava_mined == FALSE;
+    } else if (gas_mined == TRUE) {
+        apply_gas_damage();
+        gas_mined == FALSE;   
+    }
+}
+
+void calculate_fall_damage(void){
     if (velocity == 0 && prev_velocity > FALL_DAMAGE_THRESHOLD) {
-        calculate_damage();
+        apply_fall_damage();
         prev_velocity = 0;
     } else if (next_tile_down != EMPTY && velocity > FALL_DAMAGE_THRESHOLD) {
-        calculate_damage();
+        apply_fall_damage();
         velocity = 0;
     } else if (next_tile_down != EMPTY && velocity <= FALL_DAMAGE_THRESHOLD && velocity > 0){
         velocity = 0;
@@ -476,7 +509,8 @@ void handle_fuel(BOOLEAN optimise) {
 void handle_hull(BOOLEAN optimise) {
     // total CPU usage around 19-20%
     check_hull();
-    calculate_falldamage();
+    calculate_fall_damage();
+    calculate_hazard_damage();
     if (frame_counter == TICK_HULL || optimise == FALSE){ // reduce CPU work
         update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
         draw_hull_bar();

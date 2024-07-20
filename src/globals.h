@@ -65,6 +65,8 @@ extern BOOLEAN is_drilling;
 extern uint8_t base_drilltime;
 extern BOOLEAN tile_mined;
 extern BOOLEAN ore_mined;
+extern BOOLEAN lava_mined;
+extern BOOLEAN gas_mined;
 extern BOOLEAN display_warning_hull_normal;
 extern BOOLEAN display_warning_fuel_normal;
 extern BOOLEAN display_warning_fuel_critical;
