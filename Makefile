@@ -55,7 +55,7 @@ png2asset:
 	
 	$(PNG2ASSET) png/warning_cargo.png -c assets/warning_cargo.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 48 -b 1
 	$(PNG2ASSET) png/warning_fuel.png -c assets/warning_fuel.c -spr8x8 -tiles_only -no_palettes -noflip -keep_duplicate_tiles -tile_origin 55 -b 1
-	$(PNG2ASSET) png/game_over_skull.png -c assets/game_over_skull.c -spr8x8 -no_palettes -noflip -keep_palette_order -sh 48 -tile_origin 64 -b 1
+	$(PNG2ASSET) png/game_over_skull.png -c assets/game_over_skull.c -spr8x8 -no_palettes -noflip -keep_palette_order -sh 48 -tile_origin 64 -b 2
 	$(PNG2ASSET) png/a_button.png -c assets/a_button.c -spr8x8 -no_palettes -noflip -sh 16 -tile_origin 96 -b 1
 	$(PNG2ASSET) png/upgrade_tiles.png -c assets/upgrade_tiles.c -spr8x8 -tiles_only -noflip -keep_palette_order -max_palettes 36 -keep_duplicate_tiles -tile_origin 0 -b 2
 	$(PNG2ASSET) png/upgrade_tick.png -c assets/upgrade_tick.c -spr8x8 -noflip -keep_palette_order -tile_origin 32 -b 2

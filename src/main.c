@@ -19,6 +19,7 @@
 #include "upgrade.h"
 #include "sell.h"
 #include "powerup.h"
+#include "gameover.h"
 
 #include "../assets/rover.h"
 #include "../assets/rover_eye.h"
@@ -171,6 +172,7 @@ void main(void) {
                 turn_screen_off();
                 break;
             case GAME_STATE_GAME_OVER:
+                SWITCH_ROM(2);
                 turn_screen_on();
                 init_sound();
                 move_win(7, 144);
@@ -180,6 +182,7 @@ void main(void) {
                     read_buttons();
                     vsync();
                 }
+                SWITCH_ROM(1);
                 hide_sprites_range(SKULL_START, MAX_HARDWARE_SPRITES);
                 reset_player();
                 draw_character();

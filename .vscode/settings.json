@@ -1,4 +1,7 @@
 {
     "emulicious-debugger.emuliciousPath": "/Applications/Emulicious/",
     "C_Cpp.default.compilerPath": "/usr/local/opt/gbdk/bin/lcc",
+    "files.associations": {
+        "loading_screen.h": "c"
+    },
 }
