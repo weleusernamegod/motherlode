@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 // general
-#define ROWS 256
+#define ROWS 2048
 #define COLS 16
 
 #define START_DEPTH 2

@@ -400,7 +400,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
             } else if (array[y][x] == DIRT) {
                 for (uint8_t i = 0; i < 4; i++) tile_array[i] = temp + i;
                 shuffle(tile_array);
-            } else if (y == UNDERGROUND) { // make stones look like gras
+            } else if (y == UNDERGROUND && depth < 50) { // make stones look like gras
                 if (array[y][x] == GRASS) {
                 tile_array[0] = temp + (rand() % 4);
                 tile_array[1] = temp + (rand() % 4);
@@ -546,8 +546,8 @@ void draw_test(void) {
 
 void draw_depth(void){
     char string[5];
-    itoa(depth_offset, string, 10);
-    // itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
+    // itoa(depth_offset, string, 10);
+    itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     // strcat(string, "^");
     draw_text_win(14,1,string,5,FALSE,0);
 }

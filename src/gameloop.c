@@ -37,12 +37,12 @@ void game_loop(void) {
             handle_cargo();
             if (display_warning_cargo_normal == FALSE) PLAY_SFX_level_up; else PLAY_SFX_hit;
         }
-        if (lava_mined == TRUE) {
-            
-        }
+        calculate_hazard_damage();
         clear_4bkg_tiles(width, wrapped_depth);
         tile_mined = FALSE;
         ore_mined = FALSE;
+        lava_mined = FALSE;
+        gas_mined = FALSE;
     }
 
     // player has moved one block

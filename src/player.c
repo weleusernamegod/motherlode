@@ -432,10 +432,8 @@ void apply_fall_damage(void){
 void calculate_hazard_damage(void){
     if (lava_mined == TRUE) {
         apply_lava_damage();
-        lava_mined == FALSE;
     } else if (gas_mined == TRUE) {
         apply_gas_damage();
-        gas_mined == FALSE;   
     }
 }
 
@@ -510,7 +508,6 @@ void handle_hull(BOOLEAN optimise) {
     // total CPU usage around 19-20%
     check_hull();
     calculate_fall_damage();
-    calculate_hazard_damage();
     if (frame_counter == TICK_HULL || optimise == FALSE){ // reduce CPU work
         update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
         draw_hull_bar();
