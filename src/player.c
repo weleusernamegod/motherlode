@@ -338,7 +338,7 @@ void move(char direction, char mode){
     uint8_t frames = 0;
     if (animation_frames_left == 0){
         if (mode == DRILL) {
-            PLAY_SFX_down;
+            PLAY_SFX_drill;
             is_drilling = TRUE;
             velocity = 0;
             if (direction == LEFT) next_tile = next_tile_left;
@@ -348,7 +348,7 @@ void move(char direction, char mode){
             frames = calculate_frames();
         } else if (mode == DRIVE) {
             // if (next_tile_down != EMPTY) velocity = 0; // attempt to keep velocity when flying
-            PLAY_SFX_soft_hit;
+            PLAY_SFX_drive;
             velocity = 0;
             frames = 16;
         } else if (mode == ACCELERATE) {
@@ -412,17 +412,17 @@ void initiate_movement(void) {
 }
 void apply_lava_damage(void){
     player.hull.current_value -= LAVA_DAMAGE;
-    PLAY_SFX_hit;
+    PLAY_SFX_hurt;
 }
 
 void apply_gas_damage(void){
     player.hull.current_value -= GAS_DAMAGE;
-    PLAY_SFX_hit;
+    PLAY_SFX_hurt;
 }
 void apply_fall_damage(void){
     uint8_t damage = ((prev_velocity - FALL_DAMAGE_THRESHOLD) * 2) + 1;
     player.hull.current_value -= damage;
-    PLAY_SFX_hit;
+    PLAY_SFX_hurt;
 }
 
 void calculate_hazard_damage(void){
@@ -484,7 +484,7 @@ void check_fuel(void){
     }
 }
 void update_fuel(void){
-    if (frame_counter == 0) {
+    if (second_counter % 2 == 0 && frame_counter == 0) {
         player.fuel.current_value --;   // only once every 60 frames
     }
 }

@@ -18,6 +18,7 @@
 
 #include "powerup.h"
 #include "selection.h"
+#include "sfx.h"
 
 #pragma bank 3
 #ifndef __INTELLISENSE__
@@ -159,21 +160,26 @@ uint8_t check_fuel_display_y(void) {
 void fuel_up(void) {
     uint16_t fuel_cost = calculate_fuel_cost();
 
-    // 80 is the length of the bar, so if the fuel is full, it should be at the top
-    if (player.money >= fuel_cost) {
-        // Player has enough money to fully fuel up
-        player.money -= fuel_cost;
-        player.fuel.current_value = player.fuel.max_value;
+    if (player.fuel.current_value != player.fuel.max_value) {
+        // 80 is the length of the bar, so if the fuel is full, it should be at the top
+        if (player.money >= fuel_cost) {
+            // Player has enough money to fully fuel up
+            player.money -= fuel_cost;
+            player.fuel.current_value = player.fuel.max_value;
+        } else {
+            // Player doesn't have enough money to fully fuel up
+            uint16_t affordable_fuel = player.money * FUEL_PRICE; // calculate how much fuel they can afford
+            player.fuel.current_value += affordable_fuel;
+            player.money = 0;
+        }
+        
+        // Ensure the fuel doesn't exceed max value
+        if (player.fuel.current_value > player.fuel.max_value) {
+            player.fuel.current_value = player.fuel.max_value;
+        }
+        PLAY_SFX_fuel_up;
     } else {
-        // Player doesn't have enough money to fully fuel up
-        uint16_t affordable_fuel = player.money * FUEL_PRICE; // calculate how much fuel they can afford
-        player.fuel.current_value += affordable_fuel;
-        player.money = 0;
-    }
-    
-    // Ensure the fuel doesn't exceed max value
-    if (player.fuel.current_value > player.fuel.max_value) {
-        player.fuel.current_value = player.fuel.max_value;
+        PLAY_SFX_buy_nothing;
     }
 }
 
@@ -312,6 +318,7 @@ void handle_powerup_input(void) {
         // Going back with 'B'
         if (buttons & J_B) {
                 leave_station = TRUE;
+                current_powerup_selection = 0;
         }
     }
 }

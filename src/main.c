@@ -21,6 +21,7 @@
 #include "powerup.h"
 #include "gameover.h"
 #include "loading.h"
+#include "sfx.h"
 
 #include "../assets/rover.h"
 #include "../assets/rover_eye.h"
@@ -129,9 +130,10 @@ void main(void) {
                 init_upgrade_tiles_palettes();
                 turn_screen_on();
                 init_sound();
+                PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     upgrade_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; PLAY_SFX_exit;
                 }
                 mute_sound();
                 turn_screen_off();
@@ -144,9 +146,10 @@ void main(void) {
                 draw_sell_menu();
                 init_sound();
                 turn_screen_on();
+                PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_SELL_MENU){
                     sell_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE;
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; PLAY_SFX_exit;
                 }
                 display_warning_cargo_normal = FALSE;
                 mute_sound();
@@ -162,11 +165,12 @@ void main(void) {
                 draw_powerup_menu();
                 init_sound();
                 turn_screen_on();
+                PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_FUEL_MENU){
                     if (check_fuel_display_y() <= fuel_display_y && fuel_display_y > 0) fuel_display_y --;
                     draw_fuel_display();
                     powerup_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; hide_fuel_display();
+                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; hide_fuel_display(); PLAY_SFX_exit;
                 }
                 mute_sound();
                 turn_screen_off();

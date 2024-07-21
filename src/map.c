@@ -333,7 +333,7 @@ void update_icon_hull(void){
     if (display_warning_hull_normal) {
         if (frame_counter % PERCENTAGE_NORMAL == 0) {
             set_sprite_prop(ICON_HULL_START, WARNING_PALETTE);
-            PLAY_SFX_up;
+            PLAY_SFX_low_fuel;
         } else if (frame_counter % (PERCENTAGE_NORMAL / 2) == 0) {
             set_sprite_prop(ICON_HULL_START, ICON_PALETTE);
         }
@@ -346,14 +346,14 @@ void update_icon_fuel(void){
     if (display_warning_fuel_normal && !display_warning_fuel_critical) {
         if (frame_counter % PERCENTAGE_NORMAL == 0) {
             set_sprite_prop(ICON_FUEL_START, WARNING_PALETTE);
-            PLAY_SFX_up;
+            PLAY_SFX_low_fuel;
         } else if (frame_counter % (PERCENTAGE_NORMAL / 2) == 0) {
             set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
         }
     } else if (display_warning_fuel_normal && display_warning_fuel_critical) {
         if (frame_counter % PERCENTAGE_CRITICAL == 0) {
             set_sprite_prop(ICON_FUEL_START, WARNING_PALETTE);
-            PLAY_SFX_up;
+            PLAY_SFX_low_fuel;
         } else if (frame_counter % (PERCENTAGE_CRITICAL / 2) == 0) {
             set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
         }
@@ -366,7 +366,7 @@ void update_icon_fuel(void){
 void update_icon_cargo(void){
     if (display_warning_cargo_normal) {
             set_sprite_prop(ICON_CARGO_START, WARNING_PALETTE);
-            PLAY_SFX_exp_up;
+            PLAY_SFX_cargo_full;
     } else {
         set_sprite_prop(ICON_CARGO_START, ICON_PALETTE);
     }

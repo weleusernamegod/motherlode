@@ -164,5 +164,3 @@ void generate_map(uint16_t desired_rows) {
 
     SWITCH_RAM(0); // Back to default RAM bank
 }
-
-

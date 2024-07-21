@@ -17,38 +17,38 @@ Material materials[] = {
     // ore         
     {   "coal",       COAL,         32,     1,      30,    0,   2,            0,        30,      0  },
     {   "iron",       IRON,         32,     1,      50,    0,   3,            0,        30,      0  },
-    {   "tin",        TIN,          40,     2,     80,    0,   5,           16,        30,      0  },
+    {   "tin",        TIN,          40,     2,      80,    0,   5,           16,        30,      0  },
     {   "copper",     COPPER,       45,     2,     150,    0,   6,           64,        15,      0  },
     {   "silver",     SILVER,       50,     3,     200,    0,   4,          128,        10,      0  },
     {   "gold",       GOLD,         64,     3,     500,    0,   3,          192,        5,       0  },
-    {   "mithril",    MITHRIL,      80,     4,    800,    0,   2,          384,        5,       0  },
+    {   "mithril",    MITHRIL,      80,     4,     800,    0,   2,          384,        5,       0  },
     {   "platinum",   PLATINUM,    100,     5,    1000,    0,   4,          768,        5,       0  },
-    {   "titanium",   TITANIUM,    120,     8,    1500,    0,   4,          1088,        5,       0  },
-    {   "obsidium",   OBSIDIUM,    150,     8,    2000,    0,   3,          1280,        5,       0  },
-    {   "elementium", ELEMENTIUM,  200,     8,   3000,    0,   4,          1600,        5,       0  },
-    {   "adamantite", ADAMANTITE,  250,    10,   5000,    0,   3,          1920,        5,       0  },
+    {   "titanium",   TITANIUM,    120,     8,    1500,    0,   4,         1088,        5,       0  },
+    {   "obsidium",   OBSIDIUM,    150,     8,    2000,    0,   3,         1280,        5,       0  },
+    {   "elementium", ELEMENTIUM,  200,     8,    3000,    0,   4,         1600,        5,       0  },
+    {   "adamantite", ADAMANTITE,  250,    10,    5000,    0,   3,         1920,        5,       0  },
     // gems         
     {   "emerald",    EMERALD,      80,    10,    2000,    0,   2,          640,         2,      0  },
     {   "ruby",       RUBY,         80,    10,    5000,    0,   2,          896,         2,      0  },
     {   "diamond",    DIAMOND,     160,    10,   10000,    0,   2,         1408,         2,      0  },
     {   "aquamarine", AQUAMARINE,  200,    10,   20000,    0,   2,         1664,         2,      0  },
     // hazards         
-    {   "lava",       LAVA,          200,     0,       0,    0,   7,         0,         50,      0  },
-    {   "gas",        GAS,           64,     0,       0,    0,   6,         1024,        80,      0  },
+    {   "lava",       LAVA,        200,     0,       0,    0,   7,          512,        50,      0  },
+    {   "gas",        GAS,          64,     0,       0,    0,   6,         1024,        80,      0  },
     // special         
-    {   "bones",      BONES,        64,     5,       2500,    0,   5,          576,         1,      0  },
-    {   "skull",      SKULL,        64,    10,       8000,    0,   5,         1408,         1,      0  },
-    {   "artefact",   ARTEFACT,     64,    20,       15000,    0,   5,         1856,         1,      0  },
+    {   "bones",      BONES,        64,     5,    2500,    0,   5,          576,         1,      0  },
+    {   "skull",      SKULL,        64,    10,    8000,    0,   5,         1408,         1,      0  },
+    {   "artefact",   ARTEFACT,     64,    20,    15000,   0,   5,         1856,         1,      0  },
 };
 
 
 PowerUp powerup[] = {
 {"REFUEL SHIP", "", "", 0, 0},
 {"REPAIR SHIP", "", "", 0, 0},
-{"EXTRA TANK", "press A to", "refuel ship", 0, 2000},
-{"REPAIR KIT", "press B to", "repair ship", 0, 7500},
-{"DYNAMITE", "press start", "to use item", 0, 2000},
-{"TELEPORTER", "press select", "to use item", 0, 20000}
+{"EXTRA TANK", "press A to", "refuel ship", 2, 2000},
+{"REPAIR KIT", "press B to", "repair ship", 2, 7500},
+{"DYNAMITE", "press start", "to use item", 5, 2000},
+{"TELEPORTER", "press select", "to use item", 2, 20000}
 };
 
 void update_inventory(void) {

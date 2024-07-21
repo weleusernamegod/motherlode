@@ -97,7 +97,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 hammer:
-	@cd hammer && python3 hammer2cbt.py --fxammo 10 --fxnamelist FXNAMELIST.txt hammered.sav 0 ../sfx/
+	@cd hammer && python3 hammer2cbt.py --fxammo 42 --fxnamelist FXNAMELIST.txt motherlode_sfx.sav 0 ../sfx/
 
 report:
 	/usr/local/opt/gbdk/bin/romusage build/Motherlode.noi -g -sRe

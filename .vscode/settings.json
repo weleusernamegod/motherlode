@@ -13,6 +13,8 @@
         "prop.h": "c",
         "stdio.h": "c",
         "palettes.h": "c",
-        "highlight_frame.h": "c"
+        "highlight_frame.h": "c",
+        "sfx.h": "c",
+        "loading.h": "c"
     },
 }
