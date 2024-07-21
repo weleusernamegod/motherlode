@@ -19,12 +19,11 @@
 #define splashscreen_screen_PIVOT_Y 20
 #define splashscreen_screen_PIVOT_W 64
 #define splashscreen_screen_PIVOT_H 40
+extern const metasprite_t* const splashscreen_screen_metasprites[1];
 
 BANKREF_EXTERN(splashscreen_screen)
 
 extern const palette_color_t splashscreen_screen_palettes[32];
 extern const uint8_t splashscreen_screen_tiles[640];
-
-extern const metasprite_t* const splashscreen_screen_metasprites[1];
 
 #endif

@@ -17,5 +17,4 @@ BANKREF_EXTERN(progressbar)
 
 extern const uint8_t progressbar_tiles[160];
 
-
 #endif

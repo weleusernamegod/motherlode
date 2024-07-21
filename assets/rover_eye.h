@@ -19,12 +19,11 @@
 #define rover_eye_PIVOT_Y 8
 #define rover_eye_PIVOT_W 8
 #define rover_eye_PIVOT_H 8
+extern const metasprite_t* const rover_eye_metasprites[1];
 
 BANKREF_EXTERN(rover_eye)
 
 extern const palette_color_t rover_eye_palettes[4];
 extern const uint8_t rover_eye_tiles[16];
-
-extern const metasprite_t* const rover_eye_metasprites[1];
 
 #endif

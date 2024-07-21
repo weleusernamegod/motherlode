@@ -35,7 +35,7 @@ void main(void) {
     init_VBL_interrupts();
     init_sound();
     initrand(DIV_REG);
-    currentGameState = GAME_STATE_NEW_GAME;
+    currentGameState = GAME_STATE_MAIN_MENU;
     while (1) {
         switch (currentGameState) {
             case GAME_STATE_MAIN_MENU:

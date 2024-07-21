@@ -102,16 +102,18 @@ void init_upgrade_tiles_palettes(void) {
     uint8_t x_coords[] = {3, 8, 13, 3, 8, 13};
     uint8_t y_coords[] = {5, 5, 5, 10, 10, 10};
 
-    VBK_REG = 1;
     // Check if the position is valid
     for (uint8_t i = 0; i < 6; i++) {
         unsigned char tileData[16];
         for (uint8_t j = 0; j < 16; j++) {
             tileData[j]=i+2;    // first palette = 2, then inc up to 7
         }
-        set_win_tiles(x_coords[i], y_coords[i], 4, 4, tileData);
+        if (isGBC) {
+            VBK_REG = 1;
+            set_win_tiles(x_coords[i], y_coords[i], 4, 4, tileData);
+            VBK_REG = 0;
+        }
     }
-    VBK_REG = 0;
 }
 
 void update_upgrade_highlight_frame_position(uint8_t current_upgrade_selection) {
@@ -252,8 +254,6 @@ void attempt_upgrade_purchase(UpgradeMenuState current_upgrade_state, UpgradeMen
         currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
     } else {
         return;
-        // Handle feedback that the player can't afford the upgrade
-        // display_cannot_afford_message();  // Hypothetical function to show error message
     }
 }
 

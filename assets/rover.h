@@ -19,12 +19,11 @@
 #define rover_PIVOT_Y 8
 #define rover_PIVOT_W 16
 #define rover_PIVOT_H 16
+extern const metasprite_t* const rover_metasprites[1];
 
 BANKREF_EXTERN(rover)
 
 extern const palette_color_t rover_palettes[8];
 extern const uint8_t rover_tiles[64];
-
-extern const metasprite_t* const rover_metasprites[1];
 
 #endif

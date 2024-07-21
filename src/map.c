@@ -241,17 +241,16 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
             }
 
             // Set tiles first with VBK_REG = 0 (tile data)
-            VBK_REG = 0;
             set_bkg_tiles(2 * x, 2 * y, 2, 1, tile_array);
             set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, tile_array + 2);
 
             // Then set palette with VBK_REG = 1 (palette data)
-            VBK_REG = 1;
-            set_bkg_tiles(2 * x, 2 * y, 2, 1, palette_array);
-            set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, palette_array + 2);
-
-            // Switch back to VBK_REG = 0 for further tile setting
-            VBK_REG = 0;
+            if (isGBC) {
+                VBK_REG = 1;
+                set_bkg_tiles(2 * x, 2 * y, 2, 1, palette_array);
+                set_bkg_tiles(2 * x, 2 * y + 1, 2, 1, palette_array + 2);
+                VBK_REG = 0;
+            }
         }
     }
 }
@@ -286,8 +285,8 @@ void clear_4bkg_tiles(uint8_t x, uint16_t y) {
 
 void draw_depth(void){
     char string[5];
-    itoa(depth_offset, string, 10);
-    // itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
+    // itoa(depth_offset, string, 10);
+    itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     // strcat(string, "^");
     draw_text_win(14,1,string,5,FALSE,0);
 }
@@ -411,18 +410,18 @@ void init_buildings(void){
     set_bkg_data(station_TILE_ORIGIN, station_TILE_COUNT, station_tiles);
 }
 void draw_buildings(void){
-
-    VBK_REG = 0;
     set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map);
     set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map);
     set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map);
     set_bkg_tiles(STATION_SAVE_X * 2, (((STATION_SAVE_Y + 1)* 2) - (station_save_HEIGHT/station_save_TILE_H)), (station_save_WIDTH/station_save_TILE_W), (station_save_HEIGHT/station_save_TILE_H), station_save_map);
-    VBK_REG = 1;
-    set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map_attributes);
-    set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map_attributes);
-    set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map_attributes);
-    set_bkg_tiles(STATION_SAVE_X * 2, (((STATION_SAVE_Y + 1)* 2) - (station_save_HEIGHT/station_save_TILE_H)), (station_save_WIDTH/station_save_TILE_W), (station_save_HEIGHT/station_save_TILE_H), station_save_map_attributes);
-    VBK_REG = 0;
+    if (isGBC) {
+        VBK_REG = 1;
+        set_bkg_tiles(STATION_POWERUP_X * 2, (((STATION_Y + 1)* 2) - (station_powerup_HEIGHT/station_powerup_TILE_H)), (station_powerup_WIDTH/station_powerup_TILE_W), (station_powerup_HEIGHT/station_powerup_TILE_H), station_powerup_map_attributes);
+        set_bkg_tiles(STATION_SELL_X * 2, (((STATION_Y + 1)* 2) - (station_sell_HEIGHT/station_sell_TILE_H)), (station_sell_WIDTH/station_sell_TILE_W), (station_sell_HEIGHT/station_sell_TILE_H), station_sell_map_attributes);
+        set_bkg_tiles(STATION_UPGRADE_X * 2, (((STATION_Y + 1)* 2) - (station_upgrade_HEIGHT/station_upgrade_TILE_H)), (station_upgrade_WIDTH/station_upgrade_TILE_W), (station_upgrade_HEIGHT/station_upgrade_TILE_H), station_upgrade_map_attributes);
+        set_bkg_tiles(STATION_SAVE_X * 2, (((STATION_SAVE_Y + 1)* 2) - (station_save_HEIGHT/station_save_TILE_H)), (station_save_WIDTH/station_save_TILE_W), (station_save_HEIGHT/station_save_TILE_H), station_save_map_attributes);
+        VBK_REG = 0;
+    }
 
 }
 
@@ -436,11 +435,12 @@ void draw_sky(void){
     // Initialize sky_palette array using memset
     memset(sky_palette, PALETTE_SKY, sizeof(sky_palette));
 
-    VBK_REG = 0;
     set_bkg_tiles(0, 0, 32, UNDERGROUND * 2, sky_map);
-    VBK_REG = 1;
-    set_bkg_tiles(0, 0, 32, UNDERGROUND * 2, sky_palette);
-    VBK_REG = 0;
+    if (isGBC) {
+        VBK_REG = 1;
+        set_bkg_tiles(0, 0, 32, UNDERGROUND * 2, sky_palette);
+        VBK_REG = 0;
+    }
 }
 
 void swap_tiles_sky_buildings(void) {

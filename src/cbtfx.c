@@ -32,10 +32,9 @@ void CBTFX_init(const unsigned char * SFX) NONBANKED {
 
     // Check SGB
     if((*SFX & CBTFX_SGB) & 64){
-            *SFX++;
-            *SFX++;
-            sgb_transfer(SFX);
-            return;
+        SFX += 2;
+        sgb_transfer((uint8_t *)SFX);
+        return;
     }
 
     // To avoid hanging notes

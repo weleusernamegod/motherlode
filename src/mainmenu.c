@@ -68,9 +68,11 @@ void init_main_menu(void) {
     }
 
     // write splashscreen tiles and attributes
-    VBK_REG = 1;
-    set_bkg_tiles(0,0,20, 18, splashscreen_map_attributes);
-    VBK_REG = 0;
+    if (isGBC) {
+        VBK_REG = 1;
+        set_bkg_tiles(0,0,20, 18, splashscreen_map_attributes);
+        VBK_REG = 0;
+    }
     set_bkg_tiles(0,0,20, 18, splashscreen_map);
 
     current_menu_index = 0;

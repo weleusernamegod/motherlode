@@ -33,8 +33,8 @@ Material materials[] = {
     {   "diamond",    DIAMOND,     160,    10,   10000,    0,   2,         1408,         2,      0  },
     {   "aquamarine", AQUAMARINE,  200,    10,   20000,    0,   2,         1664,         2,      0  },
     // hazards         
-    {   "lava",       LAVA,          250,     0,       0,    0,   7,         512,         50,      0  },
-    {   "gas",        GAS,           80,     0,       0,    0,   6,         1024,        80,      0  },
+    {   "lava",       LAVA,          200,     0,       0,    0,   7,         0,         50,      0  },
+    {   "gas",        GAS,           64,     0,       0,    0,   6,         1024,        80,      0  },
     // special         
     {   "bones",      BONES,        64,     5,       2500,    0,   5,          576,         1,      0  },
     {   "skull",      SKULL,        64,    10,       8000,    0,   5,         1408,         1,      0  },
@@ -47,8 +47,8 @@ PowerUp powerup[] = {
 {"REPAIR SHIP", "", "", 0, 0},
 {"EXTRA TANK", "press A to", "refuel ship", 0, 2000},
 {"REPAIR KIT", "press B to", "repair ship", 0, 7500},
-{"DYNAMITE", "press start", "to use item", 255, 2000},
-{"TELEPORTER", "press select", "to use item", 0, 10000}
+{"DYNAMITE", "press start", "to use item", 0, 2000},
+{"TELEPORTER", "press select", "to use item", 0, 20000}
 };
 
 void update_inventory(void) {

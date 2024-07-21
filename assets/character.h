@@ -16,13 +16,12 @@
 #define character_COLORS_PER_PALETTE 4
 #define character_TOTAL_COLORS 4
 #define character_MAP_ATTRIBUTES 0
+extern const unsigned char character_map[20];
+#define character_map_attributes character_map
 
 BANKREF_EXTERN(character)
 
 extern const palette_color_t character_palettes[4];
 extern const uint8_t character_tiles[320];
-
-extern const unsigned char character_map[20];
-#define character_map_attributes character_map
 
 #endif

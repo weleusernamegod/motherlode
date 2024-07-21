@@ -32,9 +32,11 @@ void init_highlight_frame_bank3(void) {
 void init_powerup(void) {
     set_win_data(powerup_frame_TILE_ORIGIN, powerup_frame_TILE_COUNT, powerup_frame_tiles);
     set_win_tiles(0, 0, 20, 18, powerup_frame_map);
-    VBK_REG = 1;
-    set_win_tiles(0, 0, 20, 18, powerup_frame_map_attributes);    
-    VBK_REG = 0;
+    if (isGBC) {
+        VBK_REG = 1;
+        set_win_tiles(0, 0, 20, 18, powerup_frame_map_attributes);    
+        VBK_REG = 0;
+    }
 
     set_bkg_palette(0, 7, powerup_frame_palettes); 
     set_bkg_palette(0, 1, palette_default); // overwrite the palette 0 again

@@ -20,13 +20,11 @@
 #define station_sell_MAP_ATTRIBUTES_HEIGHT 5
 #define station_sell_MAP_ATTRIBUTES_PACKED_WIDTH 8
 #define station_sell_MAP_ATTRIBUTES_PACKED_HEIGHT 5
+extern const unsigned char station_sell_map[40];
+extern const unsigned char station_sell_map_attributes[40];
 
 BANKREF_EXTERN(station_sell)
 
-extern const palette_color_t station_sell_palettes[32];
 extern const uint8_t station_sell_tiles[16];
-
-extern const unsigned char station_sell_map[40];
-extern const unsigned char station_sell_map_attributes[40];
 
 #endif

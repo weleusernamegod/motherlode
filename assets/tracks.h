@@ -19,12 +19,11 @@
 #define tracks_PIVOT_Y 4
 #define tracks_PIVOT_W 16
 #define tracks_PIVOT_H 8
+extern const metasprite_t* const tracks_metasprites[3];
 
 BANKREF_EXTERN(tracks)
 
 extern const palette_color_t tracks_palettes[4];
 extern const uint8_t tracks_tiles[96];
-
-extern const metasprite_t* const tracks_metasprites[3];
 
 #endif

@@ -16,11 +16,10 @@
 #define game_over_skull_PIVOT_Y 24
 #define game_over_skull_PIVOT_W 32
 #define game_over_skull_PIVOT_H 48
+extern const metasprite_t* const game_over_skull_metasprites[4];
 
 BANKREF_EXTERN(game_over_skull)
 
 extern const uint8_t game_over_skull_tiles[432];
-
-extern const metasprite_t* const game_over_skull_metasprites[4];
 
 #endif

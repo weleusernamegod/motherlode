@@ -8,24 +8,6 @@
 
 BANKREF(station_powerup)
 
-const palette_color_t station_powerup_palettes[32] = {
-	RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0)
-	,
-	RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0)
-	,
-	RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0)
-	,
-	RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0), RGB8(  0,  0,  0)
-	,
-	RGB8(255,255,255), RGB8(185,136,134), RGB8(138, 59, 56), RGB8( 38, 38, 38)
-	,
-	RGB8(255,255,255), RGB8(185,136,134), RGB8(120, 90, 89), RGB8( 38, 38, 38)
-	,
-	RGB8(255,255,255), RGB8(255,255, 64), RGB8(120, 90, 89), RGB8( 38, 38, 38)
-	,
-	RGB8(255,255,255), RGB8(181,181,181), RGB8(120, 90, 89), RGB8( 38, 38, 38)
-	
-};
 
 const uint8_t station_powerup_tiles[16] = {
 	0x00,0x00,0x00,0x00,

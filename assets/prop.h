@@ -16,11 +16,10 @@
 #define prop_PIVOT_Y 4
 #define prop_PIVOT_W 16
 #define prop_PIVOT_H 8
+extern const metasprite_t* const prop_metasprites[5];
 
 BANKREF_EXTERN(prop)
 
 extern const uint8_t prop_tiles[160];
-
-extern const metasprite_t* const prop_metasprites[5];
 
 #endif

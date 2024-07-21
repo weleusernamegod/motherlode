@@ -10,6 +10,9 @@
         "rand.h": "c",
         "constants.h": "c",
         "globals.h": "c",
-        "prop.h": "c"
+        "prop.h": "c",
+        "stdio.h": "c",
+        "palettes.h": "c",
+        "highlight_frame.h": "c"
     },
 }

@@ -21,5 +21,4 @@ BANKREF_EXTERN(upgrade_tiles)
 extern const palette_color_t upgrade_tiles_palettes[144];
 extern const uint8_t upgrade_tiles_tiles[9216];
 
-
 #endif

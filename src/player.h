@@ -9,9 +9,7 @@
 BANKREF_EXTERN(bank_player)
 
 // Declaration of global structures and variables
-extern struct Player player;
 extern struct Station_proximity station_proximity;
-
 
 // Function declarations
 void init_depth(uint16_t start_width, uint16_t start_depth);

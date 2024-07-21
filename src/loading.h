@@ -11,7 +11,6 @@ void init_loading_screen(void);
 void draw_loading_screen(uint16_t rows, uint16_t desired_rows);
 void done_loading(void);
 void generate_map(uint16_t desired_rows);
-void init_attributes(void);
 
 
 #endif // LOADING_H

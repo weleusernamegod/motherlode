@@ -31,8 +31,6 @@
 BANKREF(bank_player)
 #endif
 
-struct Player player;
-
 void init_depth(uint16_t start_width, uint16_t start_depth){
     direction_prev = RIGHT;    // start with the rover facing right
     width = prev_width = start_width;
@@ -54,10 +52,10 @@ void init_speed(void){
 }
 
 void check_surroundings(void) {
-next_tile_down = (depth < ROWS - 1) ? get_tile_from_array(depth + 1, width) : STONE;
-next_tile_up = (depth > 0) ? get_tile_from_array(depth - 1, width) : STONE;
-next_tile_right = (width < 15) ? get_tile_from_array(depth, width + 1) : STONE;
-next_tile_left = (width > 0) ? get_tile_from_array(depth, width - 1) : STONE;
+    next_tile_down = (depth < ROWS - 1) ? get_tile_from_array(depth + 1, width) : STONE;
+    next_tile_up = (depth > 0) ? get_tile_from_array(depth - 1, width) : STONE;
+    next_tile_right = (width < 15) ? get_tile_from_array(depth, width + 1) : STONE;
+    next_tile_left = (width > 0) ? get_tile_from_array(depth, width - 1) : STONE;
 }
 
 void metasprite_drill_horizontal(char direction){
@@ -271,7 +269,7 @@ void update_movement(void) {
 
 uint8_t calculate_frames(void){
     uint8_t frames;
-    frames = base_drilltime + (materials[next_tile].ore_resistance / player.drill.max_value);
+    frames = BASE_DRILLTIME + ((materials[next_tile].ore_resistance)/ player.drill.max_value);
     return frames;
 }
 

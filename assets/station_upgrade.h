@@ -20,13 +20,11 @@
 #define station_upgrade_MAP_ATTRIBUTES_HEIGHT 5
 #define station_upgrade_MAP_ATTRIBUTES_PACKED_WIDTH 9
 #define station_upgrade_MAP_ATTRIBUTES_PACKED_HEIGHT 5
+extern const unsigned char station_upgrade_map[45];
+extern const unsigned char station_upgrade_map_attributes[45];
 
 BANKREF_EXTERN(station_upgrade)
 
-extern const palette_color_t station_upgrade_palettes[32];
 extern const uint8_t station_upgrade_tiles[16];
-
-extern const unsigned char station_upgrade_map[45];
-extern const unsigned char station_upgrade_map_attributes[45];
 
 #endif

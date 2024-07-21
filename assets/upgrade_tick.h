@@ -19,12 +19,11 @@
 #define upgrade_tick_PIVOT_Y 4
 #define upgrade_tick_PIVOT_W 8
 #define upgrade_tick_PIVOT_H 8
+extern const metasprite_t* const upgrade_tick_metasprites[1];
 
 BANKREF_EXTERN(upgrade_tick)
 
 extern const palette_color_t upgrade_tick_palettes[4];
 extern const uint8_t upgrade_tick_tiles[16];
-
-extern const metasprite_t* const upgrade_tick_metasprites[1];
 
 #endif

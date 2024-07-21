@@ -20,13 +20,12 @@
 #define powerup_frame_MAP_ATTRIBUTES_HEIGHT 18
 #define powerup_frame_MAP_ATTRIBUTES_PACKED_WIDTH 20
 #define powerup_frame_MAP_ATTRIBUTES_PACKED_HEIGHT 18
+extern const unsigned char powerup_frame_map[360];
+extern const unsigned char powerup_frame_map_attributes[360];
 
 BANKREF_EXTERN(powerup_frame)
 
 extern const palette_color_t powerup_frame_palettes[28];
 extern const uint8_t powerup_frame_tiles[960];
-
-extern const unsigned char powerup_frame_map[360];
-extern const unsigned char powerup_frame_map_attributes[360];
 
 #endif

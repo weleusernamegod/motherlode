@@ -16,12 +16,10 @@
 #define nav_COLORS_PER_PALETTE 4
 #define nav_TOTAL_COLORS 4
 #define nav_MAP_ATTRIBUTES 0
+extern const unsigned char nav_map[63];
+#define nav_map_attributes nav_map
 
 BANKREF_EXTERN(nav)
 
-extern const palette_color_t nav_palettes[4];
-
-extern const unsigned char nav_map[63];
-#define nav_map_attributes nav_map
 
 #endif

@@ -105,6 +105,7 @@
 #define DOWN 4
 #define MAX_HEIGHT 2
 
+#define BASE_DRILLTIME 16
 #define TERMINAL_VELOCITY 14
 #define FALL_DAMAGE_THRESHOLD 6
 #define LAVA_DAMAGE 100
@@ -167,5 +168,7 @@
 
 #define GAME_OVER_ANIMATION_CYCLES 3
 #define GAME_OVER_ANIMATION_DURATION 8
+
+#define isGBC (_cpu == CGB_TYPE)
 
 #endif // CONSTANTS_H

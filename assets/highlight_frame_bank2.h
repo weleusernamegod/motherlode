@@ -19,12 +19,11 @@
 #define highlight_frame_bank2_PIVOT_Y -16
 #define highlight_frame_bank2_PIVOT_W 24
 #define highlight_frame_bank2_PIVOT_H 24
+extern const metasprite_t* const highlight_frame_bank2_metasprites[4];
 
 BANKREF_EXTERN(highlight_frame_bank2)
 
 extern const palette_color_t highlight_frame_bank2_palettes[4];
 extern const uint8_t highlight_frame_bank2_tiles[512];
-
-extern const metasprite_t* const highlight_frame_bank2_metasprites[4];
 
 #endif

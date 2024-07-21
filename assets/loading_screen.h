@@ -20,13 +20,12 @@
 #define loading_screen_MAP_ATTRIBUTES_HEIGHT 18
 #define loading_screen_MAP_ATTRIBUTES_PACKED_WIDTH 20
 #define loading_screen_MAP_ATTRIBUTES_PACKED_HEIGHT 18
+extern const unsigned char loading_screen_map[360];
+extern const unsigned char loading_screen_map_attributes[360];
 
 BANKREF_EXTERN(loading_screen)
 
 extern const palette_color_t loading_screen_palettes[4];
 extern const uint8_t loading_screen_tiles[416];
-
-extern const unsigned char loading_screen_map[360];
-extern const unsigned char loading_screen_map_attributes[360];
 
 #endif

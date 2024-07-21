@@ -62,7 +62,6 @@ extern char direction_prev;
 extern BOOLEAN is_drilling;
 
 // player stats
-extern uint8_t base_drilltime;
 extern BOOLEAN tile_mined;
 extern BOOLEAN ore_mined;
 extern BOOLEAN lava_mined;

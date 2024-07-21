@@ -19,12 +19,11 @@
 #define fuel_display_PIVOT_Y 0
 #define fuel_display_PIVOT_W 16
 #define fuel_display_PIVOT_H 88
+extern const metasprite_t* const fuel_display_metasprites[1];
 
 BANKREF_EXTERN(fuel_display)
 
 extern const palette_color_t fuel_display_palettes[4];
 extern const uint8_t fuel_display_tiles[64];
-
-extern const metasprite_t* const fuel_display_metasprites[1];
 
 #endif

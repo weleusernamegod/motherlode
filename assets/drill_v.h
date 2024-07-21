@@ -19,12 +19,11 @@
 #define drill_v_PIVOT_Y 4
 #define drill_v_PIVOT_W 16
 #define drill_v_PIVOT_H 8
+extern const metasprite_t* const drill_v_metasprites[2];
 
 BANKREF_EXTERN(drill_v)
 
 extern const palette_color_t drill_v_palettes[24];
 extern const uint8_t drill_v_tiles[64];
-
-extern const metasprite_t* const drill_v_metasprites[2];
 
 #endif

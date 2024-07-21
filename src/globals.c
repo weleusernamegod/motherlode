@@ -55,7 +55,6 @@ char direction_prev;
 BOOLEAN is_drilling;
 
 // player stats
-uint8_t base_drilltime = 16;
 BOOLEAN tile_mined = FALSE;
 BOOLEAN ore_mined = FALSE;
 BOOLEAN lava_mined = FALSE;

@@ -20,13 +20,11 @@
 #define station_powerup_MAP_ATTRIBUTES_HEIGHT 4
 #define station_powerup_MAP_ATTRIBUTES_PACKED_WIDTH 7
 #define station_powerup_MAP_ATTRIBUTES_PACKED_HEIGHT 4
+extern const unsigned char station_powerup_map[28];
+extern const unsigned char station_powerup_map_attributes[28];
 
 BANKREF_EXTERN(station_powerup)
 
-extern const palette_color_t station_powerup_palettes[32];
 extern const uint8_t station_powerup_tiles[16];
-
-extern const unsigned char station_powerup_map[28];
-extern const unsigned char station_powerup_map_attributes[28];
 
 #endif

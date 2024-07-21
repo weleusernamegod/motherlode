@@ -20,13 +20,11 @@
 #define station_save_MAP_ATTRIBUTES_HEIGHT 5
 #define station_save_MAP_ATTRIBUTES_PACKED_WIDTH 4
 #define station_save_MAP_ATTRIBUTES_PACKED_HEIGHT 5
+extern const unsigned char station_save_map[20];
+extern const unsigned char station_save_map_attributes[20];
 
 BANKREF_EXTERN(station_save)
 
-extern const palette_color_t station_save_palettes[32];
 extern const uint8_t station_save_tiles[16];
-
-extern const unsigned char station_save_map[20];
-extern const unsigned char station_save_map_attributes[20];
 
 #endif

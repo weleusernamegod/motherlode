@@ -21,5 +21,4 @@ BANKREF_EXTERN(ore_tiles)
 extern const palette_color_t ore_tiles_palettes[100];
 extern const uint8_t ore_tiles_tiles[1536];
 
-
 #endif

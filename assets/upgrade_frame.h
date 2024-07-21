@@ -16,13 +16,12 @@
 #define upgrade_frame_COLORS_PER_PALETTE 4
 #define upgrade_frame_TOTAL_COLORS 4
 #define upgrade_frame_MAP_ATTRIBUTES 0
+extern const unsigned char upgrade_frame_map[360];
+#define upgrade_frame_map_attributes upgrade_frame_map
 
 BANKREF_EXTERN(upgrade_frame)
 
 extern const palette_color_t upgrade_frame_palettes[4];
 extern const uint8_t upgrade_frame_tiles[160];
-
-extern const unsigned char upgrade_frame_map[360];
-#define upgrade_frame_map_attributes upgrade_frame_map
 
 #endif

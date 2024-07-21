@@ -21,5 +21,4 @@ BANKREF_EXTERN(station)
 extern const palette_color_t station_palettes[32];
 extern const uint8_t station_tiles[1760];
 
-
 #endif

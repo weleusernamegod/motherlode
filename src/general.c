@@ -57,11 +57,14 @@ void init_clear_screen(void) {
     memset(temparray, COLOR_0, sizeof(temparray)); // color 0 tile
     set_bkg_tiles(0,0,20, 18, temparray);
     set_win_tiles(0,0,20, 18, temparray);
-    VBK_REG = 1;
     memset(temparray, 0, sizeof(temparray)); // default palette 0
-    set_bkg_tiles(0,0,20, 18, temparray);
-    set_win_tiles(0,0,20, 18, temparray);
-    VBK_REG = 0;
+
+    if (isGBC) {
+        VBK_REG = 1;
+        set_bkg_tiles(0,0,20, 18, temparray);
+        set_win_tiles(0,0,20, 18, temparray);
+        VBK_REG = 0;
+    }
     
     set_bkg_data(0, 256, temparray);
     set_sprite_data(0, 128, temparray);
@@ -119,9 +122,11 @@ void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
     // Fill in the padding space with empty tiles if the text is shorter than the length
     if (!left_aligned) {
         for (uint8_t i = 0; i < length - textLength; i++) {
-            VBK_REG = 1;
-            set_win_tile_xy(x - length + textLength + i, y, palette);
-            VBK_REG = 0;
+            if (isGBC) {
+                VBK_REG = 1;
+                set_win_tile_xy(x - length + textLength + i, y, palette);
+                VBK_REG = 0;
+            }
             set_win_tile_xy(x - length + textLength + i, y, 0);
             set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
@@ -129,9 +134,11 @@ void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
 
     // Draw the text
     for (uint8_t i = 0; i < textLength; i++) {
-        VBK_REG = 1;
-        set_win_tile_xy(x + i, y, palette);
-        VBK_REG = 0;
+        if (isGBC) {
+            VBK_REG = 1;
+            set_win_tile_xy(x + i, y, palette);
+            VBK_REG = 0;
+        }
         set_win_tile_xy(x + i, y, 0);
         set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
     }
@@ -139,9 +146,11 @@ void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
     // If left-aligned and needs padding after text
     if (left_aligned) {
         for (uint8_t i = textLength; i < length; i++) {
-            VBK_REG = 1;
-            set_win_tile_xy(x + i, y, palette);
-            VBK_REG = 0;
+            if (isGBC) {
+                VBK_REG = 1;
+                set_win_tile_xy(x + i, y, palette);
+                VBK_REG = 0;
+            }
             set_win_tile_xy(x + i, y, 0);
             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
@@ -166,9 +175,11 @@ void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
     // Fill in the padding space with empty tiles if the text is shorter than the length
     if (!left_aligned) {
         for (uint8_t i = 0; i < length - textLength; i++) {
-            VBK_REG = 1;
-            set_bkg_tile_xy(x - length + textLength + i, y, palette);
-            VBK_REG = 0;
+            if (isGBC) {
+                VBK_REG = 1;
+                set_bkg_tile_xy(x - length + textLength + i, y, palette);
+                VBK_REG = 0;
+            }
             set_bkg_tile_xy(x - length + textLength + i, y, 0);
             set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
@@ -176,9 +187,11 @@ void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
 
     // Draw the text
     for (uint8_t i = 0; i < textLength; i++) {
-        VBK_REG = 1;
-        set_bkg_tile_xy(x + i, y, palette);
-        VBK_REG = 0;
+        if (isGBC) {
+            VBK_REG = 1;
+            set_bkg_tile_xy(x + i, y, palette);
+            VBK_REG = 0;
+        }
         set_bkg_tile_xy(x + i, y, 0);
         set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
     }
@@ -186,9 +199,11 @@ void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
     // If left-aligned and needs padding after text
     if (left_aligned) {
         for (uint8_t i = textLength; i < length; i++) {
+        if (isGBC) {
             VBK_REG = 1;
             set_bkg_tile_xy(x + i, y, palette);
             VBK_REG = 0;
+        }
             set_bkg_tile_xy(x + i, y, 0);
             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
@@ -314,14 +329,14 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
     // Calculate percentage of progress in terms of total available width in pixels (digits * 8)
     uint8_t total_pixels = digits * 8;
     uint16_t pixels_to_fill;
-    // for large values use 32 bit value
+
+    // For large values use 32-bit value
     if (digits > 3) {
         uint32_t scaled_value = (uint32_t)current_value * total_pixels; // Use uint32_t for the intermediate result
         pixels_to_fill = scaled_value / max_value;
     } else {
         pixels_to_fill = (current_value * total_pixels) / max_value;
     }
-
 
     for (uint8_t i = 0; i < digits; i++) {
         uint8_t tile_index = PROGRESSBAR_TILE_0_8; // Default to empty
@@ -331,28 +346,30 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
         // Adjust pixel count for next sprite
         pixels_to_fill -= effective_pixels;
 
-        // Map effective pixels to sprite tiles
-        switch (effective_pixels) {
-            case 0: tile_index = PROGRESSBAR_TILE_0_8; break;
-            case 1: tile_index = PROGRESSBAR_TILE_1_8; break;
-            case 2: tile_index = PROGRESSBAR_TILE_2_8; break;
-            case 3: tile_index = PROGRESSBAR_TILE_3_8; break;
-            case 4: tile_index = PROGRESSBAR_TILE_4_8; break;
-            case 5: tile_index = PROGRESSBAR_TILE_5_8; break;
-            case 6: tile_index = PROGRESSBAR_TILE_6_8; break;
-            case 7: tile_index = PROGRESSBAR_TILE_7_8; break;
-            case 8: 
-                if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
-                    tile_index = PROGRESSBAR_TILE_8_8;
-                } else {
-                    tile_index = PROGRESSBAR_TILE_END;
-                }
-                break;
+        // Handle the special case for effective_pixels == 8
+        if (effective_pixels == 8) {
+            if (i == digits - 1 || pixels_to_fill == 0) { // Last sprite or no more pixels to fill
+                tile_index = PROGRESSBAR_TILE_8_8;
+            } else {
+                tile_index = PROGRESSBAR_TILE_END;
+            }
+        } else {
+            // Map effective pixels to sprite tiles
+            switch (effective_pixels) {
+                case 0: tile_index = PROGRESSBAR_TILE_0_8; break;
+                case 1: tile_index = PROGRESSBAR_TILE_1_8; break;
+                case 2: tile_index = PROGRESSBAR_TILE_2_8; break;
+                case 3: tile_index = PROGRESSBAR_TILE_3_8; break;
+                case 4: tile_index = PROGRESSBAR_TILE_4_8; break;
+                case 5: tile_index = PROGRESSBAR_TILE_5_8; break;
+                case 6: tile_index = PROGRESSBAR_TILE_6_8; break;
+                case 7: tile_index = PROGRESSBAR_TILE_7_8; break;
+            }
         }
 
         // Set the sprite tile and move it into position
         set_sprite_tile(tilestart + i, tile_index);
-        set_sprite_prop(tilestart + i, 0b10000000 | palette); // set it to background and OR it with palette
+        set_sprite_prop(tilestart + i, 0b10000000 | palette); // Set it to background and OR it with palette
         move_sprite(tilestart + i, x + i * 8, y);
     }
 }

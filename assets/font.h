@@ -19,12 +19,11 @@
 #define font_PIVOT_Y 16
 #define font_PIVOT_W 128
 #define font_PIVOT_H 32
+extern const metasprite_t* const font_metasprites[1];
 
 BANKREF_EXTERN(font)
 
 extern const palette_color_t font_palettes[4];
 extern const uint8_t font_tiles[992];
-
-extern const metasprite_t* const font_metasprites[1];
 
 #endif
