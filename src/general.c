@@ -373,3 +373,21 @@ void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8
         move_sprite(tilestart + i, x + i * 8, y);
     }
 }
+
+void wait(uint8_t frames) {
+    uint8_t start_frame = frame_counter;  // Store the starting frame counter value
+    uint8_t end_frame = (start_frame + frames) % 60;  // Calculate the end frame counter value
+
+    // Wait until the frame counter reaches the end frame counter value
+    if (start_frame <= end_frame) {
+        // Normal case: no wrap-around
+        while (frame_counter < end_frame) {
+            // nothing
+        }
+    } else {
+        // Wrap-around case
+        while (frame_counter >= start_frame || frame_counter < end_frame) {
+            // nothing
+        }
+    }
+}

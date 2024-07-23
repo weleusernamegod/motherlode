@@ -52,11 +52,11 @@ void main(void) {
                             if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
                             else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
                             else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
+                            PLAY_SFX_menu_in;
                         }
                     }
                     vsync();
                 }
-                mute_sound();
                 turn_screen_off();
                 break;
 
@@ -67,7 +67,7 @@ void main(void) {
                 init_loading_screen();
                 init_font();
                 init_loading_screen();
-                generate_map(ROWS);
+                generate_map(256);
                 done_loading();
                 turn_screen_off();
                 init_attributes();
@@ -133,9 +133,12 @@ void main(void) {
                 PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     upgrade_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; PLAY_SFX_exit;
+                    if (leave_station) {
+                        currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                        leave_station = FALSE;
+                        PLAY_SFX_exit;
+                    }
                 }
-                mute_sound();
                 turn_screen_off();
                 break;
             case GAME_STATE_SELL_MENU:
@@ -149,10 +152,13 @@ void main(void) {
                 PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_SELL_MENU){
                     sell_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; PLAY_SFX_exit;
+                    if (leave_station) {
+                        currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                        leave_station = FALSE;
+                        PLAY_SFX_exit;
+                    }
                 }
                 display_warning_cargo_normal = FALSE;
-                mute_sound();
                 turn_screen_off();
                 currentGameState = GAME_STATE_CONTINUE_RELOAD;
                 break;
@@ -168,11 +174,16 @@ void main(void) {
                 PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_FUEL_MENU){
                     if (check_fuel_display_y() <= fuel_display_y && fuel_display_y > 0) fuel_display_y --;
+                    if (check_fuel_display_y() == fuel_display_y - 1) PLAY_SFX_MUTE;  // Stop the sound effect if it is already full (stop it 1 frame early)
                     draw_fuel_display();
                     powerup_menu_loop();
-                    if (leave_station) currentGameState = GAME_STATE_CONTINUE_RELOAD; leave_station = FALSE; hide_fuel_display(); PLAY_SFX_exit;
+                    if (leave_station) {
+                        currentGameState = GAME_STATE_CONTINUE_RELOAD;
+                        leave_station = FALSE;
+                        hide_fuel_display();
+                        PLAY_SFX_exit;
+                    }
                 }
-                mute_sound();
                 turn_screen_off();
                 break;
             case GAME_STATE_GAME_OVER:

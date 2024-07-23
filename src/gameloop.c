@@ -66,8 +66,6 @@ void game_loop(void) {
         reload_palettes = FALSE;
     }
 
-
-
     if (buttons & J_UP) metasprite_prop(); // have prop moving even if the player is stuck but trying to get up
     
     handle_fuel(TRUE); // reduce CPU work by 59/60% by using optimisation

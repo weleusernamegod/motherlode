@@ -51,6 +51,7 @@ extern uint8_t upward_velocity;
 // movement animation
 extern uint16_t ore_resistance;
 extern uint8_t animation_frames_left;
+extern uint8_t last_SFX_played;
 extern fixed move_x_per_frame;
 extern fixed move_y_per_frame;
 extern fixed scroll_x_per_frame;
@@ -60,6 +61,7 @@ extern int8_t prev_velocity;
 extern char direction_now;
 extern char direction_prev;
 extern BOOLEAN is_drilling;
+extern uint8_t rover_state;
 
 // player stats
 extern BOOLEAN tile_mined;

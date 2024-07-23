@@ -11,6 +11,7 @@
 #include "attributes.h"
 #include "inventory.h"
 #include "palettes.h"
+#include "sfx.h"
 
 #include "../assets/sell_frame.h"
 
@@ -108,15 +109,16 @@ void draw_sell_menu(void) {
     draw_text_win(11, 15, money_string, 7, FALSE, 0);
 }
 
-void sell_all_ores(void) {
+uint32_t calculate_total_value(void) {
     uint32_t total_value = 0;
     // Assuming COAL to DIAMOND includes all sellable ores and gems
     for (uint8_t i = COAL; i <= DIAMOND; i++) {
         total_value += materials[i].inventory * materials[i].value;
     }
-    // Update player's money or another financial attribute
-    player.money += total_value;
+    return total_value;
+}
 
+void reset_inventory(void) {
     // Optionally reset inventory if they're sold
     for (uint8_t i = COAL; i <= DIAMOND; i++) {
         materials[i].inventory = 0;  // Reset inventory after selling
@@ -125,12 +127,21 @@ void sell_all_ores(void) {
 
 void sell_menu_loop(void) {
     read_buttons();
+    uint32_t total_value = calculate_total_value();
 
-    if (buttons & J_A) sell_all_ores(), draw_sell(), draw_sell();
-    if (buttons & J_B) leave_station = TRUE;
-    if (prev_buttons != buttons) {
-        draw_sell_menu();
+    if (buttons & J_A && prev_buttons != buttons) {
+        if (total_value > 0) {
+            player.money += total_value;
+            reset_inventory();
+            draw_sell();
+            draw_sell_menu();
+            PLAY_SFX_money;
+        } else {
+            PLAY_SFX_buy_nothing;
+        }
     }
+    if (buttons & J_B) leave_station = TRUE;
+
     
     prev_buttons = buttons;
     vsync();

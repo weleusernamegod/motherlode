@@ -1,6 +1,6 @@
 # Frequency table
 CH2freqs = [44,156,262,363,457,547,631,710,786,854,923,986,1046,1102,1155,1205,1253,1297,1339,1379,1417,1452,1486,1517,1546,1575,1602,1627,1650,1673,1694,1714,1732,1750,1767,1783,1798,1812,1825,1837,1849,1860,1871,1881,1890,1899,1907,1915,1923,1930,1936,1943,1949,1954,1959,1964,1969,1974,1978,1982,1985,1988,1992,1995,1998,2001,2004,2006,2009,2011,2013,2015]
-
+tone_length = 0
 """
 FX HAMMER DATA LOCATIONS:
 
@@ -23,12 +23,12 @@ WARNING: FX Hammer pan values are inverted
 
 # Taken from some website, ikik
 def swapbits(n, p1, p2):
-    bit1 = (n >> p1) & 1
-    bit2 = (n >> p2) & 1
-    x = (bit1 ^ bit2)
-    x = (x << p1) | (x << p2)
-    result = n ^ x
-    return result
+	bit1 = (n >> p1) & 1
+	bit2 = (n >> p2) & 1
+	x = (bit1 ^ bit2)
+	x = (x << p1) | (x << p2)
+	result = n ^ x
+	return result
 
 def array_to_hex(a):
 	b = []
@@ -39,6 +39,7 @@ def array_to_hex(a):
 	return '\n'.join(textwrap.wrap(b, 45))
 
 def _header():
+	fxnum_hex = "{0:02X}".format(fxnum)
 	b = """/*
 
 	""" + filename + """
@@ -46,7 +47,10 @@ def _header():
 	Sound Effect File.
 	
 	Info:
-		Length			:	""" + str(fxh_len) + """
+		Number			:   """ + fxnum_hex + """
+		Length			:	""" + str(tone_length) + """
+		Framecount		:	""" + str(tone_length // 2) + """
+		Number of lines :	""" + str(fxh_len) + """
 		Priority		:	""" + str(fxh_pry) + """
 		Channels used	:	""" + ch_used_str + """
 		SGB Support		:	""" + ["No", "Yes"][(header & 64) >> 6] + """"""
@@ -166,24 +170,26 @@ for n in range(int(args.fxnum), int(args.fxnum) + loop):
 			bufadd((int(sgb[2]) << 4) | (int(sgb[3]) << 6)) # Sound effect attributes (B)
 		bufadd(0) # Music Score Code (Unused)
 
+	tone_length = 0  # Reset total length for each sound effect
 	# Get all data (Length)
 	fxsav.seek(0x400 + (fxnum * 256))
 
 	# Loop through every frame
 	for f in range(32):
-		temp_buf = [0] * 8 # The curr frame's data goes here, then converted to CBTFX format
-		temp_buf[0] = fxh_get() # Get frame length
-		if temp_buf[0] != 0: # if the frame isn't the last frame
-			temp_buf[1] = fxh_get()	# CH2 pan
-			temp_buf[2] = fxh_get() & 0xf0	# CH2 vol
-			temp_buf[3] = fxh_get()	# CH2 duty
-			temp_buf[4] = fxh_get()	# CH2 note
-			temp_buf[5] = fxh_get()	# CH4 pan
-			temp_buf[6] = fxh_get()	# CH4 vol
-			temp_buf[7] = fxh_get()	# CH4 freq
+		temp_buf = [0] * 8  # The curr frame's data goes here, then converted to CBTFX format
+		temp_buf[0] = fxh_get()  # Get frame length
+		if temp_buf[0] != 0:  # if the frame isn't the last frame
+			temp_buf[1] = fxh_get()  # CH2 pan
+			temp_buf[2] = fxh_get() & 0xf0  # CH2 vol
+			temp_buf[3] = fxh_get()  # CH2 duty
+			temp_buf[4] = fxh_get()  # CH2 note
+			temp_buf[5] = fxh_get()  # CH4 pan
+			temp_buf[6] = fxh_get()  # CH4 vol
+			temp_buf[7] = fxh_get()  # CH4 freq
 			fxh_len += 1
+			tone_length += temp_buf[0]  # Accumulate the total length
 		else:
-			break # Got to the end of the SFX, break out of the read loop
+			break  # Got to the end of the SFX, break out of the read loop
 		
 		# Length and frame pan
 		pan = temp_buf[1] | temp_buf[5]
@@ -241,14 +247,13 @@ for n in range(int(args.fxnum), int(args.fxnum) + loop):
 
 	Hfile = open(args.out + filename + ".h", "w")
 	Hfile.write(_header())
-
 	# Hfile.write("\n")
 	# Hfile.write("BANKREF_EXTERN(" + filename + ")")
 	# Hfile.write("\n")
-
 	Hfile.write("\n#ifndef __" + filename + "_h_INCLUDE\n")
 	Hfile.write("#define __" + filename + "_h_INCLUDE\n")
 	Hfile.write("#define PLAY_" + filename + " CBTFX_init(&" + filename + "[0])\n")
+	Hfile.write("#define " + filename + "_framecount " + str(tone_length // 2) + "\n")  # Add this line
 	Hfile.write("extern const unsigned char " + filename + "[];\n")
 	Hfile.write("#endif")
 	Hfile.close()

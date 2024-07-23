@@ -44,6 +44,7 @@ uint8_t upward_velocity;
 // movement animation
 uint16_t ore_resistance;
 uint8_t animation_frames_left = 0;
+uint8_t last_SFX_played = 0;
 fixed move_x_per_frame;
 fixed move_y_per_frame;
 fixed scroll_x_per_frame;
@@ -53,6 +54,7 @@ int8_t prev_velocity = 0;
 char direction_now;
 char direction_prev;
 BOOLEAN is_drilling;
+uint8_t rover_state = IDLE;
 
 // player stats
 BOOLEAN tile_mined = FALSE;

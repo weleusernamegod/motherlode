@@ -13,7 +13,8 @@ void draw_total_value(uint8_t line);
 void draw_one_ore_line(const Material *material, uint8_t counter, uint8_t line);
 void draw_collected_ores(uint8_t line);
 void draw_sell_menu(void);
-void sell_all_ores(void);
+uint32_t calculate_total_value(void);
+void reset_inventory(void);
 void sell_menu_loop(void);
 
 #endif // SELL_H

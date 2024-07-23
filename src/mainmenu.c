@@ -8,6 +8,7 @@
 #include "constants.h"
 #include "globals.h"
 #include "palettes.h"
+#include "sfx.h"
 
 #include "../assets/splashscreen_screen.h"
 #include "../assets/splashscreen.h"
@@ -33,12 +34,14 @@ void draw_main_menu(void){
         if (current_menu_index > 0) {
             current_menu_index--;
             draw_menu_buttons();
+            PLAY_SFX_menu_tick;
             delay(200);  // Debounce delay
         }
     } else if (joypad() & J_DOWN) {
         if (current_menu_index < MAIN_MENU_ITEMS - 1) {
             current_menu_index++;
             draw_menu_buttons();
+            PLAY_SFX_menu_tick;
             delay(200);  // Debounce delay
         }
     }

@@ -5,7 +5,10 @@
 	Sound Effect File.
 	
 	Info:
+		Number			:   1B
 		Length			:	1
+		Framecount		:	0
+		Number of lines :	1
 		Priority		:	0
 		Channels used	:	Noise channel
 		SGB Support		:	No

@@ -200,13 +200,25 @@ void update_movement(void) {
         // move or scroll background
         move_or_scroll_character();
 
-        // increment frame counter
-        animation_frames_left--;
+
+        if (last_SFX_played == animation_frames_left) {
+            if (rover_state == DRILL) {
+                PLAY_SFX_drill;
+                last_SFX_played -= SFX_drill_framecount;
+            }
+        }
 
         // Check if it's time to decrement fuel
         if (animation_frames_left % 20 == 0) {  // Every 20 frames
             player.fuel.current_value -= 1;
         }
+
+        // increment frame counter
+        animation_frames_left--;
+
+
+
+
 
         // Reset movement and input when animation is complete
         if (animation_frames_left == 0) {
@@ -236,6 +248,8 @@ void update_movement(void) {
             
             // animation has ended, so the rover has stopped drilling
             is_drilling = FALSE;
+            rover_state = IDLE;
+
             // the player has cleared a tile, so set flag to update inventory
             if (level_array[wrapped_depth][width] != EMPTY && depth >= UNDERGROUND) {
                 tile_mined = TRUE;
@@ -262,14 +276,13 @@ void update_movement(void) {
             draw_metasprite(direction_now);
             //update_sprite_character(width_pixel, depth_pixel);
             move_bkg(scroll_x.h, scroll_y.h);
-
         }
     }
 }
 
 uint8_t calculate_frames(void){
     uint8_t frames;
-    frames = BASE_DRILLTIME + ((materials[next_tile].ore_resistance)/ player.drill.max_value);
+    frames = BASE_DRILLTIME + ((materials[next_tile].ore_resistance) / player.drill.max_value);
     return frames;
 }
 
@@ -338,7 +351,7 @@ void move(char direction, char mode){
     uint8_t frames = 0;
     if (animation_frames_left == 0){
         if (mode == DRILL) {
-            PLAY_SFX_drill;
+            rover_state = DRILL;
             is_drilling = TRUE;
             velocity = 0;
             if (direction == LEFT) next_tile = next_tile_left;
@@ -346,12 +359,15 @@ void move(char direction, char mode){
             if (direction == UP) next_tile = next_tile_up;
             if (direction == DOWN) next_tile = next_tile_down;
             frames = calculate_frames();
+            last_SFX_played = frames;
+
         } else if (mode == DRIVE) {
-            // if (next_tile_down != EMPTY) velocity = 0; // attempt to keep velocity when flying
-            PLAY_SFX_drive;
+            rover_state = DRIVE;
             velocity = 0;
             frames = 16;
+            last_SFX_played = frames;
         } else if (mode == ACCELERATE) {
+            rover_state = ACCELERATE;
             if (next_tile_up != EMPTY) velocity = 0;
             if (direction == DOWN) {
                 if (velocity < 0) {
@@ -374,6 +390,7 @@ void move(char direction, char mode){
             if (velocity >= TERMINAL_VELOCITY) velocity = TERMINAL_VELOCITY;
             if (velocity <= - upward_velocity) velocity = - upward_velocity;
             frames = 16 - abs(velocity);
+            last_SFX_played = frames;
         }
 
         if (direction == LEFT) move_left(frames);

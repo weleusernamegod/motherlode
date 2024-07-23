@@ -1,4 +1,4 @@
-SFX_idle
+SFX_MUTE
 SFX_drive
 SFX_drill
 SFX_fly

@@ -105,16 +105,19 @@
 #define DOWN 4
 #define MAX_HEIGHT 2
 
-#define BASE_DRILLTIME 16
+#define BASE_DRILLTIME 15
 #define TERMINAL_VELOCITY 14
 #define FALL_DAMAGE_THRESHOLD 6
 #define LAVA_DAMAGE 100
 #define GAS_DAMAGE 100
 
+#define IDLE 0
 #define DRILL 1
 #define DRIVE 2
 #define ACCELERATE 3
 #define PIXEL_FROM_CENTER 12
+
+#define SFX_MULTIPLIER 2
 
 #define FUEL_PRICE 3
 #define REPAIR_PRICE 20

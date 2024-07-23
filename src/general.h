@@ -25,5 +25,6 @@ void switch_ram_bank_based_on_value(uint16_t value);
 uint8_t get_tile_from_array(uint16_t depth, uint16_t width);
 void shuffle(uint8_t array[4]);
 void progressbar(int16_t current_value, int16_t max_value, uint8_t digits, uint8_t tilestart, uint8_t palette, uint8_t x, uint8_t y);
+void wait(uint8_t frames);
 
 #endif // GENERAL_H

@@ -191,15 +191,20 @@ uint16_t calculate_hull_cost(void) {
 
 void repair_hull(void) {
     uint16_t hull_cost = calculate_hull_cost();
-    if (player.money >= hull_cost) {
-        // Player has enough money to fully fuel up
-        player.money -= hull_cost;
-        player.hull.current_value = player.hull.max_value;
+    if (player.hull.current_value != player.hull.max_value) {
+        if (player.money >= hull_cost) {
+            // Player has enough money to fully fuel up
+            player.money -= hull_cost;
+            player.hull.current_value = player.hull.max_value;
+            PLAY_SFX_money;
+        } else {
+            // Player doesn't have enough money to fully fuel up
+            uint16_t affordable_hull = player.money * 3; // calculate how much fuel they can afford
+            player.hull.current_value += affordable_hull;
+            player.money = 0;
+        }
     } else {
-        // Player doesn't have enough money to fully fuel up
-        uint16_t affordable_hull = player.money * 3; // calculate how much fuel they can afford
-        player.hull.current_value += affordable_hull;
-        player.money = 0;
+        PLAY_SFX_buy_nothing;
     }
 }
 
@@ -210,6 +215,9 @@ void purchase_powerup(void) {
         // Player has enough money to fully fuel up
         player.money -= powerup_cost;
         powerup[current_powerup_selection].inventory ++;
+        PLAY_SFX_money;
+    } else {
+        PLAY_SFX_buy_nothing;
     }
 }
 
@@ -271,6 +279,7 @@ void update_powerup_highlight_frame_position(void) {
 
 void handle_powerup_input(void) {
     if (prev_buttons != buttons) {
+        uint8_t prev_powerup_selection = current_powerup_selection;
         if (buttons & J_UP) {
             if (current_powerup_selection >= 2 && current_powerup_selection <= 3) {
                 current_powerup_selection = 0;
@@ -292,7 +301,10 @@ void handle_powerup_input(void) {
                 current_powerup_selection++;
             }
         }
-
+        
+        if (prev_powerup_selection != current_powerup_selection) {
+            PLAY_SFX_menu_tick;
+        }
 
             // Selecting an option with 'A'
         if (buttons & J_A) {

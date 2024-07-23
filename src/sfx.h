@@ -1,7 +1,7 @@
 #include "cbtfx.h"
 #include "hUGEDriver.h"
 
-#include "../sfx/SFX_idle.h"
+#include "../sfx/SFX_MUTE.h"
 #include "../sfx/SFX_drive.h"
 #include "../sfx/SFX_drill.h"
 #include "../sfx/SFX_fly.h"
