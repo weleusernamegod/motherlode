@@ -11,6 +11,7 @@
 #include "sfx.h"
 
 #include "../assets/splashscreen_screen.h"
+#include "../assets/splashscreen_GB_fix.h"
 #include "../assets/splashscreen.h"
 
 #pragma bank 4
@@ -60,6 +61,11 @@ void init_main_menu(void) {
     // load sprites
     set_bkg_data(0, splashscreen_TILE_COUNT, splashscreen_tiles);
     set_sprite_data(0, splashscreen_screen_TILE_COUNT, splashscreen_screen_tiles);
+
+    // fix one tile for OG Gameboys to look right
+    if (!isGBC) {
+        set_bkg_data(161, 1, splashscreen_GB_fix_tiles);
+    }
     
     // palettes
     set_bkg_palette(0, splashscreen_PALETTE_COUNT, splashscreen_palettes);
@@ -73,10 +79,10 @@ void init_main_menu(void) {
     // write splashscreen tiles and attributes
     if (isGBC) {
         VBK_REG = 1;
-        set_bkg_tiles(0,0,20, 18, splashscreen_map_attributes);
+        set_bkg_tiles(0, 0, 20, 18, splashscreen_map_attributes);
         VBK_REG = 0;
     }
-    set_bkg_tiles(0,0,20, 18, splashscreen_map);
+    set_bkg_tiles(0, 0, 20, 18, splashscreen_map);
 
     current_menu_index = 0;
 

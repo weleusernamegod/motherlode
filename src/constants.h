@@ -15,6 +15,9 @@
 #define BYTE_PER_PALETTE 4
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
+#define BKG 0
+#define WIN 1
+
 // main menu
 #define MAIN_MENU_ITEMS 3
 #define MAIN_MENU_X 49
@@ -66,7 +69,7 @@
 #define WARNING_PALETTE 7
 #define GAME_OVER_PALETTE 7
 
-#define COLOR_TO_CHANGE_BKG 1 // what color of bkg palette 0 is changing with depth
+#define COLOR_TO_CHANGE_BKG 0 // what color of bkg palette 0 is changing with depth
 #define COLOR_TO_CHANGE_SKY 0 // what color of sky to change
 
 #define HIGHLIGHT_FRAME_PALETTE 1

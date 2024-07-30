@@ -100,13 +100,19 @@ unsigned char convert_char_to_tile(char c) {
         case '#': return CHAR_START + 8;
         case '^': return CHAR_START + 9;
 
-        default: return COLOR_0;  // Default to space if character is not handled
+        default: return COLOR_1;  // Default to space if character is not handled
     }
 }
 
-void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
+void draw_text(uint8_t mode, uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
     uint8_t textLength = strlen(text);
-    uint8_t *vramAddr = get_win_xy_addr(x, y);
+    uint8_t *vramAddr;
+
+    if (mode == BKG) {
+        vramAddr = get_bkg_xy_addr(x, y);
+    } else {  // mode == WIN
+        vramAddr = get_win_xy_addr(x, y);
+    }
 
     if (textLength > length) {
         textLength = length;  // Cap the text length at the defined maximum
@@ -124,10 +130,18 @@ void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
         for (uint8_t i = 0; i < length - textLength; i++) {
             if (isGBC) {
                 VBK_REG = 1;
-                set_win_tile_xy(x - length + textLength + i, y, palette);
+                if (mode == BKG) {
+                    set_bkg_tile_xy(x - length + textLength + i, y, palette);
+                } else {  // mode == WIN
+                    set_win_tile_xy(x - length + textLength + i, y, palette);
+                }
                 VBK_REG = 0;
             }
-            set_win_tile_xy(x - length + textLength + i, y, 0);
+            if (mode == BKG) {
+                set_bkg_tile_xy(x - length + textLength + i, y, 0);
+            } else {  // mode == WIN
+                set_win_tile_xy(x - length + textLength + i, y, 0);
+            }
             set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
     }
@@ -136,79 +150,149 @@ void draw_text_win(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLE
     for (uint8_t i = 0; i < textLength; i++) {
         if (isGBC) {
             VBK_REG = 1;
-            set_win_tile_xy(x + i, y, palette);
-            VBK_REG = 0;
-        }
-        set_win_tile_xy(x + i, y, 0);
-        set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
-    }
-
-    // If left-aligned and needs padding after text
-    if (left_aligned) {
-        for (uint8_t i = textLength; i < length; i++) {
-            if (isGBC) {
-                VBK_REG = 1;
+            if (mode == BKG) {
+                set_bkg_tile_xy(x + i, y, palette);
+            } else {  // mode == WIN
                 set_win_tile_xy(x + i, y, palette);
-                VBK_REG = 0;
             }
-            set_win_tile_xy(x + i, y, 0);
-            set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
-        }
-    }
-}
-
-void draw_text_bkg(uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
-    uint8_t textLength = strlen(text);
-    uint8_t *vramAddr = get_bkg_xy_addr(x, y);
-
-    if (textLength > length) {
-        textLength = length;  // Cap the text length at the defined maximum
-    }
-
-    // Calculate starting index for drabkgg text
-    if (!left_aligned) {
-        // If right-aligned, calculate starting position based on text length
-        vramAddr += length - textLength;
-        x += length - textLength;
-    }
-
-    // Fill in the padding space with empty tiles if the text is shorter than the length
-    if (!left_aligned) {
-        for (uint8_t i = 0; i < length - textLength; i++) {
-            if (isGBC) {
-                VBK_REG = 1;
-                set_bkg_tile_xy(x - length + textLength + i, y, palette);
-                VBK_REG = 0;
-            }
-            set_bkg_tile_xy(x - length + textLength + i, y, 0);
-            set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
-        }
-    }
-
-    // Draw the text
-    for (uint8_t i = 0; i < textLength; i++) {
-        if (isGBC) {
-            VBK_REG = 1;
-            set_bkg_tile_xy(x + i, y, palette);
             VBK_REG = 0;
         }
-        set_bkg_tile_xy(x + i, y, 0);
+        if (mode == BKG) {
+            set_bkg_tile_xy(x + i, y, 0);
+        } else {  // mode == WIN
+            set_win_tile_xy(x + i, y, 0);
+        }
         set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
     }
 
     // If left-aligned and needs padding after text
     if (left_aligned) {
         for (uint8_t i = textLength; i < length; i++) {
-        if (isGBC) {
-            VBK_REG = 1;
-            set_bkg_tile_xy(x + i, y, palette);
-            VBK_REG = 0;
-        }
-            set_bkg_tile_xy(x + i, y, 0);
+            if (isGBC) {
+                VBK_REG = 1;
+                if (mode == BKG) {
+                    set_bkg_tile_xy(x + i, y, palette);
+                } else {  // mode == WIN
+                    set_win_tile_xy(x + i, y, palette);
+                }
+                VBK_REG = 0;
+            }
+            if (mode == BKG) {
+                set_bkg_tile_xy(x + i, y, 0);
+            } else {  // mode == WIN
+                set_win_tile_xy(x + i, y, 0);
+            }
             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
         }
     }
 }
+
+
+// void draw_text(WIN, uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
+//     uint8_t textLength = strlen(text);
+//     uint8_t *vramAddr = get_win_xy_addr(x, y);
+
+//     if (textLength > length) {
+//         textLength = length;  // Cap the text length at the defined maximum
+//     }
+
+//     // Calculate starting index for drawing text
+//     if (!left_aligned) {
+//         // If right-aligned, calculate starting position based on text length
+//         vramAddr += length - textLength;
+//         x += length - textLength;
+//     }
+
+//     // Fill in the padding space with empty tiles if the text is shorter than the length
+//     if (!left_aligned) {
+//         for (uint8_t i = 0; i < length - textLength; i++) {
+//             if (isGBC) {
+//                 VBK_REG = 1;
+//                 set_win_tile_xy(x - length + textLength + i, y, palette);
+//                 VBK_REG = 0;
+//             }
+//             set_win_tile_xy(x - length + textLength + i, y, 0);
+//             set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+//         }
+//     }
+
+//     // Draw the text
+//     for (uint8_t i = 0; i < textLength; i++) {
+//         if (isGBC) {
+//             VBK_REG = 1;
+//             set_win_tile_xy(x + i, y, palette);
+//             VBK_REG = 0;
+//         }
+//         set_win_tile_xy(x + i, y, 0);
+//         set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
+//     }
+
+//     // If left-aligned and needs padding after text
+//     if (left_aligned) {
+//         for (uint8_t i = textLength; i < length; i++) {
+//             if (isGBC) {
+//                 VBK_REG = 1;
+//                 set_win_tile_xy(x + i, y, palette);
+//                 VBK_REG = 0;
+//             }
+//             set_win_tile_xy(x + i, y, 0);
+//             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+//         }
+//     }
+// }
+
+// void draw_text(BKG, uint8_t x, uint8_t y, const char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {
+//     uint8_t textLength = strlen(text);
+//     uint8_t *vramAddr = get_bkg_xy_addr(x, y);
+
+//     if (textLength > length) {
+//         textLength = length;  // Cap the text length at the defined maximum
+//     }
+
+//     // Calculate starting index for drabkgg text
+//     if (!left_aligned) {
+//         // If right-aligned, calculate starting position based on text length
+//         vramAddr += length - textLength;
+//         x += length - textLength;
+//     }
+
+//     // Fill in the padding space with empty tiles if the text is shorter than the length
+//     if (!left_aligned) {
+//         for (uint8_t i = 0; i < length - textLength; i++) {
+//             if (isGBC) {
+//                 VBK_REG = 1;
+//                 set_bkg_tile_xy(x - length + textLength + i, y, palette);
+//                 VBK_REG = 0;
+//             }
+//             set_bkg_tile_xy(x - length + textLength + i, y, 0);
+//             set_vram_byte(vramAddr - length + textLength + i, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+//         }
+//     }
+
+//     // Draw the text
+//     for (uint8_t i = 0; i < textLength; i++) {
+//         if (isGBC) {
+//             VBK_REG = 1;
+//             set_bkg_tile_xy(x + i, y, palette);
+//             VBK_REG = 0;
+//         }
+//         set_bkg_tile_xy(x + i, y, 0);
+//         set_vram_byte(vramAddr++, convert_char_to_tile(text[i]));
+//     }
+
+//     // If left-aligned and needs padding after text
+//     if (left_aligned) {
+//         for (uint8_t i = textLength; i < length; i++) {
+//         if (isGBC) {
+//             VBK_REG = 1;
+//             set_bkg_tile_xy(x + i, y, palette);
+//             VBK_REG = 0;
+//         }
+//             set_bkg_tile_xy(x + i, y, 0);
+//             set_vram_byte(vramAddr++, convert_char_to_tile(' '));  // Assuming tile 0 is a space or zero
+//         }
+//     }
+// }
 
 void draw_text_sprite(uint8_t x, uint8_t y, uint8_t hardware_sprite, char *text, uint8_t length, BOOLEAN left_aligned, unsigned char palette) {    uint8_t textLength = strlen(text);
 

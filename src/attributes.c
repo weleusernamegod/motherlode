@@ -6,11 +6,11 @@
 
 struct Player player = {
     .fuel = {
-        .attribute_name = "fueltank",
+        .attribute_name = "fueltanks",
         .attribute_unit = "LTR",
         .attribute_unit_short = "?",
         .upgrade_level = 0,
-        .upgrade_value = {120, 200, 350, 600, 950, 1200},
+        .upgrade_value = {60, 120, 200, 350, 800, 1200},
         .upgrade_cost = {0, 750, 2000, 8000, 10000, 30000},
         .upgrade_name = {"jerry can", "gas cylinder", "stainless tank", "dual cylinder", "pressure tank", "lithium pack"}
     },
@@ -24,7 +24,7 @@ struct Player player = {
         .upgrade_name = {"iron hull", "bronze hull", "steel hull", "carbon hull", "platinum hull", "energy shield"}
     },
     .drill = {
-        .attribute_name = "drill",
+        .attribute_name = "drills",
         .attribute_unit = "M/S",
         .attribute_unit_short = NULL,
         .upgrade_level = 0,
@@ -33,16 +33,16 @@ struct Player player = {
         .upgrade_name = {"iron drill", "bronze drill", "steel drill", "titanium drill", "diamond drill", "platinum drill"}
     },
     .cargo = {
-        .attribute_name = "cargo bay",
+        .attribute_name = "cargo bays",
         .attribute_unit = "M&",
         .attribute_unit_short = NULL,
         .upgrade_level = 0,
-        .upgrade_value = {7, 15, 25, 40, 70, 120},
+        .upgrade_value = {8, 16, 28, 40, 70, 120},
         .upgrade_cost = {0, 750, 2000, 5000, 10000, 30000},
         .upgrade_name = {"micro bay", "medium bay", "huge bay", "gigantic bay", "titanic bay", "dimension void"}
     },
     .radiator = {
-        .attribute_name = "radiator",
+        .attribute_name = "radiators",
         .attribute_unit = "%",
         .attribute_unit_short = NULL,
         .upgrade_level = 0,
@@ -51,7 +51,7 @@ struct Player player = {
         .upgrade_name = {"air condition", "single fan", "dual fans", "propeller", "single turbine", "jet turbine"}
     },
     .engine = {
-        .attribute_name = "engine",
+        .attribute_name = "engines",
         .attribute_unit = "HP",
         .attribute_unit_short = NULL,
         .upgrade_level = 0,

@@ -49,18 +49,18 @@ void draw_loading_screen(uint16_t rows, uint16_t desired_rows) {
 
     char rows_buffer[5];
     uitoa(rows, rows_buffer, 10);
-    draw_text_bkg(5,11,rows_buffer,4,FALSE,0);
+    draw_text(BKG, 5,11,rows_buffer,4,FALSE,0);
 
 
     if (rows == 0) {
         char desired_rows_buffer[5];
         uitoa(desired_rows, desired_rows_buffer, 10);
-        draw_text_bkg(11,11,desired_rows_buffer,4,FALSE,0);
+        draw_text(BKG, 11,11,desired_rows_buffer,4,FALSE,0);
     }
 }
 
 void done_loading(void){
-    draw_text_bkg(5,11,"   DONE   ",10,TRUE,0);
+    draw_text(BKG, 5,11,"   DONE   ",10,TRUE,0);
     delay(1000);
 }
 

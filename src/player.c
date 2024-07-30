@@ -439,6 +439,7 @@ void apply_gas_damage(void){
 void apply_fall_damage(void){
     uint8_t damage = ((prev_velocity - FALL_DAMAGE_THRESHOLD) * 2) + 1;
     player.hull.current_value -= damage;
+    damage_recieved = TRUE;
     PLAY_SFX_hurt;
 }
 
@@ -521,9 +522,10 @@ void handle_hull(BOOLEAN optimise) {
     // total CPU usage around 19-20%
     check_hull();
     calculate_fall_damage();
-    if (frame_counter == TICK_HULL || optimise == FALSE){ // reduce CPU work
+    if (frame_counter == TICK_HULL || optimise == FALSE || damage_recieved == TRUE){ // reduce CPU work
         update_progressbar_palette(&player.hull, HULL_BAR_PALETTE);
         draw_hull_bar();
+        damage_recieved = FALSE;
     }
     update_icon_hull();
 }

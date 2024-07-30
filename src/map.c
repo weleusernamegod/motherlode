@@ -216,7 +216,7 @@ void set_4bkg_tiles(uint8_t array[][COLS], uint8_t x1, uint16_t y1, uint8_t r, u
             uint8_t palette_array[4];
 
             if (array[y][x] == EMPTY) {
-                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_1;
+                for (uint8_t i = 0; i < 4; i++) tile_array[i] = COLOR_0;
             } else if (array[y][x] == DIRT) {
                 for (uint8_t i = 0; i < 4; i++) tile_array[i] = temp + i;
                 shuffle(tile_array);
@@ -288,7 +288,7 @@ void draw_depth(void){
     // itoa(depth_offset, string, 10);
     itoa((depth < GROUND) ? 0 : (depth - GROUND), string, 10);
     // strcat(string, "^");
-    draw_text_win(14,1,string,5,FALSE,0);
+    draw_text(WIN, 14,1,string,5,FALSE,0);
 }
 
 void draw_cargo(void){
@@ -296,7 +296,7 @@ void draw_cargo(void){
     if (player.cargo.current_value > player.cargo.max_value) player.cargo.current_value = player.cargo.max_value; // make sure even if the cargo is more than full, to only display just full (15/15 for example not 16/15)
     itoa(player.cargo.current_value, string, 10);
     // strcat(string, "#");
-    draw_text_win(10,1,string,3,FALSE,0);
+    draw_text(WIN, 10,1,string,3,FALSE,0);
 }
 
 // void init_a_button(void){

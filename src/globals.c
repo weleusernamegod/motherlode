@@ -21,6 +21,7 @@ uint8_t prev_ram_bank = 0;
 
 // gamestates
 BOOLEAN player_alive = TRUE;
+BOOLEAN damage_recieved = FALSE;
 GameState currentGameState;  // Start with the game loop
 BOOLEAN leave_station = FALSE;
 BOOLEAN left_shop_area = TRUE;  // Initially true to allow first entry

@@ -17,6 +17,7 @@ extern uint8_t prev_ram_bank;
 
 // gamestates
 extern BOOLEAN player_alive;
+extern BOOLEAN damage_recieved;
 extern BOOLEAN leave_station;
 extern BOOLEAN left_shop_area;  // Initially true to allow first entry
 extern BOOLEAN update_menu;  // Initially set to TRUE to draw the menu the first time

@@ -11,7 +11,7 @@
 #define powerup_frame_TILE_H 8
 #define powerup_frame_WIDTH 160
 #define powerup_frame_HEIGHT 144
-#define powerup_frame_TILE_COUNT 60
+#define powerup_frame_TILE_COUNT 59
 #define powerup_frame_PALETTE_COUNT 7
 #define powerup_frame_COLORS_PER_PALETTE 4
 #define powerup_frame_TOTAL_COLORS 28
@@ -26,6 +26,6 @@ extern const unsigned char powerup_frame_map_attributes[360];
 BANKREF_EXTERN(powerup_frame)
 
 extern const palette_color_t powerup_frame_palettes[28];
-extern const uint8_t powerup_frame_tiles[960];
+extern const uint8_t powerup_frame_tiles[944];
 
 #endif

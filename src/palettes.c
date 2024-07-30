@@ -24,8 +24,8 @@
 #define RGB_DEEP_RED				RGB8(185, 40, 26)
 
 palette_color_t palette_background[4] = {
-	RGB_MEDIUM_DARK_GREY,
 	RGB_WHITE,
+	RGB_MEDIUM_DARK_GREY,
 	RGB_BLACK,
 	RGB_VERY_LIGHT_GREY,
 
@@ -54,14 +54,14 @@ const palette_color_t palette_default[4] = {
 
 const palette_color_t palette_icon[4] = {
 	RGB_WHITE,
-	RGB_WHITE,
+	RGB_MEDIUM_DARK_GREY,
 	RGB_BLACK,
-	RGB_VERY_LIGHT_GREY
+	RGB_LIGHT_GREY
 };
 
 const palette_color_t palette_warning[4] = {
 	RGB_WHITE,
-	RGB_DEEP_RED,
+	RGB_MEDIUM_DARK_GREY,
 	RGB_BLACK,
 	RGB_DEEP_RED
 };
