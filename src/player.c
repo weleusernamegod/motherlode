@@ -22,9 +22,10 @@
 #include "../assets/drill_h.h"
 #include "../assets/drill_v.h"
 #include "../assets/prop.h"
+#include "cbtfx.h"
 
 #include "level.h"
-#include "sfx.h"
+#include "sound.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__

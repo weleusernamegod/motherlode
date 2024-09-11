@@ -1,6 +1,7 @@
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
 
+void test(void);
 void interrupt_LCD(void);
 void interrupt_VBL_window(void);
 void interrupt_VBL_framecounter(void);

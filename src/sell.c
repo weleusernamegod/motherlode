@@ -11,7 +11,7 @@
 #include "attributes.h"
 #include "inventory.h"
 #include "palettes.h"
-#include "sfx.h"
+#include "sound.h"
 
 #include "../assets/sell_frame.h"
 

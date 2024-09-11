@@ -20,7 +20,7 @@
 
 #include "../assets/game_over_skull.h"
 
-#include "sfx.h"
+#include "sound.h"
 
 #pragma bank 2
 #ifndef __INTELLISENSE__

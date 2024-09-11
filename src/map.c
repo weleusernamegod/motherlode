@@ -41,7 +41,7 @@
 
 // #include "../assets/a_button.h"
 
-#include "sfx.h"
+#include "sound.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__

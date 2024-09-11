@@ -9,8 +9,8 @@
 		Length			:	1
 		Framecount		:	0
 		Number of lines :	1
-		Priority		:	0
-		Channels used	:	Noise channel
+		Priority		:	4
+		Channels used	:	Duty channel 2 & Noise channel
 		SGB Support		:	No
 */
 

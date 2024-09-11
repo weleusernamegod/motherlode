@@ -13,11 +13,11 @@ SFX_explosion_rumble
 SFX_explosion
 SFX_13
 SFX_14
-SFX_ore_mined
+SFX_ore_mined_old
 SFX_ore_mined
 SFX_special_mined
 SFX_low_fuel
-SFX_low_fuel_alt
+SFX_low_fuel_old
 SFX_cargo_full
 SFX_21
 SFX_22

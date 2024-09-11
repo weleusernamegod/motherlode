@@ -15,6 +15,7 @@ PROJECTNAME    = Motherlode
 
 SRCDIR      = src
 SFXDIR      = sfx
+SOUNDDIR    = sound
 OBJDIR      = obj
 ASSETDIR    = assets
 BINDIR      = build
@@ -23,12 +24,13 @@ MKDIRS      = $(OBJDIR) $(BINDIR)
 BINS	    = $(BINDIR)/$(PROJECTNAME).gbc
 SRCSOURCES    = $(wildcard $(SRCDIR)/*.c)
 SFXSOURCES    = $(wildcard $(SFXDIR)/*.c)
-ASSETSOURCES = $(wildcard $(ASSETDIR)/*.c)
-OBJS        = $(SRCSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(SFXSOURCES:$(SFXDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
+SOUNDSOURCES  = $(wildcard $(SOUNDDIR)/*.c)
+ASSETSOURCES  = $(wildcard $(ASSETDIR)/*.c)
+OBJS          = $(SRCSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(SFXSOURCES:$(SFXDIR)/%.c=$(OBJDIR)/%.o) $(SOUNDSOURCES:$(SOUNDDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
 
 .PHONY: all prepare hammer png2asset copy-rom clean
 
-all: $(BINS) report copy-rom clean 
+all: $(BINS) report copy-rom clean
 
 # Generate asset files
 png2asset:
@@ -72,6 +74,10 @@ $(OBJDIR)/%.o: $(ASSETDIR)/%.c
 
 # Compile .c files in "sfx/" to .o object files
 $(OBJDIR)/%.o: $(SFXDIR)/%.c
+	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
+
+# Compile .c files in "sound/" to .o object files
+$(OBJDIR)/%.o: $(SOUNDDIR)/%.c
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
 
 # Compile .c files in "src/" to .o object files with specific flags for bank files

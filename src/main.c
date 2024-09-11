@@ -21,7 +21,7 @@
 #include "powerup.h"
 #include "gameover.h"
 #include "loading.h"
-#include "sfx.h"
+#include "sound.h"
 
 #include "../assets/rover.h"
 #include "../assets/rover_eye.h"
@@ -30,11 +30,20 @@
 #include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
 
+extern const hUGESong_t sample_song;
+
 void main(void) {
     ENABLE_RAM;
     SWITCH_RAM(0);
     init_VBL_interrupts();
     init_sound();
+
+    CRITICAL {
+        SWITCH_ROM(5);
+        hUGE_init(&sample_song);
+        add_VBL(test);          
+    }
+
     initrand(DIV_REG);
     currentGameState = GAME_STATE_MAIN_MENU;
     while (1) {
@@ -52,6 +61,8 @@ void main(void) {
                             if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
                             else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
                             else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
+                            stop_music();
+                            toggle_mute_music(TRUE);
                             PLAY_SFX_menu_in;
                         }
                     }
@@ -109,17 +120,28 @@ void main(void) {
                 break;
 
             case GAME_STATE_CONTINUE:
+
+
                 SWITCH_ROM(1);
                 handle_fuel(FALSE);
                 handle_hull(FALSE);
                 init_sound();
+                toggle_mute_music(FALSE);
+
                 init_enable_lcd_interrupt();
+                CRITICAL {
+                    SWITCH_ROM(5);
+                    hUGE_init(&sample_song);
+                    add_VBL(test);    
+                    SWITCH_ROM(1);      
+                }
                 while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE) {
                     game_loop();
                 }
+                stop_music();
+                init_disable_lcd_interrupt();
                 mute_sound();
                 turn_screen_off();
-                init_disable_lcd_interrupt();
                 break;
 
             case GAME_STATE_UPGRADE_MENU:

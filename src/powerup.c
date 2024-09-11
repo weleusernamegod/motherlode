@@ -18,7 +18,7 @@
 
 #include "powerup.h"
 #include "selection.h"
-#include "sfx.h"
+#include "sound.h"
 
 #pragma bank 3
 #ifndef __INTELLISENSE__

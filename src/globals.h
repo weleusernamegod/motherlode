@@ -15,6 +15,9 @@ extern volatile uint8_t minute_counter;
 extern uint8_t current_ram_bank;
 extern uint8_t prev_ram_bank;
 
+// music
+extern uint8_t current_theme_bank;
+
 // gamestates
 extern BOOLEAN player_alive;
 extern BOOLEAN damage_recieved;

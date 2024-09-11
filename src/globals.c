@@ -19,6 +19,9 @@ uint8_t main_menu_animation_finished = FALSE;
 uint8_t current_ram_bank = 0;
 uint8_t prev_ram_bank = 0;
 
+// music
+uint8_t current_theme_bank = 0;
+
 // gamestates
 BOOLEAN player_alive = TRUE;
 BOOLEAN damage_recieved = FALSE;

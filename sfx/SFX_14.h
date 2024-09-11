@@ -10,7 +10,7 @@
 		Framecount		:	0
 		Number of lines :	1
 		Priority		:	0
-		Channels used	:	Noise channel
+		Channels used	:	Duty channel 2 & Noise channel
 		SGB Support		:	No
 */
 

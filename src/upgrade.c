@@ -12,7 +12,7 @@
 #include "globals.h"
 #include "constants.h"
 #include "palettes.h"
-#include "sfx.h"
+#include "sound.h"
 
 #include "../assets/highlight_frame_bank2.h"
 #include "../assets/upgrade_frame.h"

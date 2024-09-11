@@ -18,6 +18,11 @@
 #define BKG 0
 #define WIN 1
 
+// music
+#define GAME_THEME_BANK_NR 5
+#define SHOP_THEME_BANK_NR 6
+
+
 // main menu
 #define MAIN_MENU_ITEMS 3
 #define MAIN_MENU_X 49

@@ -8,7 +8,7 @@
 #include "constants.h"
 #include "globals.h"
 #include "palettes.h"
-#include "sfx.h"
+#include "sound.h"
 
 #include "../assets/splashscreen_screen.h"
 #include "../assets/splashscreen_GB_fix.h"

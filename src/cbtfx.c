@@ -12,10 +12,7 @@ Thanks to bbbbbr for getting my code to ACTUALLY work
 #include <gb/sgb.h>
 #include "cbtfx.h"
 #include "hUGEDriver.h"
-#define MUSIC_DRIVER_CH2_ON hUGE_mute_channel(HT_CH2, 0);
-#define MUSIC_DRIVER_CH2_OFF hUGE_mute_channel(HT_CH2, 1);
-#define MUSIC_DRIVER_CH4_ON hUGE_mute_channel(HT_CH4, 0);
-#define MUSIC_DRIVER_CH4_OFF hUGE_mute_channel(HT_CH4, 1);
+
 
 const unsigned char CBTFX_HEADER[] = "CBT-FX BY COFFEEBAT 2021-22";
 const uint8_t * CBTFX_pointer;
