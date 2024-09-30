@@ -22,6 +22,7 @@
 #include "gameover.h"
 #include "loading.h"
 #include "sound.h"
+#include "musicmanager.h"
 
 #include "../assets/rover.h"
 #include "../assets/rover_eye.h"
@@ -30,19 +31,31 @@
 #include "../assets/ore_tiles.h"
 #include "../assets/progressbar.h"
 
-extern const hUGESong_t sample_song;
-
 void main(void) {
     ENABLE_RAM;
     SWITCH_RAM(0);
     init_VBL_interrupts();
-    init_sound();
+    // init_sound();
+
+
+
+    static uint8_t music_paused = FALSE;
+
+    // initialize the music and SFX driver
+    music_init();
 
     CRITICAL {
-        SWITCH_ROM(5);
-        hUGE_init(&sample_song);
-        add_VBL(test);          
+        // set up the game boy timer
+        music_setup_timer();
+        // add music and SFX driver ISR to the low priority timer chain
+        add_low_priority_TIM(music_play_isr);
     }
+    // enable the timer interrupt
+    set_interrupts(IE_REG | TIM_IFLAG);
+
+
+
+
 
     initrand(DIV_REG);
     currentGameState = GAME_STATE_MAIN_MENU;
@@ -51,8 +64,11 @@ void main(void) {
             case GAME_STATE_MAIN_MENU:
                 SWITCH_ROM(4);
                 init_clear_screen();
-                init_sound();
+                // init_sound();
                 init_main_menu();
+
+                music_load(BANK(shop_theme), &shop_theme);
+
                 while (currentGameState == GAME_STATE_MAIN_MENU){
                     if (frame_counter % 3 == 0) show_main_menu(); // animate the menu in frame
                     if (main_menu_animation_finished) {
@@ -61,23 +77,22 @@ void main(void) {
                             if (current_menu_index == 0) currentGameState = GAME_STATE_NEW_GAME;
                             else if (current_menu_index == 1) currentGameState = GAME_STATE_NEW_GAME;
                             else if (current_menu_index >= 2) currentGameState = GAME_STATE_NEW_GAME;
-                            stop_music();
-                            toggle_mute_music(TRUE);
                             PLAY_SFX_menu_in;
                         }
                     }
                     vsync();
                 }
                 turn_screen_off();
+                // music_stop();
                 break;
 
             case GAME_STATE_NEW_GAME:
+                music_stop();
                 SWITCH_ROM(4);
                 init_screen();
                 init_progressbar();
                 init_loading_screen();
                 init_font();
-                init_loading_screen();
                 generate_map(256);
                 done_loading();
                 turn_screen_off();
@@ -120,27 +135,15 @@ void main(void) {
                 break;
 
             case GAME_STATE_CONTINUE:
-
-
                 SWITCH_ROM(1);
                 handle_fuel(FALSE);
                 handle_hull(FALSE);
-                init_sound();
-                toggle_mute_music(FALSE);
-
+                music_load(BANK(game_theme), &game_theme);
                 init_enable_lcd_interrupt();
-                CRITICAL {
-                    SWITCH_ROM(5);
-                    hUGE_init(&sample_song);
-                    add_VBL(test);    
-                    SWITCH_ROM(1);      
-                }
                 while (player_alive == TRUE && currentGameState == GAME_STATE_CONTINUE) {
                     game_loop();
                 }
-                stop_music();
                 init_disable_lcd_interrupt();
-                mute_sound();
                 turn_screen_off();
                 break;
 
@@ -151,7 +154,7 @@ void main(void) {
                 init_upgrade();
                 init_upgrade_tiles_palettes();
                 turn_screen_on();
-                init_sound();
+                music_load(BANK(shop_theme), &shop_theme);
                 PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_UPGRADE_MENU){
                     upgrade_menu_loop();
@@ -169,8 +172,8 @@ void main(void) {
                 init_font();
                 init_sell();
                 draw_sell_menu();
-                init_sound();
                 turn_screen_on();
+                music_load(BANK(shop_theme), &shop_theme);
                 PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_SELL_MENU){
                     sell_menu_loop();
@@ -191,8 +194,8 @@ void main(void) {
                 init_powerup();
                 set_fuel_display_y();
                 draw_powerup_menu();
-                init_sound();
                 turn_screen_on();
+                music_load(BANK(shop_theme), &shop_theme);
                 PLAY_SFX_enter;
                 while (currentGameState == GAME_STATE_FUEL_MENU){
                     if (check_fuel_display_y() <= fuel_display_y && fuel_display_y > 0) fuel_display_y --;
@@ -211,7 +214,7 @@ void main(void) {
             case GAME_STATE_GAME_OVER:
                 SWITCH_ROM(2);
                 turn_screen_on();
-                init_sound();
+                // init_sound();
                 move_win(7, 144);
                 init_game_over();
                 while (buttons != J_START) {

@@ -11,7 +11,7 @@ Thanks to bbbbbr for getting my code to ACTUALLY work
 #include <gb/gb.h>
 #include <gb/sgb.h>
 #include "cbtfx.h"
-#include "hUGEDriver.h"
+#include "../include/hUGEDriver.h"
 
 
 const unsigned char CBTFX_HEADER[] = "CBT-FX BY COFFEEBAT 2021-22";

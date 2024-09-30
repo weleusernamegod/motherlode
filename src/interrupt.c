@@ -13,7 +13,6 @@ void test(void) {
     hUGE_dosound();
     SWITCH_ROM(_saved_bank);
     CBTFX_update();
-
 }
 
 void interrupt_LCD(void) {
@@ -58,6 +57,7 @@ void init_enable_lcd_interrupt(void){
         
     }
     set_interrupts(LCD_IFLAG | VBL_IFLAG);
+    set_interrupts(IE_REG | TIM_IFLAG); // keep the sound interrupt on all time
 }
 
 void init_disable_lcd_interrupt(void) {
@@ -68,4 +68,5 @@ void init_disable_lcd_interrupt(void) {
 
     STAT_REG = 0x00; // This sets the STAT_REG to a state where no LCD STAT interrupts are enabled
     set_interrupts(VBL_IFLAG | LCD_IFLAG);
+    set_interrupts(IE_REG | TIM_IFLAG); // keep the sound interrupt on all time
 }

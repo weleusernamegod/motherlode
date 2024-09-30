@@ -11,7 +11,7 @@
 #include "globals.h"
 #include "constants.h"
 #include "level.h"
-#include "hUGEDriver.h"
+#include "../include/hUGEDriver.h"
 
 #include "../assets/font.h"
 #include "../assets/character.h"
@@ -21,10 +21,6 @@
 #include "../assets/tracks.h"
 #include "../assets/prop.h"
 #include "../assets/progressbar.h"
-
-extern const hUGESong_t sample_song;
-extern const hUGESong_t sample_song;
-
 
 void init_font(void){
 

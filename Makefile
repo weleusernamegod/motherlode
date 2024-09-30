@@ -7,30 +7,57 @@ endif
 LCC = $(GBDK_HOME)bin/lcc
 PNG2ASSET = $(GBDK_HOME)bin/png2asset
 
-LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya16 -Wb-ext=.rel -Wm-yc -Wl-lhammer/hUGEDriver.lib
-CFLAGS += -I$(ASSETDIR)
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya16 -Wb-ext=.rel -Wm-yc -Wl-linclude/hUGEDriver.lib
+CFLAGS += -I$(ASSETDIR) -I$(INCDIR)
 
 # You can set the name of the .gbc ROM file here
 PROJECTNAME    = Motherlode
 
 SRCDIR      = src
 SFXDIR      = sfx
-SOUNDDIR    = sound
+MUSICDIR    = music
 OBJDIR      = obj
 ASSETDIR    = assets
 BINDIR      = build
+INCDIR      = include
 MKDIRS      = $(OBJDIR) $(BINDIR)
 
 BINS	    = $(BINDIR)/$(PROJECTNAME).gbc
 SRCSOURCES    = $(wildcard $(SRCDIR)/*.c)
 SFXSOURCES    = $(wildcard $(SFXDIR)/*.c)
-SOUNDSOURCES  = $(wildcard $(SOUNDDIR)/*.c)
+MUSICSOURCES  = $(wildcard $(MUSICDIR)/*.c)
 ASSETSOURCES  = $(wildcard $(ASSETDIR)/*.c)
-OBJS          = $(SRCSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(SFXSOURCES:$(SFXDIR)/%.c=$(OBJDIR)/%.o) $(SOUNDSOURCES:$(SOUNDDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
+OBJS          = $(SRCSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(SFXSOURCES:$(SFXDIR)/%.c=$(OBJDIR)/%.o) $(MUSICSOURCES:$(MUSICDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
+DEPENDANT   = $(CSOURCES:%.c=$(OBJDIR)/%.o)
 
 .PHONY: all prepare hammer png2asset copy-rom clean
 
-all: $(BINS) report copy-rom clean
+all: process-uge $(BINS) report copy-rom clean
+
+# Dependencies
+DEPS = $(DEPENDANT:%.o=%.d)
+-include $(DEPS)
+
+# .SECONDEXPANSION:
+# process-wav:
+# 	@for file in $(wildcard $(RESDIR)/*.wav); do \
+# 		meta_file=$(RESDIR)/$$(basename $$file .wav).wav.meta; \
+# 		python utils/wav2data.py `cat $$meta_file 2>/dev/null` -o $(OBJDIR)/$$(basename $$file .wav).c $$file; \
+# 	done
+
+# .SECONDEXPANSION:
+# process-sav:
+# 	@for file in $(wildcard $(RESDIR)/*.sav); do \
+# 		meta_file=$(RESDIR)/$$(basename $$file .sav).sav.meta; \
+# 		python utils/fxhammer2data.py `cat $$meta_file 2>/dev/null` -o $(OBJDIR)/$$(basename $$file .sav).c $$file; \
+# 	done
+
+.SECONDEXPANSION:
+process-uge:
+	@for file in $(wildcard $(MUSICDIR)/*.uge); do \
+		meta_file=$(MUSICDIR)/$$(basename $$file .uge).uge.meta; \
+		utils/uge2source $$file `cat $$meta_file 2>/dev/null` $(MUSICDIR)/$$(basename $$file .uge).c; \
+	done
 
 # Generate asset files
 png2asset:
@@ -57,7 +84,6 @@ png2asset:
 	$(PNG2ASSET) png/station_upgrade.png -c assets/station_upgrade.c -source_tileset png/station_sheet.png -spr8x8 -map -repair_indexed_pal -use_map_attributes -tile_origin 64 -noflip -b 1
 	
 	$(PNG2ASSET) png/game_over_skull.png -c assets/game_over_skull.c -spr8x8 -no_palettes -noflip -keep_palette_order -sh 48 -tile_origin 64 -b 2
-	# $(PNG2ASSET) png/a_button.png -c assets/a_button.c -spr8x8 -no_palettes -noflip -sh 16 -tile_origin 96 -b 1
 	$(PNG2ASSET) png/upgrade_tiles.png -c assets/upgrade_tiles.c -spr8x8 -tiles_only -noflip -keep_palette_order -max_palettes 36 -keep_duplicate_tiles -tile_origin 0 -b 2
 	$(PNG2ASSET) png/upgrade_tick.png -c assets/upgrade_tick.c -spr8x8 -noflip -keep_palette_order -tile_origin 32 -b 2
 	$(PNG2ASSET) png/upgrade_frame.png -c assets/upgrade_frame.c -spr8x8 -repair_indexed_pal -keep_palette_order -map -noflip -tile_origin 160 -b 2
@@ -68,16 +94,13 @@ png2asset:
 	$(PNG2ASSET) png/splashscreen.png -c assets/splashscreen.c -spr8x8 -map -repair_indexed_pal -keep_palette_order -use_map_attributes -noflip -b 4
 	$(PNG2ASSET) png/splashscreen_GB_fix.png -c assets/splashscreen_GB_fix.c -spr8x8 -tiles_only -no_palettes -repair_indexed_pal -keep_palette_order -b 4
 
+
 # Compile .c files in "assets/" to .o object files
 $(OBJDIR)/%.o: $(ASSETDIR)/%.c
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
 
-# Compile .c files in "sfx/" to .o object files
-$(OBJDIR)/%.o: $(SFXDIR)/%.c
-	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
-
-# Compile .c files in "sound/" to .o object files
-$(OBJDIR)/%.o: $(SOUNDDIR)/%.c
+# Compile .c files in "music/" to .o object files
+$(OBJDIR)/%.o: $(MUSICDIR)/%.c
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
 
 # Compile .c files in "src/" to .o object files with specific flags for bank files
@@ -91,10 +114,11 @@ $(BINS): $(OBJS)
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -o $(BINS) $(OBJS)
 
 prepare:
-	rm -rf $(OBJDIR) $(SFXDIR) $(ASSETDIR)
+	rm -rf $(OBJDIR) $(ASSETDIR)
 	mkdir -p $(OBJDIR)
 	mkdir -p $(SFXDIR)
 	mkdir -p $(ASSETDIR)
+	mkdir -p $(BINDIR)
 	mkdir -p $(BINDIR)
 
 copy-rom:
@@ -104,7 +128,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 hammer:
-	@cd hammer && python3 hammer2cbt.py --fxammo 42 --fxnamelist FXNAMELIST.txt motherlode_sfx.sav 0 ../sfx/
+	@cd utils && python3 hammer2cbt.py --fxammo 42 --fxnamelist FXNAMELIST.txt ../sfx/motherlode_sfx.sav 0 ../assets/
 
 report:
 	/usr/local/opt/gbdk/bin/romusage build/Motherlode.noi -g -sRe

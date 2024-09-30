@@ -24,6 +24,10 @@
         "stddef.h": "c",
         "sfx_fuel_up.h": "c",
         "sfx_menu_tick.h": "c",
-        "general.h": "c"
+        "general.h": "c",
+        "sfx_mute.h": "c",
+        "sfx_exit.h": "c",
+        "game_theme.h": "c",
+        "shop_theme.h": "c"
     },
 }
