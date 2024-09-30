@@ -9,7 +9,7 @@
 		Length			:	32
 		Framecount		:	16
 		Number of lines :	8
-		Priority		:	4
+		Priority		:	1
 		Channels used	:	Duty channel 2
 		SGB Support		:	No
 */
