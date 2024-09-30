@@ -66,10 +66,9 @@ void main(void) {
             case GAME_STATE_MAIN_MENU:
                 SWITCH_ROM(4);
                 init_clear_screen();
-                // init_sound();
                 init_main_menu();
 
-                //music_load(BANK(shop_theme), &shop_theme);
+                music_load(BANK(shop_theme), &shop_theme);
 
                 while (currentGameState == GAME_STATE_MAIN_MENU){
                     if (frame_counter % 3 == 0) show_main_menu(); // animate the menu in frame
