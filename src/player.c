@@ -22,7 +22,6 @@
 #include "../assets/drill_h.h"
 #include "../assets/drill_v.h"
 #include "../assets/prop.h"
-#include "cbtfx.h"
 
 #include "level.h"
 #include "sound.h"
@@ -204,8 +203,8 @@ void update_movement(void) {
 
         if (last_SFX_played == animation_frames_left) {
             if (rover_state == DRILL) {
-                PLAY_SFX_drill;
-                last_SFX_played -= SFX_drill_framecount;
+                //PLAY_SFX_drill;
+                //last_SFX_played -= SFX_drill_framecount;
             }
         }
 
@@ -430,18 +429,18 @@ void initiate_movement(void) {
 }
 void apply_lava_damage(void){
     player.hull.current_value -= LAVA_DAMAGE;
-    PLAY_SFX_hurt;
+    //PLAY_SFX_hurt;
 }
 
 void apply_gas_damage(void){
     player.hull.current_value -= GAS_DAMAGE;
-    PLAY_SFX_hurt;
+    //PLAY_SFX_hurt;
 }
 void apply_fall_damage(void){
     uint8_t damage = ((prev_velocity - FALL_DAMAGE_THRESHOLD) * 2) + 1;
     player.hull.current_value -= damage;
     damage_recieved = TRUE;
-    PLAY_SFX_hurt;
+    //PLAY_SFX_hurt;
 }
 
 void calculate_hazard_damage(void){
@@ -620,7 +619,7 @@ void powerup_dynamite(void) {
         powerup[POWERUP_DYNAMITE].inventory -= 1;
 
         // play SFX
-        PLAY_SFX_explosion;
+        //PLAY_SFX_explosion;
     }
 }
 

@@ -35,7 +35,7 @@ void game_loop(void) {
         if (ore_mined == TRUE) {
             update_inventory();
             handle_cargo();
-            if (display_warning_cargo_normal == FALSE) PLAY_SFX_ore_mined; else PLAY_SFX_cargo_full;
+            //if (display_warning_cargo_normal == FALSE) //PLAY_SFX_ore_mined; else //PLAY_SFX_cargo_full;
         }
         calculate_hazard_damage();
         clear_4bkg_tiles(width, wrapped_depth);

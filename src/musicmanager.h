@@ -93,7 +93,7 @@ inline void music_stop(void) {
 #define MUTE_MASK_WAVE MUSIC_CH_3
 
 // play SFX with the desired priority, muting the music on the selected channels
-inline void music_play_sfx(uint8_t bank, const uint8_t * sample, uint8_t mute_mask, uint8_t priority) {
+inline void music_PLAY_SFX(uint8_t bank, const uint8_t * sample, uint8_t mute_mask, uint8_t priority) {
     if (music_sfx_priority > priority) return;
     sfx_play_bank = SFX_STOP_BANK;
     music_sfx_priority = priority;

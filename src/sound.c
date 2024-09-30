@@ -12,7 +12,7 @@ void init_shop_theme(void) {
         SWITCH_ROM(SHOP_THEME_BANK_NR);
         current_theme_bank = SHOP_THEME_BANK_NR;
         hUGE_init(&shop_theme);
-        add_VBL(test); 
+        // add_VBL(test); 
     }
 }
 
@@ -21,13 +21,13 @@ void init_game_theme(void) {
         SWITCH_ROM(GAME_THEME_BANK_NR);
         current_theme_bank = GAME_THEME_BANK_NR;
         hUGE_init(&game_theme);
-        add_VBL(test); 
+        // add_VBL(test); 
     }
 }
 
 void stop_music(void) {
     CRITICAL {
-        remove_VBL(test); 
+        // remove_VBL(test); 
     }
 }
 

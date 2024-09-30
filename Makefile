@@ -7,7 +7,7 @@ endif
 LCC = $(GBDK_HOME)bin/lcc
 PNG2ASSET = $(GBDK_HOME)bin/png2asset
 
-LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya16 -Wb-ext=.rel -Wm-yc -Wl-linclude/hUGEDriver.lib
+LCCFLAGS += -debug -Wl-yt0x1B -Wm-yo8 -Wm-ya16 -Wb-ext=.rel -Wm-yc -Wl-llib/hUGEDriver.lib
 CFLAGS += -I$(ASSETDIR) -I$(INCDIR)
 
 # You can set the name of the .gbc ROM file here
@@ -30,27 +30,27 @@ ASSETSOURCES  = $(wildcard $(ASSETDIR)/*.c)
 OBJS          = $(SRCSOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o) $(SFXSOURCES:$(SFXDIR)/%.c=$(OBJDIR)/%.o) $(MUSICSOURCES:$(MUSICDIR)/%.c=$(OBJDIR)/%.o) $(ASSETSOURCES:$(ASSETDIR)/%.c=$(OBJDIR)/%.o)
 DEPENDANT   = $(CSOURCES:%.c=$(OBJDIR)/%.o)
 
-.PHONY: all prepare hammer png2asset copy-rom clean
+.PHONY: all prepare process-uge process-wav process-sav png2asset copy-rom clean
 
-all: process-uge $(BINS) report copy-rom clean
+all:  $(BINS) report copy-rom clean
 
 # Dependencies
 DEPS = $(DEPENDANT:%.o=%.d)
 -include $(DEPS)
 
-# .SECONDEXPANSION:
-# process-wav:
-# 	@for file in $(wildcard $(RESDIR)/*.wav); do \
-# 		meta_file=$(RESDIR)/$$(basename $$file .wav).wav.meta; \
-# 		python utils/wav2data.py `cat $$meta_file 2>/dev/null` -o $(OBJDIR)/$$(basename $$file .wav).c $$file; \
-# 	done
+.SECONDEXPANSION:
+process-wav:
+	@for file in $(wildcard $(SFXDIR)/*.wav); do \
+		meta_file=$(SFXDIR)/$$(basename $$file .wav).wav.meta; \
+		python utils/wav2data.py `cat $$meta_file 2>/dev/null` -o $(ASSETDIR)/$$(basename $$file .wav).c $$file; \
+	done
 
-# .SECONDEXPANSION:
-# process-sav:
-# 	@for file in $(wildcard $(RESDIR)/*.sav); do \
-# 		meta_file=$(RESDIR)/$$(basename $$file .sav).sav.meta; \
-# 		python utils/fxhammer2data.py `cat $$meta_file 2>/dev/null` -o $(OBJDIR)/$$(basename $$file .sav).c $$file; \
-# 	done
+.SECONDEXPANSION:
+process-sav:
+	@for file in $(wildcard $(SFXDIR)/*.sav); do \
+		meta_file=$(SFXDIR)/$$(basename $$file .sav).sav.meta; \
+		python utils/fxhammer2data.py `cat $$meta_file 2>/dev/null` -o $(ASSETDIR)/$$(basename $$file .sav).c $$file; \
+	done
 
 .SECONDEXPANSION:
 process-uge:
@@ -126,9 +126,6 @@ copy-rom:
 
 clean:
 	rm -rf $(OBJDIR)
-
-hammer:
-	@cd utils && python3 hammer2cbt.py --fxammo 42 --fxnamelist FXNAMELIST.txt ../sfx/motherlode_sfx.sav 0 ../assets/
 
 report:
 	/usr/local/opt/gbdk/bin/romusage build/Motherlode.noi -g -sRe

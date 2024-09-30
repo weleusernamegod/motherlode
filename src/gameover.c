@@ -39,7 +39,7 @@ void init_game_over(void){
 void draw_game_over(void) {
     // Play skull laughing sound at the start of the animation
     if (game_over_animation_cycle == 0 && game_over_animation_frame == 0 && game_over_animation_active) {
-        PLAY_SFX_explosion_rumble;
+        //PLAY_SFX_explosion_rumble;
     }
 
     // Animate the skull if animation is active

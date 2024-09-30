@@ -243,7 +243,7 @@ void attempt_upgrade_purchase(UpgradeMenuState current_upgrade_state, UpgradeMen
 
     // Check if the upgrade level is already too high or matches the selection
     if (currentAttributes->upgrade_level >= upgrade_to) {
-        PLAY_SFX_buy_nothing;
+        //PLAY_SFX_buy_nothing;
         return;
     }
 
@@ -254,9 +254,9 @@ void attempt_upgrade_purchase(UpgradeMenuState current_upgrade_state, UpgradeMen
         currentAttributes->upgrade_level = upgrade_to;
         currentAttributes->max_value = currentAttributes->upgrade_value[upgrade_to];
         currentAttributes->current_value = currentAttributes->upgrade_value[upgrade_to];
-        PLAY_SFX_buy_upgrade;
+        //PLAY_SFX_buy_upgrade;
     } else {
-        PLAY_SFX_buy_nothing;
+        //PLAY_SFX_buy_nothing;
         return;
     }
 }
@@ -276,7 +276,7 @@ void handle_upgrade_input(UpgradeMenuState *current_upgrade_state, UpgradeMenu *
         }
 
         if (prev_upgrade_selection != current_upgrade_menu->current_upgrade_selection) {
-            PLAY_SFX_menu_tick;
+            //PLAY_SFX_menu_tick;
         }
 
             // Selecting an option with 'A'
@@ -290,7 +290,7 @@ void handle_upgrade_input(UpgradeMenuState *current_upgrade_state, UpgradeMenu *
                     else if (current_upgrade_menu->current_upgrade_selection == 3) *current_upgrade_state = FUEL_MENU;
                     else if (current_upgrade_menu->current_upgrade_selection == 4) *current_upgrade_state = RADIATOR_MENU;
                     else if (current_upgrade_menu->current_upgrade_selection == 5) *current_upgrade_state = CARGO_MENU;
-                    PLAY_SFX_menu_in;
+                    //PLAY_SFX_menu_in;
                     break;
                 case DRILL_MENU:
                 case HULL_MENU:
@@ -325,7 +325,7 @@ void handle_upgrade_input(UpgradeMenuState *current_upgrade_state, UpgradeMenu *
                 case RADIATOR_MENU:
                 case CARGO_MENU:
                     *current_upgrade_state = MAIN_MENU; // Go back to the main menu
-                    PLAY_SFX_menu_out;
+                    //PLAY_SFX_menu_out;
                     break;
             }
         }

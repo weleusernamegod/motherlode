@@ -177,9 +177,9 @@ void fuel_up(void) {
         if (player.fuel.current_value > player.fuel.max_value) {
             player.fuel.current_value = player.fuel.max_value;
         }
-        PLAY_SFX_fuel_up;
+        //PLAY_SFX_fuel_up;
     } else {
-        PLAY_SFX_buy_nothing;
+        //PLAY_SFX_buy_nothing;
     }
 }
 
@@ -196,7 +196,7 @@ void repair_hull(void) {
             // Player has enough money to fully fuel up
             player.money -= hull_cost;
             player.hull.current_value = player.hull.max_value;
-            PLAY_SFX_money;
+            //PLAY_SFX_money;
         } else {
             // Player doesn't have enough money to fully fuel up
             uint16_t affordable_hull = player.money * 3; // calculate how much fuel they can afford
@@ -204,7 +204,7 @@ void repair_hull(void) {
             player.money = 0;
         }
     } else {
-        PLAY_SFX_buy_nothing;
+        //PLAY_SFX_buy_nothing;
     }
 }
 
@@ -215,9 +215,9 @@ void purchase_powerup(void) {
         // Player has enough money to fully fuel up
         player.money -= powerup_cost;
         powerup[current_powerup_selection].inventory ++;
-        PLAY_SFX_money;
+        //PLAY_SFX_money;
     } else {
-        PLAY_SFX_buy_nothing;
+        //PLAY_SFX_buy_nothing;
     }
 }
 
@@ -303,7 +303,7 @@ void handle_powerup_input(void) {
         }
         
         if (prev_powerup_selection != current_powerup_selection) {
-            PLAY_SFX_menu_tick;
+            //PLAY_SFX_menu_tick;
         }
 
             // Selecting an option with 'A'

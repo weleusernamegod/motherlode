@@ -3,27 +3,13 @@
 
 #include "globals.h"
 #include "constants.h"
-#include "cbtfx.h"
 #include "sound.h"
-
-void test(void) {
-    // The current bank can be saved
-    uint8_t _saved_bank = _current_bank;
-    SWITCH_ROM(5);
-    hUGE_dosound();
-    SWITCH_ROM(_saved_bank);
-    CBTFX_update();
-}
 
 void interrupt_LCD(void) {
     move_win(167, 0);
 }
 void interrupt_VBL_window(void) {
     move_win(WIN_X, 0);
-}
-
-void interrupt_VBL_fx(void) {
-    CBTFX_update();
 }
 
 void interrupt_VBL_framecounter(void) {
