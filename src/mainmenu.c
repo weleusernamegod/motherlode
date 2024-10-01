@@ -8,11 +8,13 @@
 #include "constants.h"
 #include "globals.h"
 #include "palettes.h"
-#include "sound.h"
+#include "musicmanager.h"
+#include "sfxplayer.h"
 
 #include "../assets/splashscreen_screen.h"
 #include "../assets/splashscreen_GB_fix.h"
 #include "../assets/splashscreen.h"
+#include "../assets/motherlode_sfx.h"
 
 #pragma bank 4
 #ifndef __INTELLISENSE__
@@ -35,14 +37,14 @@ void draw_main_menu(void){
         if (current_menu_index > 0) {
             current_menu_index--;
             draw_menu_buttons();
-            //PLAY_SFX_menu_tick;
+            PLAY_SFX_menu_tick;
             delay(200);  // Debounce delay
         }
     } else if (joypad() & J_DOWN) {
         if (current_menu_index < MAIN_MENU_ITEMS - 1) {
             current_menu_index++;
             draw_menu_buttons();
-            //PLAY_SFX_menu_tick;
+            PLAY_SFX_menu_tick;
             delay(200);  // Debounce delay
         }
     }

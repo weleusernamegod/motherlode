@@ -17,6 +17,8 @@
 #include "general.h"
 #include "palettes.h"
 #include "map.h"
+#include "musicmanager.h"
+#include "sfxplayer.h"
 
 #include "level.h"
 #include "player.h"
@@ -38,10 +40,8 @@
 #include "../assets/station_sell.h"
 #include "../assets/station_upgrade.h"
 #include "../assets/station_save.h"
+#include "../assets/motherlode_sfx.h"
 
-// #include "../assets/a_button.h"
-
-#include "sound.h"
 
 #pragma bank 1
 #ifndef __INTELLISENSE__
@@ -333,7 +333,7 @@ void update_icon_hull(void){
     if (display_warning_hull_normal) {
         if (frame_counter % PERCENTAGE_NORMAL == 0) {
             set_sprite_prop(ICON_HULL_START, WARNING_PALETTE);
-            //PLAY_SFX_low_fuel;
+            PLAY_SFX_low_fuel;
         } else if (frame_counter % (PERCENTAGE_NORMAL / 2) == 0) {
             set_sprite_prop(ICON_HULL_START, ICON_PALETTE);
         }
@@ -346,14 +346,14 @@ void update_icon_fuel(void){
     if (display_warning_fuel_normal && !display_warning_fuel_critical) {
         if (frame_counter % PERCENTAGE_NORMAL == 0) {
             set_sprite_prop(ICON_FUEL_START, WARNING_PALETTE);
-            //PLAY_SFX_low_fuel;
+            PLAY_SFX_low_fuel;
         } else if (frame_counter % (PERCENTAGE_NORMAL / 2) == 0) {
             set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
         }
     } else if (display_warning_fuel_normal && display_warning_fuel_critical) {
         if (frame_counter % PERCENTAGE_CRITICAL == 0) {
             set_sprite_prop(ICON_FUEL_START, WARNING_PALETTE);
-            //PLAY_SFX_low_fuel;
+            PLAY_SFX_low_fuel;
         } else if (frame_counter % (PERCENTAGE_CRITICAL / 2) == 0) {
             set_sprite_prop(ICON_FUEL_START, ICON_PALETTE);
         }
@@ -366,7 +366,7 @@ void update_icon_fuel(void){
 void update_icon_cargo(void){
     if (display_warning_cargo_normal) {
             set_sprite_prop(ICON_CARGO_START, WARNING_PALETTE);
-            //PLAY_SFX_cargo_full;
+            PLAY_SFX_cargo_full;
     } else {
         set_sprite_prop(ICON_CARGO_START, ICON_PALETTE);
     }

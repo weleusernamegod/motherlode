@@ -4,6 +4,16 @@
     "files.associations": {
         "sound.h": "c",
         "motherlode_sfx.h": "c",
-        "skull_laughing.h": "c"
+        "skull_laughing.h": "c",
+        "musicmanager.h": "c",
+        "metasprites.h": "c",
+        "game_over_skull.h": "c",
+        "platform.h": "c",
+        "splashscreen.h": "c",
+        "drill_h.h": "c",
+        "progressbar.h": "c",
+        "station_powerup.h": "c",
+        "selection.h": "c",
+        "powerup.h": "c"
     },
 }

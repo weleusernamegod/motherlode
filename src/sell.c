@@ -11,9 +11,11 @@
 #include "attributes.h"
 #include "inventory.h"
 #include "palettes.h"
-#include "sound.h"
+#include "musicmanager.h"
+#include "sfxplayer.h"
 
 #include "../assets/sell_frame.h"
+#include "../assets/motherlode_sfx.h"
 
 #pragma bank 3
 #ifndef __INTELLISENSE__
@@ -135,9 +137,9 @@ void sell_menu_loop(void) {
             reset_inventory();
             draw_sell();
             draw_sell_menu();
-            //PLAY_SFX_money;
+            PLAY_SFX_money;
         } else {
-            //PLAY_SFX_buy_nothing;
+            PLAY_SFX_buy_nothing;
         }
     }
     if (buttons & J_B) leave_station = TRUE;

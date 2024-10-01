@@ -3,7 +3,6 @@
 
 #include "globals.h"
 #include "constants.h"
-#include "sound.h"
 
 void interrupt_LCD(void) {
     move_win(167, 0);
@@ -30,7 +29,6 @@ void interrupt_VBL_framecounter(void) {
 void init_VBL_interrupts(void) {
     CRITICAL{
     add_VBL(interrupt_VBL_framecounter);  // Add the VBL interrupt handler
-    // add_VBL(interrupt_VBL_fx);
     }
 }
 

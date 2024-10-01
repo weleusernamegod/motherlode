@@ -17,10 +17,13 @@
 #include "general.h"
 #include "palettes.h"
 #include "map.h"
+#include "sfxplayer.h"
+#include "musicmanager.h"
 
 #include "../assets/game_over_skull.h"
+#include "../assets/skull_laughing.h"
+#include "../assets/motherlode_sfx.h"
 
-#include "sound.h"
 
 #pragma bank 2
 #ifndef __INTELLISENSE__
@@ -39,7 +42,7 @@ void init_game_over(void){
 void draw_game_over(void) {
     // Play skull laughing sound at the start of the animation
     if (game_over_animation_cycle == 0 && game_over_animation_frame == 0 && game_over_animation_active) {
-        //PLAY_SFX_explosion_rumble;
+        PLAY_SFX_explosion_rumble;
     }
 
     // Animate the skull if animation is active
@@ -57,7 +60,8 @@ void draw_game_over(void) {
             if (game_over_animation_cycle >= GAME_OVER_ANIMATION_CYCLES) {
                 game_over_animation_active = FALSE;  // Stop animating after completing desired cycles
 
-                // After animation completes, display "GAME OVER"
+                // After animation completes, display "GAME OVER" and play sound
+                music_PLAY_SFX(BANK(skull_laughing), skull_laughing, SFX_MUTE_MASK(skull_laughing), MUSIC_SFX_PRIORITY_NORMAL);
                 draw_text_sprite(72, 116, GAME_OVER_START, "GAME", 4, TRUE, GAME_OVER_PALETTE);
                 draw_text_sprite(72, 116 + 10, GAME_OVER_START + 4, "OVER", 4, TRUE, GAME_OVER_PALETTE);
                 scroll_sprite(GAME_OVER_START + 3, 1, 0); // move letter E one over, because it looks more nice

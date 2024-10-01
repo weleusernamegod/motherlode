@@ -17,6 +17,7 @@ extern uint8_t prev_ram_bank;
 
 // music
 extern uint8_t current_theme_bank;
+extern uint8_t music_paused;
 
 // gamestates
 extern BOOLEAN player_alive;

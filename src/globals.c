@@ -21,6 +21,8 @@ uint8_t prev_ram_bank = 0;
 
 // music
 uint8_t current_theme_bank = 0;
+uint8_t music_paused = FALSE;
+
 
 // gamestates
 BOOLEAN player_alive = TRUE;

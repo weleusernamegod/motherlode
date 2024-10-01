@@ -11,6 +11,8 @@
 #include "globals.h"
 #include "constants.h"
 #include "level.h"
+#include "musicmanager.h"
+#include "sfxplayer.h"
 #include "../include/hUGEDriver.h"
 
 #include "../assets/font.h"
@@ -40,10 +42,24 @@ void init_screen(void){
 }
 
 void init_sound(void){  
-    NR52_REG = 0x80; // is 1000 0000 in binary and turns on sound
-    NR50_REG = 0x77; // sets the volume for both left and right channel just set to max 0x77
-    NR51_REG = 0xFF; // is 1111 1111 in binary, select which chanels we want to use in this case all of them. One bit for the L one bit for the R of all four channels
+    // NR52_REG = 0x80; // is 1000 0000 in binary and turns on sound
+    // NR50_REG = 0x77; // sets the volume for both left and right channel just set to max 0x77
+    // NR51_REG = 0xFF; // is 1111 1111 in binary, select which chanels we want to use in this case all of them. One bit for the L one bit for the R of all four channels
+
+    // initialize the music and SFX driver
+    music_init();
+
+    CRITICAL {
+        // set up the game boy timer
+        music_setup_timer_ex(0x00);
+        // add music and SFX driver ISR to the low priority timer chain
+        add_low_priority_TIM(music_play_isr);
+    }
+    // enable the timer interrupt
+    set_interrupts(IE_REG | TIM_IFLAG);
 }
+
+
 
 void mute_sound(void){
     NR52_REG = 0x00;

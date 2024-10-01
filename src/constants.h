@@ -182,4 +182,38 @@
 
 #define isGBC (_cpu == CGB_TYPE)
 
+// music
+
+#define PLAY_SHOP_THEME music_load(BANK(shop_theme), &shop_theme)
+#define PLAY_GAME_THEME music_load(BANK(game_theme), &game_theme)
+
+#define STOP_MUSIC music_stop();
+#define PAUSE_MUSIC music_pause(music_paused = TRUE);
+#define PLAY_MUSIC music_pause(music_paused = FALSE);
+
+
+#define PLAY_SFX_drill              music_PLAY_SFX(BANK(motherlode_sfx_00), motherlode_sfx_00, SFX_MUTE_MASK(motherlode_sfx_00), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_prop               music_PLAY_SFX(BANK(motherlode_sfx_01), motherlode_sfx_01, SFX_MUTE_MASK(motherlode_sfx_01), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_hurt               music_PLAY_SFX(BANK(motherlode_sfx_02), motherlode_sfx_02, SFX_MUTE_MASK(motherlode_sfx_02), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_explosion_rumble   music_PLAY_SFX(BANK(motherlode_sfx_03), motherlode_sfx_03, SFX_MUTE_MASK(motherlode_sfx_03), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_explosion          music_PLAY_SFX(BANK(motherlode_sfx_04), motherlode_sfx_04, SFX_MUTE_MASK(motherlode_sfx_04), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_ore_mined          music_PLAY_SFX(BANK(motherlode_sfx_05), motherlode_sfx_05, SFX_MUTE_MASK(motherlode_sfx_05), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_ore_mined2         music_PLAY_SFX(BANK(motherlode_sfx_06), motherlode_sfx_06, SFX_MUTE_MASK(motherlode_sfx_06), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_special_mined      music_PLAY_SFX(BANK(motherlode_sfx_07), motherlode_sfx_07, SFX_MUTE_MASK(motherlode_sfx_07), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_low_fuel           music_PLAY_SFX(BANK(motherlode_sfx_08), motherlode_sfx_08, SFX_MUTE_MASK(motherlode_sfx_08), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_low_fuel_alt       music_PLAY_SFX(BANK(motherlode_sfx_09), motherlode_sfx_09, SFX_MUTE_MASK(motherlode_sfx_09), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_cargo_full         music_PLAY_SFX(BANK(motherlode_sfx_0a), motherlode_sfx_0a, SFX_MUTE_MASK(motherlode_sfx_0a), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_menu_in            music_PLAY_SFX(BANK(motherlode_sfx_0b), motherlode_sfx_0b, SFX_MUTE_MASK(motherlode_sfx_0b), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_menu_out           music_PLAY_SFX(BANK(motherlode_sfx_0c), motherlode_sfx_0c, SFX_MUTE_MASK(motherlode_sfx_0c), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_menu_tick          music_PLAY_SFX(BANK(motherlode_sfx_0d), motherlode_sfx_0d, SFX_MUTE_MASK(motherlode_sfx_0d), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_money              music_PLAY_SFX(BANK(motherlode_sfx_0e), motherlode_sfx_0e, SFX_MUTE_MASK(motherlode_sfx_0e), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_fuel_up            music_PLAY_SFX(BANK(motherlode_sfx_0f), motherlode_sfx_0f, SFX_MUTE_MASK(motherlode_sfx_0f), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_buy_powerup        music_PLAY_SFX(BANK(motherlode_sfx_10), motherlode_sfx_10, SFX_MUTE_MASK(motherlode_sfx_10), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_buy_upgrade        music_PLAY_SFX(BANK(motherlode_sfx_11), motherlode_sfx_11, SFX_MUTE_MASK(motherlode_sfx_11), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_buy_nothing        music_PLAY_SFX(BANK(motherlode_sfx_12), motherlode_sfx_12, SFX_MUTE_MASK(motherlode_sfx_12), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_enter              music_PLAY_SFX(BANK(motherlode_sfx_13), motherlode_sfx_13, SFX_MUTE_MASK(motherlode_sfx_13), MUSIC_SFX_PRIORITY_NORMAL);
+#define PLAY_SFX_exit               music_PLAY_SFX(BANK(motherlode_sfx_14), motherlode_sfx_14, SFX_MUTE_MASK(motherlode_sfx_14), MUSIC_SFX_PRIORITY_NORMAL);
+
+
+
 #endif // CONSTANTS_H
